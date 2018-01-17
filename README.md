@@ -9,13 +9,13 @@ bower install @flipdish/api-client-typescript --save
 ## Usage
 ### TypeScript
 ```typescript
-import * as flipdish from '@flipdish/api-client-typescript';
+import { StoresApi } from '@flipdish/api-client-typescript';
 
-let storesApi = new flipdish.StoresApi();
+let storesApi = new StoresApi();
 storesApi.accessToken = '<your_access_token>';
-storesApi.getAllStores('1.0', 'mexican cafe', 1, 20)
+storesApi.getStores('1.0', 'mexican cafe', 1, 20)
 .then(response => {
-        console.log(response);
+        response.body.Data.map(store => console.log(store));
     }).catch(error => {
         console.error(error);    
     });

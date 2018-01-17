@@ -23,18 +23,18 @@ let defaultBasePath = 'https://api.flipdish.co';
 /* tslint:disable:no-unused-variable */
 
 export class Accept {
-    'estimatedMinutesForDelivery': number;
+    'EstimatedMinutesForDelivery': number;
 }
 
 export class BusinessHoursPeriod {
-    'dayOfWeek': BusinessHoursPeriod.DayOfWeekEnum;
-    'startTime': string;
-    'period': string;
-    'startTimeEarly': string;
-    'periodEarly': string;
-    'early': Range;
-    'late': Range;
-    'ranges': Array<Range>;
+    'DayOfWeek': BusinessHoursPeriod.DayOfWeekEnum;
+    'StartTime': string;
+    'Period': string;
+    'StartTimeEarly': string;
+    'PeriodEarly': string;
+    'Early': Range;
+    'Late': Range;
+    'Ranges': Array<Range>;
 }
 
 export namespace BusinessHoursPeriod {
@@ -49,57 +49,57 @@ export namespace BusinessHoursPeriod {
     }
 }
 export class Coordinates {
-    'latitude': number;
-    'longitude': number;
+    'Latitude': number;
+    'Longitude': number;
 }
 
 export class CustomerSummary {
-    'id': number;
-    'name': string;
-    'emailAddress': string;
-    'phoneNumberLocalFormat': string;
-    'phoneNumber': string;
+    'Id': number;
+    'Name': string;
+    'EmailAddress': string;
+    'PhoneNumberLocalFormat': string;
+    'PhoneNumber': string;
 }
 
 export class DeliveryFeeArea {
-    'deliveryFee': number;
-    'minimumDeliveryOrder': number;
+    'DeliveryFee': number;
+    'MinimumDeliveryOrder': number;
 }
 
 export class DeliveryLocation {
-    'coordinates': Coordinates;
-    'building': string;
-    'street': string;
-    'town': string;
-    'postCode': string;
-    'deliveryInstructions': string;
-    'prettyAddressString': string;
+    'Coordinates': Coordinates;
+    'Building': string;
+    'Street': string;
+    'Town': string;
+    'PostCode': string;
+    'DeliveryInstructions': string;
+    'PrettyAddressString': string;
 }
 
 export class FeeSummary {
-    'feeAmount': number;
-    'percentageRate': number;
-    'perTransactionFee': number;
+    'FeeAmount': number;
+    'PercentageRate': number;
+    'PerTransactionFee': number;
 }
 
 export class Menu {
-    'menuId': number;
-    'versionNumber': number;
-    'modifiedTime': Date;
-    'menuSections': Array<MenuSectionBase>;
-    'imageUrl': string;
+    'MenuId': number;
+    'VersionNumber': number;
+    'ModifiedTime': Date;
+    'MenuSections': Array<MenuSectionBase>;
+    'ImageUrl': string;
 }
 
 export class MenuItemOptionSet {
-    'menuItemOptionSetId': number;
-    'menuItemOptionSetItems': Array<MenuItemOptionSetItem>;
-    'name': string;
-    'isMasterOptionSet': boolean;
-    'displayOrder': number;
-    'minSelectCount': number;
-    'maxSelectCount': number;
-    'imageUrl': string;
-    'cellLayoutType': MenuItemOptionSet.CellLayoutTypeEnum;
+    'MenuItemOptionSetId': number;
+    'MenuItemOptionSetItems': Array<MenuItemOptionSetItem>;
+    'Name': string;
+    'IsMasterOptionSet': boolean;
+    'DisplayOrder': number;
+    'MinSelectCount': number;
+    'MaxSelectCount': number;
+    'ImageUrl': string;
+    'CellLayoutType': MenuItemOptionSet.CellLayoutTypeEnum;
 }
 
 export namespace MenuItemOptionSet {
@@ -110,13 +110,13 @@ export namespace MenuItemOptionSet {
     }
 }
 export class MenuItemOptionSetBase {
-    'name': string;
-    'isMasterOptionSet': boolean;
-    'displayOrder': number;
-    'minSelectCount': number;
-    'maxSelectCount': number;
-    'imageUrl': string;
-    'cellLayoutType': MenuItemOptionSetBase.CellLayoutTypeEnum;
+    'Name': string;
+    'IsMasterOptionSet': boolean;
+    'DisplayOrder': number;
+    'MinSelectCount': number;
+    'MaxSelectCount': number;
+    'ImageUrl': string;
+    'CellLayoutType': MenuItemOptionSetBase.CellLayoutTypeEnum;
 }
 
 export namespace MenuItemOptionSetBase {
@@ -127,13 +127,13 @@ export namespace MenuItemOptionSetBase {
     }
 }
 export class MenuItemOptionSetItem {
-    'menuItemOptionSetItemId': number;
-    'imageUrl': string;
-    'name': string;
-    'price': number;
-    'isAvailable': boolean;
-    'displayOrder': number;
-    'cellLayoutType': MenuItemOptionSetItem.CellLayoutTypeEnum;
+    'MenuItemOptionSetItemId': number;
+    'ImageUrl': string;
+    'Name': string;
+    'Price': number;
+    'IsAvailable': boolean;
+    'DisplayOrder': number;
+    'CellLayoutType': MenuItemOptionSetItem.CellLayoutTypeEnum;
 }
 
 export namespace MenuItemOptionSetItem {
@@ -144,11 +144,11 @@ export namespace MenuItemOptionSetItem {
     }
 }
 export class MenuItemOptionSetItemBase {
-    'name': string;
-    'price': number;
-    'isAvailable': boolean;
-    'displayOrder': number;
-    'cellLayoutType': MenuItemOptionSetItemBase.CellLayoutTypeEnum;
+    'Name': string;
+    'Price': number;
+    'IsAvailable': boolean;
+    'DisplayOrder': number;
+    'CellLayoutType': MenuItemOptionSetItemBase.CellLayoutTypeEnum;
 }
 
 export namespace MenuItemOptionSetItemBase {
@@ -159,20 +159,20 @@ export namespace MenuItemOptionSetItemBase {
     }
 }
 export class MenuSection {
-    'menuSectionId': number;
-    'imageUrl': string;
-    'menuItems': Array<MenuSectionItem>;
-    'menuSectionAvailability': MenuSectionAvailability;
-    'name': string;
-    'description': string;
-    'displayOrder': number;
-    'isAvailable': boolean;
-    'isHiddenFromCustomers': boolean;
+    'MenuSectionId': number;
+    'ImageUrl': string;
+    'MenuItems': Array<MenuSectionItem>;
+    'MenuSectionAvailability': MenuSectionAvailability;
+    'Name': string;
+    'Description': string;
+    'DisplayOrder': number;
+    'IsAvailable': boolean;
+    'IsHiddenFromCustomers': boolean;
 }
 
 export class MenuSectionAvailability {
-    'availableTimes': Array<BusinessHoursPeriod>;
-    'availabilityMode': MenuSectionAvailability.AvailabilityModeEnum;
+    'AvailableTimes': Array<BusinessHoursPeriod>;
+    'AvailabilityMode': MenuSectionAvailability.AvailabilityModeEnum;
 }
 
 export namespace MenuSectionAvailability {
@@ -184,25 +184,25 @@ export namespace MenuSectionAvailability {
     }
 }
 export class MenuSectionBase {
-    'name': string;
-    'description': string;
-    'displayOrder': number;
-    'isAvailable': boolean;
-    'isHiddenFromCustomers': boolean;
+    'Name': string;
+    'Description': string;
+    'DisplayOrder': number;
+    'IsAvailable': boolean;
+    'IsHiddenFromCustomers': boolean;
 }
 
 export class MenuSectionItem {
-    'menuItemId': number;
-    'menuItemOptionSets': Array<MenuItemOptionSet>;
-    'name': string;
-    'description': string;
-    'spicinessRating': MenuSectionItem.SpicinessRatingEnum;
-    'price': number;
-    'actualPrice': number;
-    'displayOrder': number;
-    'alcohol': boolean;
-    'isAvailable': boolean;
-    'imageUrl': string;
+    'MenuItemId': number;
+    'MenuItemOptionSets': Array<MenuItemOptionSet>;
+    'Name': string;
+    'Description': string;
+    'SpicinessRating': MenuSectionItem.SpicinessRatingEnum;
+    'Price': number;
+    'ActualPrice': number;
+    'DisplayOrder': number;
+    'Alcohol': boolean;
+    'IsAvailable': boolean;
+    'ImageUrl': string;
 }
 
 export namespace MenuSectionItem {
@@ -214,15 +214,15 @@ export namespace MenuSectionItem {
     }
 }
 export class MenuSectionItemBase {
-    'name': string;
-    'description': string;
-    'spicinessRating': MenuSectionItemBase.SpicinessRatingEnum;
-    'price': number;
-    'actualPrice': number;
-    'displayOrder': number;
-    'alcohol': boolean;
-    'isAvailable': boolean;
-    'imageUrl': string;
+    'Name': string;
+    'Description': string;
+    'SpicinessRating': MenuSectionItemBase.SpicinessRatingEnum;
+    'Price': number;
+    'ActualPrice': number;
+    'DisplayOrder': number;
+    'Alcohol': boolean;
+    'IsAvailable': boolean;
+    'ImageUrl': string;
 }
 
 export namespace MenuSectionItemBase {
@@ -234,55 +234,55 @@ export namespace MenuSectionItemBase {
     }
 }
 export class Metadata {
-    'key': string;
-    'value': string;
+    'Key': string;
+    'Value': string;
 }
 
 export class OAuthClient {
-    'clientId': string;
-    'clientName': string;
-    'ownerUserId': number;
-    'logoUri': string;
+    'ClientId': string;
+    'ClientName': string;
+    'OwnerUserId': number;
+    'LogoUri': string;
 }
 
 export class OAuthTokenModel {
-    'key': string;
-    'tokenType': string;
-    'subjectId': string;
-    'clientId': string;
-    'expiry': Date;
+    'Key': string;
+    'TokenType': string;
+    'SubjectId': string;
+    'ClientId': string;
+    'Expiry': Date;
 }
 
 export class OauthClientRedirectUri {
-    'id': number;
-    'uri': string;
+    'Id': number;
+    'Uri': string;
 }
 
 export class Order {
-    'orderId': number;
-    'store': StoreSummary;
-    'customer': CustomerSummary;
-    'voucher': VoucherSummary;
-    'fees': FeeSummary;
-    'deliveryType': Order.DeliveryTypeEnum;
-    'pickupLocationType': Order.PickupLocationTypeEnum;
-    'orderItems': Array<OrderItem>;
-    'tipAmount': number;
-    'deliveryAmount': number;
-    'orderItemsAmount': number;
-    'amount': number;
-    'onlineOrderingFee': number;
-    'paymentAccountType': Order.PaymentAccountTypeEnum;
-    'paymentAccountDescription': string;
-    'deliveryLocation': DeliveryLocation;
-    'customerLocation': Coordinates;
-    'orderState': Order.OrderStateEnum;
-    'isPreOrder': boolean;
-    'placedTime': Date;
-    'requestedForTime': Date;
-    'chefNote': string;
-    'appType': Order.AppTypeEnum;
-    'userRating': number;
+    'OrderId': number;
+    'Store': StoreSummary;
+    'Customer': CustomerSummary;
+    'Voucher': VoucherSummary;
+    'Fees': FeeSummary;
+    'DeliveryType': Order.DeliveryTypeEnum;
+    'PickupLocationType': Order.PickupLocationTypeEnum;
+    'OrderItems': Array<OrderItem>;
+    'TipAmount': number;
+    'DeliveryAmount': number;
+    'OrderItemsAmount': number;
+    'Amount': number;
+    'OnlineOrderingFee': number;
+    'PaymentAccountType': Order.PaymentAccountTypeEnum;
+    'PaymentAccountDescription': string;
+    'DeliveryLocation': DeliveryLocation;
+    'CustomerLocation': Coordinates;
+    'OrderState': Order.OrderStateEnum;
+    'IsPreOrder': boolean;
+    'PlacedTime': Date;
+    'RequestedForTime': Date;
+    'ChefNote': string;
+    'AppType': Order.AppTypeEnum;
+    'UserRating': number;
 }
 
 export namespace Order {
@@ -328,33 +328,33 @@ export namespace Order {
     }
 }
 export class OrderItem {
-    'menuSectionName': string;
-    'menuSectionDisplayOrder': number;
-    'name': string;
-    'description': string;
-    'price': number;
-    'priceIncludingOptionSetItems': number;
-    'menuItemId': number;
-    'menuItemDisplayOrder': number;
-    'isAvailable': boolean;
-    'orderItemOptions': Array<OrderItemOption>;
-    'metadata': { [key: string]: string; };
+    'MenuSectionName': string;
+    'MenuSectionDisplayOrder': number;
+    'Name': string;
+    'Description': string;
+    'Price': number;
+    'PriceIncludingOptionSetItems': number;
+    'MenuItemId': number;
+    'MenuItemDisplayOrder': number;
+    'IsAvailable': boolean;
+    'OrderItemOptions': Array<OrderItemOption>;
+    'Metadata': { [key: string]: string; };
 }
 
 export class OrderItemOption {
-    'menuItemOptionId': number;
-    'isMasterOptionSetItem': boolean;
-    'name': string;
-    'price': number;
-    'menuItemOptionDisplayOrder': number;
-    'menuItemOptionSetDisplayOrder': number;
-    'metadata': { [key: string]: string; };
+    'MenuItemOptionId': number;
+    'IsMasterOptionSetItem': boolean;
+    'Name': string;
+    'Price': number;
+    'MenuItemOptionDisplayOrder': number;
+    'MenuItemOptionSetDisplayOrder': number;
+    'Metadata': { [key: string]: string; };
 }
 
 export class Range {
-    'startTime': string;
-    'period': string;
-    'dayOfWeek': Range.DayOfWeekEnum;
+    'StartTime': string;
+    'Period': string;
+    'DayOfWeek': Range.DayOfWeekEnum;
 }
 
 export namespace Range {
@@ -369,13 +369,13 @@ export namespace Range {
     }
 }
 export class Refund {
-    'refundReason': string;
-    'refundAmount': number;
-    'notifyCustomer': boolean;
+    'RefundReason': string;
+    'RefundAmount': number;
+    'NotifyCustomer': boolean;
 }
 
 export class Reject {
-    'rejectReason': Reject.RejectReasonEnum;
+    'RejectReason': Reject.RejectReasonEnum;
 }
 
 export namespace Reject {
@@ -392,197 +392,197 @@ export namespace Reject {
     }
 }
 export class RestApiArrayResultMenuItemOptionSet {
-    'data': Array<MenuItemOptionSet>;
+    'Data': Array<MenuItemOptionSet>;
 }
 
 export class RestApiArrayResultMenuItemOptionSetItem {
-    'data': Array<MenuItemOptionSetItem>;
+    'Data': Array<MenuItemOptionSetItem>;
 }
 
 export class RestApiArrayResultMenuSection {
-    'data': Array<MenuSection>;
+    'Data': Array<MenuSection>;
 }
 
 export class RestApiArrayResultMenuSectionItem {
-    'data': Array<MenuSectionItem>;
+    'Data': Array<MenuSectionItem>;
 }
 
 export class RestApiArrayResultMetadata {
-    'data': Array<Metadata>;
+    'Data': Array<Metadata>;
 }
 
 export class RestApiArrayResultOAuthClient {
-    'data': Array<OAuthClient>;
+    'Data': Array<OAuthClient>;
 }
 
 export class RestApiArrayResultOauthClientRedirectUri {
-    'data': Array<OauthClientRedirectUri>;
+    'Data': Array<OauthClientRedirectUri>;
 }
 
 export class RestApiArrayResultRestApiDefaultResponse {
-    'data': Array<RestApiDefaultResponse>;
+    'Data': Array<RestApiDefaultResponse>;
 }
 
 export class RestApiArrayResultWebhookLog {
-    'data': Array<WebhookLog>;
+    'Data': Array<WebhookLog>;
 }
 
 export class RestApiArrayResultWebhookSubscription {
-    'data': Array<WebhookSubscription>;
+    'Data': Array<WebhookSubscription>;
 }
 
 export class RestApiDefaultResponse {
-    'data': string;
+    'Data': string;
 }
 
 export class RestApiErrorResult {
-    'message': string;
-    'errors': Array<ValidationErrorResult>;
+    'Message': string;
+    'Errors': Array<ValidationErrorResult>;
 }
 
 export class RestApiForbiddenResult {
-    'message': string;
+    'Message': string;
 }
 
 export class RestApiIntegerResult {
-    'data': number;
+    'Data': number;
 }
 
 export class RestApiPaginationResultOAuthTokenModel {
-    'page': number;
-    'limit': number;
-    'totalRecordCount': number;
-    'data': Array<OAuthTokenModel>;
+    'Page': number;
+    'Limit': number;
+    'TotalRecordCount': number;
+    'Data': Array<OAuthTokenModel>;
 }
 
 export class RestApiPaginationResultOrder {
-    'page': number;
-    'limit': number;
-    'totalRecordCount': number;
-    'data': Array<Order>;
+    'Page': number;
+    'Limit': number;
+    'TotalRecordCount': number;
+    'Data': Array<Order>;
 }
 
 export class RestApiPaginationResultStore {
-    'page': number;
-    'limit': number;
-    'totalRecordCount': number;
-    'data': Array<Store>;
+    'Page': number;
+    'Limit': number;
+    'TotalRecordCount': number;
+    'Data': Array<Store>;
 }
 
 export class RestApiPaginationResultVoucher {
-    'page': number;
-    'limit': number;
-    'totalRecordCount': number;
-    'data': Array<Voucher>;
+    'Page': number;
+    'Limit': number;
+    'TotalRecordCount': number;
+    'Data': Array<Voucher>;
 }
 
 export class RestApiResultMenu {
-    'data': Menu;
+    'Data': Menu;
 }
 
 export class RestApiResultMenuItemOptionSet {
-    'data': MenuItemOptionSet;
+    'Data': MenuItemOptionSet;
 }
 
 export class RestApiResultMenuItemOptionSetBase {
-    'data': MenuItemOptionSetBase;
+    'Data': MenuItemOptionSetBase;
 }
 
 export class RestApiResultMenuItemOptionSetItem {
-    'data': MenuItemOptionSetItem;
+    'Data': MenuItemOptionSetItem;
 }
 
 export class RestApiResultMenuItemOptionSetItemBase {
-    'data': MenuItemOptionSetItemBase;
+    'Data': MenuItemOptionSetItemBase;
 }
 
 export class RestApiResultMenuSection {
-    'data': MenuSection;
+    'Data': MenuSection;
 }
 
 export class RestApiResultMenuSectionBase {
-    'data': MenuSectionBase;
+    'Data': MenuSectionBase;
 }
 
 export class RestApiResultMenuSectionItem {
-    'data': MenuSectionItem;
+    'Data': MenuSectionItem;
 }
 
 export class RestApiResultMenuSectionItemBase {
-    'data': MenuSectionItemBase;
+    'Data': MenuSectionItemBase;
 }
 
 export class RestApiResultMetadata {
-    'data': Metadata;
+    'Data': Metadata;
 }
 
 export class RestApiResultOAuthClient {
-    'data': OAuthClient;
+    'Data': OAuthClient;
 }
 
 export class RestApiResultOauthClientRedirectUri {
-    'data': OauthClientRedirectUri;
+    'Data': OauthClientRedirectUri;
 }
 
 export class RestApiResultOrder {
-    'data': Order;
+    'Data': Order;
 }
 
 export class RestApiResultStore {
-    'data': Store;
+    'Data': Store;
 }
 
 export class RestApiResultVoucher {
-    'data': Voucher;
+    'Data': Voucher;
 }
 
 export class RestApiStringArrayResult {
-    'data': Array<string>;
+    'Data': Array<string>;
 }
 
 export class RestApiStringResult {
-    'data': string;
+    'Data': string;
 }
 
 export class RestApiUnauthorizedResult {
-    'message': string;
+    'Message': string;
 }
 
 export class Store {
-    'storeId': number;
-    'name': string;
-    'apmPhoneNumber': string;
-    'phoneNumber': string;
-    'emailAddress': string;
-    'address': StoreAddress;
-    'preOrderEnabled': boolean;
-    'takeOutEnabled': boolean;
-    'tableServiceEnabled': boolean;
-    'dineInEnabled': boolean;
-    'allowPreOrdersAndTableService': boolean;
-    'pickupEnabled': boolean;
-    'deliveryEnabled': boolean;
-    'cardOrderDeliveryEnabled': boolean;
-    'cashOrdersDeliveryEnabled': boolean;
-    'cardOrdersPickupEnabled': boolean;
-    'cashOrdersPickupEnabled': boolean;
-    'tipsEnabled': boolean;
-    'automaticallyAcceptOrders': boolean;
-    'openForDelivery': boolean;
-    'openForPickup': boolean;
-    'minimumPickupOrderAmount': number;
-    'deliveryFeeAreas': Array<DeliveryFeeArea>;
-    'requireCustomerNameForPickup': boolean;
-    'requireCustomerNameForDelivery': boolean;
-    'pickupHours': Array<BusinessHoursPeriod>;
-    'deliveryHours': Array<BusinessHoursPeriod>;
-    'microsoftTimeZone': string;
-    'ianaTimeZone': string;
-    'menuId': number;
-    'orderConfirmationMessageOverrideDelivery': string;
-    'orderConfirmationMessageOverridePickup': string;
-    'printoutLayoutType': Store.PrintoutLayoutTypeEnum;
-    'storeNotes': Array<StoreNote>;
+    'StoreId': number;
+    'Name': string;
+    'ApmPhoneNumber': string;
+    'PhoneNumber': string;
+    'EmailAddress': string;
+    'Address': StoreAddress;
+    'PreOrderEnabled': boolean;
+    'TakeOutEnabled': boolean;
+    'TableServiceEnabled': boolean;
+    'DineInEnabled': boolean;
+    'AllowPreOrdersAndTableService': boolean;
+    'PickupEnabled': boolean;
+    'DeliveryEnabled': boolean;
+    'CardOrderDeliveryEnabled': boolean;
+    'CashOrdersDeliveryEnabled': boolean;
+    'CardOrdersPickupEnabled': boolean;
+    'CashOrdersPickupEnabled': boolean;
+    'TipsEnabled': boolean;
+    'AutomaticallyAcceptOrders': boolean;
+    'OpenForDelivery': boolean;
+    'OpenForPickup': boolean;
+    'MinimumPickupOrderAmount': number;
+    'DeliveryFeeAreas': Array<DeliveryFeeArea>;
+    'RequireCustomerNameForPickup': boolean;
+    'RequireCustomerNameForDelivery': boolean;
+    'PickupHours': Array<BusinessHoursPeriod>;
+    'DeliveryHours': Array<BusinessHoursPeriod>;
+    'MicrosoftTimeZone': string;
+    'IanaTimeZone': string;
+    'MenuId': number;
+    'OrderConfirmationMessageOverrideDelivery': string;
+    'OrderConfirmationMessageOverridePickup': string;
+    'PrintoutLayoutType': Store.PrintoutLayoutTypeEnum;
+    'StoreNotes': Array<StoreNote>;
 }
 
 export namespace Store {
@@ -592,27 +592,27 @@ export namespace Store {
     }
 }
 export class StoreAddress {
-    'addressId': number;
-    'line1': string;
-    'postcode': string;
-    'city': string;
-    'countryCode': string;
-    'displayForCustomer': string;
-    'coordinates': Coordinates;
+    'AddressId': number;
+    'Line1': string;
+    'Postcode': string;
+    'City': string;
+    'CountryCode': string;
+    'DisplayForCustomer': string;
+    'Coordinates': Coordinates;
 }
 
 export class StoreNote {
-    'userId': number;
-    'createTime': Date;
-    'note': string;
+    'UserId': number;
+    'CreateTime': Date;
+    'Note': string;
 }
 
 export class StoreSummary {
-    'id': number;
-    'name': string;
-    'menuId': number;
-    'metadata': { [key: string]: string; };
-    'currency': StoreSummary.CurrencyEnum;
+    'Id': number;
+    'Name': string;
+    'MenuId': number;
+    'Metadata': { [key: string]: string; };
+    'Currency': StoreSummary.CurrencyEnum;
 }
 
 export namespace StoreSummary {
@@ -732,34 +732,34 @@ export namespace StoreSummary {
     }
 }
 export class ValidationErrorResult {
-    'fieldName': string;
-    'errors': Array<string>;
+    'FieldName': string;
+    'Errors': Array<string>;
 }
 
 export class Voucher {
-    'voucherId': number;
-    'voucherType': Voucher.VoucherTypeEnum;
-    'isEnabled': boolean;
-    'isUsedUp': boolean;
-    'voucherSubType': Voucher.VoucherSubTypeEnum;
-    'publicDescription': string;
-    'privateDescription': string;
-    'validFrom': Date;
-    'expiry': Date;
-    'voucherPayer': Voucher.VoucherPayerEnum;
-    'isVisibleToStore': boolean;
-    'isReusable': boolean;
-    'isValidForDeliveryOrders': boolean;
-    'isValidForPickupOrders': boolean;
-    'isValidForCardOrders': boolean;
-    'isValidForCashOrders': boolean;
-    'isValidForFirstOrderOnly': boolean;
-    'minimumOrderAmount': number;
-    'isValidOncePerCustomer': boolean;
-    'autoApply': boolean;
-    'autoApplyOrder': number;
-    'includeDeliveryFee': boolean;
-    'code': string;
+    'VoucherId': number;
+    'VoucherType': Voucher.VoucherTypeEnum;
+    'IsEnabled': boolean;
+    'IsUsedUp': boolean;
+    'VoucherSubType': Voucher.VoucherSubTypeEnum;
+    'PublicDescription': string;
+    'PrivateDescription': string;
+    'ValidFrom': Date;
+    'Expiry': Date;
+    'VoucherPayer': Voucher.VoucherPayerEnum;
+    'IsVisibleToStore': boolean;
+    'IsReusable': boolean;
+    'IsValidForDeliveryOrders': boolean;
+    'IsValidForPickupOrders': boolean;
+    'IsValidForCardOrders': boolean;
+    'IsValidForCashOrders': boolean;
+    'IsValidForFirstOrderOnly': boolean;
+    'MinimumOrderAmount': number;
+    'IsValidOncePerCustomer': boolean;
+    'AutoApply': boolean;
+    'AutoApplyOrder': number;
+    'IncludeDeliveryFee': boolean;
+    'Code': string;
 }
 
 export namespace Voucher {
@@ -784,12 +784,12 @@ export namespace Voucher {
     }
 }
 export class VoucherSummary {
-    'name': string;
-    'description': string;
-    'code': string;
-    'amount': number;
-    'type': VoucherSummary.TypeEnum;
-    'subType': VoucherSummary.SubTypeEnum;
+    'Name': string;
+    'Description': string;
+    'Code': string;
+    'Amount': number;
+    'Type': VoucherSummary.TypeEnum;
+    'SubType': VoucherSummary.SubTypeEnum;
 }
 
 export namespace VoucherSummary {
@@ -810,29 +810,29 @@ export namespace VoucherSummary {
     }
 }
 export class WebhookLog {
-    'webhookSubscriptionOwnerUserId': number;
-    'eventCreated': string;
-    'webhookTriggered': string;
-    'webhookEventName': string;
-    'webhookSubscriptionCallbackUrl': string;
-    'httpResponseStatusCode': string;
-    'httpResponseStatus': string;
-    'requestHeaders': string;
-    'requestBody': string;
-    'responseHeaders': string;
-    'responseBody': string;
-    'duration': string;
-    'retryCount': number;
-    'flipdishWebhookId': string;
+    'WebhookSubscriptionOwnerUserId': number;
+    'EventCreated': string;
+    'WebhookTriggered': string;
+    'WebhookEventName': string;
+    'WebhookSubscriptionCallbackUrl': string;
+    'HttpResponseStatusCode': string;
+    'HttpResponseStatus': string;
+    'RequestHeaders': string;
+    'RequestBody': string;
+    'ResponseHeaders': string;
+    'ResponseBody': string;
+    'Duration': string;
+    'RetryCount': number;
+    'FlipdishWebhookId': string;
 }
 
 export class WebhookSubscription {
-    'id': number;
-    'ownerUserId': number;
-    'eventNames': Array<string>;
-    'callbackUrl': string;
-    'enabled': boolean;
-    'verifyToken': string;
+    'Id': number;
+    'OwnerUserId': number;
+    'EventNames': Array<string>;
+    'CallbackUrl': string;
+    'Enabled': boolean;
+    'VerifyToken': string;
 }
 
 
