@@ -13,5 +13,5 @@ deployment:
     branch: master
     commands:
       - npm run build
-      - npm version minor
+      - npm version patch --no-git-tag-version
       - npm publish --access public
