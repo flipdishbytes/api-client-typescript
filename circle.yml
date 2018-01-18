@@ -8,6 +8,9 @@ machine:
 dependencies:
   pre:
     - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+test:
+  override:
+    - echo "test"
 deployment:
   production:
     branch: master
