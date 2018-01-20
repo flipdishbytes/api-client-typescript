@@ -5278,7 +5278,8 @@ export class StoresApi {
     }
     /**
      * 
-     * @param storeId 
+     * @summary Get store by identifier
+     * @param storeId Store identifier
      * @param apiVersion API version
      */
     public getStoreById (storeId: number, apiVersion: string) : Promise<{ response: http.ClientResponse; body: RestApiResultStore;  }> {
