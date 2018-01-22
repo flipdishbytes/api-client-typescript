@@ -271,7 +271,7 @@ export class Order {
     'DeliveryAmount': number;
     'OrderItemsAmount': number;
     'Amount': number;
-    'OnlineOrderingFee': number;
+    'ProcessingFee': number;
     'PaymentAccountType': Order.PaymentAccountTypeEnum;
     'PaymentAccountDescription': string;
     'DeliveryLocation': DeliveryLocation;
