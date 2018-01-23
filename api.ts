@@ -193,12 +193,12 @@ export class MenuSectionBase {
 
 export class MenuSectionItem {
     'MenuItemId': number;
+    'ActualPrice': number;
     'MenuItemOptionSets': Array<MenuItemOptionSet>;
     'Name': string;
     'Description': string;
     'SpicinessRating': MenuSectionItem.SpicinessRatingEnum;
     'Price': number;
-    'ActualPrice': number;
     'DisplayOrder': number;
     'Alcohol': boolean;
     'IsAvailable': boolean;
@@ -218,7 +218,6 @@ export class MenuSectionItemBase {
     'Description': string;
     'SpicinessRating': MenuSectionItemBase.SpicinessRatingEnum;
     'Price': number;
-    'ActualPrice': number;
     'DisplayOrder': number;
     'Alcohol': boolean;
     'IsAvailable': boolean;
@@ -484,32 +483,16 @@ export class RestApiResultMenuItemOptionSet {
     'Data': MenuItemOptionSet;
 }
 
-export class RestApiResultMenuItemOptionSetBase {
-    'Data': MenuItemOptionSetBase;
-}
-
 export class RestApiResultMenuItemOptionSetItem {
     'Data': MenuItemOptionSetItem;
-}
-
-export class RestApiResultMenuItemOptionSetItemBase {
-    'Data': MenuItemOptionSetItemBase;
 }
 
 export class RestApiResultMenuSection {
     'Data': MenuSection;
 }
 
-export class RestApiResultMenuSectionBase {
-    'Data': MenuSectionBase;
-}
-
 export class RestApiResultMenuSectionItem {
     'Data': MenuSectionItem;
-}
-
-export class RestApiResultMenuSectionItemBase {
-    'Data': MenuSectionItemBase;
 }
 
 export class RestApiResultMetadata {
@@ -1617,7 +1600,7 @@ export class MenuOptionSetItemsApi {
         let useFormData = false;
 
         let requestOptions: request.Options = {
-            method: 'PATCH',
+            method: 'POST',
             qs: queryParameters,
             headers: headerParams,
             uri: localVarPath,
@@ -1805,16 +1788,16 @@ export class MenuOptionSetsApi {
      * 
      * @summary Create menu item option set
      * @param menuId Menu identifier
-     * @param menuSectionItemId Menu section item identifier
      * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
      * @param menuItemOptionSet Menu item option set
      * @param apiVersion API version
      */
-    public createMenuItemOptionSet (menuId: number, menuSectionItemId: number, menuSectionId: number, menuItemOptionSet: MenuItemOptionSetBase, apiVersion: string) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public createMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, menuItemOptionSet: MenuItemOptionSetBase, apiVersion: string) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
             .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
+            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
             .replace('{' + 'apiVersion' + '}', String(apiVersion));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -1826,14 +1809,14 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter menuId was null or undefined when calling createMenuItemOptionSet.');
         }
 
-        // verify required parameter 'menuSectionItemId' is not null or undefined
-        if (menuSectionItemId === null || menuSectionItemId === undefined) {
-            throw new Error('Required parameter menuSectionItemId was null or undefined when calling createMenuItemOptionSet.');
-        }
-
         // verify required parameter 'menuSectionId' is not null or undefined
         if (menuSectionId === null || menuSectionId === undefined) {
             throw new Error('Required parameter menuSectionId was null or undefined when calling createMenuItemOptionSet.');
+        }
+
+        // verify required parameter 'menuSectionItemId' is not null or undefined
+        if (menuSectionItemId === null || menuSectionItemId === undefined) {
+            throw new Error('Required parameter menuSectionItemId was null or undefined when calling createMenuItemOptionSet.');
         }
 
         // verify required parameter 'menuItemOptionSet' is not null or undefined
@@ -2051,16 +2034,16 @@ export class MenuOptionSetsApi {
      * 
      * @summary Get menu item option set by identifier
      * @param menuId Menu identifier
-     * @param menuSectionItemId Menu section item identifier
      * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Menu item option set identifier
      * @param apiVersion API version
      */
-    public getMenuItemOptionSetById (menuId: number, menuSectionItemId: number, menuSectionId: number, optionSetId: number, apiVersion: string) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSet;  }> {
+    public getMenuItemOptionSetById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, apiVersion: string) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSet;  }> {
         const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
             .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
+            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
             .replace('{' + 'optionSetId' + '}', String(optionSetId))
             .replace('{' + 'apiVersion' + '}', String(apiVersion));
         let queryParameters: any = {};
@@ -2073,14 +2056,14 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter menuId was null or undefined when calling getMenuItemOptionSetById.');
         }
 
-        // verify required parameter 'menuSectionItemId' is not null or undefined
-        if (menuSectionItemId === null || menuSectionItemId === undefined) {
-            throw new Error('Required parameter menuSectionItemId was null or undefined when calling getMenuItemOptionSetById.');
-        }
-
         // verify required parameter 'menuSectionId' is not null or undefined
         if (menuSectionId === null || menuSectionId === undefined) {
             throw new Error('Required parameter menuSectionId was null or undefined when calling getMenuItemOptionSetById.');
+        }
+
+        // verify required parameter 'menuSectionItemId' is not null or undefined
+        if (menuSectionItemId === null || menuSectionItemId === undefined) {
+            throw new Error('Required parameter menuSectionItemId was null or undefined when calling getMenuItemOptionSetById.');
         }
 
         // verify required parameter 'optionSetId' is not null or undefined
@@ -2133,15 +2116,15 @@ export class MenuOptionSetsApi {
      * 
      * @summary Get menu item option sets
      * @param menuId Menu identifier
-     * @param menuSectionItemId Menu section item identifier
      * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
      * @param apiVersion API version
      */
-    public getMenuItemOptionSets (menuId: number, menuSectionItemId: number, menuSectionId: number, apiVersion: string) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSet;  }> {
+    public getMenuItemOptionSets (menuId: number, menuSectionId: number, menuSectionItemId: number, apiVersion: string) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSet;  }> {
         const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
             .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
+            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
             .replace('{' + 'apiVersion' + '}', String(apiVersion));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -2153,14 +2136,14 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter menuId was null or undefined when calling getMenuItemOptionSets.');
         }
 
-        // verify required parameter 'menuSectionItemId' is not null or undefined
-        if (menuSectionItemId === null || menuSectionItemId === undefined) {
-            throw new Error('Required parameter menuSectionItemId was null or undefined when calling getMenuItemOptionSets.');
-        }
-
         // verify required parameter 'menuSectionId' is not null or undefined
         if (menuSectionId === null || menuSectionId === undefined) {
             throw new Error('Required parameter menuSectionId was null or undefined when calling getMenuItemOptionSets.');
+        }
+
+        // verify required parameter 'menuSectionItemId' is not null or undefined
+        if (menuSectionItemId === null || menuSectionItemId === undefined) {
+            throw new Error('Required parameter menuSectionItemId was null or undefined when calling getMenuItemOptionSets.');
         }
 
         // verify required parameter 'apiVersion' is not null or undefined
@@ -2259,7 +2242,7 @@ export class MenuOptionSetsApi {
         let useFormData = false;
 
         let requestOptions: request.Options = {
-            method: 'PATCH',
+            method: 'POST',
             qs: queryParameters,
             headers: headerParams,
             uri: localVarPath,
@@ -2852,7 +2835,7 @@ export class MenuSectionItemsApi {
         let useFormData = false;
 
         let requestOptions: request.Options = {
-            method: 'PATCH',
+            method: 'POST',
             qs: queryParameters,
             headers: headerParams,
             uri: localVarPath,
@@ -3359,15 +3342,15 @@ export class MenuSectionsApi {
      * 
      * @summary Update menu section
      * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
      * @param menuSection Menu section changes (delta)
      * @param apiVersion API version
-     * @param menuSectionId 
      */
-    public updateMenuSection (menuId: number, menuSection: MenuSectionBase, apiVersion: string, menuSectionId: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updateMenuSection (menuId: number, menuSectionId: number, menuSection: MenuSectionBase, apiVersion: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}'
             .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'apiVersion' + '}', String(apiVersion))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
+            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
+            .replace('{' + 'apiVersion' + '}', String(apiVersion));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
@@ -3376,6 +3359,11 @@ export class MenuSectionsApi {
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
             throw new Error('Required parameter menuId was null or undefined when calling updateMenuSection.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling updateMenuSection.');
         }
 
         // verify required parameter 'menuSection' is not null or undefined
@@ -3388,15 +3376,10 @@ export class MenuSectionsApi {
             throw new Error('Required parameter apiVersion was null or undefined when calling updateMenuSection.');
         }
 
-        // verify required parameter 'menuSectionId' is not null or undefined
-        if (menuSectionId === null || menuSectionId === undefined) {
-            throw new Error('Required parameter menuSectionId was null or undefined when calling updateMenuSection.');
-        }
-
         let useFormData = false;
 
         let requestOptions: request.Options = {
-            method: 'PATCH',
+            method: 'POST',
             qs: queryParameters,
             headers: headerParams,
             uri: localVarPath,
