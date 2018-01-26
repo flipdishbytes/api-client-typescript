@@ -13,7 +13,7 @@ import { StoresApi } from '@flipdish/api-client-typescript';
 
 let storesApi = new StoresApi();
 storesApi.accessToken = '<your_access_token>';
-storesApi.getStores('1.0', 'mexican cafe', 1, 20)
+storesApi.getStores('mexican cafe', 1, 20)
 .then(response => {
         response.body.Data.map(store => console.log(store));
     }).catch(error => {
