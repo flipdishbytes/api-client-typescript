@@ -924,7 +924,7 @@ export class AuthorizationTokensApi {
      * @param limit Requested page limit
      */
     public getAuthorizationTokens (clientId: string, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOAuthTokenModel;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/authorizationtokens/{clientId}'
+        const localVarPath = this.basePath + '/api/v1.0/authorizationtokens/{clientId}'
             .replace('{' + 'clientId' + '}', String(clientId));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -986,7 +986,7 @@ export class AuthorizationTokensApi {
      * @param key Token identifier key
      */
     public revokeToken (key: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/authorizationtokens/{key}'
+        const localVarPath = this.basePath + '/api/v1.0/authorizationtokens/{key}'
             .replace('{' + 'key' + '}', String(key));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -1094,7 +1094,7 @@ export class MenuOptionSetItemsApi {
      * @param menuItemOptionSetItem Option set item
      */
     public addMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
@@ -1176,7 +1176,7 @@ export class MenuOptionSetItemsApi {
      * @param menuItemOptionSetItemId Option set item identifier
      */
     public deleteOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}/image'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}/image'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
@@ -1258,7 +1258,7 @@ export class MenuOptionSetItemsApi {
      * @param menuItemOptionSetItemId Option set item identifier
      */
     public getMenuItemOptionSetItemById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSetItem;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
@@ -1339,7 +1339,7 @@ export class MenuOptionSetItemsApi {
      * @param optionSetId Option set identifier
      */
     public getMenuItemOptionSetItems (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSetItem;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
@@ -1415,7 +1415,7 @@ export class MenuOptionSetItemsApi {
      * @param menuItemOptionSetItemId Option set item identifier
      */
     public removeMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
@@ -1498,7 +1498,7 @@ export class MenuOptionSetItemsApi {
      * @param menuItemOptionSetItem Option set item (delta)
      */
     public updateMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
@@ -1587,7 +1587,7 @@ export class MenuOptionSetItemsApi {
      * @param image Option set item image
      */
     public uploadOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}/image'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}/image'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
@@ -1728,7 +1728,7 @@ export class MenuOptionSetsApi {
      * @param menuItemOptionSet Menu item option set
      */
     public createMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, menuItemOptionSet: MenuItemOptionSetBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId));
@@ -1803,7 +1803,7 @@ export class MenuOptionSetsApi {
      * @param optionSetId Option set identifier
      */
     public deleteMenuItemOptionSet (menuId: number, menuSectionItemId: number, menuSectionId: number, optionSetId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
@@ -1878,7 +1878,7 @@ export class MenuOptionSetsApi {
      * @param optionSetId Option set identifier
      */
     public deleteOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/image'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/image'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
@@ -1953,7 +1953,7 @@ export class MenuOptionSetsApi {
      * @param optionSetId Menu item option set identifier
      */
     public getMenuItemOptionSetById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSet;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
@@ -2027,7 +2027,7 @@ export class MenuOptionSetsApi {
      * @param menuSectionItemId Menu section item identifier
      */
     public getMenuItemOptionSets (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSet;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId));
@@ -2097,7 +2097,7 @@ export class MenuOptionSetsApi {
      * @param menuItemOptionSet Menu item option set (delta)
      */
     public updateMenuItemOptionSet (menuId: number, menuSectionItemId: number, menuSectionId: number, optionSetId: number, menuItemOptionSet: MenuItemOptionSetBase) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
@@ -2179,7 +2179,7 @@ export class MenuOptionSetsApi {
      * @param image Option set image
      */
     public uploadOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/image'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/image'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
@@ -2313,7 +2313,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionItem Menu section item
      */
     public createMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItem: MenuSectionItemBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
         let queryParameters: any = {};
@@ -2381,7 +2381,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionItemId Menu section item identifier
      */
     public deleteMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId));
@@ -2449,7 +2449,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionItemId Menu section item identifier
      */
     public deleteMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/image'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/image'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId));
@@ -2517,7 +2517,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionItemId Menu item identifier
      */
     public getMenuItemById (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuSectionItem;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId));
@@ -2584,7 +2584,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionId Menu section identifier
      */
     public getMenuItems (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSectionItem;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
         let queryParameters: any = {};
@@ -2647,7 +2647,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionItem Menu section item (delta)
      */
     public updateMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, menuSectionItem: MenuSectionItemBase) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId));
@@ -2722,7 +2722,7 @@ export class MenuSectionItemsApi {
      * @param image Menu section item image
      */
     public uploadMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/image'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/image'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
             .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId));
@@ -2849,7 +2849,7 @@ export class MenuSectionsApi {
      * @param menuSection Menu section
      */
     public createMenuSection (menuId: number, menuSection: MenuSectionBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections'
             .replace('{' + 'menuId' + '}', String(menuId));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -2910,7 +2910,7 @@ export class MenuSectionsApi {
      * @param menuSectionId Menu section identifier
      */
     public deleteMenuSection (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
         let queryParameters: any = {};
@@ -2971,7 +2971,7 @@ export class MenuSectionsApi {
      * @param menuSectionId Menu section identifier
      */
     public deleteMenuSectionImage (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/image'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/image'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
         let queryParameters: any = {};
@@ -3032,7 +3032,7 @@ export class MenuSectionsApi {
      * @param menuSectionId Menu section identifier
      */
     public getMenuSectionById (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuSection;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
         let queryParameters: any = {};
@@ -3092,7 +3092,7 @@ export class MenuSectionsApi {
      * @param menuId Menu identifier
      */
     public getMenuSections (menuId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSection;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections'
             .replace('{' + 'menuId' + '}', String(menuId));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -3148,7 +3148,7 @@ export class MenuSectionsApi {
      * @param menuSection Menu section changes (delta)
      */
     public updateMenuSection (menuId: number, menuSectionId: number, menuSection: MenuSectionBase) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
         let queryParameters: any = {};
@@ -3216,7 +3216,7 @@ export class MenuSectionsApi {
      * @param image Menu section image
      */
     public uploadMenuSectionImage (menuId: number, menuSectionId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/sections/{menuSectionId}/image'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/image'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
         let queryParameters: any = {};
@@ -3339,7 +3339,7 @@ export class MenusApi {
      * @param key Metadata key
      */
     public deleteMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, key: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'storeId' + '}', String(storeId))
             .replace('{' + 'menuItemId' + '}', String(menuItemId))
@@ -3414,7 +3414,7 @@ export class MenusApi {
      * @param key Metadata key
      */
     public deleteMenuItemMetadata_1 (menuId: number, storeId: number, menuItemId: number, key: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'storeId' + '}', String(storeId))
             .replace('{' + 'menuItemId' + '}', String(menuItemId))
@@ -3486,7 +3486,7 @@ export class MenusApi {
      * @param menuId Menu identifier
      */
     public deleteMenuSectionImage (menuId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/image'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/image'
             .replace('{' + 'menuId' + '}', String(menuId));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -3540,7 +3540,7 @@ export class MenusApi {
      * @param menuId Menu identifier
      */
     public getMenuById (menuId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenu;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}'
             .replace('{' + 'menuId' + '}', String(menuId));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -3596,7 +3596,7 @@ export class MenusApi {
      * @param menuItemId Menu item identifier
      */
     public getMenuItemMetadata (menuId: number, storeId: number, menuItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMetadata;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/menuitem/{menuItemId}/metadata/store/{storeId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'storeId' + '}', String(storeId))
             .replace('{' + 'menuItemId' + '}', String(menuItemId));
@@ -3664,7 +3664,7 @@ export class MenusApi {
      * @param optionSetItemId Menu item option set item identifier
      */
     public getMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMetadata;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/optionsetitem/{optionSetItemId}/metadata/store/{storeId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/optionsetitem/{optionSetItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'storeId' + '}', String(storeId))
             .replace('{' + 'optionSetItemId' + '}', String(optionSetItemId));
@@ -3733,7 +3733,7 @@ export class MenusApi {
      * @param metadata Metadata object
      */
     public setMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, metadata: Metadata) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/menuitem/{menuItemId}/metadata/store/{storeId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'storeId' + '}', String(storeId))
             .replace('{' + 'menuItemId' + '}', String(menuItemId));
@@ -3808,7 +3808,7 @@ export class MenusApi {
      * @param metadata Metadata object
      */
     public setMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number, metadata: Metadata) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/optionsetitem/{optionSetItemId}/metadata/store/{storeId}'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/optionsetitem/{optionSetItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'storeId' + '}', String(storeId))
             .replace('{' + 'optionSetItemId' + '}', String(optionSetItemId));
@@ -3881,7 +3881,7 @@ export class MenusApi {
      * @param image Menu image
      */
     public uploadMenuSectionImage (menuId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/menus/{menuId}/image'
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/image'
             .replace('{' + 'menuId' + '}', String(menuId));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -3996,7 +3996,7 @@ export class OAuthClientsApi {
      * @param uri Redirect uri
      */
     public addRedirectUri (oAuthClientId: string, uri: string) : Promise<{ response: http.ClientResponse; body: RestApiResultOauthClientRedirectUri;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/oauthclients/{oAuthClientId}/redirecturis'
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis'
             .replace('{' + 'oAuthClientId' + '}', String(oAuthClientId));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4056,7 +4056,7 @@ export class OAuthClientsApi {
      * @param oAuthClient OAuth client
      */
     public createOAuthClient (oAuthClient: OAuthClient) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/oauthclients';
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
@@ -4110,7 +4110,7 @@ export class OAuthClientsApi {
      * @param oAuthClientId OAuth client identifier
      */
     public deleteOAuthClient (oAuthClientId: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/oauthclients/{oAuthClientId}'
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}'
             .replace('{' + 'oAuthClientId' + '}', String(oAuthClientId));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4164,7 +4164,7 @@ export class OAuthClientsApi {
      * @param clientId OAuth client identifier
      */
     public getOAuthClientByClientId (clientId: string) : Promise<{ response: http.ClientResponse; body: RestApiResultOAuthClient;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/oauthclients/{clientId}'
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{clientId}'
             .replace('{' + 'clientId' + '}', String(clientId));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4218,7 +4218,7 @@ export class OAuthClientsApi {
      * @param clientId OAuth client identifier
      */
     public getOAuthClientSecret (clientId: string) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/oauthclients/{clientId}/secret'
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{clientId}/secret'
             .replace('{' + 'clientId' + '}', String(clientId));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4271,7 +4271,7 @@ export class OAuthClientsApi {
      * @summary Get all OAuth client
      */
     public getOAuthClients () : Promise<{ response: http.ClientResponse; body: RestApiArrayResultOAuthClient;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/oauthclients';
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
@@ -4319,7 +4319,7 @@ export class OAuthClientsApi {
      * @param oAuthClientId OAuth client identifier
      */
     public getOauthAccessToken (oAuthClientId: string) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/oauthclients/{oAuthClientId}/accesstoken'
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/accesstoken'
             .replace('{' + 'oAuthClientId' + '}', String(oAuthClientId));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4373,7 +4373,7 @@ export class OAuthClientsApi {
      * @param oAuthClientId OAuth client identifier
      */
     public getRedirectUris (oAuthClientId: string) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultOauthClientRedirectUri;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/oauthclients/{oAuthClientId}/redirecturis'
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis'
             .replace('{' + 'oAuthClientId' + '}', String(oAuthClientId));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4428,7 +4428,7 @@ export class OAuthClientsApi {
      * @param uriId Redirect uri identifier
      */
     public removeRedirectUri (oAuthClientId: string, uriId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/oauthclients/{oAuthClientId}/redirecturis/{uriId}'
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis/{uriId}'
             .replace('{' + 'oAuthClientId' + '}', String(oAuthClientId))
             .replace('{' + 'uriId' + '}', String(uriId));
         let queryParameters: any = {};
@@ -4539,7 +4539,7 @@ export class OrdersApi {
      * @param acceptObject 
      */
     public acceptOrder (id: number, acceptObject: Accept) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/orders/{id}/accept'
+        const localVarPath = this.basePath + '/api/v1.0/orders/{id}/accept'
             .replace('{' + 'id' + '}', String(id));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4599,7 +4599,7 @@ export class OrdersApi {
      * @param id Order identifier
      */
     public getOrderById (id: number) : Promise<{ response: http.ClientResponse; body: RestApiResultOrder;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/orders/{id}'
+        const localVarPath = this.basePath + '/api/v1.0/orders/{id}'
             .replace('{' + 'id' + '}', String(id));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4656,7 +4656,7 @@ export class OrdersApi {
      * @param limit Requested page limit
      */
     public getOrders (physicalRestaurantId?: Array<number>, state?: Array<string>, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOrder;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/orders';
+        const localVarPath = this.basePath + '/api/v1.0/orders';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
@@ -4721,7 +4721,7 @@ export class OrdersApi {
      * @param refundObject 
      */
     public refundOrder (id: number, refundObject: Refund) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/orders/{id}/refund'
+        const localVarPath = this.basePath + '/api/v1.0/orders/{id}/refund'
             .replace('{' + 'id' + '}', String(id));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4782,7 +4782,7 @@ export class OrdersApi {
      * @param rejectObject 
      */
     public rejectOrder (id: number, rejectObject: Reject) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/orders/{id}/reject'
+        const localVarPath = this.basePath + '/api/v1.0/orders/{id}/reject'
             .replace('{' + 'id' + '}', String(id));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4892,7 +4892,7 @@ export class StoresApi {
      * @param storeId Store identifier
      */
     public getStoreById (storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultStore;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/stores/{storeId}'
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}'
             .replace('{' + 'storeId' + '}', String(storeId));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4948,7 +4948,7 @@ export class StoresApi {
      * @param limit Requested page limit
      */
     public getStores (searchQuery?: string, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStore;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/stores';
+        const localVarPath = this.basePath + '/api/v1.0/stores';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
@@ -5057,7 +5057,7 @@ export class UsersApi {
      * @summary Get role names
      */
     public getRoles () : Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/users/roles';
+        const localVarPath = this.basePath + '/api/v1.0/users/roles';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
@@ -5158,7 +5158,7 @@ export class VouchersApi {
      * @param key 
      */
     public deleteVoucherMetadata (voucherId: number, menuId: number, storeId: number, key: string) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultRestApiDefaultResponse;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
+        const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
             .replace('{' + 'voucherId' + '}', String(voucherId))
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'storeId' + '}', String(storeId))
@@ -5230,7 +5230,7 @@ export class VouchersApi {
      * @param voucherId 
      */
     public getVoucherById (voucherId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultVoucher;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/vouchers/{voucherId}'
+        const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}'
             .replace('{' + 'voucherId' + '}', String(voucherId));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -5286,7 +5286,7 @@ export class VouchersApi {
      * @param storeId 
      */
     public getVoucherMetadata (voucherId: number, menuId: number, storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMetadata;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata'
+        const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata'
             .replace('{' + 'voucherId' + '}', String(voucherId))
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'storeId' + '}', String(storeId));
@@ -5355,7 +5355,7 @@ export class VouchersApi {
      * @param key 
      */
     public getVoucherMetadata_1 (voucherId: number, menuId: number, storeId: number, key: string) : Promise<{ response: http.ClientResponse; body: RestApiResultMetadata;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
+        const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
             .replace('{' + 'voucherId' + '}', String(voucherId))
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'storeId' + '}', String(storeId))
@@ -5441,7 +5441,7 @@ export class VouchersApi {
      * @param description 
      */
     public getVouchers (filter?: string, pageNumber?: number, pageSize?: number, sortOrder?: string, orderBy?: string, subType?: string, status?: string, code?: string, validFromBegin?: Date, validFromEnd?: Date, expiryBegin?: Date, expiryEnd?: Date, amount?: number, voucherType?: string, description?: string) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultVoucher;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/vouchers';
+        const localVarPath = this.basePath + '/api/v1.0/vouchers';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
@@ -5553,7 +5553,7 @@ export class VouchersApi {
      * @param value 
      */
     public setVoucherMetadata (voucherId: number, menuId: number, storeId: number, key: string, value: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
+        const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
             .replace('{' + 'voucherId' + '}', String(voucherId))
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'storeId' + '}', String(storeId))
@@ -5682,7 +5682,7 @@ export class WebhooksApi {
      * @param webhookSubscription Webhook subscription object
      */
     public craeteWebhookSubscription (clientId: string, webhookSubscription: WebhookSubscription) : Promise<{ response: http.ClientResponse; body: RestApiIntegerResult;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/webhooks/{clientId}/subscriptions'
+        const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions'
             .replace('{' + 'clientId' + '}', String(clientId));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -5744,7 +5744,7 @@ export class WebhooksApi {
      * @param eventName Webhook subscription event name
      */
     public createWebhookSubscriptionEventNames (clientId: string, webhookSubscriptionId: number, eventName: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events/{eventName}'
+        const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events/{eventName}'
             .replace('{' + 'clientId' + '}', String(clientId))
             .replace('{' + 'webhookSubscriptionId' + '}', String(webhookSubscriptionId))
             .replace('{' + 'eventName' + '}', String(eventName));
@@ -5811,7 +5811,7 @@ export class WebhooksApi {
      * @param webhookSubscriptionId Webhook subscription identifier
      */
     public deleteWebhookSubscription (clientId: string, webhookSubscriptionId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}'
+        const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}'
             .replace('{' + 'clientId' + '}', String(clientId))
             .replace('{' + 'webhookSubscriptionId' + '}', String(webhookSubscriptionId));
         let queryParameters: any = {};
@@ -5873,7 +5873,7 @@ export class WebhooksApi {
      * @param eventName Webhook subscription event name
      */
     public deleteWebhookSubscriptionEventName (clientId: string, webhookSubscriptionId: number, eventName: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events/{eventName}'
+        const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events/{eventName}'
             .replace('{' + 'clientId' + '}', String(clientId))
             .replace('{' + 'webhookSubscriptionId' + '}', String(webhookSubscriptionId))
             .replace('{' + 'eventName' + '}', String(eventName));
@@ -5938,7 +5938,7 @@ export class WebhooksApi {
      * @summary Get all webhook subscription event names
      */
     public getWebhookEventNames () : Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/webhooks/events';
+        const localVarPath = this.basePath + '/api/v1.0/webhooks/events';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
@@ -5987,7 +5987,7 @@ export class WebhooksApi {
      * @param webhookSubscriptionId Webhook subscription identifier
      */
     public getWebhookEventNamesBySubscriptionId (clientId: string, webhookSubscriptionId: number) : Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events'
+        const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events'
             .replace('{' + 'clientId' + '}', String(clientId))
             .replace('{' + 'webhookSubscriptionId' + '}', String(webhookSubscriptionId));
         let queryParameters: any = {};
@@ -6051,7 +6051,7 @@ export class WebhooksApi {
      * @param take Page size
      */
     public getWebhookLogs (clientId: string, webhookSubscriptionId: number, start: Date, end: Date, take?: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultWebhookLog;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/logs'
+        const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/logs'
             .replace('{' + 'clientId' + '}', String(clientId))
             .replace('{' + 'webhookSubscriptionId' + '}', String(webhookSubscriptionId));
         let queryParameters: any = {};
@@ -6133,7 +6133,7 @@ export class WebhooksApi {
      * @param clientId Oauth client identifier
      */
     public getWebhookSubscriptions (clientId: string) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultWebhookSubscription;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/webhooks/{clientId}/subscriptions'
+        const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions'
             .replace('{' + 'clientId' + '}', String(clientId));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -6189,7 +6189,7 @@ export class WebhooksApi {
      * @param webhookSubscription Webhook subscription object
      */
     public updateWebhookSubscription (clientId: string, webhookSubscriptionId: number, webhookSubscription: WebhookSubscription) : Promise<{ response: http.ClientResponse; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v{apiVersion}/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}'
+        const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}'
             .replace('{' + 'clientId' + '}', String(clientId))
             .replace('{' + 'webhookSubscriptionId' + '}', String(webhookSubscriptionId));
         let queryParameters: any = {};
