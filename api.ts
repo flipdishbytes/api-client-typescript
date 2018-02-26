@@ -86,7 +86,7 @@ export class Menu {
     'MenuId': number;
     'VersionNumber': number;
     'ModifiedTime': Date;
-    'MenuSections': Array<MenuSectionBase>;
+    'MenuSections': Array<MenuSection>;
     'ImageUrl': string;
 }
 
