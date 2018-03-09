@@ -22,7 +22,67 @@ let defaultBasePath = 'https://api.flipdish.co';
 
 /* tslint:disable:no-unused-variable */
 
-export class FlipdishPublicModelsV1ApiRequestResponseLogHttpRequestAndResponseLog {
+export class Accept {
+    'estimatedMinutesForDelivery': number;
+}
+
+export class BusinessHoursPeriod {
+    'dayOfWeek': BusinessHoursPeriod.DayOfWeekEnum;
+    'startTime': string;
+    'period': string;
+    'startTimeEarly': string;
+    'periodEarly': string;
+    'early': Range;
+    'late': Range;
+    'ranges': Array<Range>;
+}
+
+export namespace BusinessHoursPeriod {
+    export enum DayOfWeekEnum {
+        Sunday = <any> 'Sunday',
+        Monday = <any> 'Monday',
+        Tuesday = <any> 'Tuesday',
+        Wednesday = <any> 'Wednesday',
+        Thursday = <any> 'Thursday',
+        Friday = <any> 'Friday',
+        Saturday = <any> 'Saturday'
+    }
+}
+export class Coordinates {
+    'latitude': number;
+    'longitude': number;
+}
+
+export class CustomerSummary {
+    'id': number;
+    'name': string;
+    'emailAddress': string;
+    'phoneNumberLocalFormat': string;
+    'phoneNumber': string;
+}
+
+export class DeliveryFeeArea {
+    'deliveryFee': number;
+    'minimumDeliveryOrder': number;
+}
+
+export class DeliveryLocation {
+    'coordinates': Coordinates;
+    'building': string;
+    'street': string;
+    'town': string;
+    'postCode': string;
+    'deliveryInstructions': string;
+    'prettyAddressString': string;
+}
+
+export class FeeSummary {
+    'feeAmount': number;
+    'percentageRate': number;
+    'perTransactionFee': number;
+}
+
+export class HttpRequestAndResponseLog {
     'verb': string;
     'requestUri': string;
     'statusCode': number;
@@ -39,287 +99,86 @@ export class FlipdishPublicModelsV1ApiRequestResponseLogHttpRequestAndResponseLo
     'responseLength': number;
 }
 
-export class FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1ApiRequestResponseLogHttpRequestAndResponseLog {
-    'data': Array<FlipdishPublicModelsV1ApiRequestResponseLogHttpRequestAndResponseLog>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1ApiResultsRestApiDefaultResponse {
-    'data': Array<FlipdishPublicModelsV1ApiResultsRestApiDefaultResponse>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1MenusMenuItemOptionSet {
-    'data': Array<FlipdishPublicModelsV1MenusMenuItemOptionSet>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1MenusMenuItemOptionSetItem {
-    'data': Array<FlipdishPublicModelsV1MenusMenuItemOptionSetItem>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1MenusMenuSection {
-    'data': Array<FlipdishPublicModelsV1MenusMenuSection>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1MenusMenuSectionItem {
-    'data': Array<FlipdishPublicModelsV1MenusMenuSectionItem>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1Metadata {
-    'data': Array<FlipdishPublicModelsV1Metadata>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1OAuthClientsOAuthClient {
-    'data': Array<FlipdishPublicModelsV1OAuthClientsOAuthClient>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1OAuthClientsOauthClientRedirectUri {
-    'data': Array<FlipdishPublicModelsV1OAuthClientsOauthClientRedirectUri>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1WebhooksWebhookLog {
-    'data': Array<FlipdishPublicModelsV1WebhooksWebhookLog>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1WebhooksWebhookSubscription {
-    'data': Array<FlipdishPublicModelsV1WebhooksWebhookSubscription>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiDefaultResponse {
-    'data': string;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiErrorResult {
-    'message': string;
-    'errors': Array<FlipdishPublicModelsV1ApiResultsValidationErrorResult>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiForbiddenResult {
-    'message': string;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiIntegerResult {
-    'data': number;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiPaginationResultFlipdishPublicModelsV1OAuthClientsOAuthTokenModel {
-    'page': number;
-    'limit': number;
-    'totalRecordCount': number;
-    'data': Array<FlipdishPublicModelsV1OAuthClientsOAuthTokenModel>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiPaginationResultFlipdishPublicModelsV1OrdersOrder {
-    'page': number;
-    'limit': number;
-    'totalRecordCount': number;
-    'data': Array<FlipdishPublicModelsV1OrdersOrder>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiPaginationResultFlipdishPublicModelsV1StoresStore {
-    'page': number;
-    'limit': number;
-    'totalRecordCount': number;
-    'data': Array<FlipdishPublicModelsV1StoresStore>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiPaginationResultFlipdishPublicModelsV1VouchersVoucher {
-    'page': number;
-    'limit': number;
-    'totalRecordCount': number;
-    'data': Array<FlipdishPublicModelsV1VouchersVoucher>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1MenusMenu {
-    'data': FlipdishPublicModelsV1MenusMenu;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1MenusMenuItemOptionSet {
-    'data': FlipdishPublicModelsV1MenusMenuItemOptionSet;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1MenusMenuItemOptionSetItem {
-    'data': FlipdishPublicModelsV1MenusMenuItemOptionSetItem;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1MenusMenuSection {
-    'data': FlipdishPublicModelsV1MenusMenuSection;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1MenusMenuSectionItem {
-    'data': FlipdishPublicModelsV1MenusMenuSectionItem;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1Metadata {
-    'data': FlipdishPublicModelsV1Metadata;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1OAuthClientsOAuthClient {
-    'data': FlipdishPublicModelsV1OAuthClientsOAuthClient;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1OAuthClientsOauthClientRedirectUri {
-    'data': FlipdishPublicModelsV1OAuthClientsOauthClientRedirectUri;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1OrdersOrder {
-    'data': FlipdishPublicModelsV1OrdersOrder;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1StoresStore {
-    'data': FlipdishPublicModelsV1StoresStore;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1VouchersVoucher {
-    'data': FlipdishPublicModelsV1VouchersVoucher;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiStringArrayResult {
-    'data': Array<string>;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiStringResult {
-    'data': string;
-}
-
-export class FlipdishPublicModelsV1ApiResultsRestApiUnauthorizedResult {
-    'message': string;
-}
-
-export class FlipdishPublicModelsV1ApiResultsValidationErrorResult {
-    'fieldName': string;
-    'errors': Array<string>;
-}
-
-export class FlipdishPublicModelsV1BusinessHoursPeriod {
-    'dayOfWeek': FlipdishPublicModelsV1BusinessHoursPeriod.DayOfWeekEnum;
-    'startTime': string;
-    'period': string;
-    'startTimeEarly': string;
-    'periodEarly': string;
-    'early': FlipdishPublicModelsV1Range;
-    'late': FlipdishPublicModelsV1Range;
-    'ranges': Array<FlipdishPublicModelsV1Range>;
-}
-
-export namespace FlipdishPublicModelsV1BusinessHoursPeriod {
-    export enum DayOfWeekEnum {
-        Sunday = <any> 'Sunday',
-        Monday = <any> 'Monday',
-        Tuesday = <any> 'Tuesday',
-        Wednesday = <any> 'Wednesday',
-        Thursday = <any> 'Thursday',
-        Friday = <any> 'Friday',
-        Saturday = <any> 'Saturday'
-    }
-}
-export class FlipdishPublicModelsV1Coordinates {
-    'latitude': number;
-    'longitude': number;
-}
-
-export class FlipdishPublicModelsV1CustomersCustomerSummary {
-    'id': number;
-    'name': string;
-    'emailAddress': string;
-    'phoneNumberLocalFormat': string;
-    'phoneNumber': string;
-}
-
-export class FlipdishPublicModelsV1DeliveryLocation {
-    'coordinates': FlipdishPublicModelsV1Coordinates;
-    'building': string;
-    'street': string;
-    'town': string;
-    'postCode': string;
-    'deliveryInstructions': string;
-    'prettyAddressString': string;
-}
-
-export class FlipdishPublicModelsV1FeesFeeSummary {
-    'feeAmount': number;
-    'percentageRate': number;
-    'perTransactionFee': number;
-}
-
-export class FlipdishPublicModelsV1MenusMenu {
+export class Menu {
     'menuId': number;
     'versionNumber': number;
     'modifiedTime': Date;
-    'menuSections': Array<FlipdishPublicModelsV1MenusMenuSection>;
+    'menuSections': Array<MenuSection>;
     'imageUrl': string;
 }
 
-export class FlipdishPublicModelsV1MenusMenuItemOptionSet {
+export class MenuItemOptionSet {
     'menuItemOptionSetId': number;
     'imageUrl': string;
-    'menuItemOptionSetItems': Array<FlipdishPublicModelsV1MenusMenuItemOptionSetItem>;
+    'menuItemOptionSetItems': Array<MenuItemOptionSetItem>;
     'name': string;
     'isMasterOptionSet': boolean;
     'displayOrder': number;
     'minSelectCount': number;
     'maxSelectCount': number;
-    'cellLayoutType': FlipdishPublicModelsV1MenusMenuItemOptionSet.CellLayoutTypeEnum;
+    'cellLayoutType': MenuItemOptionSet.CellLayoutTypeEnum;
 }
 
-export namespace FlipdishPublicModelsV1MenusMenuItemOptionSet {
+export namespace MenuItemOptionSet {
     export enum CellLayoutTypeEnum {
         Small = <any> 'Small',
         Medium = <any> 'Medium',
         Large = <any> 'Large'
     }
 }
-export class FlipdishPublicModelsV1MenusMenuItemOptionSetBase {
+export class MenuItemOptionSetBase {
     'name': string;
     'isMasterOptionSet': boolean;
     'displayOrder': number;
     'minSelectCount': number;
     'maxSelectCount': number;
-    'cellLayoutType': FlipdishPublicModelsV1MenusMenuItemOptionSetBase.CellLayoutTypeEnum;
+    'cellLayoutType': MenuItemOptionSetBase.CellLayoutTypeEnum;
 }
 
-export namespace FlipdishPublicModelsV1MenusMenuItemOptionSetBase {
+export namespace MenuItemOptionSetBase {
     export enum CellLayoutTypeEnum {
         Small = <any> 'Small',
         Medium = <any> 'Medium',
         Large = <any> 'Large'
     }
 }
-export class FlipdishPublicModelsV1MenusMenuItemOptionSetItem {
+export class MenuItemOptionSetItem {
     'menuItemOptionSetItemId': number;
     'imageUrl': string;
     'name': string;
     'price': number;
     'isAvailable': boolean;
     'displayOrder': number;
-    'cellLayoutType': FlipdishPublicModelsV1MenusMenuItemOptionSetItem.CellLayoutTypeEnum;
+    'cellLayoutType': MenuItemOptionSetItem.CellLayoutTypeEnum;
 }
 
-export namespace FlipdishPublicModelsV1MenusMenuItemOptionSetItem {
+export namespace MenuItemOptionSetItem {
     export enum CellLayoutTypeEnum {
         Small = <any> 'Small',
         Medium = <any> 'Medium',
         Large = <any> 'Large'
     }
 }
-export class FlipdishPublicModelsV1MenusMenuItemOptionSetItemBase {
+export class MenuItemOptionSetItemBase {
     'name': string;
     'price': number;
     'isAvailable': boolean;
     'displayOrder': number;
-    'cellLayoutType': FlipdishPublicModelsV1MenusMenuItemOptionSetItemBase.CellLayoutTypeEnum;
+    'cellLayoutType': MenuItemOptionSetItemBase.CellLayoutTypeEnum;
 }
 
-export namespace FlipdishPublicModelsV1MenusMenuItemOptionSetItemBase {
+export namespace MenuItemOptionSetItemBase {
     export enum CellLayoutTypeEnum {
         Small = <any> 'Small',
         Medium = <any> 'Medium',
         Large = <any> 'Large'
     }
 }
-export class FlipdishPublicModelsV1MenusMenuSection {
+export class MenuSection {
     'menuSectionId': number;
     'imageUrl': string;
-    'menuItems': Array<FlipdishPublicModelsV1MenusMenuSectionItem>;
-    'menuSectionAvailability': FlipdishPublicModelsV1MenusMenuSectionAvailability;
+    'menuItems': Array<MenuSectionItem>;
+    'menuSectionAvailability': MenuSectionAvailability;
     'name': string;
     'description': string;
     'displayOrder': number;
@@ -327,12 +186,12 @@ export class FlipdishPublicModelsV1MenusMenuSection {
     'isHiddenFromCustomers': boolean;
 }
 
-export class FlipdishPublicModelsV1MenusMenuSectionAvailability {
-    'availableTimes': Array<FlipdishPublicModelsV1BusinessHoursPeriod>;
-    'availabilityMode': FlipdishPublicModelsV1MenusMenuSectionAvailability.AvailabilityModeEnum;
+export class MenuSectionAvailability {
+    'availableTimes': Array<BusinessHoursPeriod>;
+    'availabilityMode': MenuSectionAvailability.AvailabilityModeEnum;
 }
 
-export namespace FlipdishPublicModelsV1MenusMenuSectionAvailability {
+export namespace MenuSectionAvailability {
     export enum AvailabilityModeEnum {
         DisplayAlways = <any> 'DisplayAlways',
         DisplayBasedOnTimes = <any> 'DisplayBasedOnTimes',
@@ -340,7 +199,7 @@ export namespace FlipdishPublicModelsV1MenusMenuSectionAvailability {
         DisplayAlwaysStartCollapsedBasedOnTimes = <any> 'DisplayAlwaysStartCollapsedBasedOnTimes'
     }
 }
-export class FlipdishPublicModelsV1MenusMenuSectionBase {
+export class MenuSectionBase {
     'name': string;
     'description': string;
     'displayOrder': number;
@@ -348,21 +207,21 @@ export class FlipdishPublicModelsV1MenusMenuSectionBase {
     'isHiddenFromCustomers': boolean;
 }
 
-export class FlipdishPublicModelsV1MenusMenuSectionItem {
+export class MenuSectionItem {
     'menuItemId': number;
     'actualPrice': number;
     'imageUrl': string;
-    'menuItemOptionSets': Array<FlipdishPublicModelsV1MenusMenuItemOptionSet>;
+    'menuItemOptionSets': Array<MenuItemOptionSet>;
     'name': string;
     'description': string;
-    'spicinessRating': FlipdishPublicModelsV1MenusMenuSectionItem.SpicinessRatingEnum;
+    'spicinessRating': MenuSectionItem.SpicinessRatingEnum;
     'price': number;
     'displayOrder': number;
     'alcohol': boolean;
     'isAvailable': boolean;
 }
 
-export namespace FlipdishPublicModelsV1MenusMenuSectionItem {
+export namespace MenuSectionItem {
     export enum SpicinessRatingEnum {
         NotRated = <any> 'NotRated',
         Mild = <any> 'Mild',
@@ -370,17 +229,17 @@ export namespace FlipdishPublicModelsV1MenusMenuSectionItem {
         Hot = <any> 'Hot'
     }
 }
-export class FlipdishPublicModelsV1MenusMenuSectionItemBase {
+export class MenuSectionItemBase {
     'name': string;
     'description': string;
-    'spicinessRating': FlipdishPublicModelsV1MenusMenuSectionItemBase.SpicinessRatingEnum;
+    'spicinessRating': MenuSectionItemBase.SpicinessRatingEnum;
     'price': number;
     'displayOrder': number;
     'alcohol': boolean;
     'isAvailable': boolean;
 }
 
-export namespace FlipdishPublicModelsV1MenusMenuSectionItemBase {
+export namespace MenuSectionItemBase {
     export enum SpicinessRatingEnum {
         NotRated = <any> 'NotRated',
         Mild = <any> 'Mild',
@@ -388,19 +247,19 @@ export namespace FlipdishPublicModelsV1MenusMenuSectionItemBase {
         Hot = <any> 'Hot'
     }
 }
-export class FlipdishPublicModelsV1Metadata {
+export class Metadata {
     'key': string;
     'value': string;
 }
 
-export class FlipdishPublicModelsV1OAuthClientsOAuthClient {
+export class OAuthClient {
     'clientId': string;
     'clientName': string;
     'ownerUserId': number;
     'logoUri': string;
 }
 
-export class FlipdishPublicModelsV1OAuthClientsOAuthTokenModel {
+export class OAuthTokenModel {
     'key': string;
     'tokenType': string;
     'subjectId': string;
@@ -408,43 +267,39 @@ export class FlipdishPublicModelsV1OAuthClientsOAuthTokenModel {
     'expiry': Date;
 }
 
-export class FlipdishPublicModelsV1OAuthClientsOauthClientRedirectUri {
+export class OauthClientRedirectUri {
     'id': number;
     'uri': string;
 }
 
-export class FlipdishPublicModelsV1OrdersAccept {
-    'estimatedMinutesForDelivery': number;
-}
-
-export class FlipdishPublicModelsV1OrdersOrder {
+export class Order {
     'orderId': number;
-    'store': FlipdishPublicModelsV1StoresStoreSummary;
-    'customer': FlipdishPublicModelsV1CustomersCustomerSummary;
-    'voucher': FlipdishPublicModelsV1VouchersVoucherSummary;
-    'fees': FlipdishPublicModelsV1FeesFeeSummary;
-    'deliveryType': FlipdishPublicModelsV1OrdersOrder.DeliveryTypeEnum;
-    'pickupLocationType': FlipdishPublicModelsV1OrdersOrder.PickupLocationTypeEnum;
-    'orderItems': Array<FlipdishPublicModelsV1OrdersOrderItem>;
+    'store': StoreSummary;
+    'customer': CustomerSummary;
+    'voucher': VoucherSummary;
+    'fees': FeeSummary;
+    'deliveryType': Order.DeliveryTypeEnum;
+    'pickupLocationType': Order.PickupLocationTypeEnum;
+    'orderItems': Array<OrderItem>;
     'tipAmount': number;
     'deliveryAmount': number;
     'orderItemsAmount': number;
     'amount': number;
     'processingFee': number;
-    'paymentAccountType': FlipdishPublicModelsV1OrdersOrder.PaymentAccountTypeEnum;
+    'paymentAccountType': Order.PaymentAccountTypeEnum;
     'paymentAccountDescription': string;
-    'deliveryLocation': FlipdishPublicModelsV1DeliveryLocation;
-    'customerLocation': FlipdishPublicModelsV1Coordinates;
-    'orderState': FlipdishPublicModelsV1OrdersOrder.OrderStateEnum;
+    'deliveryLocation': DeliveryLocation;
+    'customerLocation': Coordinates;
+    'orderState': Order.OrderStateEnum;
     'isPreOrder': boolean;
     'placedTime': Date;
     'requestedForTime': Date;
     'chefNote': string;
-    'appType': FlipdishPublicModelsV1OrdersOrder.AppTypeEnum;
+    'appType': Order.AppTypeEnum;
     'userRating': number;
 }
 
-export namespace FlipdishPublicModelsV1OrdersOrder {
+export namespace Order {
     export enum DeliveryTypeEnum {
         Delivery = <any> 'Delivery',
         Pickup = <any> 'Pickup'
@@ -486,7 +341,7 @@ export namespace FlipdishPublicModelsV1OrdersOrder {
         PwaIos = <any> 'PwaIos'
     }
 }
-export class FlipdishPublicModelsV1OrdersOrderItem {
+export class OrderItem {
     'menuSectionName': string;
     'menuSectionDisplayOrder': number;
     'name': string;
@@ -496,11 +351,11 @@ export class FlipdishPublicModelsV1OrdersOrderItem {
     'menuItemId': number;
     'menuItemDisplayOrder': number;
     'isAvailable': boolean;
-    'orderItemOptions': Array<FlipdishPublicModelsV1OrdersOrderItemOption>;
+    'orderItemOptions': Array<OrderItemOption>;
     'metadata': { [key: string]: string; };
 }
 
-export class FlipdishPublicModelsV1OrdersOrderItemOption {
+export class OrderItemOption {
     'menuItemOptionId': number;
     'isMasterOptionSetItem': boolean;
     'name': string;
@@ -510,17 +365,34 @@ export class FlipdishPublicModelsV1OrdersOrderItemOption {
     'metadata': { [key: string]: string; };
 }
 
-export class FlipdishPublicModelsV1OrdersRefund {
+export class Range {
+    'startTime': string;
+    'period': string;
+    'dayOfWeek': Range.DayOfWeekEnum;
+}
+
+export namespace Range {
+    export enum DayOfWeekEnum {
+        Sunday = <any> 'Sunday',
+        Monday = <any> 'Monday',
+        Tuesday = <any> 'Tuesday',
+        Wednesday = <any> 'Wednesday',
+        Thursday = <any> 'Thursday',
+        Friday = <any> 'Friday',
+        Saturday = <any> 'Saturday'
+    }
+}
+export class Refund {
     'refundReason': string;
     'refundAmount': number;
     'notifyCustomer': boolean;
 }
 
-export class FlipdishPublicModelsV1OrdersReject {
-    'rejectReason': FlipdishPublicModelsV1OrdersReject.RejectReasonEnum;
+export class Reject {
+    'rejectReason': Reject.RejectReasonEnum;
 }
 
-export namespace FlipdishPublicModelsV1OrdersReject {
+export namespace Reject {
     export enum RejectReasonEnum {
         TooBusy = <any> 'TooBusy',
         FoodUnavailable = <any> 'FoodUnavailable',
@@ -533,35 +405,158 @@ export namespace FlipdishPublicModelsV1OrdersReject {
         StoreUncontactable = <any> 'StoreUncontactable'
     }
 }
-export class FlipdishPublicModelsV1Range {
-    'startTime': string;
-    'period': string;
-    'dayOfWeek': FlipdishPublicModelsV1Range.DayOfWeekEnum;
+export class RestApiArrayResultHttpRequestAndResponseLog {
+    'data': Array<HttpRequestAndResponseLog>;
 }
 
-export namespace FlipdishPublicModelsV1Range {
-    export enum DayOfWeekEnum {
-        Sunday = <any> 'Sunday',
-        Monday = <any> 'Monday',
-        Tuesday = <any> 'Tuesday',
-        Wednesday = <any> 'Wednesday',
-        Thursday = <any> 'Thursday',
-        Friday = <any> 'Friday',
-        Saturday = <any> 'Saturday'
-    }
-}
-export class FlipdishPublicModelsV1StoresDeliveryFeeArea {
-    'deliveryFee': number;
-    'minimumDeliveryOrder': number;
+export class RestApiArrayResultMenuItemOptionSet {
+    'data': Array<MenuItemOptionSet>;
 }
 
-export class FlipdishPublicModelsV1StoresStore {
+export class RestApiArrayResultMenuItemOptionSetItem {
+    'data': Array<MenuItemOptionSetItem>;
+}
+
+export class RestApiArrayResultMenuSection {
+    'data': Array<MenuSection>;
+}
+
+export class RestApiArrayResultMenuSectionItem {
+    'data': Array<MenuSectionItem>;
+}
+
+export class RestApiArrayResultMetadata {
+    'data': Array<Metadata>;
+}
+
+export class RestApiArrayResultOAuthClient {
+    'data': Array<OAuthClient>;
+}
+
+export class RestApiArrayResultOauthClientRedirectUri {
+    'data': Array<OauthClientRedirectUri>;
+}
+
+export class RestApiArrayResultRestApiDefaultResponse {
+    'data': Array<RestApiDefaultResponse>;
+}
+
+export class RestApiArrayResultWebhookLog {
+    'data': Array<WebhookLog>;
+}
+
+export class RestApiArrayResultWebhookSubscription {
+    'data': Array<WebhookSubscription>;
+}
+
+export class RestApiDefaultResponse {
+    'data': string;
+}
+
+export class RestApiErrorResult {
+    'message': string;
+    'errors': Array<ValidationErrorResult>;
+}
+
+export class RestApiForbiddenResult {
+    'message': string;
+}
+
+export class RestApiIntegerResult {
+    'data': number;
+}
+
+export class RestApiPaginationResultOAuthTokenModel {
+    'page': number;
+    'limit': number;
+    'totalRecordCount': number;
+    'data': Array<OAuthTokenModel>;
+}
+
+export class RestApiPaginationResultOrder {
+    'page': number;
+    'limit': number;
+    'totalRecordCount': number;
+    'data': Array<Order>;
+}
+
+export class RestApiPaginationResultStore {
+    'page': number;
+    'limit': number;
+    'totalRecordCount': number;
+    'data': Array<Store>;
+}
+
+export class RestApiPaginationResultVoucher {
+    'page': number;
+    'limit': number;
+    'totalRecordCount': number;
+    'data': Array<Voucher>;
+}
+
+export class RestApiResultMenu {
+    'data': Menu;
+}
+
+export class RestApiResultMenuItemOptionSet {
+    'data': MenuItemOptionSet;
+}
+
+export class RestApiResultMenuItemOptionSetItem {
+    'data': MenuItemOptionSetItem;
+}
+
+export class RestApiResultMenuSection {
+    'data': MenuSection;
+}
+
+export class RestApiResultMenuSectionItem {
+    'data': MenuSectionItem;
+}
+
+export class RestApiResultMetadata {
+    'data': Metadata;
+}
+
+export class RestApiResultOAuthClient {
+    'data': OAuthClient;
+}
+
+export class RestApiResultOauthClientRedirectUri {
+    'data': OauthClientRedirectUri;
+}
+
+export class RestApiResultOrder {
+    'data': Order;
+}
+
+export class RestApiResultStore {
+    'data': Store;
+}
+
+export class RestApiResultVoucher {
+    'data': Voucher;
+}
+
+export class RestApiStringArrayResult {
+    'data': Array<string>;
+}
+
+export class RestApiStringResult {
+    'data': string;
+}
+
+export class RestApiUnauthorizedResult {
+    'message': string;
+}
+
+export class Store {
     'storeId': number;
     'name': string;
     'apmPhoneNumber': string;
     'phoneNumber': string;
     'emailAddress': string;
-    'address': FlipdishPublicModelsV1StoresStoreAddress;
+    'address': StoreAddress;
     'preOrderEnabled': boolean;
     'takeOutEnabled': boolean;
     'tableServiceEnabled': boolean;
@@ -578,51 +573,51 @@ export class FlipdishPublicModelsV1StoresStore {
     'openForDelivery': boolean;
     'openForPickup': boolean;
     'minimumPickupOrderAmount': number;
-    'deliveryFeeAreas': Array<FlipdishPublicModelsV1StoresDeliveryFeeArea>;
+    'deliveryFeeAreas': Array<DeliveryFeeArea>;
     'requireCustomerNameForPickup': boolean;
     'requireCustomerNameForDelivery': boolean;
-    'pickupHours': Array<FlipdishPublicModelsV1BusinessHoursPeriod>;
-    'deliveryHours': Array<FlipdishPublicModelsV1BusinessHoursPeriod>;
+    'pickupHours': Array<BusinessHoursPeriod>;
+    'deliveryHours': Array<BusinessHoursPeriod>;
     'microsoftTimeZone': string;
     'ianaTimeZone': string;
     'menuId': number;
     'orderConfirmationMessageOverrideDelivery': string;
     'orderConfirmationMessageOverridePickup': string;
-    'printoutLayoutType': FlipdishPublicModelsV1StoresStore.PrintoutLayoutTypeEnum;
-    'storeNotes': Array<FlipdishPublicModelsV1StoresStoreNote>;
+    'printoutLayoutType': Store.PrintoutLayoutTypeEnum;
+    'storeNotes': Array<StoreNote>;
 }
 
-export namespace FlipdishPublicModelsV1StoresStore {
+export namespace Store {
     export enum PrintoutLayoutTypeEnum {
         Default = <any> 'Default',
         Centra = <any> 'Centra'
     }
 }
-export class FlipdishPublicModelsV1StoresStoreAddress {
+export class StoreAddress {
     'addressId': number;
     'line1': string;
     'postcode': string;
     'city': string;
     'countryCode': string;
     'displayForCustomer': string;
-    'coordinates': FlipdishPublicModelsV1Coordinates;
+    'coordinates': Coordinates;
 }
 
-export class FlipdishPublicModelsV1StoresStoreNote {
+export class StoreNote {
     'userId': number;
     'createTime': Date;
     'note': string;
 }
 
-export class FlipdishPublicModelsV1StoresStoreSummary {
+export class StoreSummary {
     'id': number;
     'name': string;
     'menuId': number;
     'metadata': { [key: string]: string; };
-    'currency': FlipdishPublicModelsV1StoresStoreSummary.CurrencyEnum;
+    'currency': StoreSummary.CurrencyEnum;
 }
 
-export namespace FlipdishPublicModelsV1StoresStoreSummary {
+export namespace StoreSummary {
     export enum CurrencyEnum {
         EUR = <any> 'EUR',
         USD = <any> 'USD',
@@ -738,17 +733,22 @@ export namespace FlipdishPublicModelsV1StoresStoreSummary {
         TWD = <any> 'TWD'
     }
 }
-export class FlipdishPublicModelsV1VouchersVoucher {
+export class ValidationErrorResult {
+    'fieldName': string;
+    'errors': Array<string>;
+}
+
+export class Voucher {
     'voucherId': number;
-    'voucherType': FlipdishPublicModelsV1VouchersVoucher.VoucherTypeEnum;
+    'voucherType': Voucher.VoucherTypeEnum;
     'isEnabled': boolean;
     'isUsedUp': boolean;
-    'voucherSubType': FlipdishPublicModelsV1VouchersVoucher.VoucherSubTypeEnum;
+    'voucherSubType': Voucher.VoucherSubTypeEnum;
     'publicDescription': string;
     'privateDescription': string;
     'validFrom': Date;
     'expiry': Date;
-    'voucherPayer': FlipdishPublicModelsV1VouchersVoucher.VoucherPayerEnum;
+    'voucherPayer': Voucher.VoucherPayerEnum;
     'isVisibleToStore': boolean;
     'isReusable': boolean;
     'isValidForDeliveryOrders': boolean;
@@ -764,7 +764,7 @@ export class FlipdishPublicModelsV1VouchersVoucher {
     'code': string;
 }
 
-export namespace FlipdishPublicModelsV1VouchersVoucher {
+export namespace Voucher {
     export enum VoucherTypeEnum {
         PercentageDiscount = <any> 'PercentageDiscount',
         LumpDiscount = <any> 'LumpDiscount',
@@ -785,16 +785,16 @@ export namespace FlipdishPublicModelsV1VouchersVoucher {
         Store = <any> 'Store'
     }
 }
-export class FlipdishPublicModelsV1VouchersVoucherSummary {
+export class VoucherSummary {
     'name': string;
     'description': string;
     'code': string;
     'amount': number;
-    'type': FlipdishPublicModelsV1VouchersVoucherSummary.TypeEnum;
-    'subType': FlipdishPublicModelsV1VouchersVoucherSummary.SubTypeEnum;
+    'type': VoucherSummary.TypeEnum;
+    'subType': VoucherSummary.SubTypeEnum;
 }
 
-export namespace FlipdishPublicModelsV1VouchersVoucherSummary {
+export namespace VoucherSummary {
     export enum TypeEnum {
         PercentageDiscount = <any> 'PercentageDiscount',
         LumpDiscount = <any> 'LumpDiscount',
@@ -811,7 +811,7 @@ export namespace FlipdishPublicModelsV1VouchersVoucherSummary {
         Custom = <any> 'Custom'
     }
 }
-export class FlipdishPublicModelsV1WebhooksWebhookLog {
+export class WebhookLog {
     'webhookSubscriptionOwnerUserId': number;
     'eventCreated': string;
     'webhookTriggered': string;
@@ -828,7 +828,7 @@ export class FlipdishPublicModelsV1WebhooksWebhookLog {
     'flipdishWebhookId': string;
 }
 
-export class FlipdishPublicModelsV1WebhooksWebhookSubscription {
+export class WebhookSubscription {
     'id': number;
     'ownerUserId': number;
     'eventNames': Array<string>;
@@ -944,7 +944,7 @@ export class AuthorizationTokensApi {
      * @param page Requested page number
      * @param limit Requested page limit
      */
-    public getAuthorizationTokens (clientId: string, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiPaginationResultFlipdishPublicModelsV1OAuthClientsOAuthTokenModel;  }> {
+    public getAuthorizationTokens (clientId: string, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOAuthTokenModel;  }> {
         const localVarPath = this.basePath + '/api/v1.0/authorizationtokens/{clientId}'
             .replace('{' + 'clientId' + '}', String(clientId));
         let queryParameters: any = {};
@@ -987,7 +987,7 @@ export class AuthorizationTokensApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiPaginationResultFlipdishPublicModelsV1OAuthClientsOAuthTokenModel;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOAuthTokenModel;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -1112,7 +1112,7 @@ export class HttpRequestResponseLogsApi {
      * @param filterByUserId 
      * @param take 
      */
-    public getHttpLogsByUserIdAsync (start: Date, end: Date, filterByUserId?: number, take?: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1ApiRequestResponseLogHttpRequestAndResponseLog;  }> {
+    public getHttpLogsByUserIdAsync (start: Date, end: Date, filterByUserId?: number, take?: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultHttpRequestAndResponseLog;  }> {
         const localVarPath = this.basePath + '/api/v1.0/interactions/logs';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -1167,7 +1167,7 @@ export class HttpRequestResponseLogsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1ApiRequestResponseLogHttpRequestAndResponseLog;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultHttpRequestAndResponseLog;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -1240,7 +1240,7 @@ export class MenuOptionSetItemsApi {
      * @param optionSetId Option set identifier
      * @param menuItemOptionSetItem Option set item
      */
-    public addMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItem: FlipdishPublicModelsV1MenusMenuItemOptionSetItemBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public addMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
@@ -1404,7 +1404,7 @@ export class MenuOptionSetItemsApi {
      * @param optionSetId Option set identifier
      * @param menuItemOptionSetItemId Option set item identifier
      */
-    public getMenuItemOptionSetItemById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1MenusMenuItemOptionSetItem;  }> {
+    public getMenuItemOptionSetItemById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSetItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
@@ -1463,7 +1463,7 @@ export class MenuOptionSetItemsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1MenusMenuItemOptionSetItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSetItem;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -1485,7 +1485,7 @@ export class MenuOptionSetItemsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Option set identifier
      */
-    public getMenuItemOptionSetItems (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1MenusMenuItemOptionSetItem;  }> {
+    public getMenuItemOptionSetItems (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSetItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
@@ -1538,7 +1538,7 @@ export class MenuOptionSetItemsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1MenusMenuItemOptionSetItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSetItem;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -1733,7 +1733,7 @@ export class MenuOptionSetItemsApi {
      * @param menuItemOptionSetItemId Option set item identifier
      * @param image Option set item image
      */
-    public uploadOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringResult;  }> {
+    public uploadOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}/image'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
@@ -1802,7 +1802,7 @@ export class MenuOptionSetItemsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -1874,7 +1874,7 @@ export class MenuOptionSetsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param menuItemOptionSet Menu item option set
      */
-    public createMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, menuItemOptionSet: FlipdishPublicModelsV1MenusMenuItemOptionSetBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public createMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, menuItemOptionSet: MenuItemOptionSetBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
@@ -2099,7 +2099,7 @@ export class MenuOptionSetsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Menu item option set identifier
      */
-    public getMenuItemOptionSetById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1MenusMenuItemOptionSet;  }> {
+    public getMenuItemOptionSetById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSet;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
@@ -2152,7 +2152,7 @@ export class MenuOptionSetsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1MenusMenuItemOptionSet;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSet;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -2173,7 +2173,7 @@ export class MenuOptionSetsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
      */
-    public getMenuItemOptionSets (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1MenusMenuItemOptionSet;  }> {
+    public getMenuItemOptionSets (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSet;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
@@ -2220,7 +2220,7 @@ export class MenuOptionSetsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1MenusMenuItemOptionSet;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSet;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -2325,7 +2325,7 @@ export class MenuOptionSetsApi {
      * @param optionSetId Option set identifier
      * @param image Option set image
      */
-    public uploadOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringResult;  }> {
+    public uploadOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/image'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
@@ -2388,7 +2388,7 @@ export class MenuOptionSetsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -2459,7 +2459,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItem Menu section item
      */
-    public createMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItem: FlipdishPublicModelsV1MenusMenuSectionItemBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public createMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItem: MenuSectionItemBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
@@ -2663,7 +2663,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu item identifier
      */
-    public getMenuItemById (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1MenusMenuSectionItem;  }> {
+    public getMenuItemById (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuSectionItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
@@ -2710,7 +2710,7 @@ export class MenuSectionItemsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1MenusMenuSectionItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuSectionItem;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -2730,7 +2730,7 @@ export class MenuSectionItemsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      */
-    public getMenuItems (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1MenusMenuSectionItem;  }> {
+    public getMenuItems (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSectionItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
@@ -2771,7 +2771,7 @@ export class MenuSectionItemsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1MenusMenuSectionItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSectionItem;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -2868,7 +2868,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param image Menu section item image
      */
-    public uploadMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringResult;  }> {
+    public uploadMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/image'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
@@ -2925,7 +2925,7 @@ export class MenuSectionItemsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -2995,7 +2995,7 @@ export class MenuSectionsApi {
      * @param menuId Menu identifier
      * @param menuSection Menu section
      */
-    public createMenuSection (menuId: number, menuSection: FlipdishPublicModelsV1MenusMenuSectionBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public createMenuSection (menuId: number, menuSection: MenuSectionBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections'
             .replace('{' + 'menuId' + '}', String(menuId));
         let queryParameters: any = {};
@@ -3178,7 +3178,7 @@ export class MenuSectionsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      */
-    public getMenuSectionById (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1MenusMenuSection;  }> {
+    public getMenuSectionById (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuSection;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
@@ -3219,7 +3219,7 @@ export class MenuSectionsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1MenusMenuSection;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuSection;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -3238,7 +3238,7 @@ export class MenuSectionsApi {
      * @summary Get menu sections
      * @param menuId Menu identifier
      */
-    public getMenuSections (menuId: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1MenusMenuSection;  }> {
+    public getMenuSections (menuId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSection;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections'
             .replace('{' + 'menuId' + '}', String(menuId));
         let queryParameters: any = {};
@@ -3273,7 +3273,7 @@ export class MenuSectionsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1MenusMenuSection;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSection;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -3362,7 +3362,7 @@ export class MenuSectionsApi {
      * @param menuSectionId Menu section identifier
      * @param image Menu section image
      */
-    public uploadMenuSectionImage (menuId: number, menuSectionId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringResult;  }> {
+    public uploadMenuSectionImage (menuId: number, menuSectionId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/image'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
@@ -3413,7 +3413,7 @@ export class MenuSectionsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -3686,7 +3686,7 @@ export class MenusApi {
      * @summary Get menu by identifier
      * @param menuId Menu identifier
      */
-    public getMenuById (menuId: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1MenusMenu;  }> {
+    public getMenuById (menuId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenu;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}'
             .replace('{' + 'menuId' + '}', String(menuId));
         let queryParameters: any = {};
@@ -3721,7 +3721,7 @@ export class MenusApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1MenusMenu;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenu;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -3742,7 +3742,7 @@ export class MenusApi {
      * @param storeId Store identifier
      * @param menuItemId Menu item identifier
      */
-    public getMenuItemMetadata (menuId: number, storeId: number, menuItemId: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1Metadata;  }> {
+    public getMenuItemMetadata (menuId: number, storeId: number, menuItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'storeId' + '}', String(storeId))
@@ -3789,7 +3789,7 @@ export class MenusApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1Metadata;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMetadata;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -3810,7 +3810,7 @@ export class MenusApi {
      * @param storeId Store identifier
      * @param optionSetItemId Menu item option set item identifier
      */
-    public getMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1Metadata;  }> {
+    public getMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/optionsetitem/{optionSetItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'storeId' + '}', String(storeId))
@@ -3857,7 +3857,7 @@ export class MenusApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1Metadata;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMetadata;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -3879,7 +3879,7 @@ export class MenusApi {
      * @param menuItemId Menu item identifier
      * @param metadata Metadata object
      */
-    public setMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, metadata: FlipdishPublicModelsV1Metadata) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public setMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, metadata: Metadata) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'storeId' + '}', String(storeId))
@@ -3954,7 +3954,7 @@ export class MenusApi {
      * @param optionSetItemId Menu item option set item identifier
      * @param metadata Metadata object
      */
-    public setMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number, metadata: FlipdishPublicModelsV1Metadata) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public setMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number, metadata: Metadata) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/optionsetitem/{optionSetItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', String(menuId))
             .replace('{' + 'storeId' + '}', String(storeId))
@@ -4027,7 +4027,7 @@ export class MenusApi {
      * @param menuId Menu identifier
      * @param image Menu image
      */
-    public uploadMenuSectionImage (menuId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringResult;  }> {
+    public uploadMenuSectionImage (menuId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/image'
             .replace('{' + 'menuId' + '}', String(menuId));
         let queryParameters: any = {};
@@ -4072,7 +4072,7 @@ export class MenusApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -4142,7 +4142,7 @@ export class OAuthClientsApi {
      * @param oAuthClientId OAuth client identifier
      * @param uri Redirect uri
      */
-    public addRedirectUri (oAuthClientId: string, uri: string) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1OAuthClientsOauthClientRedirectUri;  }> {
+    public addRedirectUri (oAuthClientId: string, uri: string) : Promise<{ response: http.ClientResponse; body: RestApiResultOauthClientRedirectUri;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis'
             .replace('{' + 'oAuthClientId' + '}', String(oAuthClientId));
         let queryParameters: any = {};
@@ -4183,7 +4183,7 @@ export class OAuthClientsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1OAuthClientsOauthClientRedirectUri;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultOauthClientRedirectUri;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -4202,7 +4202,7 @@ export class OAuthClientsApi {
      * @summary Create OAuth client
      * @param oAuthClient OAuth client
      */
-    public createOAuthClient (oAuthClient: FlipdishPublicModelsV1OAuthClientsOAuthClient) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public createOAuthClient (oAuthClient: OAuthClient) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4310,7 +4310,7 @@ export class OAuthClientsApi {
      * @summary Get OAuth client by identifier
      * @param clientId OAuth client identifier
      */
-    public getOAuthClientByClientId (clientId: string) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1OAuthClientsOAuthClient;  }> {
+    public getOAuthClientByClientId (clientId: string) : Promise<{ response: http.ClientResponse; body: RestApiResultOAuthClient;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{clientId}'
             .replace('{' + 'clientId' + '}', String(clientId));
         let queryParameters: any = {};
@@ -4345,7 +4345,7 @@ export class OAuthClientsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1OAuthClientsOAuthClient;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultOAuthClient;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -4364,7 +4364,7 @@ export class OAuthClientsApi {
      * @summary Get OAuth client secret key
      * @param clientId OAuth client identifier
      */
-    public getOAuthClientSecret (clientId: string) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringResult;  }> {
+    public getOAuthClientSecret (clientId: string) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{clientId}/secret'
             .replace('{' + 'clientId' + '}', String(clientId));
         let queryParameters: any = {};
@@ -4399,7 +4399,7 @@ export class OAuthClientsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -4417,7 +4417,7 @@ export class OAuthClientsApi {
      * 
      * @summary Get all OAuth client
      */
-    public getOAuthClients () : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1OAuthClientsOAuthClient;  }> {
+    public getOAuthClients () : Promise<{ response: http.ClientResponse; body: RestApiArrayResultOAuthClient;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4446,7 +4446,7 @@ export class OAuthClientsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1OAuthClientsOAuthClient;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultOAuthClient;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -4465,7 +4465,7 @@ export class OAuthClientsApi {
      * @summary Get OAuth access token for client
      * @param oAuthClientId OAuth client identifier
      */
-    public getOauthAccessToken (oAuthClientId: string) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringResult;  }> {
+    public getOauthAccessToken (oAuthClientId: string) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/accesstoken'
             .replace('{' + 'oAuthClientId' + '}', String(oAuthClientId));
         let queryParameters: any = {};
@@ -4500,7 +4500,7 @@ export class OAuthClientsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -4519,7 +4519,7 @@ export class OAuthClientsApi {
      * @summary Get OAuth client redirect uris
      * @param oAuthClientId OAuth client identifier
      */
-    public getRedirectUris (oAuthClientId: string) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1OAuthClientsOauthClientRedirectUri;  }> {
+    public getRedirectUris (oAuthClientId: string) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultOauthClientRedirectUri;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis'
             .replace('{' + 'oAuthClientId' + '}', String(oAuthClientId));
         let queryParameters: any = {};
@@ -4554,7 +4554,7 @@ export class OAuthClientsApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1OAuthClientsOauthClientRedirectUri;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultOauthClientRedirectUri;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -4685,7 +4685,7 @@ export class OrdersApi {
      * @param id Order identifier
      * @param acceptObject 
      */
-    public acceptOrder (id: number, acceptObject: FlipdishPublicModelsV1OrdersAccept) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public acceptOrder (id: number, acceptObject: Accept) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}/accept'
             .replace('{' + 'id' + '}', String(id));
         let queryParameters: any = {};
@@ -4745,7 +4745,7 @@ export class OrdersApi {
      * @summary Get order by ID
      * @param id Order identifier
      */
-    public getOrderById (id: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1OrdersOrder;  }> {
+    public getOrderById (id: number) : Promise<{ response: http.ClientResponse; body: RestApiResultOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}'
             .replace('{' + 'id' + '}', String(id));
         let queryParameters: any = {};
@@ -4780,7 +4780,7 @@ export class OrdersApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1OrdersOrder;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultOrder;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -4802,7 +4802,7 @@ export class OrdersApi {
      * @param page Requested page number
      * @param limit Requested page limit
      */
-    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<string>, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiPaginationResultFlipdishPublicModelsV1OrdersOrder;  }> {
+    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<string>, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4847,7 +4847,7 @@ export class OrdersApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiPaginationResultFlipdishPublicModelsV1OrdersOrder;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOrder;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -4867,7 +4867,7 @@ export class OrdersApi {
      * @param id Order identifier
      * @param refundObject 
      */
-    public refundOrder (id: number, refundObject: FlipdishPublicModelsV1OrdersRefund) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public refundOrder (id: number, refundObject: Refund) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}/refund'
             .replace('{' + 'id' + '}', String(id));
         let queryParameters: any = {};
@@ -4928,7 +4928,7 @@ export class OrdersApi {
      * @param id Order identifier
      * @param rejectObject 
      */
-    public rejectOrder (id: number, rejectObject: FlipdishPublicModelsV1OrdersReject) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public rejectOrder (id: number, rejectObject: Reject) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}/reject'
             .replace('{' + 'id' + '}', String(id));
         let queryParameters: any = {};
@@ -5038,7 +5038,7 @@ export class StoresApi {
      * @summary Get store by identifier
      * @param storeId Store identifier
      */
-    public getStoreById (storeId: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1StoresStore;  }> {
+    public getStoreById (storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}'
             .replace('{' + 'storeId' + '}', String(storeId));
         let queryParameters: any = {};
@@ -5073,7 +5073,7 @@ export class StoresApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1StoresStore;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStore;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -5094,7 +5094,7 @@ export class StoresApi {
      * @param page Requested page index
      * @param limit Requested page limit
      */
-    public getStores (searchQuery?: string, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiPaginationResultFlipdishPublicModelsV1StoresStore;  }> {
+    public getStores (searchQuery?: string, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -5135,7 +5135,7 @@ export class StoresApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiPaginationResultFlipdishPublicModelsV1StoresStore;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStore;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -5203,7 +5203,7 @@ export class UsersApi {
      * 
      * @summary Get role names
      */
-    public getRoles () : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringArrayResult;  }> {
+    public getRoles () : Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/users/roles';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -5232,7 +5232,7 @@ export class UsersApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringArrayResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -5304,7 +5304,7 @@ export class VouchersApi {
      * @param storeId 
      * @param key 
      */
-    public deleteVoucherMetadata (voucherId: number, menuId: number, storeId: number, key: string) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1ApiResultsRestApiDefaultResponse;  }> {
+    public deleteVoucherMetadata (voucherId: number, menuId: number, storeId: number, key: string) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultRestApiDefaultResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
             .replace('{' + 'voucherId' + '}', String(voucherId))
             .replace('{' + 'menuId' + '}', String(menuId))
@@ -5357,7 +5357,7 @@ export class VouchersApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1ApiResultsRestApiDefaultResponse;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -5376,7 +5376,7 @@ export class VouchersApi {
      * @summary Get voucher by identifier
      * @param voucherId 
      */
-    public getVoucherById (voucherId: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1VouchersVoucher;  }> {
+    public getVoucherById (voucherId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultVoucher;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}'
             .replace('{' + 'voucherId' + '}', String(voucherId));
         let queryParameters: any = {};
@@ -5411,7 +5411,7 @@ export class VouchersApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1VouchersVoucher;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultVoucher;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -5432,7 +5432,7 @@ export class VouchersApi {
      * @param menuId 
      * @param storeId 
      */
-    public getVoucherMetadata (voucherId: number, menuId: number, storeId: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1Metadata;  }> {
+    public getVoucherMetadata (voucherId: number, menuId: number, storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata'
             .replace('{' + 'voucherId' + '}', String(voucherId))
             .replace('{' + 'menuId' + '}', String(menuId))
@@ -5479,7 +5479,7 @@ export class VouchersApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1Metadata;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMetadata;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -5501,7 +5501,7 @@ export class VouchersApi {
      * @param storeId 
      * @param key 
      */
-    public getVoucherMetadata_1 (voucherId: number, menuId: number, storeId: number, key: string) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1Metadata;  }> {
+    public getVoucherMetadata_1 (voucherId: number, menuId: number, storeId: number, key: string) : Promise<{ response: http.ClientResponse; body: RestApiResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
             .replace('{' + 'voucherId' + '}', String(voucherId))
             .replace('{' + 'menuId' + '}', String(menuId))
@@ -5554,7 +5554,7 @@ export class VouchersApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiResultFlipdishPublicModelsV1Metadata;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMetadata;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -5587,7 +5587,7 @@ export class VouchersApi {
      * @param voucherType 
      * @param description 
      */
-    public getVouchers (filter?: string, pageNumber?: number, pageSize?: number, sortOrder?: string, orderBy?: string, subType?: string, status?: string, code?: string, validFromBegin?: Date, validFromEnd?: Date, expiryBegin?: Date, expiryEnd?: Date, amount?: number, voucherType?: string, description?: string) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiPaginationResultFlipdishPublicModelsV1VouchersVoucher;  }> {
+    public getVouchers (filter?: string, pageNumber?: number, pageSize?: number, sortOrder?: string, orderBy?: string, subType?: string, status?: string, code?: string, validFromBegin?: Date, validFromEnd?: Date, expiryBegin?: Date, expiryEnd?: Date, amount?: number, voucherType?: string, description?: string) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultVoucher;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -5676,7 +5676,7 @@ export class VouchersApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiPaginationResultFlipdishPublicModelsV1VouchersVoucher;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultVoucher;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -5828,7 +5828,7 @@ export class WebhooksApi {
      * @param clientId Oauth client identifier
      * @param webhookSubscription Webhook subscription object
      */
-    public craeteWebhookSubscription (clientId: string, webhookSubscription: FlipdishPublicModelsV1WebhooksWebhookSubscription) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiIntegerResult;  }> {
+    public craeteWebhookSubscription (clientId: string, webhookSubscription: WebhookSubscription) : Promise<{ response: http.ClientResponse; body: RestApiIntegerResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions'
             .replace('{' + 'clientId' + '}', String(clientId));
         let queryParameters: any = {};
@@ -5869,7 +5869,7 @@ export class WebhooksApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiIntegerResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiIntegerResult;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -6084,7 +6084,7 @@ export class WebhooksApi {
      * 
      * @summary Get all webhook subscription event names
      */
-    public getWebhookEventNames () : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringArrayResult;  }> {
+    public getWebhookEventNames () : Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/events';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -6113,7 +6113,7 @@ export class WebhooksApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringArrayResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -6133,7 +6133,7 @@ export class WebhooksApi {
      * @param clientId Oauth client identifier
      * @param webhookSubscriptionId Webhook subscription identifier
      */
-    public getWebhookEventNamesBySubscriptionId (clientId: string, webhookSubscriptionId: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringArrayResult;  }> {
+    public getWebhookEventNamesBySubscriptionId (clientId: string, webhookSubscriptionId: number) : Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events'
             .replace('{' + 'clientId' + '}', String(clientId))
             .replace('{' + 'webhookSubscriptionId' + '}', String(webhookSubscriptionId));
@@ -6174,7 +6174,7 @@ export class WebhooksApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiStringArrayResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -6197,7 +6197,7 @@ export class WebhooksApi {
      * @param end End time
      * @param take Page size
      */
-    public getWebhookLogs (clientId: string, webhookSubscriptionId: number, start: Date, end: Date, take?: number) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1WebhooksWebhookLog;  }> {
+    public getWebhookLogs (clientId: string, webhookSubscriptionId: number, start: Date, end: Date, take?: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultWebhookLog;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/logs'
             .replace('{' + 'clientId' + '}', String(clientId))
             .replace('{' + 'webhookSubscriptionId' + '}', String(webhookSubscriptionId));
@@ -6260,7 +6260,7 @@ export class WebhooksApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1WebhooksWebhookLog;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultWebhookLog;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -6279,7 +6279,7 @@ export class WebhooksApi {
      * @summary Get all webhook subscriptions by your Oauth client id
      * @param clientId Oauth client identifier
      */
-    public getWebhookSubscriptions (clientId: string) : Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1WebhooksWebhookSubscription;  }> {
+    public getWebhookSubscriptions (clientId: string) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultWebhookSubscription;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions'
             .replace('{' + 'clientId' + '}', String(clientId));
         let queryParameters: any = {};
@@ -6314,7 +6314,7 @@ export class WebhooksApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: FlipdishPublicModelsV1ApiResultsRestApiArrayResultFlipdishPublicModelsV1WebhooksWebhookSubscription;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultWebhookSubscription;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -6335,7 +6335,7 @@ export class WebhooksApi {
      * @param webhookSubscriptionId Webhook subscription identifier
      * @param webhookSubscription Webhook subscription object
      */
-    public updateWebhookSubscription (clientId: string, webhookSubscriptionId: number, webhookSubscription: FlipdishPublicModelsV1WebhooksWebhookSubscription) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updateWebhookSubscription (clientId: string, webhookSubscriptionId: number, webhookSubscription: WebhookSubscription) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}'
             .replace('{' + 'clientId' + '}', String(clientId))
             .replace('{' + 'webhookSubscriptionId' + '}', String(webhookSubscriptionId));
