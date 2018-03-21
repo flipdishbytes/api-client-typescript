@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import request = require('request');
+import localVarRequest = require('request');
 import http = require('http');
 import Promise = require('bluebird');
 
@@ -21,9 +21,136 @@ let defaultBasePath = 'https://api.flipdish.co';
 // ===============================================
 
 /* tslint:disable:no-unused-variable */
+let primitives = [
+                    "string",
+                    "boolean",
+                    "double",
+                    "integer",
+                    "long",
+                    "float",
+                    "number",
+                    "any"
+                 ];
+
+class ObjectSerializer {
+
+    public static findCorrectType(data: any, expectedType: string) {
+        if (data == undefined) {
+            return expectedType;
+        } else if (primitives.indexOf(expectedType.toLowerCase()) !== -1) {
+            return expectedType;
+        } else if (expectedType === "Date") {
+            return expectedType;
+        } else {
+            if (enumsMap[expectedType]) {
+                return expectedType;
+            }
+
+            if (!typeMap[expectedType]) {
+                return expectedType; // w/e we don't know the type
+            }
+
+            // Check the discriminator
+            let discriminatorProperty = typeMap[expectedType].discriminator;
+            if (discriminatorProperty == null) {
+                return expectedType; // the type does not have a discriminator. use it.
+            } else {
+                if (data[discriminatorProperty]) {
+                    return data[discriminatorProperty]; // use the type given in the discriminator
+                } else {
+                    return expectedType; // discriminator was not present (or an empty string)
+                }
+            }
+        }
+    }
+
+    public static serialize(data: any, type: string) {
+        if (data == undefined) {
+            return data;
+        } else if (primitives.indexOf(type.toLowerCase()) !== -1) {
+            return data;
+        } else if (type.lastIndexOf("Array<", 0) === 0) { // string.startsWith pre es6
+            let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
+            subType = subType.substring(0, subType.length - 1); // Type> => Type
+            let transformedData: any[] = [];
+            for (let index in data) {
+                let date = data[index];
+                transformedData.push(ObjectSerializer.serialize(date, subType));
+            }
+            return transformedData;
+        } else if (type === "Date") {
+            return data.toString();
+        } else {
+            if (enumsMap[type]) {
+                return data;
+            }
+            if (!typeMap[type]) { // in case we dont know the type
+                return data;
+            }
+
+            // get the map for the correct type.
+            let attributeTypes = typeMap[type].getAttributeTypeMap();
+            let instance: {[index: string]: any} = {};
+            for (let index in attributeTypes) {
+                let attributeType = attributeTypes[index];
+                instance[attributeType.baseName] = ObjectSerializer.serialize(data[attributeType.name], attributeType.type);
+            }
+            return instance;
+        }
+    }
+
+    public static deserialize(data: any, type: string) {
+        // polymorphism may change the actual type.
+        type = ObjectSerializer.findCorrectType(data, type);
+        if (data == undefined) {
+            return data;
+        } else if (primitives.indexOf(type.toLowerCase()) !== -1) {
+            return data;
+        } else if (type.lastIndexOf("Array<", 0) === 0) { // string.startsWith pre es6
+            let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
+            subType = subType.substring(0, subType.length - 1); // Type> => Type
+            let transformedData: any[] = [];
+            for (let index in data) {
+                let date = data[index];
+                transformedData.push(ObjectSerializer.deserialize(date, subType));
+            }
+            return transformedData;
+        } else if (type === "Date") {
+            return new Date(data);
+        } else {
+            if (enumsMap[type]) {// is Enum
+                return data;
+            }
+
+            if (!typeMap[type]) { // dont know the type
+                return data;
+            }
+            let instance = new typeMap[type]();
+            let attributeTypes = typeMap[type].getAttributeTypeMap();
+            for (let index in attributeTypes) {
+                let attributeType = attributeTypes[index];
+                instance[attributeType.name] = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type);
+            }
+            return instance;
+        }
+    }
+}
 
 export class Accept {
     'estimatedMinutesForDelivery': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "estimatedMinutesForDelivery",
+            "baseName": "estimatedMinutesForDelivery",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Accept.attributeTypeMap;
+    }
 }
 
 export class BusinessHoursPeriod {
@@ -35,6 +162,54 @@ export class BusinessHoursPeriod {
     'early': Range;
     'late': Range;
     'ranges': Array<Range>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "dayOfWeek",
+            "baseName": "dayOfWeek",
+            "type": "BusinessHoursPeriod.DayOfWeekEnum"
+        },
+        {
+            "name": "startTime",
+            "baseName": "startTime",
+            "type": "string"
+        },
+        {
+            "name": "period",
+            "baseName": "period",
+            "type": "string"
+        },
+        {
+            "name": "startTimeEarly",
+            "baseName": "startTimeEarly",
+            "type": "string"
+        },
+        {
+            "name": "periodEarly",
+            "baseName": "periodEarly",
+            "type": "string"
+        },
+        {
+            "name": "early",
+            "baseName": "early",
+            "type": "Range"
+        },
+        {
+            "name": "late",
+            "baseName": "late",
+            "type": "Range"
+        },
+        {
+            "name": "ranges",
+            "baseName": "ranges",
+            "type": "Array<Range>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BusinessHoursPeriod.attributeTypeMap;
+    }
 }
 
 export namespace BusinessHoursPeriod {
@@ -51,6 +226,24 @@ export namespace BusinessHoursPeriod {
 export class Coordinates {
     'latitude': number;
     'longitude': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "latitude",
+            "baseName": "latitude",
+            "type": "number"
+        },
+        {
+            "name": "longitude",
+            "baseName": "longitude",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Coordinates.attributeTypeMap;
+    }
 }
 
 export class CustomerSummary {
@@ -59,11 +252,62 @@ export class CustomerSummary {
     'emailAddress': string;
     'phoneNumberLocalFormat': string;
     'phoneNumber': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "number"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "emailAddress",
+            "baseName": "emailAddress",
+            "type": "string"
+        },
+        {
+            "name": "phoneNumberLocalFormat",
+            "baseName": "phoneNumberLocalFormat",
+            "type": "string"
+        },
+        {
+            "name": "phoneNumber",
+            "baseName": "phoneNumber",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CustomerSummary.attributeTypeMap;
+    }
 }
 
 export class DeliveryFeeArea {
     'deliveryFee': number;
     'minimumDeliveryOrder': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "deliveryFee",
+            "baseName": "deliveryFee",
+            "type": "number"
+        },
+        {
+            "name": "minimumDeliveryOrder",
+            "baseName": "minimumDeliveryOrder",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DeliveryFeeArea.attributeTypeMap;
+    }
 }
 
 export class DeliveryLocation {
@@ -74,12 +318,78 @@ export class DeliveryLocation {
     'postCode': string;
     'deliveryInstructions': string;
     'prettyAddressString': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "coordinates",
+            "baseName": "coordinates",
+            "type": "Coordinates"
+        },
+        {
+            "name": "building",
+            "baseName": "building",
+            "type": "string"
+        },
+        {
+            "name": "street",
+            "baseName": "street",
+            "type": "string"
+        },
+        {
+            "name": "town",
+            "baseName": "town",
+            "type": "string"
+        },
+        {
+            "name": "postCode",
+            "baseName": "postCode",
+            "type": "string"
+        },
+        {
+            "name": "deliveryInstructions",
+            "baseName": "deliveryInstructions",
+            "type": "string"
+        },
+        {
+            "name": "prettyAddressString",
+            "baseName": "prettyAddressString",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DeliveryLocation.attributeTypeMap;
+    }
 }
 
 export class FeeSummary {
     'feeAmount': number;
     'percentageRate': number;
     'perTransactionFee': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "feeAmount",
+            "baseName": "feeAmount",
+            "type": "number"
+        },
+        {
+            "name": "percentageRate",
+            "baseName": "percentageRate",
+            "type": "number"
+        },
+        {
+            "name": "perTransactionFee",
+            "baseName": "perTransactionFee",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FeeSummary.attributeTypeMap;
+    }
 }
 
 export class HttpRequestAndResponseLog {
@@ -97,16 +407,145 @@ export class HttpRequestAndResponseLog {
     'responseHeaders': { [key: string]: string; };
     'responseBody': string;
     'responseLength': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "verb",
+            "baseName": "verb",
+            "type": "string"
+        },
+        {
+            "name": "requestUri",
+            "baseName": "requestUri",
+            "type": "string"
+        },
+        {
+            "name": "statusCode",
+            "baseName": "statusCode",
+            "type": "number"
+        },
+        {
+            "name": "reasonPhrase",
+            "baseName": "reasonPhrase",
+            "type": "string"
+        },
+        {
+            "name": "callDurationInMilliseconds",
+            "baseName": "callDurationInMilliseconds",
+            "type": "number"
+        },
+        {
+            "name": "userId",
+            "baseName": "userId",
+            "type": "string"
+        },
+        {
+            "name": "ipAddress",
+            "baseName": "ipAddress",
+            "type": "string"
+        },
+        {
+            "name": "createdDateTime",
+            "baseName": "createdDateTime",
+            "type": "string"
+        },
+        {
+            "name": "requestHeaders",
+            "baseName": "requestHeaders",
+            "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "requestBody",
+            "baseName": "requestBody",
+            "type": "string"
+        },
+        {
+            "name": "requestLength",
+            "baseName": "requestLength",
+            "type": "number"
+        },
+        {
+            "name": "responseHeaders",
+            "baseName": "responseHeaders",
+            "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "responseBody",
+            "baseName": "responseBody",
+            "type": "string"
+        },
+        {
+            "name": "responseLength",
+            "baseName": "responseLength",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HttpRequestAndResponseLog.attributeTypeMap;
+    }
 }
 
 export class Menu {
     'menuId': number;
-    'versionNumber': number;
     'modifiedTime': Date;
-    'menuSections': Array<MenuSection>;
+    'versionNumber': number;
     'imageUrl': string;
+    'menuSections': Array<MenuSection>;
+    'displaySectionLinks': boolean;
+    'menuSectionBehaviour': Menu.MenuSectionBehaviourEnum;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "menuId",
+            "baseName": "menuId",
+            "type": "number"
+        },
+        {
+            "name": "modifiedTime",
+            "baseName": "modifiedTime",
+            "type": "Date"
+        },
+        {
+            "name": "versionNumber",
+            "baseName": "versionNumber",
+            "type": "number"
+        },
+        {
+            "name": "imageUrl",
+            "baseName": "imageUrl",
+            "type": "string"
+        },
+        {
+            "name": "menuSections",
+            "baseName": "menuSections",
+            "type": "Array<MenuSection>"
+        },
+        {
+            "name": "displaySectionLinks",
+            "baseName": "displaySectionLinks",
+            "type": "boolean"
+        },
+        {
+            "name": "menuSectionBehaviour",
+            "baseName": "menuSectionBehaviour",
+            "type": "Menu.MenuSectionBehaviourEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Menu.attributeTypeMap;
+    }
 }
 
+export namespace Menu {
+    export enum MenuSectionBehaviourEnum {
+        ExpandSingle = <any> 'ExpandSingle',
+        ExpandMultiple = <any> 'ExpandMultiple'
+    }
+}
 export class MenuItemOptionSet {
     'menuItemOptionSetId': number;
     'imageUrl': string;
@@ -117,6 +556,59 @@ export class MenuItemOptionSet {
     'minSelectCount': number;
     'maxSelectCount': number;
     'cellLayoutType': MenuItemOptionSet.CellLayoutTypeEnum;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "menuItemOptionSetId",
+            "baseName": "menuItemOptionSetId",
+            "type": "number"
+        },
+        {
+            "name": "imageUrl",
+            "baseName": "imageUrl",
+            "type": "string"
+        },
+        {
+            "name": "menuItemOptionSetItems",
+            "baseName": "menuItemOptionSetItems",
+            "type": "Array<MenuItemOptionSetItem>"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "isMasterOptionSet",
+            "baseName": "isMasterOptionSet",
+            "type": "boolean"
+        },
+        {
+            "name": "displayOrder",
+            "baseName": "displayOrder",
+            "type": "number"
+        },
+        {
+            "name": "minSelectCount",
+            "baseName": "minSelectCount",
+            "type": "number"
+        },
+        {
+            "name": "maxSelectCount",
+            "baseName": "maxSelectCount",
+            "type": "number"
+        },
+        {
+            "name": "cellLayoutType",
+            "baseName": "cellLayoutType",
+            "type": "MenuItemOptionSet.CellLayoutTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuItemOptionSet.attributeTypeMap;
+    }
 }
 
 export namespace MenuItemOptionSet {
@@ -133,6 +625,44 @@ export class MenuItemOptionSetBase {
     'minSelectCount': number;
     'maxSelectCount': number;
     'cellLayoutType': MenuItemOptionSetBase.CellLayoutTypeEnum;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "isMasterOptionSet",
+            "baseName": "isMasterOptionSet",
+            "type": "boolean"
+        },
+        {
+            "name": "displayOrder",
+            "baseName": "displayOrder",
+            "type": "number"
+        },
+        {
+            "name": "minSelectCount",
+            "baseName": "minSelectCount",
+            "type": "number"
+        },
+        {
+            "name": "maxSelectCount",
+            "baseName": "maxSelectCount",
+            "type": "number"
+        },
+        {
+            "name": "cellLayoutType",
+            "baseName": "cellLayoutType",
+            "type": "MenuItemOptionSetBase.CellLayoutTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuItemOptionSetBase.attributeTypeMap;
+    }
 }
 
 export namespace MenuItemOptionSetBase {
@@ -150,6 +680,49 @@ export class MenuItemOptionSetItem {
     'isAvailable': boolean;
     'displayOrder': number;
     'cellLayoutType': MenuItemOptionSetItem.CellLayoutTypeEnum;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "menuItemOptionSetItemId",
+            "baseName": "menuItemOptionSetItemId",
+            "type": "number"
+        },
+        {
+            "name": "imageUrl",
+            "baseName": "imageUrl",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "price",
+            "baseName": "price",
+            "type": "number"
+        },
+        {
+            "name": "isAvailable",
+            "baseName": "isAvailable",
+            "type": "boolean"
+        },
+        {
+            "name": "displayOrder",
+            "baseName": "displayOrder",
+            "type": "number"
+        },
+        {
+            "name": "cellLayoutType",
+            "baseName": "cellLayoutType",
+            "type": "MenuItemOptionSetItem.CellLayoutTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuItemOptionSetItem.attributeTypeMap;
+    }
 }
 
 export namespace MenuItemOptionSetItem {
@@ -165,6 +738,39 @@ export class MenuItemOptionSetItemBase {
     'isAvailable': boolean;
     'displayOrder': number;
     'cellLayoutType': MenuItemOptionSetItemBase.CellLayoutTypeEnum;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "price",
+            "baseName": "price",
+            "type": "number"
+        },
+        {
+            "name": "isAvailable",
+            "baseName": "isAvailable",
+            "type": "boolean"
+        },
+        {
+            "name": "displayOrder",
+            "baseName": "displayOrder",
+            "type": "number"
+        },
+        {
+            "name": "cellLayoutType",
+            "baseName": "cellLayoutType",
+            "type": "MenuItemOptionSetItemBase.CellLayoutTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuItemOptionSetItemBase.attributeTypeMap;
+    }
 }
 
 export namespace MenuItemOptionSetItemBase {
@@ -184,11 +790,82 @@ export class MenuSection {
     'displayOrder': number;
     'isAvailable': boolean;
     'isHiddenFromCustomers': boolean;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "menuSectionId",
+            "baseName": "menuSectionId",
+            "type": "number"
+        },
+        {
+            "name": "imageUrl",
+            "baseName": "imageUrl",
+            "type": "string"
+        },
+        {
+            "name": "menuItems",
+            "baseName": "menuItems",
+            "type": "Array<MenuSectionItem>"
+        },
+        {
+            "name": "menuSectionAvailability",
+            "baseName": "menuSectionAvailability",
+            "type": "MenuSectionAvailability"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "displayOrder",
+            "baseName": "displayOrder",
+            "type": "number"
+        },
+        {
+            "name": "isAvailable",
+            "baseName": "isAvailable",
+            "type": "boolean"
+        },
+        {
+            "name": "isHiddenFromCustomers",
+            "baseName": "isHiddenFromCustomers",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuSection.attributeTypeMap;
+    }
 }
 
 export class MenuSectionAvailability {
     'availableTimes': Array<BusinessHoursPeriod>;
     'availabilityMode': MenuSectionAvailability.AvailabilityModeEnum;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "availableTimes",
+            "baseName": "availableTimes",
+            "type": "Array<BusinessHoursPeriod>"
+        },
+        {
+            "name": "availabilityMode",
+            "baseName": "availabilityMode",
+            "type": "MenuSectionAvailability.AvailabilityModeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuSectionAvailability.attributeTypeMap;
+    }
 }
 
 export namespace MenuSectionAvailability {
@@ -205,6 +882,39 @@ export class MenuSectionBase {
     'displayOrder': number;
     'isAvailable': boolean;
     'isHiddenFromCustomers': boolean;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "displayOrder",
+            "baseName": "displayOrder",
+            "type": "number"
+        },
+        {
+            "name": "isAvailable",
+            "baseName": "isAvailable",
+            "type": "boolean"
+        },
+        {
+            "name": "isHiddenFromCustomers",
+            "baseName": "isHiddenFromCustomers",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuSectionBase.attributeTypeMap;
+    }
 }
 
 export class MenuSectionItem {
@@ -219,6 +929,69 @@ export class MenuSectionItem {
     'displayOrder': number;
     'alcohol': boolean;
     'isAvailable': boolean;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "menuItemId",
+            "baseName": "menuItemId",
+            "type": "number"
+        },
+        {
+            "name": "actualPrice",
+            "baseName": "actualPrice",
+            "type": "number"
+        },
+        {
+            "name": "imageUrl",
+            "baseName": "imageUrl",
+            "type": "string"
+        },
+        {
+            "name": "menuItemOptionSets",
+            "baseName": "menuItemOptionSets",
+            "type": "Array<MenuItemOptionSet>"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "spicinessRating",
+            "baseName": "spicinessRating",
+            "type": "MenuSectionItem.SpicinessRatingEnum"
+        },
+        {
+            "name": "price",
+            "baseName": "price",
+            "type": "number"
+        },
+        {
+            "name": "displayOrder",
+            "baseName": "displayOrder",
+            "type": "number"
+        },
+        {
+            "name": "alcohol",
+            "baseName": "alcohol",
+            "type": "boolean"
+        },
+        {
+            "name": "isAvailable",
+            "baseName": "isAvailable",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuSectionItem.attributeTypeMap;
+    }
 }
 
 export namespace MenuSectionItem {
@@ -237,6 +1010,49 @@ export class MenuSectionItemBase {
     'displayOrder': number;
     'alcohol': boolean;
     'isAvailable': boolean;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "spicinessRating",
+            "baseName": "spicinessRating",
+            "type": "MenuSectionItemBase.SpicinessRatingEnum"
+        },
+        {
+            "name": "price",
+            "baseName": "price",
+            "type": "number"
+        },
+        {
+            "name": "displayOrder",
+            "baseName": "displayOrder",
+            "type": "number"
+        },
+        {
+            "name": "alcohol",
+            "baseName": "alcohol",
+            "type": "boolean"
+        },
+        {
+            "name": "isAvailable",
+            "baseName": "isAvailable",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuSectionItemBase.attributeTypeMap;
+    }
 }
 
 export namespace MenuSectionItemBase {
@@ -250,6 +1066,24 @@ export namespace MenuSectionItemBase {
 export class Metadata {
     'key': string;
     'value': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "key",
+            "baseName": "key",
+            "type": "string"
+        },
+        {
+            "name": "value",
+            "baseName": "value",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Metadata.attributeTypeMap;
+    }
 }
 
 export class OAuthClient {
@@ -257,6 +1091,34 @@ export class OAuthClient {
     'clientName': string;
     'ownerUserId': number;
     'logoUri': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "clientId",
+            "baseName": "clientId",
+            "type": "string"
+        },
+        {
+            "name": "clientName",
+            "baseName": "clientName",
+            "type": "string"
+        },
+        {
+            "name": "ownerUserId",
+            "baseName": "ownerUserId",
+            "type": "number"
+        },
+        {
+            "name": "logoUri",
+            "baseName": "logoUri",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OAuthClient.attributeTypeMap;
+    }
 }
 
 export class OAuthTokenModel {
@@ -265,22 +1127,75 @@ export class OAuthTokenModel {
     'subjectId': string;
     'clientId': string;
     'expiry': Date;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "key",
+            "baseName": "key",
+            "type": "string"
+        },
+        {
+            "name": "tokenType",
+            "baseName": "tokenType",
+            "type": "string"
+        },
+        {
+            "name": "subjectId",
+            "baseName": "subjectId",
+            "type": "string"
+        },
+        {
+            "name": "clientId",
+            "baseName": "clientId",
+            "type": "string"
+        },
+        {
+            "name": "expiry",
+            "baseName": "expiry",
+            "type": "Date"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OAuthTokenModel.attributeTypeMap;
+    }
 }
 
 export class OauthClientRedirectUri {
     'id': number;
     'uri': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "number"
+        },
+        {
+            "name": "uri",
+            "baseName": "uri",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OauthClientRedirectUri.attributeTypeMap;
+    }
 }
 
 export class Order {
-    'orderId': number;
     'store': StoreSummary;
     'customer': CustomerSummary;
     'voucher': VoucherSummary;
     'fees': FeeSummary;
+    'orderItems': Array<OrderItem>;
+    'deliveryLocation': DeliveryLocation;
+    'customerLocation': Coordinates;
+    'orderId': number;
     'deliveryType': Order.DeliveryTypeEnum;
     'pickupLocationType': Order.PickupLocationTypeEnum;
-    'orderItems': Array<OrderItem>;
     'tipAmount': number;
     'deliveryAmount': number;
     'orderItemsAmount': number;
@@ -288,8 +1203,6 @@ export class Order {
     'processingFee': number;
     'paymentAccountType': Order.PaymentAccountTypeEnum;
     'paymentAccountDescription': string;
-    'deliveryLocation': DeliveryLocation;
-    'customerLocation': Coordinates;
     'orderState': Order.OrderStateEnum;
     'isPreOrder': boolean;
     'placedTime': Date;
@@ -297,6 +1210,134 @@ export class Order {
     'chefNote': string;
     'appType': Order.AppTypeEnum;
     'userRating': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "store",
+            "baseName": "store",
+            "type": "StoreSummary"
+        },
+        {
+            "name": "customer",
+            "baseName": "customer",
+            "type": "CustomerSummary"
+        },
+        {
+            "name": "voucher",
+            "baseName": "voucher",
+            "type": "VoucherSummary"
+        },
+        {
+            "name": "fees",
+            "baseName": "fees",
+            "type": "FeeSummary"
+        },
+        {
+            "name": "orderItems",
+            "baseName": "orderItems",
+            "type": "Array<OrderItem>"
+        },
+        {
+            "name": "deliveryLocation",
+            "baseName": "deliveryLocation",
+            "type": "DeliveryLocation"
+        },
+        {
+            "name": "customerLocation",
+            "baseName": "customerLocation",
+            "type": "Coordinates"
+        },
+        {
+            "name": "orderId",
+            "baseName": "orderId",
+            "type": "number"
+        },
+        {
+            "name": "deliveryType",
+            "baseName": "deliveryType",
+            "type": "Order.DeliveryTypeEnum"
+        },
+        {
+            "name": "pickupLocationType",
+            "baseName": "pickupLocationType",
+            "type": "Order.PickupLocationTypeEnum"
+        },
+        {
+            "name": "tipAmount",
+            "baseName": "tipAmount",
+            "type": "number"
+        },
+        {
+            "name": "deliveryAmount",
+            "baseName": "deliveryAmount",
+            "type": "number"
+        },
+        {
+            "name": "orderItemsAmount",
+            "baseName": "orderItemsAmount",
+            "type": "number"
+        },
+        {
+            "name": "amount",
+            "baseName": "amount",
+            "type": "number"
+        },
+        {
+            "name": "processingFee",
+            "baseName": "processingFee",
+            "type": "number"
+        },
+        {
+            "name": "paymentAccountType",
+            "baseName": "paymentAccountType",
+            "type": "Order.PaymentAccountTypeEnum"
+        },
+        {
+            "name": "paymentAccountDescription",
+            "baseName": "paymentAccountDescription",
+            "type": "string"
+        },
+        {
+            "name": "orderState",
+            "baseName": "orderState",
+            "type": "Order.OrderStateEnum"
+        },
+        {
+            "name": "isPreOrder",
+            "baseName": "isPreOrder",
+            "type": "boolean"
+        },
+        {
+            "name": "placedTime",
+            "baseName": "placedTime",
+            "type": "Date"
+        },
+        {
+            "name": "requestedForTime",
+            "baseName": "requestedForTime",
+            "type": "Date"
+        },
+        {
+            "name": "chefNote",
+            "baseName": "chefNote",
+            "type": "string"
+        },
+        {
+            "name": "appType",
+            "baseName": "appType",
+            "type": "Order.AppTypeEnum"
+        },
+        {
+            "name": "userRating",
+            "baseName": "userRating",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Order.attributeTypeMap;
+    }
 }
 
 export namespace Order {
@@ -342,6 +1383,8 @@ export namespace Order {
     }
 }
 export class OrderItem {
+    'orderItemOptions': Array<OrderItemOption>;
+    'metadata': { [key: string]: string; };
     'menuSectionName': string;
     'menuSectionDisplayOrder': number;
     'name': string;
@@ -351,24 +1394,151 @@ export class OrderItem {
     'menuItemId': number;
     'menuItemDisplayOrder': number;
     'isAvailable': boolean;
-    'orderItemOptions': Array<OrderItemOption>;
-    'metadata': { [key: string]: string; };
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "orderItemOptions",
+            "baseName": "orderItemOptions",
+            "type": "Array<OrderItemOption>"
+        },
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "menuSectionName",
+            "baseName": "menuSectionName",
+            "type": "string"
+        },
+        {
+            "name": "menuSectionDisplayOrder",
+            "baseName": "menuSectionDisplayOrder",
+            "type": "number"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "price",
+            "baseName": "price",
+            "type": "number"
+        },
+        {
+            "name": "priceIncludingOptionSetItems",
+            "baseName": "priceIncludingOptionSetItems",
+            "type": "number"
+        },
+        {
+            "name": "menuItemId",
+            "baseName": "menuItemId",
+            "type": "number"
+        },
+        {
+            "name": "menuItemDisplayOrder",
+            "baseName": "menuItemDisplayOrder",
+            "type": "number"
+        },
+        {
+            "name": "isAvailable",
+            "baseName": "isAvailable",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderItem.attributeTypeMap;
+    }
 }
 
 export class OrderItemOption {
+    'metadata': { [key: string]: string; };
     'menuItemOptionId': number;
     'isMasterOptionSetItem': boolean;
     'name': string;
     'price': number;
     'menuItemOptionDisplayOrder': number;
     'menuItemOptionSetDisplayOrder': number;
-    'metadata': { [key: string]: string; };
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "menuItemOptionId",
+            "baseName": "menuItemOptionId",
+            "type": "number"
+        },
+        {
+            "name": "isMasterOptionSetItem",
+            "baseName": "isMasterOptionSetItem",
+            "type": "boolean"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "price",
+            "baseName": "price",
+            "type": "number"
+        },
+        {
+            "name": "menuItemOptionDisplayOrder",
+            "baseName": "menuItemOptionDisplayOrder",
+            "type": "number"
+        },
+        {
+            "name": "menuItemOptionSetDisplayOrder",
+            "baseName": "menuItemOptionSetDisplayOrder",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderItemOption.attributeTypeMap;
+    }
 }
 
 export class Range {
     'startTime': string;
     'period': string;
     'dayOfWeek': Range.DayOfWeekEnum;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "startTime",
+            "baseName": "startTime",
+            "type": "string"
+        },
+        {
+            "name": "period",
+            "baseName": "period",
+            "type": "string"
+        },
+        {
+            "name": "dayOfWeek",
+            "baseName": "dayOfWeek",
+            "type": "Range.DayOfWeekEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Range.attributeTypeMap;
+    }
 }
 
 export namespace Range {
@@ -386,10 +1556,46 @@ export class Refund {
     'refundReason': string;
     'refundAmount': number;
     'notifyCustomer': boolean;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "refundReason",
+            "baseName": "refundReason",
+            "type": "string"
+        },
+        {
+            "name": "refundAmount",
+            "baseName": "refundAmount",
+            "type": "number"
+        },
+        {
+            "name": "notifyCustomer",
+            "baseName": "notifyCustomer",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Refund.attributeTypeMap;
+    }
 }
 
 export class Reject {
     'rejectReason': Reject.RejectReasonEnum;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "rejectReason",
+            "baseName": "rejectReason",
+            "type": "Reject.RejectReasonEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Reject.attributeTypeMap;
+    }
 }
 
 export namespace Reject {
@@ -405,65 +1611,266 @@ export namespace Reject {
         StoreUncontactable = <any> 'StoreUncontactable'
     }
 }
-export class RestApiArrayResultHttpRequestAndResponseLog {
-    'data': Array<HttpRequestAndResponseLog>;
-}
-
 export class RestApiArrayResultMenuItemOptionSet {
     'data': Array<MenuItemOptionSet>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<MenuItemOptionSet>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultMenuItemOptionSet.attributeTypeMap;
+    }
 }
 
 export class RestApiArrayResultMenuItemOptionSetItem {
     'data': Array<MenuItemOptionSetItem>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<MenuItemOptionSetItem>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultMenuItemOptionSetItem.attributeTypeMap;
+    }
 }
 
 export class RestApiArrayResultMenuSection {
     'data': Array<MenuSection>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<MenuSection>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultMenuSection.attributeTypeMap;
+    }
 }
 
 export class RestApiArrayResultMenuSectionItem {
     'data': Array<MenuSectionItem>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<MenuSectionItem>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultMenuSectionItem.attributeTypeMap;
+    }
 }
 
 export class RestApiArrayResultMetadata {
     'data': Array<Metadata>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<Metadata>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultMetadata.attributeTypeMap;
+    }
 }
 
 export class RestApiArrayResultOAuthClient {
     'data': Array<OAuthClient>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<OAuthClient>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultOAuthClient.attributeTypeMap;
+    }
 }
 
 export class RestApiArrayResultOauthClientRedirectUri {
     'data': Array<OauthClientRedirectUri>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<OauthClientRedirectUri>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultOauthClientRedirectUri.attributeTypeMap;
+    }
 }
 
 export class RestApiArrayResultRestApiDefaultResponse {
     'data': Array<RestApiDefaultResponse>;
-}
 
-export class RestApiArrayResultWebhookLog {
-    'data': Array<WebhookLog>;
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<RestApiDefaultResponse>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultRestApiDefaultResponse.attributeTypeMap;
+    }
 }
 
 export class RestApiArrayResultWebhookSubscription {
     'data': Array<WebhookSubscription>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<WebhookSubscription>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultWebhookSubscription.attributeTypeMap;
+    }
 }
 
 export class RestApiDefaultResponse {
     'data': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiDefaultResponse.attributeTypeMap;
+    }
 }
 
 export class RestApiErrorResult {
     'message': string;
     'errors': Array<ValidationErrorResult>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "message",
+            "baseName": "message",
+            "type": "string"
+        },
+        {
+            "name": "errors",
+            "baseName": "errors",
+            "type": "Array<ValidationErrorResult>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiErrorResult.attributeTypeMap;
+    }
 }
 
 export class RestApiForbiddenResult {
     'message': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "message",
+            "baseName": "message",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiForbiddenResult.attributeTypeMap;
+    }
 }
 
 export class RestApiIntegerResult {
     'data': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiIntegerResult.attributeTypeMap;
+    }
+}
+
+export class RestApiPaginationResultHttpRequestAndResponseLog {
+    'page': number;
+    'limit': number;
+    'totalRecordCount': number;
+    'data': Array<HttpRequestAndResponseLog>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "page",
+            "baseName": "page",
+            "type": "number"
+        },
+        {
+            "name": "limit",
+            "baseName": "limit",
+            "type": "number"
+        },
+        {
+            "name": "totalRecordCount",
+            "baseName": "totalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<HttpRequestAndResponseLog>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultHttpRequestAndResponseLog.attributeTypeMap;
+    }
 }
 
 export class RestApiPaginationResultOAuthTokenModel {
@@ -471,6 +1878,34 @@ export class RestApiPaginationResultOAuthTokenModel {
     'limit': number;
     'totalRecordCount': number;
     'data': Array<OAuthTokenModel>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "page",
+            "baseName": "page",
+            "type": "number"
+        },
+        {
+            "name": "limit",
+            "baseName": "limit",
+            "type": "number"
+        },
+        {
+            "name": "totalRecordCount",
+            "baseName": "totalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<OAuthTokenModel>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultOAuthTokenModel.attributeTypeMap;
+    }
 }
 
 export class RestApiPaginationResultOrder {
@@ -478,6 +1913,34 @@ export class RestApiPaginationResultOrder {
     'limit': number;
     'totalRecordCount': number;
     'data': Array<Order>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "page",
+            "baseName": "page",
+            "type": "number"
+        },
+        {
+            "name": "limit",
+            "baseName": "limit",
+            "type": "number"
+        },
+        {
+            "name": "totalRecordCount",
+            "baseName": "totalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<Order>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultOrder.attributeTypeMap;
+    }
 }
 
 export class RestApiPaginationResultStore {
@@ -485,6 +1948,34 @@ export class RestApiPaginationResultStore {
     'limit': number;
     'totalRecordCount': number;
     'data': Array<Store>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "page",
+            "baseName": "page",
+            "type": "number"
+        },
+        {
+            "name": "limit",
+            "baseName": "limit",
+            "type": "number"
+        },
+        {
+            "name": "totalRecordCount",
+            "baseName": "totalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<Store>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultStore.attributeTypeMap;
+    }
 }
 
 export class RestApiPaginationResultVoucher {
@@ -492,62 +1983,307 @@ export class RestApiPaginationResultVoucher {
     'limit': number;
     'totalRecordCount': number;
     'data': Array<Voucher>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "page",
+            "baseName": "page",
+            "type": "number"
+        },
+        {
+            "name": "limit",
+            "baseName": "limit",
+            "type": "number"
+        },
+        {
+            "name": "totalRecordCount",
+            "baseName": "totalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<Voucher>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultVoucher.attributeTypeMap;
+    }
+}
+
+export class RestApiPaginationResultWebhookLog {
+    'page': number;
+    'limit': number;
+    'totalRecordCount': number;
+    'data': Array<WebhookLog>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "page",
+            "baseName": "page",
+            "type": "number"
+        },
+        {
+            "name": "limit",
+            "baseName": "limit",
+            "type": "number"
+        },
+        {
+            "name": "totalRecordCount",
+            "baseName": "totalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<WebhookLog>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultWebhookLog.attributeTypeMap;
+    }
 }
 
 export class RestApiResultMenu {
     'data': Menu;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Menu"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultMenu.attributeTypeMap;
+    }
 }
 
 export class RestApiResultMenuItemOptionSet {
     'data': MenuItemOptionSet;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "MenuItemOptionSet"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultMenuItemOptionSet.attributeTypeMap;
+    }
 }
 
 export class RestApiResultMenuItemOptionSetItem {
     'data': MenuItemOptionSetItem;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "MenuItemOptionSetItem"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultMenuItemOptionSetItem.attributeTypeMap;
+    }
 }
 
 export class RestApiResultMenuSection {
     'data': MenuSection;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "MenuSection"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultMenuSection.attributeTypeMap;
+    }
 }
 
 export class RestApiResultMenuSectionItem {
     'data': MenuSectionItem;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "MenuSectionItem"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultMenuSectionItem.attributeTypeMap;
+    }
 }
 
 export class RestApiResultMetadata {
     'data': Metadata;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Metadata"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultMetadata.attributeTypeMap;
+    }
 }
 
 export class RestApiResultOAuthClient {
     'data': OAuthClient;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "OAuthClient"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultOAuthClient.attributeTypeMap;
+    }
 }
 
 export class RestApiResultOauthClientRedirectUri {
     'data': OauthClientRedirectUri;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "OauthClientRedirectUri"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultOauthClientRedirectUri.attributeTypeMap;
+    }
 }
 
 export class RestApiResultOrder {
     'data': Order;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Order"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultOrder.attributeTypeMap;
+    }
 }
 
 export class RestApiResultStore {
     'data': Store;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Store"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultStore.attributeTypeMap;
+    }
 }
 
 export class RestApiResultVoucher {
     'data': Voucher;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Voucher"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultVoucher.attributeTypeMap;
+    }
 }
 
 export class RestApiStringArrayResult {
     'data': Array<string>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<string>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiStringArrayResult.attributeTypeMap;
+    }
 }
 
 export class RestApiStringResult {
     'data': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiStringResult.attributeTypeMap;
+    }
 }
 
 export class RestApiUnauthorizedResult {
     'message': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "message",
+            "baseName": "message",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiUnauthorizedResult.attributeTypeMap;
+    }
 }
 
 export class Store {
@@ -585,6 +2321,184 @@ export class Store {
     'orderConfirmationMessageOverridePickup': string;
     'printoutLayoutType': Store.PrintoutLayoutTypeEnum;
     'storeNotes': Array<StoreNote>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "storeId",
+            "baseName": "storeId",
+            "type": "number"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "apmPhoneNumber",
+            "baseName": "apmPhoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "phoneNumber",
+            "baseName": "phoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "emailAddress",
+            "baseName": "emailAddress",
+            "type": "string"
+        },
+        {
+            "name": "address",
+            "baseName": "address",
+            "type": "StoreAddress"
+        },
+        {
+            "name": "preOrderEnabled",
+            "baseName": "preOrderEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "takeOutEnabled",
+            "baseName": "takeOutEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "tableServiceEnabled",
+            "baseName": "tableServiceEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "dineInEnabled",
+            "baseName": "dineInEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "allowPreOrdersAndTableService",
+            "baseName": "allowPreOrdersAndTableService",
+            "type": "boolean"
+        },
+        {
+            "name": "pickupEnabled",
+            "baseName": "pickupEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "deliveryEnabled",
+            "baseName": "deliveryEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "cardOrderDeliveryEnabled",
+            "baseName": "cardOrderDeliveryEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "cashOrdersDeliveryEnabled",
+            "baseName": "cashOrdersDeliveryEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "cardOrdersPickupEnabled",
+            "baseName": "cardOrdersPickupEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "cashOrdersPickupEnabled",
+            "baseName": "cashOrdersPickupEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "tipsEnabled",
+            "baseName": "tipsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "automaticallyAcceptOrders",
+            "baseName": "automaticallyAcceptOrders",
+            "type": "boolean"
+        },
+        {
+            "name": "openForDelivery",
+            "baseName": "openForDelivery",
+            "type": "boolean"
+        },
+        {
+            "name": "openForPickup",
+            "baseName": "openForPickup",
+            "type": "boolean"
+        },
+        {
+            "name": "minimumPickupOrderAmount",
+            "baseName": "minimumPickupOrderAmount",
+            "type": "number"
+        },
+        {
+            "name": "deliveryFeeAreas",
+            "baseName": "deliveryFeeAreas",
+            "type": "Array<DeliveryFeeArea>"
+        },
+        {
+            "name": "requireCustomerNameForPickup",
+            "baseName": "requireCustomerNameForPickup",
+            "type": "boolean"
+        },
+        {
+            "name": "requireCustomerNameForDelivery",
+            "baseName": "requireCustomerNameForDelivery",
+            "type": "boolean"
+        },
+        {
+            "name": "pickupHours",
+            "baseName": "pickupHours",
+            "type": "Array<BusinessHoursPeriod>"
+        },
+        {
+            "name": "deliveryHours",
+            "baseName": "deliveryHours",
+            "type": "Array<BusinessHoursPeriod>"
+        },
+        {
+            "name": "microsoftTimeZone",
+            "baseName": "microsoftTimeZone",
+            "type": "string"
+        },
+        {
+            "name": "ianaTimeZone",
+            "baseName": "ianaTimeZone",
+            "type": "string"
+        },
+        {
+            "name": "menuId",
+            "baseName": "menuId",
+            "type": "number"
+        },
+        {
+            "name": "orderConfirmationMessageOverrideDelivery",
+            "baseName": "orderConfirmationMessageOverrideDelivery",
+            "type": "string"
+        },
+        {
+            "name": "orderConfirmationMessageOverridePickup",
+            "baseName": "orderConfirmationMessageOverridePickup",
+            "type": "string"
+        },
+        {
+            "name": "printoutLayoutType",
+            "baseName": "printoutLayoutType",
+            "type": "Store.PrintoutLayoutTypeEnum"
+        },
+        {
+            "name": "storeNotes",
+            "baseName": "storeNotes",
+            "type": "Array<StoreNote>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Store.attributeTypeMap;
+    }
 }
 
 export namespace Store {
@@ -601,12 +2515,78 @@ export class StoreAddress {
     'countryCode': string;
     'displayForCustomer': string;
     'coordinates': Coordinates;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "addressId",
+            "baseName": "addressId",
+            "type": "number"
+        },
+        {
+            "name": "line1",
+            "baseName": "line1",
+            "type": "string"
+        },
+        {
+            "name": "postcode",
+            "baseName": "postcode",
+            "type": "string"
+        },
+        {
+            "name": "city",
+            "baseName": "city",
+            "type": "string"
+        },
+        {
+            "name": "countryCode",
+            "baseName": "countryCode",
+            "type": "string"
+        },
+        {
+            "name": "displayForCustomer",
+            "baseName": "displayForCustomer",
+            "type": "string"
+        },
+        {
+            "name": "coordinates",
+            "baseName": "coordinates",
+            "type": "Coordinates"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreAddress.attributeTypeMap;
+    }
 }
 
 export class StoreNote {
     'userId': number;
     'createTime': Date;
     'note': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "userId",
+            "baseName": "userId",
+            "type": "number"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "note",
+            "baseName": "note",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreNote.attributeTypeMap;
+    }
 }
 
 export class StoreSummary {
@@ -615,6 +2595,39 @@ export class StoreSummary {
     'menuId': number;
     'metadata': { [key: string]: string; };
     'currency': StoreSummary.CurrencyEnum;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "number"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "menuId",
+            "baseName": "menuId",
+            "type": "number"
+        },
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "currency",
+            "baseName": "currency",
+            "type": "StoreSummary.CurrencyEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreSummary.attributeTypeMap;
+    }
 }
 
 export namespace StoreSummary {
@@ -736,6 +2749,24 @@ export namespace StoreSummary {
 export class ValidationErrorResult {
     'fieldName': string;
     'errors': Array<string>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "fieldName",
+            "baseName": "fieldName",
+            "type": "string"
+        },
+        {
+            "name": "errors",
+            "baseName": "errors",
+            "type": "Array<string>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ValidationErrorResult.attributeTypeMap;
+    }
 }
 
 export class Voucher {
@@ -762,6 +2793,129 @@ export class Voucher {
     'autoApplyOrder': number;
     'includeDeliveryFee': boolean;
     'code': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "voucherId",
+            "baseName": "voucherId",
+            "type": "number"
+        },
+        {
+            "name": "voucherType",
+            "baseName": "voucherType",
+            "type": "Voucher.VoucherTypeEnum"
+        },
+        {
+            "name": "isEnabled",
+            "baseName": "isEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "isUsedUp",
+            "baseName": "isUsedUp",
+            "type": "boolean"
+        },
+        {
+            "name": "voucherSubType",
+            "baseName": "voucherSubType",
+            "type": "Voucher.VoucherSubTypeEnum"
+        },
+        {
+            "name": "publicDescription",
+            "baseName": "publicDescription",
+            "type": "string"
+        },
+        {
+            "name": "privateDescription",
+            "baseName": "privateDescription",
+            "type": "string"
+        },
+        {
+            "name": "validFrom",
+            "baseName": "validFrom",
+            "type": "Date"
+        },
+        {
+            "name": "expiry",
+            "baseName": "expiry",
+            "type": "Date"
+        },
+        {
+            "name": "voucherPayer",
+            "baseName": "voucherPayer",
+            "type": "Voucher.VoucherPayerEnum"
+        },
+        {
+            "name": "isVisibleToStore",
+            "baseName": "isVisibleToStore",
+            "type": "boolean"
+        },
+        {
+            "name": "isReusable",
+            "baseName": "isReusable",
+            "type": "boolean"
+        },
+        {
+            "name": "isValidForDeliveryOrders",
+            "baseName": "isValidForDeliveryOrders",
+            "type": "boolean"
+        },
+        {
+            "name": "isValidForPickupOrders",
+            "baseName": "isValidForPickupOrders",
+            "type": "boolean"
+        },
+        {
+            "name": "isValidForCardOrders",
+            "baseName": "isValidForCardOrders",
+            "type": "boolean"
+        },
+        {
+            "name": "isValidForCashOrders",
+            "baseName": "isValidForCashOrders",
+            "type": "boolean"
+        },
+        {
+            "name": "isValidForFirstOrderOnly",
+            "baseName": "isValidForFirstOrderOnly",
+            "type": "boolean"
+        },
+        {
+            "name": "minimumOrderAmount",
+            "baseName": "minimumOrderAmount",
+            "type": "number"
+        },
+        {
+            "name": "isValidOncePerCustomer",
+            "baseName": "isValidOncePerCustomer",
+            "type": "boolean"
+        },
+        {
+            "name": "autoApply",
+            "baseName": "autoApply",
+            "type": "boolean"
+        },
+        {
+            "name": "autoApplyOrder",
+            "baseName": "autoApplyOrder",
+            "type": "number"
+        },
+        {
+            "name": "includeDeliveryFee",
+            "baseName": "includeDeliveryFee",
+            "type": "boolean"
+        },
+        {
+            "name": "code",
+            "baseName": "code",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Voucher.attributeTypeMap;
+    }
 }
 
 export namespace Voucher {
@@ -792,6 +2946,44 @@ export class VoucherSummary {
     'amount': number;
     'type': VoucherSummary.TypeEnum;
     'subType': VoucherSummary.SubTypeEnum;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "code",
+            "baseName": "code",
+            "type": "string"
+        },
+        {
+            "name": "amount",
+            "baseName": "amount",
+            "type": "number"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "VoucherSummary.TypeEnum"
+        },
+        {
+            "name": "subType",
+            "baseName": "subType",
+            "type": "VoucherSummary.SubTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return VoucherSummary.attributeTypeMap;
+    }
 }
 
 export namespace VoucherSummary {
@@ -826,6 +3018,84 @@ export class WebhookLog {
     'duration': string;
     'retryCount': number;
     'flipdishWebhookId': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "webhookSubscriptionOwnerUserId",
+            "baseName": "webhookSubscriptionOwnerUserId",
+            "type": "number"
+        },
+        {
+            "name": "eventCreated",
+            "baseName": "eventCreated",
+            "type": "string"
+        },
+        {
+            "name": "webhookTriggered",
+            "baseName": "webhookTriggered",
+            "type": "string"
+        },
+        {
+            "name": "webhookEventName",
+            "baseName": "webhookEventName",
+            "type": "string"
+        },
+        {
+            "name": "webhookSubscriptionCallbackUrl",
+            "baseName": "webhookSubscriptionCallbackUrl",
+            "type": "string"
+        },
+        {
+            "name": "httpResponseStatusCode",
+            "baseName": "httpResponseStatusCode",
+            "type": "string"
+        },
+        {
+            "name": "httpResponseStatus",
+            "baseName": "httpResponseStatus",
+            "type": "string"
+        },
+        {
+            "name": "requestHeaders",
+            "baseName": "requestHeaders",
+            "type": "string"
+        },
+        {
+            "name": "requestBody",
+            "baseName": "requestBody",
+            "type": "string"
+        },
+        {
+            "name": "responseHeaders",
+            "baseName": "responseHeaders",
+            "type": "string"
+        },
+        {
+            "name": "responseBody",
+            "baseName": "responseBody",
+            "type": "string"
+        },
+        {
+            "name": "duration",
+            "baseName": "duration",
+            "type": "string"
+        },
+        {
+            "name": "retryCount",
+            "baseName": "retryCount",
+            "type": "number"
+        },
+        {
+            "name": "flipdishWebhookId",
+            "baseName": "flipdishWebhookId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WebhookLog.attributeTypeMap;
+    }
 }
 
 export class WebhookSubscription {
@@ -835,20 +3105,157 @@ export class WebhookSubscription {
     'callbackUrl': string;
     'enabled': boolean;
     'verifyToken': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "number"
+        },
+        {
+            "name": "ownerUserId",
+            "baseName": "ownerUserId",
+            "type": "number"
+        },
+        {
+            "name": "eventNames",
+            "baseName": "eventNames",
+            "type": "Array<string>"
+        },
+        {
+            "name": "callbackUrl",
+            "baseName": "callbackUrl",
+            "type": "string"
+        },
+        {
+            "name": "enabled",
+            "baseName": "enabled",
+            "type": "boolean"
+        },
+        {
+            "name": "verifyToken",
+            "baseName": "verifyToken",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WebhookSubscription.attributeTypeMap;
+    }
 }
 
+
+let enumsMap: {[index: string]: any} = {
+        "BusinessHoursPeriod.DayOfWeekEnum": BusinessHoursPeriod.DayOfWeekEnum,
+        "Menu.MenuSectionBehaviourEnum": Menu.MenuSectionBehaviourEnum,
+        "MenuItemOptionSet.CellLayoutTypeEnum": MenuItemOptionSet.CellLayoutTypeEnum,
+        "MenuItemOptionSetBase.CellLayoutTypeEnum": MenuItemOptionSetBase.CellLayoutTypeEnum,
+        "MenuItemOptionSetItem.CellLayoutTypeEnum": MenuItemOptionSetItem.CellLayoutTypeEnum,
+        "MenuItemOptionSetItemBase.CellLayoutTypeEnum": MenuItemOptionSetItemBase.CellLayoutTypeEnum,
+        "MenuSectionAvailability.AvailabilityModeEnum": MenuSectionAvailability.AvailabilityModeEnum,
+        "MenuSectionItem.SpicinessRatingEnum": MenuSectionItem.SpicinessRatingEnum,
+        "MenuSectionItemBase.SpicinessRatingEnum": MenuSectionItemBase.SpicinessRatingEnum,
+        "Order.DeliveryTypeEnum": Order.DeliveryTypeEnum,
+        "Order.PickupLocationTypeEnum": Order.PickupLocationTypeEnum,
+        "Order.PaymentAccountTypeEnum": Order.PaymentAccountTypeEnum,
+        "Order.OrderStateEnum": Order.OrderStateEnum,
+        "Order.AppTypeEnum": Order.AppTypeEnum,
+        "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
+        "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
+        "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
+        "StoreSummary.CurrencyEnum": StoreSummary.CurrencyEnum,
+        "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
+        "Voucher.VoucherSubTypeEnum": Voucher.VoucherSubTypeEnum,
+        "Voucher.VoucherPayerEnum": Voucher.VoucherPayerEnum,
+        "VoucherSummary.TypeEnum": VoucherSummary.TypeEnum,
+        "VoucherSummary.SubTypeEnum": VoucherSummary.SubTypeEnum,
+}
+
+let typeMap: {[index: string]: any} = {
+    "Accept": Accept,
+    "BusinessHoursPeriod": BusinessHoursPeriod,
+    "Coordinates": Coordinates,
+    "CustomerSummary": CustomerSummary,
+    "DeliveryFeeArea": DeliveryFeeArea,
+    "DeliveryLocation": DeliveryLocation,
+    "FeeSummary": FeeSummary,
+    "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
+    "Menu": Menu,
+    "MenuItemOptionSet": MenuItemOptionSet,
+    "MenuItemOptionSetBase": MenuItemOptionSetBase,
+    "MenuItemOptionSetItem": MenuItemOptionSetItem,
+    "MenuItemOptionSetItemBase": MenuItemOptionSetItemBase,
+    "MenuSection": MenuSection,
+    "MenuSectionAvailability": MenuSectionAvailability,
+    "MenuSectionBase": MenuSectionBase,
+    "MenuSectionItem": MenuSectionItem,
+    "MenuSectionItemBase": MenuSectionItemBase,
+    "Metadata": Metadata,
+    "OAuthClient": OAuthClient,
+    "OAuthTokenModel": OAuthTokenModel,
+    "OauthClientRedirectUri": OauthClientRedirectUri,
+    "Order": Order,
+    "OrderItem": OrderItem,
+    "OrderItemOption": OrderItemOption,
+    "Range": Range,
+    "Refund": Refund,
+    "Reject": Reject,
+    "RestApiArrayResultMenuItemOptionSet": RestApiArrayResultMenuItemOptionSet,
+    "RestApiArrayResultMenuItemOptionSetItem": RestApiArrayResultMenuItemOptionSetItem,
+    "RestApiArrayResultMenuSection": RestApiArrayResultMenuSection,
+    "RestApiArrayResultMenuSectionItem": RestApiArrayResultMenuSectionItem,
+    "RestApiArrayResultMetadata": RestApiArrayResultMetadata,
+    "RestApiArrayResultOAuthClient": RestApiArrayResultOAuthClient,
+    "RestApiArrayResultOauthClientRedirectUri": RestApiArrayResultOauthClientRedirectUri,
+    "RestApiArrayResultRestApiDefaultResponse": RestApiArrayResultRestApiDefaultResponse,
+    "RestApiArrayResultWebhookSubscription": RestApiArrayResultWebhookSubscription,
+    "RestApiDefaultResponse": RestApiDefaultResponse,
+    "RestApiErrorResult": RestApiErrorResult,
+    "RestApiForbiddenResult": RestApiForbiddenResult,
+    "RestApiIntegerResult": RestApiIntegerResult,
+    "RestApiPaginationResultHttpRequestAndResponseLog": RestApiPaginationResultHttpRequestAndResponseLog,
+    "RestApiPaginationResultOAuthTokenModel": RestApiPaginationResultOAuthTokenModel,
+    "RestApiPaginationResultOrder": RestApiPaginationResultOrder,
+    "RestApiPaginationResultStore": RestApiPaginationResultStore,
+    "RestApiPaginationResultVoucher": RestApiPaginationResultVoucher,
+    "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
+    "RestApiResultMenu": RestApiResultMenu,
+    "RestApiResultMenuItemOptionSet": RestApiResultMenuItemOptionSet,
+    "RestApiResultMenuItemOptionSetItem": RestApiResultMenuItemOptionSetItem,
+    "RestApiResultMenuSection": RestApiResultMenuSection,
+    "RestApiResultMenuSectionItem": RestApiResultMenuSectionItem,
+    "RestApiResultMetadata": RestApiResultMetadata,
+    "RestApiResultOAuthClient": RestApiResultOAuthClient,
+    "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
+    "RestApiResultOrder": RestApiResultOrder,
+    "RestApiResultStore": RestApiResultStore,
+    "RestApiResultVoucher": RestApiResultVoucher,
+    "RestApiStringArrayResult": RestApiStringArrayResult,
+    "RestApiStringResult": RestApiStringResult,
+    "RestApiUnauthorizedResult": RestApiUnauthorizedResult,
+    "Store": Store,
+    "StoreAddress": StoreAddress,
+    "StoreNote": StoreNote,
+    "StoreSummary": StoreSummary,
+    "ValidationErrorResult": ValidationErrorResult,
+    "Voucher": Voucher,
+    "VoucherSummary": VoucherSummary,
+    "WebhookLog": WebhookLog,
+    "WebhookSubscription": WebhookSubscription,
+}
 
 export interface Authentication {
     /**
     * Apply authentication settings to header and query params.
     */
-    applyToRequest(requestOptions: request.Options): void;
+    applyToRequest(requestOptions: localVarRequest.Options): void;
 }
 
 export class HttpBasicAuth implements Authentication {
     public username: string;
     public password: string;
-    applyToRequest(requestOptions: request.Options): void {
+    applyToRequest(requestOptions: localVarRequest.Options): void {
         requestOptions.auth = {
             username: this.username, password: this.password
         }
@@ -861,7 +3268,7 @@ export class ApiKeyAuth implements Authentication {
     constructor(private location: string, private paramName: string) {
     }
 
-    applyToRequest(requestOptions: request.Options): void {
+    applyToRequest(requestOptions: localVarRequest.Options): void {
         if (this.location == "query") {
             (<any>requestOptions.qs)[this.paramName] = this.apiKey;
         } else if (this.location == "header" && requestOptions && requestOptions.headers) {
@@ -873,7 +3280,7 @@ export class ApiKeyAuth implements Authentication {
 export class OAuth implements Authentication {
     public accessToken: string;
 
-    applyToRequest(requestOptions: request.Options): void {
+    applyToRequest(requestOptions: localVarRequest.Options): void {
         if (requestOptions && requestOptions.headers) {
             requestOptions.headers["Authorization"] = "Bearer " + this.accessToken;
         }
@@ -883,7 +3290,7 @@ export class OAuth implements Authentication {
 export class VoidAuth implements Authentication {
     public username: string;
     public password: string;
-    applyToRequest(_: request.Options): void {
+    applyToRequest(_: localVarRequest.Options): void {
         // Do nothing
     }
 }
@@ -931,7 +3338,7 @@ export class AuthorizationTokensApi {
     }
 
     public setApiKey(key: AuthorizationTokensApiApiKeys, value: string) {
-        this.authentications[AuthorizationTokensApiApiKeys[key]].apiKey = value;
+        (this.authentications as any)[AuthorizationTokensApiApiKeys[key]].apiKey = value;
     }
 
     set accessToken(token: string) {
@@ -946,11 +3353,10 @@ export class AuthorizationTokensApi {
      */
     public getAuthorizationTokens (clientId: string, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOAuthTokenModel;  }> {
         const localVarPath = this.basePath + '/api/v1.0/authorizationtokens/{clientId}'
-            .replace('{' + 'clientId' + '}', String(clientId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'clientId' is not null or undefined
         if (clientId === null || clientId === undefined) {
@@ -958,41 +3364,43 @@ export class AuthorizationTokensApi {
         }
 
         if (page !== undefined) {
-            queryParameters['page'] = page;
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
         }
 
         if (limit !== undefined) {
-            queryParameters['limit'] = limit;
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOAuthTokenModel;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultOAuthTokenModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -1008,45 +3416,45 @@ export class AuthorizationTokensApi {
      */
     public revokeToken (key: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/authorizationtokens/{key}'
-            .replace('{' + 'key' + '}', String(key));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'key' is not null or undefined
         if (key === null || key === undefined) {
             throw new Error('Required parameter key was null or undefined when calling revokeToken.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -1099,7 +3507,7 @@ export class HttpRequestResponseLogsApi {
     }
 
     public setApiKey(key: HttpRequestResponseLogsApiApiKeys, value: string) {
-        this.authentications[HttpRequestResponseLogsApiApiKeys[key]].apiKey = value;
+        (this.authentications as any)[HttpRequestResponseLogsApiApiKeys[key]].apiKey = value;
     }
 
     set accessToken(token: string) {
@@ -1107,17 +3515,18 @@ export class HttpRequestResponseLogsApi {
     }
     /**
      * 
-     * @param start 
-     * @param end 
-     * @param filterByUserId 
-     * @param take 
+     * @summary Get API interaction logs
+     * @param start Start date time
+     * @param end End date time
+     * @param filterByUserId User id (optional)
+     * @param page Page number
+     * @param limit Page size
      */
-    public getHttpLogsByUserIdAsync (start: Date, end: Date, filterByUserId?: number, take?: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultHttpRequestAndResponseLog;  }> {
+    public getHttpLogsByUserIdAsync (start: Date, end: Date, filterByUserId?: number, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultHttpRequestAndResponseLog;  }> {
         const localVarPath = this.basePath + '/api/v1.0/interactions/logs';
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'start' is not null or undefined
         if (start === null || start === undefined) {
@@ -1130,49 +3539,55 @@ export class HttpRequestResponseLogsApi {
         }
 
         if (start !== undefined) {
-            queryParameters['start'] = start;
+            localVarQueryParameters['start'] = ObjectSerializer.serialize(start, "Date");
         }
 
         if (end !== undefined) {
-            queryParameters['end'] = end;
+            localVarQueryParameters['end'] = ObjectSerializer.serialize(end, "Date");
         }
 
         if (filterByUserId !== undefined) {
-            queryParameters['filterByUserId'] = filterByUserId;
+            localVarQueryParameters['filterByUserId'] = ObjectSerializer.serialize(filterByUserId, "number");
         }
 
-        if (take !== undefined) {
-            queryParameters['take'] = take;
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
         }
 
-        let useFormData = false;
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
 
-        let requestOptions: request.Options = {
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultHttpRequestAndResponseLog;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultHttpRequestAndResponseLog;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultHttpRequestAndResponseLog");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -1225,7 +3640,7 @@ export class MenuOptionSetItemsApi {
     }
 
     public setApiKey(key: MenuOptionSetItemsApiApiKeys, value: string) {
-        this.authentications[MenuOptionSetItemsApiApiKeys[key]].apiKey = value;
+        (this.authentications as any)[MenuOptionSetItemsApiApiKeys[key]].apiKey = value;
     }
 
     set accessToken(token: string) {
@@ -1242,14 +3657,13 @@ export class MenuOptionSetItemsApi {
      */
     public addMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
-            .replace('{' + 'optionSetId' + '}', String(optionSetId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -1276,35 +3690,37 @@ export class MenuOptionSetItemsApi {
             throw new Error('Required parameter menuItemOptionSetItem was null or undefined when calling addMenuItemOptionSetItem.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: menuItemOptionSetItem,
+            body: ObjectSerializer.serialize(menuItemOptionSetItem, "MenuItemOptionSetItemBase")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -1324,15 +3740,14 @@ export class MenuOptionSetItemsApi {
      */
     public deleteOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}/image'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
-            .replace('{' + 'optionSetId' + '}', String(optionSetId))
-            .replace('{' + 'menuItemOptionSetItemId' + '}', String(menuItemOptionSetItemId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)))
+            .replace('{' + 'menuItemOptionSetItemId' + '}', encodeURIComponent(String(menuItemOptionSetItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -1359,34 +3774,35 @@ export class MenuOptionSetItemsApi {
             throw new Error('Required parameter menuItemOptionSetItemId was null or undefined when calling deleteOptionSetItemImage.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -1406,15 +3822,14 @@ export class MenuOptionSetItemsApi {
      */
     public getMenuItemOptionSetItemById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSetItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
-            .replace('{' + 'optionSetId' + '}', String(optionSetId))
-            .replace('{' + 'menuItemOptionSetItemId' + '}', String(menuItemOptionSetItemId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)))
+            .replace('{' + 'menuItemOptionSetItemId' + '}', encodeURIComponent(String(menuItemOptionSetItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -1441,34 +3856,36 @@ export class MenuOptionSetItemsApi {
             throw new Error('Required parameter menuItemOptionSetItemId was null or undefined when calling getMenuItemOptionSetItemById.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSetItem;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMenuItemOptionSetItem");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -1487,14 +3904,13 @@ export class MenuOptionSetItemsApi {
      */
     public getMenuItemOptionSetItems (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSetItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
-            .replace('{' + 'optionSetId' + '}', String(optionSetId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -1516,34 +3932,36 @@ export class MenuOptionSetItemsApi {
             throw new Error('Required parameter optionSetId was null or undefined when calling getMenuItemOptionSetItems.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSetItem;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuItemOptionSetItem");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -1563,15 +3981,14 @@ export class MenuOptionSetItemsApi {
      */
     public removeMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
-            .replace('{' + 'optionSetId' + '}', String(optionSetId))
-            .replace('{' + 'menuItemOptionSetItemId' + '}', String(menuItemOptionSetItemId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)))
+            .replace('{' + 'menuItemOptionSetItemId' + '}', encodeURIComponent(String(menuItemOptionSetItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -1598,34 +4015,35 @@ export class MenuOptionSetItemsApi {
             throw new Error('Required parameter menuItemOptionSetItemId was null or undefined when calling removeMenuItemOptionSetItem.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -1646,15 +4064,14 @@ export class MenuOptionSetItemsApi {
      */
     public updateMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
-            .replace('{' + 'optionSetId' + '}', String(optionSetId))
-            .replace('{' + 'menuItemOptionSetItemId' + '}', String(menuItemOptionSetItemId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)))
+            .replace('{' + 'menuItemOptionSetItemId' + '}', encodeURIComponent(String(menuItemOptionSetItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -1686,35 +4103,36 @@ export class MenuOptionSetItemsApi {
             throw new Error('Required parameter menuItemOptionSetItem was null or undefined when calling updateMenuItemOptionSetItem.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: menuItemOptionSetItem,
+            body: ObjectSerializer.serialize(menuItemOptionSetItem, "MenuItemOptionSetItemBase")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -1731,19 +4149,18 @@ export class MenuOptionSetItemsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Option set identifier
      * @param menuItemOptionSetItemId Option set item identifier
-     * @param image Option set item image
+     * @param Image Option set item image
      */
-    public uploadOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
+    public uploadOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, Image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}/image'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
-            .replace('{' + 'optionSetId' + '}', String(optionSetId))
-            .replace('{' + 'menuItemOptionSetItemId' + '}', String(menuItemOptionSetItemId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)))
+            .replace('{' + 'menuItemOptionSetItemId' + '}', encodeURIComponent(String(menuItemOptionSetItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -1770,44 +4187,46 @@ export class MenuOptionSetItemsApi {
             throw new Error('Required parameter menuItemOptionSetItemId was null or undefined when calling uploadOptionSetItemImage.');
         }
 
-        // verify required parameter 'image' is not null or undefined
-        if (image === null || image === undefined) {
-            throw new Error('Required parameter image was null or undefined when calling uploadOptionSetItemImage.');
+        // verify required parameter 'Image' is not null or undefined
+        if (Image === null || Image === undefined) {
+            throw new Error('Required parameter Image was null or undefined when calling uploadOptionSetItemImage.');
         }
 
-        let useFormData = false;
 
-        if (image !== undefined) {
-            formParams['Image'] = image;
+        let localVarUseFormData = false;
+
+        if (Image !== undefined) {
+            localVarFormParams['Image'] = Image;
         }
-        useFormData = true;
+        localVarUseFormData = true;
 
-        let requestOptions: request.Options = {
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -1860,7 +4279,7 @@ export class MenuOptionSetsApi {
     }
 
     public setApiKey(key: MenuOptionSetsApiApiKeys, value: string) {
-        this.authentications[MenuOptionSetsApiApiKeys[key]].apiKey = value;
+        (this.authentications as any)[MenuOptionSetsApiApiKeys[key]].apiKey = value;
     }
 
     set accessToken(token: string) {
@@ -1876,13 +4295,12 @@ export class MenuOptionSetsApi {
      */
     public createMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, menuItemOptionSet: MenuItemOptionSetBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -1904,35 +4322,37 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter menuItemOptionSet was null or undefined when calling createMenuItemOptionSet.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: menuItemOptionSet,
+            body: ObjectSerializer.serialize(menuItemOptionSet, "MenuItemOptionSetBase")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -1951,14 +4371,13 @@ export class MenuOptionSetsApi {
      */
     public deleteMenuItemOptionSet (menuId: number, menuSectionItemId: number, menuSectionId: number, optionSetId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'optionSetId' + '}', String(optionSetId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -1980,34 +4399,35 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter optionSetId was null or undefined when calling deleteMenuItemOptionSet.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -2026,14 +4446,13 @@ export class MenuOptionSetsApi {
      */
     public deleteOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/image'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
-            .replace('{' + 'optionSetId' + '}', String(optionSetId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -2055,34 +4474,35 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter optionSetId was null or undefined when calling deleteOptionSetImage.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -2101,14 +4521,13 @@ export class MenuOptionSetsApi {
      */
     public getMenuItemOptionSetById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSet;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
-            .replace('{' + 'optionSetId' + '}', String(optionSetId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -2130,34 +4549,36 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter optionSetId was null or undefined when calling getMenuItemOptionSetById.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSet;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMenuItemOptionSet");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -2175,13 +4596,12 @@ export class MenuOptionSetsApi {
      */
     public getMenuItemOptionSets (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSet;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -2198,34 +4618,36 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter menuSectionItemId was null or undefined when calling getMenuItemOptionSets.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSet;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuItemOptionSet");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -2245,14 +4667,13 @@ export class MenuOptionSetsApi {
      */
     public updateMenuItemOptionSet (menuId: number, menuSectionItemId: number, menuSectionId: number, optionSetId: number, menuItemOptionSet: MenuItemOptionSetBase) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'optionSetId' + '}', String(optionSetId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -2279,35 +4700,36 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter menuItemOptionSet was null or undefined when calling updateMenuItemOptionSet.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: menuItemOptionSet,
+            body: ObjectSerializer.serialize(menuItemOptionSet, "MenuItemOptionSetBase")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -2323,18 +4745,17 @@ export class MenuOptionSetsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Option set identifier
-     * @param image Option set image
+     * @param Image Option set image
      */
-    public uploadOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
+    public uploadOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, Image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/image'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId))
-            .replace('{' + 'optionSetId' + '}', String(optionSetId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -2356,44 +4777,46 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter optionSetId was null or undefined when calling uploadOptionSetImage.');
         }
 
-        // verify required parameter 'image' is not null or undefined
-        if (image === null || image === undefined) {
-            throw new Error('Required parameter image was null or undefined when calling uploadOptionSetImage.');
+        // verify required parameter 'Image' is not null or undefined
+        if (Image === null || Image === undefined) {
+            throw new Error('Required parameter Image was null or undefined when calling uploadOptionSetImage.');
         }
 
-        let useFormData = false;
 
-        if (image !== undefined) {
-            formParams['Image'] = image;
+        let localVarUseFormData = false;
+
+        if (Image !== undefined) {
+            localVarFormParams['Image'] = Image;
         }
-        useFormData = true;
+        localVarUseFormData = true;
 
-        let requestOptions: request.Options = {
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -2446,7 +4869,7 @@ export class MenuSectionItemsApi {
     }
 
     public setApiKey(key: MenuSectionItemsApiApiKeys, value: string) {
-        this.authentications[MenuSectionItemsApiApiKeys[key]].apiKey = value;
+        (this.authentications as any)[MenuSectionItemsApiApiKeys[key]].apiKey = value;
     }
 
     set accessToken(token: string) {
@@ -2461,12 +4884,11 @@ export class MenuSectionItemsApi {
      */
     public createMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItem: MenuSectionItemBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -2483,35 +4905,37 @@ export class MenuSectionItemsApi {
             throw new Error('Required parameter menuSectionItem was null or undefined when calling createMenuSectionItem.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: menuSectionItem,
+            body: ObjectSerializer.serialize(menuSectionItem, "MenuSectionItemBase")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -2529,13 +4953,12 @@ export class MenuSectionItemsApi {
      */
     public deleteMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -2552,34 +4975,35 @@ export class MenuSectionItemsApi {
             throw new Error('Required parameter menuSectionItemId was null or undefined when calling deleteMenuSectionItem.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -2597,13 +5021,12 @@ export class MenuSectionItemsApi {
      */
     public deleteMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/image'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -2620,34 +5043,35 @@ export class MenuSectionItemsApi {
             throw new Error('Required parameter menuSectionItemId was null or undefined when calling deleteMenuSectionItemImage.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -2665,13 +5089,12 @@ export class MenuSectionItemsApi {
      */
     public getMenuItemById (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuSectionItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -2688,34 +5111,36 @@ export class MenuSectionItemsApi {
             throw new Error('Required parameter menuSectionItemId was null or undefined when calling getMenuItemById.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuSectionItem;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMenuSectionItem");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -2732,12 +5157,11 @@ export class MenuSectionItemsApi {
      */
     public getMenuItems (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSectionItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -2749,34 +5173,36 @@ export class MenuSectionItemsApi {
             throw new Error('Required parameter menuSectionId was null or undefined when calling getMenuItems.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSectionItem;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuSectionItem");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -2795,13 +5221,12 @@ export class MenuSectionItemsApi {
      */
     public updateMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, menuSectionItem: MenuSectionItemBase) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -2823,35 +5248,36 @@ export class MenuSectionItemsApi {
             throw new Error('Required parameter menuSectionItem was null or undefined when calling updateMenuSectionItem.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: menuSectionItem,
+            body: ObjectSerializer.serialize(menuSectionItem, "MenuSectionItemBase")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -2866,17 +5292,16 @@ export class MenuSectionItemsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
-     * @param image Menu section item image
+     * @param Image Menu section item image
      */
-    public uploadMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
+    public uploadMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, Image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/image'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId))
-            .replace('{' + 'menuSectionItemId' + '}', String(menuSectionItemId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -2893,44 +5318,46 @@ export class MenuSectionItemsApi {
             throw new Error('Required parameter menuSectionItemId was null or undefined when calling uploadMenuSectionItemImage.');
         }
 
-        // verify required parameter 'image' is not null or undefined
-        if (image === null || image === undefined) {
-            throw new Error('Required parameter image was null or undefined when calling uploadMenuSectionItemImage.');
+        // verify required parameter 'Image' is not null or undefined
+        if (Image === null || Image === undefined) {
+            throw new Error('Required parameter Image was null or undefined when calling uploadMenuSectionItemImage.');
         }
 
-        let useFormData = false;
 
-        if (image !== undefined) {
-            formParams['Image'] = image;
+        let localVarUseFormData = false;
+
+        if (Image !== undefined) {
+            localVarFormParams['Image'] = Image;
         }
-        useFormData = true;
+        localVarUseFormData = true;
 
-        let requestOptions: request.Options = {
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -2983,7 +5410,7 @@ export class MenuSectionsApi {
     }
 
     public setApiKey(key: MenuSectionsApiApiKeys, value: string) {
-        this.authentications[MenuSectionsApiApiKeys[key]].apiKey = value;
+        (this.authentications as any)[MenuSectionsApiApiKeys[key]].apiKey = value;
     }
 
     set accessToken(token: string) {
@@ -2997,11 +5424,10 @@ export class MenuSectionsApi {
      */
     public createMenuSection (menuId: number, menuSection: MenuSectionBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections'
-            .replace('{' + 'menuId' + '}', String(menuId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -3013,35 +5439,37 @@ export class MenuSectionsApi {
             throw new Error('Required parameter menuSection was null or undefined when calling createMenuSection.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: menuSection,
+            body: ObjectSerializer.serialize(menuSection, "MenuSectionBase")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -3058,12 +5486,11 @@ export class MenuSectionsApi {
      */
     public deleteMenuSection (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -3075,34 +5502,35 @@ export class MenuSectionsApi {
             throw new Error('Required parameter menuSectionId was null or undefined when calling deleteMenuSection.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -3119,12 +5547,11 @@ export class MenuSectionsApi {
      */
     public deleteMenuSectionImage (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/image'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -3136,34 +5563,35 @@ export class MenuSectionsApi {
             throw new Error('Required parameter menuSectionId was null or undefined when calling deleteMenuSectionImage.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -3180,12 +5608,11 @@ export class MenuSectionsApi {
      */
     public getMenuSectionById (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuSection;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -3197,34 +5624,36 @@ export class MenuSectionsApi {
             throw new Error('Required parameter menuSectionId was null or undefined when calling getMenuSectionById.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuSection;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMenuSection");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -3240,45 +5669,46 @@ export class MenuSectionsApi {
      */
     public getMenuSections (menuId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSection;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections'
-            .replace('{' + 'menuId' + '}', String(menuId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
             throw new Error('Required parameter menuId was null or undefined when calling getMenuSections.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSection;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuSection");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -3296,12 +5726,11 @@ export class MenuSectionsApi {
      */
     public updateMenuSection (menuId: number, menuSectionId: number, menuSection: MenuSectionBase) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -3318,35 +5747,36 @@ export class MenuSectionsApi {
             throw new Error('Required parameter menuSection was null or undefined when calling updateMenuSection.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: menuSection,
+            body: ObjectSerializer.serialize(menuSection, "MenuSectionBase")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -3360,16 +5790,15 @@ export class MenuSectionsApi {
      * @summary Upload menu section image
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
-     * @param image Menu section image
+     * @param Image Menu section image
      */
-    public uploadMenuSectionImage (menuId: number, menuSectionId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
+    public uploadMenuSectionImage (menuId: number, menuSectionId: number, Image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/image'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'menuSectionId' + '}', String(menuSectionId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -3381,44 +5810,46 @@ export class MenuSectionsApi {
             throw new Error('Required parameter menuSectionId was null or undefined when calling uploadMenuSectionImage.');
         }
 
-        // verify required parameter 'image' is not null or undefined
-        if (image === null || image === undefined) {
-            throw new Error('Required parameter image was null or undefined when calling uploadMenuSectionImage.');
+        // verify required parameter 'Image' is not null or undefined
+        if (Image === null || Image === undefined) {
+            throw new Error('Required parameter Image was null or undefined when calling uploadMenuSectionImage.');
         }
 
-        let useFormData = false;
 
-        if (image !== undefined) {
-            formParams['Image'] = image;
+        let localVarUseFormData = false;
+
+        if (Image !== undefined) {
+            localVarFormParams['Image'] = Image;
         }
-        useFormData = true;
+        localVarUseFormData = true;
 
-        let requestOptions: request.Options = {
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -3471,7 +5902,7 @@ export class MenusApi {
     }
 
     public setApiKey(key: MenusApiApiKeys, value: string) {
-        this.authentications[MenusApiApiKeys[key]].apiKey = value;
+        (this.authentications as any)[MenusApiApiKeys[key]].apiKey = value;
     }
 
     set accessToken(token: string) {
@@ -3487,14 +5918,13 @@ export class MenusApi {
      */
     public deleteMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, key: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'storeId' + '}', String(storeId))
-            .replace('{' + 'menuItemId' + '}', String(menuItemId))
-            .replace('{' + 'key' + '}', String(key));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'menuItemId' + '}', encodeURIComponent(String(menuItemId)))
+            .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -3516,34 +5946,35 @@ export class MenusApi {
             throw new Error('Required parameter key was null or undefined when calling deleteMenuItemMetadata.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -3562,14 +5993,13 @@ export class MenusApi {
      */
     public deleteMenuItemMetadata_1 (menuId: number, storeId: number, menuItemId: number, key: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'storeId' + '}', String(storeId))
-            .replace('{' + 'menuItemId' + '}', String(menuItemId))
-            .replace('{' + 'key' + '}', String(key));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'menuItemId' + '}', encodeURIComponent(String(menuItemId)))
+            .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -3591,34 +6021,35 @@ export class MenusApi {
             throw new Error('Required parameter key was null or undefined when calling deleteMenuItemMetadata_1.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -3634,45 +6065,45 @@ export class MenusApi {
      */
     public deleteMenuSectionImage (menuId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/image'
-            .replace('{' + 'menuId' + '}', String(menuId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
             throw new Error('Required parameter menuId was null or undefined when calling deleteMenuSectionImage.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -3688,45 +6119,46 @@ export class MenusApi {
      */
     public getMenuById (menuId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenu;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}'
-            .replace('{' + 'menuId' + '}', String(menuId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
             throw new Error('Required parameter menuId was null or undefined when calling getMenuById.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiResultMenu;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMenu");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -3744,13 +6176,12 @@ export class MenusApi {
      */
     public getMenuItemMetadata (menuId: number, storeId: number, menuItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/store/{storeId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'storeId' + '}', String(storeId))
-            .replace('{' + 'menuItemId' + '}', String(menuItemId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'menuItemId' + '}', encodeURIComponent(String(menuItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -3767,34 +6198,36 @@ export class MenusApi {
             throw new Error('Required parameter menuItemId was null or undefined when calling getMenuItemMetadata.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMetadata;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMetadata");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -3812,13 +6245,12 @@ export class MenusApi {
      */
     public getMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/optionsetitem/{optionSetItemId}/metadata/store/{storeId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'storeId' + '}', String(storeId))
-            .replace('{' + 'optionSetItemId' + '}', String(optionSetItemId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'optionSetItemId' + '}', encodeURIComponent(String(optionSetItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -3835,34 +6267,36 @@ export class MenusApi {
             throw new Error('Required parameter optionSetItemId was null or undefined when calling getMenuItemOptionSetItemMetadata.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiResultMetadata;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMetadata");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -3881,13 +6315,12 @@ export class MenusApi {
      */
     public setMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, metadata: Metadata) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/store/{storeId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'storeId' + '}', String(storeId))
-            .replace('{' + 'menuItemId' + '}', String(menuItemId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'menuItemId' + '}', encodeURIComponent(String(menuItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -3909,35 +6342,36 @@ export class MenusApi {
             throw new Error('Required parameter metadata was null or undefined when calling setMenuItemMetadata.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'PUT',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: metadata,
+            body: ObjectSerializer.serialize(metadata, "Metadata")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -3956,13 +6390,12 @@ export class MenusApi {
      */
     public setMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number, metadata: Metadata) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/optionsetitem/{optionSetItemId}/metadata/store/{storeId}'
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'storeId' + '}', String(storeId))
-            .replace('{' + 'optionSetItemId' + '}', String(optionSetItemId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'optionSetItemId' + '}', encodeURIComponent(String(optionSetItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -3984,35 +6417,97 @@ export class MenusApi {
             throw new Error('Required parameter metadata was null or undefined when calling setMenuItemOptionSetItemMetadata.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'PUT',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: metadata,
+            body: ObjectSerializer.serialize(metadata, "Metadata")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update menu section item
+     * @param menuId Menu identifier
+     * @param menu Menu (delta)
+     */
+    public updateMenu (menuId: number, menu: MenuBase) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling updateMenu.');
+        }
+
+        // verify required parameter 'menu' is not null or undefined
+        if (menu === null || menu === undefined) {
+            throw new Error('Required parameter menu was null or undefined when calling updateMenu.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(menu, "MenuBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -4025,59 +6520,60 @@ export class MenusApi {
      * 
      * @summary Upload menu image
      * @param menuId Menu identifier
-     * @param image Menu image
+     * @param Image Menu image
      */
-    public uploadMenuSectionImage (menuId: number, image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
+    public uploadMenuSectionImage (menuId: number, Image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/image'
-            .replace('{' + 'menuId' + '}', String(menuId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
             throw new Error('Required parameter menuId was null or undefined when calling uploadMenuSectionImage.');
         }
 
-        // verify required parameter 'image' is not null or undefined
-        if (image === null || image === undefined) {
-            throw new Error('Required parameter image was null or undefined when calling uploadMenuSectionImage.');
+        // verify required parameter 'Image' is not null or undefined
+        if (Image === null || Image === undefined) {
+            throw new Error('Required parameter Image was null or undefined when calling uploadMenuSectionImage.');
         }
 
-        let useFormData = false;
 
-        if (image !== undefined) {
-            formParams['Image'] = image;
+        let localVarUseFormData = false;
+
+        if (Image !== undefined) {
+            localVarFormParams['Image'] = Image;
         }
-        useFormData = true;
+        localVarUseFormData = true;
 
-        let requestOptions: request.Options = {
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -4130,7 +6626,7 @@ export class OAuthClientsApi {
     }
 
     public setApiKey(key: OAuthClientsApiApiKeys, value: string) {
-        this.authentications[OAuthClientsApiApiKeys[key]].apiKey = value;
+        (this.authentications as any)[OAuthClientsApiApiKeys[key]].apiKey = value;
     }
 
     set accessToken(token: string) {
@@ -4144,11 +6640,10 @@ export class OAuthClientsApi {
      */
     public addRedirectUri (oAuthClientId: string, uri: string) : Promise<{ response: http.ClientResponse; body: RestApiResultOauthClientRedirectUri;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis'
-            .replace('{' + 'oAuthClientId' + '}', String(oAuthClientId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'oAuthClientId' is not null or undefined
         if (oAuthClientId === null || oAuthClientId === undefined) {
@@ -4160,35 +6655,37 @@ export class OAuthClientsApi {
             throw new Error('Required parameter uri was null or undefined when calling addRedirectUri.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: uri,
+            body: ObjectSerializer.serialize(uri, "string")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiResultOauthClientRedirectUri;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultOauthClientRedirectUri");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -4204,45 +6701,45 @@ export class OAuthClientsApi {
      */
     public createOAuthClient (oAuthClient: OAuthClient) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients';
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'oAuthClient' is not null or undefined
         if (oAuthClient === null || oAuthClient === undefined) {
             throw new Error('Required parameter oAuthClient was null or undefined when calling createOAuthClient.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: oAuthClient,
+            body: ObjectSerializer.serialize(oAuthClient, "OAuthClient")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -4258,45 +6755,45 @@ export class OAuthClientsApi {
      */
     public deleteOAuthClient (oAuthClientId: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}'
-            .replace('{' + 'oAuthClientId' + '}', String(oAuthClientId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'oAuthClientId' is not null or undefined
         if (oAuthClientId === null || oAuthClientId === undefined) {
             throw new Error('Required parameter oAuthClientId was null or undefined when calling deleteOAuthClient.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -4312,45 +6809,46 @@ export class OAuthClientsApi {
      */
     public getOAuthClientByClientId (clientId: string) : Promise<{ response: http.ClientResponse; body: RestApiResultOAuthClient;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{clientId}'
-            .replace('{' + 'clientId' + '}', String(clientId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'clientId' is not null or undefined
         if (clientId === null || clientId === undefined) {
             throw new Error('Required parameter clientId was null or undefined when calling getOAuthClientByClientId.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiResultOAuthClient;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultOAuthClient");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -4366,45 +6864,46 @@ export class OAuthClientsApi {
      */
     public getOAuthClientSecret (clientId: string) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{clientId}/secret'
-            .replace('{' + 'clientId' + '}', String(clientId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'clientId' is not null or undefined
         if (clientId === null || clientId === undefined) {
             throw new Error('Required parameter clientId was null or undefined when calling getOAuthClientSecret.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -4419,39 +6918,40 @@ export class OAuthClientsApi {
      */
     public getOAuthClients () : Promise<{ response: http.ClientResponse; body: RestApiArrayResultOAuthClient;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients';
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
 
-        let useFormData = false;
+        let localVarUseFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultOAuthClient;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultOAuthClient");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -4467,45 +6967,46 @@ export class OAuthClientsApi {
      */
     public getOauthAccessToken (oAuthClientId: string) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/accesstoken'
-            .replace('{' + 'oAuthClientId' + '}', String(oAuthClientId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'oAuthClientId' is not null or undefined
         if (oAuthClientId === null || oAuthClientId === undefined) {
             throw new Error('Required parameter oAuthClientId was null or undefined when calling getOauthAccessToken.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -4521,45 +7022,46 @@ export class OAuthClientsApi {
      */
     public getRedirectUris (oAuthClientId: string) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultOauthClientRedirectUri;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis'
-            .replace('{' + 'oAuthClientId' + '}', String(oAuthClientId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'oAuthClientId' is not null or undefined
         if (oAuthClientId === null || oAuthClientId === undefined) {
             throw new Error('Required parameter oAuthClientId was null or undefined when calling getRedirectUris.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultOauthClientRedirectUri;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultOauthClientRedirectUri");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -4576,12 +7078,11 @@ export class OAuthClientsApi {
      */
     public removeRedirectUri (oAuthClientId: string, uriId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis/{uriId}'
-            .replace('{' + 'oAuthClientId' + '}', String(oAuthClientId))
-            .replace('{' + 'uriId' + '}', String(uriId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)))
+            .replace('{' + 'uriId' + '}', encodeURIComponent(String(uriId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'oAuthClientId' is not null or undefined
         if (oAuthClientId === null || oAuthClientId === undefined) {
@@ -4593,34 +7094,35 @@ export class OAuthClientsApi {
             throw new Error('Required parameter uriId was null or undefined when calling removeRedirectUri.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -4673,7 +7175,7 @@ export class OrdersApi {
     }
 
     public setApiKey(key: OrdersApiApiKeys, value: string) {
-        this.authentications[OrdersApiApiKeys[key]].apiKey = value;
+        (this.authentications as any)[OrdersApiApiKeys[key]].apiKey = value;
     }
 
     set accessToken(token: string) {
@@ -4687,11 +7189,10 @@ export class OrdersApi {
      */
     public acceptOrder (id: number, acceptObject: Accept) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}/accept'
-            .replace('{' + 'id' + '}', String(id));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
@@ -4703,35 +7204,36 @@ export class OrdersApi {
             throw new Error('Required parameter acceptObject was null or undefined when calling acceptOrder.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: acceptObject,
+            body: ObjectSerializer.serialize(acceptObject, "Accept")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -4747,45 +7249,46 @@ export class OrdersApi {
      */
     public getOrderById (id: number) : Promise<{ response: http.ClientResponse; body: RestApiResultOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}'
-            .replace('{' + 'id' + '}', String(id));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getOrderById.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiResultOrder;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultOrder");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -4804,55 +7307,56 @@ export class OrdersApi {
      */
     public getOrders (physicalRestaurantId?: Array<number>, state?: Array<string>, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders';
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         if (physicalRestaurantId !== undefined) {
-            queryParameters['physicalRestaurantId'] = physicalRestaurantId;
+            localVarQueryParameters['physicalRestaurantId'] = ObjectSerializer.serialize(physicalRestaurantId, "Array<number>");
         }
 
         if (state !== undefined) {
-            queryParameters['state'] = state;
+            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<string>");
         }
 
         if (page !== undefined) {
-            queryParameters['page'] = page;
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
         }
 
         if (limit !== undefined) {
-            queryParameters['limit'] = limit;
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOrder;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultOrder");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -4869,11 +7373,10 @@ export class OrdersApi {
      */
     public refundOrder (id: number, refundObject: Refund) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}/refund'
-            .replace('{' + 'id' + '}', String(id));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
@@ -4885,35 +7388,36 @@ export class OrdersApi {
             throw new Error('Required parameter refundObject was null or undefined when calling refundOrder.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: refundObject,
+            body: ObjectSerializer.serialize(refundObject, "Refund")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -4930,11 +7434,10 @@ export class OrdersApi {
      */
     public rejectOrder (id: number, rejectObject: Reject) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}/reject'
-            .replace('{' + 'id' + '}', String(id));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
@@ -4946,35 +7449,36 @@ export class OrdersApi {
             throw new Error('Required parameter rejectObject was null or undefined when calling rejectOrder.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: rejectObject,
+            body: ObjectSerializer.serialize(rejectObject, "Reject")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -5027,7 +7531,7 @@ export class StoresApi {
     }
 
     public setApiKey(key: StoresApiApiKeys, value: string) {
-        this.authentications[StoresApiApiKeys[key]].apiKey = value;
+        (this.authentications as any)[StoresApiApiKeys[key]].apiKey = value;
     }
 
     set accessToken(token: string) {
@@ -5040,45 +7544,46 @@ export class StoresApi {
      */
     public getStoreById (storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}'
-            .replace('{' + 'storeId' + '}', String(storeId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
             throw new Error('Required parameter storeId was null or undefined when calling getStoreById.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiResultStore;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStore");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -5096,51 +7601,52 @@ export class StoresApi {
      */
     public getStores (searchQuery?: string, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores';
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         if (searchQuery !== undefined) {
-            queryParameters['searchQuery'] = searchQuery;
+            localVarQueryParameters['searchQuery'] = ObjectSerializer.serialize(searchQuery, "string");
         }
 
         if (page !== undefined) {
-            queryParameters['page'] = page;
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
         }
 
         if (limit !== undefined) {
-            queryParameters['limit'] = limit;
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStore;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultStore");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -5193,7 +7699,7 @@ export class UsersApi {
     }
 
     public setApiKey(key: UsersApiApiKeys, value: string) {
-        this.authentications[UsersApiApiKeys[key]].apiKey = value;
+        (this.authentications as any)[UsersApiApiKeys[key]].apiKey = value;
     }
 
     set accessToken(token: string) {
@@ -5205,39 +7711,40 @@ export class UsersApi {
      */
     public getRoles () : Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/users/roles';
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
 
-        let useFormData = false;
+        let localVarUseFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringArrayResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -5290,7 +7797,7 @@ export class VouchersApi {
     }
 
     public setApiKey(key: VouchersApiApiKeys, value: string) {
-        this.authentications[VouchersApiApiKeys[key]].apiKey = value;
+        (this.authentications as any)[VouchersApiApiKeys[key]].apiKey = value;
     }
 
     set accessToken(token: string) {
@@ -5306,14 +7813,13 @@ export class VouchersApi {
      */
     public deleteVoucherMetadata (voucherId: number, menuId: number, storeId: number, key: string) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultRestApiDefaultResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
-            .replace('{' + 'voucherId' + '}', String(voucherId))
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'storeId' + '}', String(storeId))
-            .replace('{' + 'key' + '}', String(key));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)))
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'voucherId' is not null or undefined
         if (voucherId === null || voucherId === undefined) {
@@ -5335,34 +7841,36 @@ export class VouchersApi {
             throw new Error('Required parameter key was null or undefined when calling deleteVoucherMetadata.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestApiDefaultResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -5378,45 +7886,46 @@ export class VouchersApi {
      */
     public getVoucherById (voucherId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultVoucher;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}'
-            .replace('{' + 'voucherId' + '}', String(voucherId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'voucherId' is not null or undefined
         if (voucherId === null || voucherId === undefined) {
             throw new Error('Required parameter voucherId was null or undefined when calling getVoucherById.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiResultVoucher;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultVoucher");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -5434,13 +7943,12 @@ export class VouchersApi {
      */
     public getVoucherMetadata (voucherId: number, menuId: number, storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata'
-            .replace('{' + 'voucherId' + '}', String(voucherId))
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'storeId' + '}', String(storeId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)))
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'voucherId' is not null or undefined
         if (voucherId === null || voucherId === undefined) {
@@ -5457,34 +7965,36 @@ export class VouchersApi {
             throw new Error('Required parameter storeId was null or undefined when calling getVoucherMetadata.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMetadata;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMetadata");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -5503,14 +8013,13 @@ export class VouchersApi {
      */
     public getVoucherMetadata_1 (voucherId: number, menuId: number, storeId: number, key: string) : Promise<{ response: http.ClientResponse; body: RestApiResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
-            .replace('{' + 'voucherId' + '}', String(voucherId))
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'storeId' + '}', String(storeId))
-            .replace('{' + 'key' + '}', String(key));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)))
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'voucherId' is not null or undefined
         if (voucherId === null || voucherId === undefined) {
@@ -5532,34 +8041,36 @@ export class VouchersApi {
             throw new Error('Required parameter key was null or undefined when calling getVoucherMetadata_1.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiResultMetadata;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMetadata");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -5589,99 +8100,100 @@ export class VouchersApi {
      */
     public getVouchers (filter?: string, pageNumber?: number, pageSize?: number, sortOrder?: string, orderBy?: string, subType?: string, status?: string, code?: string, validFromBegin?: Date, validFromEnd?: Date, expiryBegin?: Date, expiryEnd?: Date, amount?: number, voucherType?: string, description?: string) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultVoucher;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers';
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         if (filter !== undefined) {
-            queryParameters['filter'] = filter;
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(filter, "string");
         }
 
         if (pageNumber !== undefined) {
-            queryParameters['pageNumber'] = pageNumber;
+            localVarQueryParameters['pageNumber'] = ObjectSerializer.serialize(pageNumber, "number");
         }
 
         if (pageSize !== undefined) {
-            queryParameters['pageSize'] = pageSize;
+            localVarQueryParameters['pageSize'] = ObjectSerializer.serialize(pageSize, "number");
         }
 
         if (sortOrder !== undefined) {
-            queryParameters['sortOrder'] = sortOrder;
+            localVarQueryParameters['sortOrder'] = ObjectSerializer.serialize(sortOrder, "string");
         }
 
         if (orderBy !== undefined) {
-            queryParameters['orderBy'] = orderBy;
+            localVarQueryParameters['orderBy'] = ObjectSerializer.serialize(orderBy, "string");
         }
 
         if (subType !== undefined) {
-            queryParameters['subType'] = subType;
+            localVarQueryParameters['subType'] = ObjectSerializer.serialize(subType, "string");
         }
 
         if (status !== undefined) {
-            queryParameters['status'] = status;
+            localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "string");
         }
 
         if (code !== undefined) {
-            queryParameters['code'] = code;
+            localVarQueryParameters['code'] = ObjectSerializer.serialize(code, "string");
         }
 
         if (validFromBegin !== undefined) {
-            queryParameters['validFromBegin'] = validFromBegin;
+            localVarQueryParameters['validFromBegin'] = ObjectSerializer.serialize(validFromBegin, "Date");
         }
 
         if (validFromEnd !== undefined) {
-            queryParameters['validFromEnd'] = validFromEnd;
+            localVarQueryParameters['validFromEnd'] = ObjectSerializer.serialize(validFromEnd, "Date");
         }
 
         if (expiryBegin !== undefined) {
-            queryParameters['expiryBegin'] = expiryBegin;
+            localVarQueryParameters['expiryBegin'] = ObjectSerializer.serialize(expiryBegin, "Date");
         }
 
         if (expiryEnd !== undefined) {
-            queryParameters['expiryEnd'] = expiryEnd;
+            localVarQueryParameters['expiryEnd'] = ObjectSerializer.serialize(expiryEnd, "Date");
         }
 
         if (amount !== undefined) {
-            queryParameters['amount'] = amount;
+            localVarQueryParameters['amount'] = ObjectSerializer.serialize(amount, "number");
         }
 
         if (voucherType !== undefined) {
-            queryParameters['voucherType'] = voucherType;
+            localVarQueryParameters['voucherType'] = ObjectSerializer.serialize(voucherType, "string");
         }
 
         if (description !== undefined) {
-            queryParameters['description'] = description;
+            localVarQueryParameters['description'] = ObjectSerializer.serialize(description, "string");
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultVoucher;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultVoucher");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -5701,14 +8213,13 @@ export class VouchersApi {
      */
     public setVoucherMetadata (voucherId: number, menuId: number, storeId: number, key: string, value: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
-            .replace('{' + 'voucherId' + '}', String(voucherId))
-            .replace('{' + 'menuId' + '}', String(menuId))
-            .replace('{' + 'storeId' + '}', String(storeId))
-            .replace('{' + 'key' + '}', String(key));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)))
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'voucherId' is not null or undefined
         if (voucherId === null || voucherId === undefined) {
@@ -5735,35 +8246,36 @@ export class VouchersApi {
             throw new Error('Required parameter value was null or undefined when calling setVoucherMetadata.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'PUT',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: value,
+            body: ObjectSerializer.serialize(value, "string")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -5816,7 +8328,7 @@ export class WebhooksApi {
     }
 
     public setApiKey(key: WebhooksApiApiKeys, value: string) {
-        this.authentications[WebhooksApiApiKeys[key]].apiKey = value;
+        (this.authentications as any)[WebhooksApiApiKeys[key]].apiKey = value;
     }
 
     set accessToken(token: string) {
@@ -5830,11 +8342,10 @@ export class WebhooksApi {
      */
     public craeteWebhookSubscription (clientId: string, webhookSubscription: WebhookSubscription) : Promise<{ response: http.ClientResponse; body: RestApiIntegerResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions'
-            .replace('{' + 'clientId' + '}', String(clientId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'clientId' is not null or undefined
         if (clientId === null || clientId === undefined) {
@@ -5846,35 +8357,37 @@ export class WebhooksApi {
             throw new Error('Required parameter webhookSubscription was null or undefined when calling craeteWebhookSubscription.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: webhookSubscription,
+            body: ObjectSerializer.serialize(webhookSubscription, "WebhookSubscription")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiIntegerResult;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiIntegerResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -5892,13 +8405,12 @@ export class WebhooksApi {
      */
     public createWebhookSubscriptionEventNames (clientId: string, webhookSubscriptionId: number, eventName: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events/{eventName}'
-            .replace('{' + 'clientId' + '}', String(clientId))
-            .replace('{' + 'webhookSubscriptionId' + '}', String(webhookSubscriptionId))
-            .replace('{' + 'eventName' + '}', String(eventName));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
+            .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
+            .replace('{' + 'eventName' + '}', encodeURIComponent(String(eventName)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'clientId' is not null or undefined
         if (clientId === null || clientId === undefined) {
@@ -5915,34 +8427,35 @@ export class WebhooksApi {
             throw new Error('Required parameter eventName was null or undefined when calling createWebhookSubscriptionEventNames.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -5959,12 +8472,11 @@ export class WebhooksApi {
      */
     public deleteWebhookSubscription (clientId: string, webhookSubscriptionId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}'
-            .replace('{' + 'clientId' + '}', String(clientId))
-            .replace('{' + 'webhookSubscriptionId' + '}', String(webhookSubscriptionId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
+            .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'clientId' is not null or undefined
         if (clientId === null || clientId === undefined) {
@@ -5976,34 +8488,35 @@ export class WebhooksApi {
             throw new Error('Required parameter webhookSubscriptionId was null or undefined when calling deleteWebhookSubscription.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -6021,13 +8534,12 @@ export class WebhooksApi {
      */
     public deleteWebhookSubscriptionEventName (clientId: string, webhookSubscriptionId: number, eventName: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events/{eventName}'
-            .replace('{' + 'clientId' + '}', String(clientId))
-            .replace('{' + 'webhookSubscriptionId' + '}', String(webhookSubscriptionId))
-            .replace('{' + 'eventName' + '}', String(eventName));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
+            .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
+            .replace('{' + 'eventName' + '}', encodeURIComponent(String(eventName)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'clientId' is not null or undefined
         if (clientId === null || clientId === undefined) {
@@ -6044,34 +8556,35 @@ export class WebhooksApi {
             throw new Error('Required parameter eventName was null or undefined when calling deleteWebhookSubscriptionEventName.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -6086,39 +8599,40 @@ export class WebhooksApi {
      */
     public getWebhookEventNames () : Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/events';
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
 
-        let useFormData = false;
+        let localVarUseFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringArrayResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -6135,12 +8649,11 @@ export class WebhooksApi {
      */
     public getWebhookEventNamesBySubscriptionId (clientId: string, webhookSubscriptionId: number) : Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events'
-            .replace('{' + 'clientId' + '}', String(clientId))
-            .replace('{' + 'webhookSubscriptionId' + '}', String(webhookSubscriptionId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
+            .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'clientId' is not null or undefined
         if (clientId === null || clientId === undefined) {
@@ -6152,34 +8665,36 @@ export class WebhooksApi {
             throw new Error('Required parameter webhookSubscriptionId was null or undefined when calling getWebhookEventNamesBySubscriptionId.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringArrayResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -6195,16 +8710,16 @@ export class WebhooksApi {
      * @param webhookSubscriptionId Webhook subscription identifier
      * @param start Start time
      * @param end End time
-     * @param take Page size
+     * @param page Page number
+     * @param limit Page size
      */
-    public getWebhookLogs (clientId: string, webhookSubscriptionId: number, start: Date, end: Date, take?: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultWebhookLog;  }> {
+    public getWebhookLogs (clientId: string, webhookSubscriptionId: number, start: Date, end: Date, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultWebhookLog;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/logs'
-            .replace('{' + 'clientId' + '}', String(clientId))
-            .replace('{' + 'webhookSubscriptionId' + '}', String(webhookSubscriptionId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
+            .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'clientId' is not null or undefined
         if (clientId === null || clientId === undefined) {
@@ -6227,45 +8742,51 @@ export class WebhooksApi {
         }
 
         if (start !== undefined) {
-            queryParameters['start'] = start;
+            localVarQueryParameters['start'] = ObjectSerializer.serialize(start, "Date");
         }
 
         if (end !== undefined) {
-            queryParameters['end'] = end;
+            localVarQueryParameters['end'] = ObjectSerializer.serialize(end, "Date");
         }
 
-        if (take !== undefined) {
-            queryParameters['take'] = take;
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
         }
 
-        let useFormData = false;
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
 
-        let requestOptions: request.Options = {
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultWebhookLog;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultWebhookLog;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultWebhookLog");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -6281,45 +8802,46 @@ export class WebhooksApi {
      */
     public getWebhookSubscriptions (clientId: string) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultWebhookSubscription;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions'
-            .replace('{' + 'clientId' + '}', String(clientId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'clientId' is not null or undefined
         if (clientId === null || clientId === undefined) {
             throw new Error('Required parameter clientId was null or undefined when calling getWebhookSubscriptions.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultWebhookSubscription;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultWebhookSubscription");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
@@ -6337,12 +8859,11 @@ export class WebhooksApi {
      */
     public updateWebhookSubscription (clientId: string, webhookSubscriptionId: number, webhookSubscription: WebhookSubscription) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}'
-            .replace('{' + 'clientId' + '}', String(clientId))
-            .replace('{' + 'webhookSubscriptionId' + '}', String(webhookSubscriptionId));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
+            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
+            .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         // verify required parameter 'clientId' is not null or undefined
         if (clientId === null || clientId === undefined) {
@@ -6359,35 +8880,36 @@ export class WebhooksApi {
             throw new Error('Required parameter webhookSubscription was null or undefined when calling updateWebhookSubscription.');
         }
 
-        let useFormData = false;
 
-        let requestOptions: request.Options = {
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
             method: 'PUT',
-            qs: queryParameters,
-            headers: headerParams,
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: webhookSubscription,
+            body: ObjectSerializer.serialize(webhookSubscription, "WebhookSubscription")
         };
 
-        this.authentications.oauth2.applyToRequest(requestOptions);
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
 
-        this.authentications.default.applyToRequest(requestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
             } else {
-                requestOptions.form = formParams;
+                localVarRequestOptions.form = localVarFormParams;
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
                         reject({ response: response, body: body });
