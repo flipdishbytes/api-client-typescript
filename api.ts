@@ -546,6 +546,35 @@ export namespace Menu {
         ExpandMultiple = <any> 'ExpandMultiple'
     }
 }
+export class MenuBase {
+    'displaySectionLinks': boolean;
+    'menuSectionBehaviour': MenuBase.MenuSectionBehaviourEnum;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "displaySectionLinks",
+            "baseName": "displaySectionLinks",
+            "type": "boolean"
+        },
+        {
+            "name": "menuSectionBehaviour",
+            "baseName": "menuSectionBehaviour",
+            "type": "MenuBase.MenuSectionBehaviourEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuBase.attributeTypeMap;
+    }
+}
+
+export namespace MenuBase {
+    export enum MenuSectionBehaviourEnum {
+        ExpandSingle = <any> 'ExpandSingle',
+        ExpandMultiple = <any> 'ExpandMultiple'
+    }
+}
 export class MenuItemOptionSet {
     'menuItemOptionSetId': number;
     'imageUrl': string;
@@ -3149,6 +3178,7 @@ export class WebhookSubscription {
 let enumsMap: {[index: string]: any} = {
         "BusinessHoursPeriod.DayOfWeekEnum": BusinessHoursPeriod.DayOfWeekEnum,
         "Menu.MenuSectionBehaviourEnum": Menu.MenuSectionBehaviourEnum,
+        "MenuBase.MenuSectionBehaviourEnum": MenuBase.MenuSectionBehaviourEnum,
         "MenuItemOptionSet.CellLayoutTypeEnum": MenuItemOptionSet.CellLayoutTypeEnum,
         "MenuItemOptionSetBase.CellLayoutTypeEnum": MenuItemOptionSetBase.CellLayoutTypeEnum,
         "MenuItemOptionSetItem.CellLayoutTypeEnum": MenuItemOptionSetItem.CellLayoutTypeEnum,
@@ -3182,6 +3212,7 @@ let typeMap: {[index: string]: any} = {
     "FeeSummary": FeeSummary,
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
     "Menu": Menu,
+    "MenuBase": MenuBase,
     "MenuItemOptionSet": MenuItemOptionSet,
     "MenuItemOptionSetBase": MenuItemOptionSetBase,
     "MenuItemOptionSetItem": MenuItemOptionSetItem,
