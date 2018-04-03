@@ -246,6 +246,65 @@ export class Coordinates {
     }
 }
 
+export class CustomerCreatedEvent {
+    'whiteLabelId': number;
+    'user': UserEventInfo;
+    'description': string;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'details': string;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "whiteLabelId",
+            "baseName": "whiteLabelId",
+            "type": "number"
+        },
+        {
+            "name": "user",
+            "baseName": "user",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CustomerCreatedEvent.attributeTypeMap;
+    }
+}
+
 export class CustomerSummary {
     'id': number;
     'name': string;
@@ -284,6 +343,59 @@ export class CustomerSummary {
 
     static getAttributeTypeMap() {
         return CustomerSummary.attributeTypeMap;
+    }
+}
+
+export class CustomerUpdatedEvent {
+    'user': UserEventInfo;
+    'description': string;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'details': string;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "user",
+            "baseName": "user",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CustomerUpdatedEvent.attributeTypeMap;
     }
 }
 
@@ -360,6 +472,107 @@ export class DeliveryLocation {
 
     static getAttributeTypeMap() {
         return DeliveryLocation.attributeTypeMap;
+    }
+}
+
+export class EventSearchResult {
+    'orderAcceptedEvent': Array<OrderAcceptedEvent>;
+    'orderCreatedEvent': Array<OrderCreatedEvent>;
+    'orderRatingUpdatedEvent': Array<OrderRatingUpdatedEvent>;
+    'orderRefundedEvent': Array<OrderRefundedEvent>;
+    'orderRejectedEvent': Array<OrderRejectedEvent>;
+    'orderTipUpdatedEvent': Array<OrderTipUpdatedEvent>;
+    'storeCreatedEvent': Array<StoreCreatedEvent>;
+    'storeDeletedEvent': Array<StoreDeletedEvent>;
+    'storeDeliveryZoneUpdatedEvent': Array<StoreDeliveryZoneUpdatedEvent>;
+    'storeOpeningHoursUpdatedEvent': Array<StoreOpeningHoursUpdatedEvent>;
+    'storeUpdatedEvent': Array<StoreUpdatedEvent>;
+    'menuCreatedEvent': Array<MenuCreatedEvent>;
+    'menuUpdatedEvent': Array<MenuUpdatedEvent>;
+    'customerCreatedEvent': Array<CustomerCreatedEvent>;
+    'customerUpdatedEvent': Array<CustomerUpdatedEvent>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "orderAcceptedEvent",
+            "baseName": "orderAcceptedEvent",
+            "type": "Array<OrderAcceptedEvent>"
+        },
+        {
+            "name": "orderCreatedEvent",
+            "baseName": "orderCreatedEvent",
+            "type": "Array<OrderCreatedEvent>"
+        },
+        {
+            "name": "orderRatingUpdatedEvent",
+            "baseName": "orderRatingUpdatedEvent",
+            "type": "Array<OrderRatingUpdatedEvent>"
+        },
+        {
+            "name": "orderRefundedEvent",
+            "baseName": "orderRefundedEvent",
+            "type": "Array<OrderRefundedEvent>"
+        },
+        {
+            "name": "orderRejectedEvent",
+            "baseName": "orderRejectedEvent",
+            "type": "Array<OrderRejectedEvent>"
+        },
+        {
+            "name": "orderTipUpdatedEvent",
+            "baseName": "orderTipUpdatedEvent",
+            "type": "Array<OrderTipUpdatedEvent>"
+        },
+        {
+            "name": "storeCreatedEvent",
+            "baseName": "storeCreatedEvent",
+            "type": "Array<StoreCreatedEvent>"
+        },
+        {
+            "name": "storeDeletedEvent",
+            "baseName": "storeDeletedEvent",
+            "type": "Array<StoreDeletedEvent>"
+        },
+        {
+            "name": "storeDeliveryZoneUpdatedEvent",
+            "baseName": "storeDeliveryZoneUpdatedEvent",
+            "type": "Array<StoreDeliveryZoneUpdatedEvent>"
+        },
+        {
+            "name": "storeOpeningHoursUpdatedEvent",
+            "baseName": "storeOpeningHoursUpdatedEvent",
+            "type": "Array<StoreOpeningHoursUpdatedEvent>"
+        },
+        {
+            "name": "storeUpdatedEvent",
+            "baseName": "storeUpdatedEvent",
+            "type": "Array<StoreUpdatedEvent>"
+        },
+        {
+            "name": "menuCreatedEvent",
+            "baseName": "menuCreatedEvent",
+            "type": "Array<MenuCreatedEvent>"
+        },
+        {
+            "name": "menuUpdatedEvent",
+            "baseName": "menuUpdatedEvent",
+            "type": "Array<MenuUpdatedEvent>"
+        },
+        {
+            "name": "customerCreatedEvent",
+            "baseName": "customerCreatedEvent",
+            "type": "Array<CustomerCreatedEvent>"
+        },
+        {
+            "name": "customerUpdatedEvent",
+            "baseName": "customerUpdatedEvent",
+            "type": "Array<CustomerUpdatedEvent>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return EventSearchResult.attributeTypeMap;
     }
 }
 
@@ -575,6 +788,65 @@ export namespace MenuBase {
         ExpandMultiple = <any> 'ExpandMultiple'
     }
 }
+export class MenuCreatedEvent {
+    'description': string;
+    'user': UserEventInfo;
+    'menu': Menu;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'details': string;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "user",
+            "baseName": "user",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "menu",
+            "baseName": "menu",
+            "type": "Menu"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuCreatedEvent.attributeTypeMap;
+    }
+}
+
 export class MenuItemOptionSet {
     'menuItemOptionSetId': number;
     'imageUrl': string;
@@ -1092,6 +1364,65 @@ export namespace MenuSectionItemBase {
         Hot = <any> 'Hot'
     }
 }
+export class MenuUpdatedEvent {
+    'description': string;
+    'user': UserEventInfo;
+    'menu': Menu;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'details': string;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "user",
+            "baseName": "user",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "menu",
+            "baseName": "menu",
+            "type": "Menu"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuUpdatedEvent.attributeTypeMap;
+    }
+}
+
 export class Metadata {
     'key': string;
     'value': string;
@@ -1411,6 +1742,124 @@ export namespace Order {
         PwaIos = <any> 'PwaIos'
     }
 }
+export class OrderAcceptedEvent {
+    'description': string;
+    'orderAcceptedTime': Date;
+    'order': Order;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'details': string;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "orderAcceptedTime",
+            "baseName": "orderAcceptedTime",
+            "type": "Date"
+        },
+        {
+            "name": "order",
+            "baseName": "order",
+            "type": "Order"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderAcceptedEvent.attributeTypeMap;
+    }
+}
+
+export class OrderCreatedEvent {
+    'description': string;
+    'orderCreatedTime': Date;
+    'order': Order;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'details': string;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "orderCreatedTime",
+            "baseName": "orderCreatedTime",
+            "type": "Date"
+        },
+        {
+            "name": "order",
+            "baseName": "order",
+            "type": "Order"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderCreatedEvent.attributeTypeMap;
+    }
+}
+
 export class OrderItem {
     'orderItemOptions': Array<OrderItemOption>;
     'metadata': { [key: string]: string; };
@@ -1538,6 +1987,242 @@ export class OrderItemOption {
 
     static getAttributeTypeMap() {
         return OrderItemOption.attributeTypeMap;
+    }
+}
+
+export class OrderRatingUpdatedEvent {
+    'newUserRating': number;
+    'description': string;
+    'order': Order;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'details': string;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "newUserRating",
+            "baseName": "newUserRating",
+            "type": "number"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "order",
+            "baseName": "order",
+            "type": "Order"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderRatingUpdatedEvent.attributeTypeMap;
+    }
+}
+
+export class OrderRefundedEvent {
+    'refundedAmount': number;
+    'description': string;
+    'order': Order;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'details': string;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "refundedAmount",
+            "baseName": "refundedAmount",
+            "type": "number"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "order",
+            "baseName": "order",
+            "type": "Order"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderRefundedEvent.attributeTypeMap;
+    }
+}
+
+export class OrderRejectedEvent {
+    'description': string;
+    'orderRejectedTime': Date;
+    'order': Order;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'details': string;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "orderRejectedTime",
+            "baseName": "orderRejectedTime",
+            "type": "Date"
+        },
+        {
+            "name": "order",
+            "baseName": "order",
+            "type": "Order"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderRejectedEvent.attributeTypeMap;
+    }
+}
+
+export class OrderTipUpdatedEvent {
+    'newTipAmount': number;
+    'description': string;
+    'order': Order;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'details': string;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "newTipAmount",
+            "baseName": "newTipAmount",
+            "type": "number"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "order",
+            "baseName": "order",
+            "type": "Order"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderTipUpdatedEvent.attributeTypeMap;
     }
 }
 
@@ -1830,6 +2515,41 @@ export class RestApiErrorResult {
 
     static getAttributeTypeMap() {
         return RestApiErrorResult.attributeTypeMap;
+    }
+}
+
+export class RestApiEventSearchPaginationResult {
+    'data': EventSearchResult;
+    'page': number;
+    'limit': number;
+    'totalRecordCount': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "EventSearchResult"
+        },
+        {
+            "name": "page",
+            "baseName": "page",
+            "type": "number"
+        },
+        {
+            "name": "limit",
+            "baseName": "limit",
+            "type": "number"
+        },
+        {
+            "name": "totalRecordCount",
+            "baseName": "totalRecordCount",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiEventSearchPaginationResult.attributeTypeMap;
     }
 }
 
@@ -2315,6 +3035,47 @@ export class RestApiUnauthorizedResult {
     }
 }
 
+export class SearchCriteria {
+    'limit': number;
+    'page': number;
+    'start': Date;
+    'end': Date;
+    'name': Array<string>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "limit",
+            "baseName": "limit",
+            "type": "number"
+        },
+        {
+            "name": "page",
+            "baseName": "page",
+            "type": "number"
+        },
+        {
+            "name": "start",
+            "baseName": "start",
+            "type": "Date"
+        },
+        {
+            "name": "end",
+            "baseName": "end",
+            "type": "Date"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "Array<string>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SearchCriteria.attributeTypeMap;
+    }
+}
+
 export class Store {
     'storeId': number;
     'name': string;
@@ -2589,6 +3350,183 @@ export class StoreAddress {
     }
 }
 
+export class StoreCreatedEvent {
+    'storeId': number;
+    'user': UserEventInfo;
+    'description': string;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'details': string;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "storeId",
+            "baseName": "storeId",
+            "type": "number"
+        },
+        {
+            "name": "user",
+            "baseName": "user",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreCreatedEvent.attributeTypeMap;
+    }
+}
+
+export class StoreDeletedEvent {
+    'storeId': number;
+    'user': UserEventInfo;
+    'description': string;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'details': string;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "storeId",
+            "baseName": "storeId",
+            "type": "number"
+        },
+        {
+            "name": "user",
+            "baseName": "user",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreDeletedEvent.attributeTypeMap;
+    }
+}
+
+export class StoreDeliveryZoneUpdatedEvent {
+    'storeId': number;
+    'user': UserEventInfo;
+    'description': string;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'details': string;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "storeId",
+            "baseName": "storeId",
+            "type": "number"
+        },
+        {
+            "name": "user",
+            "baseName": "user",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreDeliveryZoneUpdatedEvent.attributeTypeMap;
+    }
+}
+
 export class StoreNote {
     'userId': number;
     'createTime': Date;
@@ -2615,6 +3553,65 @@ export class StoreNote {
 
     static getAttributeTypeMap() {
         return StoreNote.attributeTypeMap;
+    }
+}
+
+export class StoreOpeningHoursUpdatedEvent {
+    'storeId': number;
+    'user': UserEventInfo;
+    'description': string;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'details': string;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "storeId",
+            "baseName": "storeId",
+            "type": "number"
+        },
+        {
+            "name": "user",
+            "baseName": "user",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreOpeningHoursUpdatedEvent.attributeTypeMap;
     }
 }
 
@@ -2775,6 +3772,100 @@ export namespace StoreSummary {
         TWD = <any> 'TWD'
     }
 }
+export class StoreUpdatedEvent {
+    'storeId': number;
+    'user': UserEventInfo;
+    'description': string;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'details': string;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "storeId",
+            "baseName": "storeId",
+            "type": "number"
+        },
+        {
+            "name": "user",
+            "baseName": "user",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreUpdatedEvent.attributeTypeMap;
+    }
+}
+
+export class UserEventInfo {
+    'userId': number;
+    'userName': string;
+    'userPhoneNumber': string;
+    'userEmail': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "userId",
+            "baseName": "userId",
+            "type": "number"
+        },
+        {
+            "name": "userName",
+            "baseName": "userName",
+            "type": "string"
+        },
+        {
+            "name": "userPhoneNumber",
+            "baseName": "userPhoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "userEmail",
+            "baseName": "userEmail",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserEventInfo.attributeTypeMap;
+    }
+}
+
 export class ValidationErrorResult {
     'fieldName': string;
     'errors': Array<string>;
@@ -3206,13 +4297,17 @@ let typeMap: {[index: string]: any} = {
     "Accept": Accept,
     "BusinessHoursPeriod": BusinessHoursPeriod,
     "Coordinates": Coordinates,
+    "CustomerCreatedEvent": CustomerCreatedEvent,
     "CustomerSummary": CustomerSummary,
+    "CustomerUpdatedEvent": CustomerUpdatedEvent,
     "DeliveryFeeArea": DeliveryFeeArea,
     "DeliveryLocation": DeliveryLocation,
+    "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
     "Menu": Menu,
     "MenuBase": MenuBase,
+    "MenuCreatedEvent": MenuCreatedEvent,
     "MenuItemOptionSet": MenuItemOptionSet,
     "MenuItemOptionSetBase": MenuItemOptionSetBase,
     "MenuItemOptionSetItem": MenuItemOptionSetItem,
@@ -3222,13 +4317,20 @@ let typeMap: {[index: string]: any} = {
     "MenuSectionBase": MenuSectionBase,
     "MenuSectionItem": MenuSectionItem,
     "MenuSectionItemBase": MenuSectionItemBase,
+    "MenuUpdatedEvent": MenuUpdatedEvent,
     "Metadata": Metadata,
     "OAuthClient": OAuthClient,
     "OAuthTokenModel": OAuthTokenModel,
     "OauthClientRedirectUri": OauthClientRedirectUri,
     "Order": Order,
+    "OrderAcceptedEvent": OrderAcceptedEvent,
+    "OrderCreatedEvent": OrderCreatedEvent,
     "OrderItem": OrderItem,
     "OrderItemOption": OrderItemOption,
+    "OrderRatingUpdatedEvent": OrderRatingUpdatedEvent,
+    "OrderRefundedEvent": OrderRefundedEvent,
+    "OrderRejectedEvent": OrderRejectedEvent,
+    "OrderTipUpdatedEvent": OrderTipUpdatedEvent,
     "Range": Range,
     "Refund": Refund,
     "Reject": Reject,
@@ -3243,6 +4345,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultWebhookSubscription": RestApiArrayResultWebhookSubscription,
     "RestApiDefaultResponse": RestApiDefaultResponse,
     "RestApiErrorResult": RestApiErrorResult,
+    "RestApiEventSearchPaginationResult": RestApiEventSearchPaginationResult,
     "RestApiForbiddenResult": RestApiForbiddenResult,
     "RestApiIntegerResult": RestApiIntegerResult,
     "RestApiPaginationResultHttpRequestAndResponseLog": RestApiPaginationResultHttpRequestAndResponseLog,
@@ -3265,10 +4368,17 @@ let typeMap: {[index: string]: any} = {
     "RestApiStringArrayResult": RestApiStringArrayResult,
     "RestApiStringResult": RestApiStringResult,
     "RestApiUnauthorizedResult": RestApiUnauthorizedResult,
+    "SearchCriteria": SearchCriteria,
     "Store": Store,
     "StoreAddress": StoreAddress,
+    "StoreCreatedEvent": StoreCreatedEvent,
+    "StoreDeletedEvent": StoreDeletedEvent,
+    "StoreDeliveryZoneUpdatedEvent": StoreDeliveryZoneUpdatedEvent,
     "StoreNote": StoreNote,
+    "StoreOpeningHoursUpdatedEvent": StoreOpeningHoursUpdatedEvent,
     "StoreSummary": StoreSummary,
+    "StoreUpdatedEvent": StoreUpdatedEvent,
+    "UserEventInfo": UserEventInfo,
     "ValidationErrorResult": ValidationErrorResult,
     "Voucher": Voucher,
     "VoucherSummary": VoucherSummary,
@@ -3485,6 +4595,762 @@ export class AuthorizationTokensApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum EventsApiApiKeys {
+}
+
+export class EventsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: EventsApiApiKeys, value: string) {
+        (this.authentications as any)[EventsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Get order events
+     * @param customerId Customer identifier identifier
+     * @param limit The maximum elements to return
+     * @param page The index of the page to return, starting by 1
+     * @param start Start date
+     * @param end End date
+     * @param name Event names to filter in
+     */
+    public getCustomerEvents (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/events/customer/{customerId}'
+            .replace('{' + 'customerId' + '}', encodeURIComponent(String(customerId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'customerId' is not null or undefined
+        if (customerId === null || customerId === undefined) {
+            throw new Error('Required parameter customerId was null or undefined when calling getCustomerEvents.');
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (start !== undefined) {
+            localVarQueryParameters['start'] = ObjectSerializer.serialize(start, "Date");
+        }
+
+        if (end !== undefined) {
+            localVarQueryParameters['end'] = ObjectSerializer.serialize(end, "Date");
+        }
+
+        if (name !== undefined) {
+            localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiEventSearchPaginationResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get events
+     * @param storeId Store Id
+     * @param whiteLabelId White Label Id
+     * @param customerId Customer Id
+     * @param limit The maximum elements to return
+     * @param page The index of the page to return, starting by 1
+     * @param start Start date
+     * @param end End date
+     * @param name Event names to filter in
+     */
+    public getEvents (storeId?: number, whiteLabelId?: number, customerId?: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/events';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
+        }
+
+        if (whiteLabelId !== undefined) {
+            localVarQueryParameters['whiteLabelId'] = ObjectSerializer.serialize(whiteLabelId, "number");
+        }
+
+        if (customerId !== undefined) {
+            localVarQueryParameters['customerId'] = ObjectSerializer.serialize(customerId, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (start !== undefined) {
+            localVarQueryParameters['start'] = ObjectSerializer.serialize(start, "Date");
+        }
+
+        if (end !== undefined) {
+            localVarQueryParameters['end'] = ObjectSerializer.serialize(end, "Date");
+        }
+
+        if (name !== undefined) {
+            localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiEventSearchPaginationResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get event by Id
+     * @param eventId Event identifier (Guid)
+     */
+    public getEventsById (eventId: string) : Promise<{ response: http.ClientResponse; body: EventSearchResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/events/{eventId}'
+            .replace('{' + 'eventId' + '}', encodeURIComponent(String(eventId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'eventId' is not null or undefined
+        if (eventId === null || eventId === undefined) {
+            throw new Error('Required parameter eventId was null or undefined when calling getEventsById.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EventSearchResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "EventSearchResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get Menu Events
+     * @param menuId Menu Identifier
+     * @param limit The maximum elements to return
+     * @param page The index of the page to return, starting by 1
+     * @param start Start date
+     * @param end End date
+     * @param name Event names to filter in
+     */
+    public getMenuEvents (menuId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/events/menu/{menuId}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling getMenuEvents.');
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (start !== undefined) {
+            localVarQueryParameters['start'] = ObjectSerializer.serialize(start, "Date");
+        }
+
+        if (end !== undefined) {
+            localVarQueryParameters['end'] = ObjectSerializer.serialize(end, "Date");
+        }
+
+        if (name !== undefined) {
+            localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiEventSearchPaginationResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get order events
+     * @param orderId Order identifier
+     * @param limit The maximum elements to return
+     * @param page The index of the page to return, starting by 1
+     * @param start Start date
+     * @param end End date
+     * @param name Event names to filter in
+     */
+    public getOrderEvents (orderId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/events/order/{orderId}'
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orderId' is not null or undefined
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling getOrderEvents.');
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (start !== undefined) {
+            localVarQueryParameters['start'] = ObjectSerializer.serialize(start, "Date");
+        }
+
+        if (end !== undefined) {
+            localVarQueryParameters['end'] = ObjectSerializer.serialize(end, "Date");
+        }
+
+        if (name !== undefined) {
+            localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiEventSearchPaginationResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get order events by customer
+     * @param customerId Customer identifier
+     * @param limit The maximum elements to return
+     * @param page The index of the page to return, starting by 1
+     * @param start Start date
+     * @param end End date
+     * @param name Event names to filter in
+     */
+    public getOrderEventsByCustomer (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/events/order';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'customerId' is not null or undefined
+        if (customerId === null || customerId === undefined) {
+            throw new Error('Required parameter customerId was null or undefined when calling getOrderEventsByCustomer.');
+        }
+
+        if (customerId !== undefined) {
+            localVarQueryParameters['customerId'] = ObjectSerializer.serialize(customerId, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (start !== undefined) {
+            localVarQueryParameters['start'] = ObjectSerializer.serialize(start, "Date");
+        }
+
+        if (end !== undefined) {
+            localVarQueryParameters['end'] = ObjectSerializer.serialize(end, "Date");
+        }
+
+        if (name !== undefined) {
+            localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiEventSearchPaginationResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get store events
+     * @param storeId Id of the store
+     * @param limit The maximum elements to return
+     * @param page The index of the page to return, starting by 1
+     * @param start Start date
+     * @param end End date
+     * @param name Event names to filter in
+     */
+    public getStoreEvents (storeId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/events/store/{storeId}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getStoreEvents.');
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (start !== undefined) {
+            localVarQueryParameters['start'] = ObjectSerializer.serialize(start, "Date");
+        }
+
+        if (end !== undefined) {
+            localVarQueryParameters['end'] = ObjectSerializer.serialize(end, "Date");
+        }
+
+        if (name !== undefined) {
+            localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiEventSearchPaginationResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get order events
+     * @param userId User identifier
+     * @param limit The maximum elements to return
+     * @param page The index of the page to return, starting by 1
+     * @param start Start date
+     * @param end End date
+     * @param name Event names to filter in
+     */
+    public getUserEvents (userId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/events/user/{userId}'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getUserEvents.');
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (start !== undefined) {
+            localVarQueryParameters['start'] = ObjectSerializer.serialize(start, "Date");
+        }
+
+        if (end !== undefined) {
+            localVarQueryParameters['end'] = ObjectSerializer.serialize(end, "Date");
+        }
+
+        if (name !== undefined) {
+            localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiEventSearchPaginationResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get White Label Events
+     * @param whitelabelId White Label Identifier
+     * @param limit The maximum elements to return
+     * @param page The index of the page to return, starting by 1
+     * @param start Start date
+     * @param end End date
+     * @param name Event names to filter in
+     */
+    public getWhiteLabelEvents (whitelabelId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/events/whitelabel/{whitelabelId}'
+            .replace('{' + 'whitelabelId' + '}', encodeURIComponent(String(whitelabelId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'whitelabelId' is not null or undefined
+        if (whitelabelId === null || whitelabelId === undefined) {
+            throw new Error('Required parameter whitelabelId was null or undefined when calling getWhiteLabelEvents.');
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (start !== undefined) {
+            localVarQueryParameters['start'] = ObjectSerializer.serialize(start, "Date");
+        }
+
+        if (end !== undefined) {
+            localVarQueryParameters['end'] = ObjectSerializer.serialize(end, "Date");
+        }
+
+        if (name !== undefined) {
+            localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiEventSearchPaginationResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -6488,7 +8354,7 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary Update menu section item
+     * @summary Update menu
      * @param menuId Menu identifier
      * @param menu Menu (delta)
      */
