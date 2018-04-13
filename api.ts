@@ -223,6 +223,59 @@ export namespace BusinessHoursPeriod {
         Saturday = <any> 'Saturday'
     }
 }
+export class CampaignCreatedEvent {
+    'campaignId': number;
+    'virtualRestaurantName': string;
+    'virtualRestaurantId': number;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "campaignId",
+            "baseName": "campaignId",
+            "type": "number"
+        },
+        {
+            "name": "virtualRestaurantName",
+            "baseName": "virtualRestaurantName",
+            "type": "string"
+        },
+        {
+            "name": "virtualRestaurantId",
+            "baseName": "virtualRestaurantId",
+            "type": "number"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CampaignCreatedEvent.attributeTypeMap;
+    }
+}
+
 export class Coordinates {
     'latitude': number;
     'longitude': number;
@@ -246,6 +299,59 @@ export class Coordinates {
     }
 }
 
+export class CustomerConsentUpdatedEvent {
+    'enabled': boolean;
+    'description': string;
+    'user': UserEventInfo;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "enabled",
+            "baseName": "enabled",
+            "type": "boolean"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "user",
+            "baseName": "user",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CustomerConsentUpdatedEvent.attributeTypeMap;
+    }
+}
+
 export class CustomerCreatedEvent {
     'whiteLabelId': number;
     'user': UserEventInfo;
@@ -253,7 +359,6 @@ export class CustomerCreatedEvent {
     'eventName': string;
     'flipdishEventId': string;
     'createTime': Date;
-    'details': string;
     'position': number;
 
     static discriminator = undefined;
@@ -288,11 +393,6 @@ export class CustomerCreatedEvent {
             "name": "createTime",
             "baseName": "createTime",
             "type": "Date"
-        },
-        {
-            "name": "details",
-            "baseName": "details",
-            "type": "string"
         },
         {
             "name": "position",
@@ -352,7 +452,6 @@ export class CustomerUpdatedEvent {
     'eventName': string;
     'flipdishEventId': string;
     'createTime': Date;
-    'details': string;
     'position': number;
 
     static discriminator = undefined;
@@ -382,11 +481,6 @@ export class CustomerUpdatedEvent {
             "name": "createTime",
             "baseName": "createTime",
             "type": "Date"
-        },
-        {
-            "name": "details",
-            "baseName": "details",
-            "type": "string"
         },
         {
             "name": "position",
@@ -491,6 +585,11 @@ export class EventSearchResult {
     'menuUpdatedEvent': Array<MenuUpdatedEvent>;
     'customerCreatedEvent': Array<CustomerCreatedEvent>;
     'customerUpdatedEvent': Array<CustomerUpdatedEvent>;
+    'customerConsentUpdatedEvent': Array<CustomerConsentUpdatedEvent>;
+    'campaignCreatedEvent': Array<CampaignCreatedEvent>;
+    'webhookSubscriptionCreatedEvent': Array<WebhookSubscriptionCreatedEvent>;
+    'webhookSubscriptionUpdatedEvent': Array<WebhookSubscriptionUpdatedEvent>;
+    'webhookSubscriptionDeletedEvent': Array<WebhookSubscriptionDeletedEvent>;
 
     static discriminator = undefined;
 
@@ -569,6 +668,31 @@ export class EventSearchResult {
             "name": "customerUpdatedEvent",
             "baseName": "customerUpdatedEvent",
             "type": "Array<CustomerUpdatedEvent>"
+        },
+        {
+            "name": "customerConsentUpdatedEvent",
+            "baseName": "customerConsentUpdatedEvent",
+            "type": "Array<CustomerConsentUpdatedEvent>"
+        },
+        {
+            "name": "campaignCreatedEvent",
+            "baseName": "campaignCreatedEvent",
+            "type": "Array<CampaignCreatedEvent>"
+        },
+        {
+            "name": "webhookSubscriptionCreatedEvent",
+            "baseName": "webhookSubscriptionCreatedEvent",
+            "type": "Array<WebhookSubscriptionCreatedEvent>"
+        },
+        {
+            "name": "webhookSubscriptionUpdatedEvent",
+            "baseName": "webhookSubscriptionUpdatedEvent",
+            "type": "Array<WebhookSubscriptionUpdatedEvent>"
+        },
+        {
+            "name": "webhookSubscriptionDeletedEvent",
+            "baseName": "webhookSubscriptionDeletedEvent",
+            "type": "Array<WebhookSubscriptionDeletedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -795,7 +919,6 @@ export class MenuCreatedEvent {
     'eventName': string;
     'flipdishEventId': string;
     'createTime': Date;
-    'details': string;
     'position': number;
 
     static discriminator = undefined;
@@ -830,11 +953,6 @@ export class MenuCreatedEvent {
             "name": "createTime",
             "baseName": "createTime",
             "type": "Date"
-        },
-        {
-            "name": "details",
-            "baseName": "details",
-            "type": "string"
         },
         {
             "name": "position",
@@ -1371,7 +1489,6 @@ export class MenuUpdatedEvent {
     'eventName': string;
     'flipdishEventId': string;
     'createTime': Date;
-    'details': string;
     'position': number;
 
     static discriminator = undefined;
@@ -1406,11 +1523,6 @@ export class MenuUpdatedEvent {
             "name": "createTime",
             "baseName": "createTime",
             "type": "Date"
-        },
-        {
-            "name": "details",
-            "baseName": "details",
-            "type": "string"
         },
         {
             "name": "position",
@@ -1749,7 +1861,6 @@ export class OrderAcceptedEvent {
     'eventName': string;
     'flipdishEventId': string;
     'createTime': Date;
-    'details': string;
     'position': number;
 
     static discriminator = undefined;
@@ -1786,11 +1897,6 @@ export class OrderAcceptedEvent {
             "type": "Date"
         },
         {
-            "name": "details",
-            "baseName": "details",
-            "type": "string"
-        },
-        {
             "name": "position",
             "baseName": "position",
             "type": "number"
@@ -1808,7 +1914,6 @@ export class OrderCreatedEvent {
     'eventName': string;
     'flipdishEventId': string;
     'createTime': Date;
-    'details': string;
     'position': number;
 
     static discriminator = undefined;
@@ -1843,11 +1948,6 @@ export class OrderCreatedEvent {
             "name": "createTime",
             "baseName": "createTime",
             "type": "Date"
-        },
-        {
-            "name": "details",
-            "baseName": "details",
-            "type": "string"
         },
         {
             "name": "position",
@@ -1997,7 +2097,6 @@ export class OrderRatingUpdatedEvent {
     'eventName': string;
     'flipdishEventId': string;
     'createTime': Date;
-    'details': string;
     'position': number;
 
     static discriminator = undefined;
@@ -2034,11 +2133,6 @@ export class OrderRatingUpdatedEvent {
             "type": "Date"
         },
         {
-            "name": "details",
-            "baseName": "details",
-            "type": "string"
-        },
-        {
             "name": "position",
             "baseName": "position",
             "type": "number"
@@ -2056,7 +2150,6 @@ export class OrderRefundedEvent {
     'eventName': string;
     'flipdishEventId': string;
     'createTime': Date;
-    'details': string;
     'position': number;
 
     static discriminator = undefined;
@@ -2093,11 +2186,6 @@ export class OrderRefundedEvent {
             "type": "Date"
         },
         {
-            "name": "details",
-            "baseName": "details",
-            "type": "string"
-        },
-        {
             "name": "position",
             "baseName": "position",
             "type": "number"
@@ -2115,7 +2203,6 @@ export class OrderRejectedEvent {
     'eventName': string;
     'flipdishEventId': string;
     'createTime': Date;
-    'details': string;
     'position': number;
 
     static discriminator = undefined;
@@ -2152,11 +2239,6 @@ export class OrderRejectedEvent {
             "type": "Date"
         },
         {
-            "name": "details",
-            "baseName": "details",
-            "type": "string"
-        },
-        {
             "name": "position",
             "baseName": "position",
             "type": "number"
@@ -2174,7 +2256,6 @@ export class OrderTipUpdatedEvent {
     'eventName': string;
     'flipdishEventId': string;
     'createTime': Date;
-    'details': string;
     'position': number;
 
     static discriminator = undefined;
@@ -2209,11 +2290,6 @@ export class OrderTipUpdatedEvent {
             "name": "createTime",
             "baseName": "createTime",
             "type": "Date"
-        },
-        {
-            "name": "details",
-            "baseName": "details",
-            "type": "string"
         },
         {
             "name": "position",
@@ -3357,7 +3433,6 @@ export class StoreCreatedEvent {
     'eventName': string;
     'flipdishEventId': string;
     'createTime': Date;
-    'details': string;
     'position': number;
 
     static discriminator = undefined;
@@ -3392,11 +3467,6 @@ export class StoreCreatedEvent {
             "name": "createTime",
             "baseName": "createTime",
             "type": "Date"
-        },
-        {
-            "name": "details",
-            "baseName": "details",
-            "type": "string"
         },
         {
             "name": "position",
@@ -3416,7 +3486,6 @@ export class StoreDeletedEvent {
     'eventName': string;
     'flipdishEventId': string;
     'createTime': Date;
-    'details': string;
     'position': number;
 
     static discriminator = undefined;
@@ -3451,11 +3520,6 @@ export class StoreDeletedEvent {
             "name": "createTime",
             "baseName": "createTime",
             "type": "Date"
-        },
-        {
-            "name": "details",
-            "baseName": "details",
-            "type": "string"
         },
         {
             "name": "position",
@@ -3475,7 +3539,6 @@ export class StoreDeliveryZoneUpdatedEvent {
     'eventName': string;
     'flipdishEventId': string;
     'createTime': Date;
-    'details': string;
     'position': number;
 
     static discriminator = undefined;
@@ -3510,11 +3573,6 @@ export class StoreDeliveryZoneUpdatedEvent {
             "name": "createTime",
             "baseName": "createTime",
             "type": "Date"
-        },
-        {
-            "name": "details",
-            "baseName": "details",
-            "type": "string"
         },
         {
             "name": "position",
@@ -3563,7 +3621,6 @@ export class StoreOpeningHoursUpdatedEvent {
     'eventName': string;
     'flipdishEventId': string;
     'createTime': Date;
-    'details': string;
     'position': number;
 
     static discriminator = undefined;
@@ -3598,11 +3655,6 @@ export class StoreOpeningHoursUpdatedEvent {
             "name": "createTime",
             "baseName": "createTime",
             "type": "Date"
-        },
-        {
-            "name": "details",
-            "baseName": "details",
-            "type": "string"
         },
         {
             "name": "position",
@@ -3779,7 +3831,6 @@ export class StoreUpdatedEvent {
     'eventName': string;
     'flipdishEventId': string;
     'createTime': Date;
-    'details': string;
     'position': number;
 
     static discriminator = undefined;
@@ -3814,11 +3865,6 @@ export class StoreUpdatedEvent {
             "name": "createTime",
             "baseName": "createTime",
             "type": "Date"
-        },
-        {
-            "name": "details",
-            "baseName": "details",
-            "type": "string"
         },
         {
             "name": "position",
@@ -4138,6 +4184,7 @@ export class WebhookLog {
     'duration': string;
     'retryCount': number;
     'flipdishWebhookId': string;
+    'version': string;
 
     static discriminator = undefined;
 
@@ -4211,6 +4258,11 @@ export class WebhookLog {
             "name": "flipdishWebhookId",
             "baseName": "flipdishWebhookId",
             "type": "string"
+        },
+        {
+            "name": "version",
+            "baseName": "version",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4221,6 +4273,7 @@ export class WebhookLog {
 export class WebhookSubscription {
     'id': number;
     'ownerUserId': number;
+    'version': string;
     'eventNames': Array<string>;
     'callbackUrl': string;
     'enabled': boolean;
@@ -4238,6 +4291,11 @@ export class WebhookSubscription {
             "name": "ownerUserId",
             "baseName": "ownerUserId",
             "type": "number"
+        },
+        {
+            "name": "version",
+            "baseName": "version",
+            "type": "string"
         },
         {
             "name": "eventNames",
@@ -4262,6 +4320,164 @@ export class WebhookSubscription {
 
     static getAttributeTypeMap() {
         return WebhookSubscription.attributeTypeMap;
+    }
+}
+
+export class WebhookSubscriptionCreatedEvent {
+    'webhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "webhookSubscriptionEventInfo",
+            "baseName": "webhookSubscriptionEventInfo",
+            "type": "WebhookSubscriptionEventInfo"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WebhookSubscriptionCreatedEvent.attributeTypeMap;
+    }
+}
+
+export class WebhookSubscriptionDeletedEvent {
+    'webhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "webhookSubscriptionEventInfo",
+            "baseName": "webhookSubscriptionEventInfo",
+            "type": "WebhookSubscriptionEventInfo"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WebhookSubscriptionDeletedEvent.attributeTypeMap;
+    }
+}
+
+export class WebhookSubscriptionEventInfo {
+    'ownerUserId': number;
+    'webhookSubscriptionId': number;
+    'clientId': string;
+    'callbackUrl': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ownerUserId",
+            "baseName": "ownerUserId",
+            "type": "number"
+        },
+        {
+            "name": "webhookSubscriptionId",
+            "baseName": "webhookSubscriptionId",
+            "type": "number"
+        },
+        {
+            "name": "clientId",
+            "baseName": "clientId",
+            "type": "string"
+        },
+        {
+            "name": "callbackUrl",
+            "baseName": "callbackUrl",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WebhookSubscriptionEventInfo.attributeTypeMap;
+    }
+}
+
+export class WebhookSubscriptionUpdatedEvent {
+    'webhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
+    'eventName': string;
+    'flipdishEventId': string;
+    'createTime': Date;
+    'position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "webhookSubscriptionEventInfo",
+            "baseName": "webhookSubscriptionEventInfo",
+            "type": "WebhookSubscriptionEventInfo"
+        },
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
+        {
+            "name": "flipdishEventId",
+            "baseName": "flipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "createTime",
+            "baseName": "createTime",
+            "type": "Date"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WebhookSubscriptionUpdatedEvent.attributeTypeMap;
     }
 }
 
@@ -4296,7 +4512,9 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "Accept": Accept,
     "BusinessHoursPeriod": BusinessHoursPeriod,
+    "CampaignCreatedEvent": CampaignCreatedEvent,
     "Coordinates": Coordinates,
+    "CustomerConsentUpdatedEvent": CustomerConsentUpdatedEvent,
     "CustomerCreatedEvent": CustomerCreatedEvent,
     "CustomerSummary": CustomerSummary,
     "CustomerUpdatedEvent": CustomerUpdatedEvent,
@@ -4384,6 +4602,10 @@ let typeMap: {[index: string]: any} = {
     "VoucherSummary": VoucherSummary,
     "WebhookLog": WebhookLog,
     "WebhookSubscription": WebhookSubscription,
+    "WebhookSubscriptionCreatedEvent": WebhookSubscriptionCreatedEvent,
+    "WebhookSubscriptionDeletedEvent": WebhookSubscriptionDeletedEvent,
+    "WebhookSubscriptionEventInfo": WebhookSubscriptionEventInfo,
+    "WebhookSubscriptionUpdatedEvent": WebhookSubscriptionUpdatedEvent,
 }
 
 export interface Authentication {
