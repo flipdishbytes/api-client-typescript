@@ -7337,8 +7337,9 @@ export class MenuSectionItemsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
      * @param menuSectionItem Menu section item (delta)
+     * @param undoAfter An optional time period, in hours, after which the hide-section operaton will be undone.
      */
-    public updateMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, menuSectionItem: MenuSectionItemBase) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updateMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, menuSectionItem: MenuSectionItemBase, undoAfter?: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -7365,6 +7366,10 @@ export class MenuSectionItemsApi {
         // verify required parameter 'menuSectionItem' is not null or undefined
         if (menuSectionItem === null || menuSectionItem === undefined) {
             throw new Error('Required parameter menuSectionItem was null or undefined when calling updateMenuSectionItem.');
+        }
+
+        if (undoAfter !== undefined) {
+            localVarQueryParameters['undoAfter'] = ObjectSerializer.serialize(undoAfter, "number");
         }
 
 
