@@ -136,7 +136,13 @@ class ObjectSerializer {
     }
 }
 
+/**
+* Accept
+*/
 export class Accept {
+    /**
+    * Estimated minutes for delivery
+    */
     'estimatedMinutesForDelivery': number;
 
     static discriminator = undefined;
@@ -153,14 +159,41 @@ export class Accept {
     }
 }
 
+/**
+* Business hours period
+*/
 export class BusinessHoursPeriod {
+    /**
+    * Day of week
+    */
     'dayOfWeek': BusinessHoursPeriod.DayOfWeekEnum;
+    /**
+    * Start time
+    */
     'startTime': string;
+    /**
+    * Period
+    */
     'period': string;
+    /**
+    * Start time early
+    */
     'startTimeEarly': string;
+    /**
+    * Period early
+    */
     'periodEarly': string;
+    /**
+    * Early
+    */
     'early': Range;
+    /**
+    * Late
+    */
     'late': Range;
+    /**
+    * Ranges
+    */
     'ranges': Array<Range>;
 
     static discriminator = undefined;
@@ -223,18 +256,47 @@ export namespace BusinessHoursPeriod {
         Saturday = <any> 'Saturday'
     }
 }
+/**
+* 
+*/
 export class CampaignCreatedEvent {
-    'campaignId': number;
-    'virtualRestaurantName': string;
-    'virtualRestaurantId': number;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * 
+    */
+    'campaignId': number;
+    /**
+    * 
+    */
+    'virtualRestaurantName': string;
+    /**
+    * 
+    */
+    'virtualRestaurantId': number;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "campaignId",
             "baseName": "campaignId",
@@ -249,11 +311,6 @@ export class CampaignCreatedEvent {
             "name": "virtualRestaurantId",
             "baseName": "virtualRestaurantId",
             "type": "number"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
-            "type": "string"
         },
         {
             "name": "flipdishEventId",
@@ -276,8 +333,17 @@ export class CampaignCreatedEvent {
     }
 }
 
+/**
+* Coordinates
+*/
 export class Coordinates {
+    /**
+    * Latitude
+    */
     'latitude': number;
+    /**
+    * Longitude
+    */
     'longitude': number;
 
     static discriminator = undefined;
@@ -299,18 +365,47 @@ export class Coordinates {
     }
 }
 
+/**
+* Customer consent updated
+*/
 export class CustomerConsentUpdatedEvent {
-    'enabled': boolean;
-    'description': string;
-    'user': UserEventInfo;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * Enabled
+    */
+    'enabled': boolean;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * Customer User info
+    */
+    'user': UserEventInfo;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "enabled",
             "baseName": "enabled",
@@ -325,11 +420,6 @@ export class CustomerConsentUpdatedEvent {
             "name": "user",
             "baseName": "user",
             "type": "UserEventInfo"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
-            "type": "string"
         },
         {
             "name": "flipdishEventId",
@@ -352,18 +442,47 @@ export class CustomerConsentUpdatedEvent {
     }
 }
 
+/**
+* Customer created event
+*/
 export class CustomerCreatedEvent {
-    'whiteLabelId': number;
-    'user': UserEventInfo;
-    'description': string;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * White label identifier
+    */
+    'whiteLabelId': number;
+    /**
+    * Customer User info
+    */
+    'user': UserEventInfo;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "whiteLabelId",
             "baseName": "whiteLabelId",
@@ -377,11 +496,6 @@ export class CustomerCreatedEvent {
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
             "type": "string"
         },
         {
@@ -405,11 +519,29 @@ export class CustomerCreatedEvent {
     }
 }
 
+/**
+* Customer summary
+*/
 export class CustomerSummary {
+    /**
+    * Customer identifier
+    */
     'id': number;
+    /**
+    * Customer name
+    */
     'name': string;
+    /**
+    * Customer email address
+    */
     'emailAddress': string;
+    /**
+    * Customer local phone number
+    */
     'phoneNumberLocalFormat': string;
+    /**
+    * Customer phone number
+    */
     'phoneNumber': string;
 
     static discriminator = undefined;
@@ -446,17 +578,43 @@ export class CustomerSummary {
     }
 }
 
+/**
+* Customer updated event
+*/
 export class CustomerUpdatedEvent {
-    'user': UserEventInfo;
-    'description': string;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * Customer User info
+    */
+    'user': UserEventInfo;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "user",
             "baseName": "user",
@@ -465,11 +623,6 @@ export class CustomerUpdatedEvent {
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
             "type": "string"
         },
         {
@@ -493,8 +646,17 @@ export class CustomerUpdatedEvent {
     }
 }
 
+/**
+* Delivery fee area
+*/
 export class DeliveryFeeArea {
+    /**
+    * Delivery fee
+    */
     'deliveryFee': number;
+    /**
+    * Minimum delivery order amount
+    */
     'minimumDeliveryOrder': number;
 
     static discriminator = undefined;
@@ -516,13 +678,37 @@ export class DeliveryFeeArea {
     }
 }
 
+/**
+* Delivery location
+*/
 export class DeliveryLocation {
+    /**
+    * Geo cordinate
+    */
     'coordinates': Coordinates;
+    /**
+    * Building
+    */
     'building': string;
+    /**
+    * Street
+    */
     'street': string;
+    /**
+    * Town
+    */
     'town': string;
+    /**
+    * Post code
+    */
     'postCode': string;
+    /**
+    * Delivery instructions
+    */
     'deliveryInstructions': string;
+    /**
+    * Formatted, pretty address string
+    */
     'prettyAddressString': string;
 
     static discriminator = undefined;
@@ -569,26 +755,89 @@ export class DeliveryLocation {
     }
 }
 
+/**
+* 
+*/
 export class EventSearchResult {
+    /**
+    * Order accepted events
+    */
     'orderAcceptedEvent': Array<OrderAcceptedEvent>;
+    /**
+    * Order created events
+    */
     'orderCreatedEvent': Array<OrderCreatedEvent>;
+    /**
+    * Order rating updated events
+    */
     'orderRatingUpdatedEvent': Array<OrderRatingUpdatedEvent>;
+    /**
+    * Order refunded events
+    */
     'orderRefundedEvent': Array<OrderRefundedEvent>;
+    /**
+    * Order rejected events
+    */
     'orderRejectedEvent': Array<OrderRejectedEvent>;
+    /**
+    * Order tip updated events
+    */
     'orderTipUpdatedEvent': Array<OrderTipUpdatedEvent>;
+    /**
+    * Store created events
+    */
     'storeCreatedEvent': Array<StoreCreatedEvent>;
+    /**
+    * Store deleted events
+    */
     'storeDeletedEvent': Array<StoreDeletedEvent>;
+    /**
+    * Store delivery zone updated events
+    */
     'storeDeliveryZoneUpdatedEvent': Array<StoreDeliveryZoneUpdatedEvent>;
+    /**
+    * Store opening hours updated events
+    */
     'storeOpeningHoursUpdatedEvent': Array<StoreOpeningHoursUpdatedEvent>;
+    /**
+    * Store updated events
+    */
     'storeUpdatedEvent': Array<StoreUpdatedEvent>;
+    /**
+    * Menu created events
+    */
     'menuCreatedEvent': Array<MenuCreatedEvent>;
+    /**
+    * Menu updated events
+    */
     'menuUpdatedEvent': Array<MenuUpdatedEvent>;
+    /**
+    * Customer created events
+    */
     'customerCreatedEvent': Array<CustomerCreatedEvent>;
+    /**
+    * Customer updated events
+    */
     'customerUpdatedEvent': Array<CustomerUpdatedEvent>;
+    /**
+    * Customer consent updated events
+    */
     'customerConsentUpdatedEvent': Array<CustomerConsentUpdatedEvent>;
+    /**
+    * Campaign created events
+    */
     'campaignCreatedEvent': Array<CampaignCreatedEvent>;
+    /**
+    * Webhook subscription created events
+    */
     'webhookSubscriptionCreatedEvent': Array<WebhookSubscriptionCreatedEvent>;
+    /**
+    * Webhook subscription updated events
+    */
     'webhookSubscriptionUpdatedEvent': Array<WebhookSubscriptionUpdatedEvent>;
+    /**
+    * Webhook subscription deleted events
+    */
     'webhookSubscriptionDeletedEvent': Array<WebhookSubscriptionDeletedEvent>;
 
     static discriminator = undefined;
@@ -700,9 +949,21 @@ export class EventSearchResult {
     }
 }
 
+/**
+* Fee Summary
+*/
 export class FeeSummary {
+    /**
+    * Fee amount
+    */
     'feeAmount': number;
+    /**
+    * Percentage rate
+    */
     'percentageRate': number;
+    /**
+    * Per transaction fee
+    */
     'perTransactionFee': number;
 
     static discriminator = undefined;
@@ -729,20 +990,65 @@ export class FeeSummary {
     }
 }
 
+/**
+* Http Request and Response Log
+*/
 export class HttpRequestAndResponseLog {
+    /**
+    * Verb associated with the HTTP call.
+    */
     'verb': string;
+    /**
+    * Http request URI.
+    */
     'requestUri': string;
+    /**
+    * Http response status code.
+    */
     'statusCode': number;
+    /**
+    * Http response status line.
+    */
     'reasonPhrase': string;
+    /**
+    * Call duration representing the duration of the HTTP call in milliseconds.
+    */
     'callDurationInMilliseconds': number;
+    /**
+    * Identity of the caller.
+    */
     'userId': string;
+    /**
+    * Ip address of the caller
+    */
     'ipAddress': string;
+    /**
+    * Timestamp at which the HTTP call took place.
+    */
     'createdDateTime': string;
+    /**
+    * Http request headers.
+    */
     'requestHeaders': { [key: string]: string; };
+    /**
+    * Http request body, if any.
+    */
     'requestBody': string;
+    /**
+    * Http request content-length
+    */
     'requestLength': number;
+    /**
+    * Http response headers.
+    */
     'responseHeaders': { [key: string]: string; };
+    /**
+    * Http response body.
+    */
     'responseBody': string;
+    /**
+    * Http response content-length
+    */
     'responseLength': number;
 
     static discriminator = undefined;
@@ -824,13 +1130,37 @@ export class HttpRequestAndResponseLog {
     }
 }
 
+/**
+* Menu
+*/
 export class Menu {
+    /**
+    * Menu identifier
+    */
     'menuId': number;
+    /**
+    * Last modified time
+    */
     'modifiedTime': Date;
+    /**
+    * Menu version
+    */
     'versionNumber': number;
+    /**
+    * Image url
+    */
     'imageUrl': string;
+    /**
+    * Menu sections (startes, main etc)
+    */
     'menuSections': Array<MenuSection>;
+    /**
+    * Display menu section link on UI
+    */
     'displaySectionLinks': boolean;
+    /**
+    * Menu section behaviour
+    */
     'menuSectionBehaviour': Menu.MenuSectionBehaviourEnum;
 
     static discriminator = undefined;
@@ -883,8 +1213,17 @@ export namespace Menu {
         ExpandMultiple = <any> 'ExpandMultiple'
     }
 }
+/**
+* Menu base
+*/
 export class MenuBase {
+    /**
+    * Display menu section link on UI
+    */
     'displaySectionLinks': boolean;
+    /**
+    * Menu section behaviour
+    */
     'menuSectionBehaviour': MenuBase.MenuSectionBehaviourEnum;
 
     static discriminator = undefined;
@@ -912,18 +1251,47 @@ export namespace MenuBase {
         ExpandMultiple = <any> 'ExpandMultiple'
     }
 }
+/**
+* Menu created event
+*/
 export class MenuCreatedEvent {
-    'description': string;
-    'user': UserEventInfo;
-    'menu': Menu;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * User who has created the menu
+    */
+    'user': UserEventInfo;
+    /**
+    * The menu
+    */
+    'menu': Menu;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "description",
             "baseName": "description",
@@ -938,11 +1306,6 @@ export class MenuCreatedEvent {
             "name": "menu",
             "baseName": "menu",
             "type": "Menu"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
-            "type": "string"
         },
         {
             "name": "flipdishEventId",
@@ -965,15 +1328,45 @@ export class MenuCreatedEvent {
     }
 }
 
+/**
+* Menu item option set
+*/
 export class MenuItemOptionSet {
+    /**
+    * Menu item option set identifier
+    */
     'menuItemOptionSetId': number;
+    /**
+    * Image url
+    */
     'imageUrl': string;
+    /**
+    * Option set items
+    */
     'menuItemOptionSetItems': Array<MenuItemOptionSetItem>;
+    /**
+    * Menu item option set name
+    */
     'name': string;
+    /**
+    * Is master option set. This can affect the layout of the options in the menu displayed to the customer. Usually it is true if the option could be considerd a standalone item as opposed to an addition (\"with ketchup\") or modifier (\"large\").
+    */
     'isMasterOptionSet': boolean;
+    /**
+    * Display order. Displayed in ascending order.
+    */
     'displayOrder': number;
+    /**
+    * Minimum items must be selected
+    */
     'minSelectCount': number;
+    /**
+    * Maximum number of items can be selected
+    */
     'maxSelectCount': number;
+    /**
+    * Small | Medium | Large  Affects the layout of the menu.
+    */
     'cellLayoutType': MenuItemOptionSet.CellLayoutTypeEnum;
 
     static discriminator = undefined;
@@ -1037,12 +1430,33 @@ export namespace MenuItemOptionSet {
         Large = <any> 'Large'
     }
 }
+/**
+* Menu item option set
+*/
 export class MenuItemOptionSetBase {
+    /**
+    * Menu item option set name
+    */
     'name': string;
+    /**
+    * Is master option set. This can affect the layout of the options in the menu displayed to the customer. Usually it is true if the option could be considerd a standalone item as opposed to an addition (\"with ketchup\") or modifier (\"large\").
+    */
     'isMasterOptionSet': boolean;
+    /**
+    * Display order. Displayed in ascending order.
+    */
     'displayOrder': number;
+    /**
+    * Minimum items must be selected
+    */
     'minSelectCount': number;
+    /**
+    * Maximum number of items can be selected
+    */
     'maxSelectCount': number;
+    /**
+    * Small | Medium | Large  Affects the layout of the menu.
+    */
     'cellLayoutType': MenuItemOptionSetBase.CellLayoutTypeEnum;
 
     static discriminator = undefined;
@@ -1091,13 +1505,37 @@ export namespace MenuItemOptionSetBase {
         Large = <any> 'Large'
     }
 }
+/**
+* Menu item option set item
+*/
 export class MenuItemOptionSetItem {
+    /**
+    * Menu item option set item identifier
+    */
     'menuItemOptionSetItemId': number;
+    /**
+    * Image url
+    */
     'imageUrl': string;
+    /**
+    * Name
+    */
     'name': string;
+    /**
+    * Price
+    */
     'price': number;
+    /**
+    * Is available
+    */
     'isAvailable': boolean;
+    /**
+    * Display order. Displayed in ascending order.
+    */
     'displayOrder': number;
+    /**
+    * Small | Medium | Large  Affects the layout of the menu.
+    */
     'cellLayoutType': MenuItemOptionSetItem.CellLayoutTypeEnum;
 
     static discriminator = undefined;
@@ -1151,11 +1589,29 @@ export namespace MenuItemOptionSetItem {
         Large = <any> 'Large'
     }
 }
+/**
+* Menu item option set item
+*/
 export class MenuItemOptionSetItemBase {
+    /**
+    * Name
+    */
     'name': string;
+    /**
+    * Price
+    */
     'price': number;
+    /**
+    * Is available
+    */
     'isAvailable': boolean;
+    /**
+    * Display order. Displayed in ascending order.
+    */
     'displayOrder': number;
+    /**
+    * Small | Medium | Large  Affects the layout of the menu.
+    */
     'cellLayoutType': MenuItemOptionSetItemBase.CellLayoutTypeEnum;
 
     static discriminator = undefined;
@@ -1199,15 +1655,45 @@ export namespace MenuItemOptionSetItemBase {
         Large = <any> 'Large'
     }
 }
+/**
+* Menu section
+*/
 export class MenuSection {
+    /**
+    * Menu section identifier
+    */
     'menuSectionId': number;
+    /**
+    * Image url
+    */
     'imageUrl': string;
+    /**
+    * Menu items
+    */
     'menuItems': Array<MenuSectionItem>;
+    /**
+    * Menu section availability
+    */
     'menuSectionAvailability': MenuSectionAvailability;
+    /**
+    * Name
+    */
     'name': string;
+    /**
+    * Description
+    */
     'description': string;
+    /**
+    * Display order
+    */
     'displayOrder': number;
+    /**
+    * Is available
+    */
     'isAvailable': boolean;
+    /**
+    * Is hidden from customer. Perhaps when the item is out of stock.
+    */
     'isHiddenFromCustomers': boolean;
 
     static discriminator = undefined;
@@ -1264,8 +1750,17 @@ export class MenuSection {
     }
 }
 
+/**
+* Menu section availability
+*/
 export class MenuSectionAvailability {
+    /**
+    * Available times
+    */
     'availableTimes': Array<BusinessHoursPeriod>;
+    /**
+    * Availability mode
+    */
     'availabilityMode': MenuSectionAvailability.AvailabilityModeEnum;
 
     static discriminator = undefined;
@@ -1295,11 +1790,29 @@ export namespace MenuSectionAvailability {
         DisplayAlwaysStartCollapsedBasedOnTimes = <any> 'DisplayAlwaysStartCollapsedBasedOnTimes'
     }
 }
+/**
+* Menu section
+*/
 export class MenuSectionBase {
+    /**
+    * Name
+    */
     'name': string;
+    /**
+    * Description
+    */
     'description': string;
+    /**
+    * Display order
+    */
     'displayOrder': number;
+    /**
+    * Is available
+    */
     'isAvailable': boolean;
+    /**
+    * Is hidden from customer. Perhaps when the item is out of stock.
+    */
     'isHiddenFromCustomers': boolean;
 
     static discriminator = undefined;
@@ -1336,17 +1849,53 @@ export class MenuSectionBase {
     }
 }
 
+/**
+* Menu item
+*/
 export class MenuSectionItem {
+    /**
+    * Menu item identifier
+    */
     'menuItemId': number;
+    /**
+    * Actual price - the minimum price possible when all required option set items prices are included.
+    */
     'actualPrice': number;
+    /**
+    * Image url
+    */
     'imageUrl': string;
+    /**
+    * Menu item option sets
+    */
     'menuItemOptionSets': Array<MenuItemOptionSet>;
+    /**
+    * Menu item name (like \"Korma\")
+    */
     'name': string;
+    /**
+    * Description (like \"A lovely dish from the east\")
+    */
     'description': string;
+    /**
+    * Spiciness rating
+    */
     'spicinessRating': MenuSectionItem.SpicinessRatingEnum;
+    /**
+    * Price - this is only used when there is no master option set and should be set to 0 if a master option set exists.
+    */
     'price': number;
+    /**
+    * Display order
+    */
     'displayOrder': number;
+    /**
+    * To be set true if the item or an option of the item contains an alcoholic drink.
+    */
     'alcohol': boolean;
+    /**
+    * True if we accept orders for this item still
+    */
     'isAvailable': boolean;
 
     static discriminator = undefined;
@@ -1421,13 +1970,37 @@ export namespace MenuSectionItem {
         Hot = <any> 'Hot'
     }
 }
+/**
+* Menu item
+*/
 export class MenuSectionItemBase {
+    /**
+    * Menu item name (like \"Korma\")
+    */
     'name': string;
+    /**
+    * Description (like \"A lovely dish from the east\")
+    */
     'description': string;
+    /**
+    * Spiciness rating
+    */
     'spicinessRating': MenuSectionItemBase.SpicinessRatingEnum;
+    /**
+    * Price - this is only used when there is no master option set and should be set to 0 if a master option set exists.
+    */
     'price': number;
+    /**
+    * Display order
+    */
     'displayOrder': number;
+    /**
+    * To be set true if the item or an option of the item contains an alcoholic drink.
+    */
     'alcohol': boolean;
+    /**
+    * True if we accept orders for this item still
+    */
     'isAvailable': boolean;
 
     static discriminator = undefined;
@@ -1482,18 +2055,47 @@ export namespace MenuSectionItemBase {
         Hot = <any> 'Hot'
     }
 }
+/**
+* Menu updated event
+*/
 export class MenuUpdatedEvent {
-    'description': string;
-    'user': UserEventInfo;
-    'menu': Menu;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * User who has updated the menu
+    */
+    'user': UserEventInfo;
+    /**
+    * The menu
+    */
+    'menu': Menu;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "description",
             "baseName": "description",
@@ -1508,11 +2110,6 @@ export class MenuUpdatedEvent {
             "name": "menu",
             "baseName": "menu",
             "type": "Menu"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
-            "type": "string"
         },
         {
             "name": "flipdishEventId",
@@ -1535,8 +2132,17 @@ export class MenuUpdatedEvent {
     }
 }
 
+/**
+* Metadata
+*/
 export class Metadata {
+    /**
+    * Metadata key (Unique identifier)
+    */
     'key': string;
+    /**
+    * Metadata value
+    */
     'value': string;
 
     static discriminator = undefined;
@@ -1558,10 +2164,25 @@ export class Metadata {
     }
 }
 
+/**
+* Oauth client (also knowns as 'app')
+*/
 export class OAuthClient {
+    /**
+    * Oauth client identifier
+    */
     'clientId': string;
+    /**
+    * Oauth client name
+    */
     'clientName': string;
+    /**
+    * Oauth client owner user identifier
+    */
     'ownerUserId': number;
+    /**
+    * Oauth client logo uri
+    */
     'logoUri': string;
 
     static discriminator = undefined;
@@ -1593,11 +2214,29 @@ export class OAuthClient {
     }
 }
 
+/**
+* OAuth token model
+*/
 export class OAuthTokenModel {
+    /**
+    * Identitifier key
+    */
     'key': string;
+    /**
+    * Token type
+    */
     'tokenType': string;
+    /**
+    * Oauth subject identifier
+    */
     'subjectId': string;
+    /**
+    * Oauth client identifier
+    */
     'clientId': string;
+    /**
+    * Token expiry
+    */
     'expiry': Date;
 
     static discriminator = undefined;
@@ -1634,8 +2273,17 @@ export class OAuthTokenModel {
     }
 }
 
+/**
+* OAuth client redirect uri
+*/
 export class OauthClientRedirectUri {
+    /**
+    * Redirect uri identifier
+    */
     'id': number;
+    /**
+    * Redirect uri
+    */
     'uri': string;
 
     static discriminator = undefined;
@@ -1657,30 +2305,105 @@ export class OauthClientRedirectUri {
     }
 }
 
+/**
+* Order
+*/
 export class Order {
+    /**
+    * Store summary
+    */
     'store': StoreSummary;
+    /**
+    * Customer summary
+    */
     'customer': CustomerSummary;
+    /**
+    * Voucher summary
+    */
     'voucher': VoucherSummary;
+    /**
+    * Fee summary
+    */
     'fees': FeeSummary;
+    /**
+    * Ordered items
+    */
     'orderItems': Array<OrderItem>;
+    /**
+    * Delivery location for delivery orders
+    */
     'deliveryLocation': DeliveryLocation;
+    /**
+    * Customer location
+    */
     'customerLocation': Coordinates;
+    /**
+    * Order identifier
+    */
     'orderId': number;
+    /**
+    * Delivery type
+    */
     'deliveryType': Order.DeliveryTypeEnum;
+    /**
+    * Pickup location type
+    */
     'pickupLocationType': Order.PickupLocationTypeEnum;
+    /**
+    * Tip amount
+    */
     'tipAmount': number;
+    /**
+    * Delivery amount
+    */
     'deliveryAmount': number;
+    /**
+    * Ordered items amount
+    */
     'orderItemsAmount': number;
+    /**
+    * This is the sum of the OrderItemsAmount, DeliveryAmount, TipAmount and Voucher.Amount (which is usually negative) and OnlineOrderingFee for cash orders.  It does not include the OnlineOrderingFee in the case of card orders as this fee is charged by Flipdish directly to the customer.
+    */
     'amount': number;
+    /**
+    * This contains the online ordering processing fee. For card payments this is charged directly to the customer and for cash orders it is paid by the customer to the store. It is tax inclusive.
+    */
     'processingFee': number;
+    /**
+    * Payment account type
+    */
     'paymentAccountType': Order.PaymentAccountTypeEnum;
+    /**
+    * Payment account description (like Visa ****2371 or Apple Pay. or Cash)
+    */
     'paymentAccountDescription': string;
+    /**
+    * Order state
+    */
     'orderState': Order.OrderStateEnum;
+    /**
+    * Is pre-order
+    */
     'isPreOrder': boolean;
+    /**
+    * Order placed time
+    */
     'placedTime': Date;
+    /**
+    * Order requested for
+    */
     'requestedForTime': Date;
+    /**
+    * Chef note
+    */
     'chefNote': string;
+    /**
+    * Used app type
+    */
     'appType': Order.AppTypeEnum;
+    /**
+    * User rating
+    */
     'userRating': number;
 
     static discriminator = undefined;
@@ -1854,18 +2577,47 @@ export namespace Order {
         PwaIos = <any> 'PwaIos'
     }
 }
+/**
+* Order Accepted Event
+*/
 export class OrderAcceptedEvent {
-    'description': string;
-    'orderAcceptedTime': Date;
-    'order': Order;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * Order Accepted Time
+    */
+    'orderAcceptedTime': Date;
+    /**
+    * Order
+    */
+    'order': Order;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "description",
             "baseName": "description",
@@ -1880,11 +2632,6 @@ export class OrderAcceptedEvent {
             "name": "order",
             "baseName": "order",
             "type": "Order"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
-            "type": "string"
         },
         {
             "name": "flipdishEventId",
@@ -1907,18 +2654,47 @@ export class OrderAcceptedEvent {
     }
 }
 
+/**
+* Order Created Event
+*/
 export class OrderCreatedEvent {
-    'description': string;
-    'orderCreatedTime': Date;
-    'order': Order;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * Order Created Time
+    */
+    'orderCreatedTime': Date;
+    /**
+    * Order
+    */
+    'order': Order;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "description",
             "baseName": "description",
@@ -1933,11 +2709,6 @@ export class OrderCreatedEvent {
             "name": "order",
             "baseName": "order",
             "type": "Order"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
-            "type": "string"
         },
         {
             "name": "flipdishEventId",
@@ -1960,17 +2731,53 @@ export class OrderCreatedEvent {
     }
 }
 
+/**
+* Order item
+*/
 export class OrderItem {
+    /**
+    * Option list
+    */
     'orderItemOptions': Array<OrderItemOption>;
+    /**
+    * Metadata
+    */
     'metadata': { [key: string]: string; };
+    /**
+    * Menu section name
+    */
     'menuSectionName': string;
+    /**
+    * Menu section display order
+    */
     'menuSectionDisplayOrder': number;
+    /**
+    * Name
+    */
     'name': string;
+    /**
+    * Description
+    */
     'description': string;
+    /**
+    * Price
+    */
     'price': number;
+    /**
+    * Price including option set items
+    */
     'priceIncludingOptionSetItems': number;
+    /**
+    * Menu item identifier
+    */
     'menuItemId': number;
+    /**
+    * Menu item display order
+    */
     'menuItemDisplayOrder': number;
+    /**
+    * Is available
+    */
     'isAvailable': boolean;
 
     static discriminator = undefined;
@@ -2037,13 +2844,37 @@ export class OrderItem {
     }
 }
 
+/**
+* Order item option
+*/
 export class OrderItemOption {
+    /**
+    * Metadata
+    */
     'metadata': { [key: string]: string; };
+    /**
+    * Menu item option identifier
+    */
     'menuItemOptionId': number;
+    /**
+    * Is master option set item
+    */
     'isMasterOptionSetItem': boolean;
+    /**
+    * Name
+    */
     'name': string;
+    /**
+    * Price
+    */
     'price': number;
+    /**
+    * Menu item option display order
+    */
     'menuItemOptionDisplayOrder': number;
+    /**
+    * Menu item option set display order
+    */
     'menuItemOptionSetDisplayOrder': number;
 
     static discriminator = undefined;
@@ -2090,18 +2921,47 @@ export class OrderItemOption {
     }
 }
 
+/**
+* Order Rating Update Event
+*/
 export class OrderRatingUpdatedEvent {
-    'newUserRating': number;
-    'description': string;
-    'order': Order;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * New User Rating
+    */
+    'newUserRating': number;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * Order
+    */
+    'order': Order;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "newUserRating",
             "baseName": "newUserRating",
@@ -2116,11 +2976,6 @@ export class OrderRatingUpdatedEvent {
             "name": "order",
             "baseName": "order",
             "type": "Order"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
-            "type": "string"
         },
         {
             "name": "flipdishEventId",
@@ -2143,18 +2998,47 @@ export class OrderRatingUpdatedEvent {
     }
 }
 
+/**
+* Order Refunded Event
+*/
 export class OrderRefundedEvent {
-    'refundedAmount': number;
-    'description': string;
-    'order': Order;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * The amount refunded
+    */
+    'refundedAmount': number;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * Order
+    */
+    'order': Order;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "refundedAmount",
             "baseName": "refundedAmount",
@@ -2169,11 +3053,6 @@ export class OrderRefundedEvent {
             "name": "order",
             "baseName": "order",
             "type": "Order"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
-            "type": "string"
         },
         {
             "name": "flipdishEventId",
@@ -2196,18 +3075,47 @@ export class OrderRefundedEvent {
     }
 }
 
+/**
+* Order Rejected Event
+*/
 export class OrderRejectedEvent {
-    'description': string;
-    'orderRejectedTime': Date;
-    'order': Order;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * Order Rejected Time
+    */
+    'orderRejectedTime': Date;
+    /**
+    * Order
+    */
+    'order': Order;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "description",
             "baseName": "description",
@@ -2222,11 +3130,6 @@ export class OrderRejectedEvent {
             "name": "order",
             "baseName": "order",
             "type": "Order"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
-            "type": "string"
         },
         {
             "name": "flipdishEventId",
@@ -2249,18 +3152,47 @@ export class OrderRejectedEvent {
     }
 }
 
+/**
+* Order Tip Update Event
+*/
 export class OrderTipUpdatedEvent {
-    'newTipAmount': number;
-    'description': string;
-    'order': Order;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * Tip Amount
+    */
+    'newTipAmount': number;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * Order
+    */
+    'order': Order;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "newTipAmount",
             "baseName": "newTipAmount",
@@ -2275,11 +3207,6 @@ export class OrderTipUpdatedEvent {
             "name": "order",
             "baseName": "order",
             "type": "Order"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
-            "type": "string"
         },
         {
             "name": "flipdishEventId",
@@ -2302,9 +3229,21 @@ export class OrderTipUpdatedEvent {
     }
 }
 
+/**
+* A class that represents a single opening period in a day.  This starts 'StartTime' after midnight and runs for a 'Period'  after that, on the given DayOfWeek.
+*/
 export class Range {
+    /**
+    * Start time
+    */
     'startTime': string;
+    /**
+    * Period
+    */
     'period': string;
+    /**
+    * Day of week
+    */
     'dayOfWeek': Range.DayOfWeekEnum;
 
     static discriminator = undefined;
@@ -2342,9 +3281,21 @@ export namespace Range {
         Saturday = <any> 'Saturday'
     }
 }
+/**
+* Refund
+*/
 export class Refund {
+    /**
+    * Refund reason
+    */
     'refundReason': string;
+    /**
+    * Refund amount
+    */
     'refundAmount': number;
+    /**
+    * If ture, the system sends notification to the customer about the refund
+    */
     'notifyCustomer': boolean;
 
     static discriminator = undefined;
@@ -2371,7 +3322,13 @@ export class Refund {
     }
 }
 
+/**
+* Reject
+*/
 export class Reject {
+    /**
+    * Reject reason
+    */
     'rejectReason': Reject.RejectReasonEnum;
 
     static discriminator = undefined;
@@ -2401,7 +3358,13 @@ export namespace Reject {
         StoreUncontactable = <any> 'StoreUncontactable'
     }
 }
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultMenuItemOptionSet {
+    /**
+    * Generic data object.
+    */
     'data': Array<MenuItemOptionSet>;
 
     static discriminator = undefined;
@@ -2418,7 +3381,13 @@ export class RestApiArrayResultMenuItemOptionSet {
     }
 }
 
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultMenuItemOptionSetItem {
+    /**
+    * Generic data object.
+    */
     'data': Array<MenuItemOptionSetItem>;
 
     static discriminator = undefined;
@@ -2435,7 +3404,13 @@ export class RestApiArrayResultMenuItemOptionSetItem {
     }
 }
 
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultMenuSection {
+    /**
+    * Generic data object.
+    */
     'data': Array<MenuSection>;
 
     static discriminator = undefined;
@@ -2452,7 +3427,13 @@ export class RestApiArrayResultMenuSection {
     }
 }
 
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultMenuSectionItem {
+    /**
+    * Generic data object.
+    */
     'data': Array<MenuSectionItem>;
 
     static discriminator = undefined;
@@ -2469,7 +3450,13 @@ export class RestApiArrayResultMenuSectionItem {
     }
 }
 
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultMetadata {
+    /**
+    * Generic data object.
+    */
     'data': Array<Metadata>;
 
     static discriminator = undefined;
@@ -2486,7 +3473,13 @@ export class RestApiArrayResultMetadata {
     }
 }
 
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultOAuthClient {
+    /**
+    * Generic data object.
+    */
     'data': Array<OAuthClient>;
 
     static discriminator = undefined;
@@ -2503,7 +3496,13 @@ export class RestApiArrayResultOAuthClient {
     }
 }
 
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultOauthClientRedirectUri {
+    /**
+    * Generic data object.
+    */
     'data': Array<OauthClientRedirectUri>;
 
     static discriminator = undefined;
@@ -2520,7 +3519,13 @@ export class RestApiArrayResultOauthClientRedirectUri {
     }
 }
 
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultRestApiDefaultResponse {
+    /**
+    * Generic data object.
+    */
     'data': Array<RestApiDefaultResponse>;
 
     static discriminator = undefined;
@@ -2537,7 +3542,13 @@ export class RestApiArrayResultRestApiDefaultResponse {
     }
 }
 
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultWebhookSubscription {
+    /**
+    * Generic data object.
+    */
     'data': Array<WebhookSubscription>;
 
     static discriminator = undefined;
@@ -2554,7 +3565,13 @@ export class RestApiArrayResultWebhookSubscription {
     }
 }
 
+/**
+* Rest api default response
+*/
 export class RestApiDefaultResponse {
+    /**
+    * Data string
+    */
     'data': string;
 
     static discriminator = undefined;
@@ -2571,8 +3588,17 @@ export class RestApiDefaultResponse {
     }
 }
 
+/**
+* Rest api error result
+*/
 export class RestApiErrorResult {
+    /**
+    * Error message
+    */
     'message': string;
+    /**
+    * List of errors grouped by field name
+    */
     'errors': Array<ValidationErrorResult>;
 
     static discriminator = undefined;
@@ -2594,10 +3620,25 @@ export class RestApiErrorResult {
     }
 }
 
+/**
+* 
+*/
 export class RestApiEventSearchPaginationResult {
+    /**
+    * Event results
+    */
     'data': EventSearchResult;
+    /**
+    * Current page index
+    */
     'page': number;
+    /**
+    * Current page size
+    */
     'limit': number;
+    /**
+    * Total record count
+    */
     'totalRecordCount': number;
 
     static discriminator = undefined;
@@ -2629,7 +3670,13 @@ export class RestApiEventSearchPaginationResult {
     }
 }
 
+/**
+* Rest Api Forbidden Result
+*/
 export class RestApiForbiddenResult {
+    /**
+    * Message
+    */
     'message': string;
 
     static discriminator = undefined;
@@ -2646,7 +3693,13 @@ export class RestApiForbiddenResult {
     }
 }
 
+/**
+* Rest api integer result
+*/
 export class RestApiIntegerResult {
+    /**
+    * Data integer
+    */
     'data': number;
 
     static discriminator = undefined;
@@ -2663,10 +3716,25 @@ export class RestApiIntegerResult {
     }
 }
 
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultHttpRequestAndResponseLog {
+    /**
+    * Current page index
+    */
     'page': number;
+    /**
+    * Current page size
+    */
     'limit': number;
+    /**
+    * Total record count
+    */
     'totalRecordCount': number;
+    /**
+    * Generic data object.
+    */
     'data': Array<HttpRequestAndResponseLog>;
 
     static discriminator = undefined;
@@ -2698,10 +3766,25 @@ export class RestApiPaginationResultHttpRequestAndResponseLog {
     }
 }
 
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultOAuthTokenModel {
+    /**
+    * Current page index
+    */
     'page': number;
+    /**
+    * Current page size
+    */
     'limit': number;
+    /**
+    * Total record count
+    */
     'totalRecordCount': number;
+    /**
+    * Generic data object.
+    */
     'data': Array<OAuthTokenModel>;
 
     static discriminator = undefined;
@@ -2733,10 +3816,25 @@ export class RestApiPaginationResultOAuthTokenModel {
     }
 }
 
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultOrder {
+    /**
+    * Current page index
+    */
     'page': number;
+    /**
+    * Current page size
+    */
     'limit': number;
+    /**
+    * Total record count
+    */
     'totalRecordCount': number;
+    /**
+    * Generic data object.
+    */
     'data': Array<Order>;
 
     static discriminator = undefined;
@@ -2768,10 +3866,25 @@ export class RestApiPaginationResultOrder {
     }
 }
 
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultStore {
+    /**
+    * Current page index
+    */
     'page': number;
+    /**
+    * Current page size
+    */
     'limit': number;
+    /**
+    * Total record count
+    */
     'totalRecordCount': number;
+    /**
+    * Generic data object.
+    */
     'data': Array<Store>;
 
     static discriminator = undefined;
@@ -2803,10 +3916,25 @@ export class RestApiPaginationResultStore {
     }
 }
 
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultVoucher {
+    /**
+    * Current page index
+    */
     'page': number;
+    /**
+    * Current page size
+    */
     'limit': number;
+    /**
+    * Total record count
+    */
     'totalRecordCount': number;
+    /**
+    * Generic data object.
+    */
     'data': Array<Voucher>;
 
     static discriminator = undefined;
@@ -2838,10 +3966,25 @@ export class RestApiPaginationResultVoucher {
     }
 }
 
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultWebhookLog {
+    /**
+    * Current page index
+    */
     'page': number;
+    /**
+    * Current page size
+    */
     'limit': number;
+    /**
+    * Total record count
+    */
     'totalRecordCount': number;
+    /**
+    * Generic data object.
+    */
     'data': Array<WebhookLog>;
 
     static discriminator = undefined;
@@ -2873,7 +4016,13 @@ export class RestApiPaginationResultWebhookLog {
     }
 }
 
+/**
+* Rest api result
+*/
 export class RestApiResultMenu {
+    /**
+    * Generic data object.
+    */
     'data': Menu;
 
     static discriminator = undefined;
@@ -2890,7 +4039,13 @@ export class RestApiResultMenu {
     }
 }
 
+/**
+* Rest api result
+*/
 export class RestApiResultMenuItemOptionSet {
+    /**
+    * Generic data object.
+    */
     'data': MenuItemOptionSet;
 
     static discriminator = undefined;
@@ -2907,7 +4062,13 @@ export class RestApiResultMenuItemOptionSet {
     }
 }
 
+/**
+* Rest api result
+*/
 export class RestApiResultMenuItemOptionSetItem {
+    /**
+    * Generic data object.
+    */
     'data': MenuItemOptionSetItem;
 
     static discriminator = undefined;
@@ -2924,7 +4085,13 @@ export class RestApiResultMenuItemOptionSetItem {
     }
 }
 
+/**
+* Rest api result
+*/
 export class RestApiResultMenuSection {
+    /**
+    * Generic data object.
+    */
     'data': MenuSection;
 
     static discriminator = undefined;
@@ -2941,7 +4108,13 @@ export class RestApiResultMenuSection {
     }
 }
 
+/**
+* Rest api result
+*/
 export class RestApiResultMenuSectionItem {
+    /**
+    * Generic data object.
+    */
     'data': MenuSectionItem;
 
     static discriminator = undefined;
@@ -2958,7 +4131,13 @@ export class RestApiResultMenuSectionItem {
     }
 }
 
+/**
+* Rest api result
+*/
 export class RestApiResultMetadata {
+    /**
+    * Generic data object.
+    */
     'data': Metadata;
 
     static discriminator = undefined;
@@ -2975,7 +4154,13 @@ export class RestApiResultMetadata {
     }
 }
 
+/**
+* Rest api result
+*/
 export class RestApiResultOAuthClient {
+    /**
+    * Generic data object.
+    */
     'data': OAuthClient;
 
     static discriminator = undefined;
@@ -2992,7 +4177,13 @@ export class RestApiResultOAuthClient {
     }
 }
 
+/**
+* Rest api result
+*/
 export class RestApiResultOauthClientRedirectUri {
+    /**
+    * Generic data object.
+    */
     'data': OauthClientRedirectUri;
 
     static discriminator = undefined;
@@ -3009,7 +4200,13 @@ export class RestApiResultOauthClientRedirectUri {
     }
 }
 
+/**
+* Rest api result
+*/
 export class RestApiResultOrder {
+    /**
+    * Generic data object.
+    */
     'data': Order;
 
     static discriminator = undefined;
@@ -3026,7 +4223,13 @@ export class RestApiResultOrder {
     }
 }
 
+/**
+* Rest api result
+*/
 export class RestApiResultStore {
+    /**
+    * Generic data object.
+    */
     'data': Store;
 
     static discriminator = undefined;
@@ -3043,7 +4246,13 @@ export class RestApiResultStore {
     }
 }
 
+/**
+* Rest api result
+*/
 export class RestApiResultVoucher {
+    /**
+    * Generic data object.
+    */
     'data': Voucher;
 
     static discriminator = undefined;
@@ -3060,7 +4269,13 @@ export class RestApiResultVoucher {
     }
 }
 
+/**
+* Rest api string array result
+*/
 export class RestApiStringArrayResult {
+    /**
+    * Data string array
+    */
     'data': Array<string>;
 
     static discriminator = undefined;
@@ -3077,7 +4292,13 @@ export class RestApiStringArrayResult {
     }
 }
 
+/**
+* Rest api string result
+*/
 export class RestApiStringResult {
+    /**
+    * Data string
+    */
     'data': string;
 
     static discriminator = undefined;
@@ -3094,7 +4315,13 @@ export class RestApiStringResult {
     }
 }
 
+/**
+* Rest api unauthorized result
+*/
 export class RestApiUnauthorizedResult {
+    /**
+    * Message
+    */
     'message': string;
 
     static discriminator = undefined;
@@ -3111,11 +4338,29 @@ export class RestApiUnauthorizedResult {
     }
 }
 
+/**
+* Search Criteria
+*/
 export class SearchCriteria {
+    /**
+    * The maximum elements to return
+    */
     'limit': number;
+    /**
+    * The index of the page to return, starting by 1
+    */
     'page': number;
+    /**
+    * Start date
+    */
     'start': Date;
+    /**
+    * End date
+    */
     'end': Date;
+    /**
+    * Event names to filter in
+    */
     'name': Array<string>;
 
     static discriminator = undefined;
@@ -3152,40 +4397,145 @@ export class SearchCriteria {
     }
 }
 
+/**
+* Store
+*/
 export class Store {
+    /**
+    * Store identifier
+    */
     'storeId': number;
+    /**
+    * Name
+    */
     'name': string;
+    /**
+    * Automated Phone Marketing number
+    */
     'apmPhoneNumber': string;
+    /**
+    * Phone number
+    */
     'phoneNumber': string;
+    /**
+    * Email address (visible to customers)
+    */
     'emailAddress': string;
+    /**
+    * Store address
+    */
     'address': StoreAddress;
+    /**
+    * True if the store accepts pre-orders
+    */
     'preOrderEnabled': boolean;
+    /**
+    * True if the store accepts take-out orders
+    */
     'takeOutEnabled': boolean;
+    /**
+    * True if the store has table service
+    */
     'tableServiceEnabled': boolean;
+    /**
+    * True if the store accepts dine-in orders
+    */
     'dineInEnabled': boolean;
+    /**
+    * True if both pre-orders and talbe service can be enabled
+    */
     'allowPreOrdersAndTableService': boolean;
+    /**
+    * True if the store accepts pickup orders
+    */
     'pickupEnabled': boolean;
+    /**
+    * True if the store accepts delivery orders
+    */
     'deliveryEnabled': boolean;
+    /**
+    * True if the store accepts card payment for delivery orders
+    */
     'cardOrderDeliveryEnabled': boolean;
+    /**
+    * True if the store accepts cash payment for delivery orders
+    */
     'cashOrdersDeliveryEnabled': boolean;
+    /**
+    * True if the store accepts card payment for pickup orders
+    */
     'cardOrdersPickupEnabled': boolean;
+    /**
+    * True if the store accepts cash payment for pickup orders
+    */
     'cashOrdersPickupEnabled': boolean;
+    /**
+    * True if the store accepts tips
+    */
     'tipsEnabled': boolean;
+    /**
+    * True if the stores orders are automatically accepted in Flipdish
+    */
     'automaticallyAcceptOrders': boolean;
+    /**
+    * True if the store is open for delivery
+    */
     'openForDelivery': boolean;
+    /**
+    * True if the store is open for pickup
+    */
     'openForPickup': boolean;
+    /**
+    * Minimum pickup order amount
+    */
     'minimumPickupOrderAmount': number;
+    /**
+    * Delivery fee areas
+    */
     'deliveryFeeAreas': Array<DeliveryFeeArea>;
+    /**
+    * True if customer name required for pickup orders
+    */
     'requireCustomerNameForPickup': boolean;
+    /**
+    * True if customer name required for delivery orders
+    */
     'requireCustomerNameForDelivery': boolean;
+    /**
+    * Pickup hours
+    */
     'pickupHours': Array<BusinessHoursPeriod>;
+    /**
+    * Delivery hours
+    */
     'deliveryHours': Array<BusinessHoursPeriod>;
+    /**
+    * Microsoft Time Zone Index Values (https://msdn.microsoft.com/en-us/library/ms912391)
+    */
     'microsoftTimeZone': string;
+    /**
+    * IANA Time Zone (https://www.iana.org/time-zones)
+    */
     'ianaTimeZone': string;
+    /**
+    * Menu identifier
+    */
     'menuId': number;
+    /**
+    * Overridden confirmation message for delivery orders
+    */
     'orderConfirmationMessageOverrideDelivery': string;
+    /**
+    * Overridden confirmation message for pickup orders
+    */
     'orderConfirmationMessageOverridePickup': string;
+    /**
+    * Printout layout
+    */
     'printoutLayoutType': Store.PrintoutLayoutTypeEnum;
+    /**
+    * Store notes
+    */
     'storeNotes': Array<StoreNote>;
 
     static discriminator = undefined;
@@ -3373,13 +4723,37 @@ export namespace Store {
         Centra = <any> 'Centra'
     }
 }
+/**
+* Store address
+*/
 export class StoreAddress {
+    /**
+    * Address identifier
+    */
     'addressId': number;
+    /**
+    * Address line 1
+    */
     'line1': string;
+    /**
+    * Postcode
+    */
     'postcode': string;
+    /**
+    * City
+    */
     'city': string;
+    /**
+    * Country code (ISO-alpha2)
+    */
     'countryCode': string;
+    /**
+    * Display for customer
+    */
     'displayForCustomer': string;
+    /**
+    * Coordinate
+    */
     'coordinates': Coordinates;
 
     static discriminator = undefined;
@@ -3426,18 +4800,47 @@ export class StoreAddress {
     }
 }
 
+/**
+* Store Created Event
+*/
 export class StoreCreatedEvent {
-    'storeId': number;
-    'user': UserEventInfo;
-    'description': string;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * Store Id
+    */
+    'storeId': number;
+    /**
+    * Info User
+    */
+    'user': UserEventInfo;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "storeId",
             "baseName": "storeId",
@@ -3451,11 +4854,6 @@ export class StoreCreatedEvent {
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
             "type": "string"
         },
         {
@@ -3479,18 +4877,47 @@ export class StoreCreatedEvent {
     }
 }
 
+/**
+* Store Deleted Event
+*/
 export class StoreDeletedEvent {
-    'storeId': number;
-    'user': UserEventInfo;
-    'description': string;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * Store Id
+    */
+    'storeId': number;
+    /**
+    * Info User
+    */
+    'user': UserEventInfo;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "storeId",
             "baseName": "storeId",
@@ -3504,11 +4931,6 @@ export class StoreDeletedEvent {
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
             "type": "string"
         },
         {
@@ -3532,18 +4954,47 @@ export class StoreDeletedEvent {
     }
 }
 
+/**
+* Store Delivery Zone Updated Event
+*/
 export class StoreDeliveryZoneUpdatedEvent {
-    'storeId': number;
-    'user': UserEventInfo;
-    'description': string;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * Store Id
+    */
+    'storeId': number;
+    /**
+    * Info User
+    */
+    'user': UserEventInfo;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "storeId",
             "baseName": "storeId",
@@ -3557,11 +5008,6 @@ export class StoreDeliveryZoneUpdatedEvent {
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
             "type": "string"
         },
         {
@@ -3585,9 +5031,21 @@ export class StoreDeliveryZoneUpdatedEvent {
     }
 }
 
+/**
+* Store note
+*/
 export class StoreNote {
+    /**
+    * User identifier
+    */
     'userId': number;
+    /**
+    * Create time
+    */
     'createTime': Date;
+    /**
+    * Note
+    */
     'note': string;
 
     static discriminator = undefined;
@@ -3614,18 +5072,47 @@ export class StoreNote {
     }
 }
 
+/**
+* Store Opening Hours Updated Event
+*/
 export class StoreOpeningHoursUpdatedEvent {
-    'storeId': number;
-    'user': UserEventInfo;
-    'description': string;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * Store Id
+    */
+    'storeId': number;
+    /**
+    * Info User
+    */
+    'user': UserEventInfo;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "storeId",
             "baseName": "storeId",
@@ -3639,11 +5126,6 @@ export class StoreOpeningHoursUpdatedEvent {
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
             "type": "string"
         },
         {
@@ -3667,11 +5149,29 @@ export class StoreOpeningHoursUpdatedEvent {
     }
 }
 
+/**
+* Store summary
+*/
 export class StoreSummary {
+    /**
+    * Store identifier
+    */
     'id': number;
+    /**
+    * Store name
+    */
     'name': string;
+    /**
+    * Stores menu identifier
+    */
     'menuId': number;
+    /**
+    * Store metadata
+    */
     'metadata': { [key: string]: string; };
+    /**
+    * Currency which used by the Store
+    */
     'currency': StoreSummary.CurrencyEnum;
 
     static discriminator = undefined;
@@ -3824,18 +5324,47 @@ export namespace StoreSummary {
         TWD = <any> 'TWD'
     }
 }
+/**
+* Store Updated Event
+*/
 export class StoreUpdatedEvent {
-    'storeId': number;
-    'user': UserEventInfo;
-    'description': string;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * Store Id
+    */
+    'storeId': number;
+    /**
+    * Info User
+    */
+    'user': UserEventInfo;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "eventName",
+            "baseName": "eventName",
+            "type": "string"
+        },
         {
             "name": "storeId",
             "baseName": "storeId",
@@ -3849,11 +5378,6 @@ export class StoreUpdatedEvent {
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
-        },
-        {
-            "name": "eventName",
-            "baseName": "eventName",
             "type": "string"
         },
         {
@@ -3877,10 +5401,25 @@ export class StoreUpdatedEvent {
     }
 }
 
+/**
+* User Event Info
+*/
 export class UserEventInfo {
+    /**
+    * User Id
+    */
     'userId': number;
+    /**
+    * UserName
+    */
     'userName': string;
+    /**
+    * User Phone Number
+    */
     'userPhoneNumber': string;
+    /**
+    * User Email
+    */
     'userEmail': string;
 
     static discriminator = undefined;
@@ -3912,8 +5451,17 @@ export class UserEventInfo {
     }
 }
 
+/**
+* Validation error result
+*/
 export class ValidationErrorResult {
+    /**
+    * Field name
+    */
     'fieldName': string;
+    /**
+    * List of errors relates to field
+    */
     'errors': Array<string>;
 
     static discriminator = undefined;
@@ -3935,29 +5483,101 @@ export class ValidationErrorResult {
     }
 }
 
+/**
+* Voucher
+*/
 export class Voucher {
+    /**
+    * Voucher identifier
+    */
     'voucherId': number;
+    /**
+    * Voucher type
+    */
     'voucherType': Voucher.VoucherTypeEnum;
+    /**
+    * Is voucher enabled
+    */
     'isEnabled': boolean;
+    /**
+    * Is voucher used up
+    */
     'isUsedUp': boolean;
+    /**
+    * Voucher subtype
+    */
     'voucherSubType': Voucher.VoucherSubTypeEnum;
+    /**
+    * Public description
+    */
     'publicDescription': string;
+    /**
+    * Private description
+    */
     'privateDescription': string;
+    /**
+    * Valid from
+    */
     'validFrom': Date;
+    /**
+    * Expiry
+    */
     'expiry': Date;
+    /**
+    * Define who foots the bill for the voucher
+    */
     'voucherPayer': Voucher.VoucherPayerEnum;
+    /**
+    * Define whether we show the fact that a voucher was applied to the restaurant
+    */
     'isVisibleToStore': boolean;
+    /**
+    * Is reusable
+    */
     'isReusable': boolean;
+    /**
+    * Is valid for delivery orders
+    */
     'isValidForDeliveryOrders': boolean;
+    /**
+    * Is valid for pickup orders
+    */
     'isValidForPickupOrders': boolean;
+    /**
+    * Is valid for card orders
+    */
     'isValidForCardOrders': boolean;
+    /**
+    * Is valid for cash orders
+    */
     'isValidForCashOrders': boolean;
+    /**
+    * Is valid for first order only
+    */
     'isValidForFirstOrderOnly': boolean;
+    /**
+    * Minimum order amount.
+    */
     'minimumOrderAmount': number;
+    /**
+    * Is valid once per customer
+    */
     'isValidOncePerCustomer': boolean;
+    /**
+    * Auto apply
+    */
     'autoApply': boolean;
+    /**
+    * Auto apply order.  Lower numbers get applied first.
+    */
     'autoApplyOrder': number;
+    /**
+    * Include delivery fee
+    */
     'includeDeliveryFee': boolean;
+    /**
+    * Voucher code
+    */
     'code': string;
 
     static discriminator = undefined;
@@ -4105,12 +5725,33 @@ export namespace Voucher {
         Store = <any> 'Store'
     }
 }
+/**
+* Voucher summary
+*/
 export class VoucherSummary {
+    /**
+    * Voucher name
+    */
     'name': string;
+    /**
+    * Voucher description
+    */
     'description': string;
+    /**
+    * Voucher code
+    */
     'code': string;
+    /**
+    * Voucher amount
+    */
     'amount': number;
+    /**
+    * Voucher type
+    */
     'type': VoucherSummary.TypeEnum;
+    /**
+    * Voucher sub type
+    */
     'subType': VoucherSummary.SubTypeEnum;
 
     static discriminator = undefined;
@@ -4169,21 +5810,69 @@ export namespace VoucherSummary {
         Custom = <any> 'Custom'
     }
 }
+/**
+* Webhook log
+*/
 export class WebhookLog {
+    /**
+    * Webhook subscription owner user identifier
+    */
     'webhookSubscriptionOwnerUserId': number;
+    /**
+    * Event created
+    */
     'eventCreated': string;
+    /**
+    * Webhook triggered
+    */
     'webhookTriggered': string;
+    /**
+    * Webhook event name
+    */
     'webhookEventName': string;
+    /**
+    * Webhook subscription callback url
+    */
     'webhookSubscriptionCallbackUrl': string;
+    /**
+    * Received HTTP repsonse status HTTP code
+    */
     'httpResponseStatusCode': string;
+    /**
+    * Received HTTP repsonse status
+    */
     'httpResponseStatus': string;
+    /**
+    * Request headers
+    */
     'requestHeaders': string;
+    /**
+    * Request body
+    */
     'requestBody': string;
+    /**
+    * Received response headers
+    */
     'responseHeaders': string;
+    /**
+    * Received response body
+    */
     'responseBody': string;
+    /**
+    * Duration of HTTP request
+    */
     'duration': string;
+    /**
+    * Retry count
+    */
     'retryCount': number;
+    /**
+    * Flipdish webhook identifier
+    */
     'flipdishWebhookId': string;
+    /**
+    * Flipdish webhook version
+    */
     'version': string;
 
     static discriminator = undefined;
@@ -4270,13 +5959,37 @@ export class WebhookLog {
     }
 }
 
+/**
+* Webhook subscription
+*/
 export class WebhookSubscription {
+    /**
+    * Webhook subscription identifier
+    */
     'id': number;
+    /**
+    * Webhook subscription owner user identifier
+    */
     'ownerUserId': number;
+    /**
+    * Webhook subscription owner user identifier
+    */
     'version': string;
+    /**
+    * Webhook subscription event names
+    */
     'eventNames': Array<string>;
+    /**
+    * Callback url. Flipdish system POST messages to this url.
+    */
     'callbackUrl': string;
+    /**
+    * Is webhook subscription enabled.
+    */
     'enabled': boolean;
+    /**
+    * This is your token which will be in the Header of each POST request from Flipdish with name: X-Verify-Token.
+    */
     'verifyToken': string;
 
     static discriminator = undefined;
@@ -4323,25 +6036,43 @@ export class WebhookSubscription {
     }
 }
 
+/**
+* 
+*/
 export class WebhookSubscriptionCreatedEvent {
-    'webhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * Webhook subscription details
+    */
+    'webhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "webhookSubscriptionEventInfo",
-            "baseName": "webhookSubscriptionEventInfo",
-            "type": "WebhookSubscriptionEventInfo"
-        },
-        {
             "name": "eventName",
             "baseName": "eventName",
             "type": "string"
+        },
+        {
+            "name": "webhookSubscriptionEventInfo",
+            "baseName": "webhookSubscriptionEventInfo",
+            "type": "WebhookSubscriptionEventInfo"
         },
         {
             "name": "flipdishEventId",
@@ -4364,25 +6095,43 @@ export class WebhookSubscriptionCreatedEvent {
     }
 }
 
+/**
+* 
+*/
 export class WebhookSubscriptionDeletedEvent {
-    'webhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * Webhook subscription details
+    */
+    'webhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "webhookSubscriptionEventInfo",
-            "baseName": "webhookSubscriptionEventInfo",
-            "type": "WebhookSubscriptionEventInfo"
-        },
-        {
             "name": "eventName",
             "baseName": "eventName",
             "type": "string"
+        },
+        {
+            "name": "webhookSubscriptionEventInfo",
+            "baseName": "webhookSubscriptionEventInfo",
+            "type": "WebhookSubscriptionEventInfo"
         },
         {
             "name": "flipdishEventId",
@@ -4405,10 +6154,25 @@ export class WebhookSubscriptionDeletedEvent {
     }
 }
 
+/**
+* 
+*/
 export class WebhookSubscriptionEventInfo {
+    /**
+    * Webhook subscription owner user identifier
+    */
     'ownerUserId': number;
+    /**
+    * Webhook subscription identifier
+    */
     'webhookSubscriptionId': number;
+    /**
+    * Oauth client identifier
+    */
     'clientId': string;
+    /**
+    * Webhook callback url
+    */
     'callbackUrl': string;
 
     static discriminator = undefined;
@@ -4440,25 +6204,43 @@ export class WebhookSubscriptionEventInfo {
     }
 }
 
+/**
+* 
+*/
 export class WebhookSubscriptionUpdatedEvent {
-    'webhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
+    /**
+    * The event name
+    */
     'eventName': string;
+    /**
+    * Webhook subscription details
+    */
+    'webhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
+    /**
+    * The identitfier of the event
+    */
     'flipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
     'createTime': Date;
+    /**
+    * Position
+    */
     'position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "webhookSubscriptionEventInfo",
-            "baseName": "webhookSubscriptionEventInfo",
-            "type": "WebhookSubscriptionEventInfo"
-        },
-        {
             "name": "eventName",
             "baseName": "eventName",
             "type": "string"
+        },
+        {
+            "name": "webhookSubscriptionEventInfo",
+            "baseName": "webhookSubscriptionEventInfo",
+            "type": "WebhookSubscriptionEventInfo"
         },
         {
             "name": "flipdishEventId",
@@ -4878,7 +6660,7 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get order events
+     * @summary Get customer events
      * @param customerId Customer identifier identifier
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
@@ -5101,7 +6883,7 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get Menu Events
+     * @summary Get menu events
      * @param menuId Menu Identifier
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
@@ -5424,7 +7206,7 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get order events
+     * @summary Get user events
      * @param userId User identifier
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
@@ -5504,7 +7286,7 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get White Label Events
+     * @summary Get WhiteLabel events
      * @param whitelabelId White Label Identifier
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
