@@ -7994,7 +7994,7 @@ export class MenuOptionSetItemsApi {
      * @param menuItemOptionSetItem Option set item (delta)
      * @param undoAfter An optional time period, in hours, after which the hide-section operaton will be undone.
      */
-    public updateMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase, undoAfter: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updateMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase, undoAfter?: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -8033,11 +8033,6 @@ export class MenuOptionSetItemsApi {
         // verify required parameter 'menuItemOptionSetItem' is not null or undefined
         if (menuItemOptionSetItem === null || menuItemOptionSetItem === undefined) {
             throw new Error('Required parameter menuItemOptionSetItem was null or undefined when calling updateMenuItemOptionSetItem.');
-        }
-
-        // verify required parameter 'undoAfter' is not null or undefined
-        if (undoAfter === null || undoAfter === undefined) {
-            throw new Error('Required parameter undoAfter was null or undefined when calling updateMenuItemOptionSetItem.');
         }
 
         if (undoAfter !== undefined) {
