@@ -143,14 +143,14 @@ export class Accept {
     /**
     * Estimated minutes for delivery
     */
-    'estimatedMinutesForDelivery': number;
+    'EstimatedMinutesForDelivery': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "estimatedMinutesForDelivery",
-            "baseName": "estimatedMinutesForDelivery",
+            "name": "EstimatedMinutesForDelivery",
+            "baseName": "EstimatedMinutesForDelivery",
             "type": "number"
         }    ];
 
@@ -166,77 +166,77 @@ export class BusinessHoursPeriod {
     /**
     * Day of week
     */
-    'dayOfWeek': BusinessHoursPeriod.DayOfWeekEnum;
+    'DayOfWeek': BusinessHoursPeriod.DayOfWeekEnum;
     /**
     * Start time
     */
-    'startTime': string;
+    'StartTime': string;
     /**
     * Period
     */
-    'period': string;
+    'Period': string;
     /**
     * Start time early
     */
-    'startTimeEarly': string;
+    'StartTimeEarly': string;
     /**
     * Period early
     */
-    'periodEarly': string;
+    'PeriodEarly': string;
     /**
     * Early
     */
-    'early': Range;
+    'Early': Range;
     /**
     * Late
     */
-    'late': Range;
+    'Late': Range;
     /**
     * Ranges
     */
-    'ranges': Array<Range>;
+    'Ranges': Array<Range>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "dayOfWeek",
-            "baseName": "dayOfWeek",
+            "name": "DayOfWeek",
+            "baseName": "DayOfWeek",
             "type": "BusinessHoursPeriod.DayOfWeekEnum"
         },
         {
-            "name": "startTime",
-            "baseName": "startTime",
+            "name": "StartTime",
+            "baseName": "StartTime",
             "type": "string"
         },
         {
-            "name": "period",
-            "baseName": "period",
+            "name": "Period",
+            "baseName": "Period",
             "type": "string"
         },
         {
-            "name": "startTimeEarly",
-            "baseName": "startTimeEarly",
+            "name": "StartTimeEarly",
+            "baseName": "StartTimeEarly",
             "type": "string"
         },
         {
-            "name": "periodEarly",
-            "baseName": "periodEarly",
+            "name": "PeriodEarly",
+            "baseName": "PeriodEarly",
             "type": "string"
         },
         {
-            "name": "early",
-            "baseName": "early",
+            "name": "Early",
+            "baseName": "Early",
             "type": "Range"
         },
         {
-            "name": "late",
-            "baseName": "late",
+            "name": "Late",
+            "baseName": "Late",
             "type": "Range"
         },
         {
-            "name": "ranges",
-            "baseName": "ranges",
+            "name": "Ranges",
+            "baseName": "Ranges",
             "type": "Array<Range>"
         }    ];
 
@@ -263,68 +263,68 @@ export class CampaignCreatedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * 
     */
-    'campaignId': number;
+    'CampaignId': number;
     /**
     * 
     */
-    'virtualRestaurantName': string;
+    'VirtualRestaurantName': string;
     /**
     * 
     */
-    'virtualRestaurantId': number;
+    'VirtualRestaurantId': number;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "campaignId",
-            "baseName": "campaignId",
+            "name": "CampaignId",
+            "baseName": "CampaignId",
             "type": "number"
         },
         {
-            "name": "virtualRestaurantName",
-            "baseName": "virtualRestaurantName",
+            "name": "VirtualRestaurantName",
+            "baseName": "VirtualRestaurantName",
             "type": "string"
         },
         {
-            "name": "virtualRestaurantId",
-            "baseName": "virtualRestaurantId",
+            "name": "VirtualRestaurantId",
+            "baseName": "VirtualRestaurantId",
             "type": "number"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -340,23 +340,23 @@ export class Coordinates {
     /**
     * Latitude
     */
-    'latitude': number;
+    'Latitude': number;
     /**
     * Longitude
     */
-    'longitude': number;
+    'Longitude': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "latitude",
-            "baseName": "latitude",
+            "name": "Latitude",
+            "baseName": "Latitude",
             "type": "number"
         },
         {
-            "name": "longitude",
-            "baseName": "longitude",
+            "name": "Longitude",
+            "baseName": "Longitude",
             "type": "number"
         }    ];
 
@@ -372,68 +372,68 @@ export class CustomerConsentUpdatedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * Enabled
     */
-    'enabled': boolean;
+    'Enabled': boolean;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * Customer User info
     */
-    'user': UserEventInfo;
+    'User': UserEventInfo;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "enabled",
-            "baseName": "enabled",
+            "name": "Enabled",
+            "baseName": "Enabled",
             "type": "boolean"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "user",
-            "baseName": "user",
+            "name": "User",
+            "baseName": "User",
             "type": "UserEventInfo"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -449,68 +449,68 @@ export class CustomerCreatedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * White label identifier
     */
-    'whiteLabelId': number;
+    'WhiteLabelId': number;
     /**
     * Customer User info
     */
-    'user': UserEventInfo;
+    'User': UserEventInfo;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "whiteLabelId",
-            "baseName": "whiteLabelId",
+            "name": "WhiteLabelId",
+            "baseName": "WhiteLabelId",
             "type": "number"
         },
         {
-            "name": "user",
-            "baseName": "user",
+            "name": "User",
+            "baseName": "User",
             "type": "UserEventInfo"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -526,50 +526,50 @@ export class CustomerSummary {
     /**
     * Customer identifier
     */
-    'id': number;
+    'Id': number;
     /**
     * Customer name
     */
-    'name': string;
+    'Name': string;
     /**
     * Customer email address
     */
-    'emailAddress': string;
+    'EmailAddress': string;
     /**
     * Customer local phone number
     */
-    'phoneNumberLocalFormat': string;
+    'PhoneNumberLocalFormat': string;
     /**
     * Customer phone number
     */
-    'phoneNumber': string;
+    'PhoneNumber': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "id",
-            "baseName": "id",
+            "name": "Id",
+            "baseName": "Id",
             "type": "number"
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
-            "name": "emailAddress",
-            "baseName": "emailAddress",
+            "name": "EmailAddress",
+            "baseName": "EmailAddress",
             "type": "string"
         },
         {
-            "name": "phoneNumberLocalFormat",
-            "baseName": "phoneNumberLocalFormat",
+            "name": "PhoneNumberLocalFormat",
+            "baseName": "PhoneNumberLocalFormat",
             "type": "string"
         },
         {
-            "name": "phoneNumber",
-            "baseName": "phoneNumber",
+            "name": "PhoneNumber",
+            "baseName": "PhoneNumber",
             "type": "string"
         }    ];
 
@@ -585,59 +585,59 @@ export class CustomerUpdatedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * Customer User info
     */
-    'user': UserEventInfo;
+    'User': UserEventInfo;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "user",
-            "baseName": "user",
+            "name": "User",
+            "baseName": "User",
             "type": "UserEventInfo"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -653,23 +653,23 @@ export class DeliveryFeeArea {
     /**
     * Delivery fee
     */
-    'deliveryFee': number;
+    'DeliveryFee': number;
     /**
     * Minimum delivery order amount
     */
-    'minimumDeliveryOrder': number;
+    'MinimumDeliveryOrder': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "deliveryFee",
-            "baseName": "deliveryFee",
+            "name": "DeliveryFee",
+            "baseName": "DeliveryFee",
             "type": "number"
         },
         {
-            "name": "minimumDeliveryOrder",
-            "baseName": "minimumDeliveryOrder",
+            "name": "MinimumDeliveryOrder",
+            "baseName": "MinimumDeliveryOrder",
             "type": "number"
         }    ];
 
@@ -685,68 +685,68 @@ export class DeliveryLocation {
     /**
     * Geo cordinate
     */
-    'coordinates': Coordinates;
+    'Coordinates': Coordinates;
     /**
     * Building
     */
-    'building': string;
+    'Building': string;
     /**
     * Street
     */
-    'street': string;
+    'Street': string;
     /**
     * Town
     */
-    'town': string;
+    'Town': string;
     /**
     * Post code
     */
-    'postCode': string;
+    'PostCode': string;
     /**
     * Delivery instructions
     */
-    'deliveryInstructions': string;
+    'DeliveryInstructions': string;
     /**
     * Formatted, pretty address string
     */
-    'prettyAddressString': string;
+    'PrettyAddressString': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "coordinates",
-            "baseName": "coordinates",
+            "name": "Coordinates",
+            "baseName": "Coordinates",
             "type": "Coordinates"
         },
         {
-            "name": "building",
-            "baseName": "building",
+            "name": "Building",
+            "baseName": "Building",
             "type": "string"
         },
         {
-            "name": "street",
-            "baseName": "street",
+            "name": "Street",
+            "baseName": "Street",
             "type": "string"
         },
         {
-            "name": "town",
-            "baseName": "town",
+            "name": "Town",
+            "baseName": "Town",
             "type": "string"
         },
         {
-            "name": "postCode",
-            "baseName": "postCode",
+            "name": "PostCode",
+            "baseName": "PostCode",
             "type": "string"
         },
         {
-            "name": "deliveryInstructions",
-            "baseName": "deliveryInstructions",
+            "name": "DeliveryInstructions",
+            "baseName": "DeliveryInstructions",
             "type": "string"
         },
         {
-            "name": "prettyAddressString",
-            "baseName": "prettyAddressString",
+            "name": "PrettyAddressString",
+            "baseName": "PrettyAddressString",
             "type": "string"
         }    ];
 
@@ -762,185 +762,185 @@ export class EventSearchResult {
     /**
     * Order accepted events
     */
-    'orderAcceptedEvent': Array<OrderAcceptedEvent>;
+    'OrderAcceptedEvent': Array<OrderAcceptedEvent>;
     /**
     * Order created events
     */
-    'orderCreatedEvent': Array<OrderCreatedEvent>;
+    'OrderCreatedEvent': Array<OrderCreatedEvent>;
     /**
     * Order rating updated events
     */
-    'orderRatingUpdatedEvent': Array<OrderRatingUpdatedEvent>;
+    'OrderRatingUpdatedEvent': Array<OrderRatingUpdatedEvent>;
     /**
     * Order refunded events
     */
-    'orderRefundedEvent': Array<OrderRefundedEvent>;
+    'OrderRefundedEvent': Array<OrderRefundedEvent>;
     /**
     * Order rejected events
     */
-    'orderRejectedEvent': Array<OrderRejectedEvent>;
+    'OrderRejectedEvent': Array<OrderRejectedEvent>;
     /**
     * Order tip updated events
     */
-    'orderTipUpdatedEvent': Array<OrderTipUpdatedEvent>;
+    'OrderTipUpdatedEvent': Array<OrderTipUpdatedEvent>;
     /**
     * Store created events
     */
-    'storeCreatedEvent': Array<StoreCreatedEvent>;
+    'StoreCreatedEvent': Array<StoreCreatedEvent>;
     /**
     * Store deleted events
     */
-    'storeDeletedEvent': Array<StoreDeletedEvent>;
+    'StoreDeletedEvent': Array<StoreDeletedEvent>;
     /**
     * Store delivery zone updated events
     */
-    'storeDeliveryZoneUpdatedEvent': Array<StoreDeliveryZoneUpdatedEvent>;
+    'StoreDeliveryZoneUpdatedEvent': Array<StoreDeliveryZoneUpdatedEvent>;
     /**
     * Store opening hours updated events
     */
-    'storeOpeningHoursUpdatedEvent': Array<StoreOpeningHoursUpdatedEvent>;
+    'StoreOpeningHoursUpdatedEvent': Array<StoreOpeningHoursUpdatedEvent>;
     /**
     * Store updated events
     */
-    'storeUpdatedEvent': Array<StoreUpdatedEvent>;
+    'StoreUpdatedEvent': Array<StoreUpdatedEvent>;
     /**
     * Menu created events
     */
-    'menuCreatedEvent': Array<MenuCreatedEvent>;
+    'MenuCreatedEvent': Array<MenuCreatedEvent>;
     /**
     * Menu updated events
     */
-    'menuUpdatedEvent': Array<MenuUpdatedEvent>;
+    'MenuUpdatedEvent': Array<MenuUpdatedEvent>;
     /**
     * Customer created events
     */
-    'customerCreatedEvent': Array<CustomerCreatedEvent>;
+    'CustomerCreatedEvent': Array<CustomerCreatedEvent>;
     /**
     * Customer updated events
     */
-    'customerUpdatedEvent': Array<CustomerUpdatedEvent>;
+    'CustomerUpdatedEvent': Array<CustomerUpdatedEvent>;
     /**
     * Customer consent updated events
     */
-    'customerConsentUpdatedEvent': Array<CustomerConsentUpdatedEvent>;
+    'CustomerConsentUpdatedEvent': Array<CustomerConsentUpdatedEvent>;
     /**
     * Campaign created events
     */
-    'campaignCreatedEvent': Array<CampaignCreatedEvent>;
+    'CampaignCreatedEvent': Array<CampaignCreatedEvent>;
     /**
     * Webhook subscription created events
     */
-    'webhookSubscriptionCreatedEvent': Array<WebhookSubscriptionCreatedEvent>;
+    'WebhookSubscriptionCreatedEvent': Array<WebhookSubscriptionCreatedEvent>;
     /**
     * Webhook subscription updated events
     */
-    'webhookSubscriptionUpdatedEvent': Array<WebhookSubscriptionUpdatedEvent>;
+    'WebhookSubscriptionUpdatedEvent': Array<WebhookSubscriptionUpdatedEvent>;
     /**
     * Webhook subscription deleted events
     */
-    'webhookSubscriptionDeletedEvent': Array<WebhookSubscriptionDeletedEvent>;
+    'WebhookSubscriptionDeletedEvent': Array<WebhookSubscriptionDeletedEvent>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "orderAcceptedEvent",
-            "baseName": "orderAcceptedEvent",
+            "name": "OrderAcceptedEvent",
+            "baseName": "OrderAcceptedEvent",
             "type": "Array<OrderAcceptedEvent>"
         },
         {
-            "name": "orderCreatedEvent",
-            "baseName": "orderCreatedEvent",
+            "name": "OrderCreatedEvent",
+            "baseName": "OrderCreatedEvent",
             "type": "Array<OrderCreatedEvent>"
         },
         {
-            "name": "orderRatingUpdatedEvent",
-            "baseName": "orderRatingUpdatedEvent",
+            "name": "OrderRatingUpdatedEvent",
+            "baseName": "OrderRatingUpdatedEvent",
             "type": "Array<OrderRatingUpdatedEvent>"
         },
         {
-            "name": "orderRefundedEvent",
-            "baseName": "orderRefundedEvent",
+            "name": "OrderRefundedEvent",
+            "baseName": "OrderRefundedEvent",
             "type": "Array<OrderRefundedEvent>"
         },
         {
-            "name": "orderRejectedEvent",
-            "baseName": "orderRejectedEvent",
+            "name": "OrderRejectedEvent",
+            "baseName": "OrderRejectedEvent",
             "type": "Array<OrderRejectedEvent>"
         },
         {
-            "name": "orderTipUpdatedEvent",
-            "baseName": "orderTipUpdatedEvent",
+            "name": "OrderTipUpdatedEvent",
+            "baseName": "OrderTipUpdatedEvent",
             "type": "Array<OrderTipUpdatedEvent>"
         },
         {
-            "name": "storeCreatedEvent",
-            "baseName": "storeCreatedEvent",
+            "name": "StoreCreatedEvent",
+            "baseName": "StoreCreatedEvent",
             "type": "Array<StoreCreatedEvent>"
         },
         {
-            "name": "storeDeletedEvent",
-            "baseName": "storeDeletedEvent",
+            "name": "StoreDeletedEvent",
+            "baseName": "StoreDeletedEvent",
             "type": "Array<StoreDeletedEvent>"
         },
         {
-            "name": "storeDeliveryZoneUpdatedEvent",
-            "baseName": "storeDeliveryZoneUpdatedEvent",
+            "name": "StoreDeliveryZoneUpdatedEvent",
+            "baseName": "StoreDeliveryZoneUpdatedEvent",
             "type": "Array<StoreDeliveryZoneUpdatedEvent>"
         },
         {
-            "name": "storeOpeningHoursUpdatedEvent",
-            "baseName": "storeOpeningHoursUpdatedEvent",
+            "name": "StoreOpeningHoursUpdatedEvent",
+            "baseName": "StoreOpeningHoursUpdatedEvent",
             "type": "Array<StoreOpeningHoursUpdatedEvent>"
         },
         {
-            "name": "storeUpdatedEvent",
-            "baseName": "storeUpdatedEvent",
+            "name": "StoreUpdatedEvent",
+            "baseName": "StoreUpdatedEvent",
             "type": "Array<StoreUpdatedEvent>"
         },
         {
-            "name": "menuCreatedEvent",
-            "baseName": "menuCreatedEvent",
+            "name": "MenuCreatedEvent",
+            "baseName": "MenuCreatedEvent",
             "type": "Array<MenuCreatedEvent>"
         },
         {
-            "name": "menuUpdatedEvent",
-            "baseName": "menuUpdatedEvent",
+            "name": "MenuUpdatedEvent",
+            "baseName": "MenuUpdatedEvent",
             "type": "Array<MenuUpdatedEvent>"
         },
         {
-            "name": "customerCreatedEvent",
-            "baseName": "customerCreatedEvent",
+            "name": "CustomerCreatedEvent",
+            "baseName": "CustomerCreatedEvent",
             "type": "Array<CustomerCreatedEvent>"
         },
         {
-            "name": "customerUpdatedEvent",
-            "baseName": "customerUpdatedEvent",
+            "name": "CustomerUpdatedEvent",
+            "baseName": "CustomerUpdatedEvent",
             "type": "Array<CustomerUpdatedEvent>"
         },
         {
-            "name": "customerConsentUpdatedEvent",
-            "baseName": "customerConsentUpdatedEvent",
+            "name": "CustomerConsentUpdatedEvent",
+            "baseName": "CustomerConsentUpdatedEvent",
             "type": "Array<CustomerConsentUpdatedEvent>"
         },
         {
-            "name": "campaignCreatedEvent",
-            "baseName": "campaignCreatedEvent",
+            "name": "CampaignCreatedEvent",
+            "baseName": "CampaignCreatedEvent",
             "type": "Array<CampaignCreatedEvent>"
         },
         {
-            "name": "webhookSubscriptionCreatedEvent",
-            "baseName": "webhookSubscriptionCreatedEvent",
+            "name": "WebhookSubscriptionCreatedEvent",
+            "baseName": "WebhookSubscriptionCreatedEvent",
             "type": "Array<WebhookSubscriptionCreatedEvent>"
         },
         {
-            "name": "webhookSubscriptionUpdatedEvent",
-            "baseName": "webhookSubscriptionUpdatedEvent",
+            "name": "WebhookSubscriptionUpdatedEvent",
+            "baseName": "WebhookSubscriptionUpdatedEvent",
             "type": "Array<WebhookSubscriptionUpdatedEvent>"
         },
         {
-            "name": "webhookSubscriptionDeletedEvent",
-            "baseName": "webhookSubscriptionDeletedEvent",
+            "name": "WebhookSubscriptionDeletedEvent",
+            "baseName": "WebhookSubscriptionDeletedEvent",
             "type": "Array<WebhookSubscriptionDeletedEvent>"
         }    ];
 
@@ -956,32 +956,32 @@ export class FeeSummary {
     /**
     * Fee amount
     */
-    'feeAmount': number;
+    'FeeAmount': number;
     /**
     * Percentage rate
     */
-    'percentageRate': number;
+    'PercentageRate': number;
     /**
     * Per transaction fee
     */
-    'perTransactionFee': number;
+    'PerTransactionFee': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "feeAmount",
-            "baseName": "feeAmount",
+            "name": "FeeAmount",
+            "baseName": "FeeAmount",
             "type": "number"
         },
         {
-            "name": "percentageRate",
-            "baseName": "percentageRate",
+            "name": "PercentageRate",
+            "baseName": "PercentageRate",
             "type": "number"
         },
         {
-            "name": "perTransactionFee",
-            "baseName": "perTransactionFee",
+            "name": "PerTransactionFee",
+            "baseName": "PerTransactionFee",
             "type": "number"
         }    ];
 
@@ -997,131 +997,131 @@ export class HttpRequestAndResponseLog {
     /**
     * Verb associated with the HTTP call.
     */
-    'verb': string;
+    'Verb': string;
     /**
     * Http request URI.
     */
-    'requestUri': string;
+    'RequestUri': string;
     /**
     * Http response status code.
     */
-    'statusCode': number;
+    'StatusCode': number;
     /**
     * Http response status line.
     */
-    'reasonPhrase': string;
+    'ReasonPhrase': string;
     /**
     * Call duration representing the duration of the HTTP call in milliseconds.
     */
-    'callDurationInMilliseconds': number;
+    'CallDurationInMilliseconds': number;
     /**
     * Identity of the caller.
     */
-    'userId': string;
+    'UserId': string;
     /**
     * Ip address of the caller
     */
-    'ipAddress': string;
+    'IpAddress': string;
     /**
     * Timestamp at which the HTTP call took place.
     */
-    'createdDateTime': string;
+    'CreatedDateTime': string;
     /**
     * Http request headers.
     */
-    'requestHeaders': { [key: string]: string; };
+    'RequestHeaders': { [key: string]: string; };
     /**
     * Http request body, if any.
     */
-    'requestBody': string;
+    'RequestBody': string;
     /**
     * Http request content-length
     */
-    'requestLength': number;
+    'RequestLength': number;
     /**
     * Http response headers.
     */
-    'responseHeaders': { [key: string]: string; };
+    'ResponseHeaders': { [key: string]: string; };
     /**
     * Http response body.
     */
-    'responseBody': string;
+    'ResponseBody': string;
     /**
     * Http response content-length
     */
-    'responseLength': number;
+    'ResponseLength': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "verb",
-            "baseName": "verb",
+            "name": "Verb",
+            "baseName": "Verb",
             "type": "string"
         },
         {
-            "name": "requestUri",
-            "baseName": "requestUri",
+            "name": "RequestUri",
+            "baseName": "RequestUri",
             "type": "string"
         },
         {
-            "name": "statusCode",
-            "baseName": "statusCode",
+            "name": "StatusCode",
+            "baseName": "StatusCode",
             "type": "number"
         },
         {
-            "name": "reasonPhrase",
-            "baseName": "reasonPhrase",
+            "name": "ReasonPhrase",
+            "baseName": "ReasonPhrase",
             "type": "string"
         },
         {
-            "name": "callDurationInMilliseconds",
-            "baseName": "callDurationInMilliseconds",
+            "name": "CallDurationInMilliseconds",
+            "baseName": "CallDurationInMilliseconds",
             "type": "number"
         },
         {
-            "name": "userId",
-            "baseName": "userId",
+            "name": "UserId",
+            "baseName": "UserId",
             "type": "string"
         },
         {
-            "name": "ipAddress",
-            "baseName": "ipAddress",
+            "name": "IpAddress",
+            "baseName": "IpAddress",
             "type": "string"
         },
         {
-            "name": "createdDateTime",
-            "baseName": "createdDateTime",
+            "name": "CreatedDateTime",
+            "baseName": "CreatedDateTime",
             "type": "string"
         },
         {
-            "name": "requestHeaders",
-            "baseName": "requestHeaders",
+            "name": "RequestHeaders",
+            "baseName": "RequestHeaders",
             "type": "{ [key: string]: string; }"
         },
         {
-            "name": "requestBody",
-            "baseName": "requestBody",
+            "name": "RequestBody",
+            "baseName": "RequestBody",
             "type": "string"
         },
         {
-            "name": "requestLength",
-            "baseName": "requestLength",
+            "name": "RequestLength",
+            "baseName": "RequestLength",
             "type": "number"
         },
         {
-            "name": "responseHeaders",
-            "baseName": "responseHeaders",
+            "name": "ResponseHeaders",
+            "baseName": "ResponseHeaders",
             "type": "{ [key: string]: string; }"
         },
         {
-            "name": "responseBody",
-            "baseName": "responseBody",
+            "name": "ResponseBody",
+            "baseName": "ResponseBody",
             "type": "string"
         },
         {
-            "name": "responseLength",
-            "baseName": "responseLength",
+            "name": "ResponseLength",
+            "baseName": "ResponseLength",
             "type": "number"
         }    ];
 
@@ -1137,68 +1137,68 @@ export class Menu {
     /**
     * Menu identifier
     */
-    'menuId': number;
+    'MenuId': number;
     /**
     * Last modified time
     */
-    'modifiedTime': Date;
+    'ModifiedTime': Date;
     /**
     * Menu version
     */
-    'versionNumber': number;
+    'VersionNumber': number;
     /**
     * Image url
     */
-    'imageUrl': string;
+    'ImageUrl': string;
     /**
     * Menu sections (startes, main etc)
     */
-    'menuSections': Array<MenuSection>;
+    'MenuSections': Array<MenuSection>;
     /**
     * Display menu section link on UI
     */
-    'displaySectionLinks': boolean;
+    'DisplaySectionLinks': boolean;
     /**
     * Menu section behaviour
     */
-    'menuSectionBehaviour': Menu.MenuSectionBehaviourEnum;
+    'MenuSectionBehaviour': Menu.MenuSectionBehaviourEnum;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "menuId",
-            "baseName": "menuId",
+            "name": "MenuId",
+            "baseName": "MenuId",
             "type": "number"
         },
         {
-            "name": "modifiedTime",
-            "baseName": "modifiedTime",
+            "name": "ModifiedTime",
+            "baseName": "ModifiedTime",
             "type": "Date"
         },
         {
-            "name": "versionNumber",
-            "baseName": "versionNumber",
+            "name": "VersionNumber",
+            "baseName": "VersionNumber",
             "type": "number"
         },
         {
-            "name": "imageUrl",
-            "baseName": "imageUrl",
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
             "type": "string"
         },
         {
-            "name": "menuSections",
-            "baseName": "menuSections",
+            "name": "MenuSections",
+            "baseName": "MenuSections",
             "type": "Array<MenuSection>"
         },
         {
-            "name": "displaySectionLinks",
-            "baseName": "displaySectionLinks",
+            "name": "DisplaySectionLinks",
+            "baseName": "DisplaySectionLinks",
             "type": "boolean"
         },
         {
-            "name": "menuSectionBehaviour",
-            "baseName": "menuSectionBehaviour",
+            "name": "MenuSectionBehaviour",
+            "baseName": "MenuSectionBehaviour",
             "type": "Menu.MenuSectionBehaviourEnum"
         }    ];
 
@@ -1220,23 +1220,23 @@ export class MenuBase {
     /**
     * Display menu section link on UI
     */
-    'displaySectionLinks': boolean;
+    'DisplaySectionLinks': boolean;
     /**
     * Menu section behaviour
     */
-    'menuSectionBehaviour': MenuBase.MenuSectionBehaviourEnum;
+    'MenuSectionBehaviour': MenuBase.MenuSectionBehaviourEnum;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "displaySectionLinks",
-            "baseName": "displaySectionLinks",
+            "name": "DisplaySectionLinks",
+            "baseName": "DisplaySectionLinks",
             "type": "boolean"
         },
         {
-            "name": "menuSectionBehaviour",
-            "baseName": "menuSectionBehaviour",
+            "name": "MenuSectionBehaviour",
+            "baseName": "MenuSectionBehaviour",
             "type": "MenuBase.MenuSectionBehaviourEnum"
         }    ];
 
@@ -1258,68 +1258,68 @@ export class MenuCreatedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * User who has created the menu
     */
-    'user': UserEventInfo;
+    'User': UserEventInfo;
     /**
     * The menu
     */
-    'menu': Menu;
+    'Menu': Menu;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "user",
-            "baseName": "user",
+            "name": "User",
+            "baseName": "User",
             "type": "UserEventInfo"
         },
         {
-            "name": "menu",
-            "baseName": "menu",
+            "name": "Menu",
+            "baseName": "Menu",
             "type": "Menu"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -1335,86 +1335,86 @@ export class MenuItemOptionSet {
     /**
     * Menu item option set identifier
     */
-    'menuItemOptionSetId': number;
+    'MenuItemOptionSetId': number;
     /**
     * Image url
     */
-    'imageUrl': string;
+    'ImageUrl': string;
     /**
     * Option set items
     */
-    'menuItemOptionSetItems': Array<MenuItemOptionSetItem>;
+    'MenuItemOptionSetItems': Array<MenuItemOptionSetItem>;
     /**
     * Menu item option set name
     */
-    'name': string;
+    'Name': string;
     /**
     * Is master option set. This can affect the layout of the options in the menu displayed to the customer. Usually it is true if the option could be considerd a standalone item as opposed to an addition (\"with ketchup\") or modifier (\"large\").
     */
-    'isMasterOptionSet': boolean;
+    'IsMasterOptionSet': boolean;
     /**
     * Display order. Displayed in ascending order.
     */
-    'displayOrder': number;
+    'DisplayOrder': number;
     /**
     * Minimum items must be selected
     */
-    'minSelectCount': number;
+    'MinSelectCount': number;
     /**
     * Maximum number of items can be selected
     */
-    'maxSelectCount': number;
+    'MaxSelectCount': number;
     /**
     * Small | Medium | Large  Affects the layout of the menu.
     */
-    'cellLayoutType': MenuItemOptionSet.CellLayoutTypeEnum;
+    'CellLayoutType': MenuItemOptionSet.CellLayoutTypeEnum;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "menuItemOptionSetId",
-            "baseName": "menuItemOptionSetId",
+            "name": "MenuItemOptionSetId",
+            "baseName": "MenuItemOptionSetId",
             "type": "number"
         },
         {
-            "name": "imageUrl",
-            "baseName": "imageUrl",
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
             "type": "string"
         },
         {
-            "name": "menuItemOptionSetItems",
-            "baseName": "menuItemOptionSetItems",
+            "name": "MenuItemOptionSetItems",
+            "baseName": "MenuItemOptionSetItems",
             "type": "Array<MenuItemOptionSetItem>"
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
-            "name": "isMasterOptionSet",
-            "baseName": "isMasterOptionSet",
+            "name": "IsMasterOptionSet",
+            "baseName": "IsMasterOptionSet",
             "type": "boolean"
         },
         {
-            "name": "displayOrder",
-            "baseName": "displayOrder",
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
             "type": "number"
         },
         {
-            "name": "minSelectCount",
-            "baseName": "minSelectCount",
+            "name": "MinSelectCount",
+            "baseName": "MinSelectCount",
             "type": "number"
         },
         {
-            "name": "maxSelectCount",
-            "baseName": "maxSelectCount",
+            "name": "MaxSelectCount",
+            "baseName": "MaxSelectCount",
             "type": "number"
         },
         {
-            "name": "cellLayoutType",
-            "baseName": "cellLayoutType",
+            "name": "CellLayoutType",
+            "baseName": "CellLayoutType",
             "type": "MenuItemOptionSet.CellLayoutTypeEnum"
         }    ];
 
@@ -1437,59 +1437,59 @@ export class MenuItemOptionSetBase {
     /**
     * Menu item option set name
     */
-    'name': string;
+    'Name': string;
     /**
     * Is master option set. This can affect the layout of the options in the menu displayed to the customer. Usually it is true if the option could be considerd a standalone item as opposed to an addition (\"with ketchup\") or modifier (\"large\").
     */
-    'isMasterOptionSet': boolean;
+    'IsMasterOptionSet': boolean;
     /**
     * Display order. Displayed in ascending order.
     */
-    'displayOrder': number;
+    'DisplayOrder': number;
     /**
     * Minimum items must be selected
     */
-    'minSelectCount': number;
+    'MinSelectCount': number;
     /**
     * Maximum number of items can be selected
     */
-    'maxSelectCount': number;
+    'MaxSelectCount': number;
     /**
     * Small | Medium | Large  Affects the layout of the menu.
     */
-    'cellLayoutType': MenuItemOptionSetBase.CellLayoutTypeEnum;
+    'CellLayoutType': MenuItemOptionSetBase.CellLayoutTypeEnum;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
-            "name": "isMasterOptionSet",
-            "baseName": "isMasterOptionSet",
+            "name": "IsMasterOptionSet",
+            "baseName": "IsMasterOptionSet",
             "type": "boolean"
         },
         {
-            "name": "displayOrder",
-            "baseName": "displayOrder",
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
             "type": "number"
         },
         {
-            "name": "minSelectCount",
-            "baseName": "minSelectCount",
+            "name": "MinSelectCount",
+            "baseName": "MinSelectCount",
             "type": "number"
         },
         {
-            "name": "maxSelectCount",
-            "baseName": "maxSelectCount",
+            "name": "MaxSelectCount",
+            "baseName": "MaxSelectCount",
             "type": "number"
         },
         {
-            "name": "cellLayoutType",
-            "baseName": "cellLayoutType",
+            "name": "CellLayoutType",
+            "baseName": "CellLayoutType",
             "type": "MenuItemOptionSetBase.CellLayoutTypeEnum"
         }    ];
 
@@ -1512,68 +1512,68 @@ export class MenuItemOptionSetItem {
     /**
     * Menu item option set item identifier
     */
-    'menuItemOptionSetItemId': number;
+    'MenuItemOptionSetItemId': number;
     /**
     * Image url
     */
-    'imageUrl': string;
+    'ImageUrl': string;
     /**
     * Name
     */
-    'name': string;
+    'Name': string;
     /**
     * Price
     */
-    'price': number;
+    'Price': number;
     /**
     * Is available
     */
-    'isAvailable': boolean;
+    'IsAvailable': boolean;
     /**
     * Display order. Displayed in ascending order.
     */
-    'displayOrder': number;
+    'DisplayOrder': number;
     /**
     * Small | Medium | Large  Affects the layout of the menu.
     */
-    'cellLayoutType': MenuItemOptionSetItem.CellLayoutTypeEnum;
+    'CellLayoutType': MenuItemOptionSetItem.CellLayoutTypeEnum;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "menuItemOptionSetItemId",
-            "baseName": "menuItemOptionSetItemId",
+            "name": "MenuItemOptionSetItemId",
+            "baseName": "MenuItemOptionSetItemId",
             "type": "number"
         },
         {
-            "name": "imageUrl",
-            "baseName": "imageUrl",
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
             "type": "string"
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
-            "name": "price",
-            "baseName": "price",
+            "name": "Price",
+            "baseName": "Price",
             "type": "number"
         },
         {
-            "name": "isAvailable",
-            "baseName": "isAvailable",
+            "name": "IsAvailable",
+            "baseName": "IsAvailable",
             "type": "boolean"
         },
         {
-            "name": "displayOrder",
-            "baseName": "displayOrder",
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
             "type": "number"
         },
         {
-            "name": "cellLayoutType",
-            "baseName": "cellLayoutType",
+            "name": "CellLayoutType",
+            "baseName": "CellLayoutType",
             "type": "MenuItemOptionSetItem.CellLayoutTypeEnum"
         }    ];
 
@@ -1596,50 +1596,50 @@ export class MenuItemOptionSetItemBase {
     /**
     * Name
     */
-    'name': string;
+    'Name': string;
     /**
     * Price
     */
-    'price': number;
+    'Price': number;
     /**
     * Is available
     */
-    'isAvailable': boolean;
+    'IsAvailable': boolean;
     /**
     * Display order. Displayed in ascending order.
     */
-    'displayOrder': number;
+    'DisplayOrder': number;
     /**
     * Small | Medium | Large  Affects the layout of the menu.
     */
-    'cellLayoutType': MenuItemOptionSetItemBase.CellLayoutTypeEnum;
+    'CellLayoutType': MenuItemOptionSetItemBase.CellLayoutTypeEnum;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
-            "name": "price",
-            "baseName": "price",
+            "name": "Price",
+            "baseName": "Price",
             "type": "number"
         },
         {
-            "name": "isAvailable",
-            "baseName": "isAvailable",
+            "name": "IsAvailable",
+            "baseName": "IsAvailable",
             "type": "boolean"
         },
         {
-            "name": "displayOrder",
-            "baseName": "displayOrder",
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
             "type": "number"
         },
         {
-            "name": "cellLayoutType",
-            "baseName": "cellLayoutType",
+            "name": "CellLayoutType",
+            "baseName": "CellLayoutType",
             "type": "MenuItemOptionSetItemBase.CellLayoutTypeEnum"
         }    ];
 
@@ -1662,86 +1662,86 @@ export class MenuSection {
     /**
     * Menu section identifier
     */
-    'menuSectionId': number;
+    'MenuSectionId': number;
     /**
     * Image url
     */
-    'imageUrl': string;
+    'ImageUrl': string;
     /**
     * Menu items
     */
-    'menuItems': Array<MenuSectionItem>;
+    'MenuItems': Array<MenuSectionItem>;
     /**
     * Menu section availability
     */
-    'menuSectionAvailability': MenuSectionAvailability;
+    'MenuSectionAvailability': MenuSectionAvailability;
     /**
     * Name
     */
-    'name': string;
+    'Name': string;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * Display order
     */
-    'displayOrder': number;
+    'DisplayOrder': number;
     /**
     * Is available
     */
-    'isAvailable': boolean;
+    'IsAvailable': boolean;
     /**
     * Is hidden from customer. Perhaps when the item is out of stock.
     */
-    'isHiddenFromCustomers': boolean;
+    'IsHiddenFromCustomers': boolean;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "menuSectionId",
-            "baseName": "menuSectionId",
+            "name": "MenuSectionId",
+            "baseName": "MenuSectionId",
             "type": "number"
         },
         {
-            "name": "imageUrl",
-            "baseName": "imageUrl",
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
             "type": "string"
         },
         {
-            "name": "menuItems",
-            "baseName": "menuItems",
+            "name": "MenuItems",
+            "baseName": "MenuItems",
             "type": "Array<MenuSectionItem>"
         },
         {
-            "name": "menuSectionAvailability",
-            "baseName": "menuSectionAvailability",
+            "name": "MenuSectionAvailability",
+            "baseName": "MenuSectionAvailability",
             "type": "MenuSectionAvailability"
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "displayOrder",
-            "baseName": "displayOrder",
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
             "type": "number"
         },
         {
-            "name": "isAvailable",
-            "baseName": "isAvailable",
+            "name": "IsAvailable",
+            "baseName": "IsAvailable",
             "type": "boolean"
         },
         {
-            "name": "isHiddenFromCustomers",
-            "baseName": "isHiddenFromCustomers",
+            "name": "IsHiddenFromCustomers",
+            "baseName": "IsHiddenFromCustomers",
             "type": "boolean"
         }    ];
 
@@ -1757,23 +1757,23 @@ export class MenuSectionAvailability {
     /**
     * Available times
     */
-    'availableTimes': Array<BusinessHoursPeriod>;
+    'AvailableTimes': Array<BusinessHoursPeriod>;
     /**
     * Availability mode
     */
-    'availabilityMode': MenuSectionAvailability.AvailabilityModeEnum;
+    'AvailabilityMode': MenuSectionAvailability.AvailabilityModeEnum;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "availableTimes",
-            "baseName": "availableTimes",
+            "name": "AvailableTimes",
+            "baseName": "AvailableTimes",
             "type": "Array<BusinessHoursPeriod>"
         },
         {
-            "name": "availabilityMode",
-            "baseName": "availabilityMode",
+            "name": "AvailabilityMode",
+            "baseName": "AvailabilityMode",
             "type": "MenuSectionAvailability.AvailabilityModeEnum"
         }    ];
 
@@ -1797,50 +1797,50 @@ export class MenuSectionBase {
     /**
     * Name
     */
-    'name': string;
+    'Name': string;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * Display order
     */
-    'displayOrder': number;
+    'DisplayOrder': number;
     /**
     * Is available
     */
-    'isAvailable': boolean;
+    'IsAvailable': boolean;
     /**
     * Is hidden from customer. Perhaps when the item is out of stock.
     */
-    'isHiddenFromCustomers': boolean;
+    'IsHiddenFromCustomers': boolean;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "displayOrder",
-            "baseName": "displayOrder",
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
             "type": "number"
         },
         {
-            "name": "isAvailable",
-            "baseName": "isAvailable",
+            "name": "IsAvailable",
+            "baseName": "IsAvailable",
             "type": "boolean"
         },
         {
-            "name": "isHiddenFromCustomers",
-            "baseName": "isHiddenFromCustomers",
+            "name": "IsHiddenFromCustomers",
+            "baseName": "IsHiddenFromCustomers",
             "type": "boolean"
         }    ];
 
@@ -1856,105 +1856,114 @@ export class MenuSectionItem {
     /**
     * Menu item identifier
     */
-    'menuItemId': number;
+    'MenuItemId': number;
     /**
     * Actual price - the minimum price possible when all required option set items prices are included.
     */
-    'actualPrice': number;
+    'ActualPrice': number;
     /**
     * Image url
     */
-    'imageUrl': string;
+    'ImageUrl': string;
     /**
     * Menu item option sets
     */
-    'menuItemOptionSets': Array<MenuItemOptionSet>;
+    'MenuItemOptionSets': Array<MenuItemOptionSet>;
     /**
     * Menu item name (like \"Korma\")
     */
-    'name': string;
+    'Name': string;
     /**
     * Description (like \"A lovely dish from the east\")
     */
-    'description': string;
+    'Description': string;
     /**
     * Spiciness rating
     */
-    'spicinessRating': MenuSectionItem.SpicinessRatingEnum;
+    'SpicinessRating': MenuSectionItem.SpicinessRatingEnum;
     /**
     * Price - this is only used when there is no master option set and should be set to 0 if a master option set exists.
     */
-    'price': number;
+    'Price': number;
     /**
     * Display order
     */
-    'displayOrder': number;
+    'DisplayOrder': number;
     /**
     * To be set true if the item or an option of the item contains an alcoholic drink.
     */
-    'alcohol': boolean;
+    'Alcohol': boolean;
     /**
     * True if we accept orders for this item still
     */
-    'isAvailable': boolean;
+    'IsAvailable': boolean;
+    /**
+    * Small | Medium | Large  Affects the layout of the menu.
+    */
+    'CellLayoutType': MenuSectionItem.CellLayoutTypeEnum;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "menuItemId",
-            "baseName": "menuItemId",
+            "name": "MenuItemId",
+            "baseName": "MenuItemId",
             "type": "number"
         },
         {
-            "name": "actualPrice",
-            "baseName": "actualPrice",
+            "name": "ActualPrice",
+            "baseName": "ActualPrice",
             "type": "number"
         },
         {
-            "name": "imageUrl",
-            "baseName": "imageUrl",
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
             "type": "string"
         },
         {
-            "name": "menuItemOptionSets",
-            "baseName": "menuItemOptionSets",
+            "name": "MenuItemOptionSets",
+            "baseName": "MenuItemOptionSets",
             "type": "Array<MenuItemOptionSet>"
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "spicinessRating",
-            "baseName": "spicinessRating",
+            "name": "SpicinessRating",
+            "baseName": "SpicinessRating",
             "type": "MenuSectionItem.SpicinessRatingEnum"
         },
         {
-            "name": "price",
-            "baseName": "price",
+            "name": "Price",
+            "baseName": "Price",
             "type": "number"
         },
         {
-            "name": "displayOrder",
-            "baseName": "displayOrder",
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
             "type": "number"
         },
         {
-            "name": "alcohol",
-            "baseName": "alcohol",
+            "name": "Alcohol",
+            "baseName": "Alcohol",
             "type": "boolean"
         },
         {
-            "name": "isAvailable",
-            "baseName": "isAvailable",
+            "name": "IsAvailable",
+            "baseName": "IsAvailable",
             "type": "boolean"
+        },
+        {
+            "name": "CellLayoutType",
+            "baseName": "CellLayoutType",
+            "type": "MenuSectionItem.CellLayoutTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1969,6 +1978,11 @@ export namespace MenuSectionItem {
         Medium = <any> 'Medium',
         Hot = <any> 'Hot'
     }
+    export enum CellLayoutTypeEnum {
+        Small = <any> 'Small',
+        Medium = <any> 'Medium',
+        Large = <any> 'Large'
+    }
 }
 /**
 * Menu item
@@ -1977,69 +1991,78 @@ export class MenuSectionItemBase {
     /**
     * Menu item name (like \"Korma\")
     */
-    'name': string;
+    'Name': string;
     /**
     * Description (like \"A lovely dish from the east\")
     */
-    'description': string;
+    'Description': string;
     /**
     * Spiciness rating
     */
-    'spicinessRating': MenuSectionItemBase.SpicinessRatingEnum;
+    'SpicinessRating': MenuSectionItemBase.SpicinessRatingEnum;
     /**
     * Price - this is only used when there is no master option set and should be set to 0 if a master option set exists.
     */
-    'price': number;
+    'Price': number;
     /**
     * Display order
     */
-    'displayOrder': number;
+    'DisplayOrder': number;
     /**
     * To be set true if the item or an option of the item contains an alcoholic drink.
     */
-    'alcohol': boolean;
+    'Alcohol': boolean;
     /**
     * True if we accept orders for this item still
     */
-    'isAvailable': boolean;
+    'IsAvailable': boolean;
+    /**
+    * Small | Medium | Large  Affects the layout of the menu.
+    */
+    'CellLayoutType': MenuSectionItemBase.CellLayoutTypeEnum;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "spicinessRating",
-            "baseName": "spicinessRating",
+            "name": "SpicinessRating",
+            "baseName": "SpicinessRating",
             "type": "MenuSectionItemBase.SpicinessRatingEnum"
         },
         {
-            "name": "price",
-            "baseName": "price",
+            "name": "Price",
+            "baseName": "Price",
             "type": "number"
         },
         {
-            "name": "displayOrder",
-            "baseName": "displayOrder",
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
             "type": "number"
         },
         {
-            "name": "alcohol",
-            "baseName": "alcohol",
+            "name": "Alcohol",
+            "baseName": "Alcohol",
             "type": "boolean"
         },
         {
-            "name": "isAvailable",
-            "baseName": "isAvailable",
+            "name": "IsAvailable",
+            "baseName": "IsAvailable",
             "type": "boolean"
+        },
+        {
+            "name": "CellLayoutType",
+            "baseName": "CellLayoutType",
+            "type": "MenuSectionItemBase.CellLayoutTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -2054,6 +2077,11 @@ export namespace MenuSectionItemBase {
         Medium = <any> 'Medium',
         Hot = <any> 'Hot'
     }
+    export enum CellLayoutTypeEnum {
+        Small = <any> 'Small',
+        Medium = <any> 'Medium',
+        Large = <any> 'Large'
+    }
 }
 /**
 * Menu updated event
@@ -2062,68 +2090,68 @@ export class MenuUpdatedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * User who has updated the menu
     */
-    'user': UserEventInfo;
+    'User': UserEventInfo;
     /**
     * The menu
     */
-    'menu': Menu;
+    'Menu': Menu;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "user",
-            "baseName": "user",
+            "name": "User",
+            "baseName": "User",
             "type": "UserEventInfo"
         },
         {
-            "name": "menu",
-            "baseName": "menu",
+            "name": "Menu",
+            "baseName": "Menu",
             "type": "Menu"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -2139,23 +2167,23 @@ export class Metadata {
     /**
     * Metadata key (Unique identifier)
     */
-    'key': string;
+    'Key': string;
     /**
     * Metadata value
     */
-    'value': string;
+    'Value': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "key",
-            "baseName": "key",
+            "name": "Key",
+            "baseName": "Key",
             "type": "string"
         },
         {
-            "name": "value",
-            "baseName": "value",
+            "name": "Value",
+            "baseName": "Value",
             "type": "string"
         }    ];
 
@@ -2171,41 +2199,41 @@ export class OAuthClient {
     /**
     * Oauth client identifier
     */
-    'clientId': string;
+    'ClientId': string;
     /**
     * Oauth client name
     */
-    'clientName': string;
+    'ClientName': string;
     /**
     * Oauth client owner user identifier
     */
-    'ownerUserId': number;
+    'OwnerUserId': number;
     /**
     * Oauth client logo uri
     */
-    'logoUri': string;
+    'LogoUri': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "clientId",
-            "baseName": "clientId",
+            "name": "ClientId",
+            "baseName": "ClientId",
             "type": "string"
         },
         {
-            "name": "clientName",
-            "baseName": "clientName",
+            "name": "ClientName",
+            "baseName": "ClientName",
             "type": "string"
         },
         {
-            "name": "ownerUserId",
-            "baseName": "ownerUserId",
+            "name": "OwnerUserId",
+            "baseName": "OwnerUserId",
             "type": "number"
         },
         {
-            "name": "logoUri",
-            "baseName": "logoUri",
+            "name": "LogoUri",
+            "baseName": "LogoUri",
             "type": "string"
         }    ];
 
@@ -2221,50 +2249,50 @@ export class OAuthTokenModel {
     /**
     * Identitifier key
     */
-    'key': string;
+    'Key': string;
     /**
     * Token type
     */
-    'tokenType': string;
+    'TokenType': string;
     /**
     * Oauth subject identifier
     */
-    'subjectId': string;
+    'SubjectId': string;
     /**
     * Oauth client identifier
     */
-    'clientId': string;
+    'ClientId': string;
     /**
     * Token expiry
     */
-    'expiry': Date;
+    'Expiry': Date;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "key",
-            "baseName": "key",
+            "name": "Key",
+            "baseName": "Key",
             "type": "string"
         },
         {
-            "name": "tokenType",
-            "baseName": "tokenType",
+            "name": "TokenType",
+            "baseName": "TokenType",
             "type": "string"
         },
         {
-            "name": "subjectId",
-            "baseName": "subjectId",
+            "name": "SubjectId",
+            "baseName": "SubjectId",
             "type": "string"
         },
         {
-            "name": "clientId",
-            "baseName": "clientId",
+            "name": "ClientId",
+            "baseName": "ClientId",
             "type": "string"
         },
         {
-            "name": "expiry",
-            "baseName": "expiry",
+            "name": "Expiry",
+            "baseName": "Expiry",
             "type": "Date"
         }    ];
 
@@ -2280,23 +2308,23 @@ export class OauthClientRedirectUri {
     /**
     * Redirect uri identifier
     */
-    'id': number;
+    'Id': number;
     /**
     * Redirect uri
     */
-    'uri': string;
+    'Uri': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "id",
-            "baseName": "id",
+            "name": "Id",
+            "baseName": "Id",
             "type": "number"
         },
         {
-            "name": "uri",
-            "baseName": "uri",
+            "name": "Uri",
+            "baseName": "Uri",
             "type": "string"
         }    ];
 
@@ -2312,221 +2340,221 @@ export class Order {
     /**
     * Store summary
     */
-    'store': StoreSummary;
+    'Store': StoreSummary;
     /**
     * Customer summary
     */
-    'customer': CustomerSummary;
+    'Customer': CustomerSummary;
     /**
     * Voucher summary
     */
-    'voucher': VoucherSummary;
+    'Voucher': VoucherSummary;
     /**
     * Fee summary
     */
-    'fees': FeeSummary;
+    'Fees': FeeSummary;
     /**
     * Ordered items
     */
-    'orderItems': Array<OrderItem>;
+    'OrderItems': Array<OrderItem>;
     /**
     * Delivery location for delivery orders
     */
-    'deliveryLocation': DeliveryLocation;
+    'DeliveryLocation': DeliveryLocation;
     /**
     * Customer location
     */
-    'customerLocation': Coordinates;
+    'CustomerLocation': Coordinates;
     /**
     * Order identifier
     */
-    'orderId': number;
+    'OrderId': number;
     /**
     * Delivery type
     */
-    'deliveryType': Order.DeliveryTypeEnum;
+    'DeliveryType': Order.DeliveryTypeEnum;
     /**
     * Pickup location type
     */
-    'pickupLocationType': Order.PickupLocationTypeEnum;
+    'PickupLocationType': Order.PickupLocationTypeEnum;
     /**
     * Tip amount
     */
-    'tipAmount': number;
+    'TipAmount': number;
     /**
     * Delivery amount
     */
-    'deliveryAmount': number;
+    'DeliveryAmount': number;
     /**
     * Ordered items amount
     */
-    'orderItemsAmount': number;
+    'OrderItemsAmount': number;
     /**
     * This is the sum of the OrderItemsAmount, DeliveryAmount, TipAmount and Voucher.Amount (which is usually negative) and OnlineOrderingFee for cash orders.  It does not include the OnlineOrderingFee in the case of card orders as this fee is charged by Flipdish directly to the customer.
     */
-    'amount': number;
+    'Amount': number;
     /**
     * This contains the online ordering processing fee. For card payments this is charged directly to the customer and for cash orders it is paid by the customer to the store. It is tax inclusive.
     */
-    'processingFee': number;
+    'ProcessingFee': number;
     /**
     * Payment account type
     */
-    'paymentAccountType': Order.PaymentAccountTypeEnum;
+    'PaymentAccountType': Order.PaymentAccountTypeEnum;
     /**
     * Payment account description (like Visa ****2371 or Apple Pay. or Cash)
     */
-    'paymentAccountDescription': string;
+    'PaymentAccountDescription': string;
     /**
     * Order state
     */
-    'orderState': Order.OrderStateEnum;
+    'OrderState': Order.OrderStateEnum;
     /**
     * Is pre-order
     */
-    'isPreOrder': boolean;
+    'IsPreOrder': boolean;
     /**
     * Order placed time
     */
-    'placedTime': Date;
+    'PlacedTime': Date;
     /**
     * Order requested for
     */
-    'requestedForTime': Date;
+    'RequestedForTime': Date;
     /**
     * Chef note
     */
-    'chefNote': string;
+    'ChefNote': string;
     /**
     * Used app type
     */
-    'appType': Order.AppTypeEnum;
+    'AppType': Order.AppTypeEnum;
     /**
     * User rating
     */
-    'userRating': number;
+    'UserRating': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "store",
-            "baseName": "store",
+            "name": "Store",
+            "baseName": "Store",
             "type": "StoreSummary"
         },
         {
-            "name": "customer",
-            "baseName": "customer",
+            "name": "Customer",
+            "baseName": "Customer",
             "type": "CustomerSummary"
         },
         {
-            "name": "voucher",
-            "baseName": "voucher",
+            "name": "Voucher",
+            "baseName": "Voucher",
             "type": "VoucherSummary"
         },
         {
-            "name": "fees",
-            "baseName": "fees",
+            "name": "Fees",
+            "baseName": "Fees",
             "type": "FeeSummary"
         },
         {
-            "name": "orderItems",
-            "baseName": "orderItems",
+            "name": "OrderItems",
+            "baseName": "OrderItems",
             "type": "Array<OrderItem>"
         },
         {
-            "name": "deliveryLocation",
-            "baseName": "deliveryLocation",
+            "name": "DeliveryLocation",
+            "baseName": "DeliveryLocation",
             "type": "DeliveryLocation"
         },
         {
-            "name": "customerLocation",
-            "baseName": "customerLocation",
+            "name": "CustomerLocation",
+            "baseName": "CustomerLocation",
             "type": "Coordinates"
         },
         {
-            "name": "orderId",
-            "baseName": "orderId",
+            "name": "OrderId",
+            "baseName": "OrderId",
             "type": "number"
         },
         {
-            "name": "deliveryType",
-            "baseName": "deliveryType",
+            "name": "DeliveryType",
+            "baseName": "DeliveryType",
             "type": "Order.DeliveryTypeEnum"
         },
         {
-            "name": "pickupLocationType",
-            "baseName": "pickupLocationType",
+            "name": "PickupLocationType",
+            "baseName": "PickupLocationType",
             "type": "Order.PickupLocationTypeEnum"
         },
         {
-            "name": "tipAmount",
-            "baseName": "tipAmount",
+            "name": "TipAmount",
+            "baseName": "TipAmount",
             "type": "number"
         },
         {
-            "name": "deliveryAmount",
-            "baseName": "deliveryAmount",
+            "name": "DeliveryAmount",
+            "baseName": "DeliveryAmount",
             "type": "number"
         },
         {
-            "name": "orderItemsAmount",
-            "baseName": "orderItemsAmount",
+            "name": "OrderItemsAmount",
+            "baseName": "OrderItemsAmount",
             "type": "number"
         },
         {
-            "name": "amount",
-            "baseName": "amount",
+            "name": "Amount",
+            "baseName": "Amount",
             "type": "number"
         },
         {
-            "name": "processingFee",
-            "baseName": "processingFee",
+            "name": "ProcessingFee",
+            "baseName": "ProcessingFee",
             "type": "number"
         },
         {
-            "name": "paymentAccountType",
-            "baseName": "paymentAccountType",
+            "name": "PaymentAccountType",
+            "baseName": "PaymentAccountType",
             "type": "Order.PaymentAccountTypeEnum"
         },
         {
-            "name": "paymentAccountDescription",
-            "baseName": "paymentAccountDescription",
+            "name": "PaymentAccountDescription",
+            "baseName": "PaymentAccountDescription",
             "type": "string"
         },
         {
-            "name": "orderState",
-            "baseName": "orderState",
+            "name": "OrderState",
+            "baseName": "OrderState",
             "type": "Order.OrderStateEnum"
         },
         {
-            "name": "isPreOrder",
-            "baseName": "isPreOrder",
+            "name": "IsPreOrder",
+            "baseName": "IsPreOrder",
             "type": "boolean"
         },
         {
-            "name": "placedTime",
-            "baseName": "placedTime",
+            "name": "PlacedTime",
+            "baseName": "PlacedTime",
             "type": "Date"
         },
         {
-            "name": "requestedForTime",
-            "baseName": "requestedForTime",
+            "name": "RequestedForTime",
+            "baseName": "RequestedForTime",
             "type": "Date"
         },
         {
-            "name": "chefNote",
-            "baseName": "chefNote",
+            "name": "ChefNote",
+            "baseName": "ChefNote",
             "type": "string"
         },
         {
-            "name": "appType",
-            "baseName": "appType",
+            "name": "AppType",
+            "baseName": "AppType",
             "type": "Order.AppTypeEnum"
         },
         {
-            "name": "userRating",
-            "baseName": "userRating",
+            "name": "UserRating",
+            "baseName": "UserRating",
             "type": "number"
         }    ];
 
@@ -2584,68 +2612,68 @@ export class OrderAcceptedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * Order Accepted Time
     */
-    'orderAcceptedTime': Date;
+    'OrderAcceptedTime': Date;
     /**
     * Order
     */
-    'order': Order;
+    'Order': Order;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "orderAcceptedTime",
-            "baseName": "orderAcceptedTime",
+            "name": "OrderAcceptedTime",
+            "baseName": "OrderAcceptedTime",
             "type": "Date"
         },
         {
-            "name": "order",
-            "baseName": "order",
+            "name": "Order",
+            "baseName": "Order",
             "type": "Order"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -2661,68 +2689,68 @@ export class OrderCreatedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * Order Created Time
     */
-    'orderCreatedTime': Date;
+    'OrderCreatedTime': Date;
     /**
     * Order
     */
-    'order': Order;
+    'Order': Order;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "orderCreatedTime",
-            "baseName": "orderCreatedTime",
+            "name": "OrderCreatedTime",
+            "baseName": "OrderCreatedTime",
             "type": "Date"
         },
         {
-            "name": "order",
-            "baseName": "order",
+            "name": "Order",
+            "baseName": "Order",
             "type": "Order"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -2738,104 +2766,104 @@ export class OrderItem {
     /**
     * Option list
     */
-    'orderItemOptions': Array<OrderItemOption>;
+    'OrderItemOptions': Array<OrderItemOption>;
     /**
     * Metadata
     */
-    'metadata': { [key: string]: string; };
+    'Metadata': { [key: string]: string; };
     /**
     * Menu section name
     */
-    'menuSectionName': string;
+    'MenuSectionName': string;
     /**
     * Menu section display order
     */
-    'menuSectionDisplayOrder': number;
+    'MenuSectionDisplayOrder': number;
     /**
     * Name
     */
-    'name': string;
+    'Name': string;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * Price
     */
-    'price': number;
+    'Price': number;
     /**
     * Price including option set items
     */
-    'priceIncludingOptionSetItems': number;
+    'PriceIncludingOptionSetItems': number;
     /**
     * Menu item identifier
     */
-    'menuItemId': number;
+    'MenuItemId': number;
     /**
     * Menu item display order
     */
-    'menuItemDisplayOrder': number;
+    'MenuItemDisplayOrder': number;
     /**
     * Is available
     */
-    'isAvailable': boolean;
+    'IsAvailable': boolean;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "orderItemOptions",
-            "baseName": "orderItemOptions",
+            "name": "OrderItemOptions",
+            "baseName": "OrderItemOptions",
             "type": "Array<OrderItemOption>"
         },
         {
-            "name": "metadata",
-            "baseName": "metadata",
+            "name": "Metadata",
+            "baseName": "Metadata",
             "type": "{ [key: string]: string; }"
         },
         {
-            "name": "menuSectionName",
-            "baseName": "menuSectionName",
+            "name": "MenuSectionName",
+            "baseName": "MenuSectionName",
             "type": "string"
         },
         {
-            "name": "menuSectionDisplayOrder",
-            "baseName": "menuSectionDisplayOrder",
+            "name": "MenuSectionDisplayOrder",
+            "baseName": "MenuSectionDisplayOrder",
             "type": "number"
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "price",
-            "baseName": "price",
+            "name": "Price",
+            "baseName": "Price",
             "type": "number"
         },
         {
-            "name": "priceIncludingOptionSetItems",
-            "baseName": "priceIncludingOptionSetItems",
+            "name": "PriceIncludingOptionSetItems",
+            "baseName": "PriceIncludingOptionSetItems",
             "type": "number"
         },
         {
-            "name": "menuItemId",
-            "baseName": "menuItemId",
+            "name": "MenuItemId",
+            "baseName": "MenuItemId",
             "type": "number"
         },
         {
-            "name": "menuItemDisplayOrder",
-            "baseName": "menuItemDisplayOrder",
+            "name": "MenuItemDisplayOrder",
+            "baseName": "MenuItemDisplayOrder",
             "type": "number"
         },
         {
-            "name": "isAvailable",
-            "baseName": "isAvailable",
+            "name": "IsAvailable",
+            "baseName": "IsAvailable",
             "type": "boolean"
         }    ];
 
@@ -2851,68 +2879,68 @@ export class OrderItemOption {
     /**
     * Metadata
     */
-    'metadata': { [key: string]: string; };
+    'Metadata': { [key: string]: string; };
     /**
     * Menu item option identifier
     */
-    'menuItemOptionId': number;
+    'MenuItemOptionId': number;
     /**
     * Is master option set item
     */
-    'isMasterOptionSetItem': boolean;
+    'IsMasterOptionSetItem': boolean;
     /**
     * Name
     */
-    'name': string;
+    'Name': string;
     /**
     * Price
     */
-    'price': number;
+    'Price': number;
     /**
     * Menu item option display order
     */
-    'menuItemOptionDisplayOrder': number;
+    'MenuItemOptionDisplayOrder': number;
     /**
     * Menu item option set display order
     */
-    'menuItemOptionSetDisplayOrder': number;
+    'MenuItemOptionSetDisplayOrder': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "metadata",
-            "baseName": "metadata",
+            "name": "Metadata",
+            "baseName": "Metadata",
             "type": "{ [key: string]: string; }"
         },
         {
-            "name": "menuItemOptionId",
-            "baseName": "menuItemOptionId",
+            "name": "MenuItemOptionId",
+            "baseName": "MenuItemOptionId",
             "type": "number"
         },
         {
-            "name": "isMasterOptionSetItem",
-            "baseName": "isMasterOptionSetItem",
+            "name": "IsMasterOptionSetItem",
+            "baseName": "IsMasterOptionSetItem",
             "type": "boolean"
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
-            "name": "price",
-            "baseName": "price",
+            "name": "Price",
+            "baseName": "Price",
             "type": "number"
         },
         {
-            "name": "menuItemOptionDisplayOrder",
-            "baseName": "menuItemOptionDisplayOrder",
+            "name": "MenuItemOptionDisplayOrder",
+            "baseName": "MenuItemOptionDisplayOrder",
             "type": "number"
         },
         {
-            "name": "menuItemOptionSetDisplayOrder",
-            "baseName": "menuItemOptionSetDisplayOrder",
+            "name": "MenuItemOptionSetDisplayOrder",
+            "baseName": "MenuItemOptionSetDisplayOrder",
             "type": "number"
         }    ];
 
@@ -2928,68 +2956,68 @@ export class OrderRatingUpdatedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * New User Rating
     */
-    'newUserRating': number;
+    'Rating': number;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * Order
     */
-    'order': Order;
+    'Order': Order;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "newUserRating",
-            "baseName": "newUserRating",
+            "name": "Rating",
+            "baseName": "Rating",
             "type": "number"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "order",
-            "baseName": "order",
+            "name": "Order",
+            "baseName": "Order",
             "type": "Order"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -3005,68 +3033,68 @@ export class OrderRefundedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * The amount refunded
     */
-    'refundedAmount': number;
+    'RefundedAmount': number;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * Order
     */
-    'order': Order;
+    'Order': Order;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "refundedAmount",
-            "baseName": "refundedAmount",
+            "name": "RefundedAmount",
+            "baseName": "RefundedAmount",
             "type": "number"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "order",
-            "baseName": "order",
+            "name": "Order",
+            "baseName": "Order",
             "type": "Order"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -3082,68 +3110,68 @@ export class OrderRejectedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * Order Rejected Time
     */
-    'orderRejectedTime': Date;
+    'OrderRejectedTime': Date;
     /**
     * Order
     */
-    'order': Order;
+    'Order': Order;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "orderRejectedTime",
-            "baseName": "orderRejectedTime",
+            "name": "OrderRejectedTime",
+            "baseName": "OrderRejectedTime",
             "type": "Date"
         },
         {
-            "name": "order",
-            "baseName": "order",
+            "name": "Order",
+            "baseName": "Order",
             "type": "Order"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -3159,68 +3187,68 @@ export class OrderTipUpdatedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * Tip Amount
     */
-    'newTipAmount': number;
+    'TipAmount': number;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * Order
     */
-    'order': Order;
+    'Order': Order;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "newTipAmount",
-            "baseName": "newTipAmount",
+            "name": "TipAmount",
+            "baseName": "TipAmount",
             "type": "number"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "order",
-            "baseName": "order",
+            "name": "Order",
+            "baseName": "Order",
             "type": "Order"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -3236,32 +3264,32 @@ export class Range {
     /**
     * Start time
     */
-    'startTime': string;
+    'StartTime': string;
     /**
     * Period
     */
-    'period': string;
+    'Period': string;
     /**
     * Day of week
     */
-    'dayOfWeek': Range.DayOfWeekEnum;
+    'DayOfWeek': Range.DayOfWeekEnum;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "startTime",
-            "baseName": "startTime",
+            "name": "StartTime",
+            "baseName": "StartTime",
             "type": "string"
         },
         {
-            "name": "period",
-            "baseName": "period",
+            "name": "Period",
+            "baseName": "Period",
             "type": "string"
         },
         {
-            "name": "dayOfWeek",
-            "baseName": "dayOfWeek",
+            "name": "DayOfWeek",
+            "baseName": "DayOfWeek",
             "type": "Range.DayOfWeekEnum"
         }    ];
 
@@ -3288,32 +3316,32 @@ export class Refund {
     /**
     * Refund reason
     */
-    'refundReason': string;
+    'RefundReason': string;
     /**
     * Refund amount
     */
-    'refundAmount': number;
+    'RefundAmount': number;
     /**
     * If ture, the system sends notification to the customer about the refund
     */
-    'notifyCustomer': boolean;
+    'NotifyCustomer': boolean;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "refundReason",
-            "baseName": "refundReason",
+            "name": "RefundReason",
+            "baseName": "RefundReason",
             "type": "string"
         },
         {
-            "name": "refundAmount",
-            "baseName": "refundAmount",
+            "name": "RefundAmount",
+            "baseName": "RefundAmount",
             "type": "number"
         },
         {
-            "name": "notifyCustomer",
-            "baseName": "notifyCustomer",
+            "name": "NotifyCustomer",
+            "baseName": "NotifyCustomer",
             "type": "boolean"
         }    ];
 
@@ -3329,14 +3357,14 @@ export class Reject {
     /**
     * Reject reason
     */
-    'rejectReason': Reject.RejectReasonEnum;
+    'RejectReason': Reject.RejectReasonEnum;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "rejectReason",
-            "baseName": "rejectReason",
+            "name": "RejectReason",
+            "baseName": "RejectReason",
             "type": "Reject.RejectReasonEnum"
         }    ];
 
@@ -3365,14 +3393,14 @@ export class RestApiArrayResultMenuItemOptionSet {
     /**
     * Generic data object.
     */
-    'data': Array<MenuItemOptionSet>;
+    'Data': Array<MenuItemOptionSet>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Array<MenuItemOptionSet>"
         }    ];
 
@@ -3388,14 +3416,14 @@ export class RestApiArrayResultMenuItemOptionSetItem {
     /**
     * Generic data object.
     */
-    'data': Array<MenuItemOptionSetItem>;
+    'Data': Array<MenuItemOptionSetItem>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Array<MenuItemOptionSetItem>"
         }    ];
 
@@ -3411,14 +3439,14 @@ export class RestApiArrayResultMenuSection {
     /**
     * Generic data object.
     */
-    'data': Array<MenuSection>;
+    'Data': Array<MenuSection>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Array<MenuSection>"
         }    ];
 
@@ -3434,14 +3462,14 @@ export class RestApiArrayResultMenuSectionItem {
     /**
     * Generic data object.
     */
-    'data': Array<MenuSectionItem>;
+    'Data': Array<MenuSectionItem>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Array<MenuSectionItem>"
         }    ];
 
@@ -3457,14 +3485,14 @@ export class RestApiArrayResultMetadata {
     /**
     * Generic data object.
     */
-    'data': Array<Metadata>;
+    'Data': Array<Metadata>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Array<Metadata>"
         }    ];
 
@@ -3480,14 +3508,14 @@ export class RestApiArrayResultOAuthClient {
     /**
     * Generic data object.
     */
-    'data': Array<OAuthClient>;
+    'Data': Array<OAuthClient>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Array<OAuthClient>"
         }    ];
 
@@ -3503,14 +3531,14 @@ export class RestApiArrayResultOauthClientRedirectUri {
     /**
     * Generic data object.
     */
-    'data': Array<OauthClientRedirectUri>;
+    'Data': Array<OauthClientRedirectUri>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Array<OauthClientRedirectUri>"
         }    ];
 
@@ -3526,14 +3554,14 @@ export class RestApiArrayResultRestApiDefaultResponse {
     /**
     * Generic data object.
     */
-    'data': Array<RestApiDefaultResponse>;
+    'Data': Array<RestApiDefaultResponse>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Array<RestApiDefaultResponse>"
         }    ];
 
@@ -3549,14 +3577,14 @@ export class RestApiArrayResultWebhookSubscription {
     /**
     * Generic data object.
     */
-    'data': Array<WebhookSubscription>;
+    'Data': Array<WebhookSubscription>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Array<WebhookSubscription>"
         }    ];
 
@@ -3572,14 +3600,14 @@ export class RestApiDefaultResponse {
     /**
     * Data string
     */
-    'data': string;
+    'Data': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "string"
         }    ];
 
@@ -3595,23 +3623,23 @@ export class RestApiErrorResult {
     /**
     * Error message
     */
-    'message': string;
+    'Message': string;
     /**
     * List of errors grouped by field name
     */
-    'errors': Array<ValidationErrorResult>;
+    'Errors': Array<ValidationErrorResult>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "message",
-            "baseName": "message",
+            "name": "Message",
+            "baseName": "Message",
             "type": "string"
         },
         {
-            "name": "errors",
-            "baseName": "errors",
+            "name": "Errors",
+            "baseName": "Errors",
             "type": "Array<ValidationErrorResult>"
         }    ];
 
@@ -3627,41 +3655,41 @@ export class RestApiEventSearchPaginationResult {
     /**
     * Event results
     */
-    'data': EventSearchResult;
+    'Data': EventSearchResult;
     /**
     * Current page index
     */
-    'page': number;
+    'Page': number;
     /**
     * Current page size
     */
-    'limit': number;
+    'Limit': number;
     /**
     * Total record count
     */
-    'totalRecordCount': number;
+    'TotalRecordCount': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "EventSearchResult"
         },
         {
-            "name": "page",
-            "baseName": "page",
+            "name": "Page",
+            "baseName": "Page",
             "type": "number"
         },
         {
-            "name": "limit",
-            "baseName": "limit",
+            "name": "Limit",
+            "baseName": "Limit",
             "type": "number"
         },
         {
-            "name": "totalRecordCount",
-            "baseName": "totalRecordCount",
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
             "type": "number"
         }    ];
 
@@ -3677,14 +3705,14 @@ export class RestApiForbiddenResult {
     /**
     * Message
     */
-    'message': string;
+    'Message': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "message",
-            "baseName": "message",
+            "name": "Message",
+            "baseName": "Message",
             "type": "string"
         }    ];
 
@@ -3700,14 +3728,14 @@ export class RestApiIntegerResult {
     /**
     * Data integer
     */
-    'data': number;
+    'Data': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "number"
         }    ];
 
@@ -3723,41 +3751,41 @@ export class RestApiPaginationResultHttpRequestAndResponseLog {
     /**
     * Current page index
     */
-    'page': number;
+    'Page': number;
     /**
     * Current page size
     */
-    'limit': number;
+    'Limit': number;
     /**
     * Total record count
     */
-    'totalRecordCount': number;
+    'TotalRecordCount': number;
     /**
     * Generic data object.
     */
-    'data': Array<HttpRequestAndResponseLog>;
+    'Data': Array<HttpRequestAndResponseLog>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "page",
-            "baseName": "page",
+            "name": "Page",
+            "baseName": "Page",
             "type": "number"
         },
         {
-            "name": "limit",
-            "baseName": "limit",
+            "name": "Limit",
+            "baseName": "Limit",
             "type": "number"
         },
         {
-            "name": "totalRecordCount",
-            "baseName": "totalRecordCount",
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
             "type": "number"
         },
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Array<HttpRequestAndResponseLog>"
         }    ];
 
@@ -3773,41 +3801,41 @@ export class RestApiPaginationResultOAuthTokenModel {
     /**
     * Current page index
     */
-    'page': number;
+    'Page': number;
     /**
     * Current page size
     */
-    'limit': number;
+    'Limit': number;
     /**
     * Total record count
     */
-    'totalRecordCount': number;
+    'TotalRecordCount': number;
     /**
     * Generic data object.
     */
-    'data': Array<OAuthTokenModel>;
+    'Data': Array<OAuthTokenModel>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "page",
-            "baseName": "page",
+            "name": "Page",
+            "baseName": "Page",
             "type": "number"
         },
         {
-            "name": "limit",
-            "baseName": "limit",
+            "name": "Limit",
+            "baseName": "Limit",
             "type": "number"
         },
         {
-            "name": "totalRecordCount",
-            "baseName": "totalRecordCount",
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
             "type": "number"
         },
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Array<OAuthTokenModel>"
         }    ];
 
@@ -3823,41 +3851,41 @@ export class RestApiPaginationResultOrder {
     /**
     * Current page index
     */
-    'page': number;
+    'Page': number;
     /**
     * Current page size
     */
-    'limit': number;
+    'Limit': number;
     /**
     * Total record count
     */
-    'totalRecordCount': number;
+    'TotalRecordCount': number;
     /**
     * Generic data object.
     */
-    'data': Array<Order>;
+    'Data': Array<Order>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "page",
-            "baseName": "page",
+            "name": "Page",
+            "baseName": "Page",
             "type": "number"
         },
         {
-            "name": "limit",
-            "baseName": "limit",
+            "name": "Limit",
+            "baseName": "Limit",
             "type": "number"
         },
         {
-            "name": "totalRecordCount",
-            "baseName": "totalRecordCount",
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
             "type": "number"
         },
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Array<Order>"
         }    ];
 
@@ -3873,41 +3901,41 @@ export class RestApiPaginationResultStore {
     /**
     * Current page index
     */
-    'page': number;
+    'Page': number;
     /**
     * Current page size
     */
-    'limit': number;
+    'Limit': number;
     /**
     * Total record count
     */
-    'totalRecordCount': number;
+    'TotalRecordCount': number;
     /**
     * Generic data object.
     */
-    'data': Array<Store>;
+    'Data': Array<Store>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "page",
-            "baseName": "page",
+            "name": "Page",
+            "baseName": "Page",
             "type": "number"
         },
         {
-            "name": "limit",
-            "baseName": "limit",
+            "name": "Limit",
+            "baseName": "Limit",
             "type": "number"
         },
         {
-            "name": "totalRecordCount",
-            "baseName": "totalRecordCount",
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
             "type": "number"
         },
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Array<Store>"
         }    ];
 
@@ -3923,41 +3951,41 @@ export class RestApiPaginationResultVoucher {
     /**
     * Current page index
     */
-    'page': number;
+    'Page': number;
     /**
     * Current page size
     */
-    'limit': number;
+    'Limit': number;
     /**
     * Total record count
     */
-    'totalRecordCount': number;
+    'TotalRecordCount': number;
     /**
     * Generic data object.
     */
-    'data': Array<Voucher>;
+    'Data': Array<Voucher>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "page",
-            "baseName": "page",
+            "name": "Page",
+            "baseName": "Page",
             "type": "number"
         },
         {
-            "name": "limit",
-            "baseName": "limit",
+            "name": "Limit",
+            "baseName": "Limit",
             "type": "number"
         },
         {
-            "name": "totalRecordCount",
-            "baseName": "totalRecordCount",
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
             "type": "number"
         },
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Array<Voucher>"
         }    ];
 
@@ -3973,41 +4001,41 @@ export class RestApiPaginationResultWebhookLog {
     /**
     * Current page index
     */
-    'page': number;
+    'Page': number;
     /**
     * Current page size
     */
-    'limit': number;
+    'Limit': number;
     /**
     * Total record count
     */
-    'totalRecordCount': number;
+    'TotalRecordCount': number;
     /**
     * Generic data object.
     */
-    'data': Array<WebhookLog>;
+    'Data': Array<WebhookLog>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "page",
-            "baseName": "page",
+            "name": "Page",
+            "baseName": "Page",
             "type": "number"
         },
         {
-            "name": "limit",
-            "baseName": "limit",
+            "name": "Limit",
+            "baseName": "Limit",
             "type": "number"
         },
         {
-            "name": "totalRecordCount",
-            "baseName": "totalRecordCount",
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
             "type": "number"
         },
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Array<WebhookLog>"
         }    ];
 
@@ -4023,14 +4051,14 @@ export class RestApiResultMenu {
     /**
     * Generic data object.
     */
-    'data': Menu;
+    'Data': Menu;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Menu"
         }    ];
 
@@ -4046,14 +4074,14 @@ export class RestApiResultMenuItemOptionSet {
     /**
     * Generic data object.
     */
-    'data': MenuItemOptionSet;
+    'Data': MenuItemOptionSet;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "MenuItemOptionSet"
         }    ];
 
@@ -4069,14 +4097,14 @@ export class RestApiResultMenuItemOptionSetItem {
     /**
     * Generic data object.
     */
-    'data': MenuItemOptionSetItem;
+    'Data': MenuItemOptionSetItem;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "MenuItemOptionSetItem"
         }    ];
 
@@ -4092,14 +4120,14 @@ export class RestApiResultMenuSection {
     /**
     * Generic data object.
     */
-    'data': MenuSection;
+    'Data': MenuSection;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "MenuSection"
         }    ];
 
@@ -4115,14 +4143,14 @@ export class RestApiResultMenuSectionItem {
     /**
     * Generic data object.
     */
-    'data': MenuSectionItem;
+    'Data': MenuSectionItem;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "MenuSectionItem"
         }    ];
 
@@ -4138,14 +4166,14 @@ export class RestApiResultMetadata {
     /**
     * Generic data object.
     */
-    'data': Metadata;
+    'Data': Metadata;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Metadata"
         }    ];
 
@@ -4161,14 +4189,14 @@ export class RestApiResultOAuthClient {
     /**
     * Generic data object.
     */
-    'data': OAuthClient;
+    'Data': OAuthClient;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "OAuthClient"
         }    ];
 
@@ -4184,14 +4212,14 @@ export class RestApiResultOauthClientRedirectUri {
     /**
     * Generic data object.
     */
-    'data': OauthClientRedirectUri;
+    'Data': OauthClientRedirectUri;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "OauthClientRedirectUri"
         }    ];
 
@@ -4207,14 +4235,14 @@ export class RestApiResultOrder {
     /**
     * Generic data object.
     */
-    'data': Order;
+    'Data': Order;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Order"
         }    ];
 
@@ -4230,14 +4258,14 @@ export class RestApiResultStore {
     /**
     * Generic data object.
     */
-    'data': Store;
+    'Data': Store;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Store"
         }    ];
 
@@ -4253,14 +4281,14 @@ export class RestApiResultVoucher {
     /**
     * Generic data object.
     */
-    'data': Voucher;
+    'Data': Voucher;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Voucher"
         }    ];
 
@@ -4276,14 +4304,14 @@ export class RestApiStringArrayResult {
     /**
     * Data string array
     */
-    'data': Array<string>;
+    'Data': Array<string>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "Array<string>"
         }    ];
 
@@ -4299,14 +4327,14 @@ export class RestApiStringResult {
     /**
     * Data string
     */
-    'data': string;
+    'Data': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
+            "name": "Data",
+            "baseName": "Data",
             "type": "string"
         }    ];
 
@@ -4322,14 +4350,14 @@ export class RestApiUnauthorizedResult {
     /**
     * Message
     */
-    'message': string;
+    'Message': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "message",
-            "baseName": "message",
+            "name": "Message",
+            "baseName": "Message",
             "type": "string"
         }    ];
 
@@ -4345,50 +4373,50 @@ export class SearchCriteria {
     /**
     * The maximum elements to return
     */
-    'limit': number;
+    'Limit': number;
     /**
     * The index of the page to return, starting by 1
     */
-    'page': number;
+    'Page': number;
     /**
     * Start date
     */
-    'start': Date;
+    'Start': Date;
     /**
     * End date
     */
-    'end': Date;
+    'End': Date;
     /**
     * Event names to filter in
     */
-    'name': Array<string>;
+    'Name': Array<string>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "limit",
-            "baseName": "limit",
+            "name": "Limit",
+            "baseName": "Limit",
             "type": "number"
         },
         {
-            "name": "page",
-            "baseName": "page",
+            "name": "Page",
+            "baseName": "Page",
             "type": "number"
         },
         {
-            "name": "start",
-            "baseName": "start",
+            "name": "Start",
+            "baseName": "Start",
             "type": "Date"
         },
         {
-            "name": "end",
-            "baseName": "end",
+            "name": "End",
+            "baseName": "End",
             "type": "Date"
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "Name",
+            "baseName": "Name",
             "type": "Array<string>"
         }    ];
 
@@ -4404,311 +4432,311 @@ export class Store {
     /**
     * Store identifier
     */
-    'storeId': number;
+    'StoreId': number;
     /**
     * Name
     */
-    'name': string;
+    'Name': string;
     /**
     * Automated Phone Marketing number
     */
-    'apmPhoneNumber': string;
+    'ApmPhoneNumber': string;
     /**
     * Phone number
     */
-    'phoneNumber': string;
+    'PhoneNumber': string;
     /**
     * Email address (visible to customers)
     */
-    'emailAddress': string;
+    'EmailAddress': string;
     /**
     * Store address
     */
-    'address': StoreAddress;
+    'Address': StoreAddress;
     /**
     * True if the store accepts pre-orders
     */
-    'preOrderEnabled': boolean;
+    'PreOrderEnabled': boolean;
     /**
     * True if the store accepts take-out orders
     */
-    'takeOutEnabled': boolean;
+    'TakeOutEnabled': boolean;
     /**
     * True if the store has table service
     */
-    'tableServiceEnabled': boolean;
+    'TableServiceEnabled': boolean;
     /**
     * True if the store accepts dine-in orders
     */
-    'dineInEnabled': boolean;
+    'DineInEnabled': boolean;
     /**
     * True if both pre-orders and talbe service can be enabled
     */
-    'allowPreOrdersAndTableService': boolean;
+    'AllowPreOrdersAndTableService': boolean;
     /**
     * True if the store accepts pickup orders
     */
-    'pickupEnabled': boolean;
+    'PickupEnabled': boolean;
     /**
     * True if the store accepts delivery orders
     */
-    'deliveryEnabled': boolean;
+    'DeliveryEnabled': boolean;
     /**
     * True if the store accepts card payment for delivery orders
     */
-    'cardOrderDeliveryEnabled': boolean;
+    'CardOrderDeliveryEnabled': boolean;
     /**
     * True if the store accepts cash payment for delivery orders
     */
-    'cashOrdersDeliveryEnabled': boolean;
+    'CashOrdersDeliveryEnabled': boolean;
     /**
     * True if the store accepts card payment for pickup orders
     */
-    'cardOrdersPickupEnabled': boolean;
+    'CardOrdersPickupEnabled': boolean;
     /**
     * True if the store accepts cash payment for pickup orders
     */
-    'cashOrdersPickupEnabled': boolean;
+    'CashOrdersPickupEnabled': boolean;
     /**
     * True if the store accepts tips
     */
-    'tipsEnabled': boolean;
+    'TipsEnabled': boolean;
     /**
     * True if the stores orders are automatically accepted in Flipdish
     */
-    'automaticallyAcceptOrders': boolean;
+    'AutomaticallyAcceptOrders': boolean;
     /**
     * True if the store is open for delivery
     */
-    'openForDelivery': boolean;
+    'OpenForDelivery': boolean;
     /**
     * True if the store is open for pickup
     */
-    'openForPickup': boolean;
+    'OpenForPickup': boolean;
     /**
     * Minimum pickup order amount
     */
-    'minimumPickupOrderAmount': number;
+    'MinimumPickupOrderAmount': number;
     /**
     * Delivery fee areas
     */
-    'deliveryFeeAreas': Array<DeliveryFeeArea>;
+    'DeliveryFeeAreas': Array<DeliveryFeeArea>;
     /**
     * True if customer name required for pickup orders
     */
-    'requireCustomerNameForPickup': boolean;
+    'RequireCustomerNameForPickup': boolean;
     /**
     * True if customer name required for delivery orders
     */
-    'requireCustomerNameForDelivery': boolean;
+    'RequireCustomerNameForDelivery': boolean;
     /**
     * Pickup hours
     */
-    'pickupHours': Array<BusinessHoursPeriod>;
+    'PickupHours': Array<BusinessHoursPeriod>;
     /**
     * Delivery hours
     */
-    'deliveryHours': Array<BusinessHoursPeriod>;
+    'DeliveryHours': Array<BusinessHoursPeriod>;
     /**
     * Microsoft Time Zone Index Values (https://msdn.microsoft.com/en-us/library/ms912391)
     */
-    'microsoftTimeZone': string;
+    'MicrosoftTimeZone': string;
     /**
     * IANA Time Zone (https://www.iana.org/time-zones)
     */
-    'ianaTimeZone': string;
+    'IanaTimeZone': string;
     /**
     * Menu identifier
     */
-    'menuId': number;
+    'MenuId': number;
     /**
     * Overridden confirmation message for delivery orders
     */
-    'orderConfirmationMessageOverrideDelivery': string;
+    'OrderConfirmationMessageOverrideDelivery': string;
     /**
     * Overridden confirmation message for pickup orders
     */
-    'orderConfirmationMessageOverridePickup': string;
+    'OrderConfirmationMessageOverridePickup': string;
     /**
     * Printout layout
     */
-    'printoutLayoutType': Store.PrintoutLayoutTypeEnum;
+    'PrintoutLayoutType': Store.PrintoutLayoutTypeEnum;
     /**
     * Store notes
     */
-    'storeNotes': Array<StoreNote>;
+    'StoreNotes': Array<StoreNote>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "storeId",
-            "baseName": "storeId",
+            "name": "StoreId",
+            "baseName": "StoreId",
             "type": "number"
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
-            "name": "apmPhoneNumber",
-            "baseName": "apmPhoneNumber",
+            "name": "ApmPhoneNumber",
+            "baseName": "ApmPhoneNumber",
             "type": "string"
         },
         {
-            "name": "phoneNumber",
-            "baseName": "phoneNumber",
+            "name": "PhoneNumber",
+            "baseName": "PhoneNumber",
             "type": "string"
         },
         {
-            "name": "emailAddress",
-            "baseName": "emailAddress",
+            "name": "EmailAddress",
+            "baseName": "EmailAddress",
             "type": "string"
         },
         {
-            "name": "address",
-            "baseName": "address",
+            "name": "Address",
+            "baseName": "Address",
             "type": "StoreAddress"
         },
         {
-            "name": "preOrderEnabled",
-            "baseName": "preOrderEnabled",
+            "name": "PreOrderEnabled",
+            "baseName": "PreOrderEnabled",
             "type": "boolean"
         },
         {
-            "name": "takeOutEnabled",
-            "baseName": "takeOutEnabled",
+            "name": "TakeOutEnabled",
+            "baseName": "TakeOutEnabled",
             "type": "boolean"
         },
         {
-            "name": "tableServiceEnabled",
-            "baseName": "tableServiceEnabled",
+            "name": "TableServiceEnabled",
+            "baseName": "TableServiceEnabled",
             "type": "boolean"
         },
         {
-            "name": "dineInEnabled",
-            "baseName": "dineInEnabled",
+            "name": "DineInEnabled",
+            "baseName": "DineInEnabled",
             "type": "boolean"
         },
         {
-            "name": "allowPreOrdersAndTableService",
-            "baseName": "allowPreOrdersAndTableService",
+            "name": "AllowPreOrdersAndTableService",
+            "baseName": "AllowPreOrdersAndTableService",
             "type": "boolean"
         },
         {
-            "name": "pickupEnabled",
-            "baseName": "pickupEnabled",
+            "name": "PickupEnabled",
+            "baseName": "PickupEnabled",
             "type": "boolean"
         },
         {
-            "name": "deliveryEnabled",
-            "baseName": "deliveryEnabled",
+            "name": "DeliveryEnabled",
+            "baseName": "DeliveryEnabled",
             "type": "boolean"
         },
         {
-            "name": "cardOrderDeliveryEnabled",
-            "baseName": "cardOrderDeliveryEnabled",
+            "name": "CardOrderDeliveryEnabled",
+            "baseName": "CardOrderDeliveryEnabled",
             "type": "boolean"
         },
         {
-            "name": "cashOrdersDeliveryEnabled",
-            "baseName": "cashOrdersDeliveryEnabled",
+            "name": "CashOrdersDeliveryEnabled",
+            "baseName": "CashOrdersDeliveryEnabled",
             "type": "boolean"
         },
         {
-            "name": "cardOrdersPickupEnabled",
-            "baseName": "cardOrdersPickupEnabled",
+            "name": "CardOrdersPickupEnabled",
+            "baseName": "CardOrdersPickupEnabled",
             "type": "boolean"
         },
         {
-            "name": "cashOrdersPickupEnabled",
-            "baseName": "cashOrdersPickupEnabled",
+            "name": "CashOrdersPickupEnabled",
+            "baseName": "CashOrdersPickupEnabled",
             "type": "boolean"
         },
         {
-            "name": "tipsEnabled",
-            "baseName": "tipsEnabled",
+            "name": "TipsEnabled",
+            "baseName": "TipsEnabled",
             "type": "boolean"
         },
         {
-            "name": "automaticallyAcceptOrders",
-            "baseName": "automaticallyAcceptOrders",
+            "name": "AutomaticallyAcceptOrders",
+            "baseName": "AutomaticallyAcceptOrders",
             "type": "boolean"
         },
         {
-            "name": "openForDelivery",
-            "baseName": "openForDelivery",
+            "name": "OpenForDelivery",
+            "baseName": "OpenForDelivery",
             "type": "boolean"
         },
         {
-            "name": "openForPickup",
-            "baseName": "openForPickup",
+            "name": "OpenForPickup",
+            "baseName": "OpenForPickup",
             "type": "boolean"
         },
         {
-            "name": "minimumPickupOrderAmount",
-            "baseName": "minimumPickupOrderAmount",
+            "name": "MinimumPickupOrderAmount",
+            "baseName": "MinimumPickupOrderAmount",
             "type": "number"
         },
         {
-            "name": "deliveryFeeAreas",
-            "baseName": "deliveryFeeAreas",
+            "name": "DeliveryFeeAreas",
+            "baseName": "DeliveryFeeAreas",
             "type": "Array<DeliveryFeeArea>"
         },
         {
-            "name": "requireCustomerNameForPickup",
-            "baseName": "requireCustomerNameForPickup",
+            "name": "RequireCustomerNameForPickup",
+            "baseName": "RequireCustomerNameForPickup",
             "type": "boolean"
         },
         {
-            "name": "requireCustomerNameForDelivery",
-            "baseName": "requireCustomerNameForDelivery",
+            "name": "RequireCustomerNameForDelivery",
+            "baseName": "RequireCustomerNameForDelivery",
             "type": "boolean"
         },
         {
-            "name": "pickupHours",
-            "baseName": "pickupHours",
+            "name": "PickupHours",
+            "baseName": "PickupHours",
             "type": "Array<BusinessHoursPeriod>"
         },
         {
-            "name": "deliveryHours",
-            "baseName": "deliveryHours",
+            "name": "DeliveryHours",
+            "baseName": "DeliveryHours",
             "type": "Array<BusinessHoursPeriod>"
         },
         {
-            "name": "microsoftTimeZone",
-            "baseName": "microsoftTimeZone",
+            "name": "MicrosoftTimeZone",
+            "baseName": "MicrosoftTimeZone",
             "type": "string"
         },
         {
-            "name": "ianaTimeZone",
-            "baseName": "ianaTimeZone",
+            "name": "IanaTimeZone",
+            "baseName": "IanaTimeZone",
             "type": "string"
         },
         {
-            "name": "menuId",
-            "baseName": "menuId",
+            "name": "MenuId",
+            "baseName": "MenuId",
             "type": "number"
         },
         {
-            "name": "orderConfirmationMessageOverrideDelivery",
-            "baseName": "orderConfirmationMessageOverrideDelivery",
+            "name": "OrderConfirmationMessageOverrideDelivery",
+            "baseName": "OrderConfirmationMessageOverrideDelivery",
             "type": "string"
         },
         {
-            "name": "orderConfirmationMessageOverridePickup",
-            "baseName": "orderConfirmationMessageOverridePickup",
+            "name": "OrderConfirmationMessageOverridePickup",
+            "baseName": "OrderConfirmationMessageOverridePickup",
             "type": "string"
         },
         {
-            "name": "printoutLayoutType",
-            "baseName": "printoutLayoutType",
+            "name": "PrintoutLayoutType",
+            "baseName": "PrintoutLayoutType",
             "type": "Store.PrintoutLayoutTypeEnum"
         },
         {
-            "name": "storeNotes",
-            "baseName": "storeNotes",
+            "name": "StoreNotes",
+            "baseName": "StoreNotes",
             "type": "Array<StoreNote>"
         }    ];
 
@@ -4730,68 +4758,68 @@ export class StoreAddress {
     /**
     * Address identifier
     */
-    'addressId': number;
+    'AddressId': number;
     /**
     * Address line 1
     */
-    'line1': string;
+    'Line1': string;
     /**
     * Postcode
     */
-    'postcode': string;
+    'Postcode': string;
     /**
     * City
     */
-    'city': string;
+    'City': string;
     /**
     * Country code (ISO-alpha2)
     */
-    'countryCode': string;
+    'CountryCode': string;
     /**
     * Display for customer
     */
-    'displayForCustomer': string;
+    'DisplayForCustomer': string;
     /**
     * Coordinate
     */
-    'coordinates': Coordinates;
+    'Coordinates': Coordinates;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "addressId",
-            "baseName": "addressId",
+            "name": "AddressId",
+            "baseName": "AddressId",
             "type": "number"
         },
         {
-            "name": "line1",
-            "baseName": "line1",
+            "name": "Line1",
+            "baseName": "Line1",
             "type": "string"
         },
         {
-            "name": "postcode",
-            "baseName": "postcode",
+            "name": "Postcode",
+            "baseName": "Postcode",
             "type": "string"
         },
         {
-            "name": "city",
-            "baseName": "city",
+            "name": "City",
+            "baseName": "City",
             "type": "string"
         },
         {
-            "name": "countryCode",
-            "baseName": "countryCode",
+            "name": "CountryCode",
+            "baseName": "CountryCode",
             "type": "string"
         },
         {
-            "name": "displayForCustomer",
-            "baseName": "displayForCustomer",
+            "name": "DisplayForCustomer",
+            "baseName": "DisplayForCustomer",
             "type": "string"
         },
         {
-            "name": "coordinates",
-            "baseName": "coordinates",
+            "name": "Coordinates",
+            "baseName": "Coordinates",
             "type": "Coordinates"
         }    ];
 
@@ -4807,68 +4835,68 @@ export class StoreCreatedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * Store Id
     */
-    'storeId': number;
+    'StoreId': number;
     /**
     * Info User
     */
-    'user': UserEventInfo;
+    'User': UserEventInfo;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "storeId",
-            "baseName": "storeId",
+            "name": "StoreId",
+            "baseName": "StoreId",
             "type": "number"
         },
         {
-            "name": "user",
-            "baseName": "user",
+            "name": "User",
+            "baseName": "User",
             "type": "UserEventInfo"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -4884,68 +4912,68 @@ export class StoreDeletedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * Store Id
     */
-    'storeId': number;
+    'StoreId': number;
     /**
     * Info User
     */
-    'user': UserEventInfo;
+    'User': UserEventInfo;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "storeId",
-            "baseName": "storeId",
+            "name": "StoreId",
+            "baseName": "StoreId",
             "type": "number"
         },
         {
-            "name": "user",
-            "baseName": "user",
+            "name": "User",
+            "baseName": "User",
             "type": "UserEventInfo"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -4961,68 +4989,68 @@ export class StoreDeliveryZoneUpdatedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * Store Id
     */
-    'storeId': number;
+    'StoreId': number;
     /**
     * Info User
     */
-    'user': UserEventInfo;
+    'User': UserEventInfo;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "storeId",
-            "baseName": "storeId",
+            "name": "StoreId",
+            "baseName": "StoreId",
             "type": "number"
         },
         {
-            "name": "user",
-            "baseName": "user",
+            "name": "User",
+            "baseName": "User",
             "type": "UserEventInfo"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -5038,32 +5066,32 @@ export class StoreNote {
     /**
     * User identifier
     */
-    'userId': number;
+    'UserId': number;
     /**
     * Create time
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Note
     */
-    'note': string;
+    'Note': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "userId",
-            "baseName": "userId",
+            "name": "UserId",
+            "baseName": "UserId",
             "type": "number"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "note",
-            "baseName": "note",
+            "name": "Note",
+            "baseName": "Note",
             "type": "string"
         }    ];
 
@@ -5079,68 +5107,68 @@ export class StoreOpeningHoursUpdatedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * Store Id
     */
-    'storeId': number;
+    'StoreId': number;
     /**
     * Info User
     */
-    'user': UserEventInfo;
+    'User': UserEventInfo;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "storeId",
-            "baseName": "storeId",
+            "name": "StoreId",
+            "baseName": "StoreId",
             "type": "number"
         },
         {
-            "name": "user",
-            "baseName": "user",
+            "name": "User",
+            "baseName": "User",
             "type": "UserEventInfo"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -5156,50 +5184,50 @@ export class StoreSummary {
     /**
     * Store identifier
     */
-    'id': number;
+    'Id': number;
     /**
     * Store name
     */
-    'name': string;
+    'Name': string;
     /**
     * Stores menu identifier
     */
-    'menuId': number;
+    'MenuId': number;
     /**
     * Store metadata
     */
-    'metadata': { [key: string]: string; };
+    'Metadata': { [key: string]: string; };
     /**
     * Currency which used by the Store
     */
-    'currency': StoreSummary.CurrencyEnum;
+    'Currency': StoreSummary.CurrencyEnum;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "id",
-            "baseName": "id",
+            "name": "Id",
+            "baseName": "Id",
             "type": "number"
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
-            "name": "menuId",
-            "baseName": "menuId",
+            "name": "MenuId",
+            "baseName": "MenuId",
             "type": "number"
         },
         {
-            "name": "metadata",
-            "baseName": "metadata",
+            "name": "Metadata",
+            "baseName": "Metadata",
             "type": "{ [key: string]: string; }"
         },
         {
-            "name": "currency",
-            "baseName": "currency",
+            "name": "Currency",
+            "baseName": "Currency",
             "type": "StoreSummary.CurrencyEnum"
         }    ];
 
@@ -5331,68 +5359,68 @@ export class StoreUpdatedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * Store Id
     */
-    'storeId': number;
+    'StoreId': number;
     /**
     * Info User
     */
-    'user': UserEventInfo;
+    'User': UserEventInfo;
     /**
     * Description
     */
-    'description': string;
+    'Description': string;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "storeId",
-            "baseName": "storeId",
+            "name": "StoreId",
+            "baseName": "StoreId",
             "type": "number"
         },
         {
-            "name": "user",
-            "baseName": "user",
+            "name": "User",
+            "baseName": "User",
             "type": "UserEventInfo"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -5408,41 +5436,41 @@ export class UserEventInfo {
     /**
     * User Id
     */
-    'userId': number;
+    'UserId': number;
     /**
     * UserName
     */
-    'userName': string;
+    'UserName': string;
     /**
     * User Phone Number
     */
-    'userPhoneNumber': string;
+    'UserPhoneNumber': string;
     /**
     * User Email
     */
-    'userEmail': string;
+    'UserEmail': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "userId",
-            "baseName": "userId",
+            "name": "UserId",
+            "baseName": "UserId",
             "type": "number"
         },
         {
-            "name": "userName",
-            "baseName": "userName",
+            "name": "UserName",
+            "baseName": "UserName",
             "type": "string"
         },
         {
-            "name": "userPhoneNumber",
-            "baseName": "userPhoneNumber",
+            "name": "UserPhoneNumber",
+            "baseName": "UserPhoneNumber",
             "type": "string"
         },
         {
-            "name": "userEmail",
-            "baseName": "userEmail",
+            "name": "UserEmail",
+            "baseName": "UserEmail",
             "type": "string"
         }    ];
 
@@ -5458,23 +5486,23 @@ export class ValidationErrorResult {
     /**
     * Field name
     */
-    'fieldName': string;
+    'FieldName': string;
     /**
     * List of errors relates to field
     */
-    'errors': Array<string>;
+    'Errors': Array<string>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "fieldName",
-            "baseName": "fieldName",
+            "name": "FieldName",
+            "baseName": "FieldName",
             "type": "string"
         },
         {
-            "name": "errors",
-            "baseName": "errors",
+            "name": "Errors",
+            "baseName": "Errors",
             "type": "Array<string>"
         }    ];
 
@@ -5490,212 +5518,212 @@ export class Voucher {
     /**
     * Voucher identifier
     */
-    'voucherId': number;
+    'VoucherId': number;
     /**
     * Voucher type
     */
-    'voucherType': Voucher.VoucherTypeEnum;
+    'VoucherType': Voucher.VoucherTypeEnum;
     /**
     * Is voucher enabled
     */
-    'isEnabled': boolean;
+    'IsEnabled': boolean;
     /**
     * Is voucher used up
     */
-    'isUsedUp': boolean;
+    'IsUsedUp': boolean;
     /**
     * Voucher subtype
     */
-    'voucherSubType': Voucher.VoucherSubTypeEnum;
+    'VoucherSubType': Voucher.VoucherSubTypeEnum;
     /**
     * Public description
     */
-    'publicDescription': string;
+    'PublicDescription': string;
     /**
     * Private description
     */
-    'privateDescription': string;
+    'PrivateDescription': string;
     /**
     * Valid from
     */
-    'validFrom': Date;
+    'ValidFrom': Date;
     /**
     * Expiry
     */
-    'expiry': Date;
+    'Expiry': Date;
     /**
     * Define who foots the bill for the voucher
     */
-    'voucherPayer': Voucher.VoucherPayerEnum;
+    'VoucherPayer': Voucher.VoucherPayerEnum;
     /**
     * Define whether we show the fact that a voucher was applied to the restaurant
     */
-    'isVisibleToStore': boolean;
+    'IsVisibleToStore': boolean;
     /**
     * Is reusable
     */
-    'isReusable': boolean;
+    'IsReusable': boolean;
     /**
     * Is valid for delivery orders
     */
-    'isValidForDeliveryOrders': boolean;
+    'IsValidForDeliveryOrders': boolean;
     /**
     * Is valid for pickup orders
     */
-    'isValidForPickupOrders': boolean;
+    'IsValidForPickupOrders': boolean;
     /**
     * Is valid for card orders
     */
-    'isValidForCardOrders': boolean;
+    'IsValidForCardOrders': boolean;
     /**
     * Is valid for cash orders
     */
-    'isValidForCashOrders': boolean;
+    'IsValidForCashOrders': boolean;
     /**
     * Is valid for first order only
     */
-    'isValidForFirstOrderOnly': boolean;
+    'IsValidForFirstOrderOnly': boolean;
     /**
     * Minimum order amount.
     */
-    'minimumOrderAmount': number;
+    'MinimumOrderAmount': number;
     /**
     * Is valid once per customer
     */
-    'isValidOncePerCustomer': boolean;
+    'IsValidOncePerCustomer': boolean;
     /**
     * Auto apply
     */
-    'autoApply': boolean;
+    'AutoApply': boolean;
     /**
     * Auto apply order.  Lower numbers get applied first.
     */
-    'autoApplyOrder': number;
+    'AutoApplyOrder': number;
     /**
     * Include delivery fee
     */
-    'includeDeliveryFee': boolean;
+    'IncludeDeliveryFee': boolean;
     /**
     * Voucher code
     */
-    'code': string;
+    'Code': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "voucherId",
-            "baseName": "voucherId",
+            "name": "VoucherId",
+            "baseName": "VoucherId",
             "type": "number"
         },
         {
-            "name": "voucherType",
-            "baseName": "voucherType",
+            "name": "VoucherType",
+            "baseName": "VoucherType",
             "type": "Voucher.VoucherTypeEnum"
         },
         {
-            "name": "isEnabled",
-            "baseName": "isEnabled",
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
             "type": "boolean"
         },
         {
-            "name": "isUsedUp",
-            "baseName": "isUsedUp",
+            "name": "IsUsedUp",
+            "baseName": "IsUsedUp",
             "type": "boolean"
         },
         {
-            "name": "voucherSubType",
-            "baseName": "voucherSubType",
+            "name": "VoucherSubType",
+            "baseName": "VoucherSubType",
             "type": "Voucher.VoucherSubTypeEnum"
         },
         {
-            "name": "publicDescription",
-            "baseName": "publicDescription",
+            "name": "PublicDescription",
+            "baseName": "PublicDescription",
             "type": "string"
         },
         {
-            "name": "privateDescription",
-            "baseName": "privateDescription",
+            "name": "PrivateDescription",
+            "baseName": "PrivateDescription",
             "type": "string"
         },
         {
-            "name": "validFrom",
-            "baseName": "validFrom",
+            "name": "ValidFrom",
+            "baseName": "ValidFrom",
             "type": "Date"
         },
         {
-            "name": "expiry",
-            "baseName": "expiry",
+            "name": "Expiry",
+            "baseName": "Expiry",
             "type": "Date"
         },
         {
-            "name": "voucherPayer",
-            "baseName": "voucherPayer",
+            "name": "VoucherPayer",
+            "baseName": "VoucherPayer",
             "type": "Voucher.VoucherPayerEnum"
         },
         {
-            "name": "isVisibleToStore",
-            "baseName": "isVisibleToStore",
+            "name": "IsVisibleToStore",
+            "baseName": "IsVisibleToStore",
             "type": "boolean"
         },
         {
-            "name": "isReusable",
-            "baseName": "isReusable",
+            "name": "IsReusable",
+            "baseName": "IsReusable",
             "type": "boolean"
         },
         {
-            "name": "isValidForDeliveryOrders",
-            "baseName": "isValidForDeliveryOrders",
+            "name": "IsValidForDeliveryOrders",
+            "baseName": "IsValidForDeliveryOrders",
             "type": "boolean"
         },
         {
-            "name": "isValidForPickupOrders",
-            "baseName": "isValidForPickupOrders",
+            "name": "IsValidForPickupOrders",
+            "baseName": "IsValidForPickupOrders",
             "type": "boolean"
         },
         {
-            "name": "isValidForCardOrders",
-            "baseName": "isValidForCardOrders",
+            "name": "IsValidForCardOrders",
+            "baseName": "IsValidForCardOrders",
             "type": "boolean"
         },
         {
-            "name": "isValidForCashOrders",
-            "baseName": "isValidForCashOrders",
+            "name": "IsValidForCashOrders",
+            "baseName": "IsValidForCashOrders",
             "type": "boolean"
         },
         {
-            "name": "isValidForFirstOrderOnly",
-            "baseName": "isValidForFirstOrderOnly",
+            "name": "IsValidForFirstOrderOnly",
+            "baseName": "IsValidForFirstOrderOnly",
             "type": "boolean"
         },
         {
-            "name": "minimumOrderAmount",
-            "baseName": "minimumOrderAmount",
+            "name": "MinimumOrderAmount",
+            "baseName": "MinimumOrderAmount",
             "type": "number"
         },
         {
-            "name": "isValidOncePerCustomer",
-            "baseName": "isValidOncePerCustomer",
+            "name": "IsValidOncePerCustomer",
+            "baseName": "IsValidOncePerCustomer",
             "type": "boolean"
         },
         {
-            "name": "autoApply",
-            "baseName": "autoApply",
+            "name": "AutoApply",
+            "baseName": "AutoApply",
             "type": "boolean"
         },
         {
-            "name": "autoApplyOrder",
-            "baseName": "autoApplyOrder",
+            "name": "AutoApplyOrder",
+            "baseName": "AutoApplyOrder",
             "type": "number"
         },
         {
-            "name": "includeDeliveryFee",
-            "baseName": "includeDeliveryFee",
+            "name": "IncludeDeliveryFee",
+            "baseName": "IncludeDeliveryFee",
             "type": "boolean"
         },
         {
-            "name": "code",
-            "baseName": "code",
+            "name": "Code",
+            "baseName": "Code",
             "type": "string"
         }    ];
 
@@ -5732,59 +5760,59 @@ export class VoucherSummary {
     /**
     * Voucher name
     */
-    'name': string;
+    'Name': string;
     /**
     * Voucher description
     */
-    'description': string;
+    'Description': string;
     /**
     * Voucher code
     */
-    'code': string;
+    'Code': string;
     /**
     * Voucher amount
     */
-    'amount': number;
+    'Amount': number;
     /**
     * Voucher type
     */
-    'type': VoucherSummary.TypeEnum;
+    'Type': VoucherSummary.TypeEnum;
     /**
     * Voucher sub type
     */
-    'subType': VoucherSummary.SubTypeEnum;
+    'SubType': VoucherSummary.SubTypeEnum;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "code",
-            "baseName": "code",
+            "name": "Code",
+            "baseName": "Code",
             "type": "string"
         },
         {
-            "name": "amount",
-            "baseName": "amount",
+            "name": "Amount",
+            "baseName": "Amount",
             "type": "number"
         },
         {
-            "name": "type",
-            "baseName": "type",
+            "name": "Type",
+            "baseName": "Type",
             "type": "VoucherSummary.TypeEnum"
         },
         {
-            "name": "subType",
-            "baseName": "subType",
+            "name": "SubType",
+            "baseName": "SubType",
             "type": "VoucherSummary.SubTypeEnum"
         }    ];
 
@@ -5817,140 +5845,140 @@ export class WebhookLog {
     /**
     * Webhook subscription owner user identifier
     */
-    'webhookSubscriptionOwnerUserId': number;
+    'WebhookSubscriptionOwnerUserId': number;
     /**
     * Event created
     */
-    'eventCreated': string;
+    'EventCreated': string;
     /**
     * Webhook triggered
     */
-    'webhookTriggered': string;
+    'WebhookTriggered': string;
     /**
     * Webhook event name
     */
-    'webhookEventName': string;
+    'WebhookEventName': string;
     /**
     * Webhook subscription callback url
     */
-    'webhookSubscriptionCallbackUrl': string;
+    'WebhookSubscriptionCallbackUrl': string;
     /**
     * Received HTTP repsonse status HTTP code
     */
-    'httpResponseStatusCode': string;
+    'HttpResponseStatusCode': string;
     /**
     * Received HTTP repsonse status
     */
-    'httpResponseStatus': string;
+    'HttpResponseStatus': string;
     /**
     * Request headers
     */
-    'requestHeaders': string;
+    'RequestHeaders': string;
     /**
     * Request body
     */
-    'requestBody': string;
+    'RequestBody': string;
     /**
     * Received response headers
     */
-    'responseHeaders': string;
+    'ResponseHeaders': string;
     /**
     * Received response body
     */
-    'responseBody': string;
+    'ResponseBody': string;
     /**
     * Duration of HTTP request
     */
-    'duration': string;
+    'Duration': string;
     /**
     * Retry count
     */
-    'retryCount': number;
+    'RetryCount': number;
     /**
     * Flipdish webhook identifier
     */
-    'flipdishWebhookId': string;
+    'FlipdishWebhookId': string;
     /**
     * Flipdish webhook version
     */
-    'version': string;
+    'Version': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "webhookSubscriptionOwnerUserId",
-            "baseName": "webhookSubscriptionOwnerUserId",
+            "name": "WebhookSubscriptionOwnerUserId",
+            "baseName": "WebhookSubscriptionOwnerUserId",
             "type": "number"
         },
         {
-            "name": "eventCreated",
-            "baseName": "eventCreated",
+            "name": "EventCreated",
+            "baseName": "EventCreated",
             "type": "string"
         },
         {
-            "name": "webhookTriggered",
-            "baseName": "webhookTriggered",
+            "name": "WebhookTriggered",
+            "baseName": "WebhookTriggered",
             "type": "string"
         },
         {
-            "name": "webhookEventName",
-            "baseName": "webhookEventName",
+            "name": "WebhookEventName",
+            "baseName": "WebhookEventName",
             "type": "string"
         },
         {
-            "name": "webhookSubscriptionCallbackUrl",
-            "baseName": "webhookSubscriptionCallbackUrl",
+            "name": "WebhookSubscriptionCallbackUrl",
+            "baseName": "WebhookSubscriptionCallbackUrl",
             "type": "string"
         },
         {
-            "name": "httpResponseStatusCode",
-            "baseName": "httpResponseStatusCode",
+            "name": "HttpResponseStatusCode",
+            "baseName": "HttpResponseStatusCode",
             "type": "string"
         },
         {
-            "name": "httpResponseStatus",
-            "baseName": "httpResponseStatus",
+            "name": "HttpResponseStatus",
+            "baseName": "HttpResponseStatus",
             "type": "string"
         },
         {
-            "name": "requestHeaders",
-            "baseName": "requestHeaders",
+            "name": "RequestHeaders",
+            "baseName": "RequestHeaders",
             "type": "string"
         },
         {
-            "name": "requestBody",
-            "baseName": "requestBody",
+            "name": "RequestBody",
+            "baseName": "RequestBody",
             "type": "string"
         },
         {
-            "name": "responseHeaders",
-            "baseName": "responseHeaders",
+            "name": "ResponseHeaders",
+            "baseName": "ResponseHeaders",
             "type": "string"
         },
         {
-            "name": "responseBody",
-            "baseName": "responseBody",
+            "name": "ResponseBody",
+            "baseName": "ResponseBody",
             "type": "string"
         },
         {
-            "name": "duration",
-            "baseName": "duration",
+            "name": "Duration",
+            "baseName": "Duration",
             "type": "string"
         },
         {
-            "name": "retryCount",
-            "baseName": "retryCount",
+            "name": "RetryCount",
+            "baseName": "RetryCount",
             "type": "number"
         },
         {
-            "name": "flipdishWebhookId",
-            "baseName": "flipdishWebhookId",
+            "name": "FlipdishWebhookId",
+            "baseName": "FlipdishWebhookId",
             "type": "string"
         },
         {
-            "name": "version",
-            "baseName": "version",
+            "name": "Version",
+            "baseName": "Version",
             "type": "string"
         }    ];
 
@@ -5966,68 +5994,68 @@ export class WebhookSubscription {
     /**
     * Webhook subscription identifier
     */
-    'id': number;
+    'Id': number;
     /**
     * Webhook subscription owner user identifier
     */
-    'ownerUserId': number;
+    'OwnerUserId': number;
     /**
     * Webhook subscription owner user identifier
     */
-    'version': string;
+    'Version': string;
     /**
     * Webhook subscription event names
     */
-    'eventNames': Array<string>;
+    'EventNames': Array<string>;
     /**
     * Callback url. Flipdish system POST messages to this url.
     */
-    'callbackUrl': string;
+    'CallbackUrl': string;
     /**
     * Is webhook subscription enabled.
     */
-    'enabled': boolean;
+    'Enabled': boolean;
     /**
     * This is your token which will be in the Header of each POST request from Flipdish with name: X-Verify-Token.
     */
-    'verifyToken': string;
+    'VerifyToken': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "id",
-            "baseName": "id",
+            "name": "Id",
+            "baseName": "Id",
             "type": "number"
         },
         {
-            "name": "ownerUserId",
-            "baseName": "ownerUserId",
+            "name": "OwnerUserId",
+            "baseName": "OwnerUserId",
             "type": "number"
         },
         {
-            "name": "version",
-            "baseName": "version",
+            "name": "Version",
+            "baseName": "Version",
             "type": "string"
         },
         {
-            "name": "eventNames",
-            "baseName": "eventNames",
+            "name": "EventNames",
+            "baseName": "EventNames",
             "type": "Array<string>"
         },
         {
-            "name": "callbackUrl",
-            "baseName": "callbackUrl",
+            "name": "CallbackUrl",
+            "baseName": "CallbackUrl",
             "type": "string"
         },
         {
-            "name": "enabled",
-            "baseName": "enabled",
+            "name": "Enabled",
+            "baseName": "Enabled",
             "type": "boolean"
         },
         {
-            "name": "verifyToken",
-            "baseName": "verifyToken",
+            "name": "VerifyToken",
+            "baseName": "VerifyToken",
             "type": "string"
         }    ];
 
@@ -6043,50 +6071,50 @@ export class WebhookSubscriptionCreatedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * Webhook subscription details
     */
-    'webhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
+    'WebhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "webhookSubscriptionEventInfo",
-            "baseName": "webhookSubscriptionEventInfo",
+            "name": "WebhookSubscriptionEventInfo",
+            "baseName": "WebhookSubscriptionEventInfo",
             "type": "WebhookSubscriptionEventInfo"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -6102,50 +6130,50 @@ export class WebhookSubscriptionDeletedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * Webhook subscription details
     */
-    'webhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
+    'WebhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "webhookSubscriptionEventInfo",
-            "baseName": "webhookSubscriptionEventInfo",
+            "name": "WebhookSubscriptionEventInfo",
+            "baseName": "WebhookSubscriptionEventInfo",
             "type": "WebhookSubscriptionEventInfo"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -6161,41 +6189,41 @@ export class WebhookSubscriptionEventInfo {
     /**
     * Webhook subscription owner user identifier
     */
-    'ownerUserId': number;
+    'OwnerUserId': number;
     /**
     * Webhook subscription identifier
     */
-    'webhookSubscriptionId': number;
+    'WebhookSubscriptionId': number;
     /**
     * Oauth client identifier
     */
-    'clientId': string;
+    'ClientId': string;
     /**
     * Webhook callback url
     */
-    'callbackUrl': string;
+    'CallbackUrl': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "ownerUserId",
-            "baseName": "ownerUserId",
+            "name": "OwnerUserId",
+            "baseName": "OwnerUserId",
             "type": "number"
         },
         {
-            "name": "webhookSubscriptionId",
-            "baseName": "webhookSubscriptionId",
+            "name": "WebhookSubscriptionId",
+            "baseName": "WebhookSubscriptionId",
             "type": "number"
         },
         {
-            "name": "clientId",
-            "baseName": "clientId",
+            "name": "ClientId",
+            "baseName": "ClientId",
             "type": "string"
         },
         {
-            "name": "callbackUrl",
-            "baseName": "callbackUrl",
+            "name": "CallbackUrl",
+            "baseName": "CallbackUrl",
             "type": "string"
         }    ];
 
@@ -6211,50 +6239,50 @@ export class WebhookSubscriptionUpdatedEvent {
     /**
     * The event name
     */
-    'eventName': string;
+    'EventName': string;
     /**
     * Webhook subscription details
     */
-    'webhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
+    'WebhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
     /**
     * The identitfier of the event
     */
-    'flipdishEventId': string;
+    'FlipdishEventId': string;
     /**
     * The time of creation of the event
     */
-    'createTime': Date;
+    'CreateTime': Date;
     /**
     * Position
     */
-    'position': number;
+    'Position': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "eventName",
-            "baseName": "eventName",
+            "name": "EventName",
+            "baseName": "EventName",
             "type": "string"
         },
         {
-            "name": "webhookSubscriptionEventInfo",
-            "baseName": "webhookSubscriptionEventInfo",
+            "name": "WebhookSubscriptionEventInfo",
+            "baseName": "WebhookSubscriptionEventInfo",
             "type": "WebhookSubscriptionEventInfo"
         },
         {
-            "name": "flipdishEventId",
-            "baseName": "flipdishEventId",
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
             "type": "string"
         },
         {
-            "name": "createTime",
-            "baseName": "createTime",
+            "name": "CreateTime",
+            "baseName": "CreateTime",
             "type": "Date"
         },
         {
-            "name": "position",
-            "baseName": "position",
+            "name": "Position",
+            "baseName": "Position",
             "type": "number"
         }    ];
 
@@ -6274,7 +6302,9 @@ let enumsMap: {[index: string]: any} = {
         "MenuItemOptionSetItemBase.CellLayoutTypeEnum": MenuItemOptionSetItemBase.CellLayoutTypeEnum,
         "MenuSectionAvailability.AvailabilityModeEnum": MenuSectionAvailability.AvailabilityModeEnum,
         "MenuSectionItem.SpicinessRatingEnum": MenuSectionItem.SpicinessRatingEnum,
+        "MenuSectionItem.CellLayoutTypeEnum": MenuSectionItem.CellLayoutTypeEnum,
         "MenuSectionItemBase.SpicinessRatingEnum": MenuSectionItemBase.SpicinessRatingEnum,
+        "MenuSectionItemBase.CellLayoutTypeEnum": MenuSectionItemBase.CellLayoutTypeEnum,
         "Order.DeliveryTypeEnum": Order.DeliveryTypeEnum,
         "Order.PickupLocationTypeEnum": Order.PickupLocationTypeEnum,
         "Order.PaymentAccountTypeEnum": Order.PaymentAccountTypeEnum,
@@ -7962,8 +7992,9 @@ export class MenuOptionSetItemsApi {
      * @param optionSetId Option set identifier
      * @param menuItemOptionSetItemId Option set item identifier
      * @param menuItemOptionSetItem Option set item (delta)
+     * @param undoAfter An optional time period, in hours, after which the hide-section operaton will be undone.
      */
-    public updateMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updateMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase, undoAfter: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -8002,6 +8033,15 @@ export class MenuOptionSetItemsApi {
         // verify required parameter 'menuItemOptionSetItem' is not null or undefined
         if (menuItemOptionSetItem === null || menuItemOptionSetItem === undefined) {
             throw new Error('Required parameter menuItemOptionSetItem was null or undefined when calling updateMenuItemOptionSetItem.');
+        }
+
+        // verify required parameter 'undoAfter' is not null or undefined
+        if (undoAfter === null || undoAfter === undefined) {
+            throw new Error('Required parameter undoAfter was null or undefined when calling updateMenuItemOptionSetItem.');
+        }
+
+        if (undoAfter !== undefined) {
+            localVarQueryParameters['undoAfter'] = ObjectSerializer.serialize(undoAfter, "number");
         }
 
 
@@ -9629,8 +9669,9 @@ export class MenuSectionsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      * @param menuSection Menu section changes (delta)
+     * @param undoAfter An optional time period, in hours, after which the hide-section operaton will be undone.
      */
-    public updateMenuSection (menuId: number, menuSectionId: number, menuSection: MenuSectionBase) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updateMenuSection (menuId: number, menuSectionId: number, menuSection: MenuSectionBase, undoAfter: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -9651,6 +9692,15 @@ export class MenuSectionsApi {
         // verify required parameter 'menuSection' is not null or undefined
         if (menuSection === null || menuSection === undefined) {
             throw new Error('Required parameter menuSection was null or undefined when calling updateMenuSection.');
+        }
+
+        // verify required parameter 'undoAfter' is not null or undefined
+        if (undoAfter === null || undoAfter === undefined) {
+            throw new Error('Required parameter undoAfter was null or undefined when calling updateMenuSection.');
+        }
+
+        if (undoAfter !== undefined) {
+            localVarQueryParameters['undoAfter'] = ObjectSerializer.serialize(undoAfter, "number");
         }
 
 
