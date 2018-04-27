@@ -9666,7 +9666,7 @@ export class MenuSectionsApi {
      * @param menuSection Menu section changes (delta)
      * @param undoAfter An optional time period, in hours, after which the hide-section operaton will be undone.
      */
-    public updateMenuSection (menuId: number, menuSectionId: number, menuSection: MenuSectionBase, undoAfter: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updateMenuSection (menuId: number, menuSectionId: number, menuSection: MenuSectionBase, undoAfter?: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -9687,11 +9687,6 @@ export class MenuSectionsApi {
         // verify required parameter 'menuSection' is not null or undefined
         if (menuSection === null || menuSection === undefined) {
             throw new Error('Required parameter menuSection was null or undefined when calling updateMenuSection.');
-        }
-
-        // verify required parameter 'undoAfter' is not null or undefined
-        if (undoAfter === null || undoAfter === undefined) {
-            throw new Error('Required parameter undoAfter was null or undefined when calling updateMenuSection.');
         }
 
         if (undoAfter !== undefined) {
