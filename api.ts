@@ -839,6 +839,30 @@ export class EventSearchResult {
     * Webhook subscription deleted events
     */
     'WebhookSubscriptionDeletedEvent': Array<WebhookSubscriptionDeletedEvent>;
+    /**
+    * Printer turned ON event
+    */
+    'PrinterTurnedOnEvent': Array<PrinterTurnedOnEvent>;
+    /**
+    * Printer turned OFF event
+    */
+    'PrinterTurnedOffEvent': Array<PrinterTurnedOffEvent>;
+    /**
+    * Printer assigned to store event
+    */
+    'PrinterAssignedToStoreEvent': Array<PrinterAssignedToStoreEvent>;
+    /**
+    * Printer unassigned from store event
+    */
+    'PrinterUnassignedFromStoreEvent': Array<PrinterUnassignedFromStoreEvent>;
+    /**
+    * Phone call started event
+    */
+    'PhoneCallStartedEvent': Array<PhoneCallStartedEvent>;
+    /**
+    * Phone call ended event
+    */
+    'PhoneCallEndedEvent': Array<PhoneCallEndedEvent>;
 
     static discriminator = undefined;
 
@@ -942,6 +966,36 @@ export class EventSearchResult {
             "name": "WebhookSubscriptionDeletedEvent",
             "baseName": "WebhookSubscriptionDeletedEvent",
             "type": "Array<WebhookSubscriptionDeletedEvent>"
+        },
+        {
+            "name": "PrinterTurnedOnEvent",
+            "baseName": "PrinterTurnedOnEvent",
+            "type": "Array<PrinterTurnedOnEvent>"
+        },
+        {
+            "name": "PrinterTurnedOffEvent",
+            "baseName": "PrinterTurnedOffEvent",
+            "type": "Array<PrinterTurnedOffEvent>"
+        },
+        {
+            "name": "PrinterAssignedToStoreEvent",
+            "baseName": "PrinterAssignedToStoreEvent",
+            "type": "Array<PrinterAssignedToStoreEvent>"
+        },
+        {
+            "name": "PrinterUnassignedFromStoreEvent",
+            "baseName": "PrinterUnassignedFromStoreEvent",
+            "type": "Array<PrinterUnassignedFromStoreEvent>"
+        },
+        {
+            "name": "PhoneCallStartedEvent",
+            "baseName": "PhoneCallStartedEvent",
+            "type": "Array<PhoneCallStartedEvent>"
+        },
+        {
+            "name": "PhoneCallEndedEvent",
+            "baseName": "PhoneCallEndedEvent",
+            "type": "Array<PhoneCallEndedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1427,7 +1481,8 @@ export namespace MenuItemOptionSet {
     export enum CellLayoutTypeEnum {
         Small = <any> 'Small',
         Medium = <any> 'Medium',
-        Large = <any> 'Large'
+        Large = <any> 'Large',
+        HiddenImage = <any> 'HiddenImage'
     }
 }
 /**
@@ -1502,7 +1557,8 @@ export namespace MenuItemOptionSetBase {
     export enum CellLayoutTypeEnum {
         Small = <any> 'Small',
         Medium = <any> 'Medium',
-        Large = <any> 'Large'
+        Large = <any> 'Large',
+        HiddenImage = <any> 'HiddenImage'
     }
 }
 /**
@@ -1586,7 +1642,8 @@ export namespace MenuItemOptionSetItem {
     export enum CellLayoutTypeEnum {
         Small = <any> 'Small',
         Medium = <any> 'Medium',
-        Large = <any> 'Large'
+        Large = <any> 'Large',
+        HiddenImage = <any> 'HiddenImage'
     }
 }
 /**
@@ -1652,7 +1709,8 @@ export namespace MenuItemOptionSetItemBase {
     export enum CellLayoutTypeEnum {
         Small = <any> 'Small',
         Medium = <any> 'Medium',
-        Large = <any> 'Large'
+        Large = <any> 'Large',
+        HiddenImage = <any> 'HiddenImage'
     }
 }
 /**
@@ -1981,7 +2039,8 @@ export namespace MenuSectionItem {
     export enum CellLayoutTypeEnum {
         Small = <any> 'Small',
         Medium = <any> 'Medium',
-        Large = <any> 'Large'
+        Large = <any> 'Large',
+        HiddenImage = <any> 'HiddenImage'
     }
 }
 /**
@@ -2080,7 +2139,8 @@ export namespace MenuSectionItemBase {
     export enum CellLayoutTypeEnum {
         Small = <any> 'Small',
         Medium = <any> 'Medium',
-        Large = <any> 'Large'
+        Large = <any> 'Large',
+        HiddenImage = <any> 'HiddenImage'
     }
 }
 /**
@@ -3254,6 +3314,532 @@ export class OrderTipUpdatedEvent {
 
     static getAttributeTypeMap() {
         return OrderTipUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Phone call
+*/
+export class PhoneCall {
+    /**
+    * Phone number which initiated the phone call
+    */
+    'From': string;
+    /**
+    * Phone number which received the phone call
+    */
+    'To': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "From",
+            "baseName": "From",
+            "type": "string"
+        },
+        {
+            "name": "To",
+            "baseName": "To",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PhoneCall.attributeTypeMap;
+    }
+}
+
+/**
+* Phone call ended event
+*/
+export class PhoneCallEndedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * The phone call
+    */
+    'PhoneCall': PhoneCall;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "PhoneCall",
+            "baseName": "PhoneCall",
+            "type": "PhoneCall"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PhoneCallEndedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Phone call started event
+*/
+export class PhoneCallStartedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * The phone call
+    */
+    'PhoneCall': PhoneCall;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "PhoneCall",
+            "baseName": "PhoneCall",
+            "type": "PhoneCall"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PhoneCallStartedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Printer
+*/
+export class Printer {
+    /**
+    * Unique serial number of the printer
+    */
+    'SerialNumber': string;
+    /**
+    * Date and time when the printer last polled Flipdish for new orders.
+    */
+    'LastPollTime': Date;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "SerialNumber",
+            "baseName": "SerialNumber",
+            "type": "string"
+        },
+        {
+            "name": "LastPollTime",
+            "baseName": "LastPollTime",
+            "type": "Date"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Printer.attributeTypeMap;
+    }
+}
+
+/**
+* Printer assigned to store event
+*/
+export class PrinterAssignedToStoreEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * The printer
+    */
+    'Printer': Printer;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Printer",
+            "baseName": "Printer",
+            "type": "Printer"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PrinterAssignedToStoreEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Printer turned off event
+*/
+export class PrinterTurnedOffEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * The printer
+    */
+    'Printer': Printer;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Printer",
+            "baseName": "Printer",
+            "type": "Printer"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PrinterTurnedOffEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Printer turned on event
+*/
+export class PrinterTurnedOnEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * The printer
+    */
+    'Printer': Printer;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Printer",
+            "baseName": "Printer",
+            "type": "Printer"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PrinterTurnedOnEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Printer assigned from store event
+*/
+export class PrinterUnassignedFromStoreEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * The printer
+    */
+    'Printer': Printer;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Printer",
+            "baseName": "Printer",
+            "type": "Printer"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PrinterUnassignedFromStoreEvent.attributeTypeMap;
     }
 }
 
@@ -6361,6 +6947,14 @@ let typeMap: {[index: string]: any} = {
     "OrderRefundedEvent": OrderRefundedEvent,
     "OrderRejectedEvent": OrderRejectedEvent,
     "OrderTipUpdatedEvent": OrderTipUpdatedEvent,
+    "PhoneCall": PhoneCall,
+    "PhoneCallEndedEvent": PhoneCallEndedEvent,
+    "PhoneCallStartedEvent": PhoneCallStartedEvent,
+    "Printer": Printer,
+    "PrinterAssignedToStoreEvent": PrinterAssignedToStoreEvent,
+    "PrinterTurnedOffEvent": PrinterTurnedOffEvent,
+    "PrinterTurnedOnEvent": PrinterTurnedOnEvent,
+    "PrinterUnassignedFromStoreEvent": PrinterUnassignedFromStoreEvent,
     "Range": Range,
     "Refund": Refund,
     "Reject": Reject,
