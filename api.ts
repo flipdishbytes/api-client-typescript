@@ -257,83 +257,6 @@ export namespace BusinessHoursPeriod {
     }
 }
 /**
-* 
-*/
-export class CampaignCreatedEvent {
-    /**
-    * The event name
-    */
-    'EventName': string;
-    /**
-    * 
-    */
-    'CampaignId': number;
-    /**
-    * 
-    */
-    'VirtualRestaurantName': string;
-    /**
-    * 
-    */
-    'VirtualRestaurantId': number;
-    /**
-    * The identitfier of the event
-    */
-    'FlipdishEventId': string;
-    /**
-    * The time of creation of the event
-    */
-    'CreateTime': Date;
-    /**
-    * Position
-    */
-    'Position': number;
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "EventName",
-            "baseName": "EventName",
-            "type": "string"
-        },
-        {
-            "name": "CampaignId",
-            "baseName": "CampaignId",
-            "type": "number"
-        },
-        {
-            "name": "VirtualRestaurantName",
-            "baseName": "VirtualRestaurantName",
-            "type": "string"
-        },
-        {
-            "name": "VirtualRestaurantId",
-            "baseName": "VirtualRestaurantId",
-            "type": "number"
-        },
-        {
-            "name": "FlipdishEventId",
-            "baseName": "FlipdishEventId",
-            "type": "string"
-        },
-        {
-            "name": "CreateTime",
-            "baseName": "CreateTime",
-            "type": "Date"
-        },
-        {
-            "name": "Position",
-            "baseName": "Position",
-            "type": "number"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return CampaignCreatedEvent.attributeTypeMap;
-    }
-}
-
-/**
 * Coordinates
 */
 export class Coordinates {
@@ -824,10 +747,6 @@ export class EventSearchResult {
     */
     'CustomerConsentUpdatedEvent': Array<CustomerConsentUpdatedEvent>;
     /**
-    * Campaign created events
-    */
-    'CampaignCreatedEvent': Array<CampaignCreatedEvent>;
-    /**
     * Webhook subscription created events
     */
     'WebhookSubscriptionCreatedEvent': Array<WebhookSubscriptionCreatedEvent>;
@@ -863,6 +782,30 @@ export class EventSearchResult {
     * Phone call ended event
     */
     'PhoneCallEndedEvent': Array<PhoneCallEndedEvent>;
+    /**
+    * Loyalty campaign created event
+    */
+    'LoyaltyCampaignCreatedEvent': Array<LoyaltyCampaignCreatedEvent>;
+    /**
+    * Loyalty campaign deleted event
+    */
+    'LoyaltyCampaignDeletedEvent': Array<LoyaltyCampaignDeletedEvent>;
+    /**
+    * Loyalty campaign updated event
+    */
+    'LoyaltyCampaignUpdatedEvent': Array<LoyaltyCampaignUpdatedEvent>;
+    /**
+    * Retention campaign created event
+    */
+    'RetentionCampaignCreatedEvent': Array<RetentionCampaignCreatedEvent>;
+    /**
+    * Retention campaign deleted event
+    */
+    'RetentionCampaignDeletedEvent': Array<RetentionCampaignDeletedEvent>;
+    /**
+    * Retention campaign updated event
+    */
+    'RetentionCampaignUpdatedEvent': Array<RetentionCampaignUpdatedEvent>;
 
     static discriminator = undefined;
 
@@ -948,11 +891,6 @@ export class EventSearchResult {
             "type": "Array<CustomerConsentUpdatedEvent>"
         },
         {
-            "name": "CampaignCreatedEvent",
-            "baseName": "CampaignCreatedEvent",
-            "type": "Array<CampaignCreatedEvent>"
-        },
-        {
             "name": "WebhookSubscriptionCreatedEvent",
             "baseName": "WebhookSubscriptionCreatedEvent",
             "type": "Array<WebhookSubscriptionCreatedEvent>"
@@ -996,6 +934,36 @@ export class EventSearchResult {
             "name": "PhoneCallEndedEvent",
             "baseName": "PhoneCallEndedEvent",
             "type": "Array<PhoneCallEndedEvent>"
+        },
+        {
+            "name": "LoyaltyCampaignCreatedEvent",
+            "baseName": "LoyaltyCampaignCreatedEvent",
+            "type": "Array<LoyaltyCampaignCreatedEvent>"
+        },
+        {
+            "name": "LoyaltyCampaignDeletedEvent",
+            "baseName": "LoyaltyCampaignDeletedEvent",
+            "type": "Array<LoyaltyCampaignDeletedEvent>"
+        },
+        {
+            "name": "LoyaltyCampaignUpdatedEvent",
+            "baseName": "LoyaltyCampaignUpdatedEvent",
+            "type": "Array<LoyaltyCampaignUpdatedEvent>"
+        },
+        {
+            "name": "RetentionCampaignCreatedEvent",
+            "baseName": "RetentionCampaignCreatedEvent",
+            "type": "Array<RetentionCampaignCreatedEvent>"
+        },
+        {
+            "name": "RetentionCampaignDeletedEvent",
+            "baseName": "RetentionCampaignDeletedEvent",
+            "type": "Array<RetentionCampaignDeletedEvent>"
+        },
+        {
+            "name": "RetentionCampaignUpdatedEvent",
+            "baseName": "RetentionCampaignUpdatedEvent",
+            "type": "Array<RetentionCampaignUpdatedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1181,6 +1149,296 @@ export class HttpRequestAndResponseLog {
 
     static getAttributeTypeMap() {
         return HttpRequestAndResponseLog.attributeTypeMap;
+    }
+}
+
+/**
+* The loyalty campaign
+*/
+export class LoyaltyCampaign {
+    /**
+    * Date and time of campaign beginning
+    */
+    'From': Date;
+    /**
+    * Number of days for which the voucher will be valid.
+    */
+    'VoucherValidPeriodDays': number;
+    /**
+    * Discount will include delivery fee
+    */
+    'IncludeDeliveryFee': boolean;
+    /**
+    * Number of orders customer needs to make, before receiving voucher
+    */
+    'OrdersBeforeReceivingVoucher': number;
+    /**
+    * Discount amount in percents
+    */
+    'PercentDiscountAmount': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "From",
+            "baseName": "From",
+            "type": "Date"
+        },
+        {
+            "name": "VoucherValidPeriodDays",
+            "baseName": "VoucherValidPeriodDays",
+            "type": "number"
+        },
+        {
+            "name": "IncludeDeliveryFee",
+            "baseName": "IncludeDeliveryFee",
+            "type": "boolean"
+        },
+        {
+            "name": "OrdersBeforeReceivingVoucher",
+            "baseName": "OrdersBeforeReceivingVoucher",
+            "type": "number"
+        },
+        {
+            "name": "PercentDiscountAmount",
+            "baseName": "PercentDiscountAmount",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LoyaltyCampaign.attributeTypeMap;
+    }
+}
+
+/**
+* Loyalty campaign created event
+*/
+export class LoyaltyCampaignCreatedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * The loyalty campaign
+    */
+    'LoyaltyCampaign': LoyaltyCampaign;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "LoyaltyCampaign",
+            "baseName": "LoyaltyCampaign",
+            "type": "LoyaltyCampaign"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LoyaltyCampaignCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Loyalty campaign deleted event
+*/
+export class LoyaltyCampaignDeletedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * The loyalty campaign
+    */
+    'LoyaltyCampaign': LoyaltyCampaign;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "LoyaltyCampaign",
+            "baseName": "LoyaltyCampaign",
+            "type": "LoyaltyCampaign"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LoyaltyCampaignDeletedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Loyalty campaign updated event
+*/
+export class LoyaltyCampaignUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * The loyalty campaign
+    */
+    'LoyaltyCampaign': LoyaltyCampaign;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "LoyaltyCampaign",
+            "baseName": "LoyaltyCampaign",
+            "type": "LoyaltyCampaign"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LoyaltyCampaignUpdatedEvent.attributeTypeMap;
     }
 }
 
@@ -4953,6 +5211,305 @@ export class RestApiUnauthorizedResult {
 }
 
 /**
+* RetentionCampaign
+*/
+export class RetentionCampaign {
+    /**
+    * Date and time of campaign beginning
+    */
+    'From': Date;
+    /**
+    * Number of days for which the voucher will be valid.
+    */
+    'VoucherValidPeriodDays': number;
+    /**
+    * Discount will include delivery fee
+    */
+    'IncludeDeliveryFee': boolean;
+    /**
+    * Time in minutes, after which customer will receive retention voucher if he/she does not order
+    */
+    'NotifyCustomerAfterMinutes': number;
+    /**
+    * Discount amount in percents
+    */
+    'PercentDiscountAmount': number;
+    /**
+    * Discount amount in sum of money
+    */
+    'LumpDiscountAmount': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "From",
+            "baseName": "From",
+            "type": "Date"
+        },
+        {
+            "name": "VoucherValidPeriodDays",
+            "baseName": "VoucherValidPeriodDays",
+            "type": "number"
+        },
+        {
+            "name": "IncludeDeliveryFee",
+            "baseName": "IncludeDeliveryFee",
+            "type": "boolean"
+        },
+        {
+            "name": "NotifyCustomerAfterMinutes",
+            "baseName": "NotifyCustomerAfterMinutes",
+            "type": "number"
+        },
+        {
+            "name": "PercentDiscountAmount",
+            "baseName": "PercentDiscountAmount",
+            "type": "number"
+        },
+        {
+            "name": "LumpDiscountAmount",
+            "baseName": "LumpDiscountAmount",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RetentionCampaign.attributeTypeMap;
+    }
+}
+
+/**
+* Retention campaign created event
+*/
+export class RetentionCampaignCreatedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * The retention campaign
+    */
+    'RetentionCampaign': RetentionCampaign;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "RetentionCampaign",
+            "baseName": "RetentionCampaign",
+            "type": "RetentionCampaign"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RetentionCampaignCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Retention campaign deleted event
+*/
+export class RetentionCampaignDeletedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * The retention campaign
+    */
+    'RetentionCampaign': RetentionCampaign;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "RetentionCampaign",
+            "baseName": "RetentionCampaign",
+            "type": "RetentionCampaign"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RetentionCampaignDeletedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Retention campaign updated event
+*/
+export class RetentionCampaignUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * The retention campaign
+    */
+    'RetentionCampaign': RetentionCampaign;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "RetentionCampaign",
+            "baseName": "RetentionCampaign",
+            "type": "RetentionCampaign"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RetentionCampaignUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Search Criteria
 */
 export class SearchCriteria {
@@ -6910,7 +7467,6 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "Accept": Accept,
     "BusinessHoursPeriod": BusinessHoursPeriod,
-    "CampaignCreatedEvent": CampaignCreatedEvent,
     "Coordinates": Coordinates,
     "CustomerConsentUpdatedEvent": CustomerConsentUpdatedEvent,
     "CustomerCreatedEvent": CustomerCreatedEvent,
@@ -6921,6 +7477,10 @@ let typeMap: {[index: string]: any} = {
     "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
+    "LoyaltyCampaign": LoyaltyCampaign,
+    "LoyaltyCampaignCreatedEvent": LoyaltyCampaignCreatedEvent,
+    "LoyaltyCampaignDeletedEvent": LoyaltyCampaignDeletedEvent,
+    "LoyaltyCampaignUpdatedEvent": LoyaltyCampaignUpdatedEvent,
     "Menu": Menu,
     "MenuBase": MenuBase,
     "MenuCreatedEvent": MenuCreatedEvent,
@@ -6992,6 +7552,10 @@ let typeMap: {[index: string]: any} = {
     "RestApiStringArrayResult": RestApiStringArrayResult,
     "RestApiStringResult": RestApiStringResult,
     "RestApiUnauthorizedResult": RestApiUnauthorizedResult,
+    "RetentionCampaign": RetentionCampaign,
+    "RetentionCampaignCreatedEvent": RetentionCampaignCreatedEvent,
+    "RetentionCampaignDeletedEvent": RetentionCampaignDeletedEvent,
+    "RetentionCampaignUpdatedEvent": RetentionCampaignUpdatedEvent,
     "SearchCriteria": SearchCriteria,
     "Store": Store,
     "StoreAddress": StoreAddress,
