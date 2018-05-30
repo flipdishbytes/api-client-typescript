@@ -806,6 +806,10 @@ export class EventSearchResult {
     * Retention campaign updated event
     */
     'RetentionCampaignUpdatedEvent': Array<RetentionCampaignUpdatedEvent>;
+    /**
+    * Sms received event
+    */
+    'SmsReceivedEvent': Array<SmsReceivedEvent>;
 
     static discriminator = undefined;
 
@@ -964,6 +968,11 @@ export class EventSearchResult {
             "name": "RetentionCampaignUpdatedEvent",
             "baseName": "RetentionCampaignUpdatedEvent",
             "type": "Array<RetentionCampaignUpdatedEvent>"
+        },
+        {
+            "name": "SmsReceivedEvent",
+            "baseName": "SmsReceivedEvent",
+            "type": "Array<SmsReceivedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -5569,6 +5578,115 @@ export class SearchCriteria {
 }
 
 /**
+* Sms Info
+*/
+export class SmsInfo {
+    /**
+    * Origin phone number
+    */
+    'From': string;
+    /**
+    * Destination phone number
+    */
+    'To': string;
+    /**
+    * Text message
+    */
+    'Text': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "From",
+            "baseName": "From",
+            "type": "string"
+        },
+        {
+            "name": "To",
+            "baseName": "To",
+            "type": "string"
+        },
+        {
+            "name": "Text",
+            "baseName": "Text",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SmsInfo.attributeTypeMap;
+    }
+}
+
+/**
+* Sms received event
+*/
+export class SmsReceivedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * The sms info
+    */
+    'SmsInfo': SmsInfo;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "SmsInfo",
+            "baseName": "SmsInfo",
+            "type": "SmsInfo"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SmsReceivedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Store
 */
 export class Store {
@@ -7557,6 +7675,8 @@ let typeMap: {[index: string]: any} = {
     "RetentionCampaignDeletedEvent": RetentionCampaignDeletedEvent,
     "RetentionCampaignUpdatedEvent": RetentionCampaignUpdatedEvent,
     "SearchCriteria": SearchCriteria,
+    "SmsInfo": SmsInfo,
+    "SmsReceivedEvent": SmsReceivedEvent,
     "Store": Store,
     "StoreAddress": StoreAddress,
     "StoreCreatedEvent": StoreCreatedEvent,
