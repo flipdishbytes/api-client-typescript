@@ -1162,6 +1162,38 @@ export class HttpRequestAndResponseLog {
 }
 
 /**
+* Login model
+*/
+export class LoginModel {
+    /**
+    * Email addres
+    */
+    'Email': string;
+    /**
+    * Password
+    */
+    'Password': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Email",
+            "baseName": "Email",
+            "type": "string"
+        },
+        {
+            "name": "Password",
+            "baseName": "Password",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LoginModel.attributeTypeMap;
+    }
+}
+
+/**
 * The loyalty campaign
 */
 export class LoyaltyCampaign {
@@ -7595,6 +7627,7 @@ let typeMap: {[index: string]: any} = {
     "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
+    "LoginModel": LoginModel,
     "LoyaltyCampaign": LoyaltyCampaign,
     "LoyaltyCampaignCreatedEvent": LoyaltyCampaignCreatedEvent,
     "LoyaltyCampaignDeletedEvent": LoyaltyCampaignDeletedEvent,
@@ -7748,6 +7781,111 @@ export class VoidAuth implements Authentication {
     }
 }
 
+export enum AccountsApiApiKeys {
+}
+
+export class AccountsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: AccountsApiApiKeys, value: string) {
+        (this.authentications as any)[AccountsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Login with username and password
+     * @param loginModel Login model
+     */
+    public login (loginModel: LoginModel) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts/login';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'loginModel' is not null or undefined
+        if (loginModel === null || loginModel === undefined) {
+            throw new Error('Required parameter loginModel was null or undefined when calling login.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(loginModel, "LoginModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
 export enum AuthorizationTokensApiApiKeys {
 }
 
