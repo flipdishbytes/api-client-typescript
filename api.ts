@@ -289,6 +289,38 @@ export class Coordinates {
 }
 
 /**
+* Create account model
+*/
+export class CreateAccount {
+    /**
+    * Email addres
+    */
+    'Email': string;
+    /**
+    * Store name
+    */
+    'StoreName': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Email",
+            "baseName": "Email",
+            "type": "string"
+        },
+        {
+            "name": "StoreName",
+            "baseName": "StoreName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateAccount.attributeTypeMap;
+    }
+}
+
+/**
 * Customer consent updated
 */
 export class CustomerConsentUpdatedEvent {
@@ -810,6 +842,22 @@ export class EventSearchResult {
     * Sms received event
     */
     'SmsReceivedEvent': Array<SmsReceivedEvent>;
+    /**
+    * User login event
+    */
+    'UserLoginEvent': Array<UserLoginEvent>;
+    /**
+    * User created event
+    */
+    'UserCreatedEvent': Array<UserCreatedEvent>;
+    /**
+    * User updated event
+    */
+    'UserUpdatedEvent': Array<UserUpdatedEvent>;
+    /**
+    * User deleted event
+    */
+    'UserDeletedEvent': Array<UserDeletedEvent>;
 
     static discriminator = undefined;
 
@@ -973,6 +1021,26 @@ export class EventSearchResult {
             "name": "SmsReceivedEvent",
             "baseName": "SmsReceivedEvent",
             "type": "Array<SmsReceivedEvent>"
+        },
+        {
+            "name": "UserLoginEvent",
+            "baseName": "UserLoginEvent",
+            "type": "Array<UserLoginEvent>"
+        },
+        {
+            "name": "UserCreatedEvent",
+            "baseName": "UserCreatedEvent",
+            "type": "Array<UserCreatedEvent>"
+        },
+        {
+            "name": "UserUpdatedEvent",
+            "baseName": "UserUpdatedEvent",
+            "type": "Array<UserUpdatedEvent>"
+        },
+        {
+            "name": "UserDeletedEvent",
+            "baseName": "UserDeletedEvent",
+            "type": "Array<UserDeletedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1269,6 +1337,10 @@ export class LoyaltyCampaignCreatedEvent {
     */
     'StoreId': number;
     /**
+    * Info User
+    */
+    'User': UserEventInfo;
+    /**
     * The loyalty campaign
     */
     'LoyaltyCampaign': LoyaltyCampaign;
@@ -1302,6 +1374,11 @@ export class LoyaltyCampaignCreatedEvent {
             "name": "StoreId",
             "baseName": "StoreId",
             "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "LoyaltyCampaign",
@@ -1346,6 +1423,10 @@ export class LoyaltyCampaignDeletedEvent {
     */
     'StoreId': number;
     /**
+    * Info User
+    */
+    'User': UserEventInfo;
+    /**
     * The loyalty campaign
     */
     'LoyaltyCampaign': LoyaltyCampaign;
@@ -1379,6 +1460,11 @@ export class LoyaltyCampaignDeletedEvent {
             "name": "StoreId",
             "baseName": "StoreId",
             "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "LoyaltyCampaign",
@@ -1423,6 +1509,10 @@ export class LoyaltyCampaignUpdatedEvent {
     */
     'StoreId': number;
     /**
+    * Info User
+    */
+    'User': UserEventInfo;
+    /**
     * The loyalty campaign
     */
     'LoyaltyCampaign': LoyaltyCampaign;
@@ -1456,6 +1546,11 @@ export class LoyaltyCampaignUpdatedEvent {
             "name": "StoreId",
             "baseName": "StoreId",
             "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "LoyaltyCampaign",
@@ -3851,6 +3946,10 @@ export class PrinterAssignedToStoreEvent {
     */
     'StoreId': number;
     /**
+    * Info User
+    */
+    'User': UserEventInfo;
+    /**
     * The printer
     */
     'Printer': Printer;
@@ -3884,6 +3983,11 @@ export class PrinterAssignedToStoreEvent {
             "name": "StoreId",
             "baseName": "StoreId",
             "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "Printer",
@@ -3928,6 +4032,10 @@ export class PrinterTurnedOffEvent {
     */
     'StoreId': number;
     /**
+    * Info User
+    */
+    'User': UserEventInfo;
+    /**
     * The printer
     */
     'Printer': Printer;
@@ -3961,6 +4069,11 @@ export class PrinterTurnedOffEvent {
             "name": "StoreId",
             "baseName": "StoreId",
             "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "Printer",
@@ -4005,6 +4118,10 @@ export class PrinterTurnedOnEvent {
     */
     'StoreId': number;
     /**
+    * Info User
+    */
+    'User': UserEventInfo;
+    /**
     * The printer
     */
     'Printer': Printer;
@@ -4038,6 +4155,11 @@ export class PrinterTurnedOnEvent {
             "name": "StoreId",
             "baseName": "StoreId",
             "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "Printer",
@@ -4082,6 +4204,10 @@ export class PrinterUnassignedFromStoreEvent {
     */
     'StoreId': number;
     /**
+    * Info User
+    */
+    'User': UserEventInfo;
+    /**
     * The printer
     */
     'Printer': Printer;
@@ -4115,6 +4241,11 @@ export class PrinterUnassignedFromStoreEvent {
             "name": "StoreId",
             "baseName": "StoreId",
             "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "Printer",
@@ -5336,6 +5467,10 @@ export class RetentionCampaignCreatedEvent {
     */
     'StoreId': number;
     /**
+    * Info User
+    */
+    'User': UserEventInfo;
+    /**
     * The retention campaign
     */
     'RetentionCampaign': RetentionCampaign;
@@ -5369,6 +5504,11 @@ export class RetentionCampaignCreatedEvent {
             "name": "StoreId",
             "baseName": "StoreId",
             "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "RetentionCampaign",
@@ -5413,6 +5553,10 @@ export class RetentionCampaignDeletedEvent {
     */
     'StoreId': number;
     /**
+    * Info User
+    */
+    'User': UserEventInfo;
+    /**
     * The retention campaign
     */
     'RetentionCampaign': RetentionCampaign;
@@ -5446,6 +5590,11 @@ export class RetentionCampaignDeletedEvent {
             "name": "StoreId",
             "baseName": "StoreId",
             "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "RetentionCampaign",
@@ -5490,6 +5639,10 @@ export class RetentionCampaignUpdatedEvent {
     */
     'StoreId': number;
     /**
+    * Info User
+    */
+    'User': UserEventInfo;
+    /**
     * The retention campaign
     */
     'RetentionCampaign': RetentionCampaign;
@@ -5523,6 +5676,11 @@ export class RetentionCampaignUpdatedEvent {
             "name": "StoreId",
             "baseName": "StoreId",
             "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "RetentionCampaign",
@@ -6723,6 +6881,142 @@ export class StoreUpdatedEvent {
 }
 
 /**
+* User created event
+*/
+export class UserCreatedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * The user
+    */
+    'User': UserEventInfo;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* User deleted event
+*/
+export class UserDeletedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * The user
+    */
+    'User': UserEventInfo;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserDeletedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * User Event Info
 */
 export class UserEventInfo {
@@ -6731,7 +7025,7 @@ export class UserEventInfo {
     */
     'UserId': number;
     /**
-    * UserName
+    * User Name
     */
     'UserName': string;
     /**
@@ -6769,6 +7063,142 @@ export class UserEventInfo {
 
     static getAttributeTypeMap() {
         return UserEventInfo.attributeTypeMap;
+    }
+}
+
+/**
+* User login event
+*/
+export class UserLoginEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * The user
+    */
+    'User': UserEventInfo;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserLoginEvent.attributeTypeMap;
+    }
+}
+
+/**
+* User updated event
+*/
+export class UserUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * The user
+    */
+    'User': UserEventInfo;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserUpdatedEvent.attributeTypeMap;
     }
 }
 
@@ -7618,6 +8048,7 @@ let typeMap: {[index: string]: any} = {
     "Accept": Accept,
     "BusinessHoursPeriod": BusinessHoursPeriod,
     "Coordinates": Coordinates,
+    "CreateAccount": CreateAccount,
     "CustomerConsentUpdatedEvent": CustomerConsentUpdatedEvent,
     "CustomerCreatedEvent": CustomerCreatedEvent,
     "CustomerSummary": CustomerSummary,
@@ -7719,7 +8150,11 @@ let typeMap: {[index: string]: any} = {
     "StoreOpeningHoursUpdatedEvent": StoreOpeningHoursUpdatedEvent,
     "StoreSummary": StoreSummary,
     "StoreUpdatedEvent": StoreUpdatedEvent,
+    "UserCreatedEvent": UserCreatedEvent,
+    "UserDeletedEvent": UserDeletedEvent,
     "UserEventInfo": UserEventInfo,
+    "UserLoginEvent": UserLoginEvent,
+    "UserUpdatedEvent": UserUpdatedEvent,
     "ValidationErrorResult": ValidationErrorResult,
     "Voucher": Voucher,
     "VoucherSummary": VoucherSummary,
@@ -7829,6 +8264,61 @@ export class AccountsApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Create account with email address and store name
+     * @param createAccountModel Create account model
+     */
+    public createAccount (createAccountModel: CreateAccount) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'createAccountModel' is not null or undefined
+        if (createAccountModel === null || createAccountModel === undefined) {
+            throw new Error('Required parameter createAccountModel was null or undefined when calling createAccount.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(createAccountModel, "CreateAccount")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
     }
     /**
      * 
