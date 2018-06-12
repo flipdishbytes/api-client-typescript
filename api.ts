@@ -257,6 +257,47 @@ export namespace BusinessHoursPeriod {
     }
 }
 /**
+* Change password model
+*/
+export class ChangePasswordModel {
+    /**
+    * Old password
+    */
+    'OldPassword': string;
+    /**
+    * New password
+    */
+    'NewPassword': string;
+    /**
+    * Password confirmation
+    */
+    'PasswordConfirmation': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OldPassword",
+            "baseName": "OldPassword",
+            "type": "string"
+        },
+        {
+            "name": "NewPassword",
+            "baseName": "NewPassword",
+            "type": "string"
+        },
+        {
+            "name": "PasswordConfirmation",
+            "baseName": "PasswordConfirmation",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ChangePasswordModel.attributeTypeMap;
+    }
+}
+
+/**
 * Coordinates
 */
 export class Coordinates {
@@ -291,7 +332,7 @@ export class Coordinates {
 /**
 * Create account model
 */
-export class CreateAccount {
+export class CreateAccountModel {
     /**
     * Email addres
     */
@@ -316,7 +357,7 @@ export class CreateAccount {
         }    ];
 
     static getAttributeTypeMap() {
-        return CreateAccount.attributeTypeMap;
+        return CreateAccountModel.attributeTypeMap;
     }
 }
 
@@ -3712,6 +3753,56 @@ export class OrderTipUpdatedEvent {
 }
 
 /**
+* Password reset model
+*/
+export class PasswordResetModel {
+    /**
+    * Email address
+    */
+    'Email': string;
+    /**
+    * Password
+    */
+    'Password': string;
+    /**
+    * Password confirmation
+    */
+    'PasswordConfirmation': string;
+    /**
+    * Password reset token
+    */
+    'Token': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Email",
+            "baseName": "Email",
+            "type": "string"
+        },
+        {
+            "name": "Password",
+            "baseName": "Password",
+            "type": "string"
+        },
+        {
+            "name": "PasswordConfirmation",
+            "baseName": "PasswordConfirmation",
+            "type": "string"
+        },
+        {
+            "name": "Token",
+            "baseName": "Token",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PasswordResetModel.attributeTypeMap;
+    }
+}
+
+/**
 * Phone call
 */
 export class PhoneCall {
@@ -5063,6 +5154,29 @@ export class RestApiPaginationResultWebhookLog {
 /**
 * Rest api result
 */
+export class RestApiResultCoordinates {
+    /**
+    * Generic data object.
+    */
+    'Data': Coordinates;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Coordinates"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultCoordinates.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultMenu {
     /**
     * Generic data object.
@@ -5287,6 +5401,29 @@ export class RestApiResultStore {
 
     static getAttributeTypeMap() {
         return RestApiResultStore.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultStoreAddress {
+    /**
+    * Generic data object.
+    */
+    'Data': StoreAddress;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "StoreAddress"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultStoreAddress.attributeTypeMap;
     }
 }
 
@@ -6211,6 +6348,10 @@ export class StoreAddress {
     */
     'AddressId': number;
     /**
+    * Coordinate
+    */
+    'Coordinates': Coordinates;
+    /**
     * Address line 1
     */
     'Line1': string;
@@ -6230,10 +6371,6 @@ export class StoreAddress {
     * Display for customer
     */
     'DisplayForCustomer': string;
-    /**
-    * Coordinate
-    */
-    'Coordinates': Coordinates;
 
     static discriminator = undefined;
 
@@ -6242,6 +6379,11 @@ export class StoreAddress {
             "name": "AddressId",
             "baseName": "AddressId",
             "type": "number"
+        },
+        {
+            "name": "Coordinates",
+            "baseName": "Coordinates",
+            "type": "Coordinates"
         },
         {
             "name": "Line1",
@@ -6267,15 +6409,69 @@ export class StoreAddress {
             "name": "DisplayForCustomer",
             "baseName": "DisplayForCustomer",
             "type": "string"
-        },
-        {
-            "name": "Coordinates",
-            "baseName": "Coordinates",
-            "type": "Coordinates"
         }    ];
 
     static getAttributeTypeMap() {
         return StoreAddress.attributeTypeMap;
+    }
+}
+
+/**
+* Store address base
+*/
+export class StoreAddressBase {
+    /**
+    * Address line 1
+    */
+    'Line1': string;
+    /**
+    * Postcode
+    */
+    'Postcode': string;
+    /**
+    * City
+    */
+    'City': string;
+    /**
+    * Country code (ISO-alpha2)
+    */
+    'CountryCode': string;
+    /**
+    * Display for customer
+    */
+    'DisplayForCustomer': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Line1",
+            "baseName": "Line1",
+            "type": "string"
+        },
+        {
+            "name": "Postcode",
+            "baseName": "Postcode",
+            "type": "string"
+        },
+        {
+            "name": "City",
+            "baseName": "City",
+            "type": "string"
+        },
+        {
+            "name": "CountryCode",
+            "baseName": "CountryCode",
+            "type": "string"
+        },
+        {
+            "name": "DisplayForCustomer",
+            "baseName": "DisplayForCustomer",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreAddressBase.attributeTypeMap;
     }
 }
 
@@ -8047,8 +8243,9 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "Accept": Accept,
     "BusinessHoursPeriod": BusinessHoursPeriod,
+    "ChangePasswordModel": ChangePasswordModel,
     "Coordinates": Coordinates,
-    "CreateAccount": CreateAccount,
+    "CreateAccountModel": CreateAccountModel,
     "CustomerConsentUpdatedEvent": CustomerConsentUpdatedEvent,
     "CustomerCreatedEvent": CustomerCreatedEvent,
     "CustomerSummary": CustomerSummary,
@@ -8089,6 +8286,7 @@ let typeMap: {[index: string]: any} = {
     "OrderRefundedEvent": OrderRefundedEvent,
     "OrderRejectedEvent": OrderRejectedEvent,
     "OrderTipUpdatedEvent": OrderTipUpdatedEvent,
+    "PasswordResetModel": PasswordResetModel,
     "PhoneCall": PhoneCall,
     "PhoneCallEndedEvent": PhoneCallEndedEvent,
     "PhoneCallStartedEvent": PhoneCallStartedEvent,
@@ -8120,6 +8318,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultStore": RestApiPaginationResultStore,
     "RestApiPaginationResultVoucher": RestApiPaginationResultVoucher,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
+    "RestApiResultCoordinates": RestApiResultCoordinates,
     "RestApiResultMenu": RestApiResultMenu,
     "RestApiResultMenuItemOptionSet": RestApiResultMenuItemOptionSet,
     "RestApiResultMenuItemOptionSetItem": RestApiResultMenuItemOptionSetItem,
@@ -8130,6 +8329,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
     "RestApiResultOrder": RestApiResultOrder,
     "RestApiResultStore": RestApiResultStore,
+    "RestApiResultStoreAddress": RestApiResultStoreAddress,
     "RestApiResultVoucher": RestApiResultVoucher,
     "RestApiStringArrayResult": RestApiStringArrayResult,
     "RestApiStringResult": RestApiStringResult,
@@ -8143,6 +8343,7 @@ let typeMap: {[index: string]: any} = {
     "SmsReceivedEvent": SmsReceivedEvent,
     "Store": Store,
     "StoreAddress": StoreAddress,
+    "StoreAddressBase": StoreAddressBase,
     "StoreCreatedEvent": StoreCreatedEvent,
     "StoreDeletedEvent": StoreDeletedEvent,
     "StoreDeliveryZoneUpdatedEvent": StoreDeliveryZoneUpdatedEvent,
@@ -8267,10 +8468,65 @@ export class AccountsApi {
     }
     /**
      * 
+     * @summary Change password
+     * @param changePasswordModel Change password model
+     */
+    public changePassword (changePasswordModel: ChangePasswordModel) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts/password';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'changePasswordModel' is not null or undefined
+        if (changePasswordModel === null || changePasswordModel === undefined) {
+            throw new Error('Required parameter changePasswordModel was null or undefined when calling changePassword.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(changePasswordModel, "ChangePasswordModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Create account with email address and store name
      * @param createAccountModel Create account model
      */
-    public createAccount (createAccountModel: CreateAccount) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public createAccount (createAccountModel: CreateAccountModel) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -8291,7 +8547,7 @@ export class AccountsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(createAccountModel, "CreateAccount")
+            body: ObjectSerializer.serialize(createAccountModel, "CreateAccountModel")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -8347,6 +8603,119 @@ export class AccountsApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(loginModel, "LoginModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Reset password with token.
+     * @param passwordResetModel Password reset model
+     */
+    public passwordResetWithToken (passwordResetModel: PasswordResetModel) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts/password';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'passwordResetModel' is not null or undefined
+        if (passwordResetModel === null || passwordResetModel === undefined) {
+            throw new Error('Required parameter passwordResetModel was null or undefined when calling passwordResetWithToken.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(passwordResetModel, "PasswordResetModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Request password reset. Flipdish system will send a token via email.
+     * @param email Email address
+     */
+    public requestPasswordReset (email: string) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts/password';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'email' is not null or undefined
+        if (email === null || email === undefined) {
+            throw new Error('Required parameter email was null or undefined when calling requestPasswordReset.');
+        }
+
+        if (email !== undefined) {
+            localVarQueryParameters['email'] = ObjectSerializer.serialize(email, "string");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -13498,6 +13867,130 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultStore");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update store address
+     * @param storeId Store identifier
+     * @param storeAddress Store address
+     */
+    public updateStoreAddress (storeId: number, storeAddress: StoreAddressBase) : Promise<{ response: http.ClientResponse; body: RestApiResultStoreAddress;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/address'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling updateStoreAddress.');
+        }
+
+        // verify required parameter 'storeAddress' is not null or undefined
+        if (storeAddress === null || storeAddress === undefined) {
+            throw new Error('Required parameter storeAddress was null or undefined when calling updateStoreAddress.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(storeAddress, "StoreAddressBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStoreAddress;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStoreAddress");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update store address coordinates
+     * @param storeId Store identifier
+     * @param coordinates Store address coordinates
+     */
+    public updateStoreAddressCoordinates (storeId: number, coordinates: Coordinates) : Promise<{ response: http.ClientResponse; body: RestApiResultCoordinates;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/address/coordinates'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling updateStoreAddressCoordinates.');
+        }
+
+        // verify required parameter 'coordinates' is not null or undefined
+        if (coordinates === null || coordinates === undefined) {
+            throw new Error('Required parameter coordinates was null or undefined when calling updateStoreAddressCoordinates.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(coordinates, "Coordinates")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultCoordinates;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultCoordinates");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
