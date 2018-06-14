@@ -447,9 +447,9 @@ export class CustomerCreatedEvent {
     */
     'EventName': string;
     /**
-    * White label identifier
+    * App name id
     */
-    'WhiteLabelId': number;
+    'AppId': string;
     /**
     * Customer User info
     */
@@ -480,9 +480,9 @@ export class CustomerCreatedEvent {
             "type": "string"
         },
         {
-            "name": "WhiteLabelId",
-            "baseName": "WhiteLabelId",
-            "type": "number"
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         },
         {
             "name": "User",
