@@ -257,6 +257,61 @@ export namespace BusinessHoursPeriod {
     }
 }
 /**
+* Credit card Base
+*/
+export class CardBase {
+    /**
+    * Expiry month
+    */
+    'ExpiryMonth': number;
+    /**
+    * Expiry yaer
+    */
+    'ExpiryYear': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ExpiryMonth",
+            "baseName": "ExpiryMonth",
+            "type": "number"
+        },
+        {
+            "name": "ExpiryYear",
+            "baseName": "ExpiryYear",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CardBase.attributeTypeMap;
+    }
+}
+
+/**
+* Card with token
+*/
+export class CardWithToken {
+    /**
+    * Token
+    */
+    'Token': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Token",
+            "baseName": "Token",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CardWithToken.attributeTypeMap;
+    }
+}
+
+/**
 * Change password model
 */
 export class ChangePasswordModel {
@@ -370,6 +425,10 @@ export class CustomerConsentUpdatedEvent {
     */
     'EventName': string;
     /**
+    * App name id
+    */
+    'AppId': string;
+    /**
     * Enabled
     */
     'Enabled': boolean;
@@ -400,6 +459,11 @@ export class CustomerConsentUpdatedEvent {
         {
             "name": "EventName",
             "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
             "type": "string"
         },
         {
@@ -7077,6 +7141,106 @@ export class StoreUpdatedEvent {
 }
 
 /**
+* Subscription Base
+*/
+export class SubscriptionBase {
+    /**
+    * Number of physical restaurants
+    */
+    'Quantity': number;
+    /**
+    * Subscription plan identifier
+    */
+    'SubscriptionPlanId': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Quantity",
+            "baseName": "Quantity",
+            "type": "number"
+        },
+        {
+            "name": "SubscriptionPlanId",
+            "baseName": "SubscriptionPlanId",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SubscriptionBase.attributeTypeMap;
+    }
+}
+
+/**
+* Subscription Base + token
+*/
+export class SubscriptionWithToken {
+    /**
+    * Token
+    */
+    'Token': string;
+    /**
+    * Number of physical restaurants
+    */
+    'Quantity': number;
+    /**
+    * Subscription plan identifier
+    */
+    'SubscriptionPlanId': number;
+    /**
+    * White label Id of the subscription
+    */
+    'AppId': number;
+    /**
+    * Last 4 digits of the card
+    */
+    'VatNumber': string;
+    /**
+    * Expiry date of the card
+    */
+    'VatCountryCode': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Token",
+            "baseName": "Token",
+            "type": "string"
+        },
+        {
+            "name": "Quantity",
+            "baseName": "Quantity",
+            "type": "number"
+        },
+        {
+            "name": "SubscriptionPlanId",
+            "baseName": "SubscriptionPlanId",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "number"
+        },
+        {
+            "name": "VatNumber",
+            "baseName": "VatNumber",
+            "type": "string"
+        },
+        {
+            "name": "VatCountryCode",
+            "baseName": "VatCountryCode",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SubscriptionWithToken.attributeTypeMap;
+    }
+}
+
+/**
 * User created event
 */
 export class UserCreatedEvent {
@@ -8243,6 +8407,8 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "Accept": Accept,
     "BusinessHoursPeriod": BusinessHoursPeriod,
+    "CardBase": CardBase,
+    "CardWithToken": CardWithToken,
     "ChangePasswordModel": ChangePasswordModel,
     "Coordinates": Coordinates,
     "CreateAccountModel": CreateAccountModel,
@@ -8351,6 +8517,8 @@ let typeMap: {[index: string]: any} = {
     "StoreOpeningHoursUpdatedEvent": StoreOpeningHoursUpdatedEvent,
     "StoreSummary": StoreSummary,
     "StoreUpdatedEvent": StoreUpdatedEvent,
+    "SubscriptionBase": SubscriptionBase,
+    "SubscriptionWithToken": SubscriptionWithToken,
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
     "UserEventInfo": UserEventInfo,
@@ -13991,6 +14159,510 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultCoordinates");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum SubscriptionsApiApiKeys {
+}
+
+export class SubscriptionsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: SubscriptionsApiApiKeys, value: string) {
+        (this.authentications as any)[SubscriptionsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Cancel the subscription
+     * @param subscriptionId Subscription identifier
+     */
+    public subscriptionsCancelSubscription (subscriptionId: number) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}'
+            .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'subscriptionId' is not null or undefined
+        if (subscriptionId === null || subscriptionId === undefined) {
+            throw new Error('Required parameter subscriptionId was null or undefined when calling subscriptionsCancelSubscription.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get the card linked to the subscription
+     * @param subscriptionId Subscription identifier
+     */
+    public subscriptionsGetCard (subscriptionId: number) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}/card'
+            .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'subscriptionId' is not null or undefined
+        if (subscriptionId === null || subscriptionId === undefined) {
+            throw new Error('Required parameter subscriptionId was null or undefined when calling subscriptionsGetCard.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get avaialble plans for currency's user
+     */
+    public subscriptionsGetPlansByCurrency () : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/subscriptions/plans';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get the subscription including the payment history
+     * @param subscriptionId Subscription Identifier
+     */
+    public subscriptionsGetSubscription (subscriptionId: number) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}'
+            .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'subscriptionId' is not null or undefined
+        if (subscriptionId === null || subscriptionId === undefined) {
+            throw new Error('Required parameter subscriptionId was null or undefined when calling subscriptionsGetSubscription.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Add a new card and replace the old one
+     * @param subscriptionId Subscription identifier
+     * @param card Token Id
+     */
+    public subscriptionsReplaceOldCardWithNewCard (subscriptionId: number, card: CardWithToken) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}/card/new'
+            .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'subscriptionId' is not null or undefined
+        if (subscriptionId === null || subscriptionId === undefined) {
+            throw new Error('Required parameter subscriptionId was null or undefined when calling subscriptionsReplaceOldCardWithNewCard.');
+        }
+
+        // verify required parameter 'card' is not null or undefined
+        if (card === null || card === undefined) {
+            throw new Error('Required parameter card was null or undefined when calling subscriptionsReplaceOldCardWithNewCard.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(card, "CardWithToken")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Create a new subscription
+     * @param subscription Data necessary to create a new subscription
+     */
+    public subscriptionsSubscribe (subscription: SubscriptionWithToken) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/subscriptions';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'subscription' is not null or undefined
+        if (subscription === null || subscription === undefined) {
+            throw new Error('Required parameter subscription was null or undefined when calling subscriptionsSubscribe.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(subscription, "SubscriptionWithToken")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update card expiring date
+     * @param subscriptionId Subscription identifier
+     * @param card Data to update card expiring date
+     */
+    public subscriptionsUpdateCardExpiringDate (subscriptionId: number, card: CardBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}/card'
+            .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'subscriptionId' is not null or undefined
+        if (subscriptionId === null || subscriptionId === undefined) {
+            throw new Error('Required parameter subscriptionId was null or undefined when calling subscriptionsUpdateCardExpiringDate.');
+        }
+
+        // verify required parameter 'card' is not null or undefined
+        if (card === null || card === undefined) {
+            throw new Error('Required parameter card was null or undefined when calling subscriptionsUpdateCardExpiringDate.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(card, "CardBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update the subscription
+     * @param subscriptionId Subscription identifier
+     * @param subscription Data to update the subscription
+     */
+    public subscriptionsUpdateSubscription (subscriptionId: number, subscription: SubscriptionBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}'
+            .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'subscriptionId' is not null or undefined
+        if (subscriptionId === null || subscriptionId === undefined) {
+            throw new Error('Required parameter subscriptionId was null or undefined when calling subscriptionsUpdateSubscription.');
+        }
+
+        // verify required parameter 'subscription' is not null or undefined
+        if (subscription === null || subscription === undefined) {
+            throw new Error('Required parameter subscription was null or undefined when calling subscriptionsUpdateSubscription.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(subscription, "SubscriptionBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
