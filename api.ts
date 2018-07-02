@@ -160,9 +160,62 @@ export class Accept {
 }
 
 /**
+* Account details
+*/
+export class AccountDetail {
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Email
+    */
+    'Email': string;
+    /**
+    * Signup steps
+    */
+    'SignupSteps': Array<SignupStep>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Email",
+            "baseName": "Email",
+            "type": "string"
+        },
+        {
+            "name": "SignupSteps",
+            "baseName": "SignupSteps",
+            "type": "Array<SignupStep>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AccountDetail.attributeTypeMap;
+    }
+}
+
+/**
 * Business hours period
 */
 export class BusinessHoursPeriod {
+    /**
+    * Early
+    */
+    'Early': Range;
+    /**
+    * Late
+    */
+    'Late': Range;
+    /**
+    * Ranges
+    */
+    'Ranges': Array<Range>;
     /**
     * Day of week
     */
@@ -183,22 +236,25 @@ export class BusinessHoursPeriod {
     * Period early
     */
     'PeriodEarly': string;
-    /**
-    * Early
-    */
-    'Early': Range;
-    /**
-    * Late
-    */
-    'Late': Range;
-    /**
-    * Ranges
-    */
-    'Ranges': Array<Range>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Early",
+            "baseName": "Early",
+            "type": "Range"
+        },
+        {
+            "name": "Late",
+            "baseName": "Late",
+            "type": "Range"
+        },
+        {
+            "name": "Ranges",
+            "baseName": "Ranges",
+            "type": "Array<Range>"
+        },
         {
             "name": "DayOfWeek",
             "baseName": "DayOfWeek",
@@ -223,21 +279,6 @@ export class BusinessHoursPeriod {
             "name": "PeriodEarly",
             "baseName": "PeriodEarly",
             "type": "string"
-        },
-        {
-            "name": "Early",
-            "baseName": "Early",
-            "type": "Range"
-        },
-        {
-            "name": "Late",
-            "baseName": "Late",
-            "type": "Range"
-        },
-        {
-            "name": "Ranges",
-            "baseName": "Ranges",
-            "type": "Array<Range>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -2427,6 +2468,10 @@ export class MenuSectionItem {
     */
     'MenuItemOptionSets': Array<MenuItemOptionSet>;
     /**
+    * Daily special hours
+    */
+    'DailySpecialHours': Array<BusinessHoursPeriod>;
+    /**
     * Menu item name (like \"Korma\")
     */
     'Name': string;
@@ -2458,6 +2503,10 @@ export class MenuSectionItem {
     * Small | Medium | Large  Affects the layout of the menu.
     */
     'CellLayoutType': MenuSectionItem.CellLayoutTypeEnum;
+    /**
+    * If true, then vouchers won't be applied for this item
+    */
+    'DisableVouchers': boolean;
 
     static discriminator = undefined;
 
@@ -2481,6 +2530,11 @@ export class MenuSectionItem {
             "name": "MenuItemOptionSets",
             "baseName": "MenuItemOptionSets",
             "type": "Array<MenuItemOptionSet>"
+        },
+        {
+            "name": "DailySpecialHours",
+            "baseName": "DailySpecialHours",
+            "type": "Array<BusinessHoursPeriod>"
         },
         {
             "name": "Name",
@@ -2521,6 +2575,11 @@ export class MenuSectionItem {
             "name": "CellLayoutType",
             "baseName": "CellLayoutType",
             "type": "MenuSectionItem.CellLayoutTypeEnum"
+        },
+        {
+            "name": "DisableVouchers",
+            "baseName": "DisableVouchers",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -2578,6 +2637,10 @@ export class MenuSectionItemBase {
     * Small | Medium | Large  Affects the layout of the menu.
     */
     'CellLayoutType': MenuSectionItemBase.CellLayoutTypeEnum;
+    /**
+    * If true, then vouchers won't be applied for this item
+    */
+    'DisableVouchers': boolean;
 
     static discriminator = undefined;
 
@@ -2621,6 +2684,11 @@ export class MenuSectionItemBase {
             "name": "CellLayoutType",
             "baseName": "CellLayoutType",
             "type": "MenuSectionItemBase.CellLayoutTypeEnum"
+        },
+        {
+            "name": "DisableVouchers",
+            "baseName": "DisableVouchers",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4053,6 +4121,38 @@ export class PhoneCallStartedEvent {
 }
 
 /**
+* Predefined answer
+*/
+export class PredefinedAnswer {
+    /**
+    * Identifier
+    */
+    'Id': number;
+    /**
+    * Text
+    */
+    'Text': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "Text",
+            "baseName": "Text",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PredefinedAnswer.attributeTypeMap;
+    }
+}
+
+/**
 * Printer
 */
 export class Printer {
@@ -5218,6 +5318,29 @@ export class RestApiPaginationResultWebhookLog {
 /**
 * Rest api result
 */
+export class RestApiResultAccountDetail {
+    /**
+    * Generic data object.
+    */
+    'Data': AccountDetail;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "AccountDetail"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultAccountDetail.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultCoordinates {
     /**
     * Generic data object.
@@ -5968,6 +6091,54 @@ export class SearchCriteria {
     }
 }
 
+/**
+* 
+*/
+export class SignupStep {
+    /**
+    * Action needs to take
+    */
+    'Action': SignupStep.ActionEnum;
+    /**
+    * Question in case Action == Question
+    */
+    'Question': string;
+    /**
+    * Predefined answer in case Action == Question
+    */
+    'PredefinedAnswers': Array<PredefinedAnswer>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Action",
+            "baseName": "Action",
+            "type": "SignupStep.ActionEnum"
+        },
+        {
+            "name": "Question",
+            "baseName": "Question",
+            "type": "string"
+        },
+        {
+            "name": "PredefinedAnswers",
+            "baseName": "PredefinedAnswers",
+            "type": "Array<PredefinedAnswer>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SignupStep.attributeTypeMap;
+    }
+}
+
+export namespace SignupStep {
+    export enum ActionEnum {
+        Question = <any> 'Question',
+        StoreLocation = <any> 'StoreLocation',
+        PaymentSubscription = <any> 'PaymentSubscription'
+    }
+}
 /**
 * Sms Info
 */
@@ -8395,6 +8566,7 @@ let enumsMap: {[index: string]: any} = {
         "Order.AppTypeEnum": Order.AppTypeEnum,
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
+        "SignupStep.ActionEnum": SignupStep.ActionEnum,
         "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
         "StoreSummary.CurrencyEnum": StoreSummary.CurrencyEnum,
         "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
@@ -8406,6 +8578,7 @@ let enumsMap: {[index: string]: any} = {
 
 let typeMap: {[index: string]: any} = {
     "Accept": Accept,
+    "AccountDetail": AccountDetail,
     "BusinessHoursPeriod": BusinessHoursPeriod,
     "CardBase": CardBase,
     "CardWithToken": CardWithToken,
@@ -8456,6 +8629,7 @@ let typeMap: {[index: string]: any} = {
     "PhoneCall": PhoneCall,
     "PhoneCallEndedEvent": PhoneCallEndedEvent,
     "PhoneCallStartedEvent": PhoneCallStartedEvent,
+    "PredefinedAnswer": PredefinedAnswer,
     "Printer": Printer,
     "PrinterAssignedToStoreEvent": PrinterAssignedToStoreEvent,
     "PrinterTurnedOffEvent": PrinterTurnedOffEvent,
@@ -8484,6 +8658,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultStore": RestApiPaginationResultStore,
     "RestApiPaginationResultVoucher": RestApiPaginationResultVoucher,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
+    "RestApiResultAccountDetail": RestApiResultAccountDetail,
     "RestApiResultCoordinates": RestApiResultCoordinates,
     "RestApiResultMenu": RestApiResultMenu,
     "RestApiResultMenuItemOptionSet": RestApiResultMenuItemOptionSet,
@@ -8505,6 +8680,7 @@ let typeMap: {[index: string]: any} = {
     "RetentionCampaignDeletedEvent": RetentionCampaignDeletedEvent,
     "RetentionCampaignUpdatedEvent": RetentionCampaignUpdatedEvent,
     "SearchCriteria": SearchCriteria,
+    "SignupStep": SignupStep,
     "SmsInfo": SmsInfo,
     "SmsReceivedEvent": SmsReceivedEvent,
     "Store": Store,
@@ -8746,6 +8922,53 @@ export class AccountsApi {
     }
     /**
      * 
+     */
+    public getAccountDetails () : Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAccountDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Login with username and password
      * @param loginModel Login model
      */
@@ -8903,6 +9126,121 @@ export class AccountsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param signupStepAction 
+     */
+    public skipSignupStep (signupStepAction: string) : Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/skip'
+            .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'signupStepAction' is not null or undefined
+        if (signupStepAction === null || signupStepAction === undefined) {
+            throw new Error('Required parameter signupStepAction was null or undefined when calling skipSignupStep.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAccountDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param signupStepAction 
+     * @param answerId 
+     */
+    public skipSignupStep_1 (signupStepAction: string, answerId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/answer'
+            .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'signupStepAction' is not null or undefined
+        if (signupStepAction === null || signupStepAction === undefined) {
+            throw new Error('Required parameter signupStepAction was null or undefined when calling skipSignupStep_1.');
+        }
+
+        // verify required parameter 'answerId' is not null or undefined
+        if (answerId === null || answerId === undefined) {
+            throw new Error('Required parameter answerId was null or undefined when calling skipSignupStep_1.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(answerId, "number")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAccountDetail");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -9896,7 +10234,7 @@ export class HttpRequestResponseLogsApi {
      * @param page Page number
      * @param limit Page size
      */
-    public getHttpLogsByUserIdAsync (start: Date, end: Date, filterByUserId?: number, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultHttpRequestAndResponseLog;  }> {
+    public getLogs (start: Date, end: Date, filterByUserId?: number, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultHttpRequestAndResponseLog;  }> {
         const localVarPath = this.basePath + '/api/v1.0/interactions/logs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -9904,12 +10242,12 @@ export class HttpRequestResponseLogsApi {
 
         // verify required parameter 'start' is not null or undefined
         if (start === null || start === undefined) {
-            throw new Error('Required parameter start was null or undefined when calling getHttpLogsByUserIdAsync.');
+            throw new Error('Required parameter start was null or undefined when calling getLogs.');
         }
 
         // verify required parameter 'end' is not null or undefined
         if (end === null || end === undefined) {
-            throw new Error('Required parameter end was null or undefined when calling getHttpLogsByUserIdAsync.');
+            throw new Error('Required parameter end was null or undefined when calling getLogs.');
         }
 
         if (start !== undefined) {
@@ -11256,6 +11594,75 @@ export class MenuSectionItemsApi {
     }
     /**
      * 
+     * @summary Clone menu section item
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
+     */
+    public cloneMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuSectionItem;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/clone'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling cloneMenuSectionItem.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling cloneMenuSectionItem.');
+        }
+
+        // verify required parameter 'menuSectionItemId' is not null or undefined
+        if (menuSectionItemId === null || menuSectionItemId === undefined) {
+            throw new Error('Required parameter menuSectionItemId was null or undefined when calling cloneMenuSectionItem.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuSectionItem;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMenuSectionItem");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Create menu section item
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
@@ -11799,6 +12206,68 @@ export class MenuSectionsApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Clone menu section
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     */
+    public cloneMenuSection (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuSection;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/clone'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling cloneMenuSection.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling cloneMenuSection.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuSection;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMenuSection");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
     }
     /**
      * 
@@ -14289,6 +14758,54 @@ export class SubscriptionsApi {
         if (subscriptionId === null || subscriptionId === undefined) {
             throw new Error('Required parameter subscriptionId was null or undefined when calling subscriptionsGetCard.');
         }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get the user's subscription
+     */
+    public subscriptionsGetPersonalSubscription () : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/subscriptions';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
 
         let localVarUseFormData = false;
