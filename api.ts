@@ -298,6 +298,47 @@ export namespace BusinessHoursPeriod {
     }
 }
 /**
+* Credit card
+*/
+export class Card {
+    /**
+    * Last four digits
+    */
+    'Last4Digit': string;
+    /**
+    * Expiry month
+    */
+    'ExpiryMonth': number;
+    /**
+    * Expiry yaer
+    */
+    'ExpiryYear': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Last4Digit",
+            "baseName": "Last4Digit",
+            "type": "string"
+        },
+        {
+            "name": "ExpiryMonth",
+            "baseName": "ExpiryMonth",
+            "type": "number"
+        },
+        {
+            "name": "ExpiryYear",
+            "baseName": "ExpiryYear",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Card.attributeTypeMap;
+    }
+}
+
+/**
 * Credit card Base
 */
 export class CardBase {
@@ -5341,6 +5382,29 @@ export class RestApiResultAccountDetail {
 /**
 * Rest api result
 */
+export class RestApiResultCard {
+    /**
+    * Generic data object.
+    */
+    'Data': Card;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Card"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultCard.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultCoordinates {
     /**
     * Generic data object.
@@ -5611,6 +5675,52 @@ export class RestApiResultStoreAddress {
 
     static getAttributeTypeMap() {
         return RestApiResultStoreAddress.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultSubscription {
+    /**
+    * Generic data object.
+    */
+    'Data': Subscription;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Subscription"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultSubscription.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultSubscriptionPlansResponse {
+    /**
+    * Generic data object.
+    */
+    'Data': SubscriptionPlansResponse;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "SubscriptionPlansResponse"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultSubscriptionPlansResponse.attributeTypeMap;
     }
 }
 
@@ -7312,6 +7422,127 @@ export class StoreUpdatedEvent {
 }
 
 /**
+* Subscription
+*/
+export class Subscription {
+    /**
+    * The subscription identifier
+    */
+    'SubscriptionId': number;
+    /**
+    * Starting date of the subscription
+    */
+    'StartDate': Date;
+    /**
+    * Status of the subscription (TrialPeriod, Ongoing, Unpaid, Canceled)
+    */
+    'Status': Subscription.StatusEnum;
+    /**
+    * Flipdish user identifier
+    */
+    'UserId': number;
+    /**
+    * Subscription Plan
+    */
+    'SubscriptionPlan': SubscriptionPlan;
+    /**
+    * Card
+    */
+    'Card': Card;
+    /**
+    * White label Id of the subscription
+    */
+    'AppId': number;
+    /**
+    * Last 4 digits of the card
+    */
+    'VatNumber': string;
+    /**
+    * Expiry date of the card
+    */
+    'VatCountryCode': string;
+    /**
+    * Number of physical restaurants
+    */
+    'Quantity': number;
+    /**
+    * Subscription plan identifier
+    */
+    'SubscriptionPlanId': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "SubscriptionId",
+            "baseName": "SubscriptionId",
+            "type": "number"
+        },
+        {
+            "name": "StartDate",
+            "baseName": "StartDate",
+            "type": "Date"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "Subscription.StatusEnum"
+        },
+        {
+            "name": "UserId",
+            "baseName": "UserId",
+            "type": "number"
+        },
+        {
+            "name": "SubscriptionPlan",
+            "baseName": "SubscriptionPlan",
+            "type": "SubscriptionPlan"
+        },
+        {
+            "name": "Card",
+            "baseName": "Card",
+            "type": "Card"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "number"
+        },
+        {
+            "name": "VatNumber",
+            "baseName": "VatNumber",
+            "type": "string"
+        },
+        {
+            "name": "VatCountryCode",
+            "baseName": "VatCountryCode",
+            "type": "string"
+        },
+        {
+            "name": "Quantity",
+            "baseName": "Quantity",
+            "type": "number"
+        },
+        {
+            "name": "SubscriptionPlanId",
+            "baseName": "SubscriptionPlanId",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Subscription.attributeTypeMap;
+    }
+}
+
+export namespace Subscription {
+    export enum StatusEnum {
+        TrialPeriod = <any> 'TrialPeriod',
+        Ongoing = <any> 'Ongoing',
+        Unpaid = <any> 'Unpaid',
+        Canceled = <any> 'Canceled'
+    }
+}
+/**
 * Subscription Base
 */
 export class SubscriptionBase {
@@ -7340,6 +7571,121 @@ export class SubscriptionBase {
 
     static getAttributeTypeMap() {
         return SubscriptionBase.attributeTypeMap;
+    }
+}
+
+/**
+* Subscription plan
+*/
+export class SubscriptionPlan {
+    /**
+    * Subscription plan identifier
+    */
+    'SubscriptionPlanId': number;
+    /**
+    * Name of the plan
+    */
+    'Name': string;
+    /**
+    * ISO Currency
+    */
+    'Currency': string;
+    /**
+    * Price for single unit
+    */
+    'Price': number;
+    /**
+    * Interval billing for the subscription
+    */
+    'Interval': SubscriptionPlan.IntervalEnum;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "SubscriptionPlanId",
+            "baseName": "SubscriptionPlanId",
+            "type": "number"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "string"
+        },
+        {
+            "name": "Price",
+            "baseName": "Price",
+            "type": "number"
+        },
+        {
+            "name": "Interval",
+            "baseName": "Interval",
+            "type": "SubscriptionPlan.IntervalEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SubscriptionPlan.attributeTypeMap;
+    }
+}
+
+export namespace SubscriptionPlan {
+    export enum IntervalEnum {
+        Monthly = <any> 'Monthly',
+        Yearly = <any> 'Yearly'
+    }
+}
+/**
+* Available plans and mandatory fields to subscribe
+*/
+export class SubscriptionPlansResponse {
+    /**
+    * Stripe publishable api key
+    */
+    'PublishableApiKey': string;
+    /**
+    * User email
+    */
+    'Email': string;
+    /**
+    * Available plans
+    */
+    'SubscriptionPlans': Array<SubscriptionPlan>;
+    /**
+    * App ids (or White labels ids) to which the user belongs
+    */
+    'AppIds': Array<number>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PublishableApiKey",
+            "baseName": "PublishableApiKey",
+            "type": "string"
+        },
+        {
+            "name": "Email",
+            "baseName": "Email",
+            "type": "string"
+        },
+        {
+            "name": "SubscriptionPlans",
+            "baseName": "SubscriptionPlans",
+            "type": "Array<SubscriptionPlan>"
+        },
+        {
+            "name": "AppIds",
+            "baseName": "AppIds",
+            "type": "Array<number>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SubscriptionPlansResponse.attributeTypeMap;
     }
 }
 
@@ -8569,6 +8915,8 @@ let enumsMap: {[index: string]: any} = {
         "SignupStep.ActionEnum": SignupStep.ActionEnum,
         "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
         "StoreSummary.CurrencyEnum": StoreSummary.CurrencyEnum,
+        "Subscription.StatusEnum": Subscription.StatusEnum,
+        "SubscriptionPlan.IntervalEnum": SubscriptionPlan.IntervalEnum,
         "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
         "Voucher.VoucherSubTypeEnum": Voucher.VoucherSubTypeEnum,
         "Voucher.VoucherPayerEnum": Voucher.VoucherPayerEnum,
@@ -8580,6 +8928,7 @@ let typeMap: {[index: string]: any} = {
     "Accept": Accept,
     "AccountDetail": AccountDetail,
     "BusinessHoursPeriod": BusinessHoursPeriod,
+    "Card": Card,
     "CardBase": CardBase,
     "CardWithToken": CardWithToken,
     "ChangePasswordModel": ChangePasswordModel,
@@ -8659,6 +9008,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultVoucher": RestApiPaginationResultVoucher,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
+    "RestApiResultCard": RestApiResultCard,
     "RestApiResultCoordinates": RestApiResultCoordinates,
     "RestApiResultMenu": RestApiResultMenu,
     "RestApiResultMenuItemOptionSet": RestApiResultMenuItemOptionSet,
@@ -8671,6 +9021,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultOrder": RestApiResultOrder,
     "RestApiResultStore": RestApiResultStore,
     "RestApiResultStoreAddress": RestApiResultStoreAddress,
+    "RestApiResultSubscription": RestApiResultSubscription,
+    "RestApiResultSubscriptionPlansResponse": RestApiResultSubscriptionPlansResponse,
     "RestApiResultVoucher": RestApiResultVoucher,
     "RestApiStringArrayResult": RestApiStringArrayResult,
     "RestApiStringResult": RestApiStringResult,
@@ -8693,7 +9045,10 @@ let typeMap: {[index: string]: any} = {
     "StoreOpeningHoursUpdatedEvent": StoreOpeningHoursUpdatedEvent,
     "StoreSummary": StoreSummary,
     "StoreUpdatedEvent": StoreUpdatedEvent,
+    "Subscription": Subscription,
     "SubscriptionBase": SubscriptionBase,
+    "SubscriptionPlan": SubscriptionPlan,
+    "SubscriptionPlansResponse": SubscriptionPlansResponse,
     "SubscriptionWithToken": SubscriptionWithToken,
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
@@ -14747,7 +15102,7 @@ export class SubscriptionsApi {
      * @summary Get the card linked to the subscription
      * @param subscriptionId Subscription identifier
      */
-    public subscriptionsGetCard (subscriptionId: number) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public subscriptionsGetCard (subscriptionId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultCard;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}/card'
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
         let localVarQueryParameters: any = {};
@@ -14782,12 +15137,12 @@ export class SubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultCard;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultCard");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -14801,7 +15156,7 @@ export class SubscriptionsApi {
      * 
      * @summary Get the user's subscription
      */
-    public subscriptionsGetPersonalSubscription () : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public subscriptionsGetPersonalSubscription () : Promise<{ response: http.ClientResponse; body: RestApiResultSubscription;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -14830,12 +15185,12 @@ export class SubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultSubscription;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultSubscription");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -14849,7 +15204,7 @@ export class SubscriptionsApi {
      * 
      * @summary Get avaialble plans for currency's user
      */
-    public subscriptionsGetPlansByCurrency () : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public subscriptionsGetPlansByCurrency () : Promise<{ response: http.ClientResponse; body: RestApiResultSubscriptionPlansResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/plans';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -14878,12 +15233,12 @@ export class SubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultSubscriptionPlansResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultSubscriptionPlansResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -14898,7 +15253,7 @@ export class SubscriptionsApi {
      * @summary Get the subscription including the payment history
      * @param subscriptionId Subscription Identifier
      */
-    public subscriptionsGetSubscription (subscriptionId: number) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public subscriptionsGetSubscription (subscriptionId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultSubscription;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}'
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
         let localVarQueryParameters: any = {};
@@ -14933,12 +15288,12 @@ export class SubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultSubscription;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultSubscription");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -15071,7 +15426,7 @@ export class SubscriptionsApi {
      * @param subscriptionId Subscription identifier
      * @param card Data to update card expiring date
      */
-    public subscriptionsUpdateCardExpiringDate (subscriptionId: number, card: CardBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public subscriptionsUpdateCardExpiringDate (subscriptionId: number, card: CardBase) : Promise<{ response: http.ClientResponse; body: RestApiResultCard;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}/card'
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
         let localVarQueryParameters: any = {};
@@ -15112,12 +15467,12 @@ export class SubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultCard;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultCard");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
