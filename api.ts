@@ -201,6 +201,65 @@ export class AccountDetail {
 }
 
 /**
+* App
+*/
+export class App {
+    /**
+    * App Identifier
+    */
+    'AppId': string;
+    /**
+    * App name
+    */
+    'Name': string;
+    /**
+    * Icon url
+    */
+    'IconUrl': string;
+    /**
+    * Icon thumbnail url
+    */
+    'IconThumbnailUrl': string;
+    /**
+    * Country identifier
+    */
+    'CountryId': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "IconUrl",
+            "baseName": "IconUrl",
+            "type": "string"
+        },
+        {
+            "name": "IconThumbnailUrl",
+            "baseName": "IconThumbnailUrl",
+            "type": "string"
+        },
+        {
+            "name": "CountryId",
+            "baseName": "CountryId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return App.attributeTypeMap;
+    }
+}
+
+/**
 * Business hours period
 */
 export class BusinessHoursPeriod {
@@ -5059,6 +5118,56 @@ export class RestApiIntegerResult {
 /**
 * Rest api pagination result
 */
+export class RestApiPaginationResultApp {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<App>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<App>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultApp.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultHttpRequestAndResponseLog {
     /**
     * Current page index
@@ -7450,9 +7559,9 @@ export class Subscription {
     */
     'Card': Card;
     /**
-    * White label Id of the subscription
+    * App name Id of the subscription
     */
-    'AppId': number;
+    'AppId': string;
     /**
     * Last 4 digits of the card
     */
@@ -7506,7 +7615,7 @@ export class Subscription {
         {
             "name": "AppId",
             "baseName": "AppId",
-            "type": "number"
+            "type": "string"
         },
         {
             "name": "VatNumber",
@@ -7656,9 +7765,9 @@ export class SubscriptionPlansResponse {
     */
     'SubscriptionPlans': Array<SubscriptionPlan>;
     /**
-    * App ids (or White labels ids) to which the user belongs
+    * App ids (string name) to which the user belongs
     */
-    'AppIds': Array<number>;
+    'AppIds': Array<string>;
 
     static discriminator = undefined;
 
@@ -7681,7 +7790,7 @@ export class SubscriptionPlansResponse {
         {
             "name": "AppIds",
             "baseName": "AppIds",
-            "type": "Array<number>"
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7706,9 +7815,9 @@ export class SubscriptionWithToken {
     */
     'SubscriptionPlanId': number;
     /**
-    * White label Id of the subscription
+    * App name Id of the subscription
     */
-    'AppId': number;
+    'AppId': string;
     /**
     * Last 4 digits of the card
     */
@@ -7739,7 +7848,7 @@ export class SubscriptionWithToken {
         {
             "name": "AppId",
             "baseName": "AppId",
-            "type": "number"
+            "type": "string"
         },
         {
             "name": "VatNumber",
@@ -8927,6 +9036,7 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "Accept": Accept,
     "AccountDetail": AccountDetail,
+    "App": App,
     "BusinessHoursPeriod": BusinessHoursPeriod,
     "Card": Card,
     "CardBase": CardBase,
@@ -9001,6 +9111,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiEventSearchPaginationResult": RestApiEventSearchPaginationResult,
     "RestApiForbiddenResult": RestApiForbiddenResult,
     "RestApiIntegerResult": RestApiIntegerResult,
+    "RestApiPaginationResultApp": RestApiPaginationResultApp,
     "RestApiPaginationResultHttpRequestAndResponseLog": RestApiPaginationResultHttpRequestAndResponseLog,
     "RestApiPaginationResultOAuthTokenModel": RestApiPaginationResultOAuthTokenModel,
     "RestApiPaginationResultOrder": RestApiPaginationResultOrder,
@@ -9596,6 +9707,119 @@ export class AccountsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultAccountDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum AppsApiApiKeys {
+}
+
+export class AppsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: AppsApiApiKeys, value: string) {
+        (this.authentications as any)[AppsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Get all OAuth client
+     * @param nameFilter 
+     * @param page 
+     * @param limit 
+     */
+    public geApps (nameFilter?: string, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultApp;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        if (nameFilter !== undefined) {
+            localVarQueryParameters['nameFilter'] = ObjectSerializer.serialize(nameFilter, "string");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultApp;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultApp");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -15154,54 +15378,6 @@ export class SubscriptionsApi {
     }
     /**
      * 
-     * @summary Get the user's subscription
-     */
-    public subscriptionsGetPersonalSubscription () : Promise<{ response: http.ClientResponse; body: RestApiResultSubscription;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/subscriptions';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultSubscription;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultSubscription");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @summary Get avaialble plans for currency's user
      */
     public subscriptionsGetPlansByCurrency () : Promise<{ response: http.ClientResponse; body: RestApiResultSubscriptionPlansResponse;  }> {
@@ -15263,6 +15439,64 @@ export class SubscriptionsApi {
         // verify required parameter 'subscriptionId' is not null or undefined
         if (subscriptionId === null || subscriptionId === undefined) {
             throw new Error('Required parameter subscriptionId was null or undefined when calling subscriptionsGetSubscription.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultSubscription;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultSubscription");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get subscription by appId
+     * @param appId The string app identifier
+     */
+    public subscriptionsGetUserSubscriptionByAppId (appId: string) : Promise<{ response: http.ClientResponse; body: RestApiResultSubscription;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/subscriptions';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling subscriptionsGetUserSubscriptionByAppId.');
+        }
+
+        if (appId !== undefined) {
+            localVarQueryParameters['appId'] = ObjectSerializer.serialize(appId, "string");
         }
 
 
