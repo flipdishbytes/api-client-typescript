@@ -357,6 +357,76 @@ export namespace BusinessHoursPeriod {
     }
 }
 /**
+* Business hours period
+*/
+export class BusinessHoursPeriodBase {
+    /**
+    * Day of week
+    */
+    'DayOfWeek': BusinessHoursPeriodBase.DayOfWeekEnum;
+    /**
+    * Start time
+    */
+    'StartTime': string;
+    /**
+    * Period
+    */
+    'Period': string;
+    /**
+    * Start time early
+    */
+    'StartTimeEarly': string;
+    /**
+    * Period early
+    */
+    'PeriodEarly': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DayOfWeek",
+            "baseName": "DayOfWeek",
+            "type": "BusinessHoursPeriodBase.DayOfWeekEnum"
+        },
+        {
+            "name": "StartTime",
+            "baseName": "StartTime",
+            "type": "string"
+        },
+        {
+            "name": "Period",
+            "baseName": "Period",
+            "type": "string"
+        },
+        {
+            "name": "StartTimeEarly",
+            "baseName": "StartTimeEarly",
+            "type": "string"
+        },
+        {
+            "name": "PeriodEarly",
+            "baseName": "PeriodEarly",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BusinessHoursPeriodBase.attributeTypeMap;
+    }
+}
+
+export namespace BusinessHoursPeriodBase {
+    export enum DayOfWeekEnum {
+        Sunday = <any> 'Sunday',
+        Monday = <any> 'Monday',
+        Tuesday = <any> 'Tuesday',
+        Wednesday = <any> 'Wednesday',
+        Thursday = <any> 'Thursday',
+        Friday = <any> 'Friday',
+        Saturday = <any> 'Saturday'
+    }
+}
+/**
 * Credit card
 */
 export class Card {
@@ -2489,6 +2559,37 @@ export namespace MenuSectionAvailability {
     }
 }
 /**
+* Menu section availability
+*/
+export class MenuSectionAvailabilityBase {
+    /**
+    * Availability mode
+    */
+    'AvailabilityMode': MenuSectionAvailabilityBase.AvailabilityModeEnum;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AvailabilityMode",
+            "baseName": "AvailabilityMode",
+            "type": "MenuSectionAvailabilityBase.AvailabilityModeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuSectionAvailabilityBase.attributeTypeMap;
+    }
+}
+
+export namespace MenuSectionAvailabilityBase {
+    export enum AvailabilityModeEnum {
+        DisplayAlways = <any> 'DisplayAlways',
+        DisplayBasedOnTimes = <any> 'DisplayBasedOnTimes',
+        DisplayAlwaysStartCollapsed = <any> 'DisplayAlwaysStartCollapsed',
+        DisplayAlwaysStartCollapsedBasedOnTimes = <any> 'DisplayAlwaysStartCollapsedBasedOnTimes'
+    }
+}
+/**
 * Menu section
 */
 export class MenuSectionBase {
@@ -3302,7 +3403,11 @@ export namespace Order {
     }
     export enum PaymentAccountTypeEnum {
         Card = <any> 'Card',
-        Cash = <any> 'Cash'
+        Cash = <any> 'Cash',
+        Ideal = <any> 'Ideal',
+        Bancontact = <any> 'Bancontact',
+        Giropay = <any> 'Giropay',
+        Eps = <any> 'Eps'
     }
     export enum OrderStateEnum {
         Created = <any> 'Created',
@@ -4629,6 +4734,66 @@ export class PrinterUnassignedFromStoreEvent {
 }
 
 /**
+* Processing fee config
+*/
+export class ProcessingFeeConfig {
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * Payment account type
+    */
+    'PaymentAccountType': ProcessingFeeConfig.PaymentAccountTypeEnum;
+    /**
+    * Percent fee to customer, including VAT
+    */
+    'PercentFee': number;
+    /**
+    * Fixed fee to customer, including VAT
+    */
+    'FixedFee': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "PaymentAccountType",
+            "baseName": "PaymentAccountType",
+            "type": "ProcessingFeeConfig.PaymentAccountTypeEnum"
+        },
+        {
+            "name": "PercentFee",
+            "baseName": "PercentFee",
+            "type": "number"
+        },
+        {
+            "name": "FixedFee",
+            "baseName": "FixedFee",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ProcessingFeeConfig.attributeTypeMap;
+    }
+}
+
+export namespace ProcessingFeeConfig {
+    export enum PaymentAccountTypeEnum {
+        Card = <any> 'Card',
+        Cash = <any> 'Cash',
+        Ideal = <any> 'Ideal',
+        Bancontact = <any> 'Bancontact',
+        Giropay = <any> 'Giropay',
+        Eps = <any> 'Eps'
+    }
+}
+/**
 * A class that represents a single opening period in a day.  This starts 'StartTime' after midnight and runs for a 'Period'  after that, on the given DayOfWeek.
 */
 export class Range {
@@ -4915,6 +5080,29 @@ export class RestApiArrayResultOauthClientRedirectUri {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultOauthClientRedirectUri.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultProcessingFeeConfig {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<ProcessingFeeConfig>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<ProcessingFeeConfig>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultProcessingFeeConfig.attributeTypeMap;
     }
 }
 
@@ -5491,6 +5679,29 @@ export class RestApiResultAccountDetail {
 /**
 * Rest api result
 */
+export class RestApiResultBusinessHoursPeriod {
+    /**
+    * Generic data object.
+    */
+    'Data': BusinessHoursPeriod;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "BusinessHoursPeriod"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultBusinessHoursPeriod.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultCard {
     /**
     * Generic data object.
@@ -5629,6 +5840,29 @@ export class RestApiResultMenuSection {
 /**
 * Rest api result
 */
+export class RestApiResultMenuSectionAvailability {
+    /**
+    * Generic data object.
+    */
+    'Data': MenuSectionAvailability;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "MenuSectionAvailability"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultMenuSectionAvailability.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultMenuSectionItem {
     /**
     * Generic data object.
@@ -5738,6 +5972,29 @@ export class RestApiResultOrder {
 
     static getAttributeTypeMap() {
         return RestApiResultOrder.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultProcessingFeeConfig {
+    /**
+    * Generic data object.
+    */
+    'Data': ProcessingFeeConfig;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "ProcessingFeeConfig"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultProcessingFeeConfig.attributeTypeMap;
     }
 }
 
@@ -9003,6 +9260,7 @@ export class WebhookSubscriptionUpdatedEvent {
 
 let enumsMap: {[index: string]: any} = {
         "BusinessHoursPeriod.DayOfWeekEnum": BusinessHoursPeriod.DayOfWeekEnum,
+        "BusinessHoursPeriodBase.DayOfWeekEnum": BusinessHoursPeriodBase.DayOfWeekEnum,
         "Menu.MenuSectionBehaviourEnum": Menu.MenuSectionBehaviourEnum,
         "MenuBase.MenuSectionBehaviourEnum": MenuBase.MenuSectionBehaviourEnum,
         "MenuItemOptionSet.CellLayoutTypeEnum": MenuItemOptionSet.CellLayoutTypeEnum,
@@ -9010,6 +9268,7 @@ let enumsMap: {[index: string]: any} = {
         "MenuItemOptionSetItem.CellLayoutTypeEnum": MenuItemOptionSetItem.CellLayoutTypeEnum,
         "MenuItemOptionSetItemBase.CellLayoutTypeEnum": MenuItemOptionSetItemBase.CellLayoutTypeEnum,
         "MenuSectionAvailability.AvailabilityModeEnum": MenuSectionAvailability.AvailabilityModeEnum,
+        "MenuSectionAvailabilityBase.AvailabilityModeEnum": MenuSectionAvailabilityBase.AvailabilityModeEnum,
         "MenuSectionItem.SpicinessRatingEnum": MenuSectionItem.SpicinessRatingEnum,
         "MenuSectionItem.CellLayoutTypeEnum": MenuSectionItem.CellLayoutTypeEnum,
         "MenuSectionItemBase.SpicinessRatingEnum": MenuSectionItemBase.SpicinessRatingEnum,
@@ -9019,6 +9278,7 @@ let enumsMap: {[index: string]: any} = {
         "Order.PaymentAccountTypeEnum": Order.PaymentAccountTypeEnum,
         "Order.OrderStateEnum": Order.OrderStateEnum,
         "Order.AppTypeEnum": Order.AppTypeEnum,
+        "ProcessingFeeConfig.PaymentAccountTypeEnum": ProcessingFeeConfig.PaymentAccountTypeEnum,
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
         "SignupStep.ActionEnum": SignupStep.ActionEnum,
@@ -9038,6 +9298,7 @@ let typeMap: {[index: string]: any} = {
     "AccountDetail": AccountDetail,
     "App": App,
     "BusinessHoursPeriod": BusinessHoursPeriod,
+    "BusinessHoursPeriodBase": BusinessHoursPeriodBase,
     "Card": Card,
     "CardBase": CardBase,
     "CardWithToken": CardWithToken,
@@ -9067,6 +9328,7 @@ let typeMap: {[index: string]: any} = {
     "MenuItemOptionSetItemBase": MenuItemOptionSetItemBase,
     "MenuSection": MenuSection,
     "MenuSectionAvailability": MenuSectionAvailability,
+    "MenuSectionAvailabilityBase": MenuSectionAvailabilityBase,
     "MenuSectionBase": MenuSectionBase,
     "MenuSectionItem": MenuSectionItem,
     "MenuSectionItemBase": MenuSectionItemBase,
@@ -9094,6 +9356,7 @@ let typeMap: {[index: string]: any} = {
     "PrinterTurnedOffEvent": PrinterTurnedOffEvent,
     "PrinterTurnedOnEvent": PrinterTurnedOnEvent,
     "PrinterUnassignedFromStoreEvent": PrinterUnassignedFromStoreEvent,
+    "ProcessingFeeConfig": ProcessingFeeConfig,
     "Range": Range,
     "Refund": Refund,
     "Reject": Reject,
@@ -9104,6 +9367,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultMetadata": RestApiArrayResultMetadata,
     "RestApiArrayResultOAuthClient": RestApiArrayResultOAuthClient,
     "RestApiArrayResultOauthClientRedirectUri": RestApiArrayResultOauthClientRedirectUri,
+    "RestApiArrayResultProcessingFeeConfig": RestApiArrayResultProcessingFeeConfig,
     "RestApiArrayResultRestApiDefaultResponse": RestApiArrayResultRestApiDefaultResponse,
     "RestApiArrayResultWebhookSubscription": RestApiArrayResultWebhookSubscription,
     "RestApiDefaultResponse": RestApiDefaultResponse,
@@ -9119,17 +9383,20 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultVoucher": RestApiPaginationResultVoucher,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
+    "RestApiResultBusinessHoursPeriod": RestApiResultBusinessHoursPeriod,
     "RestApiResultCard": RestApiResultCard,
     "RestApiResultCoordinates": RestApiResultCoordinates,
     "RestApiResultMenu": RestApiResultMenu,
     "RestApiResultMenuItemOptionSet": RestApiResultMenuItemOptionSet,
     "RestApiResultMenuItemOptionSetItem": RestApiResultMenuItemOptionSetItem,
     "RestApiResultMenuSection": RestApiResultMenuSection,
+    "RestApiResultMenuSectionAvailability": RestApiResultMenuSectionAvailability,
     "RestApiResultMenuSectionItem": RestApiResultMenuSectionItem,
     "RestApiResultMetadata": RestApiResultMetadata,
     "RestApiResultOAuthClient": RestApiResultOAuthClient,
     "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
     "RestApiResultOrder": RestApiResultOrder,
+    "RestApiResultProcessingFeeConfig": RestApiResultProcessingFeeConfig,
     "RestApiResultStore": RestApiResultStore,
     "RestApiResultStoreAddress": RestApiResultStoreAddress,
     "RestApiResultSubscription": RestApiResultSubscription,
@@ -12912,6 +13179,151 @@ export class MenuSectionsApi {
     }
     /**
      * 
+     * @summary Create menu section
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionAvailability 
+     */
+    public createMenuSection_1 (menuId: number, menuSectionId: number, menuSectionAvailability: MenuSectionAvailabilityBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/availability'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling createMenuSection_1.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling createMenuSection_1.');
+        }
+
+        // verify required parameter 'menuSectionAvailability' is not null or undefined
+        if (menuSectionAvailability === null || menuSectionAvailability === undefined) {
+            throw new Error('Required parameter menuSectionAvailability was null or undefined when calling createMenuSection_1.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(menuSectionAvailability, "MenuSectionAvailabilityBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Create menu section
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param dayOfWeek 
+     * @param businessHoursPeriod 
+     */
+    public createMenuSection_2 (menuId: number, menuSectionId: number, dayOfWeek: string, businessHoursPeriod: BusinessHoursPeriodBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/availability/times/{dayOfWeek}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'dayOfWeek' + '}', encodeURIComponent(String(dayOfWeek)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling createMenuSection_2.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling createMenuSection_2.');
+        }
+
+        // verify required parameter 'dayOfWeek' is not null or undefined
+        if (dayOfWeek === null || dayOfWeek === undefined) {
+            throw new Error('Required parameter dayOfWeek was null or undefined when calling createMenuSection_2.');
+        }
+
+        // verify required parameter 'businessHoursPeriod' is not null or undefined
+        if (businessHoursPeriod === null || businessHoursPeriod === undefined) {
+            throw new Error('Required parameter businessHoursPeriod was null or undefined when calling createMenuSection_2.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(businessHoursPeriod, "BusinessHoursPeriodBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Delete menu section
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
@@ -14925,6 +15337,114 @@ export class OrdersApi {
         });
     }
 }
+export enum ProcessingFeeConfigsApiApiKeys {
+}
+
+export class ProcessingFeeConfigsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: ProcessingFeeConfigsApiApiKeys, value: string) {
+        (this.authentications as any)[ProcessingFeeConfigsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Get processing fee configs by store identifiers
+     * @param storeIds Store identifiers
+     */
+    public getProcessingFeeConfigsByStoreIds (storeIds: Array<number>) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultProcessingFeeConfig;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/processingfeeconfigs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeIds' is not null or undefined
+        if (storeIds === null || storeIds === undefined) {
+            throw new Error('Required parameter storeIds was null or undefined when calling getProcessingFeeConfigsByStoreIds.');
+        }
+
+        if (storeIds !== undefined) {
+            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultProcessingFeeConfig;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultProcessingFeeConfig");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
 export enum StoresApiApiKeys {
 }
 
@@ -14973,6 +15493,123 @@ export class StoresApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Get processing fee configs by store identifier
+     * @param storeId Store identifier
+     */
+    public getProcessingFeeConfigsByStoreId (storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultProcessingFeeConfig;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getProcessingFeeConfigsByStoreId.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultProcessingFeeConfig;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultProcessingFeeConfig");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get processing fee configs by store identifier
+     * @param storeId Store identifier
+     * @param paymentAccountType 
+     */
+    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: string) : Promise<{ response: http.ClientResponse; body: RestApiResultProcessingFeeConfig;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs/{paymentAccountType}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'paymentAccountType' + '}', encodeURIComponent(String(paymentAccountType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getProcessingFeeConfigsByStoreIdAndPaymentAccountType.');
+        }
+
+        // verify required parameter 'paymentAccountType' is not null or undefined
+        if (paymentAccountType === null || paymentAccountType === undefined) {
+            throw new Error('Required parameter paymentAccountType was null or undefined when calling getProcessingFeeConfigsByStoreIdAndPaymentAccountType.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultProcessingFeeConfig;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultProcessingFeeConfig");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
     }
     /**
      * 
