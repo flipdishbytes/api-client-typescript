@@ -10035,12 +10035,12 @@ export class AppsApi {
     }
     /**
      * 
-     * @summary Get all OAuth client
+     * @summary Get Apps
      * @param nameFilter 
      * @param page 
      * @param limit 
      */
-    public geApps (nameFilter?: string, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultApp;  }> {
+    public getApps (nameFilter?: string, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultApp;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
