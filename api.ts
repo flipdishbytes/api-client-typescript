@@ -12223,16 +12223,16 @@ export class MenuOptionSetsApi {
      * 
      * @summary Update menu item option set
      * @param menuId Menu identifier
-     * @param menuSectionItemId Menu section item identifier
      * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Option set identifier
      * @param menuItemOptionSet Menu item option set (delta)
      */
-    public updateMenuItemOptionSet (menuId: number, menuSectionItemId: number, menuSectionId: number, optionSetId: number, menuItemOptionSet: MenuItemOptionSetBase) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updateMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSet: MenuItemOptionSetBase) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
-            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
             .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -12243,14 +12243,14 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter menuId was null or undefined when calling updateMenuItemOptionSet.');
         }
 
-        // verify required parameter 'menuSectionItemId' is not null or undefined
-        if (menuSectionItemId === null || menuSectionItemId === undefined) {
-            throw new Error('Required parameter menuSectionItemId was null or undefined when calling updateMenuItemOptionSet.');
-        }
-
         // verify required parameter 'menuSectionId' is not null or undefined
         if (menuSectionId === null || menuSectionId === undefined) {
             throw new Error('Required parameter menuSectionId was null or undefined when calling updateMenuItemOptionSet.');
+        }
+
+        // verify required parameter 'menuSectionItemId' is not null or undefined
+        if (menuSectionItemId === null || menuSectionItemId === undefined) {
+            throw new Error('Required parameter menuSectionItemId was null or undefined when calling updateMenuItemOptionSet.');
         }
 
         // verify required parameter 'optionSetId' is not null or undefined
