@@ -2109,6 +2109,10 @@ export class MenuItemOptionSet {
     */
     'MenuItemOptionSetItems': Array<MenuItemOptionSetItem>;
     /**
+    * Permanent reference to the item.
+    */
+    'PublicId': string;
+    /**
     * Menu item option set name
     */
     'Name': string;
@@ -2150,6 +2154,11 @@ export class MenuItemOptionSet {
             "name": "MenuItemOptionSetItems",
             "baseName": "MenuItemOptionSetItems",
             "type": "Array<MenuItemOptionSetItem>"
+        },
+        {
+            "name": "PublicId",
+            "baseName": "PublicId",
+            "type": "string"
         },
         {
             "name": "Name",
@@ -2284,6 +2293,10 @@ export class MenuItemOptionSetItem {
     */
     'ImageUrl': string;
     /**
+    * Permanent reference to the item.
+    */
+    'PublicId': string;
+    /**
     * Name
     */
     'Name': string;
@@ -2315,6 +2328,11 @@ export class MenuItemOptionSetItem {
         {
             "name": "ImageUrl",
             "baseName": "ImageUrl",
+            "type": "string"
+        },
+        {
+            "name": "PublicId",
+            "baseName": "PublicId",
             "type": "string"
         },
         {
@@ -2444,6 +2462,10 @@ export class MenuSection {
     */
     'MenuSectionAvailability': MenuSectionAvailability;
     /**
+    * Permanent reference to the item.
+    */
+    'PublicId': string;
+    /**
     * Name
     */
     'Name': string;
@@ -2486,6 +2508,11 @@ export class MenuSection {
             "name": "MenuSectionAvailability",
             "baseName": "MenuSectionAvailability",
             "type": "MenuSectionAvailability"
+        },
+        {
+            "name": "PublicId",
+            "baseName": "PublicId",
+            "type": "string"
         },
         {
             "name": "Name",
@@ -2653,7 +2680,7 @@ export class MenuSectionBase {
 */
 export class MenuSectionItem {
     /**
-    * Menu item identifier
+    * Menu item identifier. This ID may change at any time. Use `PublicId` if you need a perminant reference to the item.
     */
     'MenuItemId': number;
     /**
@@ -2672,6 +2699,10 @@ export class MenuSectionItem {
     * Daily special hours
     */
     'DailySpecialHours': Array<BusinessHoursPeriod>;
+    /**
+    * Permanent reference to the item.
+    */
+    'PublicId': string;
     /**
     * Menu item name (like \"Korma\")
     */
@@ -2736,6 +2767,11 @@ export class MenuSectionItem {
             "name": "DailySpecialHours",
             "baseName": "DailySpecialHours",
             "type": "Array<BusinessHoursPeriod>"
+        },
+        {
+            "name": "PublicId",
+            "baseName": "PublicId",
+            "type": "string"
         },
         {
             "name": "Name",
