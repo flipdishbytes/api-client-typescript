@@ -9581,6 +9581,67 @@ export class AccountsApi {
     }
     /**
      * 
+     * @param signupStepAction 
+     * @param answerId 
+     */
+    public answerSignUpQuestion (signupStepAction: string, answerId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/answer'
+            .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'signupStepAction' is not null or undefined
+        if (signupStepAction === null || signupStepAction === undefined) {
+            throw new Error('Required parameter signupStepAction was null or undefined when calling answerSignUpQuestion.');
+        }
+
+        // verify required parameter 'answerId' is not null or undefined
+        if (answerId === null || answerId === undefined) {
+            throw new Error('Required parameter answerId was null or undefined when calling answerSignUpQuestion.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(answerId, "number")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAccountDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Change password
      * @param changePasswordModel Change password model
      */
@@ -9978,67 +10039,6 @@ export class AccountsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultAccountDetail");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param signupStepAction 
-     * @param answerId 
-     */
-    public skipSignupStep_1 (signupStepAction: string, answerId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/answer'
-            .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'signupStepAction' is not null or undefined
-        if (signupStepAction === null || signupStepAction === undefined) {
-            throw new Error('Required parameter signupStepAction was null or undefined when calling skipSignupStep_1.');
-        }
-
-        // verify required parameter 'answerId' is not null or undefined
-        if (answerId === null || answerId === undefined) {
-            throw new Error('Required parameter answerId was null or undefined when calling skipSignupStep_1.');
-        }
-
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(answerId, "number")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
