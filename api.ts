@@ -564,56 +564,6 @@ export class ChangePasswordModel {
 }
 
 /**
-* Stuart client credentials
-*/
-export class ClientCredentials {
-    /**
-    * Client Id
-    */
-    'ClientId': string;
-    /**
-    * Client Secret
-    */
-    'ClientSecret': string;
-    /**
-    * Enabled
-    */
-    'Enabled': boolean;
-    /**
-    * Webhook url to settle in the Stuart portal
-    */
-    'WebhookUrlBasicAuthentication': string;
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "ClientId",
-            "baseName": "ClientId",
-            "type": "string"
-        },
-        {
-            "name": "ClientSecret",
-            "baseName": "ClientSecret",
-            "type": "string"
-        },
-        {
-            "name": "Enabled",
-            "baseName": "Enabled",
-            "type": "boolean"
-        },
-        {
-            "name": "WebhookUrlBasicAuthentication",
-            "baseName": "WebhookUrlBasicAuthentication",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return ClientCredentials.attributeTypeMap;
-    }
-}
-
-/**
 * Coordinates
 */
 export class Coordinates {
@@ -1592,6 +1542,722 @@ export class HttpRequestAndResponseLog {
 
     static getAttributeTypeMap() {
         return HttpRequestAndResponseLog.attributeTypeMap;
+    }
+}
+
+/**
+* Job Address
+*/
+export class JobAddress {
+    /**
+    * Street
+    */
+    'Street': string;
+    /**
+    * Postcode
+    */
+    'Postcode': string;
+    /**
+    * City
+    */
+    'City': string;
+    /**
+    * Country
+    */
+    'Country': string;
+    /**
+    * Zone
+    */
+    'Zone': string;
+    /**
+    * Formatted Address
+    */
+    'FormattedAddress': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Street",
+            "baseName": "Street",
+            "type": "string"
+        },
+        {
+            "name": "Postcode",
+            "baseName": "Postcode",
+            "type": "string"
+        },
+        {
+            "name": "City",
+            "baseName": "City",
+            "type": "string"
+        },
+        {
+            "name": "Country",
+            "baseName": "Country",
+            "type": "string"
+        },
+        {
+            "name": "Zone",
+            "baseName": "Zone",
+            "type": "string"
+        },
+        {
+            "name": "FormattedAddress",
+            "baseName": "FormattedAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return JobAddress.attributeTypeMap;
+    }
+}
+
+/**
+* Job Cancellation
+*/
+export class JobCancellation {
+    /**
+    * Canceled By
+    */
+    'CanceledBy': string;
+    /**
+    * Reason Key
+    */
+    'ReasonKey': string;
+    /**
+    * Comment
+    */
+    'Comment': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CanceledBy",
+            "baseName": "CanceledBy",
+            "type": "string"
+        },
+        {
+            "name": "ReasonKey",
+            "baseName": "ReasonKey",
+            "type": "string"
+        },
+        {
+            "name": "Comment",
+            "baseName": "Comment",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return JobCancellation.attributeTypeMap;
+    }
+}
+
+/**
+* Job Contact
+*/
+export class JobContact {
+    /**
+    * Firstname
+    */
+    'Firstname': string;
+    /**
+    * Lastname
+    */
+    'Lastname': string;
+    /**
+    * Phone
+    */
+    'Phone': string;
+    /**
+    * Email
+    */
+    'Email': string;
+    /**
+    * Company
+    */
+    'Company': string;
+    /**
+    * Company Name
+    */
+    'CompanyName': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Firstname",
+            "baseName": "Firstname",
+            "type": "string"
+        },
+        {
+            "name": "Lastname",
+            "baseName": "Lastname",
+            "type": "string"
+        },
+        {
+            "name": "Phone",
+            "baseName": "Phone",
+            "type": "string"
+        },
+        {
+            "name": "Email",
+            "baseName": "Email",
+            "type": "string"
+        },
+        {
+            "name": "Company",
+            "baseName": "Company",
+            "type": "string"
+        },
+        {
+            "name": "CompanyName",
+            "baseName": "CompanyName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return JobContact.attributeTypeMap;
+    }
+}
+
+/**
+* Job Delivery
+*/
+export class JobDelivery {
+    /**
+    * Id
+    */
+    'Id': number;
+    /**
+    * Status
+    */
+    'Status': string;
+    /**
+    * Picked At
+    */
+    'PickedAt': string;
+    /**
+    * Delivered At
+    */
+    'DeliveredAt': string;
+    /**
+    * Tracking Url
+    */
+    'TrackingUrl': string;
+    /**
+    * Client Reference
+    */
+    'ClientReference': string;
+    /**
+    * Package Description
+    */
+    'PackageDescription': string;
+    /**
+    * Package Type
+    */
+    'PackageType': string;
+    /**
+    * Pickup
+    */
+    'Pickup': JobDeliveryDetail;
+    /**
+    * Dropoff
+    */
+    'Dropoff': JobDeliveryDetail;
+    /**
+    * Eta
+    */
+    'Eta': JobEta;
+    /**
+    * Cancellation
+    */
+    'Cancellation': JobCancellation;
+    /**
+    * Proof
+    */
+    'Proof': JobProof;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "string"
+        },
+        {
+            "name": "PickedAt",
+            "baseName": "PickedAt",
+            "type": "string"
+        },
+        {
+            "name": "DeliveredAt",
+            "baseName": "DeliveredAt",
+            "type": "string"
+        },
+        {
+            "name": "TrackingUrl",
+            "baseName": "TrackingUrl",
+            "type": "string"
+        },
+        {
+            "name": "ClientReference",
+            "baseName": "ClientReference",
+            "type": "string"
+        },
+        {
+            "name": "PackageDescription",
+            "baseName": "PackageDescription",
+            "type": "string"
+        },
+        {
+            "name": "PackageType",
+            "baseName": "PackageType",
+            "type": "string"
+        },
+        {
+            "name": "Pickup",
+            "baseName": "Pickup",
+            "type": "JobDeliveryDetail"
+        },
+        {
+            "name": "Dropoff",
+            "baseName": "Dropoff",
+            "type": "JobDeliveryDetail"
+        },
+        {
+            "name": "Eta",
+            "baseName": "Eta",
+            "type": "JobEta"
+        },
+        {
+            "name": "Cancellation",
+            "baseName": "Cancellation",
+            "type": "JobCancellation"
+        },
+        {
+            "name": "Proof",
+            "baseName": "Proof",
+            "type": "JobProof"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return JobDelivery.attributeTypeMap;
+    }
+}
+
+/**
+* Job Delivery Detail
+*/
+export class JobDeliveryDetail {
+    /**
+    * Id
+    */
+    'Id': number;
+    /**
+    * Latitude
+    */
+    'Latitude': number;
+    /**
+    * Longitude
+    */
+    'Longitude': number;
+    /**
+    * Comment
+    */
+    'Comment': string;
+    /**
+    * Address
+    */
+    'Address': JobAddress;
+    /**
+    * Contact
+    */
+    'Contact': JobContact;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "Latitude",
+            "baseName": "Latitude",
+            "type": "number"
+        },
+        {
+            "name": "Longitude",
+            "baseName": "Longitude",
+            "type": "number"
+        },
+        {
+            "name": "Comment",
+            "baseName": "Comment",
+            "type": "string"
+        },
+        {
+            "name": "Address",
+            "baseName": "Address",
+            "type": "JobAddress"
+        },
+        {
+            "name": "Contact",
+            "baseName": "Contact",
+            "type": "JobContact"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return JobDeliveryDetail.attributeTypeMap;
+    }
+}
+
+/**
+* Job Driver
+*/
+export class JobDriver {
+    /**
+    * Id
+    */
+    'Id': number;
+    /**
+    * Display Name
+    */
+    'DisplayName': string;
+    /**
+    * Phone
+    */
+    'Phone': string;
+    /**
+    * Picture Url
+    */
+    'PictureUrl': string;
+    /**
+    * Transport Type
+    */
+    'TransportType': string;
+    /**
+    * Latitude
+    */
+    'Latitude': number;
+    /**
+    * Longitude
+    */
+    'Longitude': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "DisplayName",
+            "baseName": "DisplayName",
+            "type": "string"
+        },
+        {
+            "name": "Phone",
+            "baseName": "Phone",
+            "type": "string"
+        },
+        {
+            "name": "PictureUrl",
+            "baseName": "PictureUrl",
+            "type": "string"
+        },
+        {
+            "name": "TransportType",
+            "baseName": "TransportType",
+            "type": "string"
+        },
+        {
+            "name": "Latitude",
+            "baseName": "Latitude",
+            "type": "number"
+        },
+        {
+            "name": "Longitude",
+            "baseName": "Longitude",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return JobDriver.attributeTypeMap;
+    }
+}
+
+/**
+* Job Eta
+*/
+export class JobEta {
+    /**
+    * Pickup
+    */
+    'Pickup': string;
+    /**
+    * Dropoff
+    */
+    'Dropoff': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Pickup",
+            "baseName": "Pickup",
+            "type": "string"
+        },
+        {
+            "name": "Dropoff",
+            "baseName": "Dropoff",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return JobEta.attributeTypeMap;
+    }
+}
+
+/**
+* Job Pricing
+*/
+export class JobPricing {
+    /**
+    * Currency
+    */
+    'Currency': string;
+    /**
+    * Tax Percentage
+    */
+    'TaxPercentage': number;
+    /**
+    * Price Tax Included
+    */
+    'PriceTaxIncluded': number;
+    /**
+    * Price Tax Excluded
+    */
+    'PriceTaxExcluded': number;
+    /**
+    * Tax Amount
+    */
+    'TaxAmount': number;
+    /**
+    * Invoice Url
+    */
+    'InvoiceUrl': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "string"
+        },
+        {
+            "name": "TaxPercentage",
+            "baseName": "TaxPercentage",
+            "type": "number"
+        },
+        {
+            "name": "PriceTaxIncluded",
+            "baseName": "PriceTaxIncluded",
+            "type": "number"
+        },
+        {
+            "name": "PriceTaxExcluded",
+            "baseName": "PriceTaxExcluded",
+            "type": "number"
+        },
+        {
+            "name": "TaxAmount",
+            "baseName": "TaxAmount",
+            "type": "number"
+        },
+        {
+            "name": "InvoiceUrl",
+            "baseName": "InvoiceUrl",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return JobPricing.attributeTypeMap;
+    }
+}
+
+/**
+* Job Proof
+*/
+export class JobProof {
+    /**
+    * Signature Url
+    */
+    'SignatureUrl': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "SignatureUrl",
+            "baseName": "SignatureUrl",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return JobProof.attributeTypeMap;
+    }
+}
+
+/**
+* Job Response
+*/
+export class JobResponse {
+    /**
+    * Id
+    */
+    'Id': number;
+    /**
+    * Created At
+    */
+    'CreatedAt': Date;
+    /**
+    * Status
+    */
+    'Status': string;
+    /**
+    * Package Type
+    */
+    'PackageType': string;
+    /**
+    * Transport Type
+    */
+    'TransportType': string;
+    /**
+    * Assignment Code
+    */
+    'AssignmentCode': string;
+    /**
+    * Pickup At
+    */
+    'PickupAt': string;
+    /**
+    * Dropoff At
+    */
+    'DropoffAt': string;
+    /**
+    * Comment
+    */
+    'Comment': string;
+    /**
+    * Distance
+    */
+    'Distance': number;
+    /**
+    * Duration
+    */
+    'Duration': number;
+    /**
+    * Deliveries
+    */
+    'Deliveries': Array<JobDelivery>;
+    /**
+    * Pricing
+    */
+    'Pricing': JobPricing;
+    /**
+    * Driver
+    */
+    'Driver': JobDriver;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "CreatedAt",
+            "baseName": "CreatedAt",
+            "type": "Date"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "string"
+        },
+        {
+            "name": "PackageType",
+            "baseName": "PackageType",
+            "type": "string"
+        },
+        {
+            "name": "TransportType",
+            "baseName": "TransportType",
+            "type": "string"
+        },
+        {
+            "name": "AssignmentCode",
+            "baseName": "AssignmentCode",
+            "type": "string"
+        },
+        {
+            "name": "PickupAt",
+            "baseName": "PickupAt",
+            "type": "string"
+        },
+        {
+            "name": "DropoffAt",
+            "baseName": "DropoffAt",
+            "type": "string"
+        },
+        {
+            "name": "Comment",
+            "baseName": "Comment",
+            "type": "string"
+        },
+        {
+            "name": "Distance",
+            "baseName": "Distance",
+            "type": "number"
+        },
+        {
+            "name": "Duration",
+            "baseName": "Duration",
+            "type": "number"
+        },
+        {
+            "name": "Deliveries",
+            "baseName": "Deliveries",
+            "type": "Array<JobDelivery>"
+        },
+        {
+            "name": "Pricing",
+            "baseName": "Pricing",
+            "type": "JobPricing"
+        },
+        {
+            "name": "Driver",
+            "baseName": "Driver",
+            "type": "JobDriver"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return JobResponse.attributeTypeMap;
     }
 }
 
@@ -5811,29 +6477,6 @@ export class RestApiResultCard {
 /**
 * Rest api result
 */
-export class RestApiResultClientCredentials {
-    /**
-    * Generic data object.
-    */
-    'Data': ClientCredentials;
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "ClientCredentials"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiResultClientCredentials.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api result
-*/
 export class RestApiResultCoordinates {
     /**
     * Generic data object.
@@ -5851,6 +6494,29 @@ export class RestApiResultCoordinates {
 
     static getAttributeTypeMap() {
         return RestApiResultCoordinates.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultJobResponse {
+    /**
+    * Generic data object.
+    */
+    'Data': JobResponse;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "JobResponse"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultJobResponse.attributeTypeMap;
     }
 }
 
@@ -6150,6 +6816,29 @@ export class RestApiResultStoreAddress {
 
     static getAttributeTypeMap() {
         return RestApiResultStoreAddress.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultStuartSettings {
+    /**
+    * Generic data object.
+    */
+    'Data': StuartSettings;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "StuartSettings"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultStuartSettings.attributeTypeMap;
     }
 }
 
@@ -7897,6 +8586,83 @@ export class StoreUpdatedEvent {
 }
 
 /**
+* Stuart settings
+*/
+export class StuartSettings {
+    /**
+    * Client Id
+    */
+    'ClientId': string;
+    /**
+    * Client Secret
+    */
+    'ClientSecret': string;
+    /**
+    * Enabled
+    */
+    'Enabled': boolean;
+    /**
+    * Webhook url to settle in the Stuart portal
+    */
+    'WebhookUrlBasicAuthentication': string;
+    /**
+    * MinutesToPickupBeforeThanDeliveryTime
+    */
+    'MinutesToPickupBeforeThanDeliveryTime': number;
+    /**
+    * PackageType
+    */
+    'PackageType': StuartSettings.PackageTypeEnum;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ClientId",
+            "baseName": "ClientId",
+            "type": "string"
+        },
+        {
+            "name": "ClientSecret",
+            "baseName": "ClientSecret",
+            "type": "string"
+        },
+        {
+            "name": "Enabled",
+            "baseName": "Enabled",
+            "type": "boolean"
+        },
+        {
+            "name": "WebhookUrlBasicAuthentication",
+            "baseName": "WebhookUrlBasicAuthentication",
+            "type": "string"
+        },
+        {
+            "name": "MinutesToPickupBeforeThanDeliveryTime",
+            "baseName": "MinutesToPickupBeforeThanDeliveryTime",
+            "type": "number"
+        },
+        {
+            "name": "PackageType",
+            "baseName": "PackageType",
+            "type": "StuartSettings.PackageTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StuartSettings.attributeTypeMap;
+    }
+}
+
+export namespace StuartSettings {
+    export enum PackageTypeEnum {
+        Xsmall = <any> 'Xsmall',
+        Small = <any> 'Small',
+        Medium = <any> 'Medium',
+        Large = <any> 'Large',
+        Xlarge = <any> 'Xlarge'
+    }
+}
+/**
 * Subscription
 */
 export class Subscription {
@@ -9393,6 +10159,7 @@ let enumsMap: {[index: string]: any} = {
         "SignupStep.ActionEnum": SignupStep.ActionEnum,
         "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
         "StoreSummary.CurrencyEnum": StoreSummary.CurrencyEnum,
+        "StuartSettings.PackageTypeEnum": StuartSettings.PackageTypeEnum,
         "Subscription.StatusEnum": Subscription.StatusEnum,
         "SubscriptionPlan.IntervalEnum": SubscriptionPlan.IntervalEnum,
         "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
@@ -9412,7 +10179,6 @@ let typeMap: {[index: string]: any} = {
     "CardBase": CardBase,
     "CardWithToken": CardWithToken,
     "ChangePasswordModel": ChangePasswordModel,
-    "ClientCredentials": ClientCredentials,
     "Coordinates": Coordinates,
     "CreateAccountModel": CreateAccountModel,
     "CustomerConsentUpdatedEvent": CustomerConsentUpdatedEvent,
@@ -9424,6 +10190,16 @@ let typeMap: {[index: string]: any} = {
     "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
+    "JobAddress": JobAddress,
+    "JobCancellation": JobCancellation,
+    "JobContact": JobContact,
+    "JobDelivery": JobDelivery,
+    "JobDeliveryDetail": JobDeliveryDetail,
+    "JobDriver": JobDriver,
+    "JobEta": JobEta,
+    "JobPricing": JobPricing,
+    "JobProof": JobProof,
+    "JobResponse": JobResponse,
     "LoginModel": LoginModel,
     "LoyaltyCampaign": LoyaltyCampaign,
     "LoyaltyCampaignCreatedEvent": LoyaltyCampaignCreatedEvent,
@@ -9495,8 +10271,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
     "RestApiResultBusinessHoursPeriod": RestApiResultBusinessHoursPeriod,
     "RestApiResultCard": RestApiResultCard,
-    "RestApiResultClientCredentials": RestApiResultClientCredentials,
     "RestApiResultCoordinates": RestApiResultCoordinates,
+    "RestApiResultJobResponse": RestApiResultJobResponse,
     "RestApiResultMenu": RestApiResultMenu,
     "RestApiResultMenuItemOptionSet": RestApiResultMenuItemOptionSet,
     "RestApiResultMenuItemOptionSetItem": RestApiResultMenuItemOptionSetItem,
@@ -9510,6 +10286,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultProcessingFeeConfig": RestApiResultProcessingFeeConfig,
     "RestApiResultStore": RestApiResultStore,
     "RestApiResultStoreAddress": RestApiResultStoreAddress,
+    "RestApiResultStuartSettings": RestApiResultStuartSettings,
     "RestApiResultSubscription": RestApiResultSubscription,
     "RestApiResultSubscriptionPlansResponse": RestApiResultSubscriptionPlansResponse,
     "RestApiResultVoucher": RestApiResultVoucher,
@@ -9534,6 +10311,7 @@ let typeMap: {[index: string]: any} = {
     "StoreOpeningHoursUpdatedEvent": StoreOpeningHoursUpdatedEvent,
     "StoreSummary": StoreSummary,
     "StoreUpdatedEvent": StoreUpdatedEvent,
+    "StuartSettings": StuartSettings,
     "Subscription": Subscription,
     "SubscriptionBase": SubscriptionBase,
     "SubscriptionPlan": SubscriptionPlan,
@@ -16128,19 +16906,28 @@ export class StuartApi {
     }
     /**
      * 
-     * @summary Get stuart credentials
+     * @param jobId 
      * @param storeId 
      */
-    public stuartGetClientCredentials (storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultClientCredentials;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/stuart/credentials/{storeId}'
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+    public stuartGetJob (jobId: number, storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultJobResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stuart/jobs/{jobId}'
+            .replace('{' + 'jobId' + '}', encodeURIComponent(String(jobId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
+        // verify required parameter 'jobId' is not null or undefined
+        if (jobId === null || jobId === undefined) {
+            throw new Error('Required parameter jobId was null or undefined when calling stuartGetJob.');
+        }
+
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling stuartGetClientCredentials.');
+            throw new Error('Required parameter storeId was null or undefined when calling stuartGetJob.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
         }
 
 
@@ -16166,12 +16953,67 @@ export class StuartApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultClientCredentials;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultJobResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultClientCredentials");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultJobResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get stuart credentials
+     * @param storeId 
+     */
+    public stuartGetStuartSettings (storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultStuartSettings;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stuart/settings/{storeId}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling stuartGetStuartSettings.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStuartSettings;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStuartSettings");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -16184,10 +17026,10 @@ export class StuartApi {
     /**
      * 
      * @param storeId 
-     * @param clientCredentials 
+     * @param stuartSettings 
      */
-    public stuartPostClientCredentials (storeId: number, clientCredentials: ClientCredentials) : Promise<{ response: http.ClientResponse; body: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/stuart/credentials/{storeId}'
+    public stuartPostStuartSettings (storeId: number, stuartSettings: StuartSettings) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stuart/settings/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -16195,12 +17037,12 @@ export class StuartApi {
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling stuartPostClientCredentials.');
+            throw new Error('Required parameter storeId was null or undefined when calling stuartPostStuartSettings.');
         }
 
-        // verify required parameter 'clientCredentials' is not null or undefined
-        if (clientCredentials === null || clientCredentials === undefined) {
-            throw new Error('Required parameter clientCredentials was null or undefined when calling stuartPostClientCredentials.');
+        // verify required parameter 'stuartSettings' is not null or undefined
+        if (stuartSettings === null || stuartSettings === undefined) {
+            throw new Error('Required parameter stuartSettings was null or undefined when calling stuartPostStuartSettings.');
         }
 
 
@@ -16213,7 +17055,7 @@ export class StuartApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(clientCredentials, "ClientCredentials")
+            body: ObjectSerializer.serialize(stuartSettings, "StuartSettings")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
