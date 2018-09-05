@@ -213,6 +213,18 @@ export class App {
     */
     'Name': string;
     /**
+    * Center of the map coordinates
+    */
+    'MapCenter': Coordinates;
+    /**
+    * North East(Top Right) Corner of the map coordinates
+    */
+    'MapNorthEast': Coordinates;
+    /**
+    * South West (Bottom Left) Corner of the map coordinates
+    */
+    'MapSouthWest': Coordinates;
+    /**
     * Icon url
     */
     'IconUrl': string;
@@ -237,6 +249,21 @@ export class App {
             "name": "Name",
             "baseName": "Name",
             "type": "string"
+        },
+        {
+            "name": "MapCenter",
+            "baseName": "MapCenter",
+            "type": "Coordinates"
+        },
+        {
+            "name": "MapNorthEast",
+            "baseName": "MapNorthEast",
+            "type": "Coordinates"
+        },
+        {
+            "name": "MapSouthWest",
+            "baseName": "MapSouthWest",
+            "type": "Coordinates"
         },
         {
             "name": "IconUrl",
