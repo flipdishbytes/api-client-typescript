@@ -201,6 +201,119 @@ export class AccountDetail {
 }
 
 /**
+* Client Analytics event
+*/
+export class AnalyticsClientEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Type of the event
+    */
+    'EventType': string;
+    /**
+    * Application Id
+    */
+    'AppId': string;
+    /**
+    * Type of the app the event is coming from
+    */
+    'AppType': string;
+    /**
+    * JSON Metadata
+    */
+    'Metadata': string;
+    /**
+    * User Id
+    */
+    'UserId': number;
+    /**
+    * Latitude of the event
+    */
+    'Latitude': number;
+    /**
+    * Longitude of the event
+    */
+    'Longitude': number;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "EventType",
+            "baseName": "EventType",
+            "type": "string"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "AppType",
+            "baseName": "AppType",
+            "type": "string"
+        },
+        {
+            "name": "Metadata",
+            "baseName": "Metadata",
+            "type": "string"
+        },
+        {
+            "name": "UserId",
+            "baseName": "UserId",
+            "type": "number"
+        },
+        {
+            "name": "Latitude",
+            "baseName": "Latitude",
+            "type": "number"
+        },
+        {
+            "name": "Longitude",
+            "baseName": "Longitude",
+            "type": "number"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AnalyticsClientEvent.attributeTypeMap;
+    }
+}
+
+/**
 * App
 */
 export class App {
@@ -1058,6 +1171,10 @@ export class DeliveryLocation {
 */
 export class EventSearchResult {
     /**
+    * Client Analytics events
+    */
+    'AnalyticsClientEvent': Array<AnalyticsClientEvent>;
+    /**
     * Order accepted events
     */
     'OrderAcceptedEvent': Array<OrderAcceptedEvent>;
@@ -1205,6 +1322,11 @@ export class EventSearchResult {
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AnalyticsClientEvent",
+            "baseName": "AnalyticsClientEvent",
+            "type": "Array<AnalyticsClientEvent>"
+        },
         {
             "name": "OrderAcceptedEvent",
             "baseName": "OrderAcceptedEvent",
@@ -10199,6 +10321,7 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "Accept": Accept,
     "AccountDetail": AccountDetail,
+    "AnalyticsClientEvent": AnalyticsClientEvent,
     "App": App,
     "BusinessHoursPeriod": BusinessHoursPeriod,
     "BusinessHoursPeriodBase": BusinessHoursPeriodBase,
