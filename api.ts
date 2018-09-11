@@ -8506,6 +8506,10 @@ export class StoreSummary {
     * Currency which used by the Store
     */
     'Currency': StoreSummary.CurrencyEnum;
+    /**
+    * Latitude and longitude of the store
+    */
+    'Coordinates': Coordinates;
 
     static discriminator = undefined;
 
@@ -8534,6 +8538,11 @@ export class StoreSummary {
             "name": "Currency",
             "baseName": "Currency",
             "type": "StoreSummary.CurrencyEnum"
+        },
+        {
+            "name": "Coordinates",
+            "baseName": "Coordinates",
+            "type": "Coordinates"
         }    ];
 
     static getAttributeTypeMap() {
