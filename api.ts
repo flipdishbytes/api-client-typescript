@@ -2411,6 +2411,38 @@ export class JobResponse {
 }
 
 /**
+* Ligthspeed store settings
+*/
+export class LightspeedSettings {
+    /**
+    * Company Id
+    */
+    'CompanyId': string;
+    /**
+    * Enabled
+    */
+    'Enabled': boolean;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CompanyId",
+            "baseName": "CompanyId",
+            "type": "string"
+        },
+        {
+            "name": "Enabled",
+            "baseName": "Enabled",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LightspeedSettings.attributeTypeMap;
+    }
+}
+
+/**
 * Login model
 */
 export class LoginModel {
@@ -6672,6 +6704,29 @@ export class RestApiResultJobResponse {
 /**
 * Rest api result
 */
+export class RestApiResultLightspeedSettings {
+    /**
+    * Generic data object.
+    */
+    'Data': LightspeedSettings;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "LightspeedSettings"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultLightspeedSettings.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultMenu {
     /**
     * Generic data object.
@@ -10359,6 +10414,7 @@ let typeMap: {[index: string]: any} = {
     "JobPricing": JobPricing,
     "JobProof": JobProof,
     "JobResponse": JobResponse,
+    "LightspeedSettings": LightspeedSettings,
     "LoginModel": LoginModel,
     "LoyaltyCampaign": LoyaltyCampaign,
     "LoyaltyCampaignCreatedEvent": LoyaltyCampaignCreatedEvent,
@@ -10432,6 +10488,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultCard": RestApiResultCard,
     "RestApiResultCoordinates": RestApiResultCoordinates,
     "RestApiResultJobResponse": RestApiResultJobResponse,
+    "RestApiResultLightspeedSettings": RestApiResultLightspeedSettings,
     "RestApiResultMenu": RestApiResultMenu,
     "RestApiResultMenuItemOptionSet": RestApiResultMenuItemOptionSet,
     "RestApiResultMenuItemOptionSetItem": RestApiResultMenuItemOptionSetItem,
@@ -12241,6 +12298,225 @@ export class HttpRequestResponseLogsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultHttpRequestAndResponseLog");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum LightspeedApiApiKeys {
+}
+
+export class LightspeedApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: LightspeedApiApiKeys, value: string) {
+        (this.authentications as any)[LightspeedApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param storeId 
+     */
+    public lightspeedGenerateMenu (storeId: number) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/lightspeed/{storeId}/menu/generate'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling lightspeedGenerateMenu.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param storeId 
+     */
+    public lightspeedGetStoreSettings (storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultLightspeedSettings;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/lightspeed/{storeId}/settings'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling lightspeedGetStoreSettings.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultLightspeedSettings;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultLightspeedSettings");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param storeId 
+     * @param lightspeedSettings 
+     */
+    public lightspeedSaveStoreSettings (storeId: number, lightspeedSettings: LightspeedSettings) : Promise<{ response: http.ClientResponse; body: RestApiResultLightspeedSettings;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/lightspeed/{storeId}/settings'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling lightspeedSaveStoreSettings.');
+        }
+
+        // verify required parameter 'lightspeedSettings' is not null or undefined
+        if (lightspeedSettings === null || lightspeedSettings === undefined) {
+            throw new Error('Required parameter lightspeedSettings was null or undefined when calling lightspeedSaveStoreSettings.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(lightspeedSettings, "LightspeedSettings")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultLightspeedSettings;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultLightspeedSettings");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
