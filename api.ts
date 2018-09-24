@@ -172,6 +172,10 @@ export class AccountDetail {
     */
     'Email': string;
     /**
+    * Language Id
+    */
+    'Language': string;
+    /**
     * Signup steps
     */
     'SignupSteps': Array<SignupStep>;
@@ -187,6 +191,11 @@ export class AccountDetail {
         {
             "name": "Email",
             "baseName": "Email",
+            "type": "string"
+        },
+        {
+            "name": "Language",
+            "baseName": "Language",
             "type": "string"
         },
         {
@@ -9212,6 +9221,38 @@ export class SubscriptionWithToken {
 }
 
 /**
+* Update account model
+*/
+export class UpdateAccountModel {
+    /**
+    * Name of the user
+    */
+    'Name': string;
+    /**
+    * Language of the user
+    */
+    'Language': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Language",
+            "baseName": "Language",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateAccountModel.attributeTypeMap;
+    }
+}
+
+/**
 * User created event
 */
 export class UserCreatedEvent {
@@ -10533,6 +10574,7 @@ let typeMap: {[index: string]: any} = {
     "SubscriptionPlan": SubscriptionPlan,
     "SubscriptionPlansResponse": SubscriptionPlansResponse,
     "SubscriptionWithToken": SubscriptionWithToken,
+    "UpdateAccountModel": UpdateAccountModel,
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
     "UserEventInfo": UserEventInfo,
@@ -10653,7 +10695,7 @@ export class AccountsApi {
      * @param signupStepAction 
      * @param answerId 
      */
-    public answerSignUpQuestion (signupStepAction: string, answerId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }> {
+    public answerSignUpQuestion (signupStepAction: string, answerId: number) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/answer'
             .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
         let localVarQueryParameters: any = {};
@@ -10694,12 +10736,12 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultAccountDetail");
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -11029,7 +11071,7 @@ export class AccountsApi {
      * @summary Request password reset. Flipdish system will send a token via email.
      * @param email Email address
      */
-    public requestPasswordReset (email: string) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public requestPasswordReset (email: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/password';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -11067,12 +11109,11 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -11086,7 +11127,7 @@ export class AccountsApi {
      * 
      * @param signupStepAction 
      */
-    public skipSignupStep (signupStepAction: string) : Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }> {
+    public skipSignupStep (signupStepAction: string) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/skip'
             .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
         let localVarQueryParameters: any = {};
@@ -11121,12 +11162,67 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultAccountDetail");
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update account with name and language
+     * @param updateAccountModel Update account model
+     */
+    public updateAccount (updateAccountModel: UpdateAccountModel) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'updateAccountModel' is not null or undefined
+        if (updateAccountModel === null || updateAccountModel === undefined) {
+            throw new Error('Required parameter updateAccountModel was null or undefined when calling updateAccount.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(updateAccountModel, "UpdateAccountModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
