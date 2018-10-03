@@ -1,7 +1,7 @@
 version: 2
 
 defaults: &defaults
-  working_directory: ~/api-client-typescript-signalr
+  working_directory: ~/api-client-typescript
   docker:
     - image: circleci/node:8.9.1
 jobs:
