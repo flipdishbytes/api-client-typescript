@@ -6498,6 +6498,56 @@ export class RestApiPaginationResultStore {
 /**
 * Rest api pagination result
 */
+export class RestApiPaginationResultStoreGroup {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<StoreGroup>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<StoreGroup>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultStoreGroup.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultVoucher {
     /**
     * Current page index
@@ -7029,6 +7079,52 @@ export class RestApiResultStoreAddress {
 
     static getAttributeTypeMap() {
         return RestApiResultStoreAddress.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultStoreGroup {
+    /**
+    * Generic data object.
+    */
+    'Data': StoreGroup;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "StoreGroup"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultStoreGroup.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultStoreGroupBase {
+    /**
+    * Generic data object.
+    */
+    'Data': StoreGroupBase;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "StoreGroupBase"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultStoreGroupBase.attributeTypeMap;
     }
 }
 
@@ -8428,6 +8524,401 @@ export class StoreDeliveryZoneUpdatedEvent {
     }
 }
 
+/**
+* Store Group
+*/
+export class StoreGroup {
+    /**
+    * Unique Store Group Identifier
+    */
+    'StoreGroupId': number;
+    /**
+    * Store Group rating
+    */
+    'GeneralRating': number;
+    /**
+    * Store Group rating count
+    */
+    'GeneralRatingCount': number;
+    /**
+    * Store Group Name
+    */
+    'Name': string;
+    /**
+    * Is this group enabled
+    */
+    'IsEnabled': boolean;
+    /**
+    * Store Group Url Name
+    */
+    'UrlName': string;
+    /**
+    * Currency used by the stores in this group
+    */
+    'Currency': StoreGroup.CurrencyEnum;
+    /**
+    * Message on top of Delivery Menu
+    */
+    'DeliveryMenuMessage': string;
+    /**
+    * Message on top of Collection Menu
+    */
+    'CollectionMenuMessage': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
+            "type": "number"
+        },
+        {
+            "name": "GeneralRating",
+            "baseName": "GeneralRating",
+            "type": "number"
+        },
+        {
+            "name": "GeneralRatingCount",
+            "baseName": "GeneralRatingCount",
+            "type": "number"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "UrlName",
+            "baseName": "UrlName",
+            "type": "string"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "StoreGroup.CurrencyEnum"
+        },
+        {
+            "name": "DeliveryMenuMessage",
+            "baseName": "DeliveryMenuMessage",
+            "type": "string"
+        },
+        {
+            "name": "CollectionMenuMessage",
+            "baseName": "CollectionMenuMessage",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreGroup.attributeTypeMap;
+    }
+}
+
+export namespace StoreGroup {
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD'
+    }
+}
+/**
+* Update Store Group
+*/
+export class StoreGroupBase {
+    /**
+    * Store Group Name
+    */
+    'Name': string;
+    /**
+    * Is this group enabled
+    */
+    'IsEnabled': boolean;
+    /**
+    * Store Group Url Name
+    */
+    'UrlName': string;
+    /**
+    * Currency used by the stores in this group
+    */
+    'Currency': StoreGroupBase.CurrencyEnum;
+    /**
+    * Message on top of Delivery Menu
+    */
+    'DeliveryMenuMessage': string;
+    /**
+    * Message on top of Collection Menu
+    */
+    'CollectionMenuMessage': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "UrlName",
+            "baseName": "UrlName",
+            "type": "string"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "StoreGroupBase.CurrencyEnum"
+        },
+        {
+            "name": "DeliveryMenuMessage",
+            "baseName": "DeliveryMenuMessage",
+            "type": "string"
+        },
+        {
+            "name": "CollectionMenuMessage",
+            "baseName": "CollectionMenuMessage",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreGroupBase.attributeTypeMap;
+    }
+}
+
+export namespace StoreGroupBase {
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD'
+    }
+}
 /**
 * Store note
 */
@@ -10412,6 +10903,8 @@ let enumsMap: {[index: string]: any} = {
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
         "SignupStep.ActionEnum": SignupStep.ActionEnum,
         "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
+        "StoreGroup.CurrencyEnum": StoreGroup.CurrencyEnum,
+        "StoreGroupBase.CurrencyEnum": StoreGroupBase.CurrencyEnum,
         "StoreSummary.CurrencyEnum": StoreSummary.CurrencyEnum,
         "StuartSettings.PackageTypeEnum": StuartSettings.PackageTypeEnum,
         "Subscription.StatusEnum": Subscription.StatusEnum,
@@ -10522,6 +11015,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultOAuthTokenModel": RestApiPaginationResultOAuthTokenModel,
     "RestApiPaginationResultOrder": RestApiPaginationResultOrder,
     "RestApiPaginationResultStore": RestApiPaginationResultStore,
+    "RestApiPaginationResultStoreGroup": RestApiPaginationResultStoreGroup,
     "RestApiPaginationResultVoucher": RestApiPaginationResultVoucher,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
@@ -10543,6 +11037,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultProcessingFeeConfig": RestApiResultProcessingFeeConfig,
     "RestApiResultStore": RestApiResultStore,
     "RestApiResultStoreAddress": RestApiResultStoreAddress,
+    "RestApiResultStoreGroup": RestApiResultStoreGroup,
+    "RestApiResultStoreGroupBase": RestApiResultStoreGroupBase,
     "RestApiResultStuartSettings": RestApiResultStuartSettings,
     "RestApiResultSubscription": RestApiResultSubscription,
     "RestApiResultSubscriptionPlansResponse": RestApiResultSubscriptionPlansResponse,
@@ -10564,6 +11060,8 @@ let typeMap: {[index: string]: any} = {
     "StoreCreatedEvent": StoreCreatedEvent,
     "StoreDeletedEvent": StoreDeletedEvent,
     "StoreDeliveryZoneUpdatedEvent": StoreDeliveryZoneUpdatedEvent,
+    "StoreGroup": StoreGroup,
+    "StoreGroupBase": StoreGroupBase,
     "StoreNote": StoreNote,
     "StoreOpeningHoursUpdatedEvent": StoreOpeningHoursUpdatedEvent,
     "StoreSummary": StoreSummary,
@@ -16913,6 +17411,360 @@ export class ProcessingFeeConfigsApi {
         });
     }
 }
+export enum StoreGroupsApiApiKeys {
+}
+
+export class StoreGroupsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: StoreGroupsApiApiKeys, value: string) {
+        (this.authentications as any)[StoreGroupsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Creates a Store Group  It will be attached to an existing App
+     * @param appNameId App Name Id
+     * @param storeGroup Store group definition
+     */
+    public createStoreGroup (appNameId: string, storeGroup: StoreGroupBase) : Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroup;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appNameId}/storegroups'
+            .replace('{' + 'appNameId' + '}', encodeURIComponent(String(appNameId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appNameId' is not null or undefined
+        if (appNameId === null || appNameId === undefined) {
+            throw new Error('Required parameter appNameId was null or undefined when calling createStoreGroup.');
+        }
+
+        // verify required parameter 'storeGroup' is not null or undefined
+        if (storeGroup === null || storeGroup === undefined) {
+            throw new Error('Required parameter storeGroup was null or undefined when calling createStoreGroup.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(storeGroup, "StoreGroupBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroup;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStoreGroup");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Returns a Store Groups
+     * @param storeGroupId Store Group Id
+     */
+    public getStoreGroup (storeGroupId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroup;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/storegroups/{storeGroupId}'
+            .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeGroupId' is not null or undefined
+        if (storeGroupId === null || storeGroupId === undefined) {
+            throw new Error('Required parameter storeGroupId was null or undefined when calling getStoreGroup.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroup;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStoreGroup");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Returns a paginated list of Store Groups
+     * @param appNameId App Name Id
+     * @param searchQuery Search query
+     * @param page Requested page index
+     * @param limit Requested page limit
+     */
+    public getStoreGroups (appNameId: string, searchQuery?: string, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStoreGroup;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appNameId}/storegroups'
+            .replace('{' + 'appNameId' + '}', encodeURIComponent(String(appNameId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appNameId' is not null or undefined
+        if (appNameId === null || appNameId === undefined) {
+            throw new Error('Required parameter appNameId was null or undefined when calling getStoreGroups.');
+        }
+
+        if (searchQuery !== undefined) {
+            localVarQueryParameters['searchQuery'] = ObjectSerializer.serialize(searchQuery, "string");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStoreGroup;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultStoreGroup");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Deletes a Store Group  Can only remove a store group if there is no stores attached to the group
+     * @param storeGroupId Store Group Id
+     */
+    public removeStoreGroup (storeGroupId: number) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/storegroups/{storeGroupId}'
+            .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeGroupId' is not null or undefined
+        if (storeGroupId === null || storeGroupId === undefined) {
+            throw new Error('Required parameter storeGroupId was null or undefined when calling removeStoreGroup.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Updates Store Group
+     * @param storeGroupId Store Group Id
+     * @param storeGroup Store Group Delta
+     */
+    public updateStoreGroup (storeGroupId: number, storeGroup: StoreGroupBase) : Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroupBase;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/storegroups/{storeGroupId}'
+            .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeGroupId' is not null or undefined
+        if (storeGroupId === null || storeGroupId === undefined) {
+            throw new Error('Required parameter storeGroupId was null or undefined when calling updateStoreGroup.');
+        }
+
+        // verify required parameter 'storeGroup' is not null or undefined
+        if (storeGroup === null || storeGroup === undefined) {
+            throw new Error('Required parameter storeGroup was null or undefined when calling updateStoreGroup.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(storeGroup, "StoreGroupBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroupBase;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStoreGroupBase");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
 export enum StoresApiApiKeys {
 }
 
@@ -16966,8 +17818,9 @@ export class StoresApi {
      * 
      * @summary Get processing fee configs by store identifier
      * @param storeId Store identifier
+     * @param appNameId App Name Id
      */
-    public getProcessingFeeConfigsByStoreId (storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultProcessingFeeConfig;  }> {
+    public getProcessingFeeConfigsByStoreId (storeId: number, appNameId?: string) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultProcessingFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -16977,6 +17830,10 @@ export class StoresApi {
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
             throw new Error('Required parameter storeId was null or undefined when calling getProcessingFeeConfigsByStoreId.');
+        }
+
+        if (appNameId !== undefined) {
+            localVarQueryParameters['appNameId'] = ObjectSerializer.serialize(appNameId, "string");
         }
 
 
@@ -17022,8 +17879,9 @@ export class StoresApi {
      * @summary Get processing fee configs by store identifier
      * @param storeId Store identifier
      * @param paymentAccountType 
+     * @param appNameId App Name Id
      */
-    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: string) : Promise<{ response: http.ClientResponse; body: RestApiResultProcessingFeeConfig;  }> {
+    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: string, appNameId?: string) : Promise<{ response: http.ClientResponse; body: RestApiResultProcessingFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs/{paymentAccountType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'paymentAccountType' + '}', encodeURIComponent(String(paymentAccountType)));
@@ -17039,6 +17897,10 @@ export class StoresApi {
         // verify required parameter 'paymentAccountType' is not null or undefined
         if (paymentAccountType === null || paymentAccountType === undefined) {
             throw new Error('Required parameter paymentAccountType was null or undefined when calling getProcessingFeeConfigsByStoreIdAndPaymentAccountType.');
+        }
+
+        if (appNameId !== undefined) {
+            localVarQueryParameters['appNameId'] = ObjectSerializer.serialize(appNameId, "string");
         }
 
 
@@ -17140,8 +18002,9 @@ export class StoresApi {
      * @param searchQuery Search query
      * @param page Requested page index
      * @param limit Requested page limit
+     * @param storeGroupId Store Group Id
      */
-    public getStores (searchQuery?: string, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStore;  }> {
+    public getStores (searchQuery?: string, page?: number, limit?: number, storeGroupId?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17157,6 +18020,10 @@ export class StoresApi {
 
         if (limit !== undefined) {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (storeGroupId !== undefined) {
+            localVarQueryParameters['storeGroupId'] = ObjectSerializer.serialize(storeGroupId, "number");
         }
 
 
@@ -17264,8 +18131,9 @@ export class StoresApi {
      * @summary Update store address coordinates
      * @param storeId Store identifier
      * @param coordinates Store address coordinates
+     * @param appNameId App Name Id
      */
-    public updateStoreAddressCoordinates (storeId: number, coordinates: Coordinates) : Promise<{ response: http.ClientResponse; body: RestApiResultCoordinates;  }> {
+    public updateStoreAddressCoordinates (storeId: number, coordinates: Coordinates, appNameId?: string) : Promise<{ response: http.ClientResponse; body: RestApiResultCoordinates;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/address/coordinates'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -17280,6 +18148,10 @@ export class StoresApi {
         // verify required parameter 'coordinates' is not null or undefined
         if (coordinates === null || coordinates === undefined) {
             throw new Error('Required parameter coordinates was null or undefined when calling updateStoreAddressCoordinates.');
+        }
+
+        if (appNameId !== undefined) {
+            localVarQueryParameters['appNameId'] = ObjectSerializer.serialize(appNameId, "string");
         }
 
 
