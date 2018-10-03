@@ -11193,7 +11193,7 @@ export class AccountsApi {
      * @param signupStepAction 
      * @param answerId 
      */
-    public answerSignUpQuestion (signupStepAction: string, answerId: number) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public answerSignUpQuestion (signupStepAction: string, answerId: number) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/answer'
             .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
         let localVarQueryParameters: any = {};
@@ -11234,7 +11234,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -11254,7 +11254,7 @@ export class AccountsApi {
      * @summary Change password
      * @param changePasswordModel Change password model
      */
-    public changePassword (changePasswordModel: ChangePasswordModel) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public changePassword (changePasswordModel: ChangePasswordModel) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/password';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -11289,7 +11289,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -11309,7 +11309,7 @@ export class AccountsApi {
      * @summary Create account with email address and store name
      * @param createAccountModel Create account model
      */
-    public createAccount (createAccountModel: CreateAccountModel) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public createAccount (createAccountModel: CreateAccountModel) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -11344,7 +11344,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -11362,7 +11362,7 @@ export class AccountsApi {
     /**
      * 
      */
-    public getAccountDetails () : Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }> {
+    public getAccountDetails () : Promise<{ response: http.IncomingMessage; body: RestApiResultAccountDetail;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -11391,7 +11391,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAccountDetail;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -11411,7 +11411,7 @@ export class AccountsApi {
      * @summary Login with username and password
      * @param loginModel Login model
      */
-    public login (loginModel: LoginModel) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public login (loginModel: LoginModel) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/login';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -11446,7 +11446,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -11465,7 +11465,7 @@ export class AccountsApi {
      * 
      * @summary Log out. It removes Flipdish authorization Cookie.
      */
-    public logout () : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public logout () : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/logout';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -11494,7 +11494,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -11514,7 +11514,7 @@ export class AccountsApi {
      * @summary Reset password with token.
      * @param passwordResetModel Password reset model
      */
-    public passwordResetWithToken (passwordResetModel: PasswordResetModel) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public passwordResetWithToken (passwordResetModel: PasswordResetModel) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/password';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -11549,7 +11549,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -11569,7 +11569,7 @@ export class AccountsApi {
      * @summary Request password reset. Flipdish system will send a token via email.
      * @param email Email address
      */
-    public requestPasswordReset (email: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public requestPasswordReset (email: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/password';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -11607,7 +11607,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -11625,7 +11625,7 @@ export class AccountsApi {
      * 
      * @param signupStepAction 
      */
-    public skipSignupStep (signupStepAction: string) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public skipSignupStep (signupStepAction: string) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/skip'
             .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
         let localVarQueryParameters: any = {};
@@ -11660,7 +11660,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -11680,7 +11680,7 @@ export class AccountsApi {
      * @summary Update account with name and language
      * @param updateAccountModel Update account model
      */
-    public updateAccount (updateAccountModel: UpdateAccountModel) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public updateAccount (updateAccountModel: UpdateAccountModel) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -11715,7 +11715,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -11787,7 +11787,7 @@ export class AppsApi {
      * @param page 
      * @param limit 
      */
-    public getApps (nameFilter?: string, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultApp;  }> {
+    public getApps (nameFilter?: string, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultApp;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -11828,7 +11828,7 @@ export class AppsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultApp;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultApp;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -11900,7 +11900,7 @@ export class AuthorizationTokensApi {
      * @param page Requested page number
      * @param limit Requested page limit
      */
-    public getAuthorizationTokens (clientId: string, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOAuthTokenModel;  }> {
+    public getAuthorizationTokens (clientId: string, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOAuthTokenModel;  }> {
         const localVarPath = this.basePath + '/api/v1.0/authorizationtokens/{clientId}'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
         let localVarQueryParameters: any = {};
@@ -11943,7 +11943,7 @@ export class AuthorizationTokensApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOAuthTokenModel;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOAuthTokenModel;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -11963,7 +11963,7 @@ export class AuthorizationTokensApi {
      * @summary Revoke token
      * @param key Token identifier key
      */
-    public revokeToken (key: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public revokeToken (key: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/authorizationtokens/{key}'
             .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
         let localVarQueryParameters: any = {};
@@ -11998,7 +11998,7 @@ export class AuthorizationTokensApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -12072,7 +12072,7 @@ export class EventsApi {
      * @param end End date
      * @param name Event names to filter in
      */
-    public getCustomerEvents (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
+    public getCustomerEvents (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/customer/{customerId}'
             .replace('{' + 'customerId' + '}', encodeURIComponent(String(customerId)));
         let localVarQueryParameters: any = {};
@@ -12127,7 +12127,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -12154,7 +12154,7 @@ export class EventsApi {
      * @param end End date
      * @param name Event names to filter in
      */
-    public getEvents (storeId?: number, whiteLabelId?: number, customerId?: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
+    public getEvents (storeId?: number, whiteLabelId?: number, customerId?: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -12215,7 +12215,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -12235,7 +12235,7 @@ export class EventsApi {
      * @summary Get event by Id
      * @param eventId Event identifier (Guid)
      */
-    public getEventsById (eventId: string) : Promise<{ response: http.ClientResponse; body: EventSearchResult;  }> {
+    public getEventsById (eventId: string) : Promise<{ response: http.IncomingMessage; body: EventSearchResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/{eventId}'
             .replace('{' + 'eventId' + '}', encodeURIComponent(String(eventId)));
         let localVarQueryParameters: any = {};
@@ -12270,7 +12270,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: EventSearchResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: EventSearchResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -12295,7 +12295,7 @@ export class EventsApi {
      * @param end End date
      * @param name Event names to filter in
      */
-    public getMenuEvents (menuId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
+    public getMenuEvents (menuId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/menu/{menuId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -12350,7 +12350,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -12375,7 +12375,7 @@ export class EventsApi {
      * @param end End date
      * @param name Event names to filter in
      */
-    public getOrderEvents (orderId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
+    public getOrderEvents (orderId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/order/{orderId}'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
@@ -12430,7 +12430,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -12455,7 +12455,7 @@ export class EventsApi {
      * @param end End date
      * @param name Event names to filter in
      */
-    public getOrderEventsByCustomer (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
+    public getOrderEventsByCustomer (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/order';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -12513,7 +12513,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -12538,7 +12538,7 @@ export class EventsApi {
      * @param end End date
      * @param name Event names to filter in
      */
-    public getStoreEvents (storeId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
+    public getStoreEvents (storeId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/store/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -12593,7 +12593,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -12618,7 +12618,7 @@ export class EventsApi {
      * @param end End date
      * @param name Event names to filter in
      */
-    public getUserEvents (userId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
+    public getUserEvents (userId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/user/{userId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -12673,7 +12673,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -12698,7 +12698,7 @@ export class EventsApi {
      * @param end End date
      * @param name Event names to filter in
      */
-    public getWhiteLabelEvents (whitelabelId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
+    public getWhiteLabelEvents (whitelabelId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/whitelabel/{whitelabelId}'
             .replace('{' + 'whitelabelId' + '}', encodeURIComponent(String(whitelabelId)));
         let localVarQueryParameters: any = {};
@@ -12753,7 +12753,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -12827,7 +12827,7 @@ export class HttpRequestResponseLogsApi {
      * @param page Page number
      * @param limit Page size
      */
-    public getLogs (start: Date, end: Date, filterByUserId?: number, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultHttpRequestAndResponseLog;  }> {
+    public getLogs (start: Date, end: Date, filterByUserId?: number, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultHttpRequestAndResponseLog;  }> {
         const localVarPath = this.basePath + '/api/v1.0/interactions/logs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -12886,7 +12886,7 @@ export class HttpRequestResponseLogsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultHttpRequestAndResponseLog;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultHttpRequestAndResponseLog;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -12955,7 +12955,7 @@ export class LightspeedApi {
      * 
      * @param storeId 
      */
-    public lightspeedGenerateMenu (storeId: number) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public lightspeedGenerateMenu (storeId: number) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/lightspeed/{storeId}/menu/generate'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -12990,7 +12990,7 @@ export class LightspeedApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -13009,7 +13009,7 @@ export class LightspeedApi {
      * 
      * @param storeId 
      */
-    public lightspeedGetStoreSettings (storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultLightspeedSettings;  }> {
+    public lightspeedGetStoreSettings (storeId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultLightspeedSettings;  }> {
         const localVarPath = this.basePath + '/api/v1.0/lightspeed/{storeId}/settings'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -13044,7 +13044,7 @@ export class LightspeedApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultLightspeedSettings;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultLightspeedSettings;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -13064,7 +13064,7 @@ export class LightspeedApi {
      * @param storeId 
      * @param lightspeedSettings 
      */
-    public lightspeedSaveStoreSettings (storeId: number, lightspeedSettings: LightspeedSettings) : Promise<{ response: http.ClientResponse; body: RestApiResultLightspeedSettings;  }> {
+    public lightspeedSaveStoreSettings (storeId: number, lightspeedSettings: LightspeedSettings) : Promise<{ response: http.IncomingMessage; body: RestApiResultLightspeedSettings;  }> {
         const localVarPath = this.basePath + '/api/v1.0/lightspeed/{storeId}/settings'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -13105,7 +13105,7 @@ export class LightspeedApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultLightspeedSettings;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultLightspeedSettings;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -13179,7 +13179,7 @@ export class MenuOptionSetItemsApi {
      * @param optionSetId Option set identifier
      * @param menuItemOptionSetItem Option set item
      */
-    public addMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public addMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -13238,7 +13238,7 @@ export class MenuOptionSetItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -13262,7 +13262,7 @@ export class MenuOptionSetItemsApi {
      * @param optionSetId Option set identifier
      * @param menuItemOptionSetItemId Option set item identifier
      */
-    public deleteOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public deleteOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -13321,7 +13321,7 @@ export class MenuOptionSetItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -13344,7 +13344,7 @@ export class MenuOptionSetItemsApi {
      * @param optionSetId Option set identifier
      * @param menuItemOptionSetItemId Option set item identifier
      */
-    public getMenuItemOptionSetItemById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSetItem;  }> {
+    public getMenuItemOptionSetItemById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuItemOptionSetItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -13403,7 +13403,7 @@ export class MenuOptionSetItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSetItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuItemOptionSetItem;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -13426,7 +13426,7 @@ export class MenuOptionSetItemsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Option set identifier
      */
-    public getMenuItemOptionSetItems (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSetItem;  }> {
+    public getMenuItemOptionSetItems (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuItemOptionSetItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -13479,7 +13479,7 @@ export class MenuOptionSetItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSetItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuItemOptionSetItem;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -13503,7 +13503,7 @@ export class MenuOptionSetItemsApi {
      * @param optionSetId Option set identifier
      * @param menuItemOptionSetItemId Option set item identifier
      */
-    public removeMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public removeMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -13562,7 +13562,7 @@ export class MenuOptionSetItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -13587,7 +13587,7 @@ export class MenuOptionSetItemsApi {
      * @param menuItemOptionSetItem Option set item (delta)
      * @param undoAfter An optional time period, in hours, after which the hide-section operaton will be undone.
      */
-    public updateMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase, undoAfter?: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updateMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase, undoAfter?: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -13656,7 +13656,7 @@ export class MenuOptionSetItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -13680,7 +13680,7 @@ export class MenuOptionSetItemsApi {
      * @param menuItemOptionSetItemId Option set item identifier
      * @param Image Option set item image
      */
-    public uploadOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, Image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
+    public uploadOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, Image: Buffer) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -13749,7 +13749,7 @@ export class MenuOptionSetItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -13822,7 +13822,7 @@ export class MenuOptionSetsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param menuItemOptionSet Menu item option set
      */
-    public createMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, menuItemOptionSet: MenuItemOptionSetBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public createMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, menuItemOptionSet: MenuItemOptionSetBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -13875,7 +13875,7 @@ export class MenuOptionSetsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -13898,7 +13898,7 @@ export class MenuOptionSetsApi {
      * @param menuSectionId Menu section identifier
      * @param optionSetId Option set identifier
      */
-    public deleteMenuItemOptionSet (menuId: number, menuSectionItemId: number, menuSectionId: number, optionSetId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public deleteMenuItemOptionSet (menuId: number, menuSectionItemId: number, menuSectionId: number, optionSetId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
@@ -13951,7 +13951,7 @@ export class MenuOptionSetsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -13973,7 +13973,7 @@ export class MenuOptionSetsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Option set identifier
      */
-    public deleteOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public deleteOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -14026,7 +14026,7 @@ export class MenuOptionSetsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -14048,7 +14048,7 @@ export class MenuOptionSetsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Menu item option set identifier
      */
-    public getMenuItemOptionSetById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSet;  }> {
+    public getMenuItemOptionSetById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuItemOptionSet;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -14101,7 +14101,7 @@ export class MenuOptionSetsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSet;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuItemOptionSet;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -14123,7 +14123,7 @@ export class MenuOptionSetsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
      */
-    public getMenuItemOptionSets (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSet;  }> {
+    public getMenuItemOptionSets (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuItemOptionSet;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -14170,7 +14170,7 @@ export class MenuOptionSetsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSet;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuItemOptionSet;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -14194,7 +14194,7 @@ export class MenuOptionSetsApi {
      * @param optionSetId Option set identifier
      * @param menuItemOptionSet Menu item option set (delta)
      */
-    public updateMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSet: MenuItemOptionSetBase) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updateMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSet: MenuItemOptionSetBase) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -14253,7 +14253,7 @@ export class MenuOptionSetsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -14276,7 +14276,7 @@ export class MenuOptionSetsApi {
      * @param optionSetId Option set identifier
      * @param Image Option set image
      */
-    public uploadOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, Image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
+    public uploadOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, Image: Buffer) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -14339,7 +14339,7 @@ export class MenuOptionSetsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -14411,7 +14411,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
      */
-    public cloneMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuSectionItem;  }> {
+    public cloneMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSectionItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/clone'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -14458,7 +14458,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuSectionItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSectionItem;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -14480,7 +14480,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItem Menu section item
      */
-    public createMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItem: MenuSectionItemBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public createMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItem: MenuSectionItemBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -14527,7 +14527,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -14549,7 +14549,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
      */
-    public deleteMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public deleteMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -14596,7 +14596,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -14617,7 +14617,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
      */
-    public deleteMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public deleteMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -14664,7 +14664,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -14685,7 +14685,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu item identifier
      */
-    public getMenuItemById (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuSectionItem;  }> {
+    public getMenuItemById (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSectionItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -14732,7 +14732,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuSectionItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSectionItem;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -14753,7 +14753,7 @@ export class MenuSectionItemsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      */
-    public getMenuItems (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSectionItem;  }> {
+    public getMenuItems (menuId: number, menuSectionId: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuSectionItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -14794,7 +14794,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSectionItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuSectionItem;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -14818,7 +14818,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionItem Menu section item (delta)
      * @param undoAfter An optional time period, in hours, after which the hide-section operaton will be undone.
      */
-    public updateMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, menuSectionItem: MenuSectionItemBase, undoAfter?: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updateMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, menuSectionItem: MenuSectionItemBase, undoAfter?: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -14875,7 +14875,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -14897,7 +14897,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param Image Menu section item image
      */
-    public uploadMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, Image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
+    public uploadMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, Image: Buffer) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -14954,7 +14954,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -15025,7 +15025,7 @@ export class MenuSectionsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      */
-    public cloneMenuSection (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuSection;  }> {
+    public cloneMenuSection (menuId: number, menuSectionId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSection;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/clone'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -15066,7 +15066,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuSection;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSection;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -15087,7 +15087,7 @@ export class MenuSectionsApi {
      * @param menuId Menu identifier
      * @param menuSection Menu section
      */
-    public createMenuSection (menuId: number, menuSection: MenuSectionBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public createMenuSection (menuId: number, menuSection: MenuSectionBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -15128,7 +15128,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -15150,7 +15150,7 @@ export class MenuSectionsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionAvailability 
      */
-    public createMenuSection_1 (menuId: number, menuSectionId: number, menuSectionAvailability: MenuSectionAvailabilityBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public createMenuSection_1 (menuId: number, menuSectionId: number, menuSectionAvailability: MenuSectionAvailabilityBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/availability'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -15197,7 +15197,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -15220,7 +15220,7 @@ export class MenuSectionsApi {
      * @param dayOfWeek 
      * @param businessHoursPeriod 
      */
-    public createMenuSection_2 (menuId: number, menuSectionId: number, dayOfWeek: string, businessHoursPeriod: BusinessHoursPeriodBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public createMenuSection_2 (menuId: number, menuSectionId: number, dayOfWeek: string, businessHoursPeriod: BusinessHoursPeriodBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/availability/times/{dayOfWeek}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -15273,7 +15273,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -15294,7 +15294,7 @@ export class MenuSectionsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      */
-    public deleteMenuSection (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public deleteMenuSection (menuId: number, menuSectionId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -15335,7 +15335,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -15355,7 +15355,7 @@ export class MenuSectionsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      */
-    public deleteMenuSectionImage (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public deleteMenuSectionImage (menuId: number, menuSectionId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -15396,7 +15396,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -15416,7 +15416,7 @@ export class MenuSectionsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      */
-    public getMenuSectionById (menuId: number, menuSectionId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuSection;  }> {
+    public getMenuSectionById (menuId: number, menuSectionId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSection;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -15457,7 +15457,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuSection;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSection;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -15477,7 +15477,7 @@ export class MenuSectionsApi {
      * @summary Get menu sections
      * @param menuId Menu identifier
      */
-    public getMenuSections (menuId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSection;  }> {
+    public getMenuSections (menuId: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuSection;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -15512,7 +15512,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSection;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuSection;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -15535,7 +15535,7 @@ export class MenuSectionsApi {
      * @param menuSection Menu section changes (delta)
      * @param undoAfter An optional time period, in hours, after which the hide-section operaton will be undone.
      */
-    public updateMenuSection (menuId: number, menuSectionId: number, menuSection: MenuSectionBase, undoAfter?: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updateMenuSection (menuId: number, menuSectionId: number, menuSection: MenuSectionBase, undoAfter?: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -15586,7 +15586,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -15607,7 +15607,7 @@ export class MenuSectionsApi {
      * @param menuSectionId Menu section identifier
      * @param Image Menu section image
      */
-    public uploadMenuSectionImage (menuId: number, menuSectionId: number, Image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
+    public uploadMenuSectionImage (menuId: number, menuSectionId: number, Image: Buffer) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -15658,7 +15658,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -15731,7 +15731,7 @@ export class MenusApi {
      * @param menuItemId Menu item identifier
      * @param key Metadata key
      */
-    public deleteMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, key: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public deleteMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, key: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -15784,7 +15784,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -15806,7 +15806,7 @@ export class MenusApi {
      * @param menuItemId Menu item identifier
      * @param key Metadata key
      */
-    public deleteMenuItemMetadata_1 (menuId: number, storeId: number, menuItemId: number, key: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public deleteMenuItemMetadata_1 (menuId: number, storeId: number, menuItemId: number, key: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -15859,7 +15859,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -15878,7 +15878,7 @@ export class MenusApi {
      * @summary Delete menu image
      * @param menuId Menu identifier
      */
-    public deleteMenuSectionImage (menuId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public deleteMenuSectionImage (menuId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -15913,7 +15913,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -15932,7 +15932,7 @@ export class MenusApi {
      * @summary Get menu by identifier
      * @param menuId Menu identifier
      */
-    public getMenuById (menuId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMenu;  }> {
+    public getMenuById (menuId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenu;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -15967,7 +15967,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenu;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenu;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -15989,7 +15989,7 @@ export class MenusApi {
      * @param storeId Store identifier
      * @param menuItemId Menu item identifier
      */
-    public getMenuItemMetadata (menuId: number, storeId: number, menuItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMetadata;  }> {
+    public getMenuItemMetadata (menuId: number, storeId: number, menuItemId: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -16036,7 +16036,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMetadata;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMetadata;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -16058,7 +16058,7 @@ export class MenusApi {
      * @param storeId Store identifier
      * @param optionSetItemId Menu item option set item identifier
      */
-    public getMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultMetadata;  }> {
+    public getMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/optionsetitem/{optionSetItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -16105,7 +16105,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultMetadata;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMetadata;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -16128,7 +16128,7 @@ export class MenusApi {
      * @param menuItemId Menu item identifier
      * @param metadata Metadata object
      */
-    public setMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, metadata: Metadata) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public setMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, metadata: Metadata) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -16181,7 +16181,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -16203,7 +16203,7 @@ export class MenusApi {
      * @param optionSetItemId Menu item option set item identifier
      * @param metadata Metadata object
      */
-    public setMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number, metadata: Metadata) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public setMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number, metadata: Metadata) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/optionsetitem/{optionSetItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -16256,7 +16256,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -16276,7 +16276,7 @@ export class MenusApi {
      * @param menuId Menu identifier
      * @param menu Menu (delta)
      */
-    public updateMenu (menuId: number, menu: MenuBase) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updateMenu (menuId: number, menu: MenuBase) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -16317,7 +16317,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -16337,7 +16337,7 @@ export class MenusApi {
      * @param menuId Menu identifier
      * @param Image Menu image
      */
-    public uploadMenuSectionImage (menuId: number, Image: Buffer) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
+    public uploadMenuSectionImage (menuId: number, Image: Buffer) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -16382,7 +16382,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -16453,7 +16453,7 @@ export class OAuthClientsApi {
      * @param oAuthClientId OAuth client identifier
      * @param uri Redirect uri
      */
-    public addRedirectUri (oAuthClientId: string, uri: string) : Promise<{ response: http.ClientResponse; body: RestApiResultOauthClientRedirectUri;  }> {
+    public addRedirectUri (oAuthClientId: string, uri: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultOauthClientRedirectUri;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis'
             .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)));
         let localVarQueryParameters: any = {};
@@ -16494,7 +16494,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultOauthClientRedirectUri;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOauthClientRedirectUri;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -16514,7 +16514,7 @@ export class OAuthClientsApi {
      * @summary Create OAuth client
      * @param oAuthClient OAuth client
      */
-    public createOAuthClient (oAuthClient: OAuthClient) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public createOAuthClient (oAuthClient: OAuthClient) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -16549,7 +16549,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -16568,7 +16568,7 @@ export class OAuthClientsApi {
      * @summary Delete OAuth client
      * @param oAuthClientId OAuth client identifier
      */
-    public deleteOAuthClient (oAuthClientId: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public deleteOAuthClient (oAuthClientId: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}'
             .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)));
         let localVarQueryParameters: any = {};
@@ -16603,7 +16603,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -16622,7 +16622,7 @@ export class OAuthClientsApi {
      * @summary Get OAuth client by identifier
      * @param clientId OAuth client identifier
      */
-    public getOAuthClientByClientId (clientId: string) : Promise<{ response: http.ClientResponse; body: RestApiResultOAuthClient;  }> {
+    public getOAuthClientByClientId (clientId: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultOAuthClient;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{clientId}'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
         let localVarQueryParameters: any = {};
@@ -16657,7 +16657,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultOAuthClient;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOAuthClient;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -16677,7 +16677,7 @@ export class OAuthClientsApi {
      * @summary Get OAuth client secret key
      * @param clientId OAuth client identifier
      */
-    public getOAuthClientSecret (clientId: string) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
+    public getOAuthClientSecret (clientId: string) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{clientId}/secret'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
         let localVarQueryParameters: any = {};
@@ -16712,7 +16712,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -16731,7 +16731,7 @@ export class OAuthClientsApi {
      * 
      * @summary Get all OAuth client
      */
-    public getOAuthClients () : Promise<{ response: http.ClientResponse; body: RestApiArrayResultOAuthClient;  }> {
+    public getOAuthClients () : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOAuthClient;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -16760,7 +16760,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultOAuthClient;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOAuthClient;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -16780,7 +16780,7 @@ export class OAuthClientsApi {
      * @summary Get OAuth access token for client
      * @param oAuthClientId OAuth client identifier
      */
-    public getOauthAccessToken (oAuthClientId: string) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
+    public getOauthAccessToken (oAuthClientId: string) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/accesstoken'
             .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)));
         let localVarQueryParameters: any = {};
@@ -16815,7 +16815,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -16835,7 +16835,7 @@ export class OAuthClientsApi {
      * @summary Get OAuth client redirect uris
      * @param oAuthClientId OAuth client identifier
      */
-    public getRedirectUris (oAuthClientId: string) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultOauthClientRedirectUri;  }> {
+    public getRedirectUris (oAuthClientId: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOauthClientRedirectUri;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis'
             .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)));
         let localVarQueryParameters: any = {};
@@ -16870,7 +16870,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultOauthClientRedirectUri;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOauthClientRedirectUri;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -16891,7 +16891,7 @@ export class OAuthClientsApi {
      * @param oAuthClientId OAuth client identifier
      * @param uriId Redirect uri identifier
      */
-    public removeRedirectUri (oAuthClientId: string, uriId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public removeRedirectUri (oAuthClientId: string, uriId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis/{uriId}'
             .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)))
             .replace('{' + 'uriId' + '}', encodeURIComponent(String(uriId)));
@@ -16932,7 +16932,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -17002,7 +17002,7 @@ export class OrdersApi {
      * @param id Order identifier
      * @param acceptObject 
      */
-    public acceptOrder (id: number, acceptObject: Accept) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public acceptOrder (id: number, acceptObject: Accept) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}/accept'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -17043,7 +17043,7 @@ export class OrdersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -17062,7 +17062,7 @@ export class OrdersApi {
      * @summary Get order by ID
      * @param id Order identifier
      */
-    public getOrderById (id: number) : Promise<{ response: http.ClientResponse; body: RestApiResultOrder;  }> {
+    public getOrderById (id: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -17097,7 +17097,7 @@ export class OrdersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultOrder;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOrder;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -17120,7 +17120,7 @@ export class OrdersApi {
      * @param page Requested page number
      * @param limit Requested page limit
      */
-    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<string>, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOrder;  }> {
+    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<string>, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17165,7 +17165,7 @@ export class OrdersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOrder;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -17186,7 +17186,7 @@ export class OrdersApi {
      * @param id Order identifier
      * @param refundObject 
      */
-    public refundOrder (id: number, refundObject: Refund) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public refundOrder (id: number, refundObject: Refund) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}/refund'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -17227,7 +17227,7 @@ export class OrdersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -17247,7 +17247,7 @@ export class OrdersApi {
      * @param id Order identifier
      * @param rejectObject 
      */
-    public rejectOrder (id: number, rejectObject: Reject) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public rejectOrder (id: number, rejectObject: Reject) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}/reject'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -17288,7 +17288,7 @@ export class OrdersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -17357,7 +17357,7 @@ export class ProcessingFeeConfigsApi {
      * @summary Get processing fee configs by store identifiers
      * @param storeIds Store identifiers
      */
-    public getProcessingFeeConfigsByStoreIds (storeIds: Array<number>) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultProcessingFeeConfig;  }> {
+    public getProcessingFeeConfigsByStoreIds (storeIds: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/processingfeeconfigs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17395,7 +17395,7 @@ export class ProcessingFeeConfigsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultProcessingFeeConfig;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -17466,7 +17466,7 @@ export class StoreGroupsApi {
      * @param appNameId App Name Id
      * @param storeGroup Store group definition
      */
-    public createStoreGroup (appNameId: string, storeGroup: StoreGroupBase) : Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroup;  }> {
+    public createStoreGroup (appNameId: string, storeGroup: StoreGroupBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroup;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appNameId}/storegroups'
             .replace('{' + 'appNameId' + '}', encodeURIComponent(String(appNameId)));
         let localVarQueryParameters: any = {};
@@ -17507,7 +17507,7 @@ export class StoreGroupsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroup;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroup;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -17527,7 +17527,7 @@ export class StoreGroupsApi {
      * @summary Returns a Store Groups
      * @param storeGroupId Store Group Id
      */
-    public getStoreGroup (storeGroupId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroup;  }> {
+    public getStoreGroup (storeGroupId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroup;  }> {
         const localVarPath = this.basePath + '/api/v1.0/storegroups/{storeGroupId}'
             .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)));
         let localVarQueryParameters: any = {};
@@ -17562,7 +17562,7 @@ export class StoreGroupsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroup;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroup;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -17585,7 +17585,7 @@ export class StoreGroupsApi {
      * @param page Requested page index
      * @param limit Requested page limit
      */
-    public getStoreGroups (appNameId: string, searchQuery?: string, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStoreGroup;  }> {
+    public getStoreGroups (appNameId: string, searchQuery?: string, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreGroup;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appNameId}/storegroups'
             .replace('{' + 'appNameId' + '}', encodeURIComponent(String(appNameId)));
         let localVarQueryParameters: any = {};
@@ -17632,7 +17632,7 @@ export class StoreGroupsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStoreGroup;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreGroup;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -17652,7 +17652,7 @@ export class StoreGroupsApi {
      * @summary Deletes a Store Group  Can only remove a store group if there is no stores attached to the group
      * @param storeGroupId Store Group Id
      */
-    public removeStoreGroup (storeGroupId: number) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public removeStoreGroup (storeGroupId: number) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/storegroups/{storeGroupId}'
             .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)));
         let localVarQueryParameters: any = {};
@@ -17687,7 +17687,7 @@ export class StoreGroupsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -17708,7 +17708,7 @@ export class StoreGroupsApi {
      * @param storeGroupId Store Group Id
      * @param storeGroup Store Group Delta
      */
-    public updateStoreGroup (storeGroupId: number, storeGroup: StoreGroupBase) : Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroupBase;  }> {
+    public updateStoreGroup (storeGroupId: number, storeGroup: StoreGroupBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroupBase;  }> {
         const localVarPath = this.basePath + '/api/v1.0/storegroups/{storeGroupId}'
             .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)));
         let localVarQueryParameters: any = {};
@@ -17749,7 +17749,7 @@ export class StoreGroupsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroupBase;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroupBase;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -17820,7 +17820,7 @@ export class StoresApi {
      * @param storeId Store identifier
      * @param appNameId App Name Id
      */
-    public getProcessingFeeConfigsByStoreId (storeId: number, appNameId?: string) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultProcessingFeeConfig;  }> {
+    public getProcessingFeeConfigsByStoreId (storeId: number, appNameId?: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -17859,7 +17859,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultProcessingFeeConfig;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -17881,7 +17881,7 @@ export class StoresApi {
      * @param paymentAccountType 
      * @param appNameId App Name Id
      */
-    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: string, appNameId?: string) : Promise<{ response: http.ClientResponse; body: RestApiResultProcessingFeeConfig;  }> {
+    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: string, appNameId?: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs/{paymentAccountType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'paymentAccountType' + '}', encodeURIComponent(String(paymentAccountType)));
@@ -17926,7 +17926,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultProcessingFeeConfig;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -17946,7 +17946,7 @@ export class StoresApi {
      * @summary Get store by identifier
      * @param storeId Store identifier
      */
-    public getStoreById (storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultStore;  }> {
+    public getStoreById (storeId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -17981,7 +17981,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultStore;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -18004,7 +18004,7 @@ export class StoresApi {
      * @param limit Requested page limit
      * @param storeGroupId Store Group Id
      */
-    public getStores (searchQuery?: string, page?: number, limit?: number, storeGroupId?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStore;  }> {
+    public getStores (searchQuery?: string, page?: number, limit?: number, storeGroupId?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -18049,7 +18049,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStore;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -18070,7 +18070,7 @@ export class StoresApi {
      * @param storeId Store identifier
      * @param storeAddress Store address
      */
-    public updateStoreAddress (storeId: number, storeAddress: StoreAddressBase) : Promise<{ response: http.ClientResponse; body: RestApiResultStoreAddress;  }> {
+    public updateStoreAddress (storeId: number, storeAddress: StoreAddressBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreAddress;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/address'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -18111,7 +18111,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultStoreAddress;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStoreAddress;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -18133,7 +18133,7 @@ export class StoresApi {
      * @param coordinates Store address coordinates
      * @param appNameId App Name Id
      */
-    public updateStoreAddressCoordinates (storeId: number, coordinates: Coordinates, appNameId?: string) : Promise<{ response: http.ClientResponse; body: RestApiResultCoordinates;  }> {
+    public updateStoreAddressCoordinates (storeId: number, coordinates: Coordinates, appNameId?: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultCoordinates;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/address/coordinates'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -18178,7 +18178,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultCoordinates;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCoordinates;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -18248,7 +18248,7 @@ export class StuartApi {
      * @param jobId 
      * @param storeId 
      */
-    public stuartCancelJob (jobId: number, storeId: number) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public stuartCancelJob (jobId: number, storeId: number) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stuart/jobs/{jobId}'
             .replace('{' + 'jobId' + '}', encodeURIComponent(String(jobId)));
         let localVarQueryParameters: any = {};
@@ -18292,7 +18292,7 @@ export class StuartApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -18312,7 +18312,7 @@ export class StuartApi {
      * @param jobId 
      * @param storeId 
      */
-    public stuartGetJob (jobId: number, storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultJobResponse;  }> {
+    public stuartGetJob (jobId: number, storeId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultJobResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stuart/jobs/{jobId}'
             .replace('{' + 'jobId' + '}', encodeURIComponent(String(jobId)));
         let localVarQueryParameters: any = {};
@@ -18356,7 +18356,7 @@ export class StuartApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultJobResponse;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultJobResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -18376,7 +18376,7 @@ export class StuartApi {
      * @summary Get stuart credentials
      * @param storeId 
      */
-    public stuartGetStuartSettings (storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultStuartSettings;  }> {
+    public stuartGetStuartSettings (storeId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultStuartSettings;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stuart/settings/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -18411,7 +18411,7 @@ export class StuartApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultStuartSettings;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStuartSettings;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -18431,7 +18431,7 @@ export class StuartApi {
      * @param storeId 
      * @param stuartSettings 
      */
-    public stuartPostStuartSettings (storeId: number, stuartSettings: StuartSettings) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public stuartPostStuartSettings (storeId: number, stuartSettings: StuartSettings) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stuart/settings/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -18472,7 +18472,7 @@ export class StuartApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -18542,7 +18542,7 @@ export class SubscriptionsApi {
      * @summary Cancel the subscription
      * @param subscriptionId Subscription identifier
      */
-    public subscriptionsCancelSubscription (subscriptionId: number) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public subscriptionsCancelSubscription (subscriptionId: number) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}'
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
         let localVarQueryParameters: any = {};
@@ -18577,7 +18577,7 @@ export class SubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -18597,7 +18597,7 @@ export class SubscriptionsApi {
      * @summary Get the card linked to the subscription
      * @param subscriptionId Subscription identifier
      */
-    public subscriptionsGetCard (subscriptionId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultCard;  }> {
+    public subscriptionsGetCard (subscriptionId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultCard;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}/card'
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
         let localVarQueryParameters: any = {};
@@ -18632,7 +18632,7 @@ export class SubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultCard;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCard;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -18651,7 +18651,7 @@ export class SubscriptionsApi {
      * 
      * @summary Get avaialble plans for currency's user
      */
-    public subscriptionsGetPlansByCurrency () : Promise<{ response: http.ClientResponse; body: RestApiResultSubscriptionPlansResponse;  }> {
+    public subscriptionsGetPlansByCurrency () : Promise<{ response: http.IncomingMessage; body: RestApiResultSubscriptionPlansResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/plans';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -18680,7 +18680,7 @@ export class SubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultSubscriptionPlansResponse;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultSubscriptionPlansResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -18700,7 +18700,7 @@ export class SubscriptionsApi {
      * @summary Get the subscription including the payment history
      * @param subscriptionId Subscription Identifier
      */
-    public subscriptionsGetSubscription (subscriptionId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultSubscription;  }> {
+    public subscriptionsGetSubscription (subscriptionId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}'
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
         let localVarQueryParameters: any = {};
@@ -18735,7 +18735,7 @@ export class SubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultSubscription;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -18755,7 +18755,7 @@ export class SubscriptionsApi {
      * @summary Get subscription by appId
      * @param appId The string app identifier
      */
-    public subscriptionsGetUserSubscriptionByAppId (appId: string) : Promise<{ response: http.ClientResponse; body: RestApiResultSubscription;  }> {
+    public subscriptionsGetUserSubscriptionByAppId (appId: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -18793,7 +18793,7 @@ export class SubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultSubscription;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -18814,7 +18814,7 @@ export class SubscriptionsApi {
      * @param subscriptionId Subscription identifier
      * @param card Token Id
      */
-    public subscriptionsReplaceOldCardWithNewCard (subscriptionId: number, card: CardWithToken) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public subscriptionsReplaceOldCardWithNewCard (subscriptionId: number, card: CardWithToken) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}/card/new'
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
         let localVarQueryParameters: any = {};
@@ -18855,7 +18855,7 @@ export class SubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -18875,7 +18875,7 @@ export class SubscriptionsApi {
      * @summary Create a new subscription
      * @param subscription Data necessary to create a new subscription
      */
-    public subscriptionsSubscribe (subscription: SubscriptionWithToken) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public subscriptionsSubscribe (subscription: SubscriptionWithToken) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -18910,7 +18910,7 @@ export class SubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -18931,7 +18931,7 @@ export class SubscriptionsApi {
      * @param subscriptionId Subscription identifier
      * @param card Data to update card expiring date
      */
-    public subscriptionsUpdateCardExpiringDate (subscriptionId: number, card: CardBase) : Promise<{ response: http.ClientResponse; body: RestApiResultCard;  }> {
+    public subscriptionsUpdateCardExpiringDate (subscriptionId: number, card: CardBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultCard;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}/card'
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
         let localVarQueryParameters: any = {};
@@ -18972,7 +18972,7 @@ export class SubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultCard;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCard;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -18993,7 +18993,7 @@ export class SubscriptionsApi {
      * @param subscriptionId Subscription identifier
      * @param subscription Data to update the subscription
      */
-    public subscriptionsUpdateSubscription (subscriptionId: number, subscription: SubscriptionBase) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public subscriptionsUpdateSubscription (subscriptionId: number, subscription: SubscriptionBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}'
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
         let localVarQueryParameters: any = {};
@@ -19034,7 +19034,7 @@ export class SubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -19103,7 +19103,7 @@ export class UsersApi {
      * 
      * @summary Get role names
      */
-    public getRoles () : Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }> {
+    public getRoles () : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/users/roles';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -19132,7 +19132,7 @@ export class UsersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -19205,7 +19205,7 @@ export class VouchersApi {
      * @param storeId 
      * @param key 
      */
-    public deleteVoucherMetadata (voucherId: number, menuId: number, storeId: number, key: string) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultRestApiDefaultResponse;  }> {
+    public deleteVoucherMetadata (voucherId: number, menuId: number, storeId: number, key: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)))
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
@@ -19258,7 +19258,7 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -19278,7 +19278,7 @@ export class VouchersApi {
      * @summary Get voucher by identifier
      * @param voucherId 
      */
-    public getVoucherById (voucherId: number) : Promise<{ response: http.ClientResponse; body: RestApiResultVoucher;  }> {
+    public getVoucherById (voucherId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucher;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
         let localVarQueryParameters: any = {};
@@ -19313,7 +19313,7 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultVoucher;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultVoucher;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -19335,7 +19335,7 @@ export class VouchersApi {
      * @param menuId 
      * @param storeId 
      */
-    public getVoucherMetadata (voucherId: number, menuId: number, storeId: number) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMetadata;  }> {
+    public getVoucherMetadata (voucherId: number, menuId: number, storeId: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)))
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
@@ -19382,7 +19382,7 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMetadata;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMetadata;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -19405,7 +19405,7 @@ export class VouchersApi {
      * @param storeId 
      * @param key 
      */
-    public getVoucherMetadata_1 (voucherId: number, menuId: number, storeId: number, key: string) : Promise<{ response: http.ClientResponse; body: RestApiResultMetadata;  }> {
+    public getVoucherMetadata_1 (voucherId: number, menuId: number, storeId: number, key: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)))
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
@@ -19458,7 +19458,7 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiResultMetadata;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMetadata;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -19492,7 +19492,7 @@ export class VouchersApi {
      * @param voucherType 
      * @param description 
      */
-    public getVouchers (filter?: string, pageNumber?: number, pageSize?: number, sortOrder?: string, orderBy?: string, subType?: string, status?: string, code?: string, validFromBegin?: Date, validFromEnd?: Date, expiryBegin?: Date, expiryEnd?: Date, amount?: number, voucherType?: string, description?: string) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultVoucher;  }> {
+    public getVouchers (filter?: string, pageNumber?: number, pageSize?: number, sortOrder?: string, orderBy?: string, subType?: string, status?: string, code?: string, validFromBegin?: Date, validFromEnd?: Date, expiryBegin?: Date, expiryEnd?: Date, amount?: number, voucherType?: string, description?: string) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucher;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -19581,7 +19581,7 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultVoucher;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucher;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -19605,7 +19605,7 @@ export class VouchersApi {
      * @param key 
      * @param value 
      */
-    public setVoucherMetadata (voucherId: number, menuId: number, storeId: number, key: string, value: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public setVoucherMetadata (voucherId: number, menuId: number, storeId: number, key: string, value: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)))
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
@@ -19664,7 +19664,7 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -19734,7 +19734,7 @@ export class WebhooksApi {
      * @param clientId Oauth client identifier
      * @param webhookSubscription Webhook subscription object
      */
-    public craeteWebhookSubscription (clientId: string, webhookSubscription: WebhookSubscription) : Promise<{ response: http.ClientResponse; body: RestApiIntegerResult;  }> {
+    public craeteWebhookSubscription (clientId: string, webhookSubscription: WebhookSubscription) : Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
         let localVarQueryParameters: any = {};
@@ -19775,7 +19775,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiIntegerResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -19797,7 +19797,7 @@ export class WebhooksApi {
      * @param webhookSubscriptionId Webhook subscription identifier
      * @param eventName Webhook subscription event name
      */
-    public createWebhookSubscriptionEventNames (clientId: string, webhookSubscriptionId: number, eventName: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public createWebhookSubscriptionEventNames (clientId: string, webhookSubscriptionId: number, eventName: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events/{eventName}'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
@@ -19844,7 +19844,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -19864,7 +19864,7 @@ export class WebhooksApi {
      * @param clientId Oauth client identifier
      * @param webhookSubscriptionId Webhook subscription identifier
      */
-    public deleteWebhookSubscription (clientId: string, webhookSubscriptionId: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public deleteWebhookSubscription (clientId: string, webhookSubscriptionId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
@@ -19905,7 +19905,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -19926,7 +19926,7 @@ export class WebhooksApi {
      * @param webhookSubscriptionId Webhook subscription identifier
      * @param eventName Webhook subscription event name
      */
-    public deleteWebhookSubscriptionEventName (clientId: string, webhookSubscriptionId: number, eventName: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public deleteWebhookSubscriptionEventName (clientId: string, webhookSubscriptionId: number, eventName: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events/{eventName}'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
@@ -19973,7 +19973,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -19991,7 +19991,7 @@ export class WebhooksApi {
      * 
      * @summary Get all webhook subscription event names
      */
-    public getWebhookEventNames () : Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }> {
+    public getWebhookEventNames () : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/events';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -20020,7 +20020,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -20041,7 +20041,7 @@ export class WebhooksApi {
      * @param clientId Oauth client identifier
      * @param webhookSubscriptionId Webhook subscription identifier
      */
-    public getWebhookEventNamesBySubscriptionId (clientId: string, webhookSubscriptionId: number) : Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }> {
+    public getWebhookEventNamesBySubscriptionId (clientId: string, webhookSubscriptionId: number) : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
@@ -20082,7 +20082,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -20107,7 +20107,7 @@ export class WebhooksApi {
      * @param page Page number
      * @param limit Page size
      */
-    public getWebhookLogs (clientId: string, webhookSubscriptionId: number, start: Date, end: Date, page?: number, limit?: number) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultWebhookLog;  }> {
+    public getWebhookLogs (clientId: string, webhookSubscriptionId: number, start: Date, end: Date, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultWebhookLog;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/logs'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
@@ -20174,7 +20174,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultWebhookLog;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultWebhookLog;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -20194,7 +20194,7 @@ export class WebhooksApi {
      * @summary Get all webhook subscriptions by your Oauth client id
      * @param clientId Oauth client identifier
      */
-    public getWebhookSubscriptions (clientId: string) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultWebhookSubscription;  }> {
+    public getWebhookSubscriptions (clientId: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultWebhookSubscription;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
         let localVarQueryParameters: any = {};
@@ -20229,7 +20229,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultWebhookSubscription;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultWebhookSubscription;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -20251,7 +20251,7 @@ export class WebhooksApi {
      * @param webhookSubscriptionId Webhook subscription identifier
      * @param webhookSubscription Webhook subscription object
      */
-    public updateWebhookSubscription (clientId: string, webhookSubscriptionId: number, webhookSubscription: WebhookSubscription) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updateWebhookSubscription (clientId: string, webhookSubscriptionId: number, webhookSubscription: WebhookSubscription) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
@@ -20298,7 +20298,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
