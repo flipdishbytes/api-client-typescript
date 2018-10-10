@@ -2431,6 +2431,34 @@ export class LightspeedSettings {
     * Enabled
     */
     'Enabled': boolean;
+    /**
+    * Estimated minutes for delivery
+    */
+    'EstimatedMinutesForDelivery': number;
+    /**
+    * Estimated minutes for collection
+    */
+    'EstimatedMinutesForCollection': number;
+    /**
+    * Geographic location (euc1, nae1, euw2, ....))
+    */
+    'GeographicLocation': string;
+    /**
+    * Is the CompanyId an establishment (kind of the store of a group of store)
+    */
+    'Establishment': boolean;
+    /**
+    * The Lightspeed voucher identifier to map with our
+    */
+    'VoucherId': string;
+    /**
+    * The Lightspeed delivery fee identifier to map with our
+    */
+    'DeliveryFeeId': string;
+    /**
+    * The Lightspeed processing fee identifier to map with our
+    */
+    'ProcessingFeeId': string;
 
     static discriminator = undefined;
 
@@ -2444,6 +2472,41 @@ export class LightspeedSettings {
             "name": "Enabled",
             "baseName": "Enabled",
             "type": "boolean"
+        },
+        {
+            "name": "EstimatedMinutesForDelivery",
+            "baseName": "EstimatedMinutesForDelivery",
+            "type": "number"
+        },
+        {
+            "name": "EstimatedMinutesForCollection",
+            "baseName": "EstimatedMinutesForCollection",
+            "type": "number"
+        },
+        {
+            "name": "GeographicLocation",
+            "baseName": "GeographicLocation",
+            "type": "string"
+        },
+        {
+            "name": "Establishment",
+            "baseName": "Establishment",
+            "type": "boolean"
+        },
+        {
+            "name": "VoucherId",
+            "baseName": "VoucherId",
+            "type": "string"
+        },
+        {
+            "name": "DeliveryFeeId",
+            "baseName": "DeliveryFeeId",
+            "type": "string"
+        },
+        {
+            "name": "ProcessingFeeId",
+            "baseName": "ProcessingFeeId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
