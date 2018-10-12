@@ -7903,25 +7903,49 @@ export class Store {
     */
     'StoreId': number;
     /**
-    * Name
+    * Store address
     */
-    'Name': string;
+    'Address': StoreAddress;
+    /**
+    * Delivery fee areas
+    */
+    'DeliveryFeeAreas': Array<DeliveryFeeArea>;
     /**
     * Automated Phone Marketing number
     */
     'ApmPhoneNumber': string;
     /**
+    * Pickup hours
+    */
+    'PickupHours': Array<BusinessHoursPeriod>;
+    /**
+    * Delivery hours
+    */
+    'DeliveryHours': Array<BusinessHoursPeriod>;
+    /**
+    * Menu identifier
+    */
+    'MenuId': number;
+    /**
+    * Overridden confirmation message for delivery orders
+    */
+    'OrderConfirmationMessageOverrideDelivery': string;
+    /**
+    * Overridden confirmation message for pickup orders
+    */
+    'OrderConfirmationMessageOverridePickup': string;
+    /**
+    * Printout layout
+    */
+    'PrintoutLayoutType': Store.PrintoutLayoutTypeEnum;
+    /**
+    * Store notes
+    */
+    'StoreNotes': Array<StoreNote>;
+    /**
     * Phone number
     */
     'PhoneNumber': string;
-    /**
-    * Email address (visible to customers)
-    */
-    'EmailAddress': string;
-    /**
-    * Store address
-    */
-    'Address': StoreAddress;
     /**
     * True if the store accepts pre-orders
     */
@@ -7987,10 +8011,6 @@ export class Store {
     */
     'MinimumPickupOrderAmount': number;
     /**
-    * Delivery fee areas
-    */
-    'DeliveryFeeAreas': Array<DeliveryFeeArea>;
-    /**
     * True if customer name required for pickup orders
     */
     'RequireCustomerNameForPickup': boolean;
@@ -7998,14 +8018,6 @@ export class Store {
     * True if customer name required for delivery orders
     */
     'RequireCustomerNameForDelivery': boolean;
-    /**
-    * Pickup hours
-    */
-    'PickupHours': Array<BusinessHoursPeriod>;
-    /**
-    * Delivery hours
-    */
-    'DeliveryHours': Array<BusinessHoursPeriod>;
     /**
     * Microsoft Time Zone Index Values (https://msdn.microsoft.com/en-us/library/ms912391)
     */
@@ -8015,25 +8027,17 @@ export class Store {
     */
     'IanaTimeZone': string;
     /**
-    * Menu identifier
+    * Name
     */
-    'MenuId': number;
+    'Name': string;
     /**
-    * Overridden confirmation message for delivery orders
+    * Email address (visible to customers)
     */
-    'OrderConfirmationMessageOverrideDelivery': string;
+    'EmailAddress': string;
     /**
-    * Overridden confirmation message for pickup orders
+    * Staff Language (used for communcation with the staff)  Emails, Printouts etc
     */
-    'OrderConfirmationMessageOverridePickup': string;
-    /**
-    * Printout layout
-    */
-    'PrintoutLayoutType': Store.PrintoutLayoutTypeEnum;
-    /**
-    * Store notes
-    */
-    'StoreNotes': Array<StoreNote>;
+    'StaffLanguage': string;
 
     static discriminator = undefined;
 
@@ -8044,9 +8048,14 @@ export class Store {
             "type": "number"
         },
         {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
+            "name": "Address",
+            "baseName": "Address",
+            "type": "StoreAddress"
+        },
+        {
+            "name": "DeliveryFeeAreas",
+            "baseName": "DeliveryFeeAreas",
+            "type": "Array<DeliveryFeeArea>"
         },
         {
             "name": "ApmPhoneNumber",
@@ -8054,19 +8063,44 @@ export class Store {
             "type": "string"
         },
         {
+            "name": "PickupHours",
+            "baseName": "PickupHours",
+            "type": "Array<BusinessHoursPeriod>"
+        },
+        {
+            "name": "DeliveryHours",
+            "baseName": "DeliveryHours",
+            "type": "Array<BusinessHoursPeriod>"
+        },
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "OrderConfirmationMessageOverrideDelivery",
+            "baseName": "OrderConfirmationMessageOverrideDelivery",
+            "type": "string"
+        },
+        {
+            "name": "OrderConfirmationMessageOverridePickup",
+            "baseName": "OrderConfirmationMessageOverridePickup",
+            "type": "string"
+        },
+        {
+            "name": "PrintoutLayoutType",
+            "baseName": "PrintoutLayoutType",
+            "type": "Store.PrintoutLayoutTypeEnum"
+        },
+        {
+            "name": "StoreNotes",
+            "baseName": "StoreNotes",
+            "type": "Array<StoreNote>"
+        },
+        {
             "name": "PhoneNumber",
             "baseName": "PhoneNumber",
             "type": "string"
-        },
-        {
-            "name": "EmailAddress",
-            "baseName": "EmailAddress",
-            "type": "string"
-        },
-        {
-            "name": "Address",
-            "baseName": "Address",
-            "type": "StoreAddress"
         },
         {
             "name": "PreOrderEnabled",
@@ -8149,11 +8183,6 @@ export class Store {
             "type": "number"
         },
         {
-            "name": "DeliveryFeeAreas",
-            "baseName": "DeliveryFeeAreas",
-            "type": "Array<DeliveryFeeArea>"
-        },
-        {
             "name": "RequireCustomerNameForPickup",
             "baseName": "RequireCustomerNameForPickup",
             "type": "boolean"
@@ -8162,16 +8191,6 @@ export class Store {
             "name": "RequireCustomerNameForDelivery",
             "baseName": "RequireCustomerNameForDelivery",
             "type": "boolean"
-        },
-        {
-            "name": "PickupHours",
-            "baseName": "PickupHours",
-            "type": "Array<BusinessHoursPeriod>"
-        },
-        {
-            "name": "DeliveryHours",
-            "baseName": "DeliveryHours",
-            "type": "Array<BusinessHoursPeriod>"
         },
         {
             "name": "MicrosoftTimeZone",
@@ -8184,29 +8203,19 @@ export class Store {
             "type": "string"
         },
         {
-            "name": "MenuId",
-            "baseName": "MenuId",
-            "type": "number"
-        },
-        {
-            "name": "OrderConfirmationMessageOverrideDelivery",
-            "baseName": "OrderConfirmationMessageOverrideDelivery",
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
-            "name": "OrderConfirmationMessageOverridePickup",
-            "baseName": "OrderConfirmationMessageOverridePickup",
+            "name": "EmailAddress",
+            "baseName": "EmailAddress",
             "type": "string"
         },
         {
-            "name": "PrintoutLayoutType",
-            "baseName": "PrintoutLayoutType",
-            "type": "Store.PrintoutLayoutTypeEnum"
-        },
-        {
-            "name": "StoreNotes",
-            "baseName": "StoreNotes",
-            "type": "Array<StoreNote>"
+            "name": "StaffLanguage",
+            "baseName": "StaffLanguage",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -8353,6 +8362,277 @@ export class StoreAddressBase {
 
     static getAttributeTypeMap() {
         return StoreAddressBase.attributeTypeMap;
+    }
+}
+
+/**
+* Store Base
+*/
+export class StoreBase {
+    /**
+    * Phone number
+    */
+    'PhoneNumber': string;
+    /**
+    * True if the store accepts pre-orders
+    */
+    'PreOrderEnabled': boolean;
+    /**
+    * True if the store accepts take-out orders
+    */
+    'TakeOutEnabled': boolean;
+    /**
+    * True if the store has table service
+    */
+    'TableServiceEnabled': boolean;
+    /**
+    * True if the store accepts dine-in orders
+    */
+    'DineInEnabled': boolean;
+    /**
+    * True if both pre-orders and talbe service can be enabled
+    */
+    'AllowPreOrdersAndTableService': boolean;
+    /**
+    * True if the store accepts pickup orders
+    */
+    'PickupEnabled': boolean;
+    /**
+    * True if the store accepts delivery orders
+    */
+    'DeliveryEnabled': boolean;
+    /**
+    * True if the store accepts card payment for delivery orders
+    */
+    'CardOrderDeliveryEnabled': boolean;
+    /**
+    * True if the store accepts cash payment for delivery orders
+    */
+    'CashOrdersDeliveryEnabled': boolean;
+    /**
+    * True if the store accepts card payment for pickup orders
+    */
+    'CardOrdersPickupEnabled': boolean;
+    /**
+    * True if the store accepts cash payment for pickup orders
+    */
+    'CashOrdersPickupEnabled': boolean;
+    /**
+    * True if the store accepts tips
+    */
+    'TipsEnabled': boolean;
+    /**
+    * True if the stores orders are automatically accepted in Flipdish
+    */
+    'AutomaticallyAcceptOrders': boolean;
+    /**
+    * True if the store is open for delivery
+    */
+    'OpenForDelivery': boolean;
+    /**
+    * True if the store is open for pickup
+    */
+    'OpenForPickup': boolean;
+    /**
+    * Minimum pickup order amount
+    */
+    'MinimumPickupOrderAmount': number;
+    /**
+    * True if customer name required for pickup orders
+    */
+    'RequireCustomerNameForPickup': boolean;
+    /**
+    * True if customer name required for delivery orders
+    */
+    'RequireCustomerNameForDelivery': boolean;
+    /**
+    * Microsoft Time Zone Index Values (https://msdn.microsoft.com/en-us/library/ms912391)
+    */
+    'MicrosoftTimeZone': string;
+    /**
+    * IANA Time Zone (https://www.iana.org/time-zones)
+    */
+    'IanaTimeZone': string;
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Email address (visible to customers)
+    */
+    'EmailAddress': string;
+    /**
+    * Staff Language (used for communcation with the staff)  Emails, Printouts etc
+    */
+    'StaffLanguage': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PhoneNumber",
+            "baseName": "PhoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "PreOrderEnabled",
+            "baseName": "PreOrderEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "TakeOutEnabled",
+            "baseName": "TakeOutEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "TableServiceEnabled",
+            "baseName": "TableServiceEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "DineInEnabled",
+            "baseName": "DineInEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "AllowPreOrdersAndTableService",
+            "baseName": "AllowPreOrdersAndTableService",
+            "type": "boolean"
+        },
+        {
+            "name": "PickupEnabled",
+            "baseName": "PickupEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "DeliveryEnabled",
+            "baseName": "DeliveryEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "CardOrderDeliveryEnabled",
+            "baseName": "CardOrderDeliveryEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "CashOrdersDeliveryEnabled",
+            "baseName": "CashOrdersDeliveryEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "CardOrdersPickupEnabled",
+            "baseName": "CardOrdersPickupEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "CashOrdersPickupEnabled",
+            "baseName": "CashOrdersPickupEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "TipsEnabled",
+            "baseName": "TipsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "AutomaticallyAcceptOrders",
+            "baseName": "AutomaticallyAcceptOrders",
+            "type": "boolean"
+        },
+        {
+            "name": "OpenForDelivery",
+            "baseName": "OpenForDelivery",
+            "type": "boolean"
+        },
+        {
+            "name": "OpenForPickup",
+            "baseName": "OpenForPickup",
+            "type": "boolean"
+        },
+        {
+            "name": "MinimumPickupOrderAmount",
+            "baseName": "MinimumPickupOrderAmount",
+            "type": "number"
+        },
+        {
+            "name": "RequireCustomerNameForPickup",
+            "baseName": "RequireCustomerNameForPickup",
+            "type": "boolean"
+        },
+        {
+            "name": "RequireCustomerNameForDelivery",
+            "baseName": "RequireCustomerNameForDelivery",
+            "type": "boolean"
+        },
+        {
+            "name": "MicrosoftTimeZone",
+            "baseName": "MicrosoftTimeZone",
+            "type": "string"
+        },
+        {
+            "name": "IanaTimeZone",
+            "baseName": "IanaTimeZone",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "EmailAddress",
+            "baseName": "EmailAddress",
+            "type": "string"
+        },
+        {
+            "name": "StaffLanguage",
+            "baseName": "StaffLanguage",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreBase.attributeTypeMap;
+    }
+}
+
+/**
+* Store Create Base
+*/
+export class StoreCreateBase {
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Email address (visible to customers)
+    */
+    'EmailAddress': string;
+    /**
+    * Staff Language (used for communcation with the staff)  Emails, Printouts etc
+    */
+    'StaffLanguage': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "EmailAddress",
+            "baseName": "EmailAddress",
+            "type": "string"
+        },
+        {
+            "name": "StaffLanguage",
+            "baseName": "StaffLanguage",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreCreateBase.attributeTypeMap;
     }
 }
 
@@ -8608,25 +8888,9 @@ export class StoreGroup {
     */
     'Name': string;
     /**
-    * Is this group enabled
-    */
-    'IsEnabled': boolean;
-    /**
-    * Store Group Url Name
-    */
-    'UrlName': string;
-    /**
     * Currency used by the stores in this group
     */
     'Currency': StoreGroup.CurrencyEnum;
-    /**
-    * Message on top of Delivery Menu
-    */
-    'DeliveryMenuMessage': string;
-    /**
-    * Message on top of Collection Menu
-    */
-    'CollectionMenuMessage': string;
 
     static discriminator = undefined;
 
@@ -8652,29 +8916,9 @@ export class StoreGroup {
             "type": "string"
         },
         {
-            "name": "IsEnabled",
-            "baseName": "IsEnabled",
-            "type": "boolean"
-        },
-        {
-            "name": "UrlName",
-            "baseName": "UrlName",
-            "type": "string"
-        },
-        {
             "name": "Currency",
             "baseName": "Currency",
             "type": "StoreGroup.CurrencyEnum"
-        },
-        {
-            "name": "DeliveryMenuMessage",
-            "baseName": "DeliveryMenuMessage",
-            "type": "string"
-        },
-        {
-            "name": "CollectionMenuMessage",
-            "baseName": "CollectionMenuMessage",
-            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -8807,25 +9051,9 @@ export class StoreGroupBase {
     */
     'Name': string;
     /**
-    * Is this group enabled
-    */
-    'IsEnabled': boolean;
-    /**
-    * Store Group Url Name
-    */
-    'UrlName': string;
-    /**
     * Currency used by the stores in this group
     */
     'Currency': StoreGroupBase.CurrencyEnum;
-    /**
-    * Message on top of Delivery Menu
-    */
-    'DeliveryMenuMessage': string;
-    /**
-    * Message on top of Collection Menu
-    */
-    'CollectionMenuMessage': string;
 
     static discriminator = undefined;
 
@@ -8836,29 +9064,9 @@ export class StoreGroupBase {
             "type": "string"
         },
         {
-            "name": "IsEnabled",
-            "baseName": "IsEnabled",
-            "type": "boolean"
-        },
-        {
-            "name": "UrlName",
-            "baseName": "UrlName",
-            "type": "string"
-        },
-        {
             "name": "Currency",
             "baseName": "Currency",
             "type": "StoreGroupBase.CurrencyEnum"
-        },
-        {
-            "name": "DeliveryMenuMessage",
-            "baseName": "DeliveryMenuMessage",
-            "type": "string"
-        },
-        {
-            "name": "CollectionMenuMessage",
-            "baseName": "CollectionMenuMessage",
-            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -11120,6 +11328,8 @@ let typeMap: {[index: string]: any} = {
     "Store": Store,
     "StoreAddress": StoreAddress,
     "StoreAddressBase": StoreAddressBase,
+    "StoreBase": StoreBase,
+    "StoreCreateBase": StoreCreateBase,
     "StoreCreatedEvent": StoreCreatedEvent,
     "StoreDeletedEvent": StoreDeletedEvent,
     "StoreDeliveryZoneUpdatedEvent": StoreDeliveryZoneUpdatedEvent,
@@ -17879,6 +18089,71 @@ export class StoresApi {
     }
     /**
      * 
+     * @summary Create store with Store Group identifier
+     * @param storeGroupId Store Group identifier
+     * @param store Store
+     */
+    public createStore (storeGroupId: number, store: StoreCreateBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeGroupId' is not null or undefined
+        if (storeGroupId === null || storeGroupId === undefined) {
+            throw new Error('Required parameter storeGroupId was null or undefined when calling createStore.');
+        }
+
+        // verify required parameter 'store' is not null or undefined
+        if (store === null || store === undefined) {
+            throw new Error('Required parameter store was null or undefined when calling createStore.');
+        }
+
+        if (storeGroupId !== undefined) {
+            localVarQueryParameters['storeGroupId'] = ObjectSerializer.serialize(storeGroupId, "number");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(store, "StoreCreateBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStore");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Get processing fee configs by store identifier
      * @param storeId Store identifier
      * @param appNameId App Name Id
@@ -18118,6 +18393,68 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultStore");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update store by identifier
+     * @param storeId Store Group identifier
+     * @param store Store
+     */
+    public updateStore (storeId: number, store: StoreBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling updateStore.');
+        }
+
+        // verify required parameter 'store' is not null or undefined
+        if (store === null || store === undefined) {
+            throw new Error('Required parameter store was null or undefined when calling updateStore.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(store, "StoreBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStore");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
