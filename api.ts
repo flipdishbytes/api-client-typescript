@@ -358,6 +358,10 @@ export class App {
     * Country identifier
     */
     'CountryId': string;
+    /**
+    * Available Languages for Apps\\Staff
+    */
+    'AvailableAppLanguages': Array<Language>;
 
     static discriminator = undefined;
 
@@ -401,6 +405,11 @@ export class App {
             "name": "CountryId",
             "baseName": "CountryId",
             "type": "string"
+        },
+        {
+            "name": "AvailableAppLanguages",
+            "baseName": "AvailableAppLanguages",
+            "type": "Array<Language>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -2416,6 +2425,38 @@ export class JobResponse {
 
     static getAttributeTypeMap() {
         return JobResponse.attributeTypeMap;
+    }
+}
+
+/**
+* Sorted Language
+*/
+export class Language {
+    /**
+    * ISO 639-1 Language Code
+    */
+    'LanguageId': string;
+    /**
+    * Display Order
+    */
+    'DisplayOrder': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LanguageId",
+            "baseName": "LanguageId",
+            "type": "string"
+        },
+        {
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Language.attributeTypeMap;
     }
 }
 
@@ -8649,13 +8690,17 @@ export class StoreCreatedEvent {
     */
     'StoreId': number;
     /**
-    * Info User
+    * User which created this store
     */
     'User': UserEventInfo;
     /**
     * Description
     */
     'Description': string;
+    /**
+    * Created Store
+    */
+    'Store': Store;
     /**
     * The identitfier of the event
     */
@@ -8691,6 +8736,11 @@ export class StoreCreatedEvent {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
+        },
+        {
+            "name": "Store",
+            "baseName": "Store",
+            "type": "Store"
         },
         {
             "name": "FlipdishEventId",
@@ -8726,13 +8776,17 @@ export class StoreDeletedEvent {
     */
     'StoreId': number;
     /**
-    * Info User
+    * User which deleted this store
     */
     'User': UserEventInfo;
     /**
     * Description
     */
     'Description': string;
+    /**
+    * Deleted Store
+    */
+    'Store': Store;
     /**
     * The identitfier of the event
     */
@@ -8770,6 +8824,11 @@ export class StoreDeletedEvent {
             "type": "string"
         },
         {
+            "name": "Store",
+            "baseName": "Store",
+            "type": "Store"
+        },
+        {
             "name": "FlipdishEventId",
             "baseName": "FlipdishEventId",
             "type": "string"
@@ -8803,7 +8862,7 @@ export class StoreDeliveryZoneUpdatedEvent {
     */
     'StoreId': number;
     /**
-    * Info User
+    * User which updated delivery zone for this store
     */
     'User': UserEventInfo;
     /**
@@ -9244,7 +9303,7 @@ export class StoreOpeningHoursUpdatedEvent {
     */
     'StoreId': number;
     /**
-    * Info User
+    * User which updated opening hours for this store
     */
     'User': UserEventInfo;
     /**
@@ -9505,13 +9564,17 @@ export class StoreUpdatedEvent {
     */
     'StoreId': number;
     /**
-    * Info User
+    * User which updated this store
     */
     'User': UserEventInfo;
     /**
     * Description
     */
     'Description': string;
+    /**
+    * Updated Store
+    */
+    'Store': Store;
     /**
     * The identitfier of the event
     */
@@ -9547,6 +9610,11 @@ export class StoreUpdatedEvent {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
+        },
+        {
+            "name": "Store",
+            "baseName": "Store",
+            "type": "Store"
         },
         {
             "name": "FlipdishEventId",
@@ -11219,6 +11287,7 @@ let typeMap: {[index: string]: any} = {
     "JobPricing": JobPricing,
     "JobProof": JobProof,
     "JobResponse": JobResponse,
+    "Language": Language,
     "LightspeedSettings": LightspeedSettings,
     "LoginModel": LoginModel,
     "LoyaltyCampaign": LoyaltyCampaign,
