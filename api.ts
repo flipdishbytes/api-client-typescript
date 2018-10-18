@@ -2527,6 +2527,10 @@ export class LightspeedSettings {
     * The Lightspeed processing fee identifier to map with our
     */
     'ProcessingFeeId': string;
+    /**
+    * Which price to choose from Lightspeed menu
+    */
+    'PriceType': LightspeedSettings.PriceTypeEnum;
 
     static discriminator = undefined;
 
@@ -2575,6 +2579,11 @@ export class LightspeedSettings {
             "name": "ProcessingFeeId",
             "baseName": "ProcessingFeeId",
             "type": "string"
+        },
+        {
+            "name": "PriceType",
+            "baseName": "PriceType",
+            "type": "LightspeedSettings.PriceTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -2582,6 +2591,13 @@ export class LightspeedSettings {
     }
 }
 
+export namespace LightspeedSettings {
+    export enum PriceTypeEnum {
+        Default = <any> 'Default',
+        Takeaway = <any> 'Takeaway',
+        Delivery = <any> 'Delivery'
+    }
+}
 /**
 * Login model
 */
@@ -11505,6 +11521,7 @@ export class WebhookSubscriptionUpdatedEvent {
 let enumsMap: {[index: string]: any} = {
         "BusinessHoursPeriod.DayOfWeekEnum": BusinessHoursPeriod.DayOfWeekEnum,
         "BusinessHoursPeriodBase.DayOfWeekEnum": BusinessHoursPeriodBase.DayOfWeekEnum,
+        "LightspeedSettings.PriceTypeEnum": LightspeedSettings.PriceTypeEnum,
         "Menu.MenuSectionBehaviourEnum": Menu.MenuSectionBehaviourEnum,
         "MenuBase.MenuSectionBehaviourEnum": MenuBase.MenuSectionBehaviourEnum,
         "MenuItemOptionSet.CellLayoutTypeEnum": MenuItemOptionSet.CellLayoutTypeEnum,
