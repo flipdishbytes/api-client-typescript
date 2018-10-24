@@ -2531,6 +2531,10 @@ export class LightspeedSettings {
     * Which price to choose from Lightspeed menu
     */
     'PriceType': LightspeedSettings.PriceTypeEnum;
+    /**
+    * The menu id of the store
+    */
+    'MenuId': number;
 
     static discriminator = undefined;
 
@@ -2584,6 +2588,11 @@ export class LightspeedSettings {
             "name": "PriceType",
             "baseName": "PriceType",
             "type": "LightspeedSettings.PriceTypeEnum"
+        },
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
