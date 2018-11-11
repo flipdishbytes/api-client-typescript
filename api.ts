@@ -1076,38 +1076,6 @@ export class CustomerUpdatedEvent {
 }
 
 /**
-* Delivery fee area
-*/
-export class DeliveryFeeArea {
-    /**
-    * Delivery fee
-    */
-    'DeliveryFee': number;
-    /**
-    * Minimum delivery order amount
-    */
-    'MinimumDeliveryOrder': number;
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "DeliveryFee",
-            "baseName": "DeliveryFee",
-            "type": "number"
-        },
-        {
-            "name": "MinimumDeliveryOrder",
-            "baseName": "MinimumDeliveryOrder",
-            "type": "number"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return DeliveryFeeArea.attributeTypeMap;
-    }
-}
-
-/**
 * Delivery location
 */
 export class DeliveryLocation {
@@ -1181,6 +1149,97 @@ export class DeliveryLocation {
 
     static getAttributeTypeMap() {
         return DeliveryLocation.attributeTypeMap;
+    }
+}
+
+/**
+* Delivery Zone
+*/
+export class DeliveryZone {
+    /**
+    * Delivery Fee Area Id
+    */
+    'Id': number;
+    /**
+    * Delivery fee
+    */
+    'DeliveryFee': number;
+    /**
+    * Minimum delivery order amount
+    */
+    'MinimumDeliveryOrderAmount': number;
+    /**
+    * Spatial data in Well Known Text format  We also support CIRCLE((0 0, 200)) - (centerX centerY, radius in m)
+    */
+    'WellKnownText': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "DeliveryFee",
+            "baseName": "DeliveryFee",
+            "type": "number"
+        },
+        {
+            "name": "MinimumDeliveryOrderAmount",
+            "baseName": "MinimumDeliveryOrderAmount",
+            "type": "number"
+        },
+        {
+            "name": "WellKnownText",
+            "baseName": "WellKnownText",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DeliveryZone.attributeTypeMap;
+    }
+}
+
+/**
+* Delivery Zone Base
+*/
+export class DeliveryZoneBase {
+    /**
+    * Delivery fee
+    */
+    'DeliveryFee': number;
+    /**
+    * Minimum delivery order amount
+    */
+    'MinimumDeliveryOrderAmount': number;
+    /**
+    * Spatial data in Well Known Text format  We also support CIRCLE((0 0, 200)) - (centerX centerY, radius in m)
+    */
+    'WellKnownText': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeliveryFee",
+            "baseName": "DeliveryFee",
+            "type": "number"
+        },
+        {
+            "name": "MinimumDeliveryOrderAmount",
+            "baseName": "MinimumDeliveryOrderAmount",
+            "type": "number"
+        },
+        {
+            "name": "WellKnownText",
+            "baseName": "WellKnownText",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DeliveryZoneBase.attributeTypeMap;
     }
 }
 
@@ -6023,6 +6082,29 @@ export namespace Reject {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultDeliveryZone {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<DeliveryZone>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<DeliveryZone>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultDeliveryZone.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultMenuItemOptionSet {
     /**
     * Generic data object.
@@ -6890,6 +6972,29 @@ export class RestApiResultCoordinates {
 
     static getAttributeTypeMap() {
         return RestApiResultCoordinates.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultDeliveryZone {
+    /**
+    * Generic data object.
+    */
+    'Data': DeliveryZone;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "DeliveryZone"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultDeliveryZone.attributeTypeMap;
     }
 }
 
@@ -8000,9 +8105,9 @@ export class Store {
     */
     'Address': StoreAddress;
     /**
-    * Delivery fee areas
+    * Delivery zones
     */
-    'DeliveryFeeAreas': Array<DeliveryFeeArea>;
+    'DeliveryZones': Array<DeliveryZone>;
     /**
     * Automated Phone Marketing number
     */
@@ -8146,9 +8251,9 @@ export class Store {
             "type": "StoreAddress"
         },
         {
-            "name": "DeliveryFeeAreas",
-            "baseName": "DeliveryFeeAreas",
-            "type": "Array<DeliveryFeeArea>"
+            "name": "DeliveryZones",
+            "baseName": "DeliveryZones",
+            "type": "Array<DeliveryZone>"
         },
         {
             "name": "ApmPhoneNumber",
@@ -11583,8 +11688,9 @@ let typeMap: {[index: string]: any} = {
     "CustomerCreatedEvent": CustomerCreatedEvent,
     "CustomerSummary": CustomerSummary,
     "CustomerUpdatedEvent": CustomerUpdatedEvent,
-    "DeliveryFeeArea": DeliveryFeeArea,
     "DeliveryLocation": DeliveryLocation,
+    "DeliveryZone": DeliveryZone,
+    "DeliveryZoneBase": DeliveryZoneBase,
     "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
@@ -11646,6 +11752,7 @@ let typeMap: {[index: string]: any} = {
     "Range": Range,
     "Refund": Refund,
     "Reject": Reject,
+    "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
     "RestApiArrayResultMenuItemOptionSet": RestApiArrayResultMenuItemOptionSet,
     "RestApiArrayResultMenuItemOptionSetItem": RestApiArrayResultMenuItemOptionSetItem,
     "RestApiArrayResultMenuSection": RestApiArrayResultMenuSection,
@@ -11673,6 +11780,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultBusinessHoursPeriod": RestApiResultBusinessHoursPeriod,
     "RestApiResultCard": RestApiResultCard,
     "RestApiResultCoordinates": RestApiResultCoordinates,
+    "RestApiResultDeliveryZone": RestApiResultDeliveryZone,
     "RestApiResultJobResponse": RestApiResultJobResponse,
     "RestApiResultLightspeedSettings": RestApiResultLightspeedSettings,
     "RestApiResultMenu": RestApiResultMenu,
@@ -12659,6 +12767,298 @@ export class AuthorizationTokensApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum DeliveryZoneApiApiKeys {
+}
+
+export class DeliveryZoneApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: DeliveryZoneApiApiKeys, value: string) {
+        (this.authentications as any)[DeliveryZoneApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Adds a delivery zone to the store id
+     * @param storeId Store Id to which the delivery zone will be added
+     * @param deliveryZone Optional parameters for delivery zone, if not supplied will create a default zone
+     */
+    public addDeliveryZone (storeId: number, deliveryZone?: DeliveryZoneBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultDeliveryZone;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/deliveryzones'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling addDeliveryZone.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(deliveryZone, "DeliveryZoneBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultDeliveryZone;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultDeliveryZone");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get all the delivery zones associated with a store
+     * @param storeId Store Id to which the delivery zones are associated
+     */
+    public getDeliveryZones (storeId: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDeliveryZone;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/deliveryzones'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getDeliveryZones.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDeliveryZone;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultDeliveryZone");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Removes the existing delivery zone
+     * @param storeId Store Id to which the delivery zone belongs
+     * @param deliveryZoneId Delivery zone id to be removed
+     */
+    public removeDeliveryZone (storeId: number, deliveryZoneId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/deliveryzones/{deliveryZoneId}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'deliveryZoneId' + '}', encodeURIComponent(String(deliveryZoneId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling removeDeliveryZone.');
+        }
+
+        // verify required parameter 'deliveryZoneId' is not null or undefined
+        if (deliveryZoneId === null || deliveryZoneId === undefined) {
+            throw new Error('Required parameter deliveryZoneId was null or undefined when calling removeDeliveryZone.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Updates the existing delivery zone
+     * @param storeId Store Id to which the delivery zone belongs
+     * @param deliveryZoneId Delivery zone id to be updated
+     * @param deliveryZone Delta of delivery zone parameters that need to be changed
+     */
+    public updateDeliveryZone (storeId: number, deliveryZoneId: number, deliveryZone: DeliveryZoneBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultDeliveryZone;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/deliveryzones/{deliveryZoneId}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'deliveryZoneId' + '}', encodeURIComponent(String(deliveryZoneId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling updateDeliveryZone.');
+        }
+
+        // verify required parameter 'deliveryZoneId' is not null or undefined
+        if (deliveryZoneId === null || deliveryZoneId === undefined) {
+            throw new Error('Required parameter deliveryZoneId was null or undefined when calling updateDeliveryZone.');
+        }
+
+        // verify required parameter 'deliveryZone' is not null or undefined
+        if (deliveryZone === null || deliveryZone === undefined) {
+            throw new Error('Required parameter deliveryZone was null or undefined when calling updateDeliveryZone.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(deliveryZone, "DeliveryZoneBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultDeliveryZone;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultDeliveryZone");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
