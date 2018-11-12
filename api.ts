@@ -11954,8 +11954,9 @@ export class AccountsApi {
     }
     /**
      * 
-     * @param signupStepAction 
-     * @param answerId 
+     * @summary Answer a signup question
+     * @param signupStepAction Signup step action
+     * @param answerId Identifier of the answer
      */
     public answerSignUpQuestion (signupStepAction: string, answerId: number) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/answer'
@@ -12125,6 +12126,7 @@ export class AccountsApi {
     }
     /**
      * 
+     * @summary Gets the current account detail
      */
     public getAccountDetails () : Promise<{ response: http.IncomingMessage; body: RestApiResultAccountDetail;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts';
@@ -12387,7 +12389,8 @@ export class AccountsApi {
     }
     /**
      * 
-     * @param signupStepAction 
+     * @summary Skip a signup question
+     * @param signupStepAction Signup step action
      */
     public skipSignupStep (signupStepAction: string) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/skip'
@@ -13815,6 +13818,103 @@ export class EventsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiEventSearchPaginationResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum HeartbeatApiApiKeys {
+}
+
+export class HeartbeatApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: HeartbeatApiApiKeys, value: string) {
+        (this.authentications as any)[HeartbeatApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     */
+    public ping () : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/heartbeat';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
