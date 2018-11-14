@@ -1169,7 +1169,7 @@ export class DeliveryZone {
     */
     'MinimumDeliveryOrderAmount': number;
     /**
-    * Spatial data in Well Known Text format  We also support CIRCLE((0 0, 200)) - (centerX centerY, radius in m)
+    * Spatial data in Well Known Text format  We also support CIRCLE((0 0, 200)) - (centerLong centerLat, radius in m)
     */
     'WellKnownText': string;
 
@@ -1215,7 +1215,7 @@ export class DeliveryZoneBase {
     */
     'MinimumDeliveryOrderAmount': number;
     /**
-    * Spatial data in Well Known Text format  We also support CIRCLE((0 0, 200)) - (centerX centerY, radius in m)
+    * Spatial data in Well Known Text format  We also support CIRCLE((0 0, 200)) - (centerLong centerLat, radius in m)
     */
     'WellKnownText': string;
 
@@ -1240,6 +1240,264 @@ export class DeliveryZoneBase {
 
     static getAttributeTypeMap() {
         return DeliveryZoneBase.attributeTypeMap;
+    }
+}
+
+/**
+* Delivery Zone Created Event
+*/
+export class DeliveryZoneCreatedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * User which created delivery zone for this store
+    */
+    'User': UserEventInfo;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Created Delivery Zone
+    */
+    'DeliveryZone': DeliveryZone;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "DeliveryZone",
+            "baseName": "DeliveryZone",
+            "type": "DeliveryZone"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DeliveryZoneCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Delivery Zone Deleted Event
+*/
+export class DeliveryZoneDeletedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * User which deleted delivery zone for this store
+    */
+    'User': UserEventInfo;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Deleted Delivery Zone
+    */
+    'DeliveryZone': DeliveryZone;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "DeliveryZone",
+            "baseName": "DeliveryZone",
+            "type": "DeliveryZone"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DeliveryZoneDeletedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Delivery Zone Updated Event
+*/
+export class DeliveryZoneUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * User which updated delivery zone for this store
+    */
+    'User': UserEventInfo;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Updated Delivery Zone
+    */
+    'DeliveryZone': DeliveryZone;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "DeliveryZone",
+            "baseName": "DeliveryZone",
+            "type": "DeliveryZone"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DeliveryZoneUpdatedEvent.attributeTypeMap;
     }
 }
 
@@ -1284,9 +1542,17 @@ export class EventSearchResult {
     */
     'StoreDeletedEvent': Array<StoreDeletedEvent>;
     /**
+    * Store delivery zone created events
+    */
+    'DeliveryZoneCreatedEvent': Array<DeliveryZoneCreatedEvent>;
+    /**
     * Store delivery zone updated events
     */
-    'StoreDeliveryZoneUpdatedEvent': Array<StoreDeliveryZoneUpdatedEvent>;
+    'DeliveryZoneUpdatedEvent': Array<DeliveryZoneUpdatedEvent>;
+    /**
+    * Store delivery zone deleted events
+    */
+    'DeliveryZoneDeletedEvent': Array<DeliveryZoneDeletedEvent>;
     /**
     * Store opening hours updated events
     */
@@ -1457,9 +1723,19 @@ export class EventSearchResult {
             "type": "Array<StoreDeletedEvent>"
         },
         {
-            "name": "StoreDeliveryZoneUpdatedEvent",
-            "baseName": "StoreDeliveryZoneUpdatedEvent",
-            "type": "Array<StoreDeliveryZoneUpdatedEvent>"
+            "name": "DeliveryZoneCreatedEvent",
+            "baseName": "DeliveryZoneCreatedEvent",
+            "type": "Array<DeliveryZoneCreatedEvent>"
+        },
+        {
+            "name": "DeliveryZoneUpdatedEvent",
+            "baseName": "DeliveryZoneUpdatedEvent",
+            "type": "Array<DeliveryZoneUpdatedEvent>"
+        },
+        {
+            "name": "DeliveryZoneDeletedEvent",
+            "baseName": "DeliveryZoneDeletedEvent",
+            "type": "Array<DeliveryZoneDeletedEvent>"
         },
         {
             "name": "StoreOpeningHoursUpdatedEvent",
@@ -9007,83 +9283,6 @@ export class StoreDeletedEvent {
 }
 
 /**
-* Store Delivery Zone Updated Event
-*/
-export class StoreDeliveryZoneUpdatedEvent {
-    /**
-    * The event name
-    */
-    'EventName': string;
-    /**
-    * Store Id
-    */
-    'StoreId': number;
-    /**
-    * User which updated delivery zone for this store
-    */
-    'User': UserEventInfo;
-    /**
-    * Description
-    */
-    'Description': string;
-    /**
-    * The identitfier of the event
-    */
-    'FlipdishEventId': string;
-    /**
-    * The time of creation of the event
-    */
-    'CreateTime': Date;
-    /**
-    * Position
-    */
-    'Position': number;
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "EventName",
-            "baseName": "EventName",
-            "type": "string"
-        },
-        {
-            "name": "StoreId",
-            "baseName": "StoreId",
-            "type": "number"
-        },
-        {
-            "name": "User",
-            "baseName": "User",
-            "type": "UserEventInfo"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "FlipdishEventId",
-            "baseName": "FlipdishEventId",
-            "type": "string"
-        },
-        {
-            "name": "CreateTime",
-            "baseName": "CreateTime",
-            "type": "Date"
-        },
-        {
-            "name": "Position",
-            "baseName": "Position",
-            "type": "number"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return StoreDeliveryZoneUpdatedEvent.attributeTypeMap;
-    }
-}
-
-/**
 * Store Group
 */
 export class StoreGroup {
@@ -11691,6 +11890,9 @@ let typeMap: {[index: string]: any} = {
     "DeliveryLocation": DeliveryLocation,
     "DeliveryZone": DeliveryZone,
     "DeliveryZoneBase": DeliveryZoneBase,
+    "DeliveryZoneCreatedEvent": DeliveryZoneCreatedEvent,
+    "DeliveryZoneDeletedEvent": DeliveryZoneDeletedEvent,
+    "DeliveryZoneUpdatedEvent": DeliveryZoneUpdatedEvent,
     "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
@@ -11820,7 +12022,6 @@ let typeMap: {[index: string]: any} = {
     "StoreCreateBase": StoreCreateBase,
     "StoreCreatedEvent": StoreCreatedEvent,
     "StoreDeletedEvent": StoreDeletedEvent,
-    "StoreDeliveryZoneUpdatedEvent": StoreDeliveryZoneUpdatedEvent,
     "StoreGroup": StoreGroup,
     "StoreGroupBase": StoreGroupBase,
     "StoreGroupCreatedEvent": StoreGroupCreatedEvent,
@@ -12833,9 +13034,9 @@ export class DeliveryZoneApi {
      * 
      * @summary Adds a delivery zone to the store id
      * @param storeId Store Id to which the delivery zone will be added
-     * @param deliveryZone Optional parameters for delivery zone, if not supplied will create a default zone
+     * @param deliveryZoneBase Optional delivery zone, if not supplied will create a default zone
      */
-    public addDeliveryZone (storeId: number, deliveryZone?: DeliveryZoneBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultDeliveryZone;  }> {
+    public addDeliveryZone (storeId: number, deliveryZoneBase: DeliveryZoneBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultDeliveryZone;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/deliveryzones'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -12845,6 +13046,11 @@ export class DeliveryZoneApi {
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
             throw new Error('Required parameter storeId was null or undefined when calling addDeliveryZone.');
+        }
+
+        // verify required parameter 'deliveryZoneBase' is not null or undefined
+        if (deliveryZoneBase === null || deliveryZoneBase === undefined) {
+            throw new Error('Required parameter deliveryZoneBase was null or undefined when calling addDeliveryZone.');
         }
 
 
@@ -12857,7 +13063,7 @@ export class DeliveryZoneApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(deliveryZone, "DeliveryZoneBase")
+            body: ObjectSerializer.serialize(deliveryZoneBase, "DeliveryZoneBase")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
