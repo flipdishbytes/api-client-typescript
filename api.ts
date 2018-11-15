@@ -418,6 +418,137 @@ export class App {
 }
 
 /**
+* 
+*/
+export class BusinessHoursOverride {
+    /**
+    * Unique identifier
+    */
+    'BusinessHoursOverrideId': number;
+    /**
+    * Delivery or Pickup
+    */
+    'DeliveryType': BusinessHoursOverride.DeliveryTypeEnum;
+    /**
+    * Date and time in ISO 8601 format.
+    */
+    'StartTime': Date;
+    /**
+    * Date and time in ISO 8601 format.
+    */
+    'EndTime': Date;
+    /**
+    * Open, Closed or ClosedAllowPreOrders
+    */
+    'Type': BusinessHoursOverride.TypeEnum;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "BusinessHoursOverrideId",
+            "baseName": "BusinessHoursOverrideId",
+            "type": "number"
+        },
+        {
+            "name": "DeliveryType",
+            "baseName": "DeliveryType",
+            "type": "BusinessHoursOverride.DeliveryTypeEnum"
+        },
+        {
+            "name": "StartTime",
+            "baseName": "StartTime",
+            "type": "Date"
+        },
+        {
+            "name": "EndTime",
+            "baseName": "EndTime",
+            "type": "Date"
+        },
+        {
+            "name": "Type",
+            "baseName": "Type",
+            "type": "BusinessHoursOverride.TypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BusinessHoursOverride.attributeTypeMap;
+    }
+}
+
+export namespace BusinessHoursOverride {
+    export enum DeliveryTypeEnum {
+        Delivery = <any> 'Delivery',
+        Pickup = <any> 'Pickup'
+    }
+    export enum TypeEnum {
+        Open = <any> 'Open',
+        Closed = <any> 'Closed',
+        ClosedAllowPreOrders = <any> 'ClosedAllowPreOrders'
+    }
+}
+/**
+* 
+*/
+export class BusinessHoursOverrideBase {
+    /**
+    * Delivery or Pickup
+    */
+    'DeliveryType': BusinessHoursOverrideBase.DeliveryTypeEnum;
+    /**
+    * Date and time in ISO 8601 format.
+    */
+    'StartTime': Date;
+    /**
+    * Date and time in ISO 8601 format.
+    */
+    'EndTime': Date;
+    /**
+    * Open, Closed or ClosedAllowPreOrders
+    */
+    'Type': BusinessHoursOverrideBase.TypeEnum;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeliveryType",
+            "baseName": "DeliveryType",
+            "type": "BusinessHoursOverrideBase.DeliveryTypeEnum"
+        },
+        {
+            "name": "StartTime",
+            "baseName": "StartTime",
+            "type": "Date"
+        },
+        {
+            "name": "EndTime",
+            "baseName": "EndTime",
+            "type": "Date"
+        },
+        {
+            "name": "Type",
+            "baseName": "Type",
+            "type": "BusinessHoursOverrideBase.TypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BusinessHoursOverrideBase.attributeTypeMap;
+    }
+}
+
+export namespace BusinessHoursOverrideBase {
+    export enum DeliveryTypeEnum {
+        Delivery = <any> 'Delivery',
+        Pickup = <any> 'Pickup'
+    }
+    export enum TypeEnum {
+        Open = <any> 'Open',
+        Closed = <any> 'Closed',
+        ClosedAllowPreOrders = <any> 'ClosedAllowPreOrders'
+    }
+}
+/**
 * Business hours period
 */
 export class BusinessHoursPeriod {
@@ -1542,6 +1673,10 @@ export class EventSearchResult {
     */
     'StoreDeletedEvent': Array<StoreDeletedEvent>;
     /**
+    * Store address updated events
+    */
+    'StoreAddressUpdatedEvent': Array<StoreAddressUpdatedEvent>;
+    /**
     * Store delivery zone created events
     */
     'DeliveryZoneCreatedEvent': Array<DeliveryZoneCreatedEvent>;
@@ -1721,6 +1856,11 @@ export class EventSearchResult {
             "name": "StoreDeletedEvent",
             "baseName": "StoreDeletedEvent",
             "type": "Array<StoreDeletedEvent>"
+        },
+        {
+            "name": "StoreAddressUpdatedEvent",
+            "baseName": "StoreAddressUpdatedEvent",
+            "type": "Array<StoreAddressUpdatedEvent>"
         },
         {
             "name": "DeliveryZoneCreatedEvent",
@@ -6358,6 +6498,29 @@ export namespace Reject {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultBusinessHoursPeriod {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<BusinessHoursPeriod>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<BusinessHoursPeriod>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultBusinessHoursPeriod.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultDeliveryZone {
     /**
     * Generic data object.
@@ -6812,6 +6975,56 @@ export class RestApiPaginationResultApp {
 /**
 * Rest api pagination result
 */
+export class RestApiPaginationResultBusinessHoursOverride {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<BusinessHoursOverride>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<BusinessHoursOverride>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultBusinessHoursOverride.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultHttpRequestAndResponseLog {
     /**
     * Current page index
@@ -7179,6 +7392,29 @@ export class RestApiResultAccountDetail {
 
     static getAttributeTypeMap() {
         return RestApiResultAccountDetail.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultBusinessHoursOverride {
+    /**
+    * Generic data object.
+    */
+    'Data': BusinessHoursOverride;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "BusinessHoursOverride"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultBusinessHoursOverride.attributeTypeMap;
     }
 }
 
@@ -8836,6 +9072,92 @@ export class StoreAddressBase {
 
     static getAttributeTypeMap() {
         return StoreAddressBase.attributeTypeMap;
+    }
+}
+
+/**
+* Store Address Updated Event
+*/
+export class StoreAddressUpdatedEvent {
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * User which updated this store address
+    */
+    'User': UserEventInfo;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Updated store address
+    */
+    'StoreAddress': StoreAddress;
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "StoreAddress",
+            "baseName": "StoreAddress",
+            "type": "StoreAddress"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreAddressUpdatedEvent.attributeTypeMap;
     }
 }
 
@@ -11832,6 +12154,10 @@ export class WebhookSubscriptionUpdatedEvent {
 
 
 let enumsMap: {[index: string]: any} = {
+        "BusinessHoursOverride.DeliveryTypeEnum": BusinessHoursOverride.DeliveryTypeEnum,
+        "BusinessHoursOverride.TypeEnum": BusinessHoursOverride.TypeEnum,
+        "BusinessHoursOverrideBase.DeliveryTypeEnum": BusinessHoursOverrideBase.DeliveryTypeEnum,
+        "BusinessHoursOverrideBase.TypeEnum": BusinessHoursOverrideBase.TypeEnum,
         "BusinessHoursPeriod.DayOfWeekEnum": BusinessHoursPeriod.DayOfWeekEnum,
         "BusinessHoursPeriodBase.DayOfWeekEnum": BusinessHoursPeriodBase.DayOfWeekEnum,
         "LightspeedSettings.PriceTypeEnum": LightspeedSettings.PriceTypeEnum,
@@ -11875,6 +12201,8 @@ let typeMap: {[index: string]: any} = {
     "AccountDetail": AccountDetail,
     "AnalyticsClientEvent": AnalyticsClientEvent,
     "App": App,
+    "BusinessHoursOverride": BusinessHoursOverride,
+    "BusinessHoursOverrideBase": BusinessHoursOverrideBase,
     "BusinessHoursPeriod": BusinessHoursPeriod,
     "BusinessHoursPeriodBase": BusinessHoursPeriodBase,
     "Card": Card,
@@ -11954,6 +12282,7 @@ let typeMap: {[index: string]: any} = {
     "Range": Range,
     "Refund": Refund,
     "Reject": Reject,
+    "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
     "RestApiArrayResultMenuItemOptionSet": RestApiArrayResultMenuItemOptionSet,
     "RestApiArrayResultMenuItemOptionSetItem": RestApiArrayResultMenuItemOptionSetItem,
@@ -11971,6 +12300,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiForbiddenResult": RestApiForbiddenResult,
     "RestApiIntegerResult": RestApiIntegerResult,
     "RestApiPaginationResultApp": RestApiPaginationResultApp,
+    "RestApiPaginationResultBusinessHoursOverride": RestApiPaginationResultBusinessHoursOverride,
     "RestApiPaginationResultHttpRequestAndResponseLog": RestApiPaginationResultHttpRequestAndResponseLog,
     "RestApiPaginationResultOAuthTokenModel": RestApiPaginationResultOAuthTokenModel,
     "RestApiPaginationResultOrder": RestApiPaginationResultOrder,
@@ -11979,6 +12309,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultVoucher": RestApiPaginationResultVoucher,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
+    "RestApiResultBusinessHoursOverride": RestApiResultBusinessHoursOverride,
     "RestApiResultBusinessHoursPeriod": RestApiResultBusinessHoursPeriod,
     "RestApiResultCard": RestApiResultCard,
     "RestApiResultCoordinates": RestApiResultCoordinates,
@@ -12018,6 +12349,7 @@ let typeMap: {[index: string]: any} = {
     "Store": Store,
     "StoreAddress": StoreAddress,
     "StoreAddressBase": StoreAddressBase,
+    "StoreAddressUpdatedEvent": StoreAddressUpdatedEvent,
     "StoreBase": StoreBase,
     "StoreCreateBase": StoreCreateBase,
     "StoreCreatedEvent": StoreCreatedEvent,
@@ -19178,6 +19510,68 @@ export class StoresApi {
     }
     /**
      * 
+     * @summary Create Business Hours Override for a store
+     * @param storeId Store identifier
+     * @param businessHoursOverride Business Hours Override
+     */
+    public createBusinessHoursOverrideByStoreId (storeId: number, businessHoursOverride: BusinessHoursOverrideBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursOverride;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/businesshoursoverrides'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling createBusinessHoursOverrideByStoreId.');
+        }
+
+        // verify required parameter 'businessHoursOverride' is not null or undefined
+        if (businessHoursOverride === null || businessHoursOverride === undefined) {
+            throw new Error('Required parameter businessHoursOverride was null or undefined when calling createBusinessHoursOverrideByStoreId.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(businessHoursOverride, "BusinessHoursOverrideBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursOverride;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultBusinessHoursOverride");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Create store with Store Group identifier
      * @param storeGroupId Store Group identifier
      * @param store Store
@@ -19232,6 +19626,200 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultStore");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Delete Business Hours Override for a store
+     * @param storeId 
+     * @param businessHoursOverrideId 
+     */
+    public deleteBusinessHoursOverride (storeId: number, businessHoursOverrideId: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/businesshoursoverrides/{businessHoursOverrideId}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'businessHoursOverrideId' + '}', encodeURIComponent(String(businessHoursOverrideId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling deleteBusinessHoursOverride.');
+        }
+
+        // verify required parameter 'businessHoursOverrideId' is not null or undefined
+        if (businessHoursOverrideId === null || businessHoursOverrideId === undefined) {
+            throw new Error('Required parameter businessHoursOverrideId was null or undefined when calling deleteBusinessHoursOverride.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestApiDefaultResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get Bussiness hours
+     * @param storeId Store identifier
+     * @param deliveryType Deliery type
+     */
+    public getBusinessHours (storeId: number, deliveryType: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultBusinessHoursPeriod;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/availability/{deliveryType}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getBusinessHours.');
+        }
+
+        // verify required parameter 'deliveryType' is not null or undefined
+        if (deliveryType === null || deliveryType === undefined) {
+            throw new Error('Required parameter deliveryType was null or undefined when calling getBusinessHours.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultBusinessHoursPeriod;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultBusinessHoursPeriod");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get business hours overrides by store identifier
+     * @param storeId Store identifier
+     * @param after Return results that ended after this datetime. Default value is the current datetime.
+     * @param page Requested page index
+     * @param limit Requested page limit
+     */
+    public getBusinessHoursOverrideByStoreId (storeId: number, after?: Date, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultBusinessHoursOverride;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/businesshoursoverrides'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getBusinessHoursOverrideByStoreId.');
+        }
+
+        if (after !== undefined) {
+            localVarQueryParameters['after'] = ObjectSerializer.serialize(after, "Date");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultBusinessHoursOverride;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultBusinessHoursOverride");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -19482,6 +20070,75 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultStore");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Set Bussiness hours
+     * @param storeId Store identifier
+     * @param deliveryType Deliery type
+     * @param businessHoursPeriod Business Hours Period
+     */
+    public setBusinessHours (storeId: number, deliveryType: string, businessHoursPeriod: BusinessHoursPeriodBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursPeriod;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/availability/{deliveryType}/times'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling setBusinessHours.');
+        }
+
+        // verify required parameter 'deliveryType' is not null or undefined
+        if (deliveryType === null || deliveryType === undefined) {
+            throw new Error('Required parameter deliveryType was null or undefined when calling setBusinessHours.');
+        }
+
+        // verify required parameter 'businessHoursPeriod' is not null or undefined
+        if (businessHoursPeriod === null || businessHoursPeriod === undefined) {
+            throw new Error('Required parameter businessHoursPeriod was null or undefined when calling setBusinessHours.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(businessHoursPeriod, "BusinessHoursPeriodBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursPeriod;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultBusinessHoursPeriod");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
