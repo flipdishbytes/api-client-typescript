@@ -1693,6 +1693,14 @@ export class EventSearchResult {
     */
     'StoreOpeningHoursUpdatedEvent': Array<StoreOpeningHoursUpdatedEvent>;
     /**
+    * Store business hours override created events
+    */
+    'StoreBusinessHoursOverrideCreatedEvent': Array<StoreBusinessHoursOverrideCreatedEvent>;
+    /**
+    * Store business hours override deleted events
+    */
+    'StoreBusinessHoursOverrideDeletedEvent': Array<StoreBusinessHoursOverrideDeletedEvent>;
+    /**
     * Store updated events
     */
     'StoreUpdatedEvent': Array<StoreUpdatedEvent>;
@@ -1881,6 +1889,16 @@ export class EventSearchResult {
             "name": "StoreOpeningHoursUpdatedEvent",
             "baseName": "StoreOpeningHoursUpdatedEvent",
             "type": "Array<StoreOpeningHoursUpdatedEvent>"
+        },
+        {
+            "name": "StoreBusinessHoursOverrideCreatedEvent",
+            "baseName": "StoreBusinessHoursOverrideCreatedEvent",
+            "type": "Array<StoreBusinessHoursOverrideCreatedEvent>"
+        },
+        {
+            "name": "StoreBusinessHoursOverrideDeletedEvent",
+            "baseName": "StoreBusinessHoursOverrideDeletedEvent",
+            "type": "Array<StoreBusinessHoursOverrideDeletedEvent>"
         },
         {
             "name": "StoreUpdatedEvent",
@@ -6751,6 +6769,29 @@ export class RestApiArrayResultRestApiDefaultResponse {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultTeammate {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<Teammate>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<Teammate>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultTeammate.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultWebhookSubscription {
     /**
     * Generic data object.
@@ -7967,6 +8008,29 @@ export class RestApiResultSubscriptionPlansResponse {
 
     static getAttributeTypeMap() {
         return RestApiResultSubscriptionPlansResponse.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultTeammate {
+    /**
+    * Generic data object.
+    */
+    'Data': Teammate;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Teammate"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultTeammate.attributeTypeMap;
     }
 }
 
@@ -9388,6 +9452,178 @@ export class StoreBase {
 
     static getAttributeTypeMap() {
         return StoreBase.attributeTypeMap;
+    }
+}
+
+/**
+* Store Business Hours Override Created
+*/
+export class StoreBusinessHoursOverrideCreatedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * User which deleted delivery zone for this store
+    */
+    'User': UserEventInfo;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Business Hours Override
+    */
+    'BusinessHoursOverride': BusinessHoursOverride;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "BusinessHoursOverride",
+            "baseName": "BusinessHoursOverride",
+            "type": "BusinessHoursOverride"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreBusinessHoursOverrideCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Store Business Hours Override Deleted
+*/
+export class StoreBusinessHoursOverrideDeletedEvent {
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * Store Id
+    */
+    'StoreId': number;
+    /**
+    * User which deleted delivery zone for this store
+    */
+    'User': UserEventInfo;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Business Hours Override
+    */
+    'BusinessHoursOverride': BusinessHoursOverride;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "BusinessHoursOverride",
+            "baseName": "BusinessHoursOverride",
+            "type": "BusinessHoursOverride"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreBusinessHoursOverrideDeletedEvent.attributeTypeMap;
     }
 }
 
@@ -10987,6 +11223,144 @@ export class SubscriptionWithToken {
 }
 
 /**
+* 
+*/
+export class Teammate {
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Email address
+    */
+    'Email': string;
+    /**
+    * Last activity
+    */
+    'LastAcitivity': Date;
+    /**
+    * Access level is for this App
+    */
+    'AppId': string;
+    /**
+    * App access level
+    */
+    'AppAccessLevel': Teammate.AppAccessLevelEnum;
+    /**
+    * The user has access to all stores for the app (including new stores that added later)
+    */
+    'HasAccessToAllStores': boolean;
+    /**
+    * Store IDs the user has access to (if HasAccessToAllStores is false)
+    */
+    'StoreIds': Array<number>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Email",
+            "baseName": "Email",
+            "type": "string"
+        },
+        {
+            "name": "LastAcitivity",
+            "baseName": "LastAcitivity",
+            "type": "Date"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "AppAccessLevel",
+            "baseName": "AppAccessLevel",
+            "type": "Teammate.AppAccessLevelEnum"
+        },
+        {
+            "name": "HasAccessToAllStores",
+            "baseName": "HasAccessToAllStores",
+            "type": "boolean"
+        },
+        {
+            "name": "StoreIds",
+            "baseName": "StoreIds",
+            "type": "Array<number>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Teammate.attributeTypeMap;
+    }
+}
+
+export namespace Teammate {
+    export enum AppAccessLevelEnum {
+        None = <any> 'None',
+        Owner = <any> 'Owner',
+        ManagedOwner = <any> 'ManagedOwner',
+        StoreManager = <any> 'StoreManager',
+        StoreStaff = <any> 'StoreStaff',
+        FinanceManger = <any> 'FinanceManger'
+    }
+}
+/**
+* 
+*/
+export class TeammateBase {
+    /**
+    * App access level
+    */
+    'AppAccessLevel': TeammateBase.AppAccessLevelEnum;
+    /**
+    * The user has access to all stores for the app (including new stores that added later)
+    */
+    'HasAccessToAllStores': boolean;
+    /**
+    * Store IDs the user has access to (if HasAccessToAllStores is false)
+    */
+    'StoreIds': Array<number>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AppAccessLevel",
+            "baseName": "AppAccessLevel",
+            "type": "TeammateBase.AppAccessLevelEnum"
+        },
+        {
+            "name": "HasAccessToAllStores",
+            "baseName": "HasAccessToAllStores",
+            "type": "boolean"
+        },
+        {
+            "name": "StoreIds",
+            "baseName": "StoreIds",
+            "type": "Array<number>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return TeammateBase.attributeTypeMap;
+    }
+}
+
+export namespace TeammateBase {
+    export enum AppAccessLevelEnum {
+        None = <any> 'None',
+        Owner = <any> 'Owner',
+        ManagedOwner = <any> 'ManagedOwner',
+        StoreManager = <any> 'StoreManager',
+        StoreStaff = <any> 'StoreStaff',
+        FinanceManger = <any> 'FinanceManger'
+    }
+}
+/**
 * Update account model
 */
 export class UpdateAccountModel {
@@ -12189,6 +12563,8 @@ let enumsMap: {[index: string]: any} = {
         "StuartSettings.PackageTypeEnum": StuartSettings.PackageTypeEnum,
         "Subscription.StatusEnum": Subscription.StatusEnum,
         "SubscriptionPlan.IntervalEnum": SubscriptionPlan.IntervalEnum,
+        "Teammate.AppAccessLevelEnum": Teammate.AppAccessLevelEnum,
+        "TeammateBase.AppAccessLevelEnum": TeammateBase.AppAccessLevelEnum,
         "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
         "Voucher.VoucherSubTypeEnum": Voucher.VoucherSubTypeEnum,
         "Voucher.VoucherPayerEnum": Voucher.VoucherPayerEnum,
@@ -12293,6 +12669,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultOauthClientRedirectUri": RestApiArrayResultOauthClientRedirectUri,
     "RestApiArrayResultProcessingFeeConfig": RestApiArrayResultProcessingFeeConfig,
     "RestApiArrayResultRestApiDefaultResponse": RestApiArrayResultRestApiDefaultResponse,
+    "RestApiArrayResultTeammate": RestApiArrayResultTeammate,
     "RestApiArrayResultWebhookSubscription": RestApiArrayResultWebhookSubscription,
     "RestApiDefaultResponse": RestApiDefaultResponse,
     "RestApiErrorResult": RestApiErrorResult,
@@ -12334,6 +12711,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultStuartSettings": RestApiResultStuartSettings,
     "RestApiResultSubscription": RestApiResultSubscription,
     "RestApiResultSubscriptionPlansResponse": RestApiResultSubscriptionPlansResponse,
+    "RestApiResultTeammate": RestApiResultTeammate,
     "RestApiResultVoucher": RestApiResultVoucher,
     "RestApiStringArrayResult": RestApiStringArrayResult,
     "RestApiStringResult": RestApiStringResult,
@@ -12351,6 +12729,8 @@ let typeMap: {[index: string]: any} = {
     "StoreAddressBase": StoreAddressBase,
     "StoreAddressUpdatedEvent": StoreAddressUpdatedEvent,
     "StoreBase": StoreBase,
+    "StoreBusinessHoursOverrideCreatedEvent": StoreBusinessHoursOverrideCreatedEvent,
+    "StoreBusinessHoursOverrideDeletedEvent": StoreBusinessHoursOverrideDeletedEvent,
     "StoreCreateBase": StoreCreateBase,
     "StoreCreatedEvent": StoreCreatedEvent,
     "StoreDeletedEvent": StoreDeletedEvent,
@@ -12369,6 +12749,8 @@ let typeMap: {[index: string]: any} = {
     "SubscriptionPlan": SubscriptionPlan,
     "SubscriptionPlansResponse": SubscriptionPlansResponse,
     "SubscriptionWithToken": SubscriptionWithToken,
+    "Teammate": Teammate,
+    "TeammateBase": TeammateBase,
     "UpdateAccountModel": UpdateAccountModel,
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
@@ -21186,6 +21568,365 @@ export class SubscriptionsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum TeammatesApiApiKeys {
+}
+
+export class TeammatesApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: TeammatesApiApiKeys, value: string) {
+        (this.authentications as any)[TeammatesApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Create teammate and send an invite.
+     * @param appId 
+     * @param teammate 
+     */
+    public createTeammates (appId: string, teammate: TeammateBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createTeammates.');
+        }
+
+        // verify required parameter 'teammate' is not null or undefined
+        if (teammate === null || teammate === undefined) {
+            throw new Error('Required parameter teammate was null or undefined when calling createTeammates.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(teammate, "TeammateBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultTeammate");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get a teammates by email address
+     * @param appId 
+     * @param email 
+     */
+    public getTeammateByAppIdAndEmail (appId: string, email: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{email}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'email' + '}', encodeURIComponent(String(email)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getTeammateByAppIdAndEmail.');
+        }
+
+        // verify required parameter 'email' is not null or undefined
+        if (email === null || email === undefined) {
+            throw new Error('Required parameter email was null or undefined when calling getTeammateByAppIdAndEmail.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultTeammate");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Delete teammate
+     * @param appId 
+     * @param email 
+     */
+    public getTeammates (appId: string, email: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{email}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'email' + '}', encodeURIComponent(String(email)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getTeammates.');
+        }
+
+        // verify required parameter 'email' is not null or undefined
+        if (email === null || email === undefined) {
+            throw new Error('Required parameter email was null or undefined when calling getTeammates.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get all teammates
+     * @param appId 
+     */
+    public getTeammatesByAppId (appId: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultTeammate;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getTeammatesByAppId.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultTeammate;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultTeammate");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update teammates (this method does not support Deltas!)
+     * @param appId 
+     * @param email 
+     * @param teammate 
+     */
+    public updateTeammates (appId: string, email: string, teammate: TeammateBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{email}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'email' + '}', encodeURIComponent(String(email)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateTeammates.');
+        }
+
+        // verify required parameter 'email' is not null or undefined
+        if (email === null || email === undefined) {
+            throw new Error('Required parameter email was null or undefined when calling updateTeammates.');
+        }
+
+        // verify required parameter 'teammate' is not null or undefined
+        if (teammate === null || teammate === undefined) {
+            throw new Error('Required parameter teammate was null or undefined when calling updateTeammates.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(teammate, "TeammateBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultTeammate");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
