@@ -917,6 +917,66 @@ export class CreateAccountModel {
 }
 
 /**
+* 
+*/
+export class CreateTeammate {
+    /**
+    * Email address
+    */
+    'Email': string;
+    /**
+    * App access level
+    */
+    'AppAccessLevel': CreateTeammate.AppAccessLevelEnum;
+    /**
+    * The user has access to all stores for the app (including new stores that added later)
+    */
+    'HasAccessToAllStores': boolean;
+    /**
+    * Store IDs the user has access to (if HasAccessToAllStores is false)
+    */
+    'StoreIds': Array<number>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Email",
+            "baseName": "Email",
+            "type": "string"
+        },
+        {
+            "name": "AppAccessLevel",
+            "baseName": "AppAccessLevel",
+            "type": "CreateTeammate.AppAccessLevelEnum"
+        },
+        {
+            "name": "HasAccessToAllStores",
+            "baseName": "HasAccessToAllStores",
+            "type": "boolean"
+        },
+        {
+            "name": "StoreIds",
+            "baseName": "StoreIds",
+            "type": "Array<number>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateTeammate.attributeTypeMap;
+    }
+}
+
+export namespace CreateTeammate {
+    export enum AppAccessLevelEnum {
+        None = <any> 'None',
+        Owner = <any> 'Owner',
+        ManagedOwner = <any> 'ManagedOwner',
+        StoreManager = <any> 'StoreManager',
+        StoreStaff = <any> 'StoreStaff',
+        FinanceManger = <any> 'FinanceManger'
+    }
+}
+/**
 * Customer consent updated
 */
 export class CustomerConsentUpdatedEvent {
@@ -11231,10 +11291,6 @@ export class Teammate {
     */
     'Name': string;
     /**
-    * Email address
-    */
-    'Email': string;
-    /**
     * Last activity
     */
     'LastAcitivity': Date;
@@ -11242,6 +11298,10 @@ export class Teammate {
     * Access level is for this App
     */
     'AppId': string;
+    /**
+    * Email address
+    */
+    'Email': string;
     /**
     * App access level
     */
@@ -11264,11 +11324,6 @@ export class Teammate {
             "type": "string"
         },
         {
-            "name": "Email",
-            "baseName": "Email",
-            "type": "string"
-        },
-        {
             "name": "LastAcitivity",
             "baseName": "LastAcitivity",
             "type": "Date"
@@ -11276,6 +11331,11 @@ export class Teammate {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "Email",
+            "baseName": "Email",
             "type": "string"
         },
         {
@@ -12534,6 +12594,7 @@ let enumsMap: {[index: string]: any} = {
         "BusinessHoursOverrideBase.TypeEnum": BusinessHoursOverrideBase.TypeEnum,
         "BusinessHoursPeriod.DayOfWeekEnum": BusinessHoursPeriod.DayOfWeekEnum,
         "BusinessHoursPeriodBase.DayOfWeekEnum": BusinessHoursPeriodBase.DayOfWeekEnum,
+        "CreateTeammate.AppAccessLevelEnum": CreateTeammate.AppAccessLevelEnum,
         "LightspeedSettings.PriceTypeEnum": LightspeedSettings.PriceTypeEnum,
         "Menu.MenuSectionBehaviourEnum": Menu.MenuSectionBehaviourEnum,
         "MenuBase.MenuSectionBehaviourEnum": MenuBase.MenuSectionBehaviourEnum,
@@ -12587,6 +12648,7 @@ let typeMap: {[index: string]: any} = {
     "ChangePasswordModel": ChangePasswordModel,
     "Coordinates": Coordinates,
     "CreateAccountModel": CreateAccountModel,
+    "CreateTeammate": CreateTeammate,
     "CustomerConsentUpdatedEvent": CustomerConsentUpdatedEvent,
     "CustomerCreatedEvent": CustomerCreatedEvent,
     "CustomerSummary": CustomerSummary,
@@ -21633,7 +21695,7 @@ export class TeammatesApi {
      * @param appId 
      * @param teammate 
      */
-    public createTeammates (appId: string, teammate: TeammateBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
+    public createTeammate (appId: string, teammate: CreateTeammate) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -21642,12 +21704,12 @@ export class TeammatesApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling createTeammates.');
+            throw new Error('Required parameter appId was null or undefined when calling createTeammate.');
         }
 
         // verify required parameter 'teammate' is not null or undefined
         if (teammate === null || teammate === undefined) {
-            throw new Error('Required parameter teammate was null or undefined when calling createTeammates.');
+            throw new Error('Required parameter teammate was null or undefined when calling createTeammate.');
         }
 
 
@@ -21660,7 +21722,7 @@ export class TeammatesApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(teammate, "TeammateBase")
+            body: ObjectSerializer.serialize(teammate, "CreateTeammate")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -21680,6 +21742,67 @@ export class TeammatesApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultTeammate");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Delete teammate
+     * @param appId 
+     * @param email 
+     */
+    public deleteTeammate (appId: string, email: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{email}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'email' + '}', encodeURIComponent(String(email)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling deleteTeammate.');
+        }
+
+        // verify required parameter 'email' is not null or undefined
+        if (email === null || email === undefined) {
+            throw new Error('Required parameter email was null or undefined when calling deleteTeammate.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -21753,67 +21876,6 @@ export class TeammatesApi {
     }
     /**
      * 
-     * @summary Delete teammate
-     * @param appId 
-     * @param email 
-     */
-    public getTeammates (appId: string, email: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{email}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'email' + '}', encodeURIComponent(String(email)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getTeammates.');
-        }
-
-        // verify required parameter 'email' is not null or undefined
-        if (email === null || email === undefined) {
-            throw new Error('Required parameter email was null or undefined when calling getTeammates.');
-        }
-
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @summary Get all teammates
      * @param appId 
      */
@@ -21874,7 +21936,7 @@ export class TeammatesApi {
      * @param email 
      * @param teammate 
      */
-    public updateTeammates (appId: string, email: string, teammate: TeammateBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
+    public updateTeammate (appId: string, email: string, teammate: TeammateBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{email}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'email' + '}', encodeURIComponent(String(email)));
@@ -21884,17 +21946,17 @@ export class TeammatesApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling updateTeammates.');
+            throw new Error('Required parameter appId was null or undefined when calling updateTeammate.');
         }
 
         // verify required parameter 'email' is not null or undefined
         if (email === null || email === undefined) {
-            throw new Error('Required parameter email was null or undefined when calling updateTeammates.');
+            throw new Error('Required parameter email was null or undefined when calling updateTeammate.');
         }
 
         // verify required parameter 'teammate' is not null or undefined
         if (teammate === null || teammate === undefined) {
-            throw new Error('Required parameter teammate was null or undefined when calling updateTeammates.');
+            throw new Error('Required parameter teammate was null or undefined when calling updateTeammate.');
         }
 
 
