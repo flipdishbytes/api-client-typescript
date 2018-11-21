@@ -17223,6 +17223,82 @@ export class MenuSectionsApi {
      * 
      * @summary Create menu section
      * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param dayOfWeek 
+     * @param businessHoursPeriod 
+     */
+    public createMenuAvailabilityForDay (menuId: number, menuSectionId: number, dayOfWeek: string, businessHoursPeriod: BusinessHoursPeriodBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/availability/times/{dayOfWeek}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'dayOfWeek' + '}', encodeURIComponent(String(dayOfWeek)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling createMenuAvailabilityForDay.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling createMenuAvailabilityForDay.');
+        }
+
+        // verify required parameter 'dayOfWeek' is not null or undefined
+        if (dayOfWeek === null || dayOfWeek === undefined) {
+            throw new Error('Required parameter dayOfWeek was null or undefined when calling createMenuAvailabilityForDay.');
+        }
+
+        // verify required parameter 'businessHoursPeriod' is not null or undefined
+        if (businessHoursPeriod === null || businessHoursPeriod === undefined) {
+            throw new Error('Required parameter businessHoursPeriod was null or undefined when calling createMenuAvailabilityForDay.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(businessHoursPeriod, "BusinessHoursPeriodBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Create menu section
+     * @param menuId Menu identifier
      * @param menuSection Menu section
      */
     public createMenuSection (menuId: number, menuSection: MenuSectionBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -17322,82 +17398,6 @@ export class MenuSectionsApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(menuSectionAvailability, "MenuSectionAvailabilityBase")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "any");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Create menu section
-     * @param menuId Menu identifier
-     * @param menuSectionId Menu section identifier
-     * @param dayOfWeek 
-     * @param businessHoursPeriod 
-     */
-    public createMenuSection_2 (menuId: number, menuSectionId: number, dayOfWeek: string, businessHoursPeriod: BusinessHoursPeriodBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/availability/times/{dayOfWeek}'
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
-            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
-            .replace('{' + 'dayOfWeek' + '}', encodeURIComponent(String(dayOfWeek)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling createMenuSection_2.');
-        }
-
-        // verify required parameter 'menuSectionId' is not null or undefined
-        if (menuSectionId === null || menuSectionId === undefined) {
-            throw new Error('Required parameter menuSectionId was null or undefined when calling createMenuSection_2.');
-        }
-
-        // verify required parameter 'dayOfWeek' is not null or undefined
-        if (dayOfWeek === null || dayOfWeek === undefined) {
-            throw new Error('Required parameter dayOfWeek was null or undefined when calling createMenuSection_2.');
-        }
-
-        // verify required parameter 'businessHoursPeriod' is not null or undefined
-        if (businessHoursPeriod === null || businessHoursPeriod === undefined) {
-            throw new Error('Required parameter businessHoursPeriod was null or undefined when calling createMenuSection_2.');
-        }
-
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(businessHoursPeriod, "BusinessHoursPeriodBase")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -17863,7 +17863,7 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary Get a menu item metadata by key
+     * @summary Get menu item metadata by key
      * @param menuId Menu identifier
      * @param storeId Store identifier
      * @param menuItemId Menu item identifier
@@ -17938,7 +17938,7 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary Update a menu items metadata
+     * @summary Delete menu item metadata
      * @param menuId Menu identifier
      * @param storeId Store identifier
      * @param menuItemId Menu item identifier
@@ -18122,7 +18122,7 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary Get a menu items metadata
+     * @summary Get menu item metadata
      * @param menuId Menu identifier
      * @param storeId Store identifier
      * @param menuItemId Menu item identifier
@@ -18191,7 +18191,7 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary Get a menu item option set item metadata by key
+     * @summary Get menu item option set item metadata by key
      * @param menuId Menu identifier
      * @param storeId Store identifier
      * @param optionSetItemId Menu item option set item identifier
@@ -18260,7 +18260,7 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary Update a menu items metadata
+     * @summary Update menu item metadata
      * @param menuId Menu identifier
      * @param storeId Store identifier
      * @param menuItemId Menu item identifier
@@ -18335,7 +18335,7 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary Update a menu item option set items metadata
+     * @summary Update menu item option set item metadata
      * @param menuId Menu identifier
      * @param storeId Store identifier
      * @param optionSetItemId Menu item option set item identifier
