@@ -1773,6 +1773,54 @@ export class EventSearchResult {
     */
     'MenuUpdatedEvent': Array<MenuUpdatedEvent>;
     /**
+    * Menu section created events
+    */
+    'MenuSectionCreatedEvent': Array<MenuSectionCreatedEvent>;
+    /**
+    * Menu section updated events
+    */
+    'MenuSectionUpdatedEvent': Array<MenuSectionUpdatedEvent>;
+    /**
+    * Menu section deleted events
+    */
+    'MenuSectionDeletedEvent': Array<MenuSectionDeletedEvent>;
+    /**
+    * Menu section item created events
+    */
+    'MenuSectionItemCreatedEvent': Array<MenuSectionItemCreatedEvent>;
+    /**
+    * Menu section item updated events
+    */
+    'MenuSectionItemUpdatedEvent': Array<MenuSectionItemUpdatedEvent>;
+    /**
+    * Menu section item deleted events
+    */
+    'MenuSectionItemDeletedEvent': Array<MenuSectionItemDeletedEvent>;
+    /**
+    * Menu item option set created events
+    */
+    'MenuItemOptionSetCreatedEvent': Array<MenuItemOptionSetCreatedEvent>;
+    /**
+    * Menu item option set  updated events
+    */
+    'MenuItemOptionSetUpdatedEvent': Array<MenuItemOptionSetUpdatedEvent>;
+    /**
+    * Menu item option set deleted events
+    */
+    'MenuItemOptionSetDeletedEvent': Array<MenuItemOptionSetDeletedEvent>;
+    /**
+    * Menu item option set item created events
+    */
+    'MenuItemOptionSetItemCreatedEvent': Array<MenuItemOptionSetItemCreatedEvent>;
+    /**
+    * Menu item option set item updated events
+    */
+    'MenuItemOptionSetItemUpdatedEvent': Array<MenuItemOptionSetItemUpdatedEvent>;
+    /**
+    * Menu item option set item deleted events
+    */
+    'MenuItemOptionSetItemDeletedEvent': Array<MenuItemOptionSetItemDeletedEvent>;
+    /**
     * Store group created events
     */
     'StoreGroupCreatedEvent': Array<StoreGroupCreatedEvent>;
@@ -1974,6 +2022,66 @@ export class EventSearchResult {
             "name": "MenuUpdatedEvent",
             "baseName": "MenuUpdatedEvent",
             "type": "Array<MenuUpdatedEvent>"
+        },
+        {
+            "name": "MenuSectionCreatedEvent",
+            "baseName": "MenuSectionCreatedEvent",
+            "type": "Array<MenuSectionCreatedEvent>"
+        },
+        {
+            "name": "MenuSectionUpdatedEvent",
+            "baseName": "MenuSectionUpdatedEvent",
+            "type": "Array<MenuSectionUpdatedEvent>"
+        },
+        {
+            "name": "MenuSectionDeletedEvent",
+            "baseName": "MenuSectionDeletedEvent",
+            "type": "Array<MenuSectionDeletedEvent>"
+        },
+        {
+            "name": "MenuSectionItemCreatedEvent",
+            "baseName": "MenuSectionItemCreatedEvent",
+            "type": "Array<MenuSectionItemCreatedEvent>"
+        },
+        {
+            "name": "MenuSectionItemUpdatedEvent",
+            "baseName": "MenuSectionItemUpdatedEvent",
+            "type": "Array<MenuSectionItemUpdatedEvent>"
+        },
+        {
+            "name": "MenuSectionItemDeletedEvent",
+            "baseName": "MenuSectionItemDeletedEvent",
+            "type": "Array<MenuSectionItemDeletedEvent>"
+        },
+        {
+            "name": "MenuItemOptionSetCreatedEvent",
+            "baseName": "MenuItemOptionSetCreatedEvent",
+            "type": "Array<MenuItemOptionSetCreatedEvent>"
+        },
+        {
+            "name": "MenuItemOptionSetUpdatedEvent",
+            "baseName": "MenuItemOptionSetUpdatedEvent",
+            "type": "Array<MenuItemOptionSetUpdatedEvent>"
+        },
+        {
+            "name": "MenuItemOptionSetDeletedEvent",
+            "baseName": "MenuItemOptionSetDeletedEvent",
+            "type": "Array<MenuItemOptionSetDeletedEvent>"
+        },
+        {
+            "name": "MenuItemOptionSetItemCreatedEvent",
+            "baseName": "MenuItemOptionSetItemCreatedEvent",
+            "type": "Array<MenuItemOptionSetItemCreatedEvent>"
+        },
+        {
+            "name": "MenuItemOptionSetItemUpdatedEvent",
+            "baseName": "MenuItemOptionSetItemUpdatedEvent",
+            "type": "Array<MenuItemOptionSetItemUpdatedEvent>"
+        },
+        {
+            "name": "MenuItemOptionSetItemDeletedEvent",
+            "baseName": "MenuItemOptionSetItemDeletedEvent",
+            "type": "Array<MenuItemOptionSetItemDeletedEvent>"
         },
         {
             "name": "StoreGroupCreatedEvent",
@@ -3896,6 +4004,178 @@ export namespace MenuItemOptionSetBase {
     }
 }
 /**
+* 
+*/
+export class MenuItemOptionSetCreatedEvent {
+    /**
+    * Menu identifier
+    */
+    'MenuId': number;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * User who has created the menu
+    */
+    'User': UserEventInfo;
+    /**
+    * Created menu item optionset
+    */
+    'MenuItemOptionSet': MenuItemOptionSet;
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "MenuItemOptionSet",
+            "baseName": "MenuItemOptionSet",
+            "type": "MenuItemOptionSet"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuItemOptionSetCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class MenuItemOptionSetDeletedEvent {
+    /**
+    * Menu identifier
+    */
+    'MenuId': number;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * User who has created the menu
+    */
+    'User': UserEventInfo;
+    /**
+    * Deleted menu item optionset
+    */
+    'MenuItemOptionSet': MenuItemOptionSet;
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "MenuItemOptionSet",
+            "baseName": "MenuItemOptionSet",
+            "type": "MenuItemOptionSet"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuItemOptionSetDeletedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Menu item option set item
 */
 export class MenuItemOptionSetItem {
@@ -4056,6 +4336,350 @@ export namespace MenuItemOptionSetItemBase {
         HiddenImage = <any> 'HiddenImage'
     }
 }
+/**
+* 
+*/
+export class MenuItemOptionSetItemCreatedEvent {
+    /**
+    * Menu identifier
+    */
+    'MenuId': number;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * User who has created the menu
+    */
+    'User': UserEventInfo;
+    /**
+    * Created menu item optionset item
+    */
+    'MenuItemOptionSetItem': MenuItemOptionSetItem;
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "MenuItemOptionSetItem",
+            "baseName": "MenuItemOptionSetItem",
+            "type": "MenuItemOptionSetItem"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuItemOptionSetItemCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class MenuItemOptionSetItemDeletedEvent {
+    /**
+    * Menu identifier
+    */
+    'MenuId': number;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * User who has created the menu
+    */
+    'User': UserEventInfo;
+    /**
+    * Deleted menu item optionset item
+    */
+    'MenuItemOptionSetItem': MenuItemOptionSetItem;
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "MenuItemOptionSetItem",
+            "baseName": "MenuItemOptionSetItem",
+            "type": "MenuItemOptionSetItem"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuItemOptionSetItemDeletedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class MenuItemOptionSetItemUpdatedEvent {
+    /**
+    * Menu identifier
+    */
+    'MenuId': number;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * User who has created the menu
+    */
+    'User': UserEventInfo;
+    /**
+    * Updated menu item optionset item
+    */
+    'MenuItemOptionSetItem': MenuItemOptionSetItem;
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "MenuItemOptionSetItem",
+            "baseName": "MenuItemOptionSetItem",
+            "type": "MenuItemOptionSetItem"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuItemOptionSetItemUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class MenuItemOptionSetUpdatedEvent {
+    /**
+    * Menu identifier
+    */
+    'MenuId': number;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * User who has created the menu
+    */
+    'User': UserEventInfo;
+    /**
+    * Updated menu item optionset
+    */
+    'MenuItemOptionSet': MenuItemOptionSet;
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "MenuItemOptionSet",
+            "baseName": "MenuItemOptionSet",
+            "type": "MenuItemOptionSet"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuItemOptionSetUpdatedEvent.attributeTypeMap;
+    }
+}
+
 /**
 * Menu section
 */
@@ -4287,6 +4911,178 @@ export class MenuSectionBase {
 
     static getAttributeTypeMap() {
         return MenuSectionBase.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class MenuSectionCreatedEvent {
+    /**
+    * Menu identifier
+    */
+    'MenuId': number;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * User who has created the menu
+    */
+    'User': UserEventInfo;
+    /**
+    * Created menu section
+    */
+    'MenuSection': MenuSection;
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "MenuSection",
+            "baseName": "MenuSection",
+            "type": "MenuSection"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuSectionCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class MenuSectionDeletedEvent {
+    /**
+    * Menu identifier
+    */
+    'MenuId': number;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * User who has created the menu
+    */
+    'User': UserEventInfo;
+    /**
+    * Deleted menu section
+    */
+    'MenuSection': MenuSection;
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "MenuSection",
+            "baseName": "MenuSection",
+            "type": "MenuSection"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuSectionDeletedEvent.attributeTypeMap;
     }
 }
 
@@ -4562,6 +5358,350 @@ export namespace MenuSectionItemBase {
         HiddenImage = <any> 'HiddenImage'
     }
 }
+/**
+* 
+*/
+export class MenuSectionItemCreatedEvent {
+    /**
+    * Menu identifier
+    */
+    'MenuId': number;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * User who has created the menu
+    */
+    'User': UserEventInfo;
+    /**
+    * Created menu section item
+    */
+    'MenuSectionItem': MenuSectionItem;
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "MenuSectionItem",
+            "baseName": "MenuSectionItem",
+            "type": "MenuSectionItem"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuSectionItemCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class MenuSectionItemDeletedEvent {
+    /**
+    * Menu identifier
+    */
+    'MenuId': number;
+    /**
+    * Event description
+    */
+    'Description': string;
+    /**
+    * Deleted by user
+    */
+    'User': UserEventInfo;
+    /**
+    * Deleted menu section item
+    */
+    'MenuSectionItem': MenuSectionItem;
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "MenuSectionItem",
+            "baseName": "MenuSectionItem",
+            "type": "MenuSectionItem"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuSectionItemDeletedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class MenuSectionItemUpdatedEvent {
+    /**
+    * Menu identifier
+    */
+    'MenuId': number;
+    /**
+    * Event description
+    */
+    'Description': string;
+    /**
+    * Updated by user
+    */
+    'User': UserEventInfo;
+    /**
+    * Updated menu section item
+    */
+    'MenuSectionItem': MenuSectionItem;
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "MenuSectionItem",
+            "baseName": "MenuSectionItem",
+            "type": "MenuSectionItem"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuSectionItemUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class MenuSectionUpdatedEvent {
+    /**
+    * Menu identifier
+    */
+    'MenuId': number;
+    /**
+    * Event description
+    */
+    'Description': string;
+    /**
+    * Updated by user
+    */
+    'User': UserEventInfo;
+    /**
+    * Updated menu section
+    */
+    'MenuSection': MenuSection;
+    /**
+    * The event name
+    */
+    'EventName': string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId': string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime': Date;
+    /**
+    * Position
+    */
+    'Position': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "MenuSection",
+            "baseName": "MenuSection",
+            "type": "MenuSection"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuSectionUpdatedEvent.attributeTypeMap;
+    }
+}
+
 /**
 * Menu updated event
 */
@@ -12684,14 +13824,26 @@ let typeMap: {[index: string]: any} = {
     "MenuCreatedEvent": MenuCreatedEvent,
     "MenuItemOptionSet": MenuItemOptionSet,
     "MenuItemOptionSetBase": MenuItemOptionSetBase,
+    "MenuItemOptionSetCreatedEvent": MenuItemOptionSetCreatedEvent,
+    "MenuItemOptionSetDeletedEvent": MenuItemOptionSetDeletedEvent,
     "MenuItemOptionSetItem": MenuItemOptionSetItem,
     "MenuItemOptionSetItemBase": MenuItemOptionSetItemBase,
+    "MenuItemOptionSetItemCreatedEvent": MenuItemOptionSetItemCreatedEvent,
+    "MenuItemOptionSetItemDeletedEvent": MenuItemOptionSetItemDeletedEvent,
+    "MenuItemOptionSetItemUpdatedEvent": MenuItemOptionSetItemUpdatedEvent,
+    "MenuItemOptionSetUpdatedEvent": MenuItemOptionSetUpdatedEvent,
     "MenuSection": MenuSection,
     "MenuSectionAvailability": MenuSectionAvailability,
     "MenuSectionAvailabilityBase": MenuSectionAvailabilityBase,
     "MenuSectionBase": MenuSectionBase,
+    "MenuSectionCreatedEvent": MenuSectionCreatedEvent,
+    "MenuSectionDeletedEvent": MenuSectionDeletedEvent,
     "MenuSectionItem": MenuSectionItem,
     "MenuSectionItemBase": MenuSectionItemBase,
+    "MenuSectionItemCreatedEvent": MenuSectionItemCreatedEvent,
+    "MenuSectionItemDeletedEvent": MenuSectionItemDeletedEvent,
+    "MenuSectionItemUpdatedEvent": MenuSectionItemUpdatedEvent,
+    "MenuSectionUpdatedEvent": MenuSectionUpdatedEvent,
     "MenuUpdatedEvent": MenuUpdatedEvent,
     "Metadata": Metadata,
     "OAuthClient": OAuthClient,
