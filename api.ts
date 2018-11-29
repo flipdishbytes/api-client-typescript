@@ -1363,6 +1363,10 @@ export class DeliveryZone {
     * Spatial data in Well Known Text format  We also support CIRCLE((0 0, 200)) - (centerLong centerLat, radius in m)
     */
     'WellKnownText': string;
+    /**
+    * Is delivery zone enabled
+    */
+    'IsEnabled': boolean;
 
     static discriminator = undefined;
 
@@ -1386,6 +1390,11 @@ export class DeliveryZone {
             "name": "WellKnownText",
             "baseName": "WellKnownText",
             "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1409,6 +1418,10 @@ export class DeliveryZoneBase {
     * Spatial data in Well Known Text format  We also support CIRCLE((0 0, 200)) - (centerLong centerLat, radius in m)
     */
     'WellKnownText': string;
+    /**
+    * Is delivery zone enabled
+    */
+    'IsEnabled': boolean;
 
     static discriminator = undefined;
 
@@ -1427,6 +1440,11 @@ export class DeliveryZoneBase {
             "name": "WellKnownText",
             "baseName": "WellKnownText",
             "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
