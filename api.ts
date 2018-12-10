@@ -21339,7 +21339,7 @@ export class StoresApi {
         let localVarUseFormData = false;
 
         let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
+            method: 'GET',
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
@@ -21701,7 +21701,7 @@ export class StoresApi {
      * @param businessHoursPeriod Business Hours Period
      */
     public setBusinessHours (storeId: number, deliveryType: string, businessHoursPeriod: BusinessHoursPeriodBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursPeriod;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/availability/{deliveryType}/times'
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/availability/{deliveryType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
         let localVarQueryParameters: any = {};
