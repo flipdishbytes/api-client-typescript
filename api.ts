@@ -323,6 +323,208 @@ export class AnalyticsClientEvent {
 }
 
 /**
+* Provides an average value for a single hour of day of the week
+*/
+export class ApmAverageHourlyDataPoint {
+    /**
+    * Day of the week
+    */
+    'Day': ApmAverageHourlyDataPoint.DayEnum;
+    /**
+    * Hour in the day
+    */
+    'Hour': number;
+    /**
+    * Average Value
+    */
+    'AverageValue': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Day",
+            "baseName": "Day",
+            "type": "ApmAverageHourlyDataPoint.DayEnum"
+        },
+        {
+            "name": "Hour",
+            "baseName": "Hour",
+            "type": "number"
+        },
+        {
+            "name": "AverageValue",
+            "baseName": "AverageValue",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ApmAverageHourlyDataPoint.attributeTypeMap;
+    }
+}
+
+export namespace ApmAverageHourlyDataPoint {
+    export enum DayEnum {
+        Sunday = <any> 'Sunday',
+        Monday = <any> 'Monday',
+        Tuesday = <any> 'Tuesday',
+        Wednesday = <any> 'Wednesday',
+        Thursday = <any> 'Thursday',
+        Friday = <any> 'Friday',
+        Saturday = <any> 'Saturday'
+    }
+}
+/**
+* Describes a single call to the APM system
+*/
+export class ApmCall {
+    /**
+    * Time of the call
+    */
+    'TimeOfCall': Date;
+    /**
+    * Name of the store that the call was TO
+    */
+    'StoreName': string;
+    /**
+    * Name of the caller
+    */
+    'CallerName': string;
+    /**
+    * Phone number of the caller
+    */
+    'CallerNumber': string;
+    /**
+    * The amount of time the call took
+    */
+    'CallLengthInSeconds': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "TimeOfCall",
+            "baseName": "TimeOfCall",
+            "type": "Date"
+        },
+        {
+            "name": "StoreName",
+            "baseName": "StoreName",
+            "type": "string"
+        },
+        {
+            "name": "CallerName",
+            "baseName": "CallerName",
+            "type": "string"
+        },
+        {
+            "name": "CallerNumber",
+            "baseName": "CallerNumber",
+            "type": "string"
+        },
+        {
+            "name": "CallLengthInSeconds",
+            "baseName": "CallLengthInSeconds",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ApmCall.attributeTypeMap;
+    }
+}
+
+/**
+* A single data point in timeline graphs related to APM
+*/
+export class ApmDataPoint {
+    /**
+    * Date from which the data point starts
+    */
+    'PeriodStart': Date;
+    /**
+    * The length in days that this data point covers
+    */
+    'PeriodLengthInDays': number;
+    /**
+    * The value of this data point
+    */
+    'Value': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PeriodStart",
+            "baseName": "PeriodStart",
+            "type": "Date"
+        },
+        {
+            "name": "PeriodLengthInDays",
+            "baseName": "PeriodLengthInDays",
+            "type": "number"
+        },
+        {
+            "name": "Value",
+            "baseName": "Value",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ApmDataPoint.attributeTypeMap;
+    }
+}
+
+/**
+* APM Statistics
+*/
+export class ApmStatistics {
+    /**
+    * Total users that were created because of APM
+    */
+    'TotalUsers': number;
+    /**
+    * Total Orders created by users created because of APM
+    */
+    'TotalOrders': number;
+    /**
+    * Total Order Value by users created because of APM
+    */
+    'TotalOrderValue': number;
+    /**
+    * Total amount of time spent with APM
+    */
+    'EstimatedMinutesSaved': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "TotalUsers",
+            "baseName": "TotalUsers",
+            "type": "number"
+        },
+        {
+            "name": "TotalOrders",
+            "baseName": "TotalOrders",
+            "type": "number"
+        },
+        {
+            "name": "TotalOrderValue",
+            "baseName": "TotalOrderValue",
+            "type": "number"
+        },
+        {
+            "name": "EstimatedMinutesSaved",
+            "baseName": "EstimatedMinutesSaved",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ApmStatistics.attributeTypeMap;
+    }
+}
+
+/**
 * App
 */
 export class App {
@@ -7734,6 +7936,52 @@ export namespace Reject {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultApmAverageHourlyDataPoint {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<ApmAverageHourlyDataPoint>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<ApmAverageHourlyDataPoint>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultApmAverageHourlyDataPoint.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultApmDataPoint {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<ApmDataPoint>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<ApmDataPoint>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultApmDataPoint.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultBusinessHoursPeriod {
     /**
     * Generic data object.
@@ -8178,6 +8426,56 @@ export class RestApiIntegerResult {
 
     static getAttributeTypeMap() {
         return RestApiIntegerResult.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
+export class RestApiPaginationResultApmCall {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<ApmCall>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<ApmCall>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultApmCall.attributeTypeMap;
     }
 }
 
@@ -8651,6 +8949,29 @@ export class RestApiResultAccountDetail {
 
     static getAttributeTypeMap() {
         return RestApiResultAccountDetail.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultApmStatistics {
+    /**
+    * Generic data object.
+    */
+    'Data': ApmStatistics;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "ApmStatistics"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultApmStatistics.attributeTypeMap;
     }
 }
 
@@ -13746,6 +14067,7 @@ export class WebhookSubscriptionUpdatedEvent {
 
 
 let enumsMap: {[index: string]: any} = {
+        "ApmAverageHourlyDataPoint.DayEnum": ApmAverageHourlyDataPoint.DayEnum,
         "BusinessHoursOverride.DeliveryTypeEnum": BusinessHoursOverride.DeliveryTypeEnum,
         "BusinessHoursOverride.TypeEnum": BusinessHoursOverride.TypeEnum,
         "BusinessHoursOverrideBase.DeliveryTypeEnum": BusinessHoursOverrideBase.DeliveryTypeEnum,
@@ -13795,6 +14117,10 @@ let typeMap: {[index: string]: any} = {
     "Accept": Accept,
     "AccountDetail": AccountDetail,
     "AnalyticsClientEvent": AnalyticsClientEvent,
+    "ApmAverageHourlyDataPoint": ApmAverageHourlyDataPoint,
+    "ApmCall": ApmCall,
+    "ApmDataPoint": ApmDataPoint,
+    "ApmStatistics": ApmStatistics,
     "App": App,
     "BusinessHoursOverride": BusinessHoursOverride,
     "BusinessHoursOverrideBase": BusinessHoursOverrideBase,
@@ -13890,6 +14216,8 @@ let typeMap: {[index: string]: any} = {
     "Range": Range,
     "Refund": Refund,
     "Reject": Reject,
+    "RestApiArrayResultApmAverageHourlyDataPoint": RestApiArrayResultApmAverageHourlyDataPoint,
+    "RestApiArrayResultApmDataPoint": RestApiArrayResultApmDataPoint,
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
     "RestApiArrayResultMenuItemOptionSet": RestApiArrayResultMenuItemOptionSet,
@@ -13908,6 +14236,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiEventSearchPaginationResult": RestApiEventSearchPaginationResult,
     "RestApiForbiddenResult": RestApiForbiddenResult,
     "RestApiIntegerResult": RestApiIntegerResult,
+    "RestApiPaginationResultApmCall": RestApiPaginationResultApmCall,
     "RestApiPaginationResultApp": RestApiPaginationResultApp,
     "RestApiPaginationResultBusinessHoursOverride": RestApiPaginationResultBusinessHoursOverride,
     "RestApiPaginationResultHttpRequestAndResponseLog": RestApiPaginationResultHttpRequestAndResponseLog,
@@ -13918,6 +14247,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultVoucher": RestApiPaginationResultVoucher,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
+    "RestApiResultApmStatistics": RestApiResultApmStatistics,
     "RestApiResultBusinessHoursOverride": RestApiResultBusinessHoursOverride,
     "RestApiResultBusinessHoursPeriod": RestApiResultBusinessHoursPeriod,
     "RestApiResultCard": RestApiResultCard,
@@ -14635,6 +14965,370 @@ export class AccountsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum ApmApiApiKeys {
+}
+
+export class ApmApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: ApmApiApiKeys, value: string) {
+        (this.authentications as any)[ApmApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Get Basic Statistics
+     * @param storeId List of stores to search by
+     */
+    public getBasicStatistics (storeId: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiResultApmStatistics;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apm/statistics';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getBasicStatistics.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultApmStatistics;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultApmStatistics");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Get Calendar statistics
+     * @param storeId List of stores to search by
+     */
+    public getCalendarWeekStatistics (storeId: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmAverageHourlyDataPoint;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apm/statistics/calendar';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getCalendarWeekStatistics.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmAverageHourlyDataPoint;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultApmAverageHourlyDataPoint");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Get Calls Statistics
+     * @param storeId List of stores to search by
+     * @param aggregateDataBy Aggregate data by day \\ week
+     */
+    public getCallsStatistics (storeId: Array<number>, aggregateDataBy: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apm/statistics/calls/{aggregateDataBy}'
+            .replace('{' + 'aggregateDataBy' + '}', encodeURIComponent(String(aggregateDataBy)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getCallsStatistics.');
+        }
+
+        // verify required parameter 'aggregateDataBy' is not null or undefined
+        if (aggregateDataBy === null || aggregateDataBy === undefined) {
+            throw new Error('Required parameter aggregateDataBy was null or undefined when calling getCallsStatistics.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultApmDataPoint");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Get Order Statistics
+     * @param storeId List of stores to search by
+     * @param aggregateDataBy Aggregate data by day \\ week
+     */
+    public getOrderStatistics (storeId: Array<number>, aggregateDataBy: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apm/statistics/orders/{aggregateDataBy}'
+            .replace('{' + 'aggregateDataBy' + '}', encodeURIComponent(String(aggregateDataBy)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getOrderStatistics.');
+        }
+
+        // verify required parameter 'aggregateDataBy' is not null or undefined
+        if (aggregateDataBy === null || aggregateDataBy === undefined) {
+            throw new Error('Required parameter aggregateDataBy was null or undefined when calling getOrderStatistics.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultApmDataPoint");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Get paginated APM call list
+     * @param storeId List of stores to search by
+     * @param page Requested page index
+     * @param limit Requested page limit
+     */
+    public getPaginatedCallList (storeId: Array<number>, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultApmCall;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apm/calls';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getPaginatedCallList.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultApmCall;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultApmCall");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
