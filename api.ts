@@ -8832,7 +8832,7 @@ export class RestApiPaginationResultStoreGroup {
 /**
 * Rest api pagination result
 */
-export class RestApiPaginationResultVoucher {
+export class RestApiPaginationResultVoucherWithStats {
     /**
     * Current page index
     */
@@ -8848,7 +8848,7 @@ export class RestApiPaginationResultVoucher {
     /**
     * Generic data object.
     */
-    'Data': Array<Voucher>;
+    'Data': Array<VoucherWithStats>;
 
     static discriminator = undefined;
 
@@ -8871,11 +8871,11 @@ export class RestApiPaginationResultVoucher {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "Array<Voucher>"
+            "type": "Array<VoucherWithStats>"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiPaginationResultVoucher.attributeTypeMap;
+        return RestApiPaginationResultVoucherWithStats.attributeTypeMap;
     }
 }
 
@@ -9593,6 +9593,29 @@ export class RestApiResultVoucher {
 
     static getAttributeTypeMap() {
         return RestApiResultVoucher.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultVoucherWithStats {
+    /**
+    * Generic data object.
+    */
+    'Data': VoucherWithStats;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "VoucherWithStats"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultVoucherWithStats.attributeTypeMap;
     }
 }
 
@@ -13290,97 +13313,41 @@ export class ValidationErrorResult {
 */
 export class Voucher {
     /**
-    * Voucher identifier
+    * Voucher Id
     */
     'VoucherId': number;
     /**
-    * Voucher type
+    * Voucher Code
+    */
+    'Code': string;
+    /**
+    * Voucher Status
+    */
+    'Status': Voucher.StatusEnum;
+    /**
+    * Voucher Type
     */
     'VoucherType': Voucher.VoucherTypeEnum;
+    /**
+    * Voucher Sub Type
+    */
+    'VoucherSubType': Voucher.VoucherSubTypeEnum;
+    /**
+    * Voucher Expires On (Time in UTC)
+    */
+    'StartDate': Date;
+    /**
+    * Voucher Description (Visible on printout)
+    */
+    'Description': string;
     /**
     * Is voucher enabled
     */
     'IsEnabled': boolean;
     /**
-    * Is voucher used up
+    * Voucher Expires On (Time in UTC)
     */
-    'IsUsedUp': boolean;
-    /**
-    * Voucher subtype
-    */
-    'VoucherSubType': Voucher.VoucherSubTypeEnum;
-    /**
-    * Public description
-    */
-    'PublicDescription': string;
-    /**
-    * Private description
-    */
-    'PrivateDescription': string;
-    /**
-    * Valid from
-    */
-    'ValidFrom': Date;
-    /**
-    * Expiry
-    */
-    'Expiry': Date;
-    /**
-    * Define who foots the bill for the voucher
-    */
-    'VoucherPayer': Voucher.VoucherPayerEnum;
-    /**
-    * Define whether we show the fact that a voucher was applied to the restaurant
-    */
-    'IsVisibleToStore': boolean;
-    /**
-    * Is reusable
-    */
-    'IsReusable': boolean;
-    /**
-    * Is valid for delivery orders
-    */
-    'IsValidForDeliveryOrders': boolean;
-    /**
-    * Is valid for pickup orders
-    */
-    'IsValidForPickupOrders': boolean;
-    /**
-    * Is valid for card orders
-    */
-    'IsValidForCardOrders': boolean;
-    /**
-    * Is valid for cash orders
-    */
-    'IsValidForCashOrders': boolean;
-    /**
-    * Is valid for first order only
-    */
-    'IsValidForFirstOrderOnly': boolean;
-    /**
-    * Minimum order amount.
-    */
-    'MinimumOrderAmount': number;
-    /**
-    * Is valid once per customer
-    */
-    'IsValidOncePerCustomer': boolean;
-    /**
-    * Auto apply
-    */
-    'AutoApply': boolean;
-    /**
-    * Auto apply order.  Lower numbers get applied first.
-    */
-    'AutoApplyOrder': number;
-    /**
-    * Include delivery fee
-    */
-    'IncludeDeliveryFee': boolean;
-    /**
-    * Voucher code
-    */
-    'Code': string;
+    'ExpiryDate': Date;
 
     static discriminator = undefined;
 
@@ -13391,19 +13358,19 @@ export class Voucher {
             "type": "number"
         },
         {
+            "name": "Code",
+            "baseName": "Code",
+            "type": "string"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "Voucher.StatusEnum"
+        },
+        {
             "name": "VoucherType",
             "baseName": "VoucherType",
             "type": "Voucher.VoucherTypeEnum"
-        },
-        {
-            "name": "IsEnabled",
-            "baseName": "IsEnabled",
-            "type": "boolean"
-        },
-        {
-            "name": "IsUsedUp",
-            "baseName": "IsUsedUp",
-            "type": "boolean"
         },
         {
             "name": "VoucherSubType",
@@ -13411,94 +13378,24 @@ export class Voucher {
             "type": "Voucher.VoucherSubTypeEnum"
         },
         {
-            "name": "PublicDescription",
-            "baseName": "PublicDescription",
-            "type": "string"
-        },
-        {
-            "name": "PrivateDescription",
-            "baseName": "PrivateDescription",
-            "type": "string"
-        },
-        {
-            "name": "ValidFrom",
-            "baseName": "ValidFrom",
+            "name": "StartDate",
+            "baseName": "StartDate",
             "type": "Date"
         },
         {
-            "name": "Expiry",
-            "baseName": "Expiry",
-            "type": "Date"
-        },
-        {
-            "name": "VoucherPayer",
-            "baseName": "VoucherPayer",
-            "type": "Voucher.VoucherPayerEnum"
-        },
-        {
-            "name": "IsVisibleToStore",
-            "baseName": "IsVisibleToStore",
-            "type": "boolean"
-        },
-        {
-            "name": "IsReusable",
-            "baseName": "IsReusable",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForDeliveryOrders",
-            "baseName": "IsValidForDeliveryOrders",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForPickupOrders",
-            "baseName": "IsValidForPickupOrders",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForCardOrders",
-            "baseName": "IsValidForCardOrders",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForCashOrders",
-            "baseName": "IsValidForCashOrders",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForFirstOrderOnly",
-            "baseName": "IsValidForFirstOrderOnly",
-            "type": "boolean"
-        },
-        {
-            "name": "MinimumOrderAmount",
-            "baseName": "MinimumOrderAmount",
-            "type": "number"
-        },
-        {
-            "name": "IsValidOncePerCustomer",
-            "baseName": "IsValidOncePerCustomer",
-            "type": "boolean"
-        },
-        {
-            "name": "AutoApply",
-            "baseName": "AutoApply",
-            "type": "boolean"
-        },
-        {
-            "name": "AutoApplyOrder",
-            "baseName": "AutoApplyOrder",
-            "type": "number"
-        },
-        {
-            "name": "IncludeDeliveryFee",
-            "baseName": "IncludeDeliveryFee",
-            "type": "boolean"
-        },
-        {
-            "name": "Code",
-            "baseName": "Code",
+            "name": "Description",
+            "baseName": "Description",
             "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "ExpiryDate",
+            "baseName": "ExpiryDate",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
@@ -13507,6 +13404,11 @@ export class Voucher {
 }
 
 export namespace Voucher {
+    export enum StatusEnum {
+        Valid = <any> 'Valid',
+        Expired = <any> 'Expired',
+        Used = <any> 'Used'
+    }
     export enum VoucherTypeEnum {
         PercentageDiscount = <any> 'PercentageDiscount',
         LumpDiscount = <any> 'LumpDiscount',
@@ -13522,11 +13424,48 @@ export namespace Voucher {
         SecondaryRetention = <any> 'SecondaryRetention',
         Custom = <any> 'Custom'
     }
-    export enum VoucherPayerEnum {
-        Flipdish = <any> 'Flipdish',
-        Store = <any> 'Store'
+}
+/**
+* Voucher Base
+*/
+export class VoucherBase {
+    /**
+    * Voucher Description (Visible on printout)
+    */
+    'Description': string;
+    /**
+    * Is voucher enabled
+    */
+    'IsEnabled': boolean;
+    /**
+    * Voucher Expires On (Time in UTC)
+    */
+    'ExpiryDate': Date;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "ExpiryDate",
+            "baseName": "ExpiryDate",
+            "type": "Date"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return VoucherBase.attributeTypeMap;
     }
 }
+
 /**
 * Voucher summary
 */
@@ -13603,6 +13542,168 @@ export namespace VoucherSummary {
         CreditNote = <any> 'CreditNote'
     }
     export enum SubTypeEnum {
+        None = <any> 'None',
+        SignUp = <any> 'SignUp',
+        Loyalty = <any> 'Loyalty',
+        Loyalty25 = <any> 'Loyalty25',
+        Retention = <any> 'Retention',
+        SecondaryRetention = <any> 'SecondaryRetention',
+        Custom = <any> 'Custom'
+    }
+}
+/**
+* Voucher With Statistics
+*/
+export class VoucherWithStats {
+    /**
+    * Total times the voucher was used
+    */
+    'TotalUsed': number;
+    /**
+    * Total amount of customers who used this voucher
+    */
+    'TotalCustomers': number;
+    /**
+    * Total amount of money from orders
+    */
+    'TotalAmountFromOrders': number;
+    /**
+    * Total amount of money given away
+    */
+    'TotalDiscounted': number;
+    /**
+    * Average Order Size
+    */
+    'AverageOrderSize': number;
+    /**
+    * Voucher Id
+    */
+    'VoucherId': number;
+    /**
+    * Voucher Code
+    */
+    'Code': string;
+    /**
+    * Voucher Status
+    */
+    'Status': VoucherWithStats.StatusEnum;
+    /**
+    * Voucher Type
+    */
+    'VoucherType': VoucherWithStats.VoucherTypeEnum;
+    /**
+    * Voucher Sub Type
+    */
+    'VoucherSubType': VoucherWithStats.VoucherSubTypeEnum;
+    /**
+    * Voucher Expires On (Time in UTC)
+    */
+    'StartDate': Date;
+    /**
+    * Voucher Description (Visible on printout)
+    */
+    'Description': string;
+    /**
+    * Is voucher enabled
+    */
+    'IsEnabled': boolean;
+    /**
+    * Voucher Expires On (Time in UTC)
+    */
+    'ExpiryDate': Date;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "TotalUsed",
+            "baseName": "TotalUsed",
+            "type": "number"
+        },
+        {
+            "name": "TotalCustomers",
+            "baseName": "TotalCustomers",
+            "type": "number"
+        },
+        {
+            "name": "TotalAmountFromOrders",
+            "baseName": "TotalAmountFromOrders",
+            "type": "number"
+        },
+        {
+            "name": "TotalDiscounted",
+            "baseName": "TotalDiscounted",
+            "type": "number"
+        },
+        {
+            "name": "AverageOrderSize",
+            "baseName": "AverageOrderSize",
+            "type": "number"
+        },
+        {
+            "name": "VoucherId",
+            "baseName": "VoucherId",
+            "type": "number"
+        },
+        {
+            "name": "Code",
+            "baseName": "Code",
+            "type": "string"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "VoucherWithStats.StatusEnum"
+        },
+        {
+            "name": "VoucherType",
+            "baseName": "VoucherType",
+            "type": "VoucherWithStats.VoucherTypeEnum"
+        },
+        {
+            "name": "VoucherSubType",
+            "baseName": "VoucherSubType",
+            "type": "VoucherWithStats.VoucherSubTypeEnum"
+        },
+        {
+            "name": "StartDate",
+            "baseName": "StartDate",
+            "type": "Date"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "ExpiryDate",
+            "baseName": "ExpiryDate",
+            "type": "Date"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return VoucherWithStats.attributeTypeMap;
+    }
+}
+
+export namespace VoucherWithStats {
+    export enum StatusEnum {
+        Valid = <any> 'Valid',
+        Expired = <any> 'Expired',
+        Used = <any> 'Used'
+    }
+    export enum VoucherTypeEnum {
+        PercentageDiscount = <any> 'PercentageDiscount',
+        LumpDiscount = <any> 'LumpDiscount',
+        AddItem = <any> 'AddItem',
+        CreditNote = <any> 'CreditNote'
+    }
+    export enum VoucherSubTypeEnum {
         None = <any> 'None',
         SignUp = <any> 'SignUp',
         Loyalty = <any> 'Loyalty',
@@ -14106,11 +14207,14 @@ let enumsMap: {[index: string]: any} = {
         "SubscriptionPlan.IntervalEnum": SubscriptionPlan.IntervalEnum,
         "Teammate.AppAccessLevelEnum": Teammate.AppAccessLevelEnum,
         "TeammateBase.AppAccessLevelEnum": TeammateBase.AppAccessLevelEnum,
+        "Voucher.StatusEnum": Voucher.StatusEnum,
         "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
         "Voucher.VoucherSubTypeEnum": Voucher.VoucherSubTypeEnum,
-        "Voucher.VoucherPayerEnum": Voucher.VoucherPayerEnum,
         "VoucherSummary.TypeEnum": VoucherSummary.TypeEnum,
         "VoucherSummary.SubTypeEnum": VoucherSummary.SubTypeEnum,
+        "VoucherWithStats.StatusEnum": VoucherWithStats.StatusEnum,
+        "VoucherWithStats.VoucherTypeEnum": VoucherWithStats.VoucherTypeEnum,
+        "VoucherWithStats.VoucherSubTypeEnum": VoucherWithStats.VoucherSubTypeEnum,
 }
 
 let typeMap: {[index: string]: any} = {
@@ -14244,7 +14348,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultOrder": RestApiPaginationResultOrder,
     "RestApiPaginationResultStore": RestApiPaginationResultStore,
     "RestApiPaginationResultStoreGroup": RestApiPaginationResultStoreGroup,
-    "RestApiPaginationResultVoucher": RestApiPaginationResultVoucher,
+    "RestApiPaginationResultVoucherWithStats": RestApiPaginationResultVoucherWithStats,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
     "RestApiResultApmStatistics": RestApiResultApmStatistics,
@@ -14275,6 +14379,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultSubscriptionPlansResponse": RestApiResultSubscriptionPlansResponse,
     "RestApiResultTeammate": RestApiResultTeammate,
     "RestApiResultVoucher": RestApiResultVoucher,
+    "RestApiResultVoucherWithStats": RestApiResultVoucherWithStats,
     "RestApiStringArrayResult": RestApiStringArrayResult,
     "RestApiStringResult": RestApiStringResult,
     "RestApiUnauthorizedResult": RestApiUnauthorizedResult,
@@ -14321,7 +14426,9 @@ let typeMap: {[index: string]: any} = {
     "UserUpdatedEvent": UserUpdatedEvent,
     "ValidationErrorResult": ValidationErrorResult,
     "Voucher": Voucher,
+    "VoucherBase": VoucherBase,
     "VoucherSummary": VoucherSummary,
+    "VoucherWithStats": VoucherWithStats,
     "WebhookLog": WebhookLog,
     "WebhookSubscription": WebhookSubscription,
     "WebhookSubscriptionCreatedEvent": WebhookSubscriptionCreatedEvent,
@@ -24012,86 +24119,10 @@ export class VouchersApi {
     }
     /**
      * 
-     * @summary Delete voucher metadata
-     * @param voucherId 
-     * @param menuId 
-     * @param storeId 
-     * @param key 
-     */
-    public deleteVoucherMetadata (voucherId: number, menuId: number, storeId: number, key: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
-            .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)))
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
-            .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'voucherId' is not null or undefined
-        if (voucherId === null || voucherId === undefined) {
-            throw new Error('Required parameter voucherId was null or undefined when calling deleteVoucherMetadata.');
-        }
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling deleteVoucherMetadata.');
-        }
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling deleteVoucherMetadata.');
-        }
-
-        // verify required parameter 'key' is not null or undefined
-        if (key === null || key === undefined) {
-            throw new Error('Required parameter key was null or undefined when calling deleteVoucherMetadata.');
-        }
-
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestApiDefaultResponse");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @summary Get voucher by identifier
      * @param voucherId 
      */
-    public getVoucherById (voucherId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucher;  }> {
+    public getVoucherById (voucherId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
         let localVarQueryParameters: any = {};
@@ -24126,12 +24157,12 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultVoucher;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultVoucher");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultVoucherWithStats");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -24143,232 +24174,79 @@ export class VouchersApi {
     }
     /**
      * 
-     * @summary Get voucher metadata
-     * @param voucherId 
-     * @param menuId 
-     * @param storeId 
-     */
-    public getVoucherMetadata (voucherId: number, menuId: number, storeId: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMetadata;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata'
-            .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)))
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'voucherId' is not null or undefined
-        if (voucherId === null || voucherId === undefined) {
-            throw new Error('Required parameter voucherId was null or undefined when calling getVoucherMetadata.');
-        }
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling getVoucherMetadata.');
-        }
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getVoucherMetadata.');
-        }
-
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMetadata;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMetadata");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Get voucher metadata
-     * @param voucherId 
-     * @param menuId 
-     * @param storeId 
-     * @param key 
-     */
-    public getVoucherMetadata_1 (voucherId: number, menuId: number, storeId: number, key: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultMetadata;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
-            .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)))
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
-            .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'voucherId' is not null or undefined
-        if (voucherId === null || voucherId === undefined) {
-            throw new Error('Required parameter voucherId was null or undefined when calling getVoucherMetadata_1.');
-        }
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling getVoucherMetadata_1.');
-        }
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getVoucherMetadata_1.');
-        }
-
-        // verify required parameter 'key' is not null or undefined
-        if (key === null || key === undefined) {
-            throw new Error('Required parameter key was null or undefined when calling getVoucherMetadata_1.');
-        }
-
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMetadata;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultMetadata");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Get vouchers
-     * @param filter 
-     * @param pageNumber 
+     * @summary Get vouchers for App Id
+     * @param appNameId 
+     * @param pageIndex 
      * @param pageSize 
-     * @param sortOrder 
-     * @param orderBy 
-     * @param subType 
-     * @param status 
-     * @param code 
-     * @param validFromBegin 
-     * @param validFromEnd 
-     * @param expiryBegin 
-     * @param expiryEnd 
-     * @param amount 
-     * @param voucherType 
-     * @param description 
+     * @param searchCodes 
+     * @param statusSearch 
+     * @param typeSearch 
+     * @param physicalRestaurantIds 
      */
-    public getVouchers (filter?: string, pageNumber?: number, pageSize?: number, sortOrder?: string, orderBy?: string, subType?: string, status?: string, code?: string, validFromBegin?: Date, validFromEnd?: Date, expiryBegin?: Date, expiryEnd?: Date, amount?: number, voucherType?: string, description?: string) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucher;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/vouchers';
+    public getVouchers (appNameId: string, pageIndex: number, pageSize: number, searchCodes: Array<string>, statusSearch: Array<string>, typeSearch: Array<string>, physicalRestaurantIds: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherWithStats;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appNameId}/vouchers'
+            .replace('{' + 'appNameId' + '}', encodeURIComponent(String(appNameId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        if (filter !== undefined) {
-            localVarQueryParameters['filter'] = ObjectSerializer.serialize(filter, "string");
+        // verify required parameter 'appNameId' is not null or undefined
+        if (appNameId === null || appNameId === undefined) {
+            throw new Error('Required parameter appNameId was null or undefined when calling getVouchers.');
         }
 
-        if (pageNumber !== undefined) {
-            localVarQueryParameters['pageNumber'] = ObjectSerializer.serialize(pageNumber, "number");
+        // verify required parameter 'pageIndex' is not null or undefined
+        if (pageIndex === null || pageIndex === undefined) {
+            throw new Error('Required parameter pageIndex was null or undefined when calling getVouchers.');
+        }
+
+        // verify required parameter 'pageSize' is not null or undefined
+        if (pageSize === null || pageSize === undefined) {
+            throw new Error('Required parameter pageSize was null or undefined when calling getVouchers.');
+        }
+
+        // verify required parameter 'searchCodes' is not null or undefined
+        if (searchCodes === null || searchCodes === undefined) {
+            throw new Error('Required parameter searchCodes was null or undefined when calling getVouchers.');
+        }
+
+        // verify required parameter 'statusSearch' is not null or undefined
+        if (statusSearch === null || statusSearch === undefined) {
+            throw new Error('Required parameter statusSearch was null or undefined when calling getVouchers.');
+        }
+
+        // verify required parameter 'typeSearch' is not null or undefined
+        if (typeSearch === null || typeSearch === undefined) {
+            throw new Error('Required parameter typeSearch was null or undefined when calling getVouchers.');
+        }
+
+        // verify required parameter 'physicalRestaurantIds' is not null or undefined
+        if (physicalRestaurantIds === null || physicalRestaurantIds === undefined) {
+            throw new Error('Required parameter physicalRestaurantIds was null or undefined when calling getVouchers.');
+        }
+
+        if (pageIndex !== undefined) {
+            localVarQueryParameters['pageIndex'] = ObjectSerializer.serialize(pageIndex, "number");
         }
 
         if (pageSize !== undefined) {
             localVarQueryParameters['pageSize'] = ObjectSerializer.serialize(pageSize, "number");
         }
 
-        if (sortOrder !== undefined) {
-            localVarQueryParameters['sortOrder'] = ObjectSerializer.serialize(sortOrder, "string");
+        if (searchCodes !== undefined) {
+            localVarQueryParameters['searchCodes'] = ObjectSerializer.serialize(searchCodes, "Array<string>");
         }
 
-        if (orderBy !== undefined) {
-            localVarQueryParameters['orderBy'] = ObjectSerializer.serialize(orderBy, "string");
+        if (statusSearch !== undefined) {
+            localVarQueryParameters['statusSearch'] = ObjectSerializer.serialize(statusSearch, "Array<string>");
         }
 
-        if (subType !== undefined) {
-            localVarQueryParameters['subType'] = ObjectSerializer.serialize(subType, "string");
+        if (typeSearch !== undefined) {
+            localVarQueryParameters['typeSearch'] = ObjectSerializer.serialize(typeSearch, "Array<string>");
         }
 
-        if (status !== undefined) {
-            localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "string");
-        }
-
-        if (code !== undefined) {
-            localVarQueryParameters['code'] = ObjectSerializer.serialize(code, "string");
-        }
-
-        if (validFromBegin !== undefined) {
-            localVarQueryParameters['validFromBegin'] = ObjectSerializer.serialize(validFromBegin, "Date");
-        }
-
-        if (validFromEnd !== undefined) {
-            localVarQueryParameters['validFromEnd'] = ObjectSerializer.serialize(validFromEnd, "Date");
-        }
-
-        if (expiryBegin !== undefined) {
-            localVarQueryParameters['expiryBegin'] = ObjectSerializer.serialize(expiryBegin, "Date");
-        }
-
-        if (expiryEnd !== undefined) {
-            localVarQueryParameters['expiryEnd'] = ObjectSerializer.serialize(expiryEnd, "Date");
-        }
-
-        if (amount !== undefined) {
-            localVarQueryParameters['amount'] = ObjectSerializer.serialize(amount, "number");
-        }
-
-        if (voucherType !== undefined) {
-            localVarQueryParameters['voucherType'] = ObjectSerializer.serialize(voucherType, "string");
-        }
-
-        if (description !== undefined) {
-            localVarQueryParameters['description'] = ObjectSerializer.serialize(description, "string");
+        if (physicalRestaurantIds !== undefined) {
+            localVarQueryParameters['physicalRestaurantIds'] = ObjectSerializer.serialize(physicalRestaurantIds, "Array<number>");
         }
 
 
@@ -24394,12 +24272,12 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucher;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherWithStats;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultVoucher");
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultVoucherWithStats");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -24411,59 +24289,38 @@ export class VouchersApi {
     }
     /**
      * 
-     * @summary Add voucher metadata
+     * @summary Updates voucher
      * @param voucherId 
-     * @param menuId 
-     * @param storeId 
-     * @param key 
-     * @param value 
+     * @param voucher 
      */
-    public setVoucherMetadata (voucherId: number, menuId: number, storeId: number, key: string, value: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}/menu/{menuId}/store/{storeId}/metadata/{key}'
-            .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)))
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
-            .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
+    public updateVoucher (voucherId: number, voucher: VoucherBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucher;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}'
+            .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'voucherId' is not null or undefined
         if (voucherId === null || voucherId === undefined) {
-            throw new Error('Required parameter voucherId was null or undefined when calling setVoucherMetadata.');
+            throw new Error('Required parameter voucherId was null or undefined when calling updateVoucher.');
         }
 
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling setVoucherMetadata.');
-        }
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling setVoucherMetadata.');
-        }
-
-        // verify required parameter 'key' is not null or undefined
-        if (key === null || key === undefined) {
-            throw new Error('Required parameter key was null or undefined when calling setVoucherMetadata.');
-        }
-
-        // verify required parameter 'value' is not null or undefined
-        if (value === null || value === undefined) {
-            throw new Error('Required parameter value was null or undefined when calling setVoucherMetadata.');
+        // verify required parameter 'voucher' is not null or undefined
+        if (voucher === null || voucher === undefined) {
+            throw new Error('Required parameter voucher was null or undefined when calling updateVoucher.');
         }
 
 
         let localVarUseFormData = false;
 
         let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PUT',
+            method: 'POST',
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(value, "string")
+            body: ObjectSerializer.serialize(voucher, "VoucherBase")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -24477,11 +24334,12 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultVoucher;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultVoucher");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
