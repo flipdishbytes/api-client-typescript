@@ -8832,7 +8832,7 @@ export class RestApiPaginationResultStoreGroup {
 /**
 * Rest api pagination result
 */
-export class RestApiPaginationResultVoucherWithStats {
+export class RestApiPaginationResultVoucher {
     /**
     * Current page index
     */
@@ -8848,7 +8848,7 @@ export class RestApiPaginationResultVoucherWithStats {
     /**
     * Generic data object.
     */
-    'Data': Array<VoucherWithStats>;
+    'Data': Array<Voucher>;
 
     static discriminator = undefined;
 
@@ -8871,11 +8871,11 @@ export class RestApiPaginationResultVoucherWithStats {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "Array<VoucherWithStats>"
+            "type": "Array<Voucher>"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiPaginationResultVoucherWithStats.attributeTypeMap;
+        return RestApiPaginationResultVoucher.attributeTypeMap;
     }
 }
 
@@ -14348,7 +14348,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultOrder": RestApiPaginationResultOrder,
     "RestApiPaginationResultStore": RestApiPaginationResultStore,
     "RestApiPaginationResultStoreGroup": RestApiPaginationResultStoreGroup,
-    "RestApiPaginationResultVoucherWithStats": RestApiPaginationResultVoucherWithStats,
+    "RestApiPaginationResultVoucher": RestApiPaginationResultVoucher,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
     "RestApiResultApmStatistics": RestApiResultApmStatistics,
@@ -15134,17 +15134,19 @@ export class ApmApi {
     /**
      * 
      * @summary [PRIVATE API] Get Basic Statistics
+     * @param appId App Name
      * @param storeId List of stores to search by
      */
-    public getBasicStatistics (storeId: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiResultApmStatistics;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/apm/statistics';
+    public getBasicStatistics (appId: string, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiResultApmStatistics;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/statistics'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getBasicStatistics.');
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getBasicStatistics.');
         }
 
         if (storeId !== undefined) {
@@ -15192,17 +15194,19 @@ export class ApmApi {
     /**
      * 
      * @summary [PRIVATE API] Get Calendar statistics
+     * @param appId App Name
      * @param storeId List of stores to search by
      */
-    public getCalendarWeekStatistics (storeId: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmAverageHourlyDataPoint;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/apm/statistics/calendar';
+    public getCalendarWeekStatistics (appId: string, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmAverageHourlyDataPoint;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/statistics/calendar'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getCalendarWeekStatistics.');
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getCalendarWeekStatistics.');
         }
 
         if (storeId !== undefined) {
@@ -15250,24 +15254,31 @@ export class ApmApi {
     /**
      * 
      * @summary [PRIVATE API] Get Calls Statistics
-     * @param storeId List of stores to search by
+     * @param appId App Name
      * @param aggregateDataBy Aggregate data by day \\ week
+     * @param dataPointLimit Amount of data points per request
+     * @param storeId List of stores to search by
      */
-    public getCallsStatistics (storeId: Array<number>, aggregateDataBy: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/apm/statistics/calls/{aggregateDataBy}'
+    public getCallsStatistics (appId: string, aggregateDataBy: string, dataPointLimit?: number, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/statistics/calls/{aggregateDataBy}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'aggregateDataBy' + '}', encodeURIComponent(String(aggregateDataBy)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getCallsStatistics.');
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getCallsStatistics.');
         }
 
         // verify required parameter 'aggregateDataBy' is not null or undefined
         if (aggregateDataBy === null || aggregateDataBy === undefined) {
             throw new Error('Required parameter aggregateDataBy was null or undefined when calling getCallsStatistics.');
+        }
+
+        if (dataPointLimit !== undefined) {
+            localVarQueryParameters['dataPointLimit'] = ObjectSerializer.serialize(dataPointLimit, "number");
         }
 
         if (storeId !== undefined) {
@@ -15315,24 +15326,31 @@ export class ApmApi {
     /**
      * 
      * @summary [PRIVATE API] Get Order Statistics
-     * @param storeId List of stores to search by
+     * @param appId App Name
      * @param aggregateDataBy Aggregate data by day \\ week
+     * @param dataPointLimit Amount of data points per request
+     * @param storeId List of stores to search by
      */
-    public getOrderStatistics (storeId: Array<number>, aggregateDataBy: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/apm/statistics/orders/{aggregateDataBy}'
+    public getOrderStatistics (appId: string, aggregateDataBy: string, dataPointLimit?: number, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/statistics/orders/{aggregateDataBy}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'aggregateDataBy' + '}', encodeURIComponent(String(aggregateDataBy)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getOrderStatistics.');
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getOrderStatistics.');
         }
 
         // verify required parameter 'aggregateDataBy' is not null or undefined
         if (aggregateDataBy === null || aggregateDataBy === undefined) {
             throw new Error('Required parameter aggregateDataBy was null or undefined when calling getOrderStatistics.');
+        }
+
+        if (dataPointLimit !== undefined) {
+            localVarQueryParameters['dataPointLimit'] = ObjectSerializer.serialize(dataPointLimit, "number");
         }
 
         if (storeId !== undefined) {
@@ -15380,23 +15398,21 @@ export class ApmApi {
     /**
      * 
      * @summary [PRIVATE API] Get paginated APM call list
-     * @param storeId List of stores to search by
+     * @param appId App Name
      * @param page Requested page index
      * @param limit Requested page limit
+     * @param storeId List of stores to search by
      */
-    public getPaginatedCallList (storeId: Array<number>, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultApmCall;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/apm/calls';
+    public getPaginatedCallList (appId: string, page?: number, limit?: number, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultApmCall;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/calls'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getPaginatedCallList.');
-        }
-
-        if (storeId !== undefined) {
-            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getPaginatedCallList.');
         }
 
         if (page !== undefined) {
@@ -15405,6 +15421,10 @@ export class ApmApi {
 
         if (limit !== undefined) {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
         }
 
 
@@ -24119,7 +24139,7 @@ export class VouchersApi {
     }
     /**
      * 
-     * @summary Get voucher by identifier
+     * @summary [PRIVATE API] Get voucher by identifier
      * @param voucherId 
      */
     public getVoucherById (voucherId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
@@ -24174,55 +24194,25 @@ export class VouchersApi {
     }
     /**
      * 
-     * @summary Get vouchers for App Id
-     * @param appNameId 
+     * @summary [PRIVATE API] Get vouchers for App Id
+     * @param appId 
      * @param pageIndex 
      * @param pageSize 
      * @param searchCodes 
      * @param statusSearch 
      * @param typeSearch 
-     * @param physicalRestaurantIds 
+     * @param storeIds 
      */
-    public getVouchers (appNameId: string, pageIndex: number, pageSize: number, searchCodes: Array<string>, statusSearch: Array<string>, typeSearch: Array<string>, physicalRestaurantIds: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherWithStats;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appNameId}/vouchers'
-            .replace('{' + 'appNameId' + '}', encodeURIComponent(String(appNameId)));
+    public getVouchers (appId: string, pageIndex?: number, pageSize?: number, searchCodes?: Array<string>, statusSearch?: Array<string>, typeSearch?: Array<string>, storeIds?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucher;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/vouchers'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'appNameId' is not null or undefined
-        if (appNameId === null || appNameId === undefined) {
-            throw new Error('Required parameter appNameId was null or undefined when calling getVouchers.');
-        }
-
-        // verify required parameter 'pageIndex' is not null or undefined
-        if (pageIndex === null || pageIndex === undefined) {
-            throw new Error('Required parameter pageIndex was null or undefined when calling getVouchers.');
-        }
-
-        // verify required parameter 'pageSize' is not null or undefined
-        if (pageSize === null || pageSize === undefined) {
-            throw new Error('Required parameter pageSize was null or undefined when calling getVouchers.');
-        }
-
-        // verify required parameter 'searchCodes' is not null or undefined
-        if (searchCodes === null || searchCodes === undefined) {
-            throw new Error('Required parameter searchCodes was null or undefined when calling getVouchers.');
-        }
-
-        // verify required parameter 'statusSearch' is not null or undefined
-        if (statusSearch === null || statusSearch === undefined) {
-            throw new Error('Required parameter statusSearch was null or undefined when calling getVouchers.');
-        }
-
-        // verify required parameter 'typeSearch' is not null or undefined
-        if (typeSearch === null || typeSearch === undefined) {
-            throw new Error('Required parameter typeSearch was null or undefined when calling getVouchers.');
-        }
-
-        // verify required parameter 'physicalRestaurantIds' is not null or undefined
-        if (physicalRestaurantIds === null || physicalRestaurantIds === undefined) {
-            throw new Error('Required parameter physicalRestaurantIds was null or undefined when calling getVouchers.');
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getVouchers.');
         }
 
         if (pageIndex !== undefined) {
@@ -24245,8 +24235,8 @@ export class VouchersApi {
             localVarQueryParameters['typeSearch'] = ObjectSerializer.serialize(typeSearch, "Array<string>");
         }
 
-        if (physicalRestaurantIds !== undefined) {
-            localVarQueryParameters['physicalRestaurantIds'] = ObjectSerializer.serialize(physicalRestaurantIds, "Array<number>");
+        if (storeIds !== undefined) {
+            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
         }
 
 
@@ -24272,12 +24262,12 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherWithStats;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucher;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultVoucherWithStats");
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultVoucher");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -24289,7 +24279,7 @@ export class VouchersApi {
     }
     /**
      * 
-     * @summary Updates voucher
+     * @summary [PRIVATE API] Updates voucher
      * @param voucherId 
      * @param voucher 
      */
