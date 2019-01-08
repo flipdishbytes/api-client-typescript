@@ -143,9 +143,9 @@ export class Accept {
     /**
     * Estimated minutes for delivery
     */
-    'EstimatedMinutesForDelivery': number;
+    'EstimatedMinutesForDelivery'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -166,21 +166,21 @@ export class AccountDetail {
     /**
     * Name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Email
     */
-    'Email': string;
+    'Email'?: string;
     /**
     * Language Id
     */
-    'Language': string;
+    'Language'?: string;
     /**
     * Signup steps
     */
-    'SignupSteps': Array<SignupStep>;
+    'SignupSteps'?: Array<SignupStep>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -210,55 +210,87 @@ export class AccountDetail {
 }
 
 /**
+* Add item details
+*/
+export class AddItemDetails {
+    /**
+    * Promotional Item Id
+    */
+    'PromotionalItemId'?: number;
+    /**
+    * Promotional Item Name
+    */
+    'PromotionalItemName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PromotionalItemId",
+            "baseName": "PromotionalItemId",
+            "type": "number"
+        },
+        {
+            "name": "PromotionalItemName",
+            "baseName": "PromotionalItemName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AddItemDetails.attributeTypeMap;
+    }
+}
+
+/**
 * Client Analytics event
 */
 export class AnalyticsClientEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Type of the event
     */
-    'EventType': string;
+    'EventType'?: string;
     /**
     * Application Id
     */
-    'AppId': string;
+    'AppId'?: string;
     /**
     * Type of the app the event is coming from
     */
-    'AppType': string;
+    'AppType'?: string;
     /**
     * JSON Metadata
     */
-    'Metadata': string;
+    'Metadata'?: string;
     /**
     * User Id
     */
-    'UserId': number;
+    'UserId'?: number;
     /**
     * Latitude of the event
     */
-    'Latitude': number;
+    'Latitude'?: number;
     /**
     * Longitude of the event
     */
-    'Longitude': number;
+    'Longitude'?: number;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -329,17 +361,17 @@ export class ApmAverageHourlyDataPoint {
     /**
     * Day of the week
     */
-    'Day': ApmAverageHourlyDataPoint.DayEnum;
+    'Day'?: ApmAverageHourlyDataPoint.DayEnum;
     /**
     * Hour in the day
     */
-    'Hour': number;
+    'Hour'?: number;
     /**
     * Average Value
     */
-    'AverageValue': number;
+    'AverageValue'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -381,25 +413,25 @@ export class ApmCall {
     /**
     * Time of the call
     */
-    'TimeOfCall': Date;
+    'TimeOfCall'?: Date;
     /**
     * Name of the store that the call was TO
     */
-    'StoreName': string;
+    'StoreName'?: string;
     /**
     * Name of the caller
     */
-    'CallerName': string;
+    'CallerName'?: string;
     /**
     * Phone number of the caller
     */
-    'CallerNumber': string;
+    'CallerNumber'?: string;
     /**
     * The amount of time the call took
     */
-    'CallLengthInSeconds': number;
+    'CallLengthInSeconds'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -440,17 +472,17 @@ export class ApmDataPoint {
     /**
     * Date from which the data point starts
     */
-    'PeriodStart': Date;
+    'PeriodStart'?: Date;
     /**
     * The length in days that this data point covers
     */
-    'PeriodLengthInDays': number;
+    'PeriodLengthInDays'?: number;
     /**
     * The value of this data point
     */
-    'Value': number;
+    'Value'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -481,21 +513,21 @@ export class ApmStatistics {
     /**
     * Total users that were created because of APM
     */
-    'TotalUsers': number;
+    'TotalUsers'?: number;
     /**
     * Total Orders created by users created because of APM
     */
-    'TotalOrders': number;
+    'TotalOrders'?: number;
     /**
     * Total Order Value by users created because of APM
     */
-    'TotalOrderValue': number;
+    'TotalOrderValue'?: number;
     /**
     * Total amount of time spent with APM
     */
-    'EstimatedMinutesSaved': number;
+    'EstimatedMinutesSaved'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -531,41 +563,41 @@ export class App {
     /**
     * App Identifier
     */
-    'AppId': string;
+    'AppId'?: string;
     /**
     * App name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Center of the map coordinates
     */
-    'MapCenter': Coordinates;
+    'MapCenter'?: Coordinates;
     /**
     * North East(Top Right) Corner of the map coordinates
     */
-    'MapNorthEast': Coordinates;
+    'MapNorthEast'?: Coordinates;
     /**
     * South West (Bottom Left) Corner of the map coordinates
     */
-    'MapSouthWest': Coordinates;
+    'MapSouthWest'?: Coordinates;
     /**
     * Icon url
     */
-    'IconUrl': string;
+    'IconUrl'?: string;
     /**
     * Icon thumbnail url
     */
-    'IconThumbnailUrl': string;
+    'IconThumbnailUrl'?: string;
     /**
     * Country identifier
     */
-    'CountryId': string;
+    'CountryId'?: string;
     /**
     * Available Languages for Apps\\Staff
     */
-    'AvailableAppLanguages': Array<Language>;
+    'AvailableAppLanguages'?: Array<Language>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -626,11 +658,11 @@ export class BusinessHoursOverride {
     /**
     * Unique identifier
     */
-    'BusinessHoursOverrideId': number;
+    'BusinessHoursOverrideId'?: number;
     /**
     * Delivery or Pickup
     */
-    'DeliveryType': BusinessHoursOverride.DeliveryTypeEnum;
+    'DeliveryType'?: BusinessHoursOverride.DeliveryTypeEnum;
     /**
     * Date and time in ISO 8601 format.
     */
@@ -642,9 +674,9 @@ export class BusinessHoursOverride {
     /**
     * Open, Closed or ClosedAllowPreOrders
     */
-    'Type': BusinessHoursOverride.TypeEnum;
+    'Type'?: BusinessHoursOverride.TypeEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -696,7 +728,7 @@ export class BusinessHoursOverrideBase {
     /**
     * Delivery or Pickup
     */
-    'DeliveryType': BusinessHoursOverrideBase.DeliveryTypeEnum;
+    'DeliveryType'?: BusinessHoursOverrideBase.DeliveryTypeEnum;
     /**
     * Date and time in ISO 8601 format.
     */
@@ -708,9 +740,9 @@ export class BusinessHoursOverrideBase {
     /**
     * Open, Closed or ClosedAllowPreOrders
     */
-    'Type': BusinessHoursOverrideBase.TypeEnum;
+    'Type'?: BusinessHoursOverrideBase.TypeEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -757,37 +789,37 @@ export class BusinessHoursPeriod {
     /**
     * Early
     */
-    'Early': Range;
+    'Early'?: Range;
     /**
     * Late
     */
-    'Late': Range;
+    'Late'?: Range;
     /**
     * Ranges
     */
-    'Ranges': Array<Range>;
+    'Ranges'?: Array<Range>;
     /**
     * Day of week
     */
-    'DayOfWeek': BusinessHoursPeriod.DayOfWeekEnum;
+    'DayOfWeek'?: BusinessHoursPeriod.DayOfWeekEnum;
     /**
     * Start time
     */
-    'StartTime': string;
+    'StartTime'?: string;
     /**
     * Period
     */
-    'Period': string;
+    'Period'?: string;
     /**
     * Start time early
     */
-    'StartTimeEarly': string;
+    'StartTimeEarly'?: string;
     /**
     * Period early
     */
-    'PeriodEarly': string;
+    'PeriodEarly'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -854,25 +886,25 @@ export class BusinessHoursPeriodBase {
     /**
     * Day of week
     */
-    'DayOfWeek': BusinessHoursPeriodBase.DayOfWeekEnum;
+    'DayOfWeek'?: BusinessHoursPeriodBase.DayOfWeekEnum;
     /**
     * Start time
     */
-    'StartTime': string;
+    'StartTime'?: string;
     /**
     * Period
     */
-    'Period': string;
+    'Period'?: string;
     /**
     * Start time early
     */
-    'StartTimeEarly': string;
+    'StartTimeEarly'?: string;
     /**
     * Period early
     */
-    'PeriodEarly': string;
+    'PeriodEarly'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -924,17 +956,17 @@ export class Card {
     /**
     * Last four digits
     */
-    'Last4Digit': string;
+    'Last4Digit'?: string;
     /**
     * Expiry month
     */
-    'ExpiryMonth': number;
+    'ExpiryMonth'?: number;
     /**
     * Expiry yaer
     */
-    'ExpiryYear': number;
+    'ExpiryYear'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -965,13 +997,13 @@ export class CardBase {
     /**
     * Expiry month
     */
-    'ExpiryMonth': number;
+    'ExpiryMonth'?: number;
     /**
     * Expiry yaer
     */
-    'ExpiryYear': number;
+    'ExpiryYear'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -999,7 +1031,7 @@ export class CardWithToken {
     */
     'Token': string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -1030,7 +1062,7 @@ export class ChangePasswordModel {
     */
     'PasswordConfirmation': string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -1061,13 +1093,13 @@ export class Coordinates {
     /**
     * Latitude
     */
-    'Latitude': number;
+    'Latitude'?: number;
     /**
     * Longitude
     */
-    'Longitude': number;
+    'Longitude'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -1099,7 +1131,7 @@ export class CreateAccountModel {
     */
     'StoreName': string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -1125,21 +1157,21 @@ export class CreateTeammate {
     /**
     * Email address
     */
-    'Email': string;
+    'Email'?: string;
     /**
     * App access level
     */
-    'AppAccessLevel': CreateTeammate.AppAccessLevelEnum;
+    'AppAccessLevel'?: CreateTeammate.AppAccessLevelEnum;
     /**
     * The user has access to all stores for the app (including new stores that added later)
     */
-    'HasAccessToAllStores': boolean;
+    'HasAccessToAllStores'?: boolean;
     /**
     * Store IDs the user has access to (if HasAccessToAllStores is false)
     */
-    'StoreIds': Array<number>;
+    'StoreIds'?: Array<number>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -1179,43 +1211,66 @@ export namespace CreateTeammate {
     }
 }
 /**
+* Credit note details
+*/
+export class CreditNoteDetails {
+    /**
+    * Remaining credit
+    */
+    'RemainingCredit'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "RemainingCredit",
+            "baseName": "RemainingCredit",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreditNoteDetails.attributeTypeMap;
+    }
+}
+
+/**
 * Customer consent updated
 */
 export class CustomerConsentUpdatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * App name id
     */
-    'AppId': string;
+    'AppId'?: string;
     /**
     * Enabled
     */
-    'Enabled': boolean;
+    'Enabled'?: boolean;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Customer User info
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -1271,33 +1326,33 @@ export class CustomerCreatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * App name id
     */
-    'AppId': string;
+    'AppId'?: string;
     /**
     * Customer User info
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -1348,25 +1403,25 @@ export class CustomerSummary {
     /**
     * Customer identifier
     */
-    'Id': number;
+    'Id'?: number;
     /**
     * Customer name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Customer email address
     */
-    'EmailAddress': string;
+    'EmailAddress'?: string;
     /**
     * Customer local phone number
     */
-    'PhoneNumberLocalFormat': string;
+    'PhoneNumberLocalFormat'?: string;
     /**
     * Customer phone number
     */
-    'PhoneNumber': string;
+    'PhoneNumber'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -1407,29 +1462,29 @@ export class CustomerUpdatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Customer User info
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -1475,33 +1530,33 @@ export class DeliveryLocation {
     /**
     * Geo cordinate
     */
-    'Coordinates': Coordinates;
+    'Coordinates'?: Coordinates;
     /**
     * Building
     */
-    'Building': string;
+    'Building'?: string;
     /**
     * Street
     */
-    'Street': string;
+    'Street'?: string;
     /**
     * Town
     */
-    'Town': string;
+    'Town'?: string;
     /**
     * Post code
     */
-    'PostCode': string;
+    'PostCode'?: string;
     /**
     * Delivery instructions
     */
-    'DeliveryInstructions': string;
+    'DeliveryInstructions'?: string;
     /**
     * Formatted, pretty address string
     */
-    'PrettyAddressString': string;
+    'PrettyAddressString'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -1552,25 +1607,25 @@ export class DeliveryZone {
     /**
     * Delivery Fee Area Id
     */
-    'Id': number;
+    'Id'?: number;
     /**
-    * Delivery fee
+    * Delivery fee (will not be set below 0)
     */
-    'DeliveryFee': number;
+    'DeliveryFee'?: number;
     /**
-    * Minimum delivery order amount
+    * Minimum delivery order amount (will not be set below 0)
     */
-    'MinimumDeliveryOrderAmount': number;
+    'MinimumDeliveryOrderAmount'?: number;
     /**
     * Spatial data in Well Known Text format  We also support CIRCLE((0 0, 200)) - (centerLong centerLat, radius in m)
     */
-    'WellKnownText': string;
+    'WellKnownText'?: string;
     /**
     * Is delivery zone enabled
     */
-    'IsEnabled': boolean;
+    'IsEnabled'?: boolean;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -1609,23 +1664,23 @@ export class DeliveryZone {
 */
 export class DeliveryZoneBase {
     /**
-    * Delivery fee
+    * Delivery fee (will not be set below 0)
     */
-    'DeliveryFee': number;
+    'DeliveryFee'?: number;
     /**
-    * Minimum delivery order amount
+    * Minimum delivery order amount (will not be set below 0)
     */
-    'MinimumDeliveryOrderAmount': number;
+    'MinimumDeliveryOrderAmount'?: number;
     /**
     * Spatial data in Well Known Text format  We also support CIRCLE((0 0, 200)) - (centerLong centerLat, radius in m)
     */
-    'WellKnownText': string;
+    'WellKnownText'?: string;
     /**
     * Is delivery zone enabled
     */
-    'IsEnabled': boolean;
+    'IsEnabled'?: boolean;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -1661,37 +1716,37 @@ export class DeliveryZoneCreatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * User which created delivery zone for this store
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Created Delivery Zone
     */
-    'DeliveryZone': DeliveryZone;
+    'DeliveryZone'?: DeliveryZone;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -1747,37 +1802,37 @@ export class DeliveryZoneDeletedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * User which deleted delivery zone for this store
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Deleted Delivery Zone
     */
-    'DeliveryZone': DeliveryZone;
+    'DeliveryZone'?: DeliveryZone;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -1833,37 +1888,37 @@ export class DeliveryZoneUpdatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * User which updated delivery zone for this store
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Updated Delivery Zone
     */
-    'DeliveryZone': DeliveryZone;
+    'DeliveryZone'?: DeliveryZone;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -1919,233 +1974,245 @@ export class EventSearchResult {
     /**
     * Client Analytics events
     */
-    'AnalyticsClientEvent': Array<AnalyticsClientEvent>;
+    'AnalyticsClientEvent'?: Array<AnalyticsClientEvent>;
     /**
     * Order accepted events
     */
-    'OrderAcceptedEvent': Array<OrderAcceptedEvent>;
+    'OrderAcceptedEvent'?: Array<OrderAcceptedEvent>;
     /**
     * Order created events
     */
-    'OrderCreatedEvent': Array<OrderCreatedEvent>;
+    'OrderCreatedEvent'?: Array<OrderCreatedEvent>;
     /**
     * Order rating updated events
     */
-    'OrderRatingUpdatedEvent': Array<OrderRatingUpdatedEvent>;
+    'OrderRatingUpdatedEvent'?: Array<OrderRatingUpdatedEvent>;
     /**
     * Order refunded events
     */
-    'OrderRefundedEvent': Array<OrderRefundedEvent>;
+    'OrderRefundedEvent'?: Array<OrderRefundedEvent>;
     /**
     * Order rejected events
     */
-    'OrderRejectedEvent': Array<OrderRejectedEvent>;
+    'OrderRejectedEvent'?: Array<OrderRejectedEvent>;
     /**
     * Order tip updated events
     */
-    'OrderTipUpdatedEvent': Array<OrderTipUpdatedEvent>;
+    'OrderTipUpdatedEvent'?: Array<OrderTipUpdatedEvent>;
     /**
     * Store created events
     */
-    'StoreCreatedEvent': Array<StoreCreatedEvent>;
+    'StoreCreatedEvent'?: Array<StoreCreatedEvent>;
     /**
     * Store deleted events
     */
-    'StoreDeletedEvent': Array<StoreDeletedEvent>;
+    'StoreDeletedEvent'?: Array<StoreDeletedEvent>;
     /**
     * Store address updated events
     */
-    'StoreAddressUpdatedEvent': Array<StoreAddressUpdatedEvent>;
+    'StoreAddressUpdatedEvent'?: Array<StoreAddressUpdatedEvent>;
     /**
     * Store delivery zone created events
     */
-    'DeliveryZoneCreatedEvent': Array<DeliveryZoneCreatedEvent>;
+    'DeliveryZoneCreatedEvent'?: Array<DeliveryZoneCreatedEvent>;
     /**
     * Store delivery zone updated events
     */
-    'DeliveryZoneUpdatedEvent': Array<DeliveryZoneUpdatedEvent>;
+    'DeliveryZoneUpdatedEvent'?: Array<DeliveryZoneUpdatedEvent>;
     /**
     * Store delivery zone deleted events
     */
-    'DeliveryZoneDeletedEvent': Array<DeliveryZoneDeletedEvent>;
+    'DeliveryZoneDeletedEvent'?: Array<DeliveryZoneDeletedEvent>;
     /**
     * Store opening hours updated events
     */
-    'StoreOpeningHoursUpdatedEvent': Array<StoreOpeningHoursUpdatedEvent>;
+    'StoreOpeningHoursUpdatedEvent'?: Array<StoreOpeningHoursUpdatedEvent>;
     /**
     * Store business hours override created events
     */
-    'StoreBusinessHoursOverrideCreatedEvent': Array<StoreBusinessHoursOverrideCreatedEvent>;
+    'StoreBusinessHoursOverrideCreatedEvent'?: Array<StoreBusinessHoursOverrideCreatedEvent>;
     /**
     * Store business hours override deleted events
     */
-    'StoreBusinessHoursOverrideDeletedEvent': Array<StoreBusinessHoursOverrideDeletedEvent>;
+    'StoreBusinessHoursOverrideDeletedEvent'?: Array<StoreBusinessHoursOverrideDeletedEvent>;
     /**
     * Store updated events
     */
-    'StoreUpdatedEvent': Array<StoreUpdatedEvent>;
+    'StoreUpdatedEvent'?: Array<StoreUpdatedEvent>;
     /**
     * Menu created events
     */
-    'MenuCreatedEvent': Array<MenuCreatedEvent>;
+    'MenuCreatedEvent'?: Array<MenuCreatedEvent>;
     /**
     * Menu updated events
     */
-    'MenuUpdatedEvent': Array<MenuUpdatedEvent>;
+    'MenuUpdatedEvent'?: Array<MenuUpdatedEvent>;
     /**
     * Menu section created events
     */
-    'MenuSectionCreatedEvent': Array<MenuSectionCreatedEvent>;
+    'MenuSectionCreatedEvent'?: Array<MenuSectionCreatedEvent>;
     /**
     * Menu section updated events
     */
-    'MenuSectionUpdatedEvent': Array<MenuSectionUpdatedEvent>;
+    'MenuSectionUpdatedEvent'?: Array<MenuSectionUpdatedEvent>;
     /**
     * Menu section deleted events
     */
-    'MenuSectionDeletedEvent': Array<MenuSectionDeletedEvent>;
+    'MenuSectionDeletedEvent'?: Array<MenuSectionDeletedEvent>;
     /**
     * Menu section item created events
     */
-    'MenuSectionItemCreatedEvent': Array<MenuSectionItemCreatedEvent>;
+    'MenuSectionItemCreatedEvent'?: Array<MenuSectionItemCreatedEvent>;
     /**
     * Menu section item updated events
     */
-    'MenuSectionItemUpdatedEvent': Array<MenuSectionItemUpdatedEvent>;
+    'MenuSectionItemUpdatedEvent'?: Array<MenuSectionItemUpdatedEvent>;
     /**
     * Menu section item deleted events
     */
-    'MenuSectionItemDeletedEvent': Array<MenuSectionItemDeletedEvent>;
+    'MenuSectionItemDeletedEvent'?: Array<MenuSectionItemDeletedEvent>;
     /**
     * Menu item option set created events
     */
-    'MenuItemOptionSetCreatedEvent': Array<MenuItemOptionSetCreatedEvent>;
+    'MenuItemOptionSetCreatedEvent'?: Array<MenuItemOptionSetCreatedEvent>;
     /**
     * Menu item option set  updated events
     */
-    'MenuItemOptionSetUpdatedEvent': Array<MenuItemOptionSetUpdatedEvent>;
+    'MenuItemOptionSetUpdatedEvent'?: Array<MenuItemOptionSetUpdatedEvent>;
     /**
     * Menu item option set deleted events
     */
-    'MenuItemOptionSetDeletedEvent': Array<MenuItemOptionSetDeletedEvent>;
+    'MenuItemOptionSetDeletedEvent'?: Array<MenuItemOptionSetDeletedEvent>;
     /**
     * Menu item option set item created events
     */
-    'MenuItemOptionSetItemCreatedEvent': Array<MenuItemOptionSetItemCreatedEvent>;
+    'MenuItemOptionSetItemCreatedEvent'?: Array<MenuItemOptionSetItemCreatedEvent>;
     /**
     * Menu item option set item updated events
     */
-    'MenuItemOptionSetItemUpdatedEvent': Array<MenuItemOptionSetItemUpdatedEvent>;
+    'MenuItemOptionSetItemUpdatedEvent'?: Array<MenuItemOptionSetItemUpdatedEvent>;
     /**
     * Menu item option set item deleted events
     */
-    'MenuItemOptionSetItemDeletedEvent': Array<MenuItemOptionSetItemDeletedEvent>;
+    'MenuItemOptionSetItemDeletedEvent'?: Array<MenuItemOptionSetItemDeletedEvent>;
     /**
     * Store group created events
     */
-    'StoreGroupCreatedEvent': Array<StoreGroupCreatedEvent>;
+    'StoreGroupCreatedEvent'?: Array<StoreGroupCreatedEvent>;
     /**
     * Store group updated events
     */
-    'StoreGroupUpdatedEvent': Array<StoreGroupUpdatedEvent>;
+    'StoreGroupUpdatedEvent'?: Array<StoreGroupUpdatedEvent>;
     /**
     * Store group deleted events
     */
-    'StoreGroupDeletedEvent': Array<StoreGroupDeletedEvent>;
+    'StoreGroupDeletedEvent'?: Array<StoreGroupDeletedEvent>;
     /**
     * Customer created events
     */
-    'CustomerCreatedEvent': Array<CustomerCreatedEvent>;
+    'CustomerCreatedEvent'?: Array<CustomerCreatedEvent>;
     /**
     * Customer updated events
     */
-    'CustomerUpdatedEvent': Array<CustomerUpdatedEvent>;
+    'CustomerUpdatedEvent'?: Array<CustomerUpdatedEvent>;
     /**
     * Customer consent updated events
     */
-    'CustomerConsentUpdatedEvent': Array<CustomerConsentUpdatedEvent>;
+    'CustomerConsentUpdatedEvent'?: Array<CustomerConsentUpdatedEvent>;
     /**
     * Webhook subscription created events
     */
-    'WebhookSubscriptionCreatedEvent': Array<WebhookSubscriptionCreatedEvent>;
+    'WebhookSubscriptionCreatedEvent'?: Array<WebhookSubscriptionCreatedEvent>;
     /**
     * Webhook subscription updated events
     */
-    'WebhookSubscriptionUpdatedEvent': Array<WebhookSubscriptionUpdatedEvent>;
+    'WebhookSubscriptionUpdatedEvent'?: Array<WebhookSubscriptionUpdatedEvent>;
     /**
     * Webhook subscription deleted events
     */
-    'WebhookSubscriptionDeletedEvent': Array<WebhookSubscriptionDeletedEvent>;
+    'WebhookSubscriptionDeletedEvent'?: Array<WebhookSubscriptionDeletedEvent>;
     /**
     * Printer turned ON event
     */
-    'PrinterTurnedOnEvent': Array<PrinterTurnedOnEvent>;
+    'PrinterTurnedOnEvent'?: Array<PrinterTurnedOnEvent>;
     /**
     * Printer turned OFF event
     */
-    'PrinterTurnedOffEvent': Array<PrinterTurnedOffEvent>;
+    'PrinterTurnedOffEvent'?: Array<PrinterTurnedOffEvent>;
     /**
     * Printer assigned to store event
     */
-    'PrinterAssignedToStoreEvent': Array<PrinterAssignedToStoreEvent>;
+    'PrinterAssignedToStoreEvent'?: Array<PrinterAssignedToStoreEvent>;
     /**
     * Printer unassigned from store event
     */
-    'PrinterUnassignedFromStoreEvent': Array<PrinterUnassignedFromStoreEvent>;
+    'PrinterUnassignedFromStoreEvent'?: Array<PrinterUnassignedFromStoreEvent>;
     /**
     * Phone call started event
     */
-    'PhoneCallStartedEvent': Array<PhoneCallStartedEvent>;
+    'PhoneCallStartedEvent'?: Array<PhoneCallStartedEvent>;
     /**
     * Phone call ended event
     */
-    'PhoneCallEndedEvent': Array<PhoneCallEndedEvent>;
+    'PhoneCallEndedEvent'?: Array<PhoneCallEndedEvent>;
     /**
     * Loyalty campaign created event
     */
-    'LoyaltyCampaignCreatedEvent': Array<LoyaltyCampaignCreatedEvent>;
+    'LoyaltyCampaignCreatedEvent'?: Array<LoyaltyCampaignCreatedEvent>;
     /**
     * Loyalty campaign deleted event
     */
-    'LoyaltyCampaignDeletedEvent': Array<LoyaltyCampaignDeletedEvent>;
+    'LoyaltyCampaignDeletedEvent'?: Array<LoyaltyCampaignDeletedEvent>;
     /**
     * Loyalty campaign updated event
     */
-    'LoyaltyCampaignUpdatedEvent': Array<LoyaltyCampaignUpdatedEvent>;
+    'LoyaltyCampaignUpdatedEvent'?: Array<LoyaltyCampaignUpdatedEvent>;
     /**
     * Retention campaign created event
     */
-    'RetentionCampaignCreatedEvent': Array<RetentionCampaignCreatedEvent>;
+    'RetentionCampaignCreatedEvent'?: Array<RetentionCampaignCreatedEvent>;
     /**
     * Retention campaign deleted event
     */
-    'RetentionCampaignDeletedEvent': Array<RetentionCampaignDeletedEvent>;
+    'RetentionCampaignDeletedEvent'?: Array<RetentionCampaignDeletedEvent>;
     /**
     * Retention campaign updated event
     */
-    'RetentionCampaignUpdatedEvent': Array<RetentionCampaignUpdatedEvent>;
+    'RetentionCampaignUpdatedEvent'?: Array<RetentionCampaignUpdatedEvent>;
     /**
     * Sms received event
     */
-    'SmsReceivedEvent': Array<SmsReceivedEvent>;
+    'SmsReceivedEvent'?: Array<SmsReceivedEvent>;
     /**
     * User login event
     */
-    'UserLoginEvent': Array<UserLoginEvent>;
+    'UserLoginEvent'?: Array<UserLoginEvent>;
     /**
     * User created event
     */
-    'UserCreatedEvent': Array<UserCreatedEvent>;
+    'UserCreatedEvent'?: Array<UserCreatedEvent>;
     /**
     * User updated event
     */
-    'UserUpdatedEvent': Array<UserUpdatedEvent>;
+    'UserUpdatedEvent'?: Array<UserUpdatedEvent>;
     /**
     * User deleted event
     */
-    'UserDeletedEvent': Array<UserDeletedEvent>;
+    'UserDeletedEvent'?: Array<UserDeletedEvent>;
+    /**
+    * Voucher created event
+    */
+    'VoucherCreatedEvent'?: Array<VoucherCreatedEvent>;
+    /**
+    * Voucher updated event
+    */
+    'VoucherUpdatedEvent'?: Array<VoucherUpdatedEvent>;
+    /**
+    * Voucher deleted event
+    */
+    'VoucherDeletedEvent'?: Array<VoucherDeletedEvent>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -2432,6 +2499,21 @@ export class EventSearchResult {
             "name": "UserDeletedEvent",
             "baseName": "UserDeletedEvent",
             "type": "Array<UserDeletedEvent>"
+        },
+        {
+            "name": "VoucherCreatedEvent",
+            "baseName": "VoucherCreatedEvent",
+            "type": "Array<VoucherCreatedEvent>"
+        },
+        {
+            "name": "VoucherUpdatedEvent",
+            "baseName": "VoucherUpdatedEvent",
+            "type": "Array<VoucherUpdatedEvent>"
+        },
+        {
+            "name": "VoucherDeletedEvent",
+            "baseName": "VoucherDeletedEvent",
+            "type": "Array<VoucherDeletedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -2446,17 +2528,17 @@ export class FeeSummary {
     /**
     * Fee amount
     */
-    'FeeAmount': number;
+    'FeeAmount'?: number;
     /**
     * Percentage rate
     */
-    'PercentageRate': number;
+    'PercentageRate'?: number;
     /**
     * Per transaction fee
     */
-    'PerTransactionFee': number;
+    'PerTransactionFee'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -2487,61 +2569,61 @@ export class HttpRequestAndResponseLog {
     /**
     * Verb associated with the HTTP call.
     */
-    'Verb': string;
+    'Verb'?: string;
     /**
     * Http request URI.
     */
-    'RequestUri': string;
+    'RequestUri'?: string;
     /**
     * Http response status code.
     */
-    'StatusCode': number;
+    'StatusCode'?: number;
     /**
     * Http response status line.
     */
-    'ReasonPhrase': string;
+    'ReasonPhrase'?: string;
     /**
     * Call duration representing the duration of the HTTP call in milliseconds.
     */
-    'CallDurationInMilliseconds': number;
+    'CallDurationInMilliseconds'?: number;
     /**
     * Identity of the caller.
     */
-    'UserId': string;
+    'UserId'?: string;
     /**
     * Ip address of the caller
     */
-    'IpAddress': string;
+    'IpAddress'?: string;
     /**
     * Timestamp at which the HTTP call took place.
     */
-    'CreatedDateTime': string;
+    'CreatedDateTime'?: string;
     /**
     * Http request headers.
     */
-    'RequestHeaders': { [key: string]: string; };
+    'RequestHeaders'?: { [key: string]: string; };
     /**
     * Http request body, if any.
     */
-    'RequestBody': string;
+    'RequestBody'?: string;
     /**
     * Http request content-length
     */
-    'RequestLength': number;
+    'RequestLength'?: number;
     /**
     * Http response headers.
     */
-    'ResponseHeaders': { [key: string]: string; };
+    'ResponseHeaders'?: { [key: string]: string; };
     /**
     * Http response body.
     */
-    'ResponseBody': string;
+    'ResponseBody'?: string;
     /**
     * Http response content-length
     */
-    'ResponseLength': number;
+    'ResponseLength'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -2627,29 +2709,29 @@ export class JobAddress {
     /**
     * Street
     */
-    'Street': string;
+    'Street'?: string;
     /**
     * Postcode
     */
-    'Postcode': string;
+    'Postcode'?: string;
     /**
     * City
     */
-    'City': string;
+    'City'?: string;
     /**
     * Country
     */
-    'Country': string;
+    'Country'?: string;
     /**
     * Zone
     */
-    'Zone': string;
+    'Zone'?: string;
     /**
     * Formatted Address
     */
-    'FormattedAddress': string;
+    'FormattedAddress'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -2695,17 +2777,17 @@ export class JobCancellation {
     /**
     * Canceled By
     */
-    'CanceledBy': string;
+    'CanceledBy'?: string;
     /**
     * Reason Key
     */
-    'ReasonKey': string;
+    'ReasonKey'?: string;
     /**
     * Comment
     */
-    'Comment': string;
+    'Comment'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -2736,29 +2818,29 @@ export class JobContact {
     /**
     * Firstname
     */
-    'Firstname': string;
+    'Firstname'?: string;
     /**
     * Lastname
     */
-    'Lastname': string;
+    'Lastname'?: string;
     /**
     * Phone
     */
-    'Phone': string;
+    'Phone'?: string;
     /**
     * Email
     */
-    'Email': string;
+    'Email'?: string;
     /**
     * Company
     */
-    'Company': string;
+    'Company'?: string;
     /**
     * Company Name
     */
-    'CompanyName': string;
+    'CompanyName'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -2804,57 +2886,57 @@ export class JobDelivery {
     /**
     * Id
     */
-    'Id': number;
+    'Id'?: number;
     /**
     * Status
     */
-    'Status': string;
+    'Status'?: string;
     /**
     * Picked At
     */
-    'PickedAt': string;
+    'PickedAt'?: string;
     /**
     * Delivered At
     */
-    'DeliveredAt': string;
+    'DeliveredAt'?: string;
     /**
     * Tracking Url
     */
-    'TrackingUrl': string;
+    'TrackingUrl'?: string;
     /**
     * Client Reference
     */
-    'ClientReference': string;
+    'ClientReference'?: string;
     /**
     * Package Description
     */
-    'PackageDescription': string;
+    'PackageDescription'?: string;
     /**
     * Package Type
     */
-    'PackageType': string;
+    'PackageType'?: string;
     /**
     * Pickup
     */
-    'Pickup': JobDeliveryDetail;
+    'Pickup'?: JobDeliveryDetail;
     /**
     * Dropoff
     */
-    'Dropoff': JobDeliveryDetail;
+    'Dropoff'?: JobDeliveryDetail;
     /**
     * Eta
     */
-    'Eta': JobEta;
+    'Eta'?: JobEta;
     /**
     * Cancellation
     */
-    'Cancellation': JobCancellation;
+    'Cancellation'?: JobCancellation;
     /**
     * Proof
     */
-    'Proof': JobProof;
+    'Proof'?: JobProof;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -2935,29 +3017,29 @@ export class JobDeliveryDetail {
     /**
     * Id
     */
-    'Id': number;
+    'Id'?: number;
     /**
     * Latitude
     */
-    'Latitude': number;
+    'Latitude'?: number;
     /**
     * Longitude
     */
-    'Longitude': number;
+    'Longitude'?: number;
     /**
     * Comment
     */
-    'Comment': string;
+    'Comment'?: string;
     /**
     * Address
     */
-    'Address': JobAddress;
+    'Address'?: JobAddress;
     /**
     * Contact
     */
-    'Contact': JobContact;
+    'Contact'?: JobContact;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -3003,33 +3085,33 @@ export class JobDriver {
     /**
     * Id
     */
-    'Id': number;
+    'Id'?: number;
     /**
     * Display Name
     */
-    'DisplayName': string;
+    'DisplayName'?: string;
     /**
     * Phone
     */
-    'Phone': string;
+    'Phone'?: string;
     /**
     * Picture Url
     */
-    'PictureUrl': string;
+    'PictureUrl'?: string;
     /**
     * Transport Type
     */
-    'TransportType': string;
+    'TransportType'?: string;
     /**
     * Latitude
     */
-    'Latitude': number;
+    'Latitude'?: number;
     /**
     * Longitude
     */
-    'Longitude': number;
+    'Longitude'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -3080,13 +3162,13 @@ export class JobEta {
     /**
     * Pickup
     */
-    'Pickup': string;
+    'Pickup'?: string;
     /**
     * Dropoff
     */
-    'Dropoff': string;
+    'Dropoff'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -3112,29 +3194,29 @@ export class JobPricing {
     /**
     * Currency
     */
-    'Currency': string;
+    'Currency'?: string;
     /**
     * Tax Percentage
     */
-    'TaxPercentage': number;
+    'TaxPercentage'?: number;
     /**
     * Price Tax Included
     */
-    'PriceTaxIncluded': number;
+    'PriceTaxIncluded'?: number;
     /**
     * Price Tax Excluded
     */
-    'PriceTaxExcluded': number;
+    'PriceTaxExcluded'?: number;
     /**
     * Tax Amount
     */
-    'TaxAmount': number;
+    'TaxAmount'?: number;
     /**
     * Invoice Url
     */
-    'InvoiceUrl': string;
+    'InvoiceUrl'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -3180,9 +3262,9 @@ export class JobProof {
     /**
     * Signature Url
     */
-    'SignatureUrl': string;
+    'SignatureUrl'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -3203,61 +3285,61 @@ export class JobResponse {
     /**
     * Id
     */
-    'Id': number;
+    'Id'?: number;
     /**
     * Created At
     */
-    'CreatedAt': Date;
+    'CreatedAt'?: Date;
     /**
     * Status
     */
-    'Status': string;
+    'Status'?: string;
     /**
     * Package Type
     */
-    'PackageType': string;
+    'PackageType'?: string;
     /**
     * Transport Type
     */
-    'TransportType': string;
+    'TransportType'?: string;
     /**
     * Assignment Code
     */
-    'AssignmentCode': string;
+    'AssignmentCode'?: string;
     /**
     * Pickup At
     */
-    'PickupAt': string;
+    'PickupAt'?: string;
     /**
     * Dropoff At
     */
-    'DropoffAt': string;
+    'DropoffAt'?: string;
     /**
     * Comment
     */
-    'Comment': string;
+    'Comment'?: string;
     /**
     * Distance
     */
-    'Distance': number;
+    'Distance'?: number;
     /**
     * Duration
     */
-    'Duration': number;
+    'Duration'?: number;
     /**
     * Deliveries
     */
-    'Deliveries': Array<JobDelivery>;
+    'Deliveries'?: Array<JobDelivery>;
     /**
     * Pricing
     */
-    'Pricing': JobPricing;
+    'Pricing'?: JobPricing;
     /**
     * Driver
     */
-    'Driver': JobDriver;
+    'Driver'?: JobDriver;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -3343,13 +3425,13 @@ export class Language {
     /**
     * ISO 639-1 Language Code
     */
-    'LanguageId': string;
+    'LanguageId'?: string;
     /**
     * Display Order
     */
-    'DisplayOrder': number;
+    'DisplayOrder'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -3375,49 +3457,49 @@ export class LightspeedSettings {
     /**
     * Company Id
     */
-    'CompanyId': string;
+    'CompanyId'?: string;
     /**
     * Enabled
     */
-    'Enabled': boolean;
+    'Enabled'?: boolean;
     /**
     * Estimated minutes for delivery
     */
-    'EstimatedMinutesForDelivery': number;
+    'EstimatedMinutesForDelivery'?: number;
     /**
     * Estimated minutes for collection
     */
-    'EstimatedMinutesForCollection': number;
+    'EstimatedMinutesForCollection'?: number;
     /**
     * Geographic location (euc1, nae1, euw2, ....))
     */
-    'GeographicLocation': string;
+    'GeographicLocation'?: string;
     /**
     * Is the CompanyId an establishment (kind of the store of a group of store)
     */
-    'Establishment': boolean;
+    'Establishment'?: boolean;
     /**
     * The Lightspeed voucher identifier to map with our
     */
-    'VoucherId': string;
+    'VoucherId'?: string;
     /**
     * The Lightspeed delivery fee identifier to map with our
     */
-    'DeliveryFeeId': string;
+    'DeliveryFeeId'?: string;
     /**
     * The Lightspeed processing fee identifier to map with our
     */
-    'ProcessingFeeId': string;
+    'ProcessingFeeId'?: string;
     /**
     * Which price to choose from Lightspeed menu
     */
-    'PriceType': LightspeedSettings.PriceTypeEnum;
+    'PriceType'?: LightspeedSettings.PriceTypeEnum;
     /**
     * The menu id of the store
     */
-    'MenuId': number;
+    'MenuId'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -3501,7 +3583,7 @@ export class LoginModel {
     */
     'Password': string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -3527,25 +3609,25 @@ export class LoyaltyCampaign {
     /**
     * Date and time of campaign beginning
     */
-    'From': Date;
+    'From'?: Date;
     /**
     * Number of days for which the voucher will be valid.
     */
-    'VoucherValidPeriodDays': number;
+    'VoucherValidPeriodDays'?: number;
     /**
     * Discount will include delivery fee
     */
-    'IncludeDeliveryFee': boolean;
+    'IncludeDeliveryFee'?: boolean;
     /**
     * Number of orders customer needs to make, before receiving voucher
     */
-    'OrdersBeforeReceivingVoucher': number;
+    'OrdersBeforeReceivingVoucher'?: number;
     /**
     * Discount amount in percents
     */
-    'PercentDiscountAmount': number;
+    'PercentDiscountAmount'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -3586,37 +3668,37 @@ export class LoyaltyCampaignCreatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * Info User
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The loyalty campaign
     */
-    'LoyaltyCampaign': LoyaltyCampaign;
+    'LoyaltyCampaign'?: LoyaltyCampaign;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -3672,37 +3754,37 @@ export class LoyaltyCampaignDeletedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * Info User
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The loyalty campaign
     */
-    'LoyaltyCampaign': LoyaltyCampaign;
+    'LoyaltyCampaign'?: LoyaltyCampaign;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -3758,37 +3840,37 @@ export class LoyaltyCampaignUpdatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * Info User
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The loyalty campaign
     */
-    'LoyaltyCampaign': LoyaltyCampaign;
+    'LoyaltyCampaign'?: LoyaltyCampaign;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -3838,39 +3920,62 @@ export class LoyaltyCampaignUpdatedEvent {
 }
 
 /**
+* Lump discount details
+*/
+export class LumpDiscountDetails {
+    /**
+    * Discount amount
+    */
+    'DiscountAmount'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DiscountAmount",
+            "baseName": "DiscountAmount",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LumpDiscountDetails.attributeTypeMap;
+    }
+}
+
+/**
 * Menu
 */
 export class Menu {
     /**
     * Menu identifier
     */
-    'MenuId': number;
+    'MenuId'?: number;
     /**
     * Last modified time
     */
-    'ModifiedTime': Date;
+    'ModifiedTime'?: Date;
     /**
     * Menu version
     */
-    'VersionNumber': number;
+    'VersionNumber'?: number;
     /**
     * Image url
     */
-    'ImageUrl': string;
+    'ImageUrl'?: string;
     /**
     * Menu sections (startes, main etc)
     */
-    'MenuSections': Array<MenuSection>;
+    'MenuSections'?: Array<MenuSection>;
     /**
     * Display menu section link on UI
     */
-    'DisplaySectionLinks': boolean;
+    'DisplaySectionLinks'?: boolean;
     /**
     * Menu section behaviour
     */
-    'MenuSectionBehaviour': Menu.MenuSectionBehaviourEnum;
+    'MenuSectionBehaviour'?: Menu.MenuSectionBehaviourEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -3927,13 +4032,13 @@ export class MenuBase {
     /**
     * Display menu section link on UI
     */
-    'DisplaySectionLinks': boolean;
+    'DisplaySectionLinks'?: boolean;
     /**
     * Menu section behaviour
     */
-    'MenuSectionBehaviour': MenuBase.MenuSectionBehaviourEnum;
+    'MenuSectionBehaviour'?: MenuBase.MenuSectionBehaviourEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -3965,33 +4070,33 @@ export class MenuCreatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * User who has created the menu
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The menu
     */
-    'Menu': Menu;
+    'Menu'?: Menu;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -4042,45 +4147,45 @@ export class MenuItemOptionSet {
     /**
     * Menu item option set identifier
     */
-    'MenuItemOptionSetId': number;
+    'MenuItemOptionSetId'?: number;
     /**
     * Image url
     */
-    'ImageUrl': string;
+    'ImageUrl'?: string;
     /**
     * Option set items
     */
-    'MenuItemOptionSetItems': Array<MenuItemOptionSetItem>;
+    'MenuItemOptionSetItems'?: Array<MenuItemOptionSetItem>;
     /**
     * Permanent reference to the item.
     */
-    'PublicId': string;
+    'PublicId'?: string;
     /**
     * Menu item option set name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Is master option set. This can affect the layout of the options in the menu displayed to the customer. Usually it is true if the option could be considerd a standalone item as opposed to an addition (\"with ketchup\") or modifier (\"large\").
     */
-    'IsMasterOptionSet': boolean;
+    'IsMasterOptionSet'?: boolean;
     /**
     * Display order. Displayed in ascending order.
     */
-    'DisplayOrder': number;
+    'DisplayOrder'?: number;
     /**
     * Minimum items must be selected
     */
-    'MinSelectCount': number;
+    'MinSelectCount'?: number;
     /**
     * Maximum number of items can be selected
     */
-    'MaxSelectCount': number;
+    'MaxSelectCount'?: number;
     /**
     * Small | Medium | Large  Affects the layout of the menu.
     */
-    'CellLayoutType': MenuItemOptionSet.CellLayoutTypeEnum;
+    'CellLayoutType'?: MenuItemOptionSet.CellLayoutTypeEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -4154,29 +4259,29 @@ export class MenuItemOptionSetBase {
     /**
     * Menu item option set name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Is master option set. This can affect the layout of the options in the menu displayed to the customer. Usually it is true if the option could be considerd a standalone item as opposed to an addition (\"with ketchup\") or modifier (\"large\").
     */
-    'IsMasterOptionSet': boolean;
+    'IsMasterOptionSet'?: boolean;
     /**
     * Display order. Displayed in ascending order.
     */
-    'DisplayOrder': number;
+    'DisplayOrder'?: number;
     /**
     * Minimum items must be selected
     */
-    'MinSelectCount': number;
+    'MinSelectCount'?: number;
     /**
     * Maximum number of items can be selected
     */
-    'MaxSelectCount': number;
+    'MaxSelectCount'?: number;
     /**
     * Small | Medium | Large  Affects the layout of the menu.
     */
-    'CellLayoutType': MenuItemOptionSetBase.CellLayoutTypeEnum;
+    'CellLayoutType'?: MenuItemOptionSetBase.CellLayoutTypeEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -4230,37 +4335,37 @@ export class MenuItemOptionSetCreatedEvent {
     /**
     * Menu identifier
     */
-    'MenuId': number;
+    'MenuId'?: number;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * User who has created the menu
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Created menu item optionset
     */
-    'MenuItemOptionSet': MenuItemOptionSet;
+    'MenuItemOptionSet'?: MenuItemOptionSet;
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -4316,37 +4421,37 @@ export class MenuItemOptionSetDeletedEvent {
     /**
     * Menu identifier
     */
-    'MenuId': number;
+    'MenuId'?: number;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * User who has created the menu
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Deleted menu item optionset
     */
-    'MenuItemOptionSet': MenuItemOptionSet;
+    'MenuItemOptionSet'?: MenuItemOptionSet;
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -4402,37 +4507,37 @@ export class MenuItemOptionSetItem {
     /**
     * Menu item option set item identifier
     */
-    'MenuItemOptionSetItemId': number;
+    'MenuItemOptionSetItemId'?: number;
     /**
     * Image url
     */
-    'ImageUrl': string;
+    'ImageUrl'?: string;
     /**
     * Permanent reference to the item.
     */
-    'PublicId': string;
+    'PublicId'?: string;
     /**
     * Name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Price
     */
-    'Price': number;
+    'Price'?: number;
     /**
     * Is available
     */
-    'IsAvailable': boolean;
+    'IsAvailable'?: boolean;
     /**
     * Display order. Displayed in ascending order.
     */
-    'DisplayOrder': number;
+    'DisplayOrder'?: number;
     /**
     * Small | Medium | Large  Affects the layout of the menu.
     */
-    'CellLayoutType': MenuItemOptionSetItem.CellLayoutTypeEnum;
+    'CellLayoutType'?: MenuItemOptionSetItem.CellLayoutTypeEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -4496,25 +4601,25 @@ export class MenuItemOptionSetItemBase {
     /**
     * Name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Price
     */
-    'Price': number;
+    'Price'?: number;
     /**
     * Is available
     */
-    'IsAvailable': boolean;
+    'IsAvailable'?: boolean;
     /**
     * Display order. Displayed in ascending order.
     */
-    'DisplayOrder': number;
+    'DisplayOrder'?: number;
     /**
     * Small | Medium | Large  Affects the layout of the menu.
     */
-    'CellLayoutType': MenuItemOptionSetItemBase.CellLayoutTypeEnum;
+    'CellLayoutType'?: MenuItemOptionSetItemBase.CellLayoutTypeEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -4563,37 +4668,37 @@ export class MenuItemOptionSetItemCreatedEvent {
     /**
     * Menu identifier
     */
-    'MenuId': number;
+    'MenuId'?: number;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * User who has created the menu
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Created menu item optionset item
     */
-    'MenuItemOptionSetItem': MenuItemOptionSetItem;
+    'MenuItemOptionSetItem'?: MenuItemOptionSetItem;
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -4649,37 +4754,37 @@ export class MenuItemOptionSetItemDeletedEvent {
     /**
     * Menu identifier
     */
-    'MenuId': number;
+    'MenuId'?: number;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * User who has created the menu
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Deleted menu item optionset item
     */
-    'MenuItemOptionSetItem': MenuItemOptionSetItem;
+    'MenuItemOptionSetItem'?: MenuItemOptionSetItem;
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -4735,37 +4840,37 @@ export class MenuItemOptionSetItemUpdatedEvent {
     /**
     * Menu identifier
     */
-    'MenuId': number;
+    'MenuId'?: number;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * User who has created the menu
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Updated menu item optionset item
     */
-    'MenuItemOptionSetItem': MenuItemOptionSetItem;
+    'MenuItemOptionSetItem'?: MenuItemOptionSetItem;
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -4821,37 +4926,37 @@ export class MenuItemOptionSetUpdatedEvent {
     /**
     * Menu identifier
     */
-    'MenuId': number;
+    'MenuId'?: number;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * User who has created the menu
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Updated menu item optionset
     */
-    'MenuItemOptionSet': MenuItemOptionSet;
+    'MenuItemOptionSet'?: MenuItemOptionSet;
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -4907,45 +5012,45 @@ export class MenuSection {
     /**
     * Menu section identifier
     */
-    'MenuSectionId': number;
+    'MenuSectionId'?: number;
     /**
     * Image url
     */
-    'ImageUrl': string;
+    'ImageUrl'?: string;
     /**
     * Menu items
     */
-    'MenuItems': Array<MenuSectionItem>;
+    'MenuItems'?: Array<MenuSectionItem>;
     /**
     * Menu section availability
     */
-    'MenuSectionAvailability': MenuSectionAvailability;
+    'MenuSectionAvailability'?: MenuSectionAvailability;
     /**
     * Permanent reference to the item.
     */
-    'PublicId': string;
+    'PublicId'?: string;
     /**
     * Name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Display order
     */
-    'DisplayOrder': number;
+    'DisplayOrder'?: number;
     /**
     * Is available
     */
-    'IsAvailable': boolean;
+    'IsAvailable'?: boolean;
     /**
     * Is hidden from customer. Perhaps when the item is out of stock.
     */
-    'IsHiddenFromCustomers': boolean;
+    'IsHiddenFromCustomers'?: boolean;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -5011,13 +5116,13 @@ export class MenuSectionAvailability {
     /**
     * Available times
     */
-    'AvailableTimes': Array<BusinessHoursPeriod>;
+    'AvailableTimes'?: Array<BusinessHoursPeriod>;
     /**
     * Availability mode
     */
-    'AvailabilityMode': MenuSectionAvailability.AvailabilityModeEnum;
+    'AvailabilityMode'?: MenuSectionAvailability.AvailabilityModeEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -5051,9 +5156,9 @@ export class MenuSectionAvailabilityBase {
     /**
     * Availability mode
     */
-    'AvailabilityMode': MenuSectionAvailabilityBase.AvailabilityModeEnum;
+    'AvailabilityMode'?: MenuSectionAvailabilityBase.AvailabilityModeEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -5082,25 +5187,25 @@ export class MenuSectionBase {
     /**
     * Name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Display order
     */
-    'DisplayOrder': number;
+    'DisplayOrder'?: number;
     /**
     * Is available
     */
-    'IsAvailable': boolean;
+    'IsAvailable'?: boolean;
     /**
     * Is hidden from customer. Perhaps when the item is out of stock.
     */
-    'IsHiddenFromCustomers': boolean;
+    'IsHiddenFromCustomers'?: boolean;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -5141,37 +5246,37 @@ export class MenuSectionCreatedEvent {
     /**
     * Menu identifier
     */
-    'MenuId': number;
+    'MenuId'?: number;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * User who has created the menu
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Created menu section
     */
-    'MenuSection': MenuSection;
+    'MenuSection'?: MenuSection;
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -5227,37 +5332,37 @@ export class MenuSectionDeletedEvent {
     /**
     * Menu identifier
     */
-    'MenuId': number;
+    'MenuId'?: number;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * User who has created the menu
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Deleted menu section
     */
-    'MenuSection': MenuSection;
+    'MenuSection'?: MenuSection;
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -5313,65 +5418,65 @@ export class MenuSectionItem {
     /**
     * Menu item identifier. This ID may change at any time. Use `PublicId` if you need a perminant reference to the item.
     */
-    'MenuItemId': number;
+    'MenuItemId'?: number;
     /**
     * Actual price - the minimum price possible when all required option set items prices are included.
     */
-    'ActualPrice': number;
+    'ActualPrice'?: number;
     /**
     * Image url
     */
-    'ImageUrl': string;
+    'ImageUrl'?: string;
     /**
     * Menu item option sets
     */
-    'MenuItemOptionSets': Array<MenuItemOptionSet>;
+    'MenuItemOptionSets'?: Array<MenuItemOptionSet>;
     /**
     * Daily special hours
     */
-    'DailySpecialHours': Array<BusinessHoursPeriod>;
+    'DailySpecialHours'?: Array<BusinessHoursPeriod>;
     /**
     * Permanent reference to the item.
     */
-    'PublicId': string;
+    'PublicId'?: string;
     /**
     * Menu item name (like \"Korma\")
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Description (like \"A lovely dish from the east\")
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Spiciness rating
     */
-    'SpicinessRating': MenuSectionItem.SpicinessRatingEnum;
+    'SpicinessRating'?: MenuSectionItem.SpicinessRatingEnum;
     /**
     * Price - this is only used when there is no master option set and should be set to 0 if a master option set exists.
     */
-    'Price': number;
+    'Price'?: number;
     /**
     * Display order
     */
-    'DisplayOrder': number;
+    'DisplayOrder'?: number;
     /**
     * To be set true if the item or an option of the item contains an alcoholic drink.
     */
-    'Alcohol': boolean;
+    'Alcohol'?: boolean;
     /**
     * True if we accept orders for this item still
     */
-    'IsAvailable': boolean;
+    'IsAvailable'?: boolean;
     /**
     * Small | Medium | Large  Affects the layout of the menu.
     */
-    'CellLayoutType': MenuSectionItem.CellLayoutTypeEnum;
+    'CellLayoutType'?: MenuSectionItem.CellLayoutTypeEnum;
     /**
     * If true, then vouchers won't be applied for this item
     */
-    'DisableVouchers': boolean;
+    'DisableVouchers'?: boolean;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -5476,41 +5581,41 @@ export class MenuSectionItemBase {
     /**
     * Menu item name (like \"Korma\")
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Description (like \"A lovely dish from the east\")
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Spiciness rating
     */
-    'SpicinessRating': MenuSectionItemBase.SpicinessRatingEnum;
+    'SpicinessRating'?: MenuSectionItemBase.SpicinessRatingEnum;
     /**
     * Price - this is only used when there is no master option set and should be set to 0 if a master option set exists.
     */
-    'Price': number;
+    'Price'?: number;
     /**
     * Display order
     */
-    'DisplayOrder': number;
+    'DisplayOrder'?: number;
     /**
     * To be set true if the item or an option of the item contains an alcoholic drink.
     */
-    'Alcohol': boolean;
+    'Alcohol'?: boolean;
     /**
     * True if we accept orders for this item still
     */
-    'IsAvailable': boolean;
+    'IsAvailable'?: boolean;
     /**
     * Small | Medium | Large  Affects the layout of the menu.
     */
-    'CellLayoutType': MenuSectionItemBase.CellLayoutTypeEnum;
+    'CellLayoutType'?: MenuSectionItemBase.CellLayoutTypeEnum;
     /**
     * If true, then vouchers won't be applied for this item
     */
-    'DisableVouchers': boolean;
+    'DisableVouchers'?: boolean;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -5585,37 +5690,37 @@ export class MenuSectionItemCreatedEvent {
     /**
     * Menu identifier
     */
-    'MenuId': number;
+    'MenuId'?: number;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * User who has created the menu
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Created menu section item
     */
-    'MenuSectionItem': MenuSectionItem;
+    'MenuSectionItem'?: MenuSectionItem;
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -5671,37 +5776,37 @@ export class MenuSectionItemDeletedEvent {
     /**
     * Menu identifier
     */
-    'MenuId': number;
+    'MenuId'?: number;
     /**
     * Event description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Deleted by user
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Deleted menu section item
     */
-    'MenuSectionItem': MenuSectionItem;
+    'MenuSectionItem'?: MenuSectionItem;
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -5757,37 +5862,37 @@ export class MenuSectionItemUpdatedEvent {
     /**
     * Menu identifier
     */
-    'MenuId': number;
+    'MenuId'?: number;
     /**
     * Event description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Updated by user
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Updated menu section item
     */
-    'MenuSectionItem': MenuSectionItem;
+    'MenuSectionItem'?: MenuSectionItem;
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -5843,37 +5948,37 @@ export class MenuSectionUpdatedEvent {
     /**
     * Menu identifier
     */
-    'MenuId': number;
+    'MenuId'?: number;
     /**
     * Event description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Updated by user
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Updated menu section
     */
-    'MenuSection': MenuSection;
+    'MenuSection'?: MenuSection;
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -5929,33 +6034,33 @@ export class MenuUpdatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * User who has updated the menu
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The menu
     */
-    'Menu': Menu;
+    'Menu'?: Menu;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -6006,13 +6111,13 @@ export class Metadata {
     /**
     * Metadata key (Unique identifier)
     */
-    'Key': string;
+    'Key'?: string;
     /**
     * Metadata value
     */
-    'Value': string;
+    'Value'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -6038,21 +6143,21 @@ export class OAuthClient {
     /**
     * Oauth client identifier
     */
-    'ClientId': string;
+    'ClientId'?: string;
     /**
     * Oauth client name
     */
-    'ClientName': string;
+    'ClientName'?: string;
     /**
     * Oauth client owner user identifier
     */
-    'OwnerUserId': number;
+    'OwnerUserId'?: number;
     /**
     * Oauth client logo uri
     */
-    'LogoUri': string;
+    'LogoUri'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -6088,25 +6193,25 @@ export class OAuthTokenModel {
     /**
     * Identitifier key
     */
-    'Key': string;
+    'Key'?: string;
     /**
     * Token type
     */
-    'TokenType': string;
+    'TokenType'?: string;
     /**
     * Oauth subject identifier
     */
-    'SubjectId': string;
+    'SubjectId'?: string;
     /**
     * Oauth client identifier
     */
-    'ClientId': string;
+    'ClientId'?: string;
     /**
     * Token expiry
     */
-    'Expiry': Date;
+    'Expiry'?: Date;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -6147,13 +6252,13 @@ export class OauthClientRedirectUri {
     /**
     * Redirect uri identifier
     */
-    'Id': number;
+    'Id'?: number;
     /**
     * Redirect uri
     */
-    'Uri': string;
+    'Uri'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -6179,101 +6284,101 @@ export class Order {
     /**
     * Store summary
     */
-    'Store': StoreSummary;
+    'Store'?: StoreSummary;
     /**
     * Customer summary
     */
-    'Customer': CustomerSummary;
+    'Customer'?: CustomerSummary;
     /**
     * Voucher summary
     */
-    'Voucher': VoucherSummary;
+    'Voucher'?: VoucherSummary;
     /**
     * Fee summary
     */
-    'Fees': FeeSummary;
+    'Fees'?: FeeSummary;
     /**
     * Ordered items
     */
-    'OrderItems': Array<OrderItem>;
+    'OrderItems'?: Array<OrderItem>;
     /**
     * Delivery location for delivery orders
     */
-    'DeliveryLocation': DeliveryLocation;
+    'DeliveryLocation'?: DeliveryLocation;
     /**
     * Customer location
     */
-    'CustomerLocation': Coordinates;
+    'CustomerLocation'?: Coordinates;
     /**
     * Order identifier
     */
-    'OrderId': number;
+    'OrderId'?: number;
     /**
     * Delivery type
     */
-    'DeliveryType': Order.DeliveryTypeEnum;
+    'DeliveryType'?: Order.DeliveryTypeEnum;
     /**
     * Pickup location type
     */
-    'PickupLocationType': Order.PickupLocationTypeEnum;
+    'PickupLocationType'?: Order.PickupLocationTypeEnum;
     /**
     * Tip amount
     */
-    'TipAmount': number;
+    'TipAmount'?: number;
     /**
     * Delivery amount
     */
-    'DeliveryAmount': number;
+    'DeliveryAmount'?: number;
     /**
     * Ordered items amount
     */
-    'OrderItemsAmount': number;
+    'OrderItemsAmount'?: number;
     /**
     * This is the sum of the OrderItemsAmount, DeliveryAmount, TipAmount and Voucher.Amount (which is usually negative) and OnlineOrderingFee for cash orders.  It does not include the OnlineOrderingFee in the case of card orders as this fee is charged by Flipdish directly to the customer.
     */
-    'Amount': number;
+    'Amount'?: number;
     /**
     * This contains the online ordering processing fee. For card payments this is charged directly to the customer and for cash orders it is paid by the customer to the store. It is tax inclusive.
     */
-    'ProcessingFee': number;
+    'ProcessingFee'?: number;
     /**
     * Payment account type
     */
-    'PaymentAccountType': Order.PaymentAccountTypeEnum;
+    'PaymentAccountType'?: Order.PaymentAccountTypeEnum;
     /**
     * Payment account description (like Visa ****2371 or Apple Pay. or Cash)
     */
-    'PaymentAccountDescription': string;
+    'PaymentAccountDescription'?: string;
     /**
     * Order state
     */
-    'OrderState': Order.OrderStateEnum;
+    'OrderState'?: Order.OrderStateEnum;
     /**
     * Is pre-order
     */
-    'IsPreOrder': boolean;
+    'IsPreOrder'?: boolean;
     /**
     * Order placed time
     */
-    'PlacedTime': Date;
+    'PlacedTime'?: Date;
     /**
     * Order requested for
     */
-    'RequestedForTime': Date;
+    'RequestedForTime'?: Date;
     /**
     * Chef note
     */
-    'ChefNote': string;
+    'ChefNote'?: string;
     /**
     * Used app type
     */
-    'AppType': Order.AppTypeEnum;
+    'AppType'?: Order.AppTypeEnum;
     /**
     * User rating
     */
-    'UserRating': number;
+    'UserRating'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -6455,33 +6560,33 @@ export class OrderAcceptedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Order Accepted Time
     */
-    'OrderAcceptedTime': Date;
+    'OrderAcceptedTime'?: Date;
     /**
     * Order
     */
-    'Order': Order;
+    'Order'?: Order;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -6532,33 +6637,33 @@ export class OrderCreatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Order Created Time
     */
-    'OrderCreatedTime': Date;
+    'OrderCreatedTime'?: Date;
     /**
     * Order
     */
-    'Order': Order;
+    'Order'?: Order;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -6609,49 +6714,49 @@ export class OrderItem {
     /**
     * Option list
     */
-    'OrderItemOptions': Array<OrderItemOption>;
+    'OrderItemOptions'?: Array<OrderItemOption>;
     /**
     * Metadata
     */
-    'Metadata': { [key: string]: string; };
+    'Metadata'?: { [key: string]: string; };
     /**
     * Menu section name
     */
-    'MenuSectionName': string;
+    'MenuSectionName'?: string;
     /**
     * Menu section display order
     */
-    'MenuSectionDisplayOrder': number;
+    'MenuSectionDisplayOrder'?: number;
     /**
     * Name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Price
     */
-    'Price': number;
+    'Price'?: number;
     /**
     * Price including option set items
     */
-    'PriceIncludingOptionSetItems': number;
+    'PriceIncludingOptionSetItems'?: number;
     /**
     * Menu item identifier
     */
-    'MenuItemId': number;
+    'MenuItemId'?: number;
     /**
     * Menu item display order
     */
-    'MenuItemDisplayOrder': number;
+    'MenuItemDisplayOrder'?: number;
     /**
     * Is available
     */
-    'IsAvailable': boolean;
+    'IsAvailable'?: boolean;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -6722,33 +6827,33 @@ export class OrderItemOption {
     /**
     * Metadata
     */
-    'Metadata': { [key: string]: string; };
+    'Metadata'?: { [key: string]: string; };
     /**
     * Menu item option identifier
     */
-    'MenuItemOptionId': number;
+    'MenuItemOptionId'?: number;
     /**
     * Is master option set item
     */
-    'IsMasterOptionSetItem': boolean;
+    'IsMasterOptionSetItem'?: boolean;
     /**
     * Name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Price
     */
-    'Price': number;
+    'Price'?: number;
     /**
     * Menu item option display order
     */
-    'MenuItemOptionDisplayOrder': number;
+    'MenuItemOptionDisplayOrder'?: number;
     /**
     * Menu item option set display order
     */
-    'MenuItemOptionSetDisplayOrder': number;
+    'MenuItemOptionSetDisplayOrder'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -6799,33 +6904,33 @@ export class OrderRatingUpdatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * New User Rating
     */
-    'Rating': number;
+    'Rating'?: number;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Order
     */
-    'Order': Order;
+    'Order'?: Order;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -6876,33 +6981,33 @@ export class OrderRefundedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The amount refunded
     */
-    'RefundedAmount': number;
+    'RefundedAmount'?: number;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Order
     */
-    'Order': Order;
+    'Order'?: Order;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -6953,33 +7058,33 @@ export class OrderRejectedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Order Rejected Time
     */
-    'OrderRejectedTime': Date;
+    'OrderRejectedTime'?: Date;
     /**
     * Order
     */
-    'Order': Order;
+    'Order'?: Order;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7030,33 +7135,33 @@ export class OrderTipUpdatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Tip Amount
     */
-    'TipAmount': number;
+    'TipAmount'?: number;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Order
     */
-    'Order': Order;
+    'Order'?: Order;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7107,7 +7212,7 @@ export class PasswordResetModel {
     /**
     * Email address
     */
-    'Email': string;
+    'Email'?: string;
     /**
     * Password
     */
@@ -7119,9 +7224,9 @@ export class PasswordResetModel {
     /**
     * Password reset token
     */
-    'Token': string;
+    'Token'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7151,19 +7256,42 @@ export class PasswordResetModel {
 }
 
 /**
+* Percent discount details
+*/
+export class PercentDiscountDetails {
+    /**
+    * Percentage discount
+    */
+    'PercentageDiscount'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PercentageDiscount",
+            "baseName": "PercentageDiscount",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PercentDiscountDetails.attributeTypeMap;
+    }
+}
+
+/**
 * Phone call
 */
 export class PhoneCall {
     /**
     * Phone number which initiated the phone call
     */
-    'From': string;
+    'From'?: string;
     /**
     * Phone number which received the phone call
     */
-    'To': string;
+    'To'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7189,33 +7317,33 @@ export class PhoneCallEndedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * The phone call
     */
-    'PhoneCall': PhoneCall;
+    'PhoneCall'?: PhoneCall;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7266,33 +7394,33 @@ export class PhoneCallStartedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * The phone call
     */
-    'PhoneCall': PhoneCall;
+    'PhoneCall'?: PhoneCall;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7343,13 +7471,13 @@ export class PredefinedAnswer {
     /**
     * Identifier
     */
-    'Id': number;
+    'Id'?: number;
     /**
     * Text
     */
-    'Text': string;
+    'Text'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7375,13 +7503,13 @@ export class Printer {
     /**
     * Unique serial number of the printer
     */
-    'SerialNumber': string;
+    'SerialNumber'?: string;
     /**
     * Date and time when the printer last polled Flipdish for new orders.
     */
-    'LastPollTime': Date;
+    'LastPollTime'?: Date;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7407,37 +7535,37 @@ export class PrinterAssignedToStoreEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * Info User
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The printer
     */
-    'Printer': Printer;
+    'Printer'?: Printer;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7493,37 +7621,37 @@ export class PrinterTurnedOffEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * Info User
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The printer
     */
-    'Printer': Printer;
+    'Printer'?: Printer;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7579,37 +7707,37 @@ export class PrinterTurnedOnEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * Info User
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The printer
     */
-    'Printer': Printer;
+    'Printer'?: Printer;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7665,37 +7793,37 @@ export class PrinterUnassignedFromStoreEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * Info User
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The printer
     */
-    'Printer': Printer;
+    'Printer'?: Printer;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7751,21 +7879,21 @@ export class ProcessingFeeConfig {
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * Payment account type
     */
-    'PaymentAccountType': ProcessingFeeConfig.PaymentAccountTypeEnum;
+    'PaymentAccountType'?: ProcessingFeeConfig.PaymentAccountTypeEnum;
     /**
     * Percent fee to customer, including VAT
     */
-    'PercentFee': number;
+    'PercentFee'?: number;
     /**
     * Fixed fee to customer, including VAT
     */
-    'FixedFee': number;
+    'FixedFee'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7811,17 +7939,17 @@ export class Range {
     /**
     * Start time
     */
-    'StartTime': string;
+    'StartTime'?: string;
     /**
     * Period
     */
-    'Period': string;
+    'Period'?: string;
     /**
     * Day of week
     */
-    'DayOfWeek': Range.DayOfWeekEnum;
+    'DayOfWeek'?: Range.DayOfWeekEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7863,7 +7991,7 @@ export class Refund {
     /**
     * Refund reason
     */
-    'RefundReason': string;
+    'RefundReason'?: string;
     /**
     * Refund amount
     */
@@ -7873,7 +8001,7 @@ export class Refund {
     */
     'NotifyCustomer': boolean;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7906,7 +8034,7 @@ export class Reject {
     */
     'RejectReason': Reject.RejectReasonEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7942,7 +8070,7 @@ export class RestApiArrayResultApmAverageHourlyDataPoint {
     */
     'Data': Array<ApmAverageHourlyDataPoint>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7965,7 +8093,7 @@ export class RestApiArrayResultApmDataPoint {
     */
     'Data': Array<ApmDataPoint>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -7988,7 +8116,7 @@ export class RestApiArrayResultBusinessHoursPeriod {
     */
     'Data': Array<BusinessHoursPeriod>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8011,7 +8139,7 @@ export class RestApiArrayResultDeliveryZone {
     */
     'Data': Array<DeliveryZone>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8034,7 +8162,7 @@ export class RestApiArrayResultMenuItemOptionSet {
     */
     'Data': Array<MenuItemOptionSet>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8057,7 +8185,7 @@ export class RestApiArrayResultMenuItemOptionSetItem {
     */
     'Data': Array<MenuItemOptionSetItem>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8080,7 +8208,7 @@ export class RestApiArrayResultMenuSection {
     */
     'Data': Array<MenuSection>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8103,7 +8231,7 @@ export class RestApiArrayResultMenuSectionItem {
     */
     'Data': Array<MenuSectionItem>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8126,7 +8254,7 @@ export class RestApiArrayResultMetadata {
     */
     'Data': Array<Metadata>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8149,7 +8277,7 @@ export class RestApiArrayResultOAuthClient {
     */
     'Data': Array<OAuthClient>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8172,7 +8300,7 @@ export class RestApiArrayResultOauthClientRedirectUri {
     */
     'Data': Array<OauthClientRedirectUri>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8195,7 +8323,7 @@ export class RestApiArrayResultProcessingFeeConfig {
     */
     'Data': Array<ProcessingFeeConfig>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8218,7 +8346,7 @@ export class RestApiArrayResultRestApiDefaultResponse {
     */
     'Data': Array<RestApiDefaultResponse>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8241,7 +8369,7 @@ export class RestApiArrayResultTeammate {
     */
     'Data': Array<Teammate>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8264,7 +8392,7 @@ export class RestApiArrayResultWebhookSubscription {
     */
     'Data': Array<WebhookSubscription>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8285,9 +8413,9 @@ export class RestApiDefaultResponse {
     /**
     * Data string
     */
-    'Data': string;
+    'Data'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8312,9 +8440,9 @@ export class RestApiErrorResult {
     /**
     * List of errors grouped by field name
     */
-    'Errors': Array<ValidationErrorResult>;
+    'Errors'?: Array<ValidationErrorResult>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8354,7 +8482,7 @@ export class RestApiEventSearchPaginationResult {
     */
     'TotalRecordCount': number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8392,7 +8520,7 @@ export class RestApiForbiddenResult {
     */
     'Message': string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8415,7 +8543,7 @@ export class RestApiIntegerResult {
     */
     'Data': number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8450,7 +8578,7 @@ export class RestApiPaginationResultApmCall {
     */
     'Data': Array<ApmCall>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8500,7 +8628,7 @@ export class RestApiPaginationResultApp {
     */
     'Data': Array<App>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8550,7 +8678,7 @@ export class RestApiPaginationResultBusinessHoursOverride {
     */
     'Data': Array<BusinessHoursOverride>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8600,7 +8728,7 @@ export class RestApiPaginationResultHttpRequestAndResponseLog {
     */
     'Data': Array<HttpRequestAndResponseLog>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8650,7 +8778,7 @@ export class RestApiPaginationResultOAuthTokenModel {
     */
     'Data': Array<OAuthTokenModel>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8700,7 +8828,7 @@ export class RestApiPaginationResultOrder {
     */
     'Data': Array<Order>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8750,7 +8878,7 @@ export class RestApiPaginationResultStore {
     */
     'Data': Array<Store>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8800,7 +8928,7 @@ export class RestApiPaginationResultStoreGroup {
     */
     'Data': Array<StoreGroup>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8850,7 +8978,7 @@ export class RestApiPaginationResultVoucher {
     */
     'Data': Array<Voucher>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8900,7 +9028,7 @@ export class RestApiPaginationResultWebhookLog {
     */
     'Data': Array<WebhookLog>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8938,7 +9066,7 @@ export class RestApiResultAccountDetail {
     */
     'Data': AccountDetail;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8961,7 +9089,7 @@ export class RestApiResultApmStatistics {
     */
     'Data': ApmStatistics;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -8984,7 +9112,7 @@ export class RestApiResultBusinessHoursOverride {
     */
     'Data': BusinessHoursOverride;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9007,7 +9135,7 @@ export class RestApiResultBusinessHoursPeriod {
     */
     'Data': BusinessHoursPeriod;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9030,7 +9158,7 @@ export class RestApiResultCard {
     */
     'Data': Card;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9053,7 +9181,7 @@ export class RestApiResultCoordinates {
     */
     'Data': Coordinates;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9076,7 +9204,7 @@ export class RestApiResultDeliveryZone {
     */
     'Data': DeliveryZone;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9099,7 +9227,7 @@ export class RestApiResultJobResponse {
     */
     'Data': JobResponse;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9122,7 +9250,7 @@ export class RestApiResultLightspeedSettings {
     */
     'Data': LightspeedSettings;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9145,7 +9273,7 @@ export class RestApiResultMenu {
     */
     'Data': Menu;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9168,7 +9296,7 @@ export class RestApiResultMenuItemOptionSet {
     */
     'Data': MenuItemOptionSet;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9191,7 +9319,7 @@ export class RestApiResultMenuItemOptionSetItem {
     */
     'Data': MenuItemOptionSetItem;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9214,7 +9342,7 @@ export class RestApiResultMenuSection {
     */
     'Data': MenuSection;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9237,7 +9365,7 @@ export class RestApiResultMenuSectionAvailability {
     */
     'Data': MenuSectionAvailability;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9260,7 +9388,7 @@ export class RestApiResultMenuSectionItem {
     */
     'Data': MenuSectionItem;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9283,7 +9411,7 @@ export class RestApiResultMetadata {
     */
     'Data': Metadata;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9306,7 +9434,7 @@ export class RestApiResultOAuthClient {
     */
     'Data': OAuthClient;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9329,7 +9457,7 @@ export class RestApiResultOauthClientRedirectUri {
     */
     'Data': OauthClientRedirectUri;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9352,7 +9480,7 @@ export class RestApiResultOrder {
     */
     'Data': Order;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9375,7 +9503,7 @@ export class RestApiResultProcessingFeeConfig {
     */
     'Data': ProcessingFeeConfig;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9398,7 +9526,7 @@ export class RestApiResultStore {
     */
     'Data': Store;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9421,7 +9549,7 @@ export class RestApiResultStoreAddress {
     */
     'Data': StoreAddress;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9444,7 +9572,7 @@ export class RestApiResultStoreGroup {
     */
     'Data': StoreGroup;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9467,7 +9595,7 @@ export class RestApiResultStoreGroupBase {
     */
     'Data': StoreGroupBase;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9490,7 +9618,7 @@ export class RestApiResultStuartSettings {
     */
     'Data': StuartSettings;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9513,7 +9641,7 @@ export class RestApiResultSubscription {
     */
     'Data': Subscription;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9536,7 +9664,7 @@ export class RestApiResultSubscriptionPlansResponse {
     */
     'Data': SubscriptionPlansResponse;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9559,7 +9687,7 @@ export class RestApiResultTeammate {
     */
     'Data': Teammate;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9576,36 +9704,13 @@ export class RestApiResultTeammate {
 /**
 * Rest api result
 */
-export class RestApiResultVoucher {
-    /**
-    * Generic data object.
-    */
-    'Data': Voucher;
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Voucher"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiResultVoucher.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api result
-*/
 export class RestApiResultVoucherWithStats {
     /**
     * Generic data object.
     */
     'Data': VoucherWithStats;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9628,7 +9733,7 @@ export class RestApiStringArrayResult {
     */
     'Data': Array<string>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9651,7 +9756,7 @@ export class RestApiStringResult {
     */
     'Data': string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9674,7 +9779,7 @@ export class RestApiUnauthorizedResult {
     */
     'Message': string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9695,29 +9800,29 @@ export class RetentionCampaign {
     /**
     * Date and time of campaign beginning
     */
-    'From': Date;
+    'From'?: Date;
     /**
     * Number of days for which the voucher will be valid.
     */
-    'VoucherValidPeriodDays': number;
+    'VoucherValidPeriodDays'?: number;
     /**
     * Discount will include delivery fee
     */
-    'IncludeDeliveryFee': boolean;
+    'IncludeDeliveryFee'?: boolean;
     /**
     * Time in minutes, after which customer will receive retention voucher if he/she does not order
     */
-    'NotifyCustomerAfterMinutes': number;
+    'NotifyCustomerAfterMinutes'?: number;
     /**
     * Discount amount in percents
     */
-    'PercentDiscountAmount': number;
+    'PercentDiscountAmount'?: number;
     /**
     * Discount amount in sum of money
     */
-    'LumpDiscountAmount': number;
+    'LumpDiscountAmount'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9763,37 +9868,37 @@ export class RetentionCampaignCreatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * Info User
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The retention campaign
     */
-    'RetentionCampaign': RetentionCampaign;
+    'RetentionCampaign'?: RetentionCampaign;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9849,37 +9954,37 @@ export class RetentionCampaignDeletedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * Info User
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The retention campaign
     */
-    'RetentionCampaign': RetentionCampaign;
+    'RetentionCampaign'?: RetentionCampaign;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -9935,37 +10040,37 @@ export class RetentionCampaignUpdatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * Info User
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The retention campaign
     */
-    'RetentionCampaign': RetentionCampaign;
+    'RetentionCampaign'?: RetentionCampaign;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -10021,25 +10126,25 @@ export class SearchCriteria {
     /**
     * The maximum elements to return
     */
-    'Limit': number;
+    'Limit'?: number;
     /**
     * The index of the page to return, starting by 1
     */
-    'Page': number;
+    'Page'?: number;
     /**
     * Start date
     */
-    'Start': Date;
+    'Start'?: Date;
     /**
     * End date
     */
-    'End': Date;
+    'End'?: Date;
     /**
     * Event names to filter in
     */
-    'Name': Array<string>;
+    'Name'?: Array<string>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -10080,17 +10185,17 @@ export class SignupStep {
     /**
     * Action needs to take
     */
-    'Action': SignupStep.ActionEnum;
+    'Action'?: SignupStep.ActionEnum;
     /**
     * Question in case Action == Question
     */
-    'Question': string;
+    'Question'?: string;
     /**
     * Predefined answer in case Action == Question
     */
-    'PredefinedAnswers': Array<PredefinedAnswer>;
+    'PredefinedAnswers'?: Array<PredefinedAnswer>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -10128,17 +10233,17 @@ export class SmsInfo {
     /**
     * Origin phone number
     */
-    'From': string;
+    'From'?: string;
     /**
     * Destination phone number
     */
-    'To': string;
+    'To'?: string;
     /**
     * Text message
     */
-    'Text': string;
+    'Text'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -10169,29 +10274,29 @@ export class SmsReceivedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * The sms info
     */
-    'SmsInfo': SmsInfo;
+    'SmsInfo'?: SmsInfo;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -10237,150 +10342,159 @@ export class Store {
     /**
     * Store identifier
     */
-    'StoreId': number;
+    'StoreId'?: number;
+    /**
+    * Store group id to which this store belongs
+    */
+    'StoreGroupId'?: number;
     /**
     * Store address
     */
-    'Address': StoreAddress;
+    'Address'?: StoreAddress;
     /**
     * Delivery zones
     */
-    'DeliveryZones': Array<DeliveryZone>;
+    'DeliveryZones'?: Array<DeliveryZone>;
     /**
     * Automated Phone Marketing number
     */
-    'ApmPhoneNumber': string;
+    'ApmPhoneNumber'?: string;
     /**
     * Pickup hours
     */
-    'PickupHours': Array<BusinessHoursPeriod>;
+    'PickupHours'?: Array<BusinessHoursPeriod>;
     /**
     * Delivery hours
     */
-    'DeliveryHours': Array<BusinessHoursPeriod>;
+    'DeliveryHours'?: Array<BusinessHoursPeriod>;
     /**
     * Menu identifier
     */
-    'MenuId': number;
+    'MenuId'?: number;
     /**
     * Overridden confirmation message for delivery orders
     */
-    'OrderConfirmationMessageOverrideDelivery': string;
+    'OrderConfirmationMessageOverrideDelivery'?: string;
     /**
     * Overridden confirmation message for pickup orders
     */
-    'OrderConfirmationMessageOverridePickup': string;
+    'OrderConfirmationMessageOverridePickup'?: string;
     /**
     * Printout layout
     */
-    'PrintoutLayoutType': Store.PrintoutLayoutTypeEnum;
+    'PrintoutLayoutType'?: Store.PrintoutLayoutTypeEnum;
     /**
     * Store notes
     */
-    'StoreNotes': Array<StoreNote>;
+    'StoreNotes'?: Array<StoreNote>;
     /**
     * Phone number
     */
-    'PhoneNumber': string;
+    'PhoneNumber'?: string;
     /**
     * True if the store accepts pre-orders
     */
-    'PreOrderEnabled': boolean;
+    'PreOrderEnabled'?: boolean;
     /**
     * True if the store accepts take-out orders
     */
-    'TakeOutEnabled': boolean;
+    'TakeOutEnabled'?: boolean;
     /**
     * True if the store has table service
     */
-    'TableServiceEnabled': boolean;
+    'TableServiceEnabled'?: boolean;
     /**
     * True if the store accepts dine-in orders
     */
-    'DineInEnabled': boolean;
+    'DineInEnabled'?: boolean;
     /**
     * True if both pre-orders and talbe service can be enabled
     */
-    'AllowPreOrdersAndTableService': boolean;
+    'AllowPreOrdersAndTableService'?: boolean;
     /**
     * True if the store accepts pickup orders
     */
-    'PickupEnabled': boolean;
+    'PickupEnabled'?: boolean;
     /**
     * True if the store accepts delivery orders
     */
-    'DeliveryEnabled': boolean;
+    'DeliveryEnabled'?: boolean;
     /**
     * True if the store accepts card payment for delivery orders
     */
-    'CardOrderDeliveryEnabled': boolean;
+    'CardOrderDeliveryEnabled'?: boolean;
     /**
     * True if the store accepts cash payment for delivery orders
     */
-    'CashOrdersDeliveryEnabled': boolean;
+    'CashOrdersDeliveryEnabled'?: boolean;
     /**
     * True if the store accepts card payment for pickup orders
     */
-    'CardOrdersPickupEnabled': boolean;
+    'CardOrdersPickupEnabled'?: boolean;
     /**
     * True if the store accepts cash payment for pickup orders
     */
-    'CashOrdersPickupEnabled': boolean;
+    'CashOrdersPickupEnabled'?: boolean;
     /**
     * True if the store accepts tips
     */
-    'TipsEnabled': boolean;
+    'TipsEnabled'?: boolean;
     /**
     * True if the stores orders are automatically accepted in Flipdish
     */
-    'AutomaticallyAcceptOrders': boolean;
+    'AutomaticallyAcceptOrders'?: boolean;
     /**
     * True if the store is open for delivery
     */
-    'OpenForDelivery': boolean;
+    'OpenForDelivery'?: boolean;
     /**
     * True if the store is open for pickup
     */
-    'OpenForPickup': boolean;
+    'OpenForPickup'?: boolean;
     /**
     * Minimum pickup order amount
     */
-    'MinimumPickupOrderAmount': number;
+    'MinimumPickupOrderAmount'?: number;
     /**
     * True if customer name required for pickup orders
     */
-    'RequireCustomerNameForPickup': boolean;
+    'RequireCustomerNameForPickup'?: boolean;
     /**
     * True if customer name required for delivery orders
     */
-    'RequireCustomerNameForDelivery': boolean;
+    'RequireCustomerNameForDelivery'?: boolean;
     /**
     * Microsoft Time Zone Index Values (https://msdn.microsoft.com/en-us/library/ms912391)
     */
-    'MicrosoftTimeZone': string;
+    'MicrosoftTimeZone'?: string;
     /**
     * IANA Time Zone (https://www.iana.org/time-zones)
     */
-    'IanaTimeZone': string;
+    'IanaTimeZone'?: string;
     /**
     * Name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Email address (visible to customers)
     */
-    'EmailAddress': string;
+    'EmailAddress'?: string;
     /**
     * Staff Language (used for communcation with the staff)  Emails, Printouts etc
     */
-    'StaffLanguage': string;
+    'StaffLanguage'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "StoreId",
             "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
             "type": "number"
         },
         {
@@ -10572,33 +10686,33 @@ export class StoreAddress {
     /**
     * Address identifier
     */
-    'AddressId': number;
+    'AddressId'?: number;
     /**
     * Coordinate
     */
-    'Coordinates': Coordinates;
+    'Coordinates'?: Coordinates;
     /**
     * Address line 1
     */
-    'Line1': string;
+    'Line1'?: string;
     /**
     * Postcode
     */
-    'Postcode': string;
+    'Postcode'?: string;
     /**
     * City
     */
-    'City': string;
+    'City'?: string;
     /**
     * Country code (ISO-alpha2)
     */
-    'CountryCode': string;
+    'CountryCode'?: string;
     /**
     * Display for customer
     */
-    'DisplayForCustomer': string;
+    'DisplayForCustomer'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -10649,25 +10763,25 @@ export class StoreAddressBase {
     /**
     * Address line 1
     */
-    'Line1': string;
+    'Line1'?: string;
     /**
     * Postcode
     */
-    'Postcode': string;
+    'Postcode'?: string;
     /**
     * City
     */
-    'City': string;
+    'City'?: string;
     /**
     * Country code (ISO-alpha2)
     */
-    'CountryCode': string;
+    'CountryCode'?: string;
     /**
     * Display for customer
     */
-    'DisplayForCustomer': string;
+    'DisplayForCustomer'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -10708,37 +10822,37 @@ export class StoreAddressUpdatedEvent {
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * User which updated this store address
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Updated store address
     */
-    'StoreAddress': StoreAddress;
+    'StoreAddress'?: StoreAddress;
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -10794,101 +10908,101 @@ export class StoreBase {
     /**
     * Phone number
     */
-    'PhoneNumber': string;
+    'PhoneNumber'?: string;
     /**
     * True if the store accepts pre-orders
     */
-    'PreOrderEnabled': boolean;
+    'PreOrderEnabled'?: boolean;
     /**
     * True if the store accepts take-out orders
     */
-    'TakeOutEnabled': boolean;
+    'TakeOutEnabled'?: boolean;
     /**
     * True if the store has table service
     */
-    'TableServiceEnabled': boolean;
+    'TableServiceEnabled'?: boolean;
     /**
     * True if the store accepts dine-in orders
     */
-    'DineInEnabled': boolean;
+    'DineInEnabled'?: boolean;
     /**
     * True if both pre-orders and talbe service can be enabled
     */
-    'AllowPreOrdersAndTableService': boolean;
+    'AllowPreOrdersAndTableService'?: boolean;
     /**
     * True if the store accepts pickup orders
     */
-    'PickupEnabled': boolean;
+    'PickupEnabled'?: boolean;
     /**
     * True if the store accepts delivery orders
     */
-    'DeliveryEnabled': boolean;
+    'DeliveryEnabled'?: boolean;
     /**
     * True if the store accepts card payment for delivery orders
     */
-    'CardOrderDeliveryEnabled': boolean;
+    'CardOrderDeliveryEnabled'?: boolean;
     /**
     * True if the store accepts cash payment for delivery orders
     */
-    'CashOrdersDeliveryEnabled': boolean;
+    'CashOrdersDeliveryEnabled'?: boolean;
     /**
     * True if the store accepts card payment for pickup orders
     */
-    'CardOrdersPickupEnabled': boolean;
+    'CardOrdersPickupEnabled'?: boolean;
     /**
     * True if the store accepts cash payment for pickup orders
     */
-    'CashOrdersPickupEnabled': boolean;
+    'CashOrdersPickupEnabled'?: boolean;
     /**
     * True if the store accepts tips
     */
-    'TipsEnabled': boolean;
+    'TipsEnabled'?: boolean;
     /**
     * True if the stores orders are automatically accepted in Flipdish
     */
-    'AutomaticallyAcceptOrders': boolean;
+    'AutomaticallyAcceptOrders'?: boolean;
     /**
     * True if the store is open for delivery
     */
-    'OpenForDelivery': boolean;
+    'OpenForDelivery'?: boolean;
     /**
     * True if the store is open for pickup
     */
-    'OpenForPickup': boolean;
+    'OpenForPickup'?: boolean;
     /**
     * Minimum pickup order amount
     */
-    'MinimumPickupOrderAmount': number;
+    'MinimumPickupOrderAmount'?: number;
     /**
     * True if customer name required for pickup orders
     */
-    'RequireCustomerNameForPickup': boolean;
+    'RequireCustomerNameForPickup'?: boolean;
     /**
     * True if customer name required for delivery orders
     */
-    'RequireCustomerNameForDelivery': boolean;
+    'RequireCustomerNameForDelivery'?: boolean;
     /**
     * Microsoft Time Zone Index Values (https://msdn.microsoft.com/en-us/library/ms912391)
     */
-    'MicrosoftTimeZone': string;
+    'MicrosoftTimeZone'?: string;
     /**
     * IANA Time Zone (https://www.iana.org/time-zones)
     */
-    'IanaTimeZone': string;
+    'IanaTimeZone'?: string;
     /**
     * Name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Email address (visible to customers)
     */
-    'EmailAddress': string;
+    'EmailAddress'?: string;
     /**
     * Staff Language (used for communcation with the staff)  Emails, Printouts etc
     */
-    'StaffLanguage': string;
+    'StaffLanguage'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -11024,37 +11138,37 @@ export class StoreBusinessHoursOverrideCreatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * User which deleted delivery zone for this store
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Business Hours Override
     */
-    'BusinessHoursOverride': BusinessHoursOverride;
+    'BusinessHoursOverride'?: BusinessHoursOverride;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -11110,37 +11224,37 @@ export class StoreBusinessHoursOverrideDeletedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * User which deleted delivery zone for this store
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Business Hours Override
     */
-    'BusinessHoursOverride': BusinessHoursOverride;
+    'BusinessHoursOverride'?: BusinessHoursOverride;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -11196,17 +11310,17 @@ export class StoreCreateBase {
     /**
     * Name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Email address (visible to customers)
     */
-    'EmailAddress': string;
+    'EmailAddress'?: string;
     /**
     * Staff Language (used for communcation with the staff)  Emails, Printouts etc
     */
-    'StaffLanguage': string;
+    'StaffLanguage'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -11237,37 +11351,37 @@ export class StoreCreatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * User which created this store
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Created Store
     */
-    'Store': Store;
+    'Store'?: Store;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -11323,37 +11437,37 @@ export class StoreDeletedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * User which deleted this store
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Deleted Store
     */
-    'Store': Store;
+    'Store'?: Store;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -11409,25 +11523,25 @@ export class StoreGroup {
     /**
     * Unique Store Group Identifier
     */
-    'StoreGroupId': number;
+    'StoreGroupId'?: number;
     /**
     * Store Group rating
     */
-    'GeneralRating': number;
+    'GeneralRating'?: number;
     /**
     * Store Group rating count
     */
-    'GeneralRatingCount': number;
+    'GeneralRatingCount'?: number;
     /**
     * Store Group Name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Currency used by the stores in this group
     */
-    'Currency': StoreGroup.CurrencyEnum;
+    'Currency'?: StoreGroup.CurrencyEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -11584,13 +11698,13 @@ export class StoreGroupBase {
     /**
     * Store Group Name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Currency used by the stores in this group
     */
-    'Currency': StoreGroupBase.CurrencyEnum;
+    'Currency'?: StoreGroupBase.CurrencyEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -11732,37 +11846,37 @@ export class StoreGroupCreatedEvent {
     /**
     * Store Group Id
     */
-    'StoreGroupId': number;
+    'StoreGroupId'?: number;
     /**
     * User which created this store group
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Created store group
     */
-    'StoreGroup': StoreGroup;
+    'StoreGroup'?: StoreGroup;
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -11818,37 +11932,37 @@ export class StoreGroupDeletedEvent {
     /**
     * Store Group Id
     */
-    'StoreGroupId': number;
+    'StoreGroupId'?: number;
     /**
     * User which deleted this store group
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Deleted store group
     */
-    'StoreGroup': StoreGroup;
+    'StoreGroup'?: StoreGroup;
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -11904,37 +12018,37 @@ export class StoreGroupUpdatedEvent {
     /**
     * Store Group Id
     */
-    'StoreGroupId': number;
+    'StoreGroupId'?: number;
     /**
     * User which updated this store group
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Updated store group
     */
-    'StoreGroup': StoreGroup;
+    'StoreGroup'?: StoreGroup;
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -11990,17 +12104,17 @@ export class StoreNote {
     /**
     * User identifier
     */
-    'UserId': number;
+    'UserId'?: number;
     /**
     * Create time
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Note
     */
-    'Note': string;
+    'Note'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -12031,33 +12145,33 @@ export class StoreOpeningHoursUpdatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * User which updated opening hours for this store
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -12108,29 +12222,29 @@ export class StoreSummary {
     /**
     * Store identifier
     */
-    'Id': number;
+    'Id'?: number;
     /**
     * Store name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Stores menu identifier
     */
-    'MenuId': number;
+    'MenuId'?: number;
     /**
     * Store metadata
     */
-    'Metadata': { [key: string]: string; };
+    'Metadata'?: { [key: string]: string; };
     /**
     * Currency which used by the Store
     */
-    'Currency': StoreSummary.CurrencyEnum;
+    'Currency'?: StoreSummary.CurrencyEnum;
     /**
     * Latitude and longitude of the store
     */
-    'Coordinates': Coordinates;
+    'Coordinates'?: Coordinates;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -12292,37 +12406,37 @@ export class StoreUpdatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Store Id
     */
-    'StoreId': number;
+    'StoreId'?: number;
     /**
     * User which updated this store
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Updated Store
     */
-    'Store': Store;
+    'Store'?: Store;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -12378,29 +12492,29 @@ export class StuartSettings {
     /**
     * Client Id
     */
-    'ClientId': string;
+    'ClientId'?: string;
     /**
     * Client Secret
     */
-    'ClientSecret': string;
+    'ClientSecret'?: string;
     /**
     * Enabled
     */
-    'Enabled': boolean;
+    'Enabled'?: boolean;
     /**
     * Webhook url to settle in the Stuart portal
     */
-    'WebhookUrlBasicAuthentication': string;
+    'WebhookUrlBasicAuthentication'?: string;
     /**
     * MinutesToPickupBeforeThanDeliveryTime
     */
-    'MinutesToPickupBeforeThanDeliveryTime': number;
+    'MinutesToPickupBeforeThanDeliveryTime'?: number;
     /**
     * PackageType
     */
-    'PackageType': StuartSettings.PackageTypeEnum;
+    'PackageType'?: StuartSettings.PackageTypeEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -12455,27 +12569,27 @@ export class Subscription {
     /**
     * The subscription identifier
     */
-    'SubscriptionId': number;
+    'SubscriptionId'?: number;
     /**
     * Starting date of the subscription
     */
-    'StartDate': Date;
+    'StartDate'?: Date;
     /**
     * Status of the subscription (TrialPeriod, Ongoing, Unpaid, Canceled)
     */
-    'Status': Subscription.StatusEnum;
+    'Status'?: Subscription.StatusEnum;
     /**
     * Flipdish user identifier
     */
-    'UserId': number;
+    'UserId'?: number;
     /**
     * Subscription Plan
     */
-    'SubscriptionPlan': SubscriptionPlan;
+    'SubscriptionPlan'?: SubscriptionPlan;
     /**
     * Card
     */
-    'Card': Card;
+    'Card'?: Card;
     /**
     * App name Id of the subscription
     */
@@ -12483,7 +12597,7 @@ export class Subscription {
     /**
     * Last 4 digits of the card
     */
-    'VatNumber': string;
+    'VatNumber'?: string;
     /**
     * Expiry date of the card
     */
@@ -12491,13 +12605,13 @@ export class Subscription {
     /**
     * Number of physical restaurants
     */
-    'Quantity': number;
+    'Quantity'?: number;
     /**
     * Subscription plan identifier
     */
-    'SubscriptionPlanId': number;
+    'SubscriptionPlanId'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -12576,13 +12690,13 @@ export class SubscriptionBase {
     /**
     * Number of physical restaurants
     */
-    'Quantity': number;
+    'Quantity'?: number;
     /**
     * Subscription plan identifier
     */
-    'SubscriptionPlanId': number;
+    'SubscriptionPlanId'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -12608,25 +12722,25 @@ export class SubscriptionPlan {
     /**
     * Subscription plan identifier
     */
-    'SubscriptionPlanId': number;
+    'SubscriptionPlanId'?: number;
     /**
     * Name of the plan
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * ISO Currency
     */
-    'Currency': string;
+    'Currency'?: string;
     /**
     * Price for single unit
     */
-    'Price': number;
+    'Price'?: number;
     /**
     * Interval billing for the subscription
     */
-    'Interval': SubscriptionPlan.IntervalEnum;
+    'Interval'?: SubscriptionPlan.IntervalEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -12673,21 +12787,21 @@ export class SubscriptionPlansResponse {
     /**
     * Stripe publishable api key
     */
-    'PublishableApiKey': string;
+    'PublishableApiKey'?: string;
     /**
     * User email
     */
-    'Email': string;
+    'Email'?: string;
     /**
     * Available plans
     */
-    'SubscriptionPlans': Array<SubscriptionPlan>;
+    'SubscriptionPlans'?: Array<SubscriptionPlan>;
     /**
     * App ids (string name) to which the user belongs
     */
-    'AppIds': Array<string>;
+    'AppIds'?: Array<string>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -12739,13 +12853,13 @@ export class SubscriptionWithToken {
     /**
     * Last 4 digits of the card
     */
-    'VatNumber': string;
+    'VatNumber'?: string;
     /**
     * Expiry date of the card
     */
     'VatCountryCode': string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -12791,33 +12905,33 @@ export class Teammate {
     /**
     * Name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Last activity
     */
-    'LastAcitivity': Date;
+    'LastAcitivity'?: Date;
     /**
     * Access level is for this App
     */
-    'AppId': string;
+    'AppId'?: string;
     /**
     * Email address
     */
-    'Email': string;
+    'Email'?: string;
     /**
     * App access level
     */
-    'AppAccessLevel': Teammate.AppAccessLevelEnum;
+    'AppAccessLevel'?: Teammate.AppAccessLevelEnum;
     /**
     * The user has access to all stores for the app (including new stores that added later)
     */
-    'HasAccessToAllStores': boolean;
+    'HasAccessToAllStores'?: boolean;
     /**
     * Store IDs the user has access to (if HasAccessToAllStores is false)
     */
-    'StoreIds': Array<number>;
+    'StoreIds'?: Array<number>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -12878,17 +12992,17 @@ export class TeammateBase {
     /**
     * App access level
     */
-    'AppAccessLevel': TeammateBase.AppAccessLevelEnum;
+    'AppAccessLevel'?: TeammateBase.AppAccessLevelEnum;
     /**
     * The user has access to all stores for the app (including new stores that added later)
     */
-    'HasAccessToAllStores': boolean;
+    'HasAccessToAllStores'?: boolean;
     /**
     * Store IDs the user has access to (if HasAccessToAllStores is false)
     */
-    'StoreIds': Array<number>;
+    'StoreIds'?: Array<number>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -12929,13 +13043,13 @@ export class UpdateAccountModel {
     /**
     * Name of the user
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Language of the user
     */
-    'Language': string;
+    'Language'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -12961,29 +13075,29 @@ export class UserCreatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * The user
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -13029,29 +13143,29 @@ export class UserDeletedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * The user
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -13097,21 +13211,21 @@ export class UserEventInfo {
     /**
     * User Id
     */
-    'UserId': number;
+    'UserId'?: number;
     /**
     * User Name
     */
-    'UserName': string;
+    'UserName'?: string;
     /**
     * User Phone Number
     */
-    'UserPhoneNumber': string;
+    'UserPhoneNumber'?: string;
     /**
     * User Email
     */
-    'UserEmail': string;
+    'UserEmail'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -13147,29 +13261,29 @@ export class UserLoginEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * The user
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -13215,29 +13329,29 @@ export class UserUpdatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * The user
     */
-    'User': UserEventInfo;
+    'User'?: UserEventInfo;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -13283,13 +13397,13 @@ export class ValidationErrorResult {
     /**
     * Field name
     */
-    'FieldName': string;
+    'FieldName'?: string;
     /**
     * List of errors relates to field
     */
-    'Errors': Array<string>;
+    'Errors'?: Array<string>;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -13315,41 +13429,57 @@ export class Voucher {
     /**
     * Voucher Id
     */
-    'VoucherId': number;
+    'VoucherId'?: number;
     /**
     * Voucher Code
     */
-    'Code': string;
+    'Code'?: string;
     /**
     * Voucher Status
     */
-    'Status': Voucher.StatusEnum;
+    'Status'?: Voucher.StatusEnum;
     /**
     * Voucher Type
     */
-    'VoucherType': Voucher.VoucherTypeEnum;
+    'VoucherType'?: Voucher.VoucherTypeEnum;
     /**
     * Voucher Sub Type
     */
-    'VoucherSubType': Voucher.VoucherSubTypeEnum;
+    'VoucherSubType'?: Voucher.VoucherSubTypeEnum;
     /**
     * Voucher Expires On (Time in UTC)
     */
-    'StartDate': Date;
+    'StartDate'?: Date;
+    /**
+    * Add item details
+    */
+    'AddItemDetails'?: AddItemDetails;
+    /**
+    * Credit note details
+    */
+    'CreditNoteDetails'?: CreditNoteDetails;
+    /**
+    * Lump discount details
+    */
+    'LumpDiscountDetails'?: LumpDiscountDetails;
+    /**
+    * Percent discount details
+    */
+    'PercentDiscountDetails'?: PercentDiscountDetails;
     /**
     * Voucher Description (Visible on printout)
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Is voucher enabled
     */
-    'IsEnabled': boolean;
+    'IsEnabled'?: boolean;
     /**
     * Voucher Expires On (Time in UTC)
     */
-    'ExpiryDate': Date;
+    'ExpiryDate'?: Date;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -13381,6 +13511,26 @@ export class Voucher {
             "name": "StartDate",
             "baseName": "StartDate",
             "type": "Date"
+        },
+        {
+            "name": "AddItemDetails",
+            "baseName": "AddItemDetails",
+            "type": "AddItemDetails"
+        },
+        {
+            "name": "CreditNoteDetails",
+            "baseName": "CreditNoteDetails",
+            "type": "CreditNoteDetails"
+        },
+        {
+            "name": "LumpDiscountDetails",
+            "baseName": "LumpDiscountDetails",
+            "type": "LumpDiscountDetails"
+        },
+        {
+            "name": "PercentDiscountDetails",
+            "baseName": "PercentDiscountDetails",
+            "type": "PercentDiscountDetails"
         },
         {
             "name": "Description",
@@ -13432,17 +13582,17 @@ export class VoucherBase {
     /**
     * Voucher Description (Visible on printout)
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Is voucher enabled
     */
-    'IsEnabled': boolean;
+    'IsEnabled'?: boolean;
     /**
     * Voucher Expires On (Time in UTC)
     */
-    'ExpiryDate': Date;
+    'ExpiryDate'?: Date;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -13467,35 +13617,207 @@ export class VoucherBase {
 }
 
 /**
+* Voucher Created Event
+*/
+export class VoucherCreatedEvent {
+    /**
+    * Voucher Id
+    */
+    'VoucherId'?: number;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * User which created this voucher
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Created voucher
+    */
+    'Voucher'?: Voucher;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "VoucherId",
+            "baseName": "VoucherId",
+            "type": "number"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Voucher",
+            "baseName": "Voucher",
+            "type": "Voucher"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return VoucherCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Voucher Deleted Event
+*/
+export class VoucherDeletedEvent {
+    /**
+    * Voucher Id
+    */
+    'VoucherId'?: number;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * User which deleted this voucher
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Deleted voucher
+    */
+    'Voucher'?: Voucher;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "VoucherId",
+            "baseName": "VoucherId",
+            "type": "number"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Voucher",
+            "baseName": "Voucher",
+            "type": "Voucher"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return VoucherDeletedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Voucher summary
 */
 export class VoucherSummary {
     /**
     * Voucher name
     */
-    'Name': string;
+    'Name'?: string;
     /**
     * Voucher description
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Voucher code
     */
-    'Code': string;
+    'Code'?: string;
     /**
     * Voucher amount
     */
-    'Amount': number;
+    'Amount'?: number;
     /**
     * Voucher type
     */
-    'Type': VoucherSummary.TypeEnum;
+    'Type'?: VoucherSummary.TypeEnum;
     /**
     * Voucher sub type
     */
-    'SubType': VoucherSummary.SubTypeEnum;
+    'SubType'?: VoucherSummary.SubTypeEnum;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -13552,67 +13874,169 @@ export namespace VoucherSummary {
     }
 }
 /**
+* Voucher Updated Event
+*/
+export class VoucherUpdatedEvent {
+    /**
+    * Voucher Id
+    */
+    'VoucherId'?: number;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * User which updated this voucher
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Updated voucher
+    */
+    'Voucher'?: Voucher;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "VoucherId",
+            "baseName": "VoucherId",
+            "type": "number"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Voucher",
+            "baseName": "Voucher",
+            "type": "Voucher"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return VoucherUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Voucher With Statistics
 */
 export class VoucherWithStats {
     /**
     * Total times the voucher was used
     */
-    'TotalUsed': number;
+    'TotalUsed'?: number;
     /**
     * Total amount of customers who used this voucher
     */
-    'TotalCustomers': number;
+    'TotalCustomers'?: number;
     /**
     * Total amount of money from orders
     */
-    'TotalAmountFromOrders': number;
+    'TotalAmountFromOrders'?: number;
     /**
     * Total amount of money given away
     */
-    'TotalDiscounted': number;
+    'TotalDiscounted'?: number;
     /**
     * Average Order Size
     */
-    'AverageOrderSize': number;
+    'AverageOrderSize'?: number;
     /**
     * Voucher Id
     */
-    'VoucherId': number;
+    'VoucherId'?: number;
     /**
     * Voucher Code
     */
-    'Code': string;
+    'Code'?: string;
     /**
     * Voucher Status
     */
-    'Status': VoucherWithStats.StatusEnum;
+    'Status'?: VoucherWithStats.StatusEnum;
     /**
     * Voucher Type
     */
-    'VoucherType': VoucherWithStats.VoucherTypeEnum;
+    'VoucherType'?: VoucherWithStats.VoucherTypeEnum;
     /**
     * Voucher Sub Type
     */
-    'VoucherSubType': VoucherWithStats.VoucherSubTypeEnum;
+    'VoucherSubType'?: VoucherWithStats.VoucherSubTypeEnum;
     /**
     * Voucher Expires On (Time in UTC)
     */
-    'StartDate': Date;
+    'StartDate'?: Date;
+    /**
+    * Add item details
+    */
+    'AddItemDetails'?: AddItemDetails;
+    /**
+    * Credit note details
+    */
+    'CreditNoteDetails'?: CreditNoteDetails;
+    /**
+    * Lump discount details
+    */
+    'LumpDiscountDetails'?: LumpDiscountDetails;
+    /**
+    * Percent discount details
+    */
+    'PercentDiscountDetails'?: PercentDiscountDetails;
     /**
     * Voucher Description (Visible on printout)
     */
-    'Description': string;
+    'Description'?: string;
     /**
     * Is voucher enabled
     */
-    'IsEnabled': boolean;
+    'IsEnabled'?: boolean;
     /**
     * Voucher Expires On (Time in UTC)
     */
-    'ExpiryDate': Date;
+    'ExpiryDate'?: Date;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -13671,6 +14095,26 @@ export class VoucherWithStats {
             "type": "Date"
         },
         {
+            "name": "AddItemDetails",
+            "baseName": "AddItemDetails",
+            "type": "AddItemDetails"
+        },
+        {
+            "name": "CreditNoteDetails",
+            "baseName": "CreditNoteDetails",
+            "type": "CreditNoteDetails"
+        },
+        {
+            "name": "LumpDiscountDetails",
+            "baseName": "LumpDiscountDetails",
+            "type": "LumpDiscountDetails"
+        },
+        {
+            "name": "PercentDiscountDetails",
+            "baseName": "PercentDiscountDetails",
+            "type": "PercentDiscountDetails"
+        },
+        {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
@@ -13720,65 +14164,65 @@ export class WebhookLog {
     /**
     * Webhook subscription owner user identifier
     */
-    'WebhookSubscriptionOwnerUserId': number;
+    'WebhookSubscriptionOwnerUserId'?: number;
     /**
     * Event created
     */
-    'EventCreated': string;
+    'EventCreated'?: string;
     /**
     * Webhook triggered
     */
-    'WebhookTriggered': string;
+    'WebhookTriggered'?: string;
     /**
     * Webhook event name
     */
-    'WebhookEventName': string;
+    'WebhookEventName'?: string;
     /**
     * Webhook subscription callback url
     */
-    'WebhookSubscriptionCallbackUrl': string;
+    'WebhookSubscriptionCallbackUrl'?: string;
     /**
     * Received HTTP repsonse status HTTP code
     */
-    'HttpResponseStatusCode': string;
+    'HttpResponseStatusCode'?: string;
     /**
     * Received HTTP repsonse status
     */
-    'HttpResponseStatus': string;
+    'HttpResponseStatus'?: string;
     /**
     * Request headers
     */
-    'RequestHeaders': string;
+    'RequestHeaders'?: string;
     /**
     * Request body
     */
-    'RequestBody': string;
+    'RequestBody'?: string;
     /**
     * Received response headers
     */
-    'ResponseHeaders': string;
+    'ResponseHeaders'?: string;
     /**
     * Received response body
     */
-    'ResponseBody': string;
+    'ResponseBody'?: string;
     /**
     * Duration of HTTP request
     */
-    'Duration': string;
+    'Duration'?: string;
     /**
     * Retry count
     */
-    'RetryCount': number;
+    'RetryCount'?: number;
     /**
     * Flipdish webhook identifier
     */
-    'FlipdishWebhookId': string;
+    'FlipdishWebhookId'?: string;
     /**
     * Flipdish webhook version
     */
-    'Version': string;
+    'Version'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -13869,33 +14313,33 @@ export class WebhookSubscription {
     /**
     * Webhook subscription identifier
     */
-    'Id': number;
+    'Id'?: number;
     /**
     * Webhook subscription owner user identifier
     */
-    'OwnerUserId': number;
+    'OwnerUserId'?: number;
     /**
     * Webhook subscription owner user identifier
     */
-    'Version': string;
+    'Version'?: string;
     /**
     * Webhook subscription event names
     */
-    'EventNames': Array<string>;
+    'EventNames'?: Array<string>;
     /**
     * Callback url. Flipdish system POST messages to this url.
     */
-    'CallbackUrl': string;
+    'CallbackUrl'?: string;
     /**
     * Is webhook subscription enabled.
     */
-    'Enabled': boolean;
+    'Enabled'?: boolean;
     /**
     * This is your token which will be in the Header of each POST request from Flipdish with name: X-Verify-Token.
     */
-    'VerifyToken': string;
+    'VerifyToken'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -13946,25 +14390,25 @@ export class WebhookSubscriptionCreatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Webhook subscription details
     */
-    'WebhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
+    'WebhookSubscriptionEventInfo'?: WebhookSubscriptionEventInfo;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -14005,25 +14449,25 @@ export class WebhookSubscriptionDeletedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Webhook subscription details
     */
-    'WebhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
+    'WebhookSubscriptionEventInfo'?: WebhookSubscriptionEventInfo;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -14064,21 +14508,21 @@ export class WebhookSubscriptionEventInfo {
     /**
     * Webhook subscription owner user identifier
     */
-    'OwnerUserId': number;
+    'OwnerUserId'?: number;
     /**
     * Webhook subscription identifier
     */
-    'WebhookSubscriptionId': number;
+    'WebhookSubscriptionId'?: number;
     /**
     * Oauth client identifier
     */
-    'ClientId': string;
+    'ClientId'?: string;
     /**
     * Webhook callback url
     */
-    'CallbackUrl': string;
+    'CallbackUrl'?: string;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -14114,25 +14558,25 @@ export class WebhookSubscriptionUpdatedEvent {
     /**
     * The event name
     */
-    'EventName': string;
+    'EventName'?: string;
     /**
     * Webhook subscription details
     */
-    'WebhookSubscriptionEventInfo': WebhookSubscriptionEventInfo;
+    'WebhookSubscriptionEventInfo'?: WebhookSubscriptionEventInfo;
     /**
     * The identitfier of the event
     */
-    'FlipdishEventId': string;
+    'FlipdishEventId'?: string;
     /**
     * The time of creation of the event
     */
-    'CreateTime': Date;
+    'CreateTime'?: Date;
     /**
     * Position
     */
-    'Position': number;
+    'Position'?: number;
 
-    static discriminator = undefined;
+    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -14220,6 +14664,7 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "Accept": Accept,
     "AccountDetail": AccountDetail,
+    "AddItemDetails": AddItemDetails,
     "AnalyticsClientEvent": AnalyticsClientEvent,
     "ApmAverageHourlyDataPoint": ApmAverageHourlyDataPoint,
     "ApmCall": ApmCall,
@@ -14237,6 +14682,7 @@ let typeMap: {[index: string]: any} = {
     "Coordinates": Coordinates,
     "CreateAccountModel": CreateAccountModel,
     "CreateTeammate": CreateTeammate,
+    "CreditNoteDetails": CreditNoteDetails,
     "CustomerConsentUpdatedEvent": CustomerConsentUpdatedEvent,
     "CustomerCreatedEvent": CustomerCreatedEvent,
     "CustomerSummary": CustomerSummary,
@@ -14267,6 +14713,7 @@ let typeMap: {[index: string]: any} = {
     "LoyaltyCampaignCreatedEvent": LoyaltyCampaignCreatedEvent,
     "LoyaltyCampaignDeletedEvent": LoyaltyCampaignDeletedEvent,
     "LoyaltyCampaignUpdatedEvent": LoyaltyCampaignUpdatedEvent,
+    "LumpDiscountDetails": LumpDiscountDetails,
     "Menu": Menu,
     "MenuBase": MenuBase,
     "MenuCreatedEvent": MenuCreatedEvent,
@@ -14307,6 +14754,7 @@ let typeMap: {[index: string]: any} = {
     "OrderRejectedEvent": OrderRejectedEvent,
     "OrderTipUpdatedEvent": OrderTipUpdatedEvent,
     "PasswordResetModel": PasswordResetModel,
+    "PercentDiscountDetails": PercentDiscountDetails,
     "PhoneCall": PhoneCall,
     "PhoneCallEndedEvent": PhoneCallEndedEvent,
     "PhoneCallStartedEvent": PhoneCallStartedEvent,
@@ -14378,7 +14826,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultSubscription": RestApiResultSubscription,
     "RestApiResultSubscriptionPlansResponse": RestApiResultSubscriptionPlansResponse,
     "RestApiResultTeammate": RestApiResultTeammate,
-    "RestApiResultVoucher": RestApiResultVoucher,
     "RestApiResultVoucherWithStats": RestApiResultVoucherWithStats,
     "RestApiStringArrayResult": RestApiStringArrayResult,
     "RestApiStringResult": RestApiStringResult,
@@ -14427,7 +14874,10 @@ let typeMap: {[index: string]: any} = {
     "ValidationErrorResult": ValidationErrorResult,
     "Voucher": Voucher,
     "VoucherBase": VoucherBase,
+    "VoucherCreatedEvent": VoucherCreatedEvent,
+    "VoucherDeletedEvent": VoucherDeletedEvent,
     "VoucherSummary": VoucherSummary,
+    "VoucherUpdatedEvent": VoucherUpdatedEvent,
     "VoucherWithStats": VoucherWithStats,
     "WebhookLog": WebhookLog,
     "WebhookSubscription": WebhookSubscription,
@@ -14445,8 +14895,9 @@ export interface Authentication {
 }
 
 export class HttpBasicAuth implements Authentication {
-    public username: string;
-    public password: string;
+    public username: string = '';
+    public password: string = '';
+
     applyToRequest(requestOptions: localVarRequest.Options): void {
         requestOptions.auth = {
             username: this.username, password: this.password
@@ -14455,7 +14906,7 @@ export class HttpBasicAuth implements Authentication {
 }
 
 export class ApiKeyAuth implements Authentication {
-    public apiKey: string;
+    public apiKey: string = '';
 
     constructor(private location: string, private paramName: string) {
     }
@@ -14470,7 +14921,7 @@ export class ApiKeyAuth implements Authentication {
 }
 
 export class OAuth implements Authentication {
-    public accessToken: string;
+    public accessToken: string = '';
 
     applyToRequest(requestOptions: localVarRequest.Options): void {
         if (requestOptions && requestOptions.headers) {
@@ -14480,8 +14931,9 @@ export class OAuth implements Authentication {
 }
 
 export class VoidAuth implements Authentication {
-    public username: string;
-    public password: string;
+    public username: string = '';
+    public password: string = '';
+
     applyToRequest(_: localVarRequest.Options): void {
         // Do nothing
     }
@@ -14542,7 +14994,7 @@ export class AccountsApi {
      * @param signupStepAction Signup step action
      * @param answerId Identifier of the answer
      */
-    public answerSignUpQuestion (signupStepAction: string, answerId: number) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public answerSignUpQuestion (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription', answerId: number) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/answer'
             .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
         let localVarQueryParameters: any = {};
@@ -14976,7 +15428,7 @@ export class AccountsApi {
      * @summary Skip a signup question
      * @param signupStepAction Signup step action
      */
-    public skipSignupStep (signupStepAction: string) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public skipSignupStep (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription') : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/skip'
             .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
         let localVarQueryParameters: any = {};
@@ -15259,7 +15711,7 @@ export class ApmApi {
      * @param dataPointLimit Amount of data points per request
      * @param storeId List of stores to search by
      */
-    public getCallsStatistics (appId: string, aggregateDataBy: string, dataPointLimit?: number, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }> {
+    public getCallsStatistics (appId: string, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/statistics/calls/{aggregateDataBy}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'aggregateDataBy' + '}', encodeURIComponent(String(aggregateDataBy)));
@@ -15331,7 +15783,7 @@ export class ApmApi {
      * @param dataPointLimit Amount of data points per request
      * @param storeId List of stores to search by
      */
-    public getOrderStatistics (appId: string, aggregateDataBy: string, dataPointLimit?: number, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }> {
+    public getOrderStatistics (appId: string, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/statistics/orders/{aggregateDataBy}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'aggregateDataBy' + '}', encodeURIComponent(String(aggregateDataBy)));
@@ -19218,7 +19670,7 @@ export class MenuSectionsApi {
      * @param dayOfWeek 
      * @param businessHoursPeriod 
      */
-    public createMenuAvailabilityForDay (menuId: number, menuSectionId: number, dayOfWeek: string, businessHoursPeriod: BusinessHoursPeriodBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public createMenuAvailabilityForDay (menuId: number, menuSectionId: number, dayOfWeek: 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday', businessHoursPeriod: BusinessHoursPeriodBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/availability/times/{dayOfWeek}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -21249,7 +21701,7 @@ export class OrdersApi {
      * @param page Requested page number
      * @param limit Requested page limit
      */
-    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<string>, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
+    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -21260,7 +21712,7 @@ export class OrdersApi {
         }
 
         if (state !== undefined) {
-            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<string>");
+            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>");
         }
 
         if (page !== undefined) {
@@ -22138,7 +22590,7 @@ export class StoresApi {
      * @param storeId Store identifier
      * @param deliveryType Deliery type
      */
-    public getBusinessHours (storeId: number, deliveryType: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultBusinessHoursPeriod;  }> {
+    public getBusinessHours (storeId: number, deliveryType: 'Delivery' | 'Pickup') : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultBusinessHoursPeriod;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/availability/{deliveryType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
@@ -22331,7 +22783,7 @@ export class StoresApi {
      * @param paymentAccountType 
      * @param appNameId App Name Id
      */
-    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: string, appNameId?: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }> {
+    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: 'Card' | 'Cash' | 'Ideal' | 'Bancontact' | 'Giropay' | 'Eps', appNameId?: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs/{paymentAccountType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'paymentAccountType' + '}', encodeURIComponent(String(paymentAccountType)));
@@ -22521,7 +22973,7 @@ export class StoresApi {
      * @param deliveryType Deliery type
      * @param businessHoursPeriod Business Hours Period
      */
-    public setBusinessHours (storeId: number, deliveryType: string, businessHoursPeriod: BusinessHoursPeriodBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursPeriod;  }> {
+    public setBusinessHours (storeId: number, deliveryType: 'Delivery' | 'Pickup', businessHoursPeriod: BusinessHoursPeriodBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursPeriod;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/availability/{deliveryType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
@@ -24140,7 +24592,7 @@ export class VouchersApi {
     /**
      * 
      * @summary [PRIVATE API] Get voucher by identifier
-     * @param voucherId 
+     * @param voucherId Id of the voucher
      */
     public getVoucherById (voucherId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}'
@@ -24195,15 +24647,15 @@ export class VouchersApi {
     /**
      * 
      * @summary [PRIVATE API] Get vouchers for App Id
-     * @param appId 
-     * @param pageIndex 
-     * @param pageSize 
-     * @param searchCodes 
-     * @param statusSearch 
-     * @param typeSearch 
-     * @param storeIds 
+     * @param appId Application Id
+     * @param pageIndex Page Number
+     * @param pageSize Page Size
+     * @param searchCodes Search by Voucher Code\\s
+     * @param statusSearch Search by Status
+     * @param typeSearch Search by Type
+     * @param storeIds Search by Store Ids
      */
-    public getVouchers (appId: string, pageIndex?: number, pageSize?: number, searchCodes?: Array<string>, statusSearch?: Array<string>, typeSearch?: Array<string>, storeIds?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucher;  }> {
+    public getVouchers (appId: string, pageIndex?: number, pageSize?: number, searchCodes?: Array<string>, statusSearch?: Array<'Valid' | 'Expired' | 'Used'>, typeSearch?: Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote'>, storeIds?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucher;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/vouchers'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -24228,11 +24680,11 @@ export class VouchersApi {
         }
 
         if (statusSearch !== undefined) {
-            localVarQueryParameters['statusSearch'] = ObjectSerializer.serialize(statusSearch, "Array<string>");
+            localVarQueryParameters['statusSearch'] = ObjectSerializer.serialize(statusSearch, "Array<'Valid' | 'Expired' | 'Used'>");
         }
 
         if (typeSearch !== undefined) {
-            localVarQueryParameters['typeSearch'] = ObjectSerializer.serialize(typeSearch, "Array<string>");
+            localVarQueryParameters['typeSearch'] = ObjectSerializer.serialize(typeSearch, "Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote'>");
         }
 
         if (storeIds !== undefined) {
@@ -24280,10 +24732,10 @@ export class VouchersApi {
     /**
      * 
      * @summary [PRIVATE API] Updates voucher
-     * @param voucherId 
-     * @param voucher 
+     * @param voucherId Id of the voucher
+     * @param voucher Updated details for the voucher
      */
-    public updateVoucher (voucherId: number, voucher: VoucherBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucher;  }> {
+    public updateVoucher (voucherId: number, voucher: VoucherBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
         let localVarQueryParameters: any = {};
@@ -24324,12 +24776,12 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultVoucher;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultVoucher");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultVoucherWithStats");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
