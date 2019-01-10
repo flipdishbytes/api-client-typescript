@@ -8386,6 +8386,29 @@ export class RestApiArrayResultTeammate {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultVoucherDataPoint {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<VoucherDataPoint>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<VoucherDataPoint>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultVoucherDataPoint.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultWebhookSubscription {
     /**
     * Generic data object.
@@ -13703,6 +13726,47 @@ export class VoucherCreatedEvent {
 }
 
 /**
+* A single data point in timeline graphs related to Vouchers
+*/
+export class VoucherDataPoint {
+    /**
+    * Date from which the data point starts
+    */
+    'PeriodStart'?: Date;
+    /**
+    * The length in days that this data point covers
+    */
+    'PeriodLengthInDays'?: number;
+    /**
+    * The value of this data point
+    */
+    'Value'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PeriodStart",
+            "baseName": "PeriodStart",
+            "type": "Date"
+        },
+        {
+            "name": "PeriodLengthInDays",
+            "baseName": "PeriodLengthInDays",
+            "type": "number"
+        },
+        {
+            "name": "Value",
+            "baseName": "Value",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return VoucherDataPoint.attributeTypeMap;
+    }
+}
+
+/**
 * Voucher Deleted Event
 */
 export class VoucherDeletedEvent {
@@ -14782,6 +14846,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultProcessingFeeConfig": RestApiArrayResultProcessingFeeConfig,
     "RestApiArrayResultRestApiDefaultResponse": RestApiArrayResultRestApiDefaultResponse,
     "RestApiArrayResultTeammate": RestApiArrayResultTeammate,
+    "RestApiArrayResultVoucherDataPoint": RestApiArrayResultVoucherDataPoint,
     "RestApiArrayResultWebhookSubscription": RestApiArrayResultWebhookSubscription,
     "RestApiDefaultResponse": RestApiDefaultResponse,
     "RestApiErrorResult": RestApiErrorResult,
@@ -14875,6 +14940,7 @@ let typeMap: {[index: string]: any} = {
     "Voucher": Voucher,
     "VoucherBase": VoucherBase,
     "VoucherCreatedEvent": VoucherCreatedEvent,
+    "VoucherDataPoint": VoucherDataPoint,
     "VoucherDeletedEvent": VoucherDeletedEvent,
     "VoucherSummary": VoucherSummary,
     "VoucherUpdatedEvent": VoucherUpdatedEvent,
@@ -24635,6 +24701,76 @@ export class VouchersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultVoucherWithStats");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Get voucher stats by identifier
+     * @param voucherId Id of the voucher
+     * @param aggregateDataBy Aggregate data by day \\ week \\ month
+     * @param dataPointLimit Amount of data points per request
+     */
+    public getVoucherStatsById (voucherId: number, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultVoucherDataPoint;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/vouchers/stats/{voucherId}'
+            .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'voucherId' is not null or undefined
+        if (voucherId === null || voucherId === undefined) {
+            throw new Error('Required parameter voucherId was null or undefined when calling getVoucherStatsById.');
+        }
+
+        // verify required parameter 'aggregateDataBy' is not null or undefined
+        if (aggregateDataBy === null || aggregateDataBy === undefined) {
+            throw new Error('Required parameter aggregateDataBy was null or undefined when calling getVoucherStatsById.');
+        }
+
+        if (aggregateDataBy !== undefined) {
+            localVarQueryParameters['aggregateDataBy'] = ObjectSerializer.serialize(aggregateDataBy, "'Daily' | 'Weekly' | 'Monthly'");
+        }
+
+        if (dataPointLimit !== undefined) {
+            localVarQueryParameters['dataPointLimit'] = ObjectSerializer.serialize(dataPointLimit, "number");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultVoucherDataPoint;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultVoucherDataPoint");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
