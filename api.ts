@@ -430,6 +430,10 @@ export class ApmCall {
     * The amount of time the call took
     */
     'CallLengthInSeconds'?: number;
+    /**
+    * The status of the call
+    */
+    'CallStatus'?: ApmCall.CallStatusEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -458,6 +462,11 @@ export class ApmCall {
             "name": "CallLengthInSeconds",
             "baseName": "CallLengthInSeconds",
             "type": "number"
+        },
+        {
+            "name": "CallStatus",
+            "baseName": "CallStatus",
+            "type": "ApmCall.CallStatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -465,6 +474,19 @@ export class ApmCall {
     }
 }
 
+export namespace ApmCall {
+    export enum CallStatusEnum {
+        Queued = <any> 'Queued',
+        Ringing = <any> 'Ringing',
+        InProgress = <any> 'InProgress',
+        Completed = <any> 'Completed',
+        Failed = <any> 'Failed',
+        Busy = <any> 'Busy',
+        NoAnswer = <any> 'NoAnswer',
+        Unknown = <any> 'Unknown',
+        Canceled = <any> 'Canceled'
+    }
+}
 /**
 * A single data point in timeline graphs related to APM
 */
@@ -14677,6 +14699,7 @@ export class WebhookSubscriptionUpdatedEvent {
 
 let enumsMap: {[index: string]: any} = {
         "ApmAverageHourlyDataPoint.DayEnum": ApmAverageHourlyDataPoint.DayEnum,
+        "ApmCall.CallStatusEnum": ApmCall.CallStatusEnum,
         "BusinessHoursOverride.DeliveryTypeEnum": BusinessHoursOverride.DeliveryTypeEnum,
         "BusinessHoursOverride.TypeEnum": BusinessHoursOverride.TypeEnum,
         "BusinessHoursOverrideBase.DeliveryTypeEnum": BusinessHoursOverrideBase.DeliveryTypeEnum,
