@@ -415,6 +415,10 @@ export class ApmCall {
     */
     'TimeOfCall'?: Date;
     /**
+    * Time of the call, local to the store to which the call was made
+    */
+    'TimeOfCallLocal'?: Date;
+    /**
     * Name of the store that the call was TO
     */
     'StoreName'?: string;
@@ -441,6 +445,11 @@ export class ApmCall {
         {
             "name": "TimeOfCall",
             "baseName": "TimeOfCall",
+            "type": "Date"
+        },
+        {
+            "name": "TimeOfCallLocal",
+            "baseName": "TimeOfCallLocal",
             "type": "Date"
         },
         {
