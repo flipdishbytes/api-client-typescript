@@ -254,10 +254,6 @@ export class AnalyticsClientEvent {
     */
     'EventType'?: string;
     /**
-    * Application Id
-    */
-    'AppId'?: string;
-    /**
     * Type of the app the event is coming from
     */
     'AppType'?: string;
@@ -289,6 +285,10 @@ export class AnalyticsClientEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -301,11 +301,6 @@ export class AnalyticsClientEvent {
         {
             "name": "EventType",
             "baseName": "EventType",
-            "type": "string"
-        },
-        {
-            "name": "AppId",
-            "baseName": "AppId",
             "type": "string"
         },
         {
@@ -347,6 +342,11 @@ export class AnalyticsClientEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1273,10 +1273,6 @@ export class CustomerConsentUpdatedEvent {
     */
     'EventName'?: string;
     /**
-    * App name id
-    */
-    'AppId'?: string;
-    /**
     * Enabled
     */
     'Enabled'?: boolean;
@@ -1300,6 +1296,10 @@ export class CustomerConsentUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1307,11 +1307,6 @@ export class CustomerConsentUpdatedEvent {
         {
             "name": "EventName",
             "baseName": "EventName",
-            "type": "string"
-        },
-        {
-            "name": "AppId",
-            "baseName": "AppId",
             "type": "string"
         },
         {
@@ -1343,6 +1338,11 @@ export class CustomerConsentUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1358,10 +1358,6 @@ export class CustomerCreatedEvent {
     * The event name
     */
     'EventName'?: string;
-    /**
-    * App name id
-    */
-    'AppId'?: string;
     /**
     * Customer User info
     */
@@ -1382,6 +1378,10 @@ export class CustomerCreatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1389,11 +1389,6 @@ export class CustomerCreatedEvent {
         {
             "name": "EventName",
             "baseName": "EventName",
-            "type": "string"
-        },
-        {
-            "name": "AppId",
-            "baseName": "AppId",
             "type": "string"
         },
         {
@@ -1420,6 +1415,11 @@ export class CustomerCreatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1514,6 +1514,10 @@ export class CustomerUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1547,6 +1551,11 @@ export class CustomerUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1776,6 +1785,10 @@ export class DeliveryZoneCreatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1819,6 +1832,11 @@ export class DeliveryZoneCreatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1862,6 +1880,10 @@ export class DeliveryZoneDeletedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1905,6 +1927,11 @@ export class DeliveryZoneDeletedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1948,6 +1975,10 @@ export class DeliveryZoneUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1991,6 +2022,11 @@ export class DeliveryZoneUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -2242,6 +2278,22 @@ export class EventSearchResult {
     * Voucher deleted event
     */
     'VoucherDeletedEvent'?: Array<VoucherDeletedEvent>;
+    /**
+    * Teammate invite sent event
+    */
+    'TeammateInviteSentEvent'?: Array<TeammateInviteSentEvent>;
+    /**
+    * Teammate invite accepted event
+    */
+    'TeammateInviteAcceptedEvent'?: Array<TeammateInviteAcceptedEvent>;
+    /**
+    * Teammate updated event
+    */
+    'TeammateUpdatedEvent'?: Array<TeammateUpdatedEvent>;
+    /**
+    * Teammate deleted event
+    */
+    'TeammateDeletedEvent'?: Array<TeammateDeletedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -2545,6 +2597,26 @@ export class EventSearchResult {
             "name": "VoucherDeletedEvent",
             "baseName": "VoucherDeletedEvent",
             "type": "Array<VoucherDeletedEvent>"
+        },
+        {
+            "name": "TeammateInviteSentEvent",
+            "baseName": "TeammateInviteSentEvent",
+            "type": "Array<TeammateInviteSentEvent>"
+        },
+        {
+            "name": "TeammateInviteAcceptedEvent",
+            "baseName": "TeammateInviteAcceptedEvent",
+            "type": "Array<TeammateInviteAcceptedEvent>"
+        },
+        {
+            "name": "TeammateUpdatedEvent",
+            "baseName": "TeammateUpdatedEvent",
+            "type": "Array<TeammateUpdatedEvent>"
+        },
+        {
+            "name": "TeammateDeletedEvent",
+            "baseName": "TeammateDeletedEvent",
+            "type": "Array<TeammateDeletedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -3728,6 +3800,10 @@ export class LoyaltyCampaignCreatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -3771,6 +3847,11 @@ export class LoyaltyCampaignCreatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -3814,6 +3895,10 @@ export class LoyaltyCampaignDeletedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -3857,6 +3942,11 @@ export class LoyaltyCampaignDeletedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -3900,6 +3990,10 @@ export class LoyaltyCampaignUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -3943,6 +4037,11 @@ export class LoyaltyCampaignUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4126,6 +4225,10 @@ export class MenuCreatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -4164,6 +4267,11 @@ export class MenuCreatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4395,6 +4503,10 @@ export class MenuItemOptionSetCreatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -4438,6 +4550,11 @@ export class MenuItemOptionSetCreatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4481,6 +4598,10 @@ export class MenuItemOptionSetDeletedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -4524,6 +4645,11 @@ export class MenuItemOptionSetDeletedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4728,6 +4854,10 @@ export class MenuItemOptionSetItemCreatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -4771,6 +4901,11 @@ export class MenuItemOptionSetItemCreatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4814,6 +4949,10 @@ export class MenuItemOptionSetItemDeletedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -4857,6 +4996,11 @@ export class MenuItemOptionSetItemDeletedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4900,6 +5044,10 @@ export class MenuItemOptionSetItemUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -4943,6 +5091,11 @@ export class MenuItemOptionSetItemUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4986,6 +5139,10 @@ export class MenuItemOptionSetUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -5029,6 +5186,11 @@ export class MenuItemOptionSetUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -5306,6 +5468,10 @@ export class MenuSectionCreatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -5349,6 +5515,11 @@ export class MenuSectionCreatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -5392,6 +5563,10 @@ export class MenuSectionDeletedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -5435,6 +5610,11 @@ export class MenuSectionDeletedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -5750,6 +5930,10 @@ export class MenuSectionItemCreatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -5793,6 +5977,11 @@ export class MenuSectionItemCreatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -5836,6 +6025,10 @@ export class MenuSectionItemDeletedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -5879,6 +6072,11 @@ export class MenuSectionItemDeletedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -5922,6 +6120,10 @@ export class MenuSectionItemUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -5965,6 +6167,11 @@ export class MenuSectionItemUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -6008,6 +6215,10 @@ export class MenuSectionUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -6051,6 +6262,11 @@ export class MenuSectionUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -6090,6 +6306,10 @@ export class MenuUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -6128,6 +6348,11 @@ export class MenuUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -6616,6 +6841,10 @@ export class OrderAcceptedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -6654,6 +6883,11 @@ export class OrderAcceptedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -6693,6 +6927,10 @@ export class OrderCreatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -6731,6 +6969,11 @@ export class OrderCreatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -6960,6 +7203,10 @@ export class OrderRatingUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -6998,6 +7245,11 @@ export class OrderRatingUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7037,6 +7289,10 @@ export class OrderRefundedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -7075,6 +7331,11 @@ export class OrderRefundedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7114,6 +7375,10 @@ export class OrderRejectedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -7152,6 +7417,11 @@ export class OrderRejectedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7191,6 +7461,10 @@ export class OrderTipUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -7229,6 +7503,11 @@ export class OrderTipUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7373,6 +7652,10 @@ export class PhoneCallEndedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -7411,6 +7694,11 @@ export class PhoneCallEndedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7450,6 +7738,10 @@ export class PhoneCallStartedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -7488,6 +7780,11 @@ export class PhoneCallStartedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7595,6 +7892,10 @@ export class PrinterAssignedToStoreEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -7638,6 +7939,11 @@ export class PrinterAssignedToStoreEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7681,6 +7987,10 @@ export class PrinterTurnedOffEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -7724,6 +8034,11 @@ export class PrinterTurnedOffEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7767,6 +8082,10 @@ export class PrinterTurnedOnEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -7810,6 +8129,11 @@ export class PrinterTurnedOnEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7853,6 +8177,10 @@ export class PrinterUnassignedFromStoreEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -7896,6 +8224,11 @@ export class PrinterUnassignedFromStoreEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -9951,6 +10284,10 @@ export class RetentionCampaignCreatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -9994,6 +10331,11 @@ export class RetentionCampaignCreatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -10037,6 +10379,10 @@ export class RetentionCampaignDeletedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -10080,6 +10426,11 @@ export class RetentionCampaignDeletedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -10123,6 +10474,10 @@ export class RetentionCampaignUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -10166,6 +10521,11 @@ export class RetentionCampaignUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -10349,6 +10709,10 @@ export class SmsReceivedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -10382,6 +10746,11 @@ export class SmsReceivedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -10905,6 +11274,10 @@ export class StoreAddressUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -10948,6 +11321,11 @@ export class StoreAddressUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -11221,6 +11599,10 @@ export class StoreBusinessHoursOverrideCreatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -11264,6 +11646,11 @@ export class StoreBusinessHoursOverrideCreatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -11307,6 +11694,10 @@ export class StoreBusinessHoursOverrideDeletedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -11350,6 +11741,11 @@ export class StoreBusinessHoursOverrideDeletedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -11434,6 +11830,10 @@ export class StoreCreatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -11477,6 +11877,11 @@ export class StoreCreatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -11520,6 +11925,10 @@ export class StoreDeletedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -11563,6 +11972,11 @@ export class StoreDeletedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -11929,6 +12343,10 @@ export class StoreGroupCreatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -11972,6 +12390,11 @@ export class StoreGroupCreatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -12015,6 +12438,10 @@ export class StoreGroupDeletedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -12058,6 +12485,11 @@ export class StoreGroupDeletedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -12101,6 +12533,10 @@ export class StoreGroupUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -12144,6 +12580,11 @@ export class StoreGroupUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -12224,6 +12665,10 @@ export class StoreOpeningHoursUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -12262,6 +12707,11 @@ export class StoreOpeningHoursUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -12489,6 +12939,10 @@ export class StoreUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -12532,6 +12986,11 @@ export class StoreUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -12957,6 +13416,10 @@ export class SubscriptionWithToken {
 */
 export class Teammate {
     /**
+    * Unique indentifier
+    */
+    'TeammateId'?: string;
+    /**
     * Name
     */
     'Name'?: string;
@@ -12968,6 +13431,10 @@ export class Teammate {
     * Access level is for this App
     */
     'AppId'?: string;
+    /**
+    * Invitation status
+    */
+    'InvitationStatus'?: Teammate.InvitationStatusEnum;
     /**
     * Email address
     */
@@ -12989,6 +13456,11 @@ export class Teammate {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "TeammateId",
+            "baseName": "TeammateId",
+            "type": "string"
+        },
+        {
             "name": "Name",
             "baseName": "Name",
             "type": "string"
@@ -13002,6 +13474,11 @@ export class Teammate {
             "name": "AppId",
             "baseName": "AppId",
             "type": "string"
+        },
+        {
+            "name": "InvitationStatus",
+            "baseName": "InvitationStatus",
+            "type": "Teammate.InvitationStatusEnum"
         },
         {
             "name": "Email",
@@ -13030,6 +13507,11 @@ export class Teammate {
 }
 
 export namespace Teammate {
+    export enum InvitationStatusEnum {
+        Pending = <any> 'Pending',
+        Accepted = <any> 'Accepted',
+        Expired = <any> 'Expired'
+    }
     export enum AppAccessLevelEnum {
         None = <any> 'None',
         Owner = <any> 'Owner',
@@ -13091,6 +13573,278 @@ export namespace TeammateBase {
     }
 }
 /**
+* 
+*/
+export class TeammateDeletedEvent {
+    /**
+    * The deleted teammate
+    */
+    'Teammate'?: Teammate;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Teammate",
+            "baseName": "Teammate",
+            "type": "Teammate"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return TeammateDeletedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class TeammateInviteAcceptedEvent {
+    /**
+    * The deleted teammate
+    */
+    'Teammate'?: Teammate;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Teammate",
+            "baseName": "Teammate",
+            "type": "Teammate"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return TeammateInviteAcceptedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class TeammateInviteSentEvent {
+    /**
+    * The deleted teammate
+    */
+    'Teammate'?: Teammate;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Teammate",
+            "baseName": "Teammate",
+            "type": "Teammate"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return TeammateInviteSentEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class TeammateUpdatedEvent {
+    /**
+    * The deleted teammate
+    */
+    'Teammate'?: Teammate;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Teammate",
+            "baseName": "Teammate",
+            "type": "Teammate"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return TeammateUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Update account model
 */
 export class UpdateAccountModel {
@@ -13150,6 +13904,10 @@ export class UserCreatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -13183,6 +13941,11 @@ export class UserCreatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -13218,6 +13981,10 @@ export class UserDeletedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -13251,6 +14018,11 @@ export class UserDeletedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -13336,6 +14108,10 @@ export class UserLoginEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -13369,6 +14145,11 @@ export class UserLoginEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -13404,6 +14185,10 @@ export class UserUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -13437,6 +14222,11 @@ export class UserUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -13706,6 +14496,10 @@ export class VoucherCreatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -13749,6 +14543,11 @@ export class VoucherCreatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -13833,6 +14632,10 @@ export class VoucherDeletedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -13876,6 +14679,11 @@ export class VoucherDeletedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -14004,6 +14812,10 @@ export class VoucherUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -14047,6 +14859,11 @@ export class VoucherUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -14502,6 +15319,10 @@ export class WebhookSubscriptionCreatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -14530,6 +15351,11 @@ export class WebhookSubscriptionCreatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -14561,6 +15387,10 @@ export class WebhookSubscriptionDeletedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -14589,6 +15419,11 @@ export class WebhookSubscriptionDeletedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -14670,6 +15505,10 @@ export class WebhookSubscriptionUpdatedEvent {
     * Position
     */
     'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -14698,6 +15537,11 @@ export class WebhookSubscriptionUpdatedEvent {
             "name": "Position",
             "baseName": "Position",
             "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -14745,6 +15589,7 @@ let enumsMap: {[index: string]: any} = {
         "StuartSettings.PackageTypeEnum": StuartSettings.PackageTypeEnum,
         "Subscription.StatusEnum": Subscription.StatusEnum,
         "SubscriptionPlan.IntervalEnum": SubscriptionPlan.IntervalEnum,
+        "Teammate.InvitationStatusEnum": Teammate.InvitationStatusEnum,
         "Teammate.AppAccessLevelEnum": Teammate.AppAccessLevelEnum,
         "TeammateBase.AppAccessLevelEnum": TeammateBase.AppAccessLevelEnum,
         "Voucher.StatusEnum": Voucher.StatusEnum,
@@ -14962,6 +15807,10 @@ let typeMap: {[index: string]: any} = {
     "SubscriptionWithToken": SubscriptionWithToken,
     "Teammate": Teammate,
     "TeammateBase": TeammateBase,
+    "TeammateDeletedEvent": TeammateDeletedEvent,
+    "TeammateInviteAcceptedEvent": TeammateInviteAcceptedEvent,
+    "TeammateInviteSentEvent": TeammateInviteSentEvent,
+    "TeammateUpdatedEvent": TeammateUpdatedEvent,
     "UpdateAccountModel": UpdateAccountModel,
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
@@ -21799,7 +22648,7 @@ export class OrdersApi {
      * @param page Requested page number
      * @param limit Requested page limit
      */
-    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
+    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'PlacedCanBeCancelled' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -21810,7 +22659,7 @@ export class OrdersApi {
         }
 
         if (state !== undefined) {
-            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>");
+            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<'Created' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'PlacedCanBeCancelled' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>");
         }
 
         if (page !== undefined) {
@@ -24296,12 +25145,12 @@ export class TeammatesApi {
      * 
      * @summary Delete teammate
      * @param appId 
-     * @param email 
+     * @param id 
      */
-    public deleteTeammate (appId: string, email: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{email}'
+    public deleteTeammate (appId: string, id: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{id}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'email' + '}', encodeURIComponent(String(email)));
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -24311,9 +25160,9 @@ export class TeammatesApi {
             throw new Error('Required parameter appId was null or undefined when calling deleteTeammate.');
         }
 
-        // verify required parameter 'email' is not null or undefined
-        if (email === null || email === undefined) {
-            throw new Error('Required parameter email was null or undefined when calling deleteTeammate.');
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling deleteTeammate.');
         }
 
 
@@ -24357,24 +25206,24 @@ export class TeammatesApi {
      * 
      * @summary Get a teammates by email address
      * @param appId 
-     * @param email 
+     * @param id 
      */
-    public getTeammateByAppIdAndEmail (appId: string, email: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{email}'
+    public getTeammateByAppIdAndTeammateId (appId: string, id: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{id}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'email' + '}', encodeURIComponent(String(email)));
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getTeammateByAppIdAndEmail.');
+            throw new Error('Required parameter appId was null or undefined when calling getTeammateByAppIdAndTeammateId.');
         }
 
-        // verify required parameter 'email' is not null or undefined
-        if (email === null || email === undefined) {
-            throw new Error('Required parameter email was null or undefined when calling getTeammateByAppIdAndEmail.');
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getTeammateByAppIdAndTeammateId.');
         }
 
 
@@ -24472,15 +25321,75 @@ export class TeammatesApi {
     }
     /**
      * 
+     * @param otc 
+     * @param appId 
+     */
+    public redeemCode (otc: string, appId: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/redeem/{otc}'
+            .replace('{' + 'otc' + '}', encodeURIComponent(String(otc)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'otc' is not null or undefined
+        if (otc === null || otc === undefined) {
+            throw new Error('Required parameter otc was null or undefined when calling redeemCode.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling redeemCode.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Update teammates (this method does not support Deltas!)
      * @param appId 
-     * @param email 
+     * @param id 
      * @param teammate 
      */
-    public updateTeammate (appId: string, email: string, teammate: TeammateBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{email}'
+    public updateTeammate (appId: string, id: string, teammate: TeammateBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{id}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'email' + '}', encodeURIComponent(String(email)));
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -24490,9 +25399,9 @@ export class TeammatesApi {
             throw new Error('Required parameter appId was null or undefined when calling updateTeammate.');
         }
 
-        // verify required parameter 'email' is not null or undefined
-        if (email === null || email === undefined) {
-            throw new Error('Required parameter email was null or undefined when calling updateTeammate.');
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateTeammate.');
         }
 
         // verify required parameter 'teammate' is not null or undefined
