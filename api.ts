@@ -499,6 +499,47 @@ export namespace ApmCall {
 /**
 * A single data point in timeline graphs related to APM
 */
+export class ApmCurrencyDataPoint {
+    /**
+    * Date from which the data point starts
+    */
+    'PeriodStart'?: Date;
+    /**
+    * The length in days that this data point covers
+    */
+    'PeriodLengthInDays'?: number;
+    /**
+    * The values of this data point
+    */
+    'CurrencyData'?: Array<CurrencyData>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PeriodStart",
+            "baseName": "PeriodStart",
+            "type": "Date"
+        },
+        {
+            "name": "PeriodLengthInDays",
+            "baseName": "PeriodLengthInDays",
+            "type": "number"
+        },
+        {
+            "name": "CurrencyData",
+            "baseName": "CurrencyData",
+            "type": "Array<CurrencyData>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ApmCurrencyDataPoint.attributeTypeMap;
+    }
+}
+
+/**
+* A single data point in timeline graphs related to APM
+*/
 export class ApmDataPoint {
     /**
     * Date from which the data point starts
@@ -542,44 +583,26 @@ export class ApmDataPoint {
 */
 export class ApmStatistics {
     /**
-    * Total users that were created because of APM
-    */
-    'TotalUsers'?: number;
-    /**
-    * Total Orders created by users created because of APM
-    */
-    'TotalOrders'?: number;
-    /**
-    * Total Order Value by users created because of APM
-    */
-    'TotalOrderValue'?: number;
-    /**
     * Total amount of time spent with APM
     */
     'EstimatedMinutesSaved'?: number;
+    /**
+    * Currency based data
+    */
+    'CurrencyData'?: Array<StatisticsCurrencyDataPoint>;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "TotalUsers",
-            "baseName": "TotalUsers",
-            "type": "number"
-        },
-        {
-            "name": "TotalOrders",
-            "baseName": "TotalOrders",
-            "type": "number"
-        },
-        {
-            "name": "TotalOrderValue",
-            "baseName": "TotalOrderValue",
-            "type": "number"
-        },
-        {
             "name": "EstimatedMinutesSaved",
             "baseName": "EstimatedMinutesSaved",
             "type": "number"
+        },
+        {
+            "name": "CurrencyData",
+            "baseName": "CurrencyData",
+            "type": "Array<StatisticsCurrencyDataPoint>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1264,6 +1287,154 @@ export class CreditNoteDetails {
     }
 }
 
+/**
+* A single currency data piece, with no date
+*/
+export class CurrencyData {
+    /**
+    * Currency
+    */
+    'Currency'?: CurrencyData.CurrencyEnum;
+    /**
+    * Value
+    */
+    'Value'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "CurrencyData.CurrencyEnum"
+        },
+        {
+            "name": "Value",
+            "baseName": "Value",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CurrencyData.attributeTypeMap;
+    }
+}
+
+export namespace CurrencyData {
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD'
+    }
+}
 /**
 * Customer consent updated
 */
@@ -8451,6 +8622,29 @@ export class RestApiArrayResultApmAverageHourlyDataPoint {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultApmCurrencyDataPoint {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<ApmCurrencyDataPoint>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<ApmCurrencyDataPoint>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultApmCurrencyDataPoint.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultApmDataPoint {
     /**
     * Generic data object.
@@ -10759,6 +10953,172 @@ export class SmsReceivedEvent {
 }
 
 /**
+* A single currency data point, with no date
+*/
+export class StatisticsCurrencyDataPoint {
+    /**
+    * Currency
+    */
+    'Currency'?: StatisticsCurrencyDataPoint.CurrencyEnum;
+    /**
+    * Amount of users for this currency
+    */
+    'UserCount'?: number;
+    /**
+    * Amount of orders for this currency
+    */
+    'OrderCount'?: number;
+    /**
+    * Value of orders for this currency
+    */
+    'OrderValue'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "StatisticsCurrencyDataPoint.CurrencyEnum"
+        },
+        {
+            "name": "UserCount",
+            "baseName": "UserCount",
+            "type": "number"
+        },
+        {
+            "name": "OrderCount",
+            "baseName": "OrderCount",
+            "type": "number"
+        },
+        {
+            "name": "OrderValue",
+            "baseName": "OrderValue",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StatisticsCurrencyDataPoint.attributeTypeMap;
+    }
+}
+
+export namespace StatisticsCurrencyDataPoint {
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD'
+    }
+}
+/**
 * Store
 */
 export class Store {
@@ -10894,6 +11254,14 @@ export class Store {
     * IANA Time Zone (https://www.iana.org/time-zones)
     */
     'IanaTimeZone'?: string;
+    /**
+    * True if order confirmation sms includes estimated time when order will be ready for collection
+    */
+    'EtaInPickupConfirmationSmsEnabled'?: boolean;
+    /**
+    * True if order confirmation sms includes estimated time when order will delivered
+    */
+    'EtaInDeliveryConfirmationSmsEnabled'?: boolean;
     /**
     * Name
     */
@@ -11074,6 +11442,16 @@ export class Store {
             "name": "IanaTimeZone",
             "baseName": "IanaTimeZone",
             "type": "string"
+        },
+        {
+            "name": "EtaInPickupConfirmationSmsEnabled",
+            "baseName": "EtaInPickupConfirmationSmsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "EtaInDeliveryConfirmationSmsEnabled",
+            "baseName": "EtaInDeliveryConfirmationSmsEnabled",
+            "type": "boolean"
         },
         {
             "name": "Name",
@@ -11422,6 +11800,14 @@ export class StoreBase {
     */
     'IanaTimeZone'?: string;
     /**
+    * True if order confirmation sms includes estimated time when order will be ready for collection
+    */
+    'EtaInPickupConfirmationSmsEnabled'?: boolean;
+    /**
+    * True if order confirmation sms includes estimated time when order will delivered
+    */
+    'EtaInDeliveryConfirmationSmsEnabled'?: boolean;
+    /**
     * Name
     */
     'Name'?: string;
@@ -11541,6 +11927,16 @@ export class StoreBase {
             "name": "IanaTimeZone",
             "baseName": "IanaTimeZone",
             "type": "string"
+        },
+        {
+            "name": "EtaInPickupConfirmationSmsEnabled",
+            "baseName": "EtaInPickupConfirmationSmsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "EtaInDeliveryConfirmationSmsEnabled",
+            "baseName": "EtaInDeliveryConfirmationSmsEnabled",
+            "type": "boolean"
         },
         {
             "name": "Name",
@@ -15560,6 +15956,7 @@ let enumsMap: {[index: string]: any} = {
         "BusinessHoursPeriod.DayOfWeekEnum": BusinessHoursPeriod.DayOfWeekEnum,
         "BusinessHoursPeriodBase.DayOfWeekEnum": BusinessHoursPeriodBase.DayOfWeekEnum,
         "CreateTeammate.AppAccessLevelEnum": CreateTeammate.AppAccessLevelEnum,
+        "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
         "LightspeedSettings.PriceTypeEnum": LightspeedSettings.PriceTypeEnum,
         "Menu.MenuSectionBehaviourEnum": Menu.MenuSectionBehaviourEnum,
         "MenuBase.MenuSectionBehaviourEnum": MenuBase.MenuSectionBehaviourEnum,
@@ -15582,6 +15979,7 @@ let enumsMap: {[index: string]: any} = {
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
         "SignupStep.ActionEnum": SignupStep.ActionEnum,
+        "StatisticsCurrencyDataPoint.CurrencyEnum": StatisticsCurrencyDataPoint.CurrencyEnum,
         "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
         "StoreGroup.CurrencyEnum": StoreGroup.CurrencyEnum,
         "StoreGroupBase.CurrencyEnum": StoreGroupBase.CurrencyEnum,
@@ -15609,6 +16007,7 @@ let typeMap: {[index: string]: any} = {
     "AnalyticsClientEvent": AnalyticsClientEvent,
     "ApmAverageHourlyDataPoint": ApmAverageHourlyDataPoint,
     "ApmCall": ApmCall,
+    "ApmCurrencyDataPoint": ApmCurrencyDataPoint,
     "ApmDataPoint": ApmDataPoint,
     "ApmStatistics": ApmStatistics,
     "App": App,
@@ -15624,6 +16023,7 @@ let typeMap: {[index: string]: any} = {
     "CreateAccountModel": CreateAccountModel,
     "CreateTeammate": CreateTeammate,
     "CreditNoteDetails": CreditNoteDetails,
+    "CurrencyData": CurrencyData,
     "CustomerConsentUpdatedEvent": CustomerConsentUpdatedEvent,
     "CustomerCreatedEvent": CustomerCreatedEvent,
     "CustomerSummary": CustomerSummary,
@@ -15710,6 +16110,7 @@ let typeMap: {[index: string]: any} = {
     "Refund": Refund,
     "Reject": Reject,
     "RestApiArrayResultApmAverageHourlyDataPoint": RestApiArrayResultApmAverageHourlyDataPoint,
+    "RestApiArrayResultApmCurrencyDataPoint": RestApiArrayResultApmCurrencyDataPoint,
     "RestApiArrayResultApmDataPoint": RestApiArrayResultApmDataPoint,
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
@@ -15780,6 +16181,7 @@ let typeMap: {[index: string]: any} = {
     "SignupStep": SignupStep,
     "SmsInfo": SmsInfo,
     "SmsReceivedEvent": SmsReceivedEvent,
+    "StatisticsCurrencyDataPoint": StatisticsCurrencyDataPoint,
     "Store": Store,
     "StoreAddress": StoreAddress,
     "StoreAddressBase": StoreAddressBase,
@@ -16724,13 +17126,13 @@ export class ApmApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get Order Statistics
+     * @summary [PRIVATE API] Get Order Statistics (Value of Orders)
      * @param appId App Name
      * @param aggregateDataBy Aggregate data by day \\ week
      * @param dataPointLimit Amount of data points per request
      * @param storeId List of stores to search by
      */
-    public getOrderStatistics (appId: string, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }> {
+    public getOrderStatistics (appId: string, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmCurrencyDataPoint;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/statistics/orders/{aggregateDataBy}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'aggregateDataBy' + '}', encodeURIComponent(String(aggregateDataBy)));
@@ -16779,12 +17181,12 @@ export class ApmApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmCurrencyDataPoint;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultApmDataPoint");
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultApmCurrencyDataPoint");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -22648,7 +23050,7 @@ export class OrdersApi {
      * @param page Requested page number
      * @param limit Requested page limit
      */
-    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'PlacedCanBeCancelled' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
+    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -22659,7 +23061,7 @@ export class OrdersApi {
         }
 
         if (state !== undefined) {
-            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<'Created' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'PlacedCanBeCancelled' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>");
+            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>");
         }
 
         if (page !== undefined) {
