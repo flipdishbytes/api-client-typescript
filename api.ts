@@ -407,96 +407,6 @@ export namespace ApmAverageHourlyDataPoint {
     }
 }
 /**
-* Describes a single call to the APM system
-*/
-export class ApmCall {
-    /**
-    * Time of the call
-    */
-    'TimeOfCall'?: Date;
-    /**
-    * Time of the call, local to the store to which the call was made
-    */
-    'TimeOfCallLocal'?: Date;
-    /**
-    * Name of the store that the call was TO
-    */
-    'StoreName'?: string;
-    /**
-    * Name of the caller
-    */
-    'CallerName'?: string;
-    /**
-    * Phone number of the caller
-    */
-    'CallerNumber'?: string;
-    /**
-    * The amount of time the call took
-    */
-    'CallLengthInSeconds'?: number;
-    /**
-    * The status of the call
-    */
-    'CallStatus'?: ApmCall.CallStatusEnum;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "TimeOfCall",
-            "baseName": "TimeOfCall",
-            "type": "Date"
-        },
-        {
-            "name": "TimeOfCallLocal",
-            "baseName": "TimeOfCallLocal",
-            "type": "Date"
-        },
-        {
-            "name": "StoreName",
-            "baseName": "StoreName",
-            "type": "string"
-        },
-        {
-            "name": "CallerName",
-            "baseName": "CallerName",
-            "type": "string"
-        },
-        {
-            "name": "CallerNumber",
-            "baseName": "CallerNumber",
-            "type": "string"
-        },
-        {
-            "name": "CallLengthInSeconds",
-            "baseName": "CallLengthInSeconds",
-            "type": "number"
-        },
-        {
-            "name": "CallStatus",
-            "baseName": "CallStatus",
-            "type": "ApmCall.CallStatusEnum"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return ApmCall.attributeTypeMap;
-    }
-}
-
-export namespace ApmCall {
-    export enum CallStatusEnum {
-        Queued = <any> 'Queued',
-        Ringing = <any> 'Ringing',
-        InProgress = <any> 'InProgress',
-        Completed = <any> 'Completed',
-        Failed = <any> 'Failed',
-        Busy = <any> 'Busy',
-        NoAnswer = <any> 'NoAnswer',
-        Unknown = <any> 'Unknown',
-        Canceled = <any> 'Canceled'
-    }
-}
-/**
 * A single data point in timeline graphs related to APM
 */
 export class ApmCurrencyDataPoint {
@@ -7764,26 +7674,71 @@ export class PercentDiscountDetails {
 */
 export class PhoneCall {
     /**
-    * Phone number which initiated the phone call
+    * Time of the call
     */
-    'From'?: string;
+    'TimeOfCall'?: Date;
     /**
-    * Phone number which received the phone call
+    * Time of the call, local to the store to which the call was made
     */
-    'To'?: string;
+    'TimeOfCallLocal'?: Date;
+    /**
+    * Name of the store that the call was TO
+    */
+    'StoreName'?: string;
+    /**
+    * Name of the caller
+    */
+    'CallerName'?: string;
+    /**
+    * Phone number of the caller
+    */
+    'CallerNumber'?: string;
+    /**
+    * The amount of time the call took
+    */
+    'CallLengthInSeconds'?: number;
+    /**
+    * The status of the call
+    */
+    'CallStatus'?: PhoneCall.CallStatusEnum;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "From",
-            "baseName": "From",
+            "name": "TimeOfCall",
+            "baseName": "TimeOfCall",
+            "type": "Date"
+        },
+        {
+            "name": "TimeOfCallLocal",
+            "baseName": "TimeOfCallLocal",
+            "type": "Date"
+        },
+        {
+            "name": "StoreName",
+            "baseName": "StoreName",
             "type": "string"
         },
         {
-            "name": "To",
-            "baseName": "To",
+            "name": "CallerName",
+            "baseName": "CallerName",
             "type": "string"
+        },
+        {
+            "name": "CallerNumber",
+            "baseName": "CallerNumber",
+            "type": "string"
+        },
+        {
+            "name": "CallLengthInSeconds",
+            "baseName": "CallLengthInSeconds",
+            "type": "number"
+        },
+        {
+            "name": "CallStatus",
+            "baseName": "CallStatus",
+            "type": "PhoneCall.CallStatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7791,6 +7746,19 @@ export class PhoneCall {
     }
 }
 
+export namespace PhoneCall {
+    export enum CallStatusEnum {
+        Queued = <any> 'Queued',
+        Ringing = <any> 'Ringing',
+        InProgress = <any> 'InProgress',
+        Completed = <any> 'Completed',
+        Failed = <any> 'Failed',
+        Busy = <any> 'Busy',
+        NoAnswer = <any> 'NoAnswer',
+        Unknown = <any> 'Unknown',
+        Canceled = <any> 'Canceled'
+    }
+}
 /**
 * Phone call ended event
 */
@@ -9141,56 +9109,6 @@ export class RestApiIntegerResult {
 /**
 * Rest api pagination result
 */
-export class RestApiPaginationResultApmCall {
-    /**
-    * Current page index
-    */
-    'Page': number;
-    /**
-    * Current page size
-    */
-    'Limit': number;
-    /**
-    * Total record count
-    */
-    'TotalRecordCount': number;
-    /**
-    * Generic data object.
-    */
-    'Data': Array<ApmCall>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Page",
-            "baseName": "Page",
-            "type": "number"
-        },
-        {
-            "name": "Limit",
-            "baseName": "Limit",
-            "type": "number"
-        },
-        {
-            "name": "TotalRecordCount",
-            "baseName": "TotalRecordCount",
-            "type": "number"
-        },
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Array<ApmCall>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiPaginationResultApmCall.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api pagination result
-*/
 export class RestApiPaginationResultApp {
     /**
     * Current page index
@@ -9435,6 +9353,56 @@ export class RestApiPaginationResultOrder {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultOrder.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
+export class RestApiPaginationResultPhoneCall {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<PhoneCall>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<PhoneCall>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultPhoneCall.attributeTypeMap;
     }
 }
 
@@ -15948,7 +15916,6 @@ export class WebhookSubscriptionUpdatedEvent {
 
 let enumsMap: {[index: string]: any} = {
         "ApmAverageHourlyDataPoint.DayEnum": ApmAverageHourlyDataPoint.DayEnum,
-        "ApmCall.CallStatusEnum": ApmCall.CallStatusEnum,
         "BusinessHoursOverride.DeliveryTypeEnum": BusinessHoursOverride.DeliveryTypeEnum,
         "BusinessHoursOverride.TypeEnum": BusinessHoursOverride.TypeEnum,
         "BusinessHoursOverrideBase.DeliveryTypeEnum": BusinessHoursOverrideBase.DeliveryTypeEnum,
@@ -15975,6 +15942,7 @@ let enumsMap: {[index: string]: any} = {
         "Order.PaymentAccountTypeEnum": Order.PaymentAccountTypeEnum,
         "Order.OrderStateEnum": Order.OrderStateEnum,
         "Order.AppTypeEnum": Order.AppTypeEnum,
+        "PhoneCall.CallStatusEnum": PhoneCall.CallStatusEnum,
         "ProcessingFeeConfig.PaymentAccountTypeEnum": ProcessingFeeConfig.PaymentAccountTypeEnum,
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
@@ -16006,7 +15974,6 @@ let typeMap: {[index: string]: any} = {
     "AddItemDetails": AddItemDetails,
     "AnalyticsClientEvent": AnalyticsClientEvent,
     "ApmAverageHourlyDataPoint": ApmAverageHourlyDataPoint,
-    "ApmCall": ApmCall,
     "ApmCurrencyDataPoint": ApmCurrencyDataPoint,
     "ApmDataPoint": ApmDataPoint,
     "ApmStatistics": ApmStatistics,
@@ -16131,12 +16098,12 @@ let typeMap: {[index: string]: any} = {
     "RestApiEventSearchPaginationResult": RestApiEventSearchPaginationResult,
     "RestApiForbiddenResult": RestApiForbiddenResult,
     "RestApiIntegerResult": RestApiIntegerResult,
-    "RestApiPaginationResultApmCall": RestApiPaginationResultApmCall,
     "RestApiPaginationResultApp": RestApiPaginationResultApp,
     "RestApiPaginationResultBusinessHoursOverride": RestApiPaginationResultBusinessHoursOverride,
     "RestApiPaginationResultHttpRequestAndResponseLog": RestApiPaginationResultHttpRequestAndResponseLog,
     "RestApiPaginationResultOAuthTokenModel": RestApiPaginationResultOAuthTokenModel,
     "RestApiPaginationResultOrder": RestApiPaginationResultOrder,
+    "RestApiPaginationResultPhoneCall": RestApiPaginationResultPhoneCall,
     "RestApiPaginationResultStore": RestApiPaginationResultStore,
     "RestApiPaginationResultStoreGroup": RestApiPaginationResultStoreGroup,
     "RestApiPaginationResultVoucher": RestApiPaginationResultVoucher,
@@ -17204,7 +17171,7 @@ export class ApmApi {
      * @param limit Requested page limit
      * @param storeId List of stores to search by
      */
-    public getPaginatedCallList (appId: string, page?: number, limit?: number, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultApmCall;  }> {
+    public getPaginatedCallList (appId: string, page?: number, limit?: number, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPhoneCall;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/calls'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -17251,12 +17218,12 @@ export class ApmApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultApmCall;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPhoneCall;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultApmCall");
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultPhoneCall");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
