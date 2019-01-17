@@ -11465,6 +11465,10 @@ export class StoreAddress {
     */
     'Line1'?: string;
     /**
+    * Address line 2
+    */
+    'Line2'?: string;
+    /**
     * Postcode
     */
     'Postcode'?: string;
@@ -11497,6 +11501,11 @@ export class StoreAddress {
         {
             "name": "Line1",
             "baseName": "Line1",
+            "type": "string"
+        },
+        {
+            "name": "Line2",
+            "baseName": "Line2",
             "type": "string"
         },
         {
@@ -11534,6 +11543,10 @@ export class StoreAddressBase {
     */
     'Line1'?: string;
     /**
+    * Address line 2
+    */
+    'Line2'?: string;
+    /**
     * Postcode
     */
     'Postcode'?: string;
@@ -11556,6 +11569,11 @@ export class StoreAddressBase {
         {
             "name": "Line1",
             "baseName": "Line1",
+            "type": "string"
+        },
+        {
+            "name": "Line2",
+            "baseName": "Line2",
             "type": "string"
         },
         {
