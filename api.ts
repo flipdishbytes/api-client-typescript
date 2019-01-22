@@ -164,21 +164,89 @@ export class Accept {
 */
 export class AccountDetail {
     /**
-    * Name
-    */
-    'Name'?: string;
-    /**
     * Email
     */
     'Email'?: string;
+    /**
+    * Signup steps
+    */
+    'SignupSteps'?: Array<SignupStep>;
+    /**
+    * Name
+    */
+    'Name'?: string;
     /**
     * Language Id
     */
     'Language'?: string;
     /**
-    * Signup steps
+    * Time Zone Info Id
     */
-    'SignupSteps'?: Array<SignupStep>;
+    'TimeZoneInfoId'?: string;
+    /**
+    * Display the time in time zone local to the user
+    */
+    'DisplayTimesInUserLocalTimeZone'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Email",
+            "baseName": "Email",
+            "type": "string"
+        },
+        {
+            "name": "SignupSteps",
+            "baseName": "SignupSteps",
+            "type": "Array<SignupStep>"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Language",
+            "baseName": "Language",
+            "type": "string"
+        },
+        {
+            "name": "TimeZoneInfoId",
+            "baseName": "TimeZoneInfoId",
+            "type": "string"
+        },
+        {
+            "name": "DisplayTimesInUserLocalTimeZone",
+            "baseName": "DisplayTimesInUserLocalTimeZone",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AccountDetail.attributeTypeMap;
+    }
+}
+
+/**
+* Account Details Base
+*/
+export class AccountDetailBase {
+    /**
+    * Name
+    */
+    'Name'?: string;
+    /**
+    * Language Id
+    */
+    'Language'?: string;
+    /**
+    * Time Zone Info Id
+    */
+    'TimeZoneInfoId'?: string;
+    /**
+    * Display the time in time zone local to the user
+    */
+    'DisplayTimesInUserLocalTimeZone'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -189,23 +257,23 @@ export class AccountDetail {
             "type": "string"
         },
         {
-            "name": "Email",
-            "baseName": "Email",
-            "type": "string"
-        },
-        {
             "name": "Language",
             "baseName": "Language",
             "type": "string"
         },
         {
-            "name": "SignupSteps",
-            "baseName": "SignupSteps",
-            "type": "Array<SignupStep>"
+            "name": "TimeZoneInfoId",
+            "baseName": "TimeZoneInfoId",
+            "type": "string"
+        },
+        {
+            "name": "DisplayTimesInUserLocalTimeZone",
+            "baseName": "DisplayTimesInUserLocalTimeZone",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
-        return AccountDetail.attributeTypeMap;
+        return AccountDetailBase.attributeTypeMap;
     }
 }
 
@@ -497,6 +565,10 @@ export class ApmStatistics {
     */
     'EstimatedMinutesSaved'?: number;
     /**
+    * Total amount of time that could be saved
+    */
+    'EstimatedMinutesCouldSaved'?: number;
+    /**
     * Currency based data
     */
     'CurrencyData'?: Array<StatisticsCurrencyDataPoint>;
@@ -507,6 +579,11 @@ export class ApmStatistics {
         {
             "name": "EstimatedMinutesSaved",
             "baseName": "EstimatedMinutesSaved",
+            "type": "number"
+        },
+        {
+            "name": "EstimatedMinutesCouldSaved",
+            "baseName": "EstimatedMinutesCouldSaved",
             "type": "number"
         },
         {
@@ -1021,10 +1098,6 @@ export class ChangePasswordModel {
     * New password
     */
     'NewPassword': string;
-    /**
-    * Password confirmation
-    */
-    'PasswordConfirmation': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1037,11 +1110,6 @@ export class ChangePasswordModel {
         {
             "name": "NewPassword",
             "baseName": "NewPassword",
-            "type": "string"
-        },
-        {
-            "name": "PasswordConfirmation",
-            "baseName": "PasswordConfirmation",
             "type": "string"
         }    ];
 
@@ -14209,38 +14277,6 @@ export class TeammateUpdatedEvent {
 }
 
 /**
-* Update account model
-*/
-export class UpdateAccountModel {
-    /**
-    * Name of the user
-    */
-    'Name'?: string;
-    /**
-    * Language of the user
-    */
-    'Language'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "Language",
-            "baseName": "Language",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return UpdateAccountModel.attributeTypeMap;
-    }
-}
-
-/**
 * User created event
 */
 export class UserCreatedEvent {
@@ -15971,6 +16007,7 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "Accept": Accept,
     "AccountDetail": AccountDetail,
+    "AccountDetailBase": AccountDetailBase,
     "AddItemDetails": AddItemDetails,
     "AnalyticsClientEvent": AnalyticsClientEvent,
     "ApmAverageHourlyDataPoint": ApmAverageHourlyDataPoint,
@@ -16180,7 +16217,6 @@ let typeMap: {[index: string]: any} = {
     "TeammateInviteAcceptedEvent": TeammateInviteAcceptedEvent,
     "TeammateInviteSentEvent": TeammateInviteSentEvent,
     "TeammateUpdatedEvent": TeammateUpdatedEvent,
-    "UpdateAccountModel": UpdateAccountModel,
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
     "UserEventInfo": UserEventInfo,
@@ -16799,7 +16835,7 @@ export class AccountsApi {
      * @summary Update account with name and language
      * @param updateAccountModel Update account model
      */
-    public updateAccount (updateAccountModel: UpdateAccountModel) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public updateAccount (updateAccountModel: AccountDetailBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -16820,7 +16856,7 @@ export class AccountsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(updateAccountModel, "UpdateAccountModel")
+            body: ObjectSerializer.serialize(updateAccountModel, "AccountDetailBase")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
