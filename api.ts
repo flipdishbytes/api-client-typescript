@@ -3827,7 +3827,7 @@ export namespace LightspeedSettings {
 */
 export class LoginModel {
     /**
-    * Email addres
+    * Email address
     */
     'Email': string;
     /**
@@ -3851,6 +3851,38 @@ export class LoginModel {
 
     static getAttributeTypeMap() {
         return LoginModel.attributeTypeMap;
+    }
+}
+
+/**
+* Login with PIN model
+*/
+export class LoginWithPinModel {
+    /**
+    * Email addres
+    */
+    'Email': string;
+    /**
+    * PIN code (received via email)
+    */
+    'Pin': number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Email",
+            "baseName": "Email",
+            "type": "string"
+        },
+        {
+            "name": "Pin",
+            "baseName": "Pin",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LoginWithPinModel.attributeTypeMap;
     }
 }
 
@@ -8632,6 +8664,75 @@ export namespace Reject {
         StoreUncontactable = <any> 'StoreUncontactable'
     }
 }
+/**
+* Request login PIN response
+*/
+export class RequestLoginPinModel {
+    /**
+    * Email address
+    */
+    'Email': string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Email",
+            "baseName": "Email",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RequestLoginPinModel.attributeTypeMap;
+    }
+}
+
+/**
+* Request login PIN response
+*/
+export class RequestLoginPinResposne {
+    /**
+    * Login PIN sent via email to user
+    */
+    'LoginPinSentViaEmail'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LoginPinSentViaEmail",
+            "baseName": "LoginPinSentViaEmail",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RequestLoginPinResposne.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class RequestPasswordResetModel {
+    /**
+    * Email address
+    */
+    'Email'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Email",
+            "baseName": "Email",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RequestPasswordResetModel.attributeTypeMap;
+    }
+}
+
 /**
 * Rest api array result
 */
@@ -16054,6 +16155,7 @@ let typeMap: {[index: string]: any} = {
     "Language": Language,
     "LightspeedSettings": LightspeedSettings,
     "LoginModel": LoginModel,
+    "LoginWithPinModel": LoginWithPinModel,
     "LoyaltyCampaign": LoyaltyCampaign,
     "LoyaltyCampaignCreatedEvent": LoyaltyCampaignCreatedEvent,
     "LoyaltyCampaignDeletedEvent": LoyaltyCampaignDeletedEvent,
@@ -16113,6 +16215,9 @@ let typeMap: {[index: string]: any} = {
     "Range": Range,
     "Refund": Refund,
     "Reject": Reject,
+    "RequestLoginPinModel": RequestLoginPinModel,
+    "RequestLoginPinResposne": RequestLoginPinResposne,
+    "RequestPasswordResetModel": RequestPasswordResetModel,
     "RestApiArrayResultApmAverageHourlyDataPoint": RestApiArrayResultApmAverageHourlyDataPoint,
     "RestApiArrayResultApmCurrencyDataPoint": RestApiArrayResultApmCurrencyDataPoint,
     "RestApiArrayResultApmDataPoint": RestApiArrayResultApmDataPoint,
@@ -16617,6 +16722,61 @@ export class AccountsApi {
     }
     /**
      * 
+     * @summary Login with username and password
+     * @param loginModel Login model
+     */
+    public loginWithPin (loginModel: LoginWithPinModel) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts/login/pin';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'loginModel' is not null or undefined
+        if (loginModel === null || loginModel === undefined) {
+            throw new Error('Required parameter loginModel was null or undefined when calling loginWithPin.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(loginModel, "LoginWithPinModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Log out. It removes Flipdish authorization Cookie.
      */
     public logout () : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -16720,34 +16880,86 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Request password reset. Flipdish system will send a token via email.
-     * @param email Email address
+     * @summary Request login PIN. The server sends the PIN to the email address.
+     * @param requestLoginPinRequest Request login PIN request
      */
-    public requestPasswordReset (email: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/accounts/password';
+    public requestLoginPin (requestLoginPinRequest: RequestLoginPinModel) : Promise<{ response: http.IncomingMessage; body: RequestLoginPinResposne;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts/pin';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'email' is not null or undefined
-        if (email === null || email === undefined) {
-            throw new Error('Required parameter email was null or undefined when calling requestPasswordReset.');
-        }
-
-        if (email !== undefined) {
-            localVarQueryParameters['email'] = ObjectSerializer.serialize(email, "string");
+        // verify required parameter 'requestLoginPinRequest' is not null or undefined
+        if (requestLoginPinRequest === null || requestLoginPinRequest === undefined) {
+            throw new Error('Required parameter requestLoginPinRequest was null or undefined when calling requestLoginPin.');
         }
 
 
         let localVarUseFormData = false;
 
         let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
+            method: 'POST',
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+            body: ObjectSerializer.serialize(requestLoginPinRequest, "RequestLoginPinModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RequestLoginPinResposne;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RequestLoginPinResposne");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Request password reset. Flipdish system will send a token via email.
+     * @param requestPasswordResetModel Request password reset model
+     */
+    public requestPasswordReset (requestPasswordResetModel: RequestPasswordResetModel) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts/passwordreset';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'requestPasswordResetModel' is not null or undefined
+        if (requestPasswordResetModel === null || requestPasswordResetModel === undefined) {
+            throw new Error('Required parameter requestPasswordResetModel was null or undefined when calling requestPasswordReset.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(requestPasswordResetModel, "RequestPasswordResetModel")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
