@@ -3823,6 +3823,47 @@ export namespace LightspeedSettings {
     }
 }
 /**
+* Represents a localised time zone
+*/
+export class LocalisedTimeZone {
+    /**
+    * Microsoft Time Zone Id
+    */
+    'TimeZoneId'?: string;
+    /**
+    * Iana Time Zone Id
+    */
+    'IanaTimeZoneId'?: string;
+    /**
+    * Display name in users language
+    */
+    'DisplayName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "TimeZoneId",
+            "baseName": "TimeZoneId",
+            "type": "string"
+        },
+        {
+            "name": "IanaTimeZoneId",
+            "baseName": "IanaTimeZoneId",
+            "type": "string"
+        },
+        {
+            "name": "DisplayName",
+            "baseName": "DisplayName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LocalisedTimeZone.attributeTypeMap;
+    }
+}
+
+/**
 * Login model
 */
 export class LoginModel {
@@ -8845,6 +8886,29 @@ export class RestApiArrayResultDeliveryZone {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultDeliveryZone.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultLocalisedTimeZone {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<LocalisedTimeZone>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<LocalisedTimeZone>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultLocalisedTimeZone.attributeTypeMap;
     }
 }
 
@@ -16154,6 +16218,7 @@ let typeMap: {[index: string]: any} = {
     "JobResponse": JobResponse,
     "Language": Language,
     "LightspeedSettings": LightspeedSettings,
+    "LocalisedTimeZone": LocalisedTimeZone,
     "LoginModel": LoginModel,
     "LoginWithPinModel": LoginWithPinModel,
     "LoyaltyCampaign": LoyaltyCampaign,
@@ -16223,6 +16288,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultApmDataPoint": RestApiArrayResultApmDataPoint,
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
+    "RestApiArrayResultLocalisedTimeZone": RestApiArrayResultLocalisedTimeZone,
     "RestApiArrayResultMenuItemOptionSet": RestApiArrayResultMenuItemOptionSet,
     "RestApiArrayResultMenuItemOptionSetItem": RestApiArrayResultMenuItemOptionSetItem,
     "RestApiArrayResultMenuSection": RestApiArrayResultMenuSection,
@@ -16656,6 +16722,54 @@ export class AccountsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultAccountDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get timezones localised to users language
+     */
+    public getLocalisedTimeZones () : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLocalisedTimeZone;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts/timezones';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLocalisedTimeZone;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultLocalisedTimeZone");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
