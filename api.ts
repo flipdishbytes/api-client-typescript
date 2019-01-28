@@ -16733,7 +16733,7 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Get timezones localised to users language
+     * @summary [PRIVATE API] Get timezones localised to users language
      */
     public getLocalisedTimeZones () : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLocalisedTimeZone;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/timezones';
