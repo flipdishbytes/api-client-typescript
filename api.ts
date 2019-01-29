@@ -622,6 +622,10 @@ export class App {
     */
     'MapSouthWest'?: Coordinates;
     /**
+    * App access level for the logged in user
+    */
+    'AppAccessLevel'?: App.AppAccessLevelEnum;
+    /**
     * Icon url
     */
     'IconUrl'?: string;
@@ -667,6 +671,11 @@ export class App {
             "type": "Coordinates"
         },
         {
+            "name": "AppAccessLevel",
+            "baseName": "AppAccessLevel",
+            "type": "App.AppAccessLevelEnum"
+        },
+        {
             "name": "IconUrl",
             "baseName": "IconUrl",
             "type": "string"
@@ -692,6 +701,16 @@ export class App {
     }
 }
 
+export namespace App {
+    export enum AppAccessLevelEnum {
+        None = <any> 'None',
+        Owner = <any> 'Owner',
+        ManagedOwner = <any> 'ManagedOwner',
+        StoreManager = <any> 'StoreManager',
+        StoreStaff = <any> 'StoreStaff',
+        FinanceManger = <any> 'FinanceManger'
+    }
+}
 /**
 * 
 */
@@ -16117,6 +16136,7 @@ export class WebhookSubscriptionUpdatedEvent {
 
 let enumsMap: {[index: string]: any} = {
         "ApmAverageHourlyDataPoint.DayEnum": ApmAverageHourlyDataPoint.DayEnum,
+        "App.AppAccessLevelEnum": App.AppAccessLevelEnum,
         "BusinessHoursOverride.DeliveryTypeEnum": BusinessHoursOverride.DeliveryTypeEnum,
         "BusinessHoursOverride.TypeEnum": BusinessHoursOverride.TypeEnum,
         "BusinessHoursOverrideBase.DeliveryTypeEnum": BusinessHoursOverrideBase.DeliveryTypeEnum,
