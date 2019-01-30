@@ -423,58 +423,6 @@ export class AnalyticsClientEvent {
 }
 
 /**
-* Provides an average value for a single hour of day of the week
-*/
-export class ApmAverageHourlyDataPoint {
-    /**
-    * Day of the week
-    */
-    'Day'?: ApmAverageHourlyDataPoint.DayEnum;
-    /**
-    * Hour in the day
-    */
-    'Hour'?: number;
-    /**
-    * Average Value
-    */
-    'AverageValue'?: number;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Day",
-            "baseName": "Day",
-            "type": "ApmAverageHourlyDataPoint.DayEnum"
-        },
-        {
-            "name": "Hour",
-            "baseName": "Hour",
-            "type": "number"
-        },
-        {
-            "name": "AverageValue",
-            "baseName": "AverageValue",
-            "type": "number"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return ApmAverageHourlyDataPoint.attributeTypeMap;
-    }
-}
-
-export namespace ApmAverageHourlyDataPoint {
-    export enum DayEnum {
-        Sunday = <any> 'Sunday',
-        Monday = <any> 'Monday',
-        Tuesday = <any> 'Tuesday',
-        Wednesday = <any> 'Wednesday',
-        Thursday = <any> 'Thursday',
-        Friday = <any> 'Friday',
-        Saturday = <any> 'Saturday'
-    }
-}
-/**
 * A single data point in timeline graphs related to APM
 */
 export class ApmCurrencyDataPoint {
@@ -556,6 +504,58 @@ export class ApmDataPoint {
     }
 }
 
+/**
+* Provides an average value for a single hour of day of the week
+*/
+export class ApmHourlyDataPoint {
+    /**
+    * Day of the week
+    */
+    'Day'?: ApmHourlyDataPoint.DayEnum;
+    /**
+    * Hour in the day
+    */
+    'Hour'?: number;
+    /**
+    * Total Value
+    */
+    'TotalValue'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Day",
+            "baseName": "Day",
+            "type": "ApmHourlyDataPoint.DayEnum"
+        },
+        {
+            "name": "Hour",
+            "baseName": "Hour",
+            "type": "number"
+        },
+        {
+            "name": "TotalValue",
+            "baseName": "TotalValue",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ApmHourlyDataPoint.attributeTypeMap;
+    }
+}
+
+export namespace ApmHourlyDataPoint {
+    export enum DayEnum {
+        Sunday = <any> 'Sunday',
+        Monday = <any> 'Monday',
+        Tuesday = <any> 'Tuesday',
+        Wednesday = <any> 'Wednesday',
+        Thursday = <any> 'Thursday',
+        Friday = <any> 'Friday',
+        Saturday = <any> 'Saturday'
+    }
+}
 /**
 * APM Statistics
 */
@@ -6874,6 +6874,10 @@ export class Order {
     * User rating
     */
     'UserRating'?: number;
+    /**
+    * Status of the payment
+    */
+    'PaymentStatus'?: Order.PaymentStatusEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -6997,6 +7001,11 @@ export class Order {
             "name": "UserRating",
             "baseName": "UserRating",
             "type": "number"
+        },
+        {
+            "name": "PaymentStatus",
+            "baseName": "PaymentStatus",
+            "type": "Order.PaymentStatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7048,6 +7057,13 @@ export namespace Order {
         Sms = <any> 'Sms',
         PwaAndroid = <any> 'PwaAndroid',
         PwaIos = <any> 'PwaIos'
+    }
+    export enum PaymentStatusEnum {
+        Paid = <any> 'Paid',
+        Unpaid = <any> 'Unpaid',
+        Refunded = <any> 'Refunded',
+        PartiallyRefunded = <any> 'PartiallyRefunded',
+        Disputed = <any> 'Disputed'
     }
 }
 /**
@@ -7670,6 +7686,261 @@ export class OrderRejectedEvent {
     }
 }
 
+/**
+* Order summary
+*/
+export class OrderSummary {
+    /**
+    * Order identifier
+    */
+    'OrderId'?: number;
+    /**
+    * Delivery type
+    */
+    'DeliveryType'?: OrderSummary.DeliveryTypeEnum;
+    /**
+    * Order state
+    */
+    'OrderState'?: OrderSummary.OrderStateEnum;
+    /**
+    * Order requested for
+    */
+    'RequestedForTime'?: Date;
+    /**
+    * Name of the store
+    */
+    'StoreName'?: string;
+    /**
+    * Store IANA time zone
+    */
+    'StoreIanaTimeZone'?: string;
+    /**
+    * Name of the customer
+    */
+    'CustomerName'?: string;
+    /**
+    * Phone number of customer
+    */
+    'CustomerPhoneNumber'?: string;
+    /**
+    * This is the sum of the OrderItemsAmount, DeliveryAmount, TipAmount and Voucher.Amount (which is usually negative) and OnlineOrderingFee for cash orders.  It does not include the OnlineOrderingFee in the case of card orders as this fee is charged by Flipdish directly to the customer.
+    */
+    'Amount'?: number;
+    /**
+    * Status of the payment
+    */
+    'PaymentStatus'?: OrderSummary.PaymentStatusEnum;
+    /**
+    * Currency of payment
+    */
+    'Currency'?: OrderSummary.CurrencyEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrderId",
+            "baseName": "OrderId",
+            "type": "number"
+        },
+        {
+            "name": "DeliveryType",
+            "baseName": "DeliveryType",
+            "type": "OrderSummary.DeliveryTypeEnum"
+        },
+        {
+            "name": "OrderState",
+            "baseName": "OrderState",
+            "type": "OrderSummary.OrderStateEnum"
+        },
+        {
+            "name": "RequestedForTime",
+            "baseName": "RequestedForTime",
+            "type": "Date"
+        },
+        {
+            "name": "StoreName",
+            "baseName": "StoreName",
+            "type": "string"
+        },
+        {
+            "name": "StoreIanaTimeZone",
+            "baseName": "StoreIanaTimeZone",
+            "type": "string"
+        },
+        {
+            "name": "CustomerName",
+            "baseName": "CustomerName",
+            "type": "string"
+        },
+        {
+            "name": "CustomerPhoneNumber",
+            "baseName": "CustomerPhoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "Amount",
+            "baseName": "Amount",
+            "type": "number"
+        },
+        {
+            "name": "PaymentStatus",
+            "baseName": "PaymentStatus",
+            "type": "OrderSummary.PaymentStatusEnum"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "OrderSummary.CurrencyEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderSummary.attributeTypeMap;
+    }
+}
+
+export namespace OrderSummary {
+    export enum DeliveryTypeEnum {
+        Delivery = <any> 'Delivery',
+        Pickup = <any> 'Pickup'
+    }
+    export enum OrderStateEnum {
+        Created = <any> 'Created',
+        PlacedCanBeCancelled = <any> 'PlacedCanBeCancelled',
+        ReadyToProcess = <any> 'ReadyToProcess',
+        AcceptedByRestaurant = <any> 'AcceptedByRestaurant',
+        Dispatched = <any> 'Dispatched',
+        Delivered = <any> 'Delivered',
+        Cancelled = <any> 'Cancelled',
+        ManualReview = <any> 'ManualReview',
+        RejectedByStore = <any> 'RejectedByStore',
+        RejectedByFlipdish = <any> 'RejectedByFlipdish',
+        RejectedAutomatically = <any> 'RejectedAutomatically',
+        RejectedAfterBeingAccepted = <any> 'RejectedAfterBeingAccepted',
+        AcceptedAndRefunded = <any> 'AcceptedAndRefunded'
+    }
+    export enum PaymentStatusEnum {
+        Paid = <any> 'Paid',
+        Unpaid = <any> 'Unpaid',
+        Refunded = <any> 'Refunded',
+        PartiallyRefunded = <any> 'PartiallyRefunded',
+        Disputed = <any> 'Disputed'
+    }
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD'
+    }
+}
 /**
 * Order Tip Update Event
 */
@@ -8796,29 +9067,6 @@ export class RequestPasswordResetModel {
 /**
 * Rest api array result
 */
-export class RestApiArrayResultApmAverageHourlyDataPoint {
-    /**
-    * Generic data object.
-    */
-    'Data': Array<ApmAverageHourlyDataPoint>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Array<ApmAverageHourlyDataPoint>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiArrayResultApmAverageHourlyDataPoint.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api array result
-*/
 export class RestApiArrayResultApmCurrencyDataPoint {
     /**
     * Generic data object.
@@ -8859,6 +9107,29 @@ export class RestApiArrayResultApmDataPoint {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultApmDataPoint.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultApmHourlyDataPoint {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<ApmHourlyDataPoint>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<ApmHourlyDataPoint>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultApmHourlyDataPoint.attributeTypeMap;
     }
 }
 
@@ -9605,6 +9876,56 @@ export class RestApiPaginationResultOrder {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultOrder.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
+export class RestApiPaginationResultOrderSummary {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<OrderSummary>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<OrderSummary>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultOrderSummary.attributeTypeMap;
     }
 }
 
@@ -11463,6 +11784,10 @@ export class Store {
     */
     'RequireCustomerNameForPickup'?: boolean;
     /**
+    * Mask your customers phone numbers printed on receipts and reduce the amout of personally identifiable customer information that is exposed.
+    */
+    'GdprCustomerPhoneNumbers'?: boolean;
+    /**
     * True if customer name required for delivery orders
     */
     'RequireCustomerNameForDelivery'?: boolean;
@@ -11646,6 +11971,11 @@ export class Store {
         {
             "name": "RequireCustomerNameForPickup",
             "baseName": "RequireCustomerNameForPickup",
+            "type": "boolean"
+        },
+        {
+            "name": "GdprCustomerPhoneNumbers",
+            "baseName": "GdprCustomerPhoneNumbers",
             "type": "boolean"
         },
         {
@@ -12008,6 +12338,10 @@ export class StoreBase {
     */
     'RequireCustomerNameForPickup'?: boolean;
     /**
+    * Mask your customers phone numbers printed on receipts and reduce the amout of personally identifiable customer information that is exposed.
+    */
+    'GdprCustomerPhoneNumbers'?: boolean;
+    /**
     * True if customer name required for delivery orders
     */
     'RequireCustomerNameForDelivery'?: boolean;
@@ -12131,6 +12465,11 @@ export class StoreBase {
         {
             "name": "RequireCustomerNameForPickup",
             "baseName": "RequireCustomerNameForPickup",
+            "type": "boolean"
+        },
+        {
+            "name": "GdprCustomerPhoneNumbers",
+            "baseName": "GdprCustomerPhoneNumbers",
             "type": "boolean"
         },
         {
@@ -14895,6 +15234,10 @@ export class Voucher {
     */
     'PercentDiscountDetails'?: PercentDiscountDetails;
     /**
+    * Currency of the voucher
+    */
+    'Currency'?: Voucher.CurrencyEnum;
+    /**
     * Voucher Description (Visible on printout)
     */
     'Description'?: string;
@@ -14961,6 +15304,11 @@ export class Voucher {
             "type": "PercentDiscountDetails"
         },
         {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "Voucher.CurrencyEnum"
+        },
+        {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
@@ -15001,6 +15349,120 @@ export namespace Voucher {
         Retention = <any> 'Retention',
         SecondaryRetention = <any> 'SecondaryRetention',
         Custom = <any> 'Custom'
+    }
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD'
     }
 }
 /**
@@ -15520,6 +15982,10 @@ export class VoucherWithStats {
     */
     'PercentDiscountDetails'?: PercentDiscountDetails;
     /**
+    * Currency of the voucher
+    */
+    'Currency'?: VoucherWithStats.CurrencyEnum;
+    /**
     * Voucher Description (Visible on printout)
     */
     'Description'?: string;
@@ -15611,6 +16077,11 @@ export class VoucherWithStats {
             "type": "PercentDiscountDetails"
         },
         {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "VoucherWithStats.CurrencyEnum"
+        },
+        {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
@@ -15651,6 +16122,120 @@ export namespace VoucherWithStats {
         Retention = <any> 'Retention',
         SecondaryRetention = <any> 'SecondaryRetention',
         Custom = <any> 'Custom'
+    }
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD'
     }
 }
 /**
@@ -16135,7 +16720,7 @@ export class WebhookSubscriptionUpdatedEvent {
 
 
 let enumsMap: {[index: string]: any} = {
-        "ApmAverageHourlyDataPoint.DayEnum": ApmAverageHourlyDataPoint.DayEnum,
+        "ApmHourlyDataPoint.DayEnum": ApmHourlyDataPoint.DayEnum,
         "App.AppAccessLevelEnum": App.AppAccessLevelEnum,
         "BusinessHoursOverride.DeliveryTypeEnum": BusinessHoursOverride.DeliveryTypeEnum,
         "BusinessHoursOverride.TypeEnum": BusinessHoursOverride.TypeEnum,
@@ -16163,6 +16748,11 @@ let enumsMap: {[index: string]: any} = {
         "Order.PaymentAccountTypeEnum": Order.PaymentAccountTypeEnum,
         "Order.OrderStateEnum": Order.OrderStateEnum,
         "Order.AppTypeEnum": Order.AppTypeEnum,
+        "Order.PaymentStatusEnum": Order.PaymentStatusEnum,
+        "OrderSummary.DeliveryTypeEnum": OrderSummary.DeliveryTypeEnum,
+        "OrderSummary.OrderStateEnum": OrderSummary.OrderStateEnum,
+        "OrderSummary.PaymentStatusEnum": OrderSummary.PaymentStatusEnum,
+        "OrderSummary.CurrencyEnum": OrderSummary.CurrencyEnum,
         "PhoneCall.CallStatusEnum": PhoneCall.CallStatusEnum,
         "ProcessingFeeConfig.PaymentAccountTypeEnum": ProcessingFeeConfig.PaymentAccountTypeEnum,
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
@@ -16182,11 +16772,13 @@ let enumsMap: {[index: string]: any} = {
         "Voucher.StatusEnum": Voucher.StatusEnum,
         "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
         "Voucher.VoucherSubTypeEnum": Voucher.VoucherSubTypeEnum,
+        "Voucher.CurrencyEnum": Voucher.CurrencyEnum,
         "VoucherSummary.TypeEnum": VoucherSummary.TypeEnum,
         "VoucherSummary.SubTypeEnum": VoucherSummary.SubTypeEnum,
         "VoucherWithStats.StatusEnum": VoucherWithStats.StatusEnum,
         "VoucherWithStats.VoucherTypeEnum": VoucherWithStats.VoucherTypeEnum,
         "VoucherWithStats.VoucherSubTypeEnum": VoucherWithStats.VoucherSubTypeEnum,
+        "VoucherWithStats.CurrencyEnum": VoucherWithStats.CurrencyEnum,
 }
 
 let typeMap: {[index: string]: any} = {
@@ -16195,9 +16787,9 @@ let typeMap: {[index: string]: any} = {
     "AccountDetailBase": AccountDetailBase,
     "AddItemDetails": AddItemDetails,
     "AnalyticsClientEvent": AnalyticsClientEvent,
-    "ApmAverageHourlyDataPoint": ApmAverageHourlyDataPoint,
     "ApmCurrencyDataPoint": ApmCurrencyDataPoint,
     "ApmDataPoint": ApmDataPoint,
+    "ApmHourlyDataPoint": ApmHourlyDataPoint,
     "ApmStatistics": ApmStatistics,
     "App": App,
     "BusinessHoursOverride": BusinessHoursOverride,
@@ -16284,6 +16876,7 @@ let typeMap: {[index: string]: any} = {
     "OrderRatingUpdatedEvent": OrderRatingUpdatedEvent,
     "OrderRefundedEvent": OrderRefundedEvent,
     "OrderRejectedEvent": OrderRejectedEvent,
+    "OrderSummary": OrderSummary,
     "OrderTipUpdatedEvent": OrderTipUpdatedEvent,
     "PasswordResetModel": PasswordResetModel,
     "PercentDiscountDetails": PercentDiscountDetails,
@@ -16303,9 +16896,9 @@ let typeMap: {[index: string]: any} = {
     "RequestLoginPinModel": RequestLoginPinModel,
     "RequestLoginPinResposne": RequestLoginPinResposne,
     "RequestPasswordResetModel": RequestPasswordResetModel,
-    "RestApiArrayResultApmAverageHourlyDataPoint": RestApiArrayResultApmAverageHourlyDataPoint,
     "RestApiArrayResultApmCurrencyDataPoint": RestApiArrayResultApmCurrencyDataPoint,
     "RestApiArrayResultApmDataPoint": RestApiArrayResultApmDataPoint,
+    "RestApiArrayResultApmHourlyDataPoint": RestApiArrayResultApmHourlyDataPoint,
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
     "RestApiArrayResultLocalisedTimeZone": RestApiArrayResultLocalisedTimeZone,
@@ -16331,6 +16924,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultHttpRequestAndResponseLog": RestApiPaginationResultHttpRequestAndResponseLog,
     "RestApiPaginationResultOAuthTokenModel": RestApiPaginationResultOAuthTokenModel,
     "RestApiPaginationResultOrder": RestApiPaginationResultOrder,
+    "RestApiPaginationResultOrderSummary": RestApiPaginationResultOrderSummary,
     "RestApiPaginationResultPhoneCall": RestApiPaginationResultPhoneCall,
     "RestApiPaginationResultStore": RestApiPaginationResultStore,
     "RestApiPaginationResultStoreGroup": RestApiPaginationResultStoreGroup,
@@ -17347,7 +17941,7 @@ export class ApmApi {
      * @param appId App Name
      * @param storeId List of stores to search by
      */
-    public getCalendarWeekStatistics (appId: string, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmAverageHourlyDataPoint;  }> {
+    public getCalendarWeekStatistics (appId: string, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmHourlyDataPoint;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/statistics/calendar'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -17386,12 +17980,12 @@ export class ApmApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmAverageHourlyDataPoint;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmHourlyDataPoint;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultApmAverageHourlyDataPoint");
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultApmHourlyDataPoint");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -23460,6 +24054,94 @@ export class OrdersApi {
         });
     }
     /**
+     * 
+     * @summary [PRIVATE API] Get summary of orders by filter
+     * @param appId App Name Id
+     * @param searchQuery Query string
+     * @param physicalRestaurantId Physical restaurant identifiers
+     * @param state Order states
+     * @param page Requested page number
+     * @param limit Requested page limit
+     */
+    public getOrdersSummary (appId: string, searchQuery: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/orders/summary';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getOrdersSummary.');
+        }
+
+        // verify required parameter 'searchQuery' is not null or undefined
+        if (searchQuery === null || searchQuery === undefined) {
+            throw new Error('Required parameter searchQuery was null or undefined when calling getOrdersSummary.');
+        }
+
+        if (appId !== undefined) {
+            localVarQueryParameters['appId'] = ObjectSerializer.serialize(appId, "string");
+        }
+
+        if (searchQuery !== undefined) {
+            localVarQueryParameters['searchQuery'] = ObjectSerializer.serialize(searchQuery, "string");
+        }
+
+        if (physicalRestaurantId !== undefined) {
+            localVarQueryParameters['physicalRestaurantId'] = ObjectSerializer.serialize(physicalRestaurantId, "Array<number>");
+        }
+
+        if (state !== undefined) {
+            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultOrderSummary");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * To refund an order, you create a `refund` object and send it to Flipdish API using HTTP POST method. `Id` path parameter identifies the order.
      * @summary Refund order
      * @param id Order identifier
@@ -24624,6 +25306,76 @@ export class StoresApi {
 
         if (storeGroupId !== undefined) {
             localVarQueryParameters['storeGroupId'] = ObjectSerializer.serialize(storeGroupId, "number");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultStore");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get all stores by app name id
+     * @param appId App Name Id
+     * @param searchQuery Search query
+     * @param page Requested page index
+     * @param limit Requested page limit
+     */
+    public getStoresByAppId (appId: string, searchQuery?: string, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getStoresByAppId.');
+        }
+
+        if (searchQuery !== undefined) {
+            localVarQueryParameters['searchQuery'] = ObjectSerializer.serialize(searchQuery, "string");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
 
