@@ -11328,6 +11328,38 @@ export class SearchCriteria {
 }
 
 /**
+* Set password with PIN model
+*/
+export class SetPasswordWithPinModel {
+    /**
+    * PIN code (received via email)
+    */
+    'Pin': number;
+    /**
+    * New Password
+    */
+    'NewPassword': string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Pin",
+            "baseName": "Pin",
+            "type": "number"
+        },
+        {
+            "name": "NewPassword",
+            "baseName": "NewPassword",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SetPasswordWithPinModel.attributeTypeMap;
+    }
+}
+
+/**
 * 
 */
 export class SignupStep {
@@ -16967,6 +16999,7 @@ let typeMap: {[index: string]: any} = {
     "RetentionCampaignDeletedEvent": RetentionCampaignDeletedEvent,
     "RetentionCampaignUpdatedEvent": RetentionCampaignUpdatedEvent,
     "SearchCriteria": SearchCriteria,
+    "SetPasswordWithPinModel": SetPasswordWithPinModel,
     "SignupStep": SignupStep,
     "SmsInfo": SmsInfo,
     "SmsReceivedEvent": SmsReceivedEvent,
@@ -17131,7 +17164,7 @@ export class AccountsApi {
      * @param signupStepAction Signup step action
      * @param answerId Identifier of the answer
      */
-    public answerSignUpQuestion (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription', answerId: number) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public answerSignUpQuestion (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription', answerId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/answer'
             .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
         let localVarQueryParameters: any = {};
@@ -17172,12 +17205,11 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -17192,7 +17224,7 @@ export class AccountsApi {
      * @summary Change password
      * @param changePasswordModel Change password model
      */
-    public changePassword (changePasswordModel: ChangePasswordModel) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public changePassword (changePasswordModel: ChangePasswordModel) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/password';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17227,12 +17259,65 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Change password
+     * @param changePasswordModel Change password model
+     */
+    public changePasswordWithPin (changePasswordModel: SetPasswordWithPinModel) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts/password/pin';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'changePasswordModel' is not null or undefined
+        if (changePasswordModel === null || changePasswordModel === undefined) {
+            throw new Error('Required parameter changePasswordModel was null or undefined when calling changePasswordWithPin.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(changePasswordModel, "SetPasswordWithPinModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -17247,7 +17332,7 @@ export class AccountsApi {
      * @summary Create account with email address and store name
      * @param createAccountModel Create account model
      */
-    public createAccount (createAccountModel: CreateAccountModel) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public createAccount (createAccountModel: CreateAccountModel) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17282,12 +17367,11 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -17398,7 +17482,7 @@ export class AccountsApi {
      * @summary Login with username and password
      * @param loginModel Login model
      */
-    public login (loginModel: LoginModel) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public login (loginModel: LoginModel) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/login';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17433,12 +17517,11 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -17453,7 +17536,7 @@ export class AccountsApi {
      * @summary Login with username and password
      * @param loginModel Login model
      */
-    public loginWithPin (loginModel: LoginWithPinModel) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public loginWithPin (loginModel: LoginWithPinModel) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/login/pin';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17488,12 +17571,11 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -17507,7 +17589,7 @@ export class AccountsApi {
      * 
      * @summary Log out. It removes Flipdish authorization Cookie.
      */
-    public logout () : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public logout () : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/logout';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17536,12 +17618,11 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -17556,7 +17637,7 @@ export class AccountsApi {
      * @summary Reset password with token.
      * @param passwordResetModel Password reset model
      */
-    public passwordResetWithToken (passwordResetModel: PasswordResetModel) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public passwordResetWithToken (passwordResetModel: PasswordResetModel) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/password';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17591,12 +17672,11 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -17720,7 +17800,7 @@ export class AccountsApi {
      * @summary Skip a signup question
      * @param signupStepAction Signup step action
      */
-    public skipSignupStep (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription') : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public skipSignupStep (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription') : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/skip'
             .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
         let localVarQueryParameters: any = {};
@@ -17755,12 +17835,11 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -17775,7 +17854,7 @@ export class AccountsApi {
      * @summary Update account with name and language
      * @param updateAccountModel Update account model
      */
-    public updateAccount (updateAccountModel: AccountDetailBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public updateAccount (updateAccountModel: AccountDetailBase) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17810,12 +17889,11 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -24613,7 +24691,7 @@ export class StoreGroupsApi {
      * @summary Deletes a Store Group  Can only remove a store group if there is no stores attached to the group
      * @param storeGroupId Store Group Id
      */
-    public removeStoreGroup (storeGroupId: number) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public removeStoreGroup (storeGroupId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/storegroups/{storeGroupId}'
             .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)));
         let localVarQueryParameters: any = {};
@@ -24648,12 +24726,11 @@ export class StoreGroupsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
