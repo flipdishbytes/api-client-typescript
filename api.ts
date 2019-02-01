@@ -24141,8 +24141,9 @@ export class OrdersApi {
      * @param page Requested page number
      * @param limit Requested page limit
      */
-    public getOrdersSummary (appId: string, searchQuery: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/orders/summary';
+    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/orders/summaries'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -24150,15 +24151,6 @@ export class OrdersApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getOrdersSummary.');
-        }
-
-        // verify required parameter 'searchQuery' is not null or undefined
-        if (searchQuery === null || searchQuery === undefined) {
-            throw new Error('Required parameter searchQuery was null or undefined when calling getOrdersSummary.');
-        }
-
-        if (appId !== undefined) {
-            localVarQueryParameters['appId'] = ObjectSerializer.serialize(appId, "string");
         }
 
         if (searchQuery !== undefined) {
