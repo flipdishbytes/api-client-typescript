@@ -172,6 +172,10 @@ export class AccountDetail {
     */
     'SignupSteps'?: Array<SignupStep>;
     /**
+    * Is account email verified
+    */
+    'IsVerified'?: boolean;
+    /**
     * Name
     */
     'Name'?: string;
@@ -200,6 +204,11 @@ export class AccountDetail {
             "name": "SignupSteps",
             "baseName": "SignupSteps",
             "type": "Array<SignupStep>"
+        },
+        {
+            "name": "IsVerified",
+            "baseName": "IsVerified",
+            "type": "boolean"
         },
         {
             "name": "Name",
