@@ -6798,7 +6798,7 @@ export class Order {
     /**
     * Voucher summary
     */
-    'Voucher'?: VoucherSummary;
+    'Voucher'?: OrderVoucherSummary;
     /**
     * Fee summary
     */
@@ -6904,7 +6904,7 @@ export class Order {
         {
             "name": "Voucher",
             "baseName": "Voucher",
-            "type": "VoucherSummary"
+            "type": "OrderVoucherSummary"
         },
         {
             "name": "Fees",
@@ -8036,6 +8036,91 @@ export class OrderTipUpdatedEvent {
     }
 }
 
+/**
+* Voucher summary
+*/
+export class OrderVoucherSummary {
+    /**
+    * Voucher name
+    */
+    'Name'?: string;
+    /**
+    * Voucher description
+    */
+    'Description'?: string;
+    /**
+    * Voucher code
+    */
+    'Code'?: string;
+    /**
+    * Voucher amount
+    */
+    'Amount'?: number;
+    /**
+    * Voucher type
+    */
+    'Type'?: OrderVoucherSummary.TypeEnum;
+    /**
+    * Voucher sub type
+    */
+    'SubType'?: OrderVoucherSummary.SubTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Code",
+            "baseName": "Code",
+            "type": "string"
+        },
+        {
+            "name": "Amount",
+            "baseName": "Amount",
+            "type": "number"
+        },
+        {
+            "name": "Type",
+            "baseName": "Type",
+            "type": "OrderVoucherSummary.TypeEnum"
+        },
+        {
+            "name": "SubType",
+            "baseName": "SubType",
+            "type": "OrderVoucherSummary.SubTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderVoucherSummary.attributeTypeMap;
+    }
+}
+
+export namespace OrderVoucherSummary {
+    export enum TypeEnum {
+        PercentageDiscount = <any> 'PercentageDiscount',
+        LumpDiscount = <any> 'LumpDiscount',
+        AddItem = <any> 'AddItem',
+        CreditNote = <any> 'CreditNote'
+    }
+    export enum SubTypeEnum {
+        None = <any> 'None',
+        SignUp = <any> 'SignUp',
+        Loyalty = <any> 'Loyalty',
+        Loyalty25 = <any> 'Loyalty25',
+        Retention = <any> 'Retention',
+        SecondaryRetention = <any> 'SecondaryRetention',
+        Custom = <any> 'Custom'
+    }
+}
 /**
 * Password reset model
 */
@@ -10091,7 +10176,7 @@ export class RestApiPaginationResultStoreGroup {
 /**
 * Rest api pagination result
 */
-export class RestApiPaginationResultVoucher {
+export class RestApiPaginationResultVoucherSummary {
     /**
     * Current page index
     */
@@ -10107,7 +10192,7 @@ export class RestApiPaginationResultVoucher {
     /**
     * Generic data object.
     */
-    'Data': Array<Voucher>;
+    'Data': Array<VoucherSummary>;
 
     static discriminator: string | undefined = undefined;
 
@@ -10130,11 +10215,11 @@ export class RestApiPaginationResultVoucher {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "Array<Voucher>"
+            "type": "Array<VoucherSummary>"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiPaginationResultVoucher.attributeTypeMap;
+        return RestApiPaginationResultVoucherSummary.attributeTypeMap;
     }
 }
 
@@ -15779,46 +15864,45 @@ export class VoucherDeletedEvent {
 }
 
 /**
-* Voucher summary
+* Voucher Summary
 */
 export class VoucherSummary {
     /**
-    * Voucher name
+    * Voucher Id
     */
-    'Name'?: string;
+    'VoucherId'?: number;
     /**
-    * Voucher description
-    */
-    'Description'?: string;
-    /**
-    * Voucher code
+    * Voucher Code
     */
     'Code'?: string;
     /**
-    * Voucher amount
+    * Voucher Status
     */
-    'Amount'?: number;
+    'Status'?: VoucherSummary.StatusEnum;
     /**
-    * Voucher type
+    * Voucher Type
     */
-    'Type'?: VoucherSummary.TypeEnum;
+    'VoucherType'?: VoucherSummary.VoucherTypeEnum;
     /**
-    * Voucher sub type
+    * Voucher Sub Type
     */
-    'SubType'?: VoucherSummary.SubTypeEnum;
+    'VoucherSubType'?: VoucherSummary.VoucherSubTypeEnum;
+    /**
+    * Voucher Description (Visible on printout)
+    */
+    'Description'?: string;
+    /**
+    * Is voucher enabled
+    */
+    'IsEnabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
+            "name": "VoucherId",
+            "baseName": "VoucherId",
+            "type": "number"
         },
         {
             "name": "Code",
@@ -15826,19 +15910,29 @@ export class VoucherSummary {
             "type": "string"
         },
         {
-            "name": "Amount",
-            "baseName": "Amount",
-            "type": "number"
+            "name": "Status",
+            "baseName": "Status",
+            "type": "VoucherSummary.StatusEnum"
         },
         {
-            "name": "Type",
-            "baseName": "Type",
-            "type": "VoucherSummary.TypeEnum"
+            "name": "VoucherType",
+            "baseName": "VoucherType",
+            "type": "VoucherSummary.VoucherTypeEnum"
         },
         {
-            "name": "SubType",
-            "baseName": "SubType",
-            "type": "VoucherSummary.SubTypeEnum"
+            "name": "VoucherSubType",
+            "baseName": "VoucherSubType",
+            "type": "VoucherSummary.VoucherSubTypeEnum"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -15847,13 +15941,18 @@ export class VoucherSummary {
 }
 
 export namespace VoucherSummary {
-    export enum TypeEnum {
+    export enum StatusEnum {
+        Valid = <any> 'Valid',
+        Expired = <any> 'Expired',
+        Used = <any> 'Used'
+    }
+    export enum VoucherTypeEnum {
         PercentageDiscount = <any> 'PercentageDiscount',
         LumpDiscount = <any> 'LumpDiscount',
         AddItem = <any> 'AddItem',
         CreditNote = <any> 'CreditNote'
     }
-    export enum SubTypeEnum {
+    export enum VoucherSubTypeEnum {
         None = <any> 'None',
         SignUp = <any> 'SignUp',
         Loyalty = <any> 'Loyalty',
@@ -16794,6 +16893,8 @@ let enumsMap: {[index: string]: any} = {
         "OrderSummary.OrderStateEnum": OrderSummary.OrderStateEnum,
         "OrderSummary.PaymentStatusEnum": OrderSummary.PaymentStatusEnum,
         "OrderSummary.CurrencyEnum": OrderSummary.CurrencyEnum,
+        "OrderVoucherSummary.TypeEnum": OrderVoucherSummary.TypeEnum,
+        "OrderVoucherSummary.SubTypeEnum": OrderVoucherSummary.SubTypeEnum,
         "PhoneCall.CallStatusEnum": PhoneCall.CallStatusEnum,
         "ProcessingFeeConfig.PaymentAccountTypeEnum": ProcessingFeeConfig.PaymentAccountTypeEnum,
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
@@ -16814,8 +16915,9 @@ let enumsMap: {[index: string]: any} = {
         "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
         "Voucher.VoucherSubTypeEnum": Voucher.VoucherSubTypeEnum,
         "Voucher.CurrencyEnum": Voucher.CurrencyEnum,
-        "VoucherSummary.TypeEnum": VoucherSummary.TypeEnum,
-        "VoucherSummary.SubTypeEnum": VoucherSummary.SubTypeEnum,
+        "VoucherSummary.StatusEnum": VoucherSummary.StatusEnum,
+        "VoucherSummary.VoucherTypeEnum": VoucherSummary.VoucherTypeEnum,
+        "VoucherSummary.VoucherSubTypeEnum": VoucherSummary.VoucherSubTypeEnum,
         "VoucherWithStats.StatusEnum": VoucherWithStats.StatusEnum,
         "VoucherWithStats.VoucherTypeEnum": VoucherWithStats.VoucherTypeEnum,
         "VoucherWithStats.VoucherSubTypeEnum": VoucherWithStats.VoucherSubTypeEnum,
@@ -16919,6 +17021,7 @@ let typeMap: {[index: string]: any} = {
     "OrderRejectedEvent": OrderRejectedEvent,
     "OrderSummary": OrderSummary,
     "OrderTipUpdatedEvent": OrderTipUpdatedEvent,
+    "OrderVoucherSummary": OrderVoucherSummary,
     "PasswordResetModel": PasswordResetModel,
     "PercentDiscountDetails": PercentDiscountDetails,
     "PhoneCall": PhoneCall,
@@ -16969,7 +17072,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultPhoneCall": RestApiPaginationResultPhoneCall,
     "RestApiPaginationResultStore": RestApiPaginationResultStore,
     "RestApiPaginationResultStoreGroup": RestApiPaginationResultStoreGroup,
-    "RestApiPaginationResultVoucher": RestApiPaginationResultVoucher,
+    "RestApiPaginationResultVoucherSummary": RestApiPaginationResultVoucherSummary,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
     "RestApiResultApmStatistics": RestApiResultApmStatistics,
@@ -27304,17 +27407,19 @@ export class VouchersApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get vouchers for App Id
+     * @summary [PRIVATE API] Get vouchers summaries for App Id
      * @param appId Application Id
      * @param pageIndex Page Number
      * @param pageSize Page Size
      * @param searchCodes Search by Voucher Code\\s
      * @param statusSearch Search by Status
      * @param typeSearch Search by Type
+     * @param subTypeSearch Search by Sub Type
      * @param storeIds Search by Store Ids
+     * @param isEnabled Is enabled
      */
-    public getVouchers (appId: string, pageIndex?: number, pageSize?: number, searchCodes?: Array<string>, statusSearch?: Array<'Valid' | 'Expired' | 'Used'>, typeSearch?: Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote'>, storeIds?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucher;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/vouchers'
+    public getVouchers (appId: string, pageIndex?: number, pageSize?: number, searchCodes?: Array<string>, statusSearch?: Array<'Valid' | 'Expired' | 'Used'>, typeSearch?: Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote'>, subTypeSearch?: Array<'None' | 'SignUp' | 'Loyalty' | 'Loyalty25' | 'Retention' | 'SecondaryRetention' | 'Custom'>, storeIds?: Array<number>, isEnabled?: boolean) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherSummary;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/vouchers/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -27345,8 +27450,16 @@ export class VouchersApi {
             localVarQueryParameters['typeSearch'] = ObjectSerializer.serialize(typeSearch, "Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote'>");
         }
 
+        if (subTypeSearch !== undefined) {
+            localVarQueryParameters['subTypeSearch'] = ObjectSerializer.serialize(subTypeSearch, "Array<'None' | 'SignUp' | 'Loyalty' | 'Loyalty25' | 'Retention' | 'SecondaryRetention' | 'Custom'>");
+        }
+
         if (storeIds !== undefined) {
             localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
+        }
+
+        if (isEnabled !== undefined) {
+            localVarQueryParameters['isEnabled'] = ObjectSerializer.serialize(isEnabled, "boolean");
         }
 
 
@@ -27372,12 +27485,12 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucher;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherSummary;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultVoucher");
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultVoucherSummary");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
