@@ -717,6 +717,8 @@ export namespace App {
         ManagedOwner = <any> 'ManagedOwner',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
+        StoreReadWriteAccess = <any> 'StoreReadWriteAccess',
+        StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger'
     }
 }
@@ -1267,6 +1269,8 @@ export namespace CreateTeammate {
         ManagedOwner = <any> 'ManagedOwner',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
+        StoreReadWriteAccess = <any> 'StoreReadWriteAccess',
+        StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger'
     }
 }
@@ -6887,6 +6891,10 @@ export class Order {
     * Status of the payment
     */
     'PaymentStatus'?: Order.PaymentStatusEnum;
+    /**
+    * Rejection reason. Can have value if the order is rejected.
+    */
+    'RejectionReason'?: Order.RejectionReasonEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -7015,6 +7023,11 @@ export class Order {
             "name": "PaymentStatus",
             "baseName": "PaymentStatus",
             "type": "Order.PaymentStatusEnum"
+        },
+        {
+            "name": "RejectionReason",
+            "baseName": "RejectionReason",
+            "type": "Order.RejectionReasonEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7073,6 +7086,17 @@ export namespace Order {
         Refunded = <any> 'Refunded',
         PartiallyRefunded = <any> 'PartiallyRefunded',
         Disputed = <any> 'Disputed'
+    }
+    export enum RejectionReasonEnum {
+        TooBusy = <any> 'TooBusy',
+        FoodUnavailable = <any> 'FoodUnavailable',
+        UnableToDeliver = <any> 'UnableToDeliver',
+        UnknownAddress = <any> 'UnknownAddress',
+        UnknownReason = <any> 'UnknownReason',
+        TooSoon = <any> 'TooSoon',
+        TimeUnavailable = <any> 'TimeUnavailable',
+        DontDeliverToArea = <any> 'DontDeliverToArea',
+        StoreUncontactable = <any> 'StoreUncontactable'
     }
 }
 /**
@@ -9013,6 +9037,45 @@ export namespace Range {
     }
 }
 /**
+* 
+*/
+export class RedeemInvitationResult {
+    /**
+    * Access level is for this App
+    */
+    'AppId'?: string;
+    /**
+    * Invitation status
+    */
+    'InvitationStatus'?: RedeemInvitationResult.InvitationStatusEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "InvitationStatus",
+            "baseName": "InvitationStatus",
+            "type": "RedeemInvitationResult.InvitationStatusEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RedeemInvitationResult.attributeTypeMap;
+    }
+}
+
+export namespace RedeemInvitationResult {
+    export enum InvitationStatusEnum {
+        Pending = <any> 'Pending',
+        Accepted = <any> 'Accepted',
+        Expired = <any> 'Expired'
+    }
+}
+/**
 * Refund
 */
 export class Refund {
@@ -10730,6 +10793,29 @@ export class RestApiResultProcessingFeeConfig {
 
     static getAttributeTypeMap() {
         return RestApiResultProcessingFeeConfig.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultRedeemInvitationResult {
+    /**
+    * Generic data object.
+    */
+    'Data': RedeemInvitationResult;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "RedeemInvitationResult"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultRedeemInvitationResult.attributeTypeMap;
     }
 }
 
@@ -14599,6 +14685,8 @@ export namespace Teammate {
         ManagedOwner = <any> 'ManagedOwner',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
+        StoreReadWriteAccess = <any> 'StoreReadWriteAccess',
+        StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger'
     }
 }
@@ -14650,6 +14738,8 @@ export namespace TeammateBase {
         ManagedOwner = <any> 'ManagedOwner',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
+        StoreReadWriteAccess = <any> 'StoreReadWriteAccess',
+        StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger'
     }
 }
@@ -16889,6 +16979,7 @@ let enumsMap: {[index: string]: any} = {
         "Order.OrderStateEnum": Order.OrderStateEnum,
         "Order.AppTypeEnum": Order.AppTypeEnum,
         "Order.PaymentStatusEnum": Order.PaymentStatusEnum,
+        "Order.RejectionReasonEnum": Order.RejectionReasonEnum,
         "OrderSummary.DeliveryTypeEnum": OrderSummary.DeliveryTypeEnum,
         "OrderSummary.OrderStateEnum": OrderSummary.OrderStateEnum,
         "OrderSummary.PaymentStatusEnum": OrderSummary.PaymentStatusEnum,
@@ -16898,6 +16989,7 @@ let enumsMap: {[index: string]: any} = {
         "PhoneCall.CallStatusEnum": PhoneCall.CallStatusEnum,
         "ProcessingFeeConfig.PaymentAccountTypeEnum": ProcessingFeeConfig.PaymentAccountTypeEnum,
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
+        "RedeemInvitationResult.InvitationStatusEnum": RedeemInvitationResult.InvitationStatusEnum,
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
         "SignupStep.ActionEnum": SignupStep.ActionEnum,
         "StatisticsCurrencyDataPoint.CurrencyEnum": StatisticsCurrencyDataPoint.CurrencyEnum,
@@ -17035,6 +17127,7 @@ let typeMap: {[index: string]: any} = {
     "PrinterUnassignedFromStoreEvent": PrinterUnassignedFromStoreEvent,
     "ProcessingFeeConfig": ProcessingFeeConfig,
     "Range": Range,
+    "RedeemInvitationResult": RedeemInvitationResult,
     "Refund": Refund,
     "Reject": Reject,
     "RequestLoginPinModel": RequestLoginPinModel,
@@ -17094,6 +17187,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
     "RestApiResultOrder": RestApiResultOrder,
     "RestApiResultProcessingFeeConfig": RestApiResultProcessingFeeConfig,
+    "RestApiResultRedeemInvitationResult": RestApiResultRedeemInvitationResult,
     "RestApiResultStore": RestApiResultStore,
     "RestApiResultStoreAddress": RestApiResultStoreAddress,
     "RestApiResultStoreGroup": RestApiResultStoreGroup,
@@ -27008,7 +27102,7 @@ export class TeammatesApi {
      * @param otc 
      * @param appId 
      */
-    public redeemCode (otc: string, appId: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public redeemInvitation (otc: string, appId: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultRedeemInvitationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/redeem/{otc}'
             .replace('{' + 'otc' + '}', encodeURIComponent(String(otc)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -27018,12 +27112,12 @@ export class TeammatesApi {
 
         // verify required parameter 'otc' is not null or undefined
         if (otc === null || otc === undefined) {
-            throw new Error('Required parameter otc was null or undefined when calling redeemCode.');
+            throw new Error('Required parameter otc was null or undefined when calling redeemInvitation.');
         }
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling redeemCode.');
+            throw new Error('Required parameter appId was null or undefined when calling redeemInvitation.');
         }
 
 
@@ -27049,11 +27143,66 @@ export class TeammatesApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRedeemInvitationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultRedeemInvitationResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param otc 
+     */
+    public redeemInvitation_1 (otc: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultRedeemInvitationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/teammates/redeeminvitation/{otc}'
+            .replace('{' + 'otc' + '}', encodeURIComponent(String(otc)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'otc' is not null or undefined
+        if (otc === null || otc === undefined) {
+            throw new Error('Required parameter otc was null or undefined when calling redeemInvitation_1.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRedeemInvitationResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultRedeemInvitationResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
