@@ -15557,6 +15557,7 @@ export class Voucher {
 export namespace Voucher {
     export enum StatusEnum {
         Valid = <any> 'Valid',
+        NotYetValid = <any> 'NotYetValid',
         Expired = <any> 'Expired',
         Used = <any> 'Used'
     }
@@ -16042,6 +16043,7 @@ export class VoucherSummary {
 export namespace VoucherSummary {
     export enum StatusEnum {
         Valid = <any> 'Valid',
+        NotYetValid = <any> 'NotYetValid',
         Expired = <any> 'Expired',
         Used = <any> 'Used'
     }
@@ -16344,6 +16346,7 @@ export class VoucherWithStats {
 export namespace VoucherWithStats {
     export enum StatusEnum {
         Valid = <any> 'Valid',
+        NotYetValid = <any> 'NotYetValid',
         Expired = <any> 'Expired',
         Used = <any> 'Used'
     }
@@ -27576,7 +27579,7 @@ export class VouchersApi {
      * @param storeIds Search by Store Ids
      * @param isEnabled Is enabled
      */
-    public getVouchers (appId: string, pageIndex?: number, pageSize?: number, searchCodes?: Array<string>, statusSearch?: Array<'Valid' | 'Expired' | 'Used'>, typeSearch?: Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote'>, subTypeSearch?: Array<'None' | 'SignUp' | 'Loyalty' | 'Loyalty25' | 'Retention' | 'SecondaryRetention' | 'Custom'>, storeIds?: Array<number>, isEnabled?: boolean) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherSummary;  }> {
+    public getVouchers (appId: string, pageIndex?: number, pageSize?: number, searchCodes?: Array<string>, statusSearch?: Array<'Valid' | 'NotYetValid' | 'Expired' | 'Used'>, typeSearch?: Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote'>, subTypeSearch?: Array<'None' | 'SignUp' | 'Loyalty' | 'Loyalty25' | 'Retention' | 'SecondaryRetention' | 'Custom'>, storeIds?: Array<number>, isEnabled?: boolean) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/vouchers/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -27601,7 +27604,7 @@ export class VouchersApi {
         }
 
         if (statusSearch !== undefined) {
-            localVarQueryParameters['statusSearch'] = ObjectSerializer.serialize(statusSearch, "Array<'Valid' | 'Expired' | 'Used'>");
+            localVarQueryParameters['statusSearch'] = ObjectSerializer.serialize(statusSearch, "Array<'Valid' | 'NotYetValid' | 'Expired' | 'Used'>");
         }
 
         if (typeSearch !== undefined) {
