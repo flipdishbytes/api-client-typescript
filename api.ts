@@ -8223,6 +8223,10 @@ export class PercentDiscountDetails {
 */
 export class PhoneCall {
     /**
+    * Phone call id
+    */
+    'PhoneCallId'?: number;
+    /**
     * Time of the call
     */
     'TimeOfCall'?: Date;
@@ -8254,6 +8258,11 @@ export class PhoneCall {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PhoneCallId",
+            "baseName": "PhoneCallId",
+            "type": "number"
+        },
         {
             "name": "TimeOfCall",
             "baseName": "TimeOfCall",
