@@ -8235,6 +8235,10 @@ export class PhoneCall {
     */
     'TimeOfCallLocal'?: Date;
     /**
+    * ID of the store that the call was TO
+    */
+    'StoreId'?: number;
+    /**
     * Name of the store that the call was TO
     */
     'StoreName'?: string;
@@ -8242,6 +8246,10 @@ export class PhoneCall {
     * Name of the caller
     */
     'CallerName'?: string;
+    /**
+    * UserID of the caller
+    */
+    'CallerUserId'?: number;
     /**
     * Phone number of the caller
     */
@@ -8274,6 +8282,11 @@ export class PhoneCall {
             "type": "Date"
         },
         {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
             "name": "StoreName",
             "baseName": "StoreName",
             "type": "string"
@@ -8282,6 +8295,11 @@ export class PhoneCall {
             "name": "CallerName",
             "baseName": "CallerName",
             "type": "string"
+        },
+        {
+            "name": "CallerUserId",
+            "baseName": "CallerUserId",
+            "type": "number"
         },
         {
             "name": "CallerNumber",
@@ -19136,7 +19154,7 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get customer events
+     * @summary Get customer events  For technical reasons, the number of records returned is limited to 100.
      * @param customerId Customer identifier identifier
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
@@ -19216,7 +19234,7 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get events
+     * @summary Get events  For technical reasons, the number of records returned is limited to 100.
      * @param storeId Store Id
      * @param whiteLabelId White Label Id
      * @param customerId Customer Id
@@ -19304,7 +19322,7 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get event by Id
+     * @summary Get event by Id  For technical reasons, the number of records returned is limited to 100.
      * @param eventId Event identifier (Guid)
      */
     public getEventsById (eventId: string) : Promise<{ response: http.IncomingMessage; body: EventSearchResult;  }> {
@@ -19359,7 +19377,7 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get menu events
+     * @summary Get menu events  For technical reasons, the number of records returned is limited to 100.
      * @param menuId Menu Identifier
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
@@ -19439,7 +19457,7 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get order events
+     * @summary Get order events  For technical reasons, the number of records returned is limited to 100.
      * @param orderId Order identifier
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
@@ -19519,7 +19537,7 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get order events by customer
+     * @summary Get order events by customer  For technical reasons, the number of records returned is limited to 100.
      * @param customerId Customer identifier
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
@@ -19602,7 +19620,7 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get store events
+     * @summary Get store events  For technical reasons, the number of records returned is limited to 100.
      * @param storeId Id of the store
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
@@ -19682,7 +19700,7 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get user events
+     * @summary Get user events  For technical reasons, the number of records returned is limited to 100.
      * @param userId User identifier
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
@@ -19762,7 +19780,7 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get WhiteLabel events
+     * @summary Get WhiteLabel events  For technical reasons, the number of records returned is limited to 100.
      * @param whitelabelId White Label Identifier
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
