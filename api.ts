@@ -11951,6 +11951,14 @@ export class Store {
     */
     'StoreNotes'?: Array<StoreNote>;
     /**
+    * Microsoft Time Zone Index Values (https://msdn.microsoft.com/en-us/library/ms912391)  (Editable through store coordinate change)
+    */
+    'MicrosoftTimeZone'?: string;
+    /**
+    * IANA Time Zone (https://www.iana.org/time-zones)  (Editable through store coordinate change)
+    */
+    'IanaTimeZone'?: string;
+    /**
     * Phone number
     */
     'PhoneNumber'?: string;
@@ -12030,14 +12038,6 @@ export class Store {
     * True if customer name required for delivery orders
     */
     'RequireCustomerNameForDelivery'?: boolean;
-    /**
-    * Microsoft Time Zone Index Values (https://msdn.microsoft.com/en-us/library/ms912391)
-    */
-    'MicrosoftTimeZone'?: string;
-    /**
-    * IANA Time Zone (https://www.iana.org/time-zones)
-    */
-    'IanaTimeZone'?: string;
     /**
     * True if order confirmation sms includes estimated time when order will be ready for collection
     */
@@ -12121,6 +12121,16 @@ export class Store {
             "name": "StoreNotes",
             "baseName": "StoreNotes",
             "type": "Array<StoreNote>"
+        },
+        {
+            "name": "MicrosoftTimeZone",
+            "baseName": "MicrosoftTimeZone",
+            "type": "string"
+        },
+        {
+            "name": "IanaTimeZone",
+            "baseName": "IanaTimeZone",
+            "type": "string"
         },
         {
             "name": "PhoneNumber",
@@ -12221,16 +12231,6 @@ export class Store {
             "name": "RequireCustomerNameForDelivery",
             "baseName": "RequireCustomerNameForDelivery",
             "type": "boolean"
-        },
-        {
-            "name": "MicrosoftTimeZone",
-            "baseName": "MicrosoftTimeZone",
-            "type": "string"
-        },
-        {
-            "name": "IanaTimeZone",
-            "baseName": "IanaTimeZone",
-            "type": "string"
         },
         {
             "name": "EtaInPickupConfirmationSmsEnabled",
@@ -12585,14 +12585,6 @@ export class StoreBase {
     */
     'RequireCustomerNameForDelivery'?: boolean;
     /**
-    * Microsoft Time Zone Index Values (https://msdn.microsoft.com/en-us/library/ms912391)
-    */
-    'MicrosoftTimeZone'?: string;
-    /**
-    * IANA Time Zone (https://www.iana.org/time-zones)
-    */
-    'IanaTimeZone'?: string;
-    /**
     * True if order confirmation sms includes estimated time when order will be ready for collection
     */
     'EtaInPickupConfirmationSmsEnabled'?: boolean;
@@ -12715,16 +12707,6 @@ export class StoreBase {
             "name": "RequireCustomerNameForDelivery",
             "baseName": "RequireCustomerNameForDelivery",
             "type": "boolean"
-        },
-        {
-            "name": "MicrosoftTimeZone",
-            "baseName": "MicrosoftTimeZone",
-            "type": "string"
-        },
-        {
-            "name": "IanaTimeZone",
-            "baseName": "IanaTimeZone",
-            "type": "string"
         },
         {
             "name": "EtaInPickupConfirmationSmsEnabled",
@@ -25405,7 +25387,7 @@ export class StoresApi {
      * 
      * @summary Get processing fee configs by store identifier
      * @param storeId Store identifier
-     * @param appNameId App Name Id
+     * @param appNameId App Name Id(Not used, still here for compatability reasons)
      */
     public getProcessingFeeConfigsByStoreId (storeId: number, appNameId?: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs'
@@ -25466,7 +25448,7 @@ export class StoresApi {
      * @summary Get processing fee configs by store identifier
      * @param storeId Store identifier
      * @param paymentAccountType 
-     * @param appNameId App Name Id
+     * @param appNameId App Name Id(Not used, still here for compatability reasons)
      */
     public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: 'Card' | 'Cash' | 'Ideal' | 'Bancontact' | 'Giropay' | 'Eps', appNameId?: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs/{paymentAccountType}'
@@ -25919,7 +25901,7 @@ export class StoresApi {
      * @summary Update store address coordinates
      * @param storeId Store identifier
      * @param coordinates Store address coordinates
-     * @param appNameId App Name Id
+     * @param appNameId App Name Id(Not used, still here for compatability reasons)
      */
     public updateStoreAddressCoordinates (storeId: number, coordinates: Coordinates, appNameId?: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultCoordinates;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/address/coordinates'
