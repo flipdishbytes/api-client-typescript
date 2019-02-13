@@ -11963,6 +11963,10 @@ export class Store {
     */
     'PhoneNumber'?: string;
     /**
+    * True if the store always appears open
+    */
+    'AlwaysAppearOpen'?: boolean;
+    /**
     * True if the store accepts pre-orders
     */
     'PreOrderEnabled'?: boolean;
@@ -12136,6 +12140,11 @@ export class Store {
             "name": "PhoneNumber",
             "baseName": "PhoneNumber",
             "type": "string"
+        },
+        {
+            "name": "AlwaysAppearOpen",
+            "baseName": "AlwaysAppearOpen",
+            "type": "boolean"
         },
         {
             "name": "PreOrderEnabled",
@@ -12509,6 +12518,10 @@ export class StoreBase {
     */
     'PhoneNumber'?: string;
     /**
+    * True if the store always appears open
+    */
+    'AlwaysAppearOpen'?: boolean;
+    /**
     * True if the store accepts pre-orders
     */
     'PreOrderEnabled'?: boolean;
@@ -12612,6 +12625,11 @@ export class StoreBase {
             "name": "PhoneNumber",
             "baseName": "PhoneNumber",
             "type": "string"
+        },
+        {
+            "name": "AlwaysAppearOpen",
+            "baseName": "AlwaysAppearOpen",
+            "type": "boolean"
         },
         {
             "name": "PreOrderEnabled",
