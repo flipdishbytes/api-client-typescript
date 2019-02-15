@@ -22413,7 +22413,7 @@ export class MenuSectionsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionAvailability 
      */
-    public createMenuSection_1 (menuId: number, menuSectionId: number, menuSectionAvailability: MenuSectionAvailabilityBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public createMenuSectionAvailability (menuId: number, menuSectionId: number, menuSectionAvailability: MenuSectionAvailabilityBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/availability'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -22423,17 +22423,17 @@ export class MenuSectionsApi {
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling createMenuSection_1.');
+            throw new Error('Required parameter menuId was null or undefined when calling createMenuSectionAvailability.');
         }
 
         // verify required parameter 'menuSectionId' is not null or undefined
         if (menuSectionId === null || menuSectionId === undefined) {
-            throw new Error('Required parameter menuSectionId was null or undefined when calling createMenuSection_1.');
+            throw new Error('Required parameter menuSectionId was null or undefined when calling createMenuSectionAvailability.');
         }
 
         // verify required parameter 'menuSectionAvailability' is not null or undefined
         if (menuSectionAvailability === null || menuSectionAvailability === undefined) {
-            throw new Error('Required parameter menuSectionAvailability was null or undefined when calling createMenuSection_1.');
+            throw new Error('Required parameter menuSectionAvailability was null or undefined when calling createMenuSectionAvailability.');
         }
 
 
@@ -22912,115 +22912,19 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary Get menu item metadata by key
+     * @summary Delete menu image
      * @param menuId Menu identifier
-     * @param storeId Store identifier
-     * @param menuItemId Menu item identifier
-     * @param key Metadata key
      */
-    public deleteMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, key: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
-            .replace('{' + 'menuItemId' + '}', encodeURIComponent(String(menuItemId)))
-            .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
+    public deleteMenuImage (menuId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/image'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling deleteMenuItemMetadata.');
-        }
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling deleteMenuItemMetadata.');
-        }
-
-        // verify required parameter 'menuItemId' is not null or undefined
-        if (menuItemId === null || menuItemId === undefined) {
-            throw new Error('Required parameter menuItemId was null or undefined when calling deleteMenuItemMetadata.');
-        }
-
-        // verify required parameter 'key' is not null or undefined
-        if (key === null || key === undefined) {
-            throw new Error('Required parameter key was null or undefined when calling deleteMenuItemMetadata.');
-        }
-
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Delete menu item metadata
-     * @param menuId Menu identifier
-     * @param storeId Store identifier
-     * @param menuItemId Menu item identifier
-     * @param key Metadata key
-     */
-    public deleteMenuItemMetadata_1 (menuId: number, storeId: number, menuItemId: number, key: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
-            .replace('{' + 'menuItemId' + '}', encodeURIComponent(String(menuItemId)))
-            .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling deleteMenuItemMetadata_1.');
-        }
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling deleteMenuItemMetadata_1.');
-        }
-
-        // verify required parameter 'menuItemId' is not null or undefined
-        if (menuItemId === null || menuItemId === undefined) {
-            throw new Error('Required parameter menuItemId was null or undefined when calling deleteMenuItemMetadata_1.');
-        }
-
-        // verify required parameter 'key' is not null or undefined
-        if (key === null || key === undefined) {
-            throw new Error('Required parameter key was null or undefined when calling deleteMenuItemMetadata_1.');
+            throw new Error('Required parameter menuId was null or undefined when calling deleteMenuImage.');
         }
 
 
@@ -23062,19 +22966,40 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary Delete menu image
+     * @summary Delete menu item metadata
      * @param menuId Menu identifier
+     * @param storeId Store identifier
+     * @param menuItemId Menu item identifier
+     * @param key Metadata key
      */
-    public deleteMenuSectionImage (menuId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/image'
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+    public deleteMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, key: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'menuItemId' + '}', encodeURIComponent(String(menuItemId)))
+            .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling deleteMenuSectionImage.');
+            throw new Error('Required parameter menuId was null or undefined when calling deleteMenuItemMetadata.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling deleteMenuItemMetadata.');
+        }
+
+        // verify required parameter 'menuItemId' is not null or undefined
+        if (menuItemId === null || menuItemId === undefined) {
+            throw new Error('Required parameter menuItemId was null or undefined when calling deleteMenuItemMetadata.');
+        }
+
+        // verify required parameter 'key' is not null or undefined
+        if (key === null || key === undefined) {
+            throw new Error('Required parameter key was null or undefined when calling deleteMenuItemMetadata.');
         }
 
 
@@ -23229,6 +23154,81 @@ export class MenusApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultMetadata");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get menu item metadata by key
+     * @param menuId Menu identifier
+     * @param storeId Store identifier
+     * @param menuItemId Menu item identifier
+     * @param key Metadata key
+     */
+    public getMenuItemMetadata_1 (menuId: number, storeId: number, menuItemId: number, key: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'menuItemId' + '}', encodeURIComponent(String(menuItemId)))
+            .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling getMenuItemMetadata_1.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getMenuItemMetadata_1.');
+        }
+
+        // verify required parameter 'menuItemId' is not null or undefined
+        if (menuItemId === null || menuItemId === undefined) {
+            throw new Error('Required parameter menuItemId was null or undefined when calling getMenuItemMetadata_1.');
+        }
+
+        // verify required parameter 'key' is not null or undefined
+        if (key === null || key === undefined) {
+            throw new Error('Required parameter key was null or undefined when calling getMenuItemMetadata_1.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -23524,7 +23524,7 @@ export class MenusApi {
      * @param menuId Menu identifier
      * @param Image Menu image
      */
-    public uploadMenuSectionImage (menuId: number, Image: Buffer) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public uploadMenuImage (menuId: number, Image: Buffer) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -23533,12 +23533,12 @@ export class MenusApi {
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling uploadMenuSectionImage.');
+            throw new Error('Required parameter menuId was null or undefined when calling uploadMenuImage.');
         }
 
         // verify required parameter 'Image' is not null or undefined
         if (Image === null || Image === undefined) {
-            throw new Error('Required parameter Image was null or undefined when calling uploadMenuSectionImage.');
+            throw new Error('Required parameter Image was null or undefined when calling uploadMenuImage.');
         }
 
 
@@ -27148,60 +27148,6 @@ export class TeammatesApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling redeemInvitation.');
-        }
-
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRedeemInvitationResult;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultRedeemInvitationResult");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param otc 
-     */
-    public redeemInvitation_1 (otc: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultRedeemInvitationResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/teammates/redeeminvitation/{otc}'
-            .replace('{' + 'otc' + '}', encodeURIComponent(String(otc)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'otc' is not null or undefined
-        if (otc === null || otc === undefined) {
-            throw new Error('Required parameter otc was null or undefined when calling redeemInvitation_1.');
         }
 
 
