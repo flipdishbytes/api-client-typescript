@@ -15600,7 +15600,8 @@ export namespace Voucher {
         Valid = <any> 'Valid',
         NotYetValid = <any> 'NotYetValid',
         Expired = <any> 'Expired',
-        Used = <any> 'Used'
+        Used = <any> 'Used',
+        Disabled = <any> 'Disabled'
     }
     export enum VoucherTypeEnum {
         PercentageDiscount = <any> 'PercentageDiscount',
@@ -16086,7 +16087,8 @@ export namespace VoucherSummary {
         Valid = <any> 'Valid',
         NotYetValid = <any> 'NotYetValid',
         Expired = <any> 'Expired',
-        Used = <any> 'Used'
+        Used = <any> 'Used',
+        Disabled = <any> 'Disabled'
     }
     export enum VoucherTypeEnum {
         PercentageDiscount = <any> 'PercentageDiscount',
@@ -16389,7 +16391,8 @@ export namespace VoucherWithStats {
         Valid = <any> 'Valid',
         NotYetValid = <any> 'NotYetValid',
         Expired = <any> 'Expired',
-        Used = <any> 'Used'
+        Used = <any> 'Used',
+        Disabled = <any> 'Disabled'
     }
     export enum VoucherTypeEnum {
         PercentageDiscount = <any> 'PercentageDiscount',
@@ -27629,7 +27632,7 @@ export class VouchersApi {
      * @param storeIds Search by Store Ids
      * @param isEnabled Is enabled
      */
-    public getVouchers (appId: string, pageIndex?: number, pageSize?: number, searchCodes?: Array<string>, statusSearch?: Array<'Valid' | 'NotYetValid' | 'Expired' | 'Used'>, typeSearch?: Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote'>, subTypeSearch?: Array<'None' | 'SignUp' | 'Loyalty' | 'Loyalty25' | 'Retention' | 'SecondaryRetention' | 'Custom'>, storeIds?: Array<number>, isEnabled?: boolean) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherSummary;  }> {
+    public getVouchers (appId: string, pageIndex?: number, pageSize?: number, searchCodes?: Array<string>, statusSearch?: Array<'Valid' | 'NotYetValid' | 'Expired' | 'Used' | 'Disabled'>, typeSearch?: Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote'>, subTypeSearch?: Array<'None' | 'SignUp' | 'Loyalty' | 'Loyalty25' | 'Retention' | 'SecondaryRetention' | 'Custom'>, storeIds?: Array<number>, isEnabled?: boolean) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/vouchers/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -27654,7 +27657,7 @@ export class VouchersApi {
         }
 
         if (statusSearch !== undefined) {
-            localVarQueryParameters['statusSearch'] = ObjectSerializer.serialize(statusSearch, "Array<'Valid' | 'NotYetValid' | 'Expired' | 'Used'>");
+            localVarQueryParameters['statusSearch'] = ObjectSerializer.serialize(statusSearch, "Array<'Valid' | 'NotYetValid' | 'Expired' | 'Used' | 'Disabled'>");
         }
 
         if (typeSearch !== undefined) {
