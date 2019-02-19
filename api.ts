@@ -12948,6 +12948,29 @@ export class StoreBusinessHoursOverrideDeletedEvent {
 }
 
 /**
+* Settings for cloning a store
+*/
+export class StoreCloneSettings {
+    /**
+    * If specified will clone to a specific store group, otherwise will clone to the store group of the Store which is being cloned
+    */
+    'TargetStoreGroupId'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "TargetStoreGroupId",
+            "baseName": "TargetStoreGroupId",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreCloneSettings.attributeTypeMap;
+    }
+}
+
+/**
 * Store Create Base
 */
 export class StoreCreateBase {
@@ -17247,6 +17270,7 @@ let typeMap: {[index: string]: any} = {
     "StoreBase": StoreBase,
     "StoreBusinessHoursOverrideCreatedEvent": StoreBusinessHoursOverrideCreatedEvent,
     "StoreBusinessHoursOverrideDeletedEvent": StoreBusinessHoursOverrideDeletedEvent,
+    "StoreCloneSettings": StoreCloneSettings,
     "StoreCreateBase": StoreCreateBase,
     "StoreCreatedEvent": StoreCreatedEvent,
     "StoreDeletedEvent": StoreDeletedEvent,
@@ -25079,6 +25103,68 @@ export class StoresApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Clone store with store clone settings
+     * @param storeId Store identifier
+     * @param settings Settings for cloning the store
+     */
+    public cloneStore (storeId: number, settings: StoreCloneSettings) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/clone'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling cloneStore.');
+        }
+
+        // verify required parameter 'settings' is not null or undefined
+        if (settings === null || settings === undefined) {
+            throw new Error('Required parameter settings was null or undefined when calling cloneStore.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(settings, "StoreCloneSettings")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStore");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
     }
     /**
      * 
