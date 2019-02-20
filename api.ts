@@ -15600,7 +15600,8 @@ export namespace Voucher {
         Valid = <any> 'Valid',
         NotYetValid = <any> 'NotYetValid',
         Expired = <any> 'Expired',
-        Used = <any> 'Used'
+        Used = <any> 'Used',
+        Disabled = <any> 'Disabled'
     }
     export enum VoucherTypeEnum {
         PercentageDiscount = <any> 'PercentageDiscount',
@@ -16086,7 +16087,8 @@ export namespace VoucherSummary {
         Valid = <any> 'Valid',
         NotYetValid = <any> 'NotYetValid',
         Expired = <any> 'Expired',
-        Used = <any> 'Used'
+        Used = <any> 'Used',
+        Disabled = <any> 'Disabled'
     }
     export enum VoucherTypeEnum {
         PercentageDiscount = <any> 'PercentageDiscount',
@@ -16389,7 +16391,8 @@ export namespace VoucherWithStats {
         Valid = <any> 'Valid',
         NotYetValid = <any> 'NotYetValid',
         Expired = <any> 'Expired',
-        Used = <any> 'Used'
+        Used = <any> 'Used',
+        Disabled = <any> 'Disabled'
     }
     export enum VoucherTypeEnum {
         PercentageDiscount = <any> 'PercentageDiscount',
@@ -17423,8 +17426,9 @@ export class AccountsApi {
      * @summary Answer a signup question
      * @param signupStepAction Signup step action
      * @param answerId Identifier of the answer
+     * @param {*} [options] Override http request options.
      */
-    public answerSignUpQuestion (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription', answerId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public answerSignUpQuestion (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription', answerId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/answer'
             .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
         let localVarQueryParameters: any = {};
@@ -17441,6 +17445,7 @@ export class AccountsApi {
             throw new Error('Required parameter answerId was null or undefined when calling answerSignUpQuestion.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -17483,8 +17488,9 @@ export class AccountsApi {
      * 
      * @summary Change password
      * @param changePasswordModel Change password model
+     * @param {*} [options] Override http request options.
      */
-    public changePassword (changePasswordModel: ChangePasswordModel) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public changePassword (changePasswordModel: ChangePasswordModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/password';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17495,6 +17501,7 @@ export class AccountsApi {
             throw new Error('Required parameter changePasswordModel was null or undefined when calling changePassword.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -17537,8 +17544,9 @@ export class AccountsApi {
      * 
      * @summary Change password
      * @param changePasswordModel Change password model
+     * @param {*} [options] Override http request options.
      */
-    public changePasswordWithPin (changePasswordModel: SetPasswordWithPinModel) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public changePasswordWithPin (changePasswordModel: SetPasswordWithPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/password/pin';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17549,6 +17557,7 @@ export class AccountsApi {
             throw new Error('Required parameter changePasswordModel was null or undefined when calling changePasswordWithPin.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -17591,8 +17600,9 @@ export class AccountsApi {
      * 
      * @summary Create account with email address and store name
      * @param createAccountModel Create account model
+     * @param {*} [options] Override http request options.
      */
-    public createAccount (createAccountModel: CreateAccountModel) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public createAccount (createAccountModel: CreateAccountModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17603,6 +17613,7 @@ export class AccountsApi {
             throw new Error('Required parameter createAccountModel was null or undefined when calling createAccount.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -17644,13 +17655,15 @@ export class AccountsApi {
     /**
      * 
      * @summary Gets the current account detail
+     * @param {*} [options] Override http request options.
      */
-    public getAccountDetails () : Promise<{ response: http.IncomingMessage; body: RestApiResultAccountDetail;  }> {
+    public getAccountDetails (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAccountDetail;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -17692,13 +17705,15 @@ export class AccountsApi {
     /**
      * 
      * @summary [PRIVATE API] Get timezones localised to users language
+     * @param {*} [options] Override http request options.
      */
-    public getLocalisedTimeZones () : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLocalisedTimeZone;  }> {
+    public getLocalisedTimeZones (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLocalisedTimeZone;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/timezones';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -17741,8 +17756,9 @@ export class AccountsApi {
      * 
      * @summary Login with username and password
      * @param loginModel Login model
+     * @param {*} [options] Override http request options.
      */
-    public login (loginModel: LoginModel) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public login (loginModel: LoginModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/login';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17753,6 +17769,7 @@ export class AccountsApi {
             throw new Error('Required parameter loginModel was null or undefined when calling login.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -17795,8 +17812,9 @@ export class AccountsApi {
      * 
      * @summary Login with username and password
      * @param loginModel Login model
+     * @param {*} [options] Override http request options.
      */
-    public loginWithPin (loginModel: LoginWithPinModel) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public loginWithPin (loginModel: LoginWithPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/login/pin';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17807,6 +17825,7 @@ export class AccountsApi {
             throw new Error('Required parameter loginModel was null or undefined when calling loginWithPin.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -17848,13 +17867,15 @@ export class AccountsApi {
     /**
      * 
      * @summary Log out. It removes Flipdish authorization Cookie.
+     * @param {*} [options] Override http request options.
      */
-    public logout () : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public logout (options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/logout';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -17896,8 +17917,9 @@ export class AccountsApi {
      * 
      * @summary Reset password with token.
      * @param passwordResetModel Password reset model
+     * @param {*} [options] Override http request options.
      */
-    public passwordResetWithToken (passwordResetModel: PasswordResetModel) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public passwordResetWithToken (passwordResetModel: PasswordResetModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/password';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17908,6 +17930,7 @@ export class AccountsApi {
             throw new Error('Required parameter passwordResetModel was null or undefined when calling passwordResetWithToken.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -17950,8 +17973,9 @@ export class AccountsApi {
      * 
      * @summary Request login PIN. The server sends the PIN to the email address.
      * @param requestLoginPinRequest Request login PIN request
+     * @param {*} [options] Override http request options.
      */
-    public requestLoginPin (requestLoginPinRequest: RequestLoginPinModel) : Promise<{ response: http.IncomingMessage; body: RequestLoginPinResposne;  }> {
+    public requestLoginPin (requestLoginPinRequest: RequestLoginPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RequestLoginPinResposne;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/pin';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -17962,6 +17986,7 @@ export class AccountsApi {
             throw new Error('Required parameter requestLoginPinRequest was null or undefined when calling requestLoginPin.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -18005,8 +18030,9 @@ export class AccountsApi {
      * 
      * @summary Request password reset. Flipdish system will send a token via email.
      * @param requestPasswordResetModel Request password reset model
+     * @param {*} [options] Override http request options.
      */
-    public requestPasswordReset (requestPasswordResetModel: RequestPasswordResetModel) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public requestPasswordReset (requestPasswordResetModel: RequestPasswordResetModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/passwordreset';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -18017,6 +18043,7 @@ export class AccountsApi {
             throw new Error('Required parameter requestPasswordResetModel was null or undefined when calling requestPasswordReset.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -18059,8 +18086,9 @@ export class AccountsApi {
      * 
      * @summary Skip a signup question
      * @param signupStepAction Signup step action
+     * @param {*} [options] Override http request options.
      */
-    public skipSignupStep (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription') : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public skipSignupStep (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/skip'
             .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
         let localVarQueryParameters: any = {};
@@ -18072,6 +18100,7 @@ export class AccountsApi {
             throw new Error('Required parameter signupStepAction was null or undefined when calling skipSignupStep.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -18113,8 +18142,9 @@ export class AccountsApi {
      * 
      * @summary Update account with name and language
      * @param updateAccountModel Update account model
+     * @param {*} [options] Override http request options.
      */
-    public updateAccount (updateAccountModel: AccountDetailBase) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateAccount (updateAccountModel: AccountDetailBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -18125,6 +18155,7 @@ export class AccountsApi {
             throw new Error('Required parameter updateAccountModel was null or undefined when calling updateAccount.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -18218,8 +18249,9 @@ export class ApmApi {
      * @summary [PRIVATE API] Get Basic Statistics
      * @param appId App Name
      * @param storeId List of stores to search by
+     * @param {*} [options] Override http request options.
      */
-    public getBasicStatistics (appId: string, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiResultApmStatistics;  }> {
+    public getBasicStatistics (appId: string, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApmStatistics;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/statistics'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -18235,6 +18267,7 @@ export class ApmApi {
             localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -18278,8 +18311,9 @@ export class ApmApi {
      * @summary [PRIVATE API] Get Calendar statistics
      * @param appId App Name
      * @param storeId List of stores to search by
+     * @param {*} [options] Override http request options.
      */
-    public getCalendarWeekStatistics (appId: string, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmHourlyDataPoint;  }> {
+    public getCalendarWeekStatistics (appId: string, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmHourlyDataPoint;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/statistics/calendar'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -18295,6 +18329,7 @@ export class ApmApi {
             localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -18340,8 +18375,9 @@ export class ApmApi {
      * @param aggregateDataBy Aggregate data by day \\ week
      * @param dataPointLimit Amount of data points per request
      * @param storeId List of stores to search by
+     * @param {*} [options] Override http request options.
      */
-    public getCallsStatistics (appId: string, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }> {
+    public getCallsStatistics (appId: string, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/statistics/calls/{aggregateDataBy}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'aggregateDataBy' + '}', encodeURIComponent(String(aggregateDataBy)));
@@ -18367,6 +18403,7 @@ export class ApmApi {
             localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -18412,8 +18449,9 @@ export class ApmApi {
      * @param aggregateDataBy Aggregate data by day \\ week
      * @param dataPointLimit Amount of data points per request
      * @param storeId List of stores to search by
+     * @param {*} [options] Override http request options.
      */
-    public getOrderStatistics (appId: string, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmCurrencyDataPoint;  }> {
+    public getOrderStatistics (appId: string, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmCurrencyDataPoint;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/statistics/orders/{aggregateDataBy}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'aggregateDataBy' + '}', encodeURIComponent(String(aggregateDataBy)));
@@ -18439,6 +18477,7 @@ export class ApmApi {
             localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -18484,8 +18523,9 @@ export class ApmApi {
      * @param page Requested page index
      * @param limit Requested page limit
      * @param storeId List of stores to search by
+     * @param {*} [options] Override http request options.
      */
-    public getPaginatedCallList (appId: string, page?: number, limit?: number, storeId?: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPhoneCall;  }> {
+    public getPaginatedCallList (appId: string, page?: number, limit?: number, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPhoneCall;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/calls'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -18509,6 +18549,7 @@ export class ApmApi {
             localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -18603,8 +18644,9 @@ export class AppsApi {
      * @param nameFilter 
      * @param page 
      * @param limit 
+     * @param {*} [options] Override http request options.
      */
-    public getApps (nameFilter?: string, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultApp;  }> {
+    public getApps (nameFilter?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultApp;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -18622,6 +18664,7 @@ export class AppsApi {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -18716,8 +18759,9 @@ export class AuthorizationTokensApi {
      * @param clientId Client identifier
      * @param page Requested page number
      * @param limit Requested page limit
+     * @param {*} [options] Override http request options.
      */
-    public getAuthorizationTokens (clientId: string, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOAuthTokenModel;  }> {
+    public getAuthorizationTokens (clientId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOAuthTokenModel;  }> {
         const localVarPath = this.basePath + '/api/v1.0/authorizationtokens/{clientId}'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
         let localVarQueryParameters: any = {};
@@ -18737,6 +18781,7 @@ export class AuthorizationTokensApi {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -18779,8 +18824,9 @@ export class AuthorizationTokensApi {
      * 
      * @summary Revoke token
      * @param key Token identifier key
+     * @param {*} [options] Override http request options.
      */
-    public revokeToken (key: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public revokeToken (key: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/authorizationtokens/{key}'
             .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
         let localVarQueryParameters: any = {};
@@ -18792,6 +18838,7 @@ export class AuthorizationTokensApi {
             throw new Error('Required parameter key was null or undefined when calling revokeToken.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -18884,8 +18931,9 @@ export class DeliveryZoneApi {
      * @summary Adds a delivery zone to the store id
      * @param storeId Store Id to which the delivery zone will be added
      * @param deliveryZoneBase Optional delivery zone, if not supplied will create a default zone
+     * @param {*} [options] Override http request options.
      */
-    public addDeliveryZone (storeId: number, deliveryZoneBase: DeliveryZoneBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultDeliveryZone;  }> {
+    public addDeliveryZone (storeId: number, deliveryZoneBase: DeliveryZoneBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDeliveryZone;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/deliveryzones'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -18902,6 +18950,7 @@ export class DeliveryZoneApi {
             throw new Error('Required parameter deliveryZoneBase was null or undefined when calling addDeliveryZone.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -18945,8 +18994,9 @@ export class DeliveryZoneApi {
      * 
      * @summary Get all the delivery zones associated with a store
      * @param storeId Store Id to which the delivery zones are associated
+     * @param {*} [options] Override http request options.
      */
-    public getDeliveryZones (storeId: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDeliveryZone;  }> {
+    public getDeliveryZones (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDeliveryZone;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/deliveryzones'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -18958,6 +19008,7 @@ export class DeliveryZoneApi {
             throw new Error('Required parameter storeId was null or undefined when calling getDeliveryZones.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -19001,8 +19052,9 @@ export class DeliveryZoneApi {
      * @summary Removes the existing delivery zone
      * @param storeId Store Id to which the delivery zone belongs
      * @param deliveryZoneId Delivery zone id to be removed
+     * @param {*} [options] Override http request options.
      */
-    public removeDeliveryZone (storeId: number, deliveryZoneId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public removeDeliveryZone (storeId: number, deliveryZoneId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/deliveryzones/{deliveryZoneId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryZoneId' + '}', encodeURIComponent(String(deliveryZoneId)));
@@ -19020,6 +19072,7 @@ export class DeliveryZoneApi {
             throw new Error('Required parameter deliveryZoneId was null or undefined when calling removeDeliveryZone.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -19063,8 +19116,9 @@ export class DeliveryZoneApi {
      * @param storeId Store Id to which the delivery zone belongs
      * @param deliveryZoneId Delivery zone id to be updated
      * @param deliveryZone Delta of delivery zone parameters that need to be changed
+     * @param {*} [options] Override http request options.
      */
-    public updateDeliveryZone (storeId: number, deliveryZoneId: number, deliveryZone: DeliveryZoneBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultDeliveryZone;  }> {
+    public updateDeliveryZone (storeId: number, deliveryZoneId: number, deliveryZone: DeliveryZoneBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDeliveryZone;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/deliveryzones/{deliveryZoneId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryZoneId' + '}', encodeURIComponent(String(deliveryZoneId)));
@@ -19087,6 +19141,7 @@ export class DeliveryZoneApi {
             throw new Error('Required parameter deliveryZone was null or undefined when calling updateDeliveryZone.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -19185,8 +19240,9 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param name Event names to filter in
+     * @param {*} [options] Override http request options.
      */
-    public getCustomerEvents (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getCustomerEvents (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/customer/{customerId}'
             .replace('{' + 'customerId' + '}', encodeURIComponent(String(customerId)));
         let localVarQueryParameters: any = {};
@@ -19218,6 +19274,7 @@ export class EventsApi {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -19267,8 +19324,9 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param name Event names to filter in
+     * @param {*} [options] Override http request options.
      */
-    public getEvents (storeId?: number, whiteLabelId?: number, customerId?: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getEvents (storeId?: number, whiteLabelId?: number, customerId?: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -19306,6 +19364,7 @@ export class EventsApi {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -19348,8 +19407,9 @@ export class EventsApi {
      * 
      * @summary Get event by Id  For technical reasons, the number of records returned is limited to 100.
      * @param eventId Event identifier (Guid)
+     * @param {*} [options] Override http request options.
      */
-    public getEventsById (eventId: string) : Promise<{ response: http.IncomingMessage; body: EventSearchResult;  }> {
+    public getEventsById (eventId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: EventSearchResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/{eventId}'
             .replace('{' + 'eventId' + '}', encodeURIComponent(String(eventId)));
         let localVarQueryParameters: any = {};
@@ -19361,6 +19421,7 @@ export class EventsApi {
             throw new Error('Required parameter eventId was null or undefined when calling getEventsById.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -19408,8 +19469,9 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param name Event names to filter in
+     * @param {*} [options] Override http request options.
      */
-    public getMenuEvents (menuId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getMenuEvents (menuId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/menu/{menuId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -19441,6 +19503,7 @@ export class EventsApi {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -19488,8 +19551,9 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param name Event names to filter in
+     * @param {*} [options] Override http request options.
      */
-    public getOrderEvents (orderId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getOrderEvents (orderId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/order/{orderId}'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
@@ -19521,6 +19585,7 @@ export class EventsApi {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -19568,8 +19633,9 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param name Event names to filter in
+     * @param {*} [options] Override http request options.
      */
-    public getOrderEventsByCustomer (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getOrderEventsByCustomer (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/order';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -19604,6 +19670,7 @@ export class EventsApi {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -19651,8 +19718,9 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param name Event names to filter in
+     * @param {*} [options] Override http request options.
      */
-    public getStoreEvents (storeId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getStoreEvents (storeId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/store/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -19684,6 +19752,7 @@ export class EventsApi {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -19731,8 +19800,9 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param name Event names to filter in
+     * @param {*} [options] Override http request options.
      */
-    public getUserEvents (userId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getUserEvents (userId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/user/{userId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -19764,6 +19834,7 @@ export class EventsApi {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -19811,8 +19882,9 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param name Event names to filter in
+     * @param {*} [options] Override http request options.
      */
-    public getWhiteLabelEvents (whitelabelId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getWhiteLabelEvents (whitelabelId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/whitelabel/{whitelabelId}'
             .replace('{' + 'whitelabelId' + '}', encodeURIComponent(String(whitelabelId)));
         let localVarQueryParameters: any = {};
@@ -19844,6 +19916,7 @@ export class EventsApi {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -19934,13 +20007,15 @@ export class HeartbeatApi {
     }
     /**
      * 
+     * @param {*} [options] Override http request options.
      */
-    public ping () : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public ping (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/heartbeat';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -20037,8 +20112,9 @@ export class HttpRequestResponseLogsApi {
      * @param filterByUserId User id (optional)
      * @param page Page number
      * @param limit Page size
+     * @param {*} [options] Override http request options.
      */
-    public getLogs (start: Date, end: Date, filterByUserId?: number, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultHttpRequestAndResponseLog;  }> {
+    public getLogs (start: Date, end: Date, filterByUserId?: number, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultHttpRequestAndResponseLog;  }> {
         const localVarPath = this.basePath + '/api/v1.0/interactions/logs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -20074,6 +20150,7 @@ export class HttpRequestResponseLogsApi {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -20165,8 +20242,9 @@ export class LightspeedApi {
     /**
      * 
      * @param storeId 
+     * @param {*} [options] Override http request options.
      */
-    public lightspeedGenerateMenu (storeId: number) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public lightspeedGenerateMenu (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/lightspeed/{storeId}/menu/generate'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -20178,6 +20256,7 @@ export class LightspeedApi {
             throw new Error('Required parameter storeId was null or undefined when calling lightspeedGenerateMenu.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -20219,8 +20298,9 @@ export class LightspeedApi {
     /**
      * 
      * @param storeId 
+     * @param {*} [options] Override http request options.
      */
-    public lightspeedGetStoreSettings (storeId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultLightspeedSettings;  }> {
+    public lightspeedGetStoreSettings (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLightspeedSettings;  }> {
         const localVarPath = this.basePath + '/api/v1.0/lightspeed/{storeId}/settings'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -20232,6 +20312,7 @@ export class LightspeedApi {
             throw new Error('Required parameter storeId was null or undefined when calling lightspeedGetStoreSettings.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -20274,8 +20355,9 @@ export class LightspeedApi {
      * 
      * @param storeId 
      * @param lightspeedSettings 
+     * @param {*} [options] Override http request options.
      */
-    public lightspeedSaveStoreSettings (storeId: number, lightspeedSettings: LightspeedSettings) : Promise<{ response: http.IncomingMessage; body: RestApiResultLightspeedSettings;  }> {
+    public lightspeedSaveStoreSettings (storeId: number, lightspeedSettings: LightspeedSettings, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLightspeedSettings;  }> {
         const localVarPath = this.basePath + '/api/v1.0/lightspeed/{storeId}/settings'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -20292,6 +20374,7 @@ export class LightspeedApi {
             throw new Error('Required parameter lightspeedSettings was null or undefined when calling lightspeedSaveStoreSettings.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -20389,8 +20472,9 @@ export class MenuOptionSetItemsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Option set identifier
      * @param menuItemOptionSetItem Option set item
+     * @param {*} [options] Override http request options.
      */
-    public addMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public addMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -20425,6 +20509,7 @@ export class MenuOptionSetItemsApi {
             throw new Error('Required parameter menuItemOptionSetItem was null or undefined when calling addMenuItemOptionSetItem.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -20472,8 +20557,9 @@ export class MenuOptionSetItemsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Option set identifier
      * @param menuItemOptionSetItemId Option set item identifier
+     * @param {*} [options] Override http request options.
      */
-    public deleteOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -20509,6 +20595,7 @@ export class MenuOptionSetItemsApi {
             throw new Error('Required parameter menuItemOptionSetItemId was null or undefined when calling deleteOptionSetItemImage.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -20554,8 +20641,9 @@ export class MenuOptionSetItemsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Option set identifier
      * @param menuItemOptionSetItemId Option set item identifier
+     * @param {*} [options] Override http request options.
      */
-    public getMenuItemOptionSetItemById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuItemOptionSetItem;  }> {
+    public getMenuItemOptionSetItemById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuItemOptionSetItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -20591,6 +20679,7 @@ export class MenuOptionSetItemsApi {
             throw new Error('Required parameter menuItemOptionSetItemId was null or undefined when calling getMenuItemOptionSetItemById.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -20636,8 +20725,9 @@ export class MenuOptionSetItemsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Option set identifier
+     * @param {*} [options] Override http request options.
      */
-    public getMenuItemOptionSetItems (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuItemOptionSetItem;  }> {
+    public getMenuItemOptionSetItems (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuItemOptionSetItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -20667,6 +20757,7 @@ export class MenuOptionSetItemsApi {
             throw new Error('Required parameter optionSetId was null or undefined when calling getMenuItemOptionSetItems.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -20713,8 +20804,9 @@ export class MenuOptionSetItemsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Option set identifier
      * @param menuItemOptionSetItemId Option set item identifier
+     * @param {*} [options] Override http request options.
      */
-    public removeMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public removeMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -20750,6 +20842,7 @@ export class MenuOptionSetItemsApi {
             throw new Error('Required parameter menuItemOptionSetItemId was null or undefined when calling removeMenuItemOptionSetItem.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -20797,8 +20890,9 @@ export class MenuOptionSetItemsApi {
      * @param menuItemOptionSetItemId Option set item identifier
      * @param menuItemOptionSetItem Option set item (delta)
      * @param undoAfter An optional time period, in hours, after which the hide-section operaton will be undone.
+     * @param {*} [options] Override http request options.
      */
-    public updateMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase, undoAfter?: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase, undoAfter?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -20843,6 +20937,7 @@ export class MenuOptionSetItemsApi {
             localVarQueryParameters['undoAfter'] = ObjectSerializer.serialize(undoAfter, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -20890,8 +20985,9 @@ export class MenuOptionSetItemsApi {
      * @param optionSetId Option set identifier
      * @param menuItemOptionSetItemId Option set item identifier
      * @param Image Option set item image
+     * @param {*} [options] Override http request options.
      */
-    public uploadOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, Image: Buffer) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public uploadOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -20932,6 +21028,7 @@ export class MenuOptionSetItemsApi {
             throw new Error('Required parameter Image was null or undefined when calling uploadOptionSetItemImage.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -21032,8 +21129,9 @@ export class MenuOptionSetsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
      * @param menuItemOptionSet Menu item option set
+     * @param {*} [options] Override http request options.
      */
-    public createMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, menuItemOptionSet: MenuItemOptionSetBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public createMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, menuItemOptionSet: MenuItemOptionSetBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -21062,6 +21160,7 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter menuItemOptionSet was null or undefined when calling createMenuItemOptionSet.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -21108,8 +21207,9 @@ export class MenuOptionSetsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param menuSectionId Menu section identifier
      * @param optionSetId Option set identifier
+     * @param {*} [options] Override http request options.
      */
-    public deleteMenuItemOptionSet (menuId: number, menuSectionItemId: number, menuSectionId: number, optionSetId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenuItemOptionSet (menuId: number, menuSectionItemId: number, menuSectionId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
@@ -21139,6 +21239,7 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter optionSetId was null or undefined when calling deleteMenuItemOptionSet.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -21183,8 +21284,9 @@ export class MenuOptionSetsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Option set identifier
+     * @param {*} [options] Override http request options.
      */
-    public deleteOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -21214,6 +21316,7 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter optionSetId was null or undefined when calling deleteOptionSetImage.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -21258,8 +21361,9 @@ export class MenuOptionSetsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Menu item option set identifier
+     * @param {*} [options] Override http request options.
      */
-    public getMenuItemOptionSetById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuItemOptionSet;  }> {
+    public getMenuItemOptionSetById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuItemOptionSet;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -21289,6 +21393,7 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter optionSetId was null or undefined when calling getMenuItemOptionSetById.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -21333,8 +21438,9 @@ export class MenuOptionSetsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
+     * @param {*} [options] Override http request options.
      */
-    public getMenuItemOptionSets (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuItemOptionSet;  }> {
+    public getMenuItemOptionSets (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuItemOptionSet;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -21358,6 +21464,7 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter menuSectionItemId was null or undefined when calling getMenuItemOptionSets.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -21404,8 +21511,9 @@ export class MenuOptionSetsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Option set identifier
      * @param menuItemOptionSet Menu item option set (delta)
+     * @param {*} [options] Override http request options.
      */
-    public updateMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSet: MenuItemOptionSetBase) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSet: MenuItemOptionSetBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -21440,6 +21548,7 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter menuItemOptionSet was null or undefined when calling updateMenuItemOptionSet.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -21486,8 +21595,9 @@ export class MenuOptionSetsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param optionSetId Option set identifier
      * @param Image Option set image
+     * @param {*} [options] Override http request options.
      */
-    public uploadOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, Image: Buffer) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public uploadOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -21522,6 +21632,7 @@ export class MenuOptionSetsApi {
             throw new Error('Required parameter Image was null or undefined when calling uploadOptionSetImage.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -21621,8 +21732,9 @@ export class MenuSectionItemsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
+     * @param {*} [options] Override http request options.
      */
-    public cloneMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSectionItem;  }> {
+    public cloneMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSectionItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/clone'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -21646,6 +21758,7 @@ export class MenuSectionItemsApi {
             throw new Error('Required parameter menuSectionItemId was null or undefined when calling cloneMenuSectionItem.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -21690,8 +21803,9 @@ export class MenuSectionItemsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      * @param menuSectionItem Menu section item
+     * @param {*} [options] Override http request options.
      */
-    public createMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItem: MenuSectionItemBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public createMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItem: MenuSectionItemBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -21714,6 +21828,7 @@ export class MenuSectionItemsApi {
             throw new Error('Required parameter menuSectionItem was null or undefined when calling createMenuSectionItem.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -21759,8 +21874,9 @@ export class MenuSectionItemsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
+     * @param {*} [options] Override http request options.
      */
-    public deleteMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -21784,6 +21900,7 @@ export class MenuSectionItemsApi {
             throw new Error('Required parameter menuSectionItemId was null or undefined when calling deleteMenuSectionItem.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -21827,8 +21944,9 @@ export class MenuSectionItemsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
+     * @param {*} [options] Override http request options.
      */
-    public deleteMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -21852,6 +21970,7 @@ export class MenuSectionItemsApi {
             throw new Error('Required parameter menuSectionItemId was null or undefined when calling deleteMenuSectionItemImage.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -21895,8 +22014,9 @@ export class MenuSectionItemsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu item identifier
+     * @param {*} [options] Override http request options.
      */
-    public getMenuItemById (menuId: number, menuSectionId: number, menuSectionItemId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSectionItem;  }> {
+    public getMenuItemById (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSectionItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -21920,6 +22040,7 @@ export class MenuSectionItemsApi {
             throw new Error('Required parameter menuSectionItemId was null or undefined when calling getMenuItemById.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -21963,8 +22084,9 @@ export class MenuSectionItemsApi {
      * @summary Get menu items
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
+     * @param {*} [options] Override http request options.
      */
-    public getMenuItems (menuId: number, menuSectionId: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuSectionItem;  }> {
+    public getMenuItems (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuSectionItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -21982,6 +22104,7 @@ export class MenuSectionItemsApi {
             throw new Error('Required parameter menuSectionId was null or undefined when calling getMenuItems.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -22028,8 +22151,9 @@ export class MenuSectionItemsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param menuSectionItem Menu section item (delta)
      * @param undoAfter An optional time period, in hours, after which the hide-section operaton will be undone.
+     * @param {*} [options] Override http request options.
      */
-    public updateMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, menuSectionItem: MenuSectionItemBase, undoAfter?: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, menuSectionItem: MenuSectionItemBase, undoAfter?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -22062,6 +22186,7 @@ export class MenuSectionItemsApi {
             localVarQueryParameters['undoAfter'] = ObjectSerializer.serialize(undoAfter, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -22107,8 +22232,9 @@ export class MenuSectionItemsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
      * @param Image Menu section item image
+     * @param {*} [options] Override http request options.
      */
-    public uploadMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, Image: Buffer) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public uploadMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -22137,6 +22263,7 @@ export class MenuSectionItemsApi {
             throw new Error('Required parameter Image was null or undefined when calling uploadMenuSectionItemImage.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -22235,8 +22362,9 @@ export class MenuSectionsApi {
      * @summary Clone menu section
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
+     * @param {*} [options] Override http request options.
      */
-    public cloneMenuSection (menuId: number, menuSectionId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSection;  }> {
+    public cloneMenuSection (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSection;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/clone'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -22254,6 +22382,7 @@ export class MenuSectionsApi {
             throw new Error('Required parameter menuSectionId was null or undefined when calling cloneMenuSection.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -22299,8 +22428,9 @@ export class MenuSectionsApi {
      * @param menuSectionId Menu section identifier
      * @param dayOfWeek 
      * @param businessHoursPeriod 
+     * @param {*} [options] Override http request options.
      */
-    public createMenuAvailabilityForDay (menuId: number, menuSectionId: number, dayOfWeek: 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday', businessHoursPeriod: BusinessHoursPeriodBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public createMenuAvailabilityForDay (menuId: number, menuSectionId: number, dayOfWeek: 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday', businessHoursPeriod: BusinessHoursPeriodBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/availability/times/{dayOfWeek}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -22329,6 +22459,7 @@ export class MenuSectionsApi {
             throw new Error('Required parameter businessHoursPeriod was null or undefined when calling createMenuAvailabilityForDay.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -22373,8 +22504,9 @@ export class MenuSectionsApi {
      * @summary Create menu section
      * @param menuId Menu identifier
      * @param menuSection Menu section
+     * @param {*} [options] Override http request options.
      */
-    public createMenuSection (menuId: number, menuSection: MenuSectionBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public createMenuSection (menuId: number, menuSection: MenuSectionBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -22391,6 +22523,7 @@ export class MenuSectionsApi {
             throw new Error('Required parameter menuSection was null or undefined when calling createMenuSection.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -22436,8 +22569,9 @@ export class MenuSectionsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      * @param menuSectionAvailability 
+     * @param {*} [options] Override http request options.
      */
-    public createMenuSectionAvailability (menuId: number, menuSectionId: number, menuSectionAvailability: MenuSectionAvailabilityBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public createMenuSectionAvailability (menuId: number, menuSectionId: number, menuSectionAvailability: MenuSectionAvailabilityBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/availability'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -22460,6 +22594,7 @@ export class MenuSectionsApi {
             throw new Error('Required parameter menuSectionAvailability was null or undefined when calling createMenuSectionAvailability.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -22504,8 +22639,9 @@ export class MenuSectionsApi {
      * @summary Delete menu section
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
+     * @param {*} [options] Override http request options.
      */
-    public deleteMenuSection (menuId: number, menuSectionId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenuSection (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -22523,6 +22659,7 @@ export class MenuSectionsApi {
             throw new Error('Required parameter menuSectionId was null or undefined when calling deleteMenuSection.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -22565,8 +22702,9 @@ export class MenuSectionsApi {
      * @summary Delete menu section image
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
+     * @param {*} [options] Override http request options.
      */
-    public deleteMenuSectionImage (menuId: number, menuSectionId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenuSectionImage (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -22584,6 +22722,7 @@ export class MenuSectionsApi {
             throw new Error('Required parameter menuSectionId was null or undefined when calling deleteMenuSectionImage.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -22626,8 +22765,9 @@ export class MenuSectionsApi {
      * @summary Get menu section by identifier
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
+     * @param {*} [options] Override http request options.
      */
-    public getMenuSectionById (menuId: number, menuSectionId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSection;  }> {
+    public getMenuSectionById (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSection;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -22645,6 +22785,7 @@ export class MenuSectionsApi {
             throw new Error('Required parameter menuSectionId was null or undefined when calling getMenuSectionById.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -22687,8 +22828,9 @@ export class MenuSectionsApi {
      * 
      * @summary Get menu sections
      * @param menuId Menu identifier
+     * @param {*} [options] Override http request options.
      */
-    public getMenuSections (menuId: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuSection;  }> {
+    public getMenuSections (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuSection;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -22700,6 +22842,7 @@ export class MenuSectionsApi {
             throw new Error('Required parameter menuId was null or undefined when calling getMenuSections.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -22745,8 +22888,9 @@ export class MenuSectionsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSection Menu section changes (delta)
      * @param undoAfter An optional time period, in hours, after which the hide-section operaton will be undone.
+     * @param {*} [options] Override http request options.
      */
-    public updateMenuSection (menuId: number, menuSectionId: number, menuSection: MenuSectionBase, undoAfter?: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateMenuSection (menuId: number, menuSectionId: number, menuSection: MenuSectionBase, undoAfter?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -22773,6 +22917,7 @@ export class MenuSectionsApi {
             localVarQueryParameters['undoAfter'] = ObjectSerializer.serialize(undoAfter, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -22817,8 +22962,9 @@ export class MenuSectionsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      * @param Image Menu section image
+     * @param {*} [options] Override http request options.
      */
-    public uploadMenuSectionImage (menuId: number, menuSectionId: number, Image: Buffer) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public uploadMenuSectionImage (menuId: number, menuSectionId: number, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -22841,6 +22987,7 @@ export class MenuSectionsApi {
             throw new Error('Required parameter Image was null or undefined when calling uploadMenuSectionImage.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -22938,8 +23085,9 @@ export class MenusApi {
      * 
      * @summary Delete menu image
      * @param menuId Menu identifier
+     * @param {*} [options] Override http request options.
      */
-    public deleteMenuImage (menuId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenuImage (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -22951,6 +23099,7 @@ export class MenusApi {
             throw new Error('Required parameter menuId was null or undefined when calling deleteMenuImage.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -22995,8 +23144,9 @@ export class MenusApi {
      * @param storeId Store identifier
      * @param menuItemId Menu item identifier
      * @param key Metadata key
+     * @param {*} [options] Override http request options.
      */
-    public deleteMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, key: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, key: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -23026,6 +23176,7 @@ export class MenusApi {
             throw new Error('Required parameter key was null or undefined when calling deleteMenuItemMetadata.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -23067,8 +23218,9 @@ export class MenusApi {
      * 
      * @summary Get menu by identifier
      * @param menuId Menu identifier
+     * @param {*} [options] Override http request options.
      */
-    public getMenuById (menuId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenu;  }> {
+    public getMenuById (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenu;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -23080,6 +23232,7 @@ export class MenusApi {
             throw new Error('Required parameter menuId was null or undefined when calling getMenuById.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -23124,8 +23277,9 @@ export class MenusApi {
      * @param menuId Menu identifier
      * @param storeId Store identifier
      * @param menuItemId Menu item identifier
+     * @param {*} [options] Override http request options.
      */
-    public getMenuItemMetadata (menuId: number, storeId: number, menuItemId: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMetadata;  }> {
+    public getMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -23149,6 +23303,7 @@ export class MenusApi {
             throw new Error('Required parameter menuItemId was null or undefined when calling getMenuItemMetadata.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -23194,8 +23349,9 @@ export class MenusApi {
      * @param storeId Store identifier
      * @param menuItemId Menu item identifier
      * @param key Metadata key
+     * @param {*} [options] Override http request options.
      */
-    public getMenuItemMetadata_1 (menuId: number, storeId: number, menuItemId: number, key: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public getMenuItemMetadata_1 (menuId: number, storeId: number, menuItemId: number, key: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -23225,6 +23381,7 @@ export class MenusApi {
             throw new Error('Required parameter key was null or undefined when calling getMenuItemMetadata_1.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -23268,8 +23425,9 @@ export class MenusApi {
      * @param menuId Menu identifier
      * @param storeId Store identifier
      * @param optionSetItemId Menu item option set item identifier
+     * @param {*} [options] Override http request options.
      */
-    public getMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultMetadata;  }> {
+    public getMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/optionsetitem/{optionSetItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -23293,6 +23451,7 @@ export class MenusApi {
             throw new Error('Required parameter optionSetItemId was null or undefined when calling getMenuItemOptionSetItemMetadata.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -23338,8 +23497,9 @@ export class MenusApi {
      * @param storeId Store identifier
      * @param menuItemId Menu item identifier
      * @param metadata Metadata object
+     * @param {*} [options] Override http request options.
      */
-    public setMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, metadata: Metadata) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public setMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, metadata: Metadata, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -23368,6 +23528,7 @@ export class MenusApi {
             throw new Error('Required parameter metadata was null or undefined when calling setMenuItemMetadata.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -23413,8 +23574,9 @@ export class MenusApi {
      * @param storeId Store identifier
      * @param optionSetItemId Menu item option set item identifier
      * @param metadata Metadata object
+     * @param {*} [options] Override http request options.
      */
-    public setMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number, metadata: Metadata) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public setMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number, metadata: Metadata, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/optionsetitem/{optionSetItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -23443,6 +23605,7 @@ export class MenusApi {
             throw new Error('Required parameter metadata was null or undefined when calling setMenuItemOptionSetItemMetadata.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -23486,8 +23649,9 @@ export class MenusApi {
      * @summary Update menu
      * @param menuId Menu identifier
      * @param menu Menu (delta)
+     * @param {*} [options] Override http request options.
      */
-    public updateMenu (menuId: number, menu: MenuBase) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateMenu (menuId: number, menu: MenuBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -23504,6 +23668,7 @@ export class MenusApi {
             throw new Error('Required parameter menu was null or undefined when calling updateMenu.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -23547,8 +23712,9 @@ export class MenusApi {
      * @summary Upload menu image
      * @param menuId Menu identifier
      * @param Image Menu image
+     * @param {*} [options] Override http request options.
      */
-    public uploadMenuImage (menuId: number, Image: Buffer) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public uploadMenuImage (menuId: number, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -23565,6 +23731,7 @@ export class MenusApi {
             throw new Error('Required parameter Image was null or undefined when calling uploadMenuImage.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -23663,8 +23830,9 @@ export class OAuthClientsApi {
      * @summary Create OAuth client redirect uri
      * @param oAuthClientId OAuth client identifier
      * @param uri Redirect uri
+     * @param {*} [options] Override http request options.
      */
-    public addRedirectUri (oAuthClientId: string, uri: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultOauthClientRedirectUri;  }> {
+    public addRedirectUri (oAuthClientId: string, uri: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOauthClientRedirectUri;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis'
             .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)));
         let localVarQueryParameters: any = {};
@@ -23681,6 +23849,7 @@ export class OAuthClientsApi {
             throw new Error('Required parameter uri was null or undefined when calling addRedirectUri.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -23724,8 +23893,9 @@ export class OAuthClientsApi {
      * 
      * @summary Create OAuth client
      * @param oAuthClient OAuth client
+     * @param {*} [options] Override http request options.
      */
-    public createOAuthClient (oAuthClient: OAuthClient) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public createOAuthClient (oAuthClient: OAuthClient, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -23736,6 +23906,7 @@ export class OAuthClientsApi {
             throw new Error('Required parameter oAuthClient was null or undefined when calling createOAuthClient.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -23778,8 +23949,9 @@ export class OAuthClientsApi {
      * 
      * @summary Delete OAuth client
      * @param oAuthClientId OAuth client identifier
+     * @param {*} [options] Override http request options.
      */
-    public deleteOAuthClient (oAuthClientId: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteOAuthClient (oAuthClientId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}'
             .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)));
         let localVarQueryParameters: any = {};
@@ -23791,6 +23963,7 @@ export class OAuthClientsApi {
             throw new Error('Required parameter oAuthClientId was null or undefined when calling deleteOAuthClient.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -23832,8 +24005,9 @@ export class OAuthClientsApi {
      * 
      * @summary Get OAuth client by identifier
      * @param clientId OAuth client identifier
+     * @param {*} [options] Override http request options.
      */
-    public getOAuthClientByClientId (clientId: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultOAuthClient;  }> {
+    public getOAuthClientByClientId (clientId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOAuthClient;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{clientId}'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
         let localVarQueryParameters: any = {};
@@ -23845,6 +24019,7 @@ export class OAuthClientsApi {
             throw new Error('Required parameter clientId was null or undefined when calling getOAuthClientByClientId.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -23887,8 +24062,9 @@ export class OAuthClientsApi {
      * 
      * @summary Get OAuth client secret key
      * @param clientId OAuth client identifier
+     * @param {*} [options] Override http request options.
      */
-    public getOAuthClientSecret (clientId: string) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public getOAuthClientSecret (clientId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{clientId}/secret'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
         let localVarQueryParameters: any = {};
@@ -23900,6 +24076,7 @@ export class OAuthClientsApi {
             throw new Error('Required parameter clientId was null or undefined when calling getOAuthClientSecret.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -23941,13 +24118,15 @@ export class OAuthClientsApi {
     /**
      * 
      * @summary Get all OAuth client
+     * @param {*} [options] Override http request options.
      */
-    public getOAuthClients () : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOAuthClient;  }> {
+    public getOAuthClients (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOAuthClient;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -23990,8 +24169,9 @@ export class OAuthClientsApi {
      * 
      * @summary Get OAuth access token for client
      * @param oAuthClientId OAuth client identifier
+     * @param {*} [options] Override http request options.
      */
-    public getOauthAccessToken (oAuthClientId: string) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public getOauthAccessToken (oAuthClientId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/accesstoken'
             .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)));
         let localVarQueryParameters: any = {};
@@ -24003,6 +24183,7 @@ export class OAuthClientsApi {
             throw new Error('Required parameter oAuthClientId was null or undefined when calling getOauthAccessToken.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -24045,8 +24226,9 @@ export class OAuthClientsApi {
      * 
      * @summary Get OAuth client redirect uris
      * @param oAuthClientId OAuth client identifier
+     * @param {*} [options] Override http request options.
      */
-    public getRedirectUris (oAuthClientId: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOauthClientRedirectUri;  }> {
+    public getRedirectUris (oAuthClientId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOauthClientRedirectUri;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis'
             .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)));
         let localVarQueryParameters: any = {};
@@ -24058,6 +24240,7 @@ export class OAuthClientsApi {
             throw new Error('Required parameter oAuthClientId was null or undefined when calling getRedirectUris.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -24101,8 +24284,9 @@ export class OAuthClientsApi {
      * @summary Delete OAuth client redirect uri
      * @param oAuthClientId OAuth client identifier
      * @param uriId Redirect uri identifier
+     * @param {*} [options] Override http request options.
      */
-    public removeRedirectUri (oAuthClientId: string, uriId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public removeRedirectUri (oAuthClientId: string, uriId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis/{uriId}'
             .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)))
             .replace('{' + 'uriId' + '}', encodeURIComponent(String(uriId)));
@@ -24120,6 +24304,7 @@ export class OAuthClientsApi {
             throw new Error('Required parameter uriId was null or undefined when calling removeRedirectUri.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -24212,8 +24397,9 @@ export class OrdersApi {
      * @summary Accept order
      * @param id Order identifier
      * @param acceptObject 
+     * @param {*} [options] Override http request options.
      */
-    public acceptOrder (id: number, acceptObject: Accept) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public acceptOrder (id: number, acceptObject: Accept, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}/accept'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -24230,6 +24416,7 @@ export class OrdersApi {
             throw new Error('Required parameter acceptObject was null or undefined when calling acceptOrder.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -24272,8 +24459,9 @@ export class OrdersApi {
      * 
      * @summary Get order by ID
      * @param id Order identifier
+     * @param {*} [options] Override http request options.
      */
-    public getOrderById (id: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrder;  }> {
+    public getOrderById (id: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -24285,6 +24473,7 @@ export class OrdersApi {
             throw new Error('Required parameter id was null or undefined when calling getOrderById.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -24330,8 +24519,9 @@ export class OrdersApi {
      * @param state Order states
      * @param page Requested page number
      * @param limit Requested page limit
+     * @param {*} [options] Override http request options.
      */
-    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
+    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -24353,6 +24543,7 @@ export class OrdersApi {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -24400,8 +24591,9 @@ export class OrdersApi {
      * @param state Order states
      * @param page Requested page number
      * @param limit Requested page limit
+     * @param {*} [options] Override http request options.
      */
-    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
+    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/orders/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -24433,6 +24625,7 @@ export class OrdersApi {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -24476,8 +24669,9 @@ export class OrdersApi {
      * @summary Refund order
      * @param id Order identifier
      * @param refundObject 
+     * @param {*} [options] Override http request options.
      */
-    public refundOrder (id: number, refundObject: Refund) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public refundOrder (id: number, refundObject: Refund, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}/refund'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -24494,6 +24688,7 @@ export class OrdersApi {
             throw new Error('Required parameter refundObject was null or undefined when calling refundOrder.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -24537,8 +24732,9 @@ export class OrdersApi {
      * @summary Reject order
      * @param id Order identifier
      * @param rejectObject 
+     * @param {*} [options] Override http request options.
      */
-    public rejectOrder (id: number, rejectObject: Reject) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public rejectOrder (id: number, rejectObject: Reject, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}/reject'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -24555,6 +24751,7 @@ export class OrdersApi {
             throw new Error('Required parameter rejectObject was null or undefined when calling rejectOrder.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -24647,8 +24844,9 @@ export class ProcessingFeeConfigsApi {
      * 
      * @summary Get processing fee configs by store identifiers
      * @param storeIds Store identifiers
+     * @param {*} [options] Override http request options.
      */
-    public getProcessingFeeConfigsByStoreIds (storeIds: Array<number>) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }> {
+    public getProcessingFeeConfigsByStoreIds (storeIds: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/processingfeeconfigs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -24663,6 +24861,7 @@ export class ProcessingFeeConfigsApi {
             localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -24756,8 +24955,9 @@ export class StoreGroupsApi {
      * @summary Creates a Store Group  It will be attached to an existing App
      * @param appNameId App Name Id
      * @param storeGroup Store group definition
+     * @param {*} [options] Override http request options.
      */
-    public createStoreGroup (appNameId: string, storeGroup: StoreGroupBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroup;  }> {
+    public createStoreGroup (appNameId: string, storeGroup: StoreGroupBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroup;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appNameId}/storegroups'
             .replace('{' + 'appNameId' + '}', encodeURIComponent(String(appNameId)));
         let localVarQueryParameters: any = {};
@@ -24774,6 +24974,7 @@ export class StoreGroupsApi {
             throw new Error('Required parameter storeGroup was null or undefined when calling createStoreGroup.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -24817,8 +25018,9 @@ export class StoreGroupsApi {
      * 
      * @summary Returns a Store Groups
      * @param storeGroupId Store Group Id
+     * @param {*} [options] Override http request options.
      */
-    public getStoreGroup (storeGroupId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroup;  }> {
+    public getStoreGroup (storeGroupId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroup;  }> {
         const localVarPath = this.basePath + '/api/v1.0/storegroups/{storeGroupId}'
             .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)));
         let localVarQueryParameters: any = {};
@@ -24830,6 +25032,7 @@ export class StoreGroupsApi {
             throw new Error('Required parameter storeGroupId was null or undefined when calling getStoreGroup.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -24875,8 +25078,9 @@ export class StoreGroupsApi {
      * @param searchQuery Search query
      * @param page Requested page index
      * @param limit Requested page limit
+     * @param {*} [options] Override http request options.
      */
-    public getStoreGroups (appNameId: string, searchQuery?: string, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreGroup;  }> {
+    public getStoreGroups (appNameId: string, searchQuery?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreGroup;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appNameId}/storegroups'
             .replace('{' + 'appNameId' + '}', encodeURIComponent(String(appNameId)));
         let localVarQueryParameters: any = {};
@@ -24900,6 +25104,7 @@ export class StoreGroupsApi {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -24942,8 +25147,9 @@ export class StoreGroupsApi {
      * 
      * @summary Deletes a Store Group  Can only remove a store group if there is no stores attached to the group
      * @param storeGroupId Store Group Id
+     * @param {*} [options] Override http request options.
      */
-    public removeStoreGroup (storeGroupId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public removeStoreGroup (storeGroupId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/storegroups/{storeGroupId}'
             .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)));
         let localVarQueryParameters: any = {};
@@ -24955,6 +25161,7 @@ export class StoreGroupsApi {
             throw new Error('Required parameter storeGroupId was null or undefined when calling removeStoreGroup.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -24997,8 +25204,9 @@ export class StoreGroupsApi {
      * @summary Updates Store Group
      * @param storeGroupId Store Group Id
      * @param storeGroup Store Group Delta
+     * @param {*} [options] Override http request options.
      */
-    public updateStoreGroup (storeGroupId: number, storeGroup: StoreGroupBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroupBase;  }> {
+    public updateStoreGroup (storeGroupId: number, storeGroup: StoreGroupBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroupBase;  }> {
         const localVarPath = this.basePath + '/api/v1.0/storegroups/{storeGroupId}'
             .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)));
         let localVarQueryParameters: any = {};
@@ -25015,6 +25223,7 @@ export class StoreGroupsApi {
             throw new Error('Required parameter storeGroup was null or undefined when calling updateStoreGroup.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -25109,8 +25318,9 @@ export class StoresApi {
      * @summary Clone store with store clone settings
      * @param storeId Store identifier
      * @param settings Settings for cloning the store
+     * @param {*} [options] Override http request options.
      */
-    public cloneStore (storeId: number, settings: StoreCloneSettings) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
+    public cloneStore (storeId: number, settings: StoreCloneSettings, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/clone'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -25127,6 +25337,7 @@ export class StoresApi {
             throw new Error('Required parameter settings was null or undefined when calling cloneStore.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -25171,8 +25382,9 @@ export class StoresApi {
      * @summary Create Business Hours Override for a store
      * @param storeId Store identifier
      * @param businessHoursOverride Business Hours Override
+     * @param {*} [options] Override http request options.
      */
-    public createBusinessHoursOverrideByStoreId (storeId: number, businessHoursOverride: BusinessHoursOverrideBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursOverride;  }> {
+    public createBusinessHoursOverrideByStoreId (storeId: number, businessHoursOverride: BusinessHoursOverrideBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursOverride;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/businesshoursoverrides'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -25189,6 +25401,7 @@ export class StoresApi {
             throw new Error('Required parameter businessHoursOverride was null or undefined when calling createBusinessHoursOverrideByStoreId.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -25233,8 +25446,9 @@ export class StoresApi {
      * @summary Create store with Store Group identifier
      * @param storeGroupId Store Group identifier
      * @param store Store
+     * @param {*} [options] Override http request options.
      */
-    public createStore (storeGroupId: number, store: StoreCreateBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
+    public createStore (storeGroupId: number, store: StoreCreateBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -25254,6 +25468,7 @@ export class StoresApi {
             localVarQueryParameters['storeGroupId'] = ObjectSerializer.serialize(storeGroupId, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -25298,8 +25513,9 @@ export class StoresApi {
      * @summary Delete Business Hours Override for a store
      * @param storeId 
      * @param businessHoursOverrideId 
+     * @param {*} [options] Override http request options.
      */
-    public deleteBusinessHoursOverride (storeId: number, businessHoursOverrideId: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
+    public deleteBusinessHoursOverride (storeId: number, businessHoursOverrideId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/businesshoursoverrides/{businessHoursOverrideId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'businessHoursOverrideId' + '}', encodeURIComponent(String(businessHoursOverrideId)));
@@ -25317,6 +25533,7 @@ export class StoresApi {
             throw new Error('Required parameter businessHoursOverrideId was null or undefined when calling deleteBusinessHoursOverride.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -25360,8 +25577,9 @@ export class StoresApi {
      * @summary Get Bussiness hours
      * @param storeId Store identifier
      * @param deliveryType Deliery type
+     * @param {*} [options] Override http request options.
      */
-    public getBusinessHours (storeId: number, deliveryType: 'Delivery' | 'Pickup') : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultBusinessHoursPeriod;  }> {
+    public getBusinessHours (storeId: number, deliveryType: 'Delivery' | 'Pickup', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultBusinessHoursPeriod;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/availability/{deliveryType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
@@ -25379,6 +25597,7 @@ export class StoresApi {
             throw new Error('Required parameter deliveryType was null or undefined when calling getBusinessHours.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -25424,8 +25643,9 @@ export class StoresApi {
      * @param after Return results that ended after this datetime. Default value is the current datetime.
      * @param page Requested page index
      * @param limit Requested page limit
+     * @param {*} [options] Override http request options.
      */
-    public getBusinessHoursOverrideByStoreId (storeId: number, after?: Date, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultBusinessHoursOverride;  }> {
+    public getBusinessHoursOverrideByStoreId (storeId: number, after?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultBusinessHoursOverride;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/businesshoursoverrides'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -25449,6 +25669,7 @@ export class StoresApi {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -25492,8 +25713,9 @@ export class StoresApi {
      * @summary Get processing fee configs by store identifier
      * @param storeId Store identifier
      * @param appNameId App Name Id(Not used, still here for compatability reasons)
+     * @param {*} [options] Override http request options.
      */
-    public getProcessingFeeConfigsByStoreId (storeId: number, appNameId?: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }> {
+    public getProcessingFeeConfigsByStoreId (storeId: number, appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -25509,6 +25731,7 @@ export class StoresApi {
             localVarQueryParameters['appNameId'] = ObjectSerializer.serialize(appNameId, "string");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -25553,8 +25776,9 @@ export class StoresApi {
      * @param storeId Store identifier
      * @param paymentAccountType 
      * @param appNameId App Name Id(Not used, still here for compatability reasons)
+     * @param {*} [options] Override http request options.
      */
-    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: 'Card' | 'Cash' | 'Ideal' | 'Bancontact' | 'Giropay' | 'Eps', appNameId?: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }> {
+    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: 'Card' | 'Cash' | 'Ideal' | 'Bancontact' | 'Giropay' | 'Eps', appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs/{paymentAccountType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'paymentAccountType' + '}', encodeURIComponent(String(paymentAccountType)));
@@ -25576,6 +25800,7 @@ export class StoresApi {
             localVarQueryParameters['appNameId'] = ObjectSerializer.serialize(appNameId, "string");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -25618,8 +25843,9 @@ export class StoresApi {
      * 
      * @summary Get store by identifier
      * @param storeId Store identifier
+     * @param {*} [options] Override http request options.
      */
-    public getStoreById (storeId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
+    public getStoreById (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -25631,6 +25857,7 @@ export class StoresApi {
             throw new Error('Required parameter storeId was null or undefined when calling getStoreById.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -25676,8 +25903,9 @@ export class StoresApi {
      * @param page Requested page index
      * @param limit Requested page limit
      * @param storeGroupId Store Group Id
+     * @param {*} [options] Override http request options.
      */
-    public getStores (searchQuery?: string, page?: number, limit?: number, storeGroupId?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }> {
+    public getStores (searchQuery?: string, page?: number, limit?: number, storeGroupId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -25699,6 +25927,7 @@ export class StoresApi {
             localVarQueryParameters['storeGroupId'] = ObjectSerializer.serialize(storeGroupId, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -25744,8 +25973,9 @@ export class StoresApi {
      * @param searchQuery Search query
      * @param page Requested page index
      * @param limit Requested page limit
+     * @param {*} [options] Override http request options.
      */
-    public getStoresByAppId (appId: string, searchQuery?: string, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }> {
+    public getStoresByAppId (appId: string, searchQuery?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -25769,6 +25999,7 @@ export class StoresApi {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -25813,8 +26044,9 @@ export class StoresApi {
      * @param storeId Store identifier
      * @param deliveryType Deliery type
      * @param businessHoursPeriod Business Hours Period
+     * @param {*} [options] Override http request options.
      */
-    public setBusinessHours (storeId: number, deliveryType: 'Delivery' | 'Pickup', businessHoursPeriod: BusinessHoursPeriodBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursPeriod;  }> {
+    public setBusinessHours (storeId: number, deliveryType: 'Delivery' | 'Pickup', businessHoursPeriod: BusinessHoursPeriodBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursPeriod;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/availability/{deliveryType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
@@ -25837,6 +26069,7 @@ export class StoresApi {
             throw new Error('Required parameter businessHoursPeriod was null or undefined when calling setBusinessHours.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -25881,8 +26114,9 @@ export class StoresApi {
      * @summary Update store by identifier
      * @param storeId Store Group identifier
      * @param store Store
+     * @param {*} [options] Override http request options.
      */
-    public updateStore (storeId: number, store: StoreBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
+    public updateStore (storeId: number, store: StoreBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -25899,6 +26133,7 @@ export class StoresApi {
             throw new Error('Required parameter store was null or undefined when calling updateStore.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -25943,8 +26178,9 @@ export class StoresApi {
      * @summary Update store address
      * @param storeId Store identifier
      * @param storeAddress Store address
+     * @param {*} [options] Override http request options.
      */
-    public updateStoreAddress (storeId: number, storeAddress: StoreAddressBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreAddress;  }> {
+    public updateStoreAddress (storeId: number, storeAddress: StoreAddressBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreAddress;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/address'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -25961,6 +26197,7 @@ export class StoresApi {
             throw new Error('Required parameter storeAddress was null or undefined when calling updateStoreAddress.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -26006,8 +26243,9 @@ export class StoresApi {
      * @param storeId Store identifier
      * @param coordinates Store address coordinates
      * @param appNameId App Name Id(Not used, still here for compatability reasons)
+     * @param {*} [options] Override http request options.
      */
-    public updateStoreAddressCoordinates (storeId: number, coordinates: Coordinates, appNameId?: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultCoordinates;  }> {
+    public updateStoreAddressCoordinates (storeId: number, coordinates: Coordinates, appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCoordinates;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/address/coordinates'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -26028,6 +26266,7 @@ export class StoresApi {
             localVarQueryParameters['appNameId'] = ObjectSerializer.serialize(appNameId, "string");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -26121,8 +26360,9 @@ export class StuartApi {
      * 
      * @param jobId 
      * @param storeId 
+     * @param {*} [options] Override http request options.
      */
-    public stuartCancelJob (jobId: number, storeId: number) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public stuartCancelJob (jobId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stuart/jobs/{jobId}'
             .replace('{' + 'jobId' + '}', encodeURIComponent(String(jobId)));
         let localVarQueryParameters: any = {};
@@ -26143,6 +26383,7 @@ export class StuartApi {
             localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -26185,8 +26426,9 @@ export class StuartApi {
      * 
      * @param jobId 
      * @param storeId 
+     * @param {*} [options] Override http request options.
      */
-    public stuartGetJob (jobId: number, storeId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultJobResponse;  }> {
+    public stuartGetJob (jobId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultJobResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stuart/jobs/{jobId}'
             .replace('{' + 'jobId' + '}', encodeURIComponent(String(jobId)));
         let localVarQueryParameters: any = {};
@@ -26207,6 +26449,7 @@ export class StuartApi {
             localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -26249,8 +26492,9 @@ export class StuartApi {
      * 
      * @summary Get stuart credentials
      * @param storeId 
+     * @param {*} [options] Override http request options.
      */
-    public stuartGetStuartSettings (storeId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultStuartSettings;  }> {
+    public stuartGetStuartSettings (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStuartSettings;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stuart/settings/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -26262,6 +26506,7 @@ export class StuartApi {
             throw new Error('Required parameter storeId was null or undefined when calling stuartGetStuartSettings.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -26304,8 +26549,9 @@ export class StuartApi {
      * 
      * @param storeId 
      * @param stuartSettings 
+     * @param {*} [options] Override http request options.
      */
-    public stuartPostStuartSettings (storeId: number, stuartSettings: StuartSettings) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public stuartPostStuartSettings (storeId: number, stuartSettings: StuartSettings, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stuart/settings/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -26322,6 +26568,7 @@ export class StuartApi {
             throw new Error('Required parameter stuartSettings was null or undefined when calling stuartPostStuartSettings.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -26415,8 +26662,9 @@ export class SubscriptionsApi {
      * 
      * @summary Cancel the subscription
      * @param subscriptionId Subscription identifier
+     * @param {*} [options] Override http request options.
      */
-    public subscriptionsCancelSubscription (subscriptionId: number) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public subscriptionsCancelSubscription (subscriptionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}'
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
         let localVarQueryParameters: any = {};
@@ -26428,6 +26676,7 @@ export class SubscriptionsApi {
             throw new Error('Required parameter subscriptionId was null or undefined when calling subscriptionsCancelSubscription.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -26470,8 +26719,9 @@ export class SubscriptionsApi {
      * 
      * @summary Get the card linked to the subscription
      * @param subscriptionId Subscription identifier
+     * @param {*} [options] Override http request options.
      */
-    public subscriptionsGetCard (subscriptionId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultCard;  }> {
+    public subscriptionsGetCard (subscriptionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCard;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}/card'
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
         let localVarQueryParameters: any = {};
@@ -26483,6 +26733,7 @@ export class SubscriptionsApi {
             throw new Error('Required parameter subscriptionId was null or undefined when calling subscriptionsGetCard.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -26524,13 +26775,15 @@ export class SubscriptionsApi {
     /**
      * 
      * @summary Get avaialble plans for currency's user
+     * @param {*} [options] Override http request options.
      */
-    public subscriptionsGetPlansByCurrency () : Promise<{ response: http.IncomingMessage; body: RestApiResultSubscriptionPlansResponse;  }> {
+    public subscriptionsGetPlansByCurrency (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSubscriptionPlansResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/plans';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -26573,8 +26826,9 @@ export class SubscriptionsApi {
      * 
      * @summary Get the subscription including the payment history
      * @param subscriptionId Subscription Identifier
+     * @param {*} [options] Override http request options.
      */
-    public subscriptionsGetSubscription (subscriptionId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }> {
+    public subscriptionsGetSubscription (subscriptionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}'
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
         let localVarQueryParameters: any = {};
@@ -26586,6 +26840,7 @@ export class SubscriptionsApi {
             throw new Error('Required parameter subscriptionId was null or undefined when calling subscriptionsGetSubscription.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -26628,8 +26883,9 @@ export class SubscriptionsApi {
      * 
      * @summary Get subscription by appId
      * @param appId The string app identifier
+     * @param {*} [options] Override http request options.
      */
-    public subscriptionsGetUserSubscriptionByAppId (appId: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }> {
+    public subscriptionsGetUserSubscriptionByAppId (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -26644,6 +26900,7 @@ export class SubscriptionsApi {
             localVarQueryParameters['appId'] = ObjectSerializer.serialize(appId, "string");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -26687,8 +26944,9 @@ export class SubscriptionsApi {
      * @summary Add a new card and replace the old one
      * @param subscriptionId Subscription identifier
      * @param card Token Id
+     * @param {*} [options] Override http request options.
      */
-    public subscriptionsReplaceOldCardWithNewCard (subscriptionId: number, card: CardWithToken) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public subscriptionsReplaceOldCardWithNewCard (subscriptionId: number, card: CardWithToken, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}/card/new'
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
         let localVarQueryParameters: any = {};
@@ -26705,6 +26963,7 @@ export class SubscriptionsApi {
             throw new Error('Required parameter card was null or undefined when calling subscriptionsReplaceOldCardWithNewCard.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -26748,8 +27007,9 @@ export class SubscriptionsApi {
      * 
      * @summary Create a new subscription
      * @param subscription Data necessary to create a new subscription
+     * @param {*} [options] Override http request options.
      */
-    public subscriptionsSubscribe (subscription: SubscriptionWithToken) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public subscriptionsSubscribe (subscription: SubscriptionWithToken, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -26760,6 +27020,7 @@ export class SubscriptionsApi {
             throw new Error('Required parameter subscription was null or undefined when calling subscriptionsSubscribe.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -26804,8 +27065,9 @@ export class SubscriptionsApi {
      * @summary Update card expiring date
      * @param subscriptionId Subscription identifier
      * @param card Data to update card expiring date
+     * @param {*} [options] Override http request options.
      */
-    public subscriptionsUpdateCardExpiringDate (subscriptionId: number, card: CardBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultCard;  }> {
+    public subscriptionsUpdateCardExpiringDate (subscriptionId: number, card: CardBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCard;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}/card'
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
         let localVarQueryParameters: any = {};
@@ -26822,6 +27084,7 @@ export class SubscriptionsApi {
             throw new Error('Required parameter card was null or undefined when calling subscriptionsUpdateCardExpiringDate.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -26866,8 +27129,9 @@ export class SubscriptionsApi {
      * @summary Update the subscription
      * @param subscriptionId Subscription identifier
      * @param subscription Data to update the subscription
+     * @param {*} [options] Override http request options.
      */
-    public subscriptionsUpdateSubscription (subscriptionId: number, subscription: SubscriptionBase) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public subscriptionsUpdateSubscription (subscriptionId: number, subscription: SubscriptionBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/subscriptions/{subscriptionId}'
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
         let localVarQueryParameters: any = {};
@@ -26884,6 +27148,7 @@ export class SubscriptionsApi {
             throw new Error('Required parameter subscription was null or undefined when calling subscriptionsUpdateSubscription.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -26978,8 +27243,9 @@ export class TeammatesApi {
      * @summary Create teammate and send an invite.
      * @param appId 
      * @param teammate 
+     * @param {*} [options] Override http request options.
      */
-    public createTeammate (appId: string, teammate: CreateTeammate) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
+    public createTeammate (appId: string, teammate: CreateTeammate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -26996,6 +27262,7 @@ export class TeammatesApi {
             throw new Error('Required parameter teammate was null or undefined when calling createTeammate.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -27040,8 +27307,9 @@ export class TeammatesApi {
      * @summary Delete teammate
      * @param appId 
      * @param id 
+     * @param {*} [options] Override http request options.
      */
-    public deleteTeammate (appId: string, id: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteTeammate (appId: string, id: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{id}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -27059,6 +27327,7 @@ export class TeammatesApi {
             throw new Error('Required parameter id was null or undefined when calling deleteTeammate.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -27101,8 +27370,9 @@ export class TeammatesApi {
      * @summary Get a teammates by email address
      * @param appId 
      * @param id 
+     * @param {*} [options] Override http request options.
      */
-    public getTeammateByAppIdAndTeammateId (appId: string, id: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
+    public getTeammateByAppIdAndTeammateId (appId: string, id: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{id}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -27120,6 +27390,7 @@ export class TeammatesApi {
             throw new Error('Required parameter id was null or undefined when calling getTeammateByAppIdAndTeammateId.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -27162,8 +27433,9 @@ export class TeammatesApi {
      * 
      * @summary Get all teammates
      * @param appId 
+     * @param {*} [options] Override http request options.
      */
-    public getTeammatesByAppId (appId: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultTeammate;  }> {
+    public getTeammatesByAppId (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultTeammate;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -27175,6 +27447,7 @@ export class TeammatesApi {
             throw new Error('Required parameter appId was null or undefined when calling getTeammatesByAppId.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -27217,8 +27490,9 @@ export class TeammatesApi {
      * 
      * @param otc 
      * @param appId 
+     * @param {*} [options] Override http request options.
      */
-    public redeemInvitation (otc: string, appId: string) : Promise<{ response: http.IncomingMessage; body: RestApiResultRedeemInvitationResult;  }> {
+    public redeemInvitation (otc: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRedeemInvitationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/redeem/{otc}'
             .replace('{' + 'otc' + '}', encodeURIComponent(String(otc)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -27236,6 +27510,7 @@ export class TeammatesApi {
             throw new Error('Required parameter appId was null or undefined when calling redeemInvitation.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -27280,8 +27555,9 @@ export class TeammatesApi {
      * @param appId 
      * @param id 
      * @param teammate 
+     * @param {*} [options] Override http request options.
      */
-    public updateTeammate (appId: string, id: string, teammate: TeammateBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
+    public updateTeammate (appId: string, id: string, teammate: TeammateBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{id}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -27304,6 +27580,7 @@ export class TeammatesApi {
             throw new Error('Required parameter teammate was null or undefined when calling updateTeammate.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -27396,13 +27673,15 @@ export class UsersApi {
     /**
      * 
      * @summary Get role names
+     * @param {*} [options] Override http request options.
      */
-    public getRoles () : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
+    public getRoles (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/users/roles';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -27495,8 +27774,9 @@ export class VouchersApi {
      * 
      * @summary [PRIVATE API] Get voucher by identifier
      * @param voucherId Id of the voucher
+     * @param {*} [options] Override http request options.
      */
-    public getVoucherById (voucherId: number) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
+    public getVoucherById (voucherId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
         let localVarQueryParameters: any = {};
@@ -27508,6 +27788,7 @@ export class VouchersApi {
             throw new Error('Required parameter voucherId was null or undefined when calling getVoucherById.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -27552,8 +27833,9 @@ export class VouchersApi {
      * @param voucherId Id of the voucher
      * @param aggregateDataBy Aggregate data by day \\ week \\ month
      * @param dataPointLimit Amount of data points per request
+     * @param {*} [options] Override http request options.
      */
-    public getVoucherStatsById (voucherId: number, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultVoucherDataPoint;  }> {
+    public getVoucherStatsById (voucherId: number, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultVoucherDataPoint;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/stats/{voucherId}'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
         let localVarQueryParameters: any = {};
@@ -27578,6 +27860,7 @@ export class VouchersApi {
             localVarQueryParameters['dataPointLimit'] = ObjectSerializer.serialize(dataPointLimit, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -27627,9 +27910,9 @@ export class VouchersApi {
      * @param typeSearch Search by Type
      * @param subTypeSearch Search by Sub Type
      * @param storeIds Search by Store Ids
-     * @param isEnabled Is enabled
+     * @param {*} [options] Override http request options.
      */
-    public getVouchers (appId: string, pageIndex?: number, pageSize?: number, searchCodes?: Array<string>, statusSearch?: Array<'Valid' | 'NotYetValid' | 'Expired' | 'Used'>, typeSearch?: Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote'>, subTypeSearch?: Array<'None' | 'SignUp' | 'Loyalty' | 'Loyalty25' | 'Retention' | 'SecondaryRetention' | 'Custom'>, storeIds?: Array<number>, isEnabled?: boolean) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherSummary;  }> {
+    public getVouchers (appId: string, pageIndex?: number, pageSize?: number, searchCodes?: Array<string>, statusSearch?: Array<'Valid' | 'NotYetValid' | 'Expired' | 'Used' | 'Disabled'>, typeSearch?: Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote'>, subTypeSearch?: Array<'None' | 'SignUp' | 'Loyalty' | 'Loyalty25' | 'Retention' | 'SecondaryRetention' | 'Custom'>, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/vouchers/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -27654,7 +27937,7 @@ export class VouchersApi {
         }
 
         if (statusSearch !== undefined) {
-            localVarQueryParameters['statusSearch'] = ObjectSerializer.serialize(statusSearch, "Array<'Valid' | 'NotYetValid' | 'Expired' | 'Used'>");
+            localVarQueryParameters['statusSearch'] = ObjectSerializer.serialize(statusSearch, "Array<'Valid' | 'NotYetValid' | 'Expired' | 'Used' | 'Disabled'>");
         }
 
         if (typeSearch !== undefined) {
@@ -27669,10 +27952,7 @@ export class VouchersApi {
             localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
         }
 
-        if (isEnabled !== undefined) {
-            localVarQueryParameters['isEnabled'] = ObjectSerializer.serialize(isEnabled, "boolean");
-        }
-
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -27716,8 +27996,9 @@ export class VouchersApi {
      * @summary [PRIVATE API] Updates voucher
      * @param voucherId Id of the voucher
      * @param voucher Updated details for the voucher
+     * @param {*} [options] Override http request options.
      */
-    public updateVoucher (voucherId: number, voucher: VoucherBase) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
+    public updateVoucher (voucherId: number, voucher: VoucherBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
         let localVarQueryParameters: any = {};
@@ -27734,6 +28015,7 @@ export class VouchersApi {
             throw new Error('Required parameter voucher was null or undefined when calling updateVoucher.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -27828,8 +28110,9 @@ export class WebhooksApi {
      * @summary Create a webhook subscription for you Oauth client
      * @param clientId Oauth client identifier
      * @param webhookSubscription Webhook subscription object
+     * @param {*} [options] Override http request options.
      */
-    public craeteWebhookSubscription (clientId: string, webhookSubscription: WebhookSubscription) : Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }> {
+    public craeteWebhookSubscription (clientId: string, webhookSubscription: WebhookSubscription, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
         let localVarQueryParameters: any = {};
@@ -27846,6 +28129,7 @@ export class WebhooksApi {
             throw new Error('Required parameter webhookSubscription was null or undefined when calling craeteWebhookSubscription.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -27891,8 +28175,9 @@ export class WebhooksApi {
      * @param clientId Oauth client identifier
      * @param webhookSubscriptionId Webhook subscription identifier
      * @param eventName Webhook subscription event name
+     * @param {*} [options] Override http request options.
      */
-    public createWebhookSubscriptionEventNames (clientId: string, webhookSubscriptionId: number, eventName: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public createWebhookSubscriptionEventNames (clientId: string, webhookSubscriptionId: number, eventName: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events/{eventName}'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
@@ -27916,6 +28201,7 @@ export class WebhooksApi {
             throw new Error('Required parameter eventName was null or undefined when calling createWebhookSubscriptionEventNames.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -27958,8 +28244,9 @@ export class WebhooksApi {
      * @summary Delete you webhook subscription
      * @param clientId Oauth client identifier
      * @param webhookSubscriptionId Webhook subscription identifier
+     * @param {*} [options] Override http request options.
      */
-    public deleteWebhookSubscription (clientId: string, webhookSubscriptionId: number) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteWebhookSubscription (clientId: string, webhookSubscriptionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
@@ -27977,6 +28264,7 @@ export class WebhooksApi {
             throw new Error('Required parameter webhookSubscriptionId was null or undefined when calling deleteWebhookSubscription.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -28020,8 +28308,9 @@ export class WebhooksApi {
      * @param clientId Oauth client identifier
      * @param webhookSubscriptionId Webhook subscription identifier
      * @param eventName Webhook subscription event name
+     * @param {*} [options] Override http request options.
      */
-    public deleteWebhookSubscriptionEventName (clientId: string, webhookSubscriptionId: number, eventName: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteWebhookSubscriptionEventName (clientId: string, webhookSubscriptionId: number, eventName: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events/{eventName}'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
@@ -28045,6 +28334,7 @@ export class WebhooksApi {
             throw new Error('Required parameter eventName was null or undefined when calling deleteWebhookSubscriptionEventName.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -28085,13 +28375,15 @@ export class WebhooksApi {
     /**
      * 
      * @summary Get all webhook subscription event names
+     * @param {*} [options] Override http request options.
      */
-    public getWebhookEventNames () : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
+    public getWebhookEventNames (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/events';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -28135,8 +28427,9 @@ export class WebhooksApi {
      * @summary Get your webhook subscriptions selected event names
      * @param clientId Oauth client identifier
      * @param webhookSubscriptionId Webhook subscription identifier
+     * @param {*} [options] Override http request options.
      */
-    public getWebhookEventNamesBySubscriptionId (clientId: string, webhookSubscriptionId: number) : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
+    public getWebhookEventNamesBySubscriptionId (clientId: string, webhookSubscriptionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
@@ -28154,6 +28447,7 @@ export class WebhooksApi {
             throw new Error('Required parameter webhookSubscriptionId was null or undefined when calling getWebhookEventNamesBySubscriptionId.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -28201,8 +28495,9 @@ export class WebhooksApi {
      * @param end End time
      * @param page Page number
      * @param limit Page size
+     * @param {*} [options] Override http request options.
      */
-    public getWebhookLogs (clientId: string, webhookSubscriptionId: number, start: Date, end: Date, page?: number, limit?: number) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultWebhookLog;  }> {
+    public getWebhookLogs (clientId: string, webhookSubscriptionId: number, start: Date, end: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultWebhookLog;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/logs'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
@@ -28246,6 +28541,7 @@ export class WebhooksApi {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -28288,8 +28584,9 @@ export class WebhooksApi {
      * 
      * @summary Get all webhook subscriptions by your Oauth client id
      * @param clientId Oauth client identifier
+     * @param {*} [options] Override http request options.
      */
-    public getWebhookSubscriptions (clientId: string) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultWebhookSubscription;  }> {
+    public getWebhookSubscriptions (clientId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultWebhookSubscription;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
         let localVarQueryParameters: any = {};
@@ -28301,6 +28598,7 @@ export class WebhooksApi {
             throw new Error('Required parameter clientId was null or undefined when calling getWebhookSubscriptions.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
@@ -28345,8 +28643,9 @@ export class WebhooksApi {
      * @param clientId Oauth client identifier
      * @param webhookSubscriptionId Webhook subscription identifier
      * @param webhookSubscription Webhook subscription object
+     * @param {*} [options] Override http request options.
      */
-    public updateWebhookSubscription (clientId: string, webhookSubscriptionId: number, webhookSubscription: WebhookSubscription) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateWebhookSubscription (clientId: string, webhookSubscriptionId: number, webhookSubscription: WebhookSubscription, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}'
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
@@ -28369,6 +28668,7 @@ export class WebhooksApi {
             throw new Error('Required parameter webhookSubscription was null or undefined when calling updateWebhookSubscription.');
         }
 
+        (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
 
