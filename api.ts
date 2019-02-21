@@ -714,6 +714,7 @@ export namespace App {
     export enum AppAccessLevelEnum {
         None = <any> 'None',
         Owner = <any> 'Owner',
+        StoreOwner = <any> 'StoreOwner',
         ManagedOwner = <any> 'ManagedOwner',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
@@ -1266,6 +1267,7 @@ export namespace CreateTeammate {
     export enum AppAccessLevelEnum {
         None = <any> 'None',
         Owner = <any> 'Owner',
+        StoreOwner = <any> 'StoreOwner',
         ManagedOwner = <any> 'ManagedOwner',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
@@ -14732,6 +14734,7 @@ export namespace Teammate {
     export enum AppAccessLevelEnum {
         None = <any> 'None',
         Owner = <any> 'Owner',
+        StoreOwner = <any> 'StoreOwner',
         ManagedOwner = <any> 'ManagedOwner',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
@@ -14785,6 +14788,7 @@ export namespace TeammateBase {
     export enum AppAccessLevelEnum {
         None = <any> 'None',
         Owner = <any> 'Owner',
+        StoreOwner = <any> 'StoreOwner',
         ManagedOwner = <any> 'ManagedOwner',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
