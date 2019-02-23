@@ -23355,7 +23355,7 @@ export class MenusApi {
      * @param key Metadata key
      * @param {*} [options] Override http request options.
      */
-    public getMenuItemMetadata_1 (menuId: number, storeId: number, menuItemId: number, key: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public getMenuItemMetadataByKey (menuId: number, storeId: number, menuItemId: number, key: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -23367,22 +23367,22 @@ export class MenusApi {
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling getMenuItemMetadata_1.');
+            throw new Error('Required parameter menuId was null or undefined when calling getMenuItemMetadataByKey.');
         }
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getMenuItemMetadata_1.');
+            throw new Error('Required parameter storeId was null or undefined when calling getMenuItemMetadataByKey.');
         }
 
         // verify required parameter 'menuItemId' is not null or undefined
         if (menuItemId === null || menuItemId === undefined) {
-            throw new Error('Required parameter menuItemId was null or undefined when calling getMenuItemMetadata_1.');
+            throw new Error('Required parameter menuItemId was null or undefined when calling getMenuItemMetadataByKey.');
         }
 
         // verify required parameter 'key' is not null or undefined
         if (key === null || key === undefined) {
-            throw new Error('Required parameter key was null or undefined when calling getMenuItemMetadata_1.');
+            throw new Error('Required parameter key was null or undefined when calling getMenuItemMetadataByKey.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
