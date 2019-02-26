@@ -1193,6 +1193,10 @@ export class CreateAccountModel {
     * Store name
     */
     'StoreName': string;
+    /**
+    * LanguageId
+    */
+    'LanguageId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1205,6 +1209,11 @@ export class CreateAccountModel {
         {
             "name": "StoreName",
             "baseName": "StoreName",
+            "type": "string"
+        },
+        {
+            "name": "LanguageId",
+            "baseName": "LanguageId",
             "type": "string"
         }    ];
 
