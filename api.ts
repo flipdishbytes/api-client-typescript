@@ -2867,6 +2867,47 @@ export class FeeSummary {
 }
 
 /**
+* Describes coordinates that have a group
+*/
+export class GroupedCoordinates {
+    /**
+    * Latitude of this coordinate
+    */
+    'Latitude'?: number;
+    /**
+    * Longitude of this coordinate
+    */
+    'Longitude'?: number;
+    /**
+    * Count of members in the group
+    */
+    'Count'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Latitude",
+            "baseName": "Latitude",
+            "type": "number"
+        },
+        {
+            "name": "Longitude",
+            "baseName": "Longitude",
+            "type": "number"
+        },
+        {
+            "name": "Count",
+            "baseName": "Count",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GroupedCoordinates.attributeTypeMap;
+    }
+}
+
+/**
 * Http Request and Response Log
 */
 export class HttpRequestAndResponseLog {
@@ -10336,6 +10377,56 @@ export class RestApiPaginationResultStoreGroup {
 /**
 * Rest api pagination result
 */
+export class RestApiPaginationResultStoreGroupExtended {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<StoreGroupExtended>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<StoreGroupExtended>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultStoreGroupExtended.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultVoucherSummary {
     /**
     * Current page index
@@ -13785,6 +13876,199 @@ export class StoreGroupDeletedEvent {
 }
 
 /**
+* Store Group Extended
+*/
+export class StoreGroupExtended {
+    /**
+    * Total Amount of Stores
+    */
+    'TotalStores'?: number;
+    /**
+    * Grouped store coordinates
+    */
+    'GroupedCoordinates'?: Array<GroupedCoordinates>;
+    /**
+    * Unique Store Group Identifier
+    */
+    'StoreGroupId'?: number;
+    /**
+    * Store Group rating
+    */
+    'GeneralRating'?: number;
+    /**
+    * Store Group rating count
+    */
+    'GeneralRatingCount'?: number;
+    /**
+    * Store Group Name
+    */
+    'Name'?: string;
+    /**
+    * Currency used by the stores in this group
+    */
+    'Currency'?: StoreGroupExtended.CurrencyEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "TotalStores",
+            "baseName": "TotalStores",
+            "type": "number"
+        },
+        {
+            "name": "GroupedCoordinates",
+            "baseName": "GroupedCoordinates",
+            "type": "Array<GroupedCoordinates>"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
+            "type": "number"
+        },
+        {
+            "name": "GeneralRating",
+            "baseName": "GeneralRating",
+            "type": "number"
+        },
+        {
+            "name": "GeneralRatingCount",
+            "baseName": "GeneralRatingCount",
+            "type": "number"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "StoreGroupExtended.CurrencyEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreGroupExtended.attributeTypeMap;
+    }
+}
+
+export namespace StoreGroupExtended {
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD'
+    }
+}
+/**
 * Store Group Updated Event
 */
 export class StoreGroupUpdatedEvent {
@@ -17124,6 +17408,7 @@ let enumsMap: {[index: string]: any} = {
         "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
         "StoreGroup.CurrencyEnum": StoreGroup.CurrencyEnum,
         "StoreGroupBase.CurrencyEnum": StoreGroupBase.CurrencyEnum,
+        "StoreGroupExtended.CurrencyEnum": StoreGroupExtended.CurrencyEnum,
         "StoreSummary.CurrencyEnum": StoreSummary.CurrencyEnum,
         "StuartSettings.PackageTypeEnum": StuartSettings.PackageTypeEnum,
         "Subscription.StatusEnum": Subscription.StatusEnum,
@@ -17180,6 +17465,7 @@ let typeMap: {[index: string]: any} = {
     "DeliveryZoneUpdatedEvent": DeliveryZoneUpdatedEvent,
     "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
+    "GroupedCoordinates": GroupedCoordinates,
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
     "JobAddress": JobAddress,
     "JobCancellation": JobCancellation,
@@ -17294,6 +17580,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultPhoneCall": RestApiPaginationResultPhoneCall,
     "RestApiPaginationResultStore": RestApiPaginationResultStore,
     "RestApiPaginationResultStoreGroup": RestApiPaginationResultStoreGroup,
+    "RestApiPaginationResultStoreGroupExtended": RestApiPaginationResultStoreGroupExtended,
     "RestApiPaginationResultVoucherSummary": RestApiPaginationResultVoucherSummary,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
@@ -17354,6 +17641,7 @@ let typeMap: {[index: string]: any} = {
     "StoreGroupBase": StoreGroupBase,
     "StoreGroupCreatedEvent": StoreGroupCreatedEvent,
     "StoreGroupDeletedEvent": StoreGroupDeletedEvent,
+    "StoreGroupExtended": StoreGroupExtended,
     "StoreGroupUpdatedEvent": StoreGroupUpdatedEvent,
     "StoreNote": StoreNote,
     "StoreOpeningHoursUpdatedEvent": StoreOpeningHoursUpdatedEvent,
@@ -25502,6 +25790,83 @@ export class StoreGroupsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultStoreGroup");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Returns a paginated list of Extended Store Groups
+     * @param appNameId App Name Id
+     * @param searchQuery Search query
+     * @param page Requested page index
+     * @param limit Requested page limit
+     * @param groupingRadius 
+     * @param {*} [options] Override http request options.
+     */
+    public getStoreGroupsExtended (appNameId: string, searchQuery?: string, page?: number, limit?: number, groupingRadius?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreGroupExtended;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appNameId}/storegroups/extended'
+            .replace('{' + 'appNameId' + '}', encodeURIComponent(String(appNameId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appNameId' is not null or undefined
+        if (appNameId === null || appNameId === undefined) {
+            throw new Error('Required parameter appNameId was null or undefined when calling getStoreGroupsExtended.');
+        }
+
+        if (searchQuery !== undefined) {
+            localVarQueryParameters['searchQuery'] = ObjectSerializer.serialize(searchQuery, "string");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (groupingRadius !== undefined) {
+            localVarQueryParameters['groupingRadius'] = ObjectSerializer.serialize(groupingRadius, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreGroupExtended;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultStoreGroupExtended");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
