@@ -659,6 +659,10 @@ export class App {
     * Available Languages for Apps\\Staff
     */
     'AvailableAppLanguages'?: Array<Language>;
+    /**
+    * Constitutes a list of available resources
+    */
+    'AppResourceSet'?: Array<App.AppResourceSetEnum>;
 
     static discriminator: string | undefined = undefined;
 
@@ -712,6 +716,11 @@ export class App {
             "name": "AvailableAppLanguages",
             "baseName": "AvailableAppLanguages",
             "type": "Array<Language>"
+        },
+        {
+            "name": "AppResourceSet",
+            "baseName": "AppResourceSet",
+            "type": "Array<App.AppResourceSetEnum>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -730,6 +739,78 @@ export namespace App {
         StoreReadWriteAccess = <any> 'StoreReadWriteAccess',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger'
+    }
+    export enum AppResourceSetEnum {
+        ViewApp = <any> 'ViewApp',
+        CreateApp = <any> 'CreateApp',
+        UpdateApp = <any> 'UpdateApp',
+        UpdateAppName = <any> 'UpdateAppName',
+        EditAppAssets = <any> 'EditAppAssets',
+        ViewTeammates = <any> 'ViewTeammates',
+        EditTeammates = <any> 'EditTeammates',
+        ViewApmConfigurations = <any> 'ViewApmConfigurations',
+        EditApmConfigurations = <any> 'EditApmConfigurations',
+        ViewCampaignsConfigurations = <any> 'ViewCampaignsConfigurations',
+        CreateCampaignsConfigurations = <any> 'CreateCampaignsConfigurations',
+        UpdateCampaignsConfigurations = <any> 'UpdateCampaignsConfigurations',
+        ViewDevelopersSettings = <any> 'ViewDevelopersSettings',
+        EditDevelopersSettings = <any> 'EditDevelopersSettings',
+        ViewOrders = <any> 'ViewOrders',
+        UpdateOrdersAccept = <any> 'UpdateOrdersAccept',
+        UpdateOrdersReject = <any> 'UpdateOrdersReject',
+        UpdateOrdersRefund = <any> 'UpdateOrdersRefund',
+        UpdateOrdersDispatch = <any> 'UpdateOrdersDispatch',
+        ViewStores = <any> 'ViewStores',
+        EditStores = <any> 'EditStores',
+        ViewStoresOpeningHours = <any> 'ViewStoresOpeningHours',
+        UpdateStoresOpenForCollectionOrDelivery = <any> 'UpdateStoresOpenForCollectionOrDelivery',
+        UpdateStoresOpeningHours = <any> 'UpdateStoresOpeningHours',
+        UpdateStoresOpeningHoursOverride = <any> 'UpdateStoresOpeningHoursOverride',
+        UpdateStoresOpeningHoursOverrideTemporary = <any> 'UpdateStoresOpeningHoursOverrideTemporary',
+        UpdateStoresName = <any> 'UpdateStoresName',
+        UpdatePrinterTerminalsAssign = <any> 'UpdatePrinterTerminalsAssign',
+        UpdatePrinterTerminalsToggle = <any> 'UpdatePrinterTerminalsToggle',
+        EditStoreNotifications = <any> 'EditStoreNotifications',
+        ViewStoreGroups = <any> 'ViewStoreGroups',
+        CreateStoreGroups = <any> 'CreateStoreGroups',
+        UpdateStoreGroups = <any> 'UpdateStoreGroups',
+        DeleteStoreGroups = <any> 'DeleteStoreGroups',
+        ViewDeliveryZones = <any> 'ViewDeliveryZones',
+        CreateDeliveryZones = <any> 'CreateDeliveryZones',
+        UpdateDeliveryZones = <any> 'UpdateDeliveryZones',
+        DeleteDeliveryZones = <any> 'DeleteDeliveryZones',
+        CreateMenu = <any> 'CreateMenu',
+        UpdateMenu = <any> 'UpdateMenu',
+        DeleteMenu = <any> 'DeleteMenu',
+        UpdateMenuLock = <any> 'UpdateMenuLock',
+        UpdateMenuPrices = <any> 'UpdateMenuPrices',
+        UpdateMenuItemsHideTemporarily = <any> 'UpdateMenuItemsHideTemporarily',
+        ViewVouchers = <any> 'ViewVouchers',
+        CreateVouchers = <any> 'CreateVouchers',
+        UpdateVouchers = <any> 'UpdateVouchers',
+        ViewWebsiteContent = <any> 'ViewWebsiteContent',
+        EditWebsiteContent = <any> 'EditWebsiteContent',
+        ViewBankAccounts = <any> 'ViewBankAccounts',
+        CreateBankAccounts = <any> 'CreateBankAccounts',
+        UpdateBankAccounts = <any> 'UpdateBankAccounts',
+        UpdateBankAccountsAssign = <any> 'UpdateBankAccountsAssign',
+        ViewFeesConfigurations = <any> 'ViewFeesConfigurations',
+        EditFeesConfigurations = <any> 'EditFeesConfigurations',
+        ViewAppStatistics = <any> 'ViewAppStatistics',
+        ViewApmStatistics = <any> 'ViewApmStatistics',
+        ViewCampaignsStatistics = <any> 'ViewCampaignsStatistics',
+        ViewCustomerStatistics = <any> 'ViewCustomerStatistics',
+        ViewLiveStatistics = <any> 'ViewLiveStatistics',
+        ViewOrderStatistics = <any> 'ViewOrderStatistics',
+        ViewSalesStatistics = <any> 'ViewSalesStatistics',
+        ViewSalesEndOfDayStatistics = <any> 'ViewSalesEndOfDayStatistics',
+        ViewVouchersStatistics = <any> 'ViewVouchersStatistics',
+        ViewApmAuditLogs = <any> 'ViewApmAuditLogs',
+        ViewStoreAuditLogs = <any> 'ViewStoreAuditLogs',
+        ViewMenuAuditLogs = <any> 'ViewMenuAuditLogs',
+        ViewBankAccountAuditLogs = <any> 'ViewBankAccountAuditLogs',
+        ViewFeeConfigurationsAuditLogs = <any> 'ViewFeeConfigurationsAuditLogs',
+        SendPushNotificationToCustomer = <any> 'SendPushNotificationToCustomer'
     }
 }
 /**
@@ -4408,10 +4489,6 @@ export class Menu {
     */
     'ImageUrl'?: string;
     /**
-    * Menu sections (startes, main etc)
-    */
-    'MenuSections'?: Array<MenuSection>;
-    /**
     * Name of Menu, only shown in portal
     */
     'Name'?: string;
@@ -4420,9 +4497,9 @@ export class Menu {
     */
     'Locked'?: boolean;
     /**
-    * List of stores names which are associated with this menu
+    * Menu sections (startes, main etc)
     */
-    'StoreNames'?: Array<string>;
+    'MenuSections'?: Array<MenuSection>;
     /**
     * Display menu section link on UI
     */
@@ -4456,11 +4533,6 @@ export class Menu {
             "type": "string"
         },
         {
-            "name": "MenuSections",
-            "baseName": "MenuSections",
-            "type": "Array<MenuSection>"
-        },
-        {
             "name": "Name",
             "baseName": "Name",
             "type": "string"
@@ -4471,9 +4543,9 @@ export class Menu {
             "type": "boolean"
         },
         {
-            "name": "StoreNames",
-            "baseName": "StoreNames",
-            "type": "Array<string>"
+            "name": "MenuSections",
+            "baseName": "MenuSections",
+            "type": "Array<MenuSection>"
         },
         {
             "name": "DisplaySectionLinks",
@@ -6613,6 +6685,83 @@ export class MenuSectionUpdatedEvent {
 
     static getAttributeTypeMap() {
         return MenuSectionUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Menu Summary
+*/
+export class MenuSummary {
+    /**
+    * Menu identifier
+    */
+    'MenuId'?: number;
+    /**
+    * Last modified time
+    */
+    'ModifiedTime'?: Date;
+    /**
+    * Menu version
+    */
+    'VersionNumber'?: number;
+    /**
+    * Image url
+    */
+    'ImageUrl'?: string;
+    /**
+    * Name of Menu, only shown in portal
+    */
+    'Name'?: string;
+    /**
+    * Locked: is menu locked against modifcation
+    */
+    'Locked'?: boolean;
+    /**
+    * List of stores names which are associated with this menu
+    */
+    'StoreNames'?: Array<string>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "ModifiedTime",
+            "baseName": "ModifiedTime",
+            "type": "Date"
+        },
+        {
+            "name": "VersionNumber",
+            "baseName": "VersionNumber",
+            "type": "number"
+        },
+        {
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Locked",
+            "baseName": "Locked",
+            "type": "boolean"
+        },
+        {
+            "name": "StoreNames",
+            "baseName": "StoreNames",
+            "type": "Array<string>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuSummary.attributeTypeMap;
     }
 }
 
@@ -9477,29 +9626,6 @@ export class RestApiArrayResultLocalisedTimeZone {
 /**
 * Rest api array result
 */
-export class RestApiArrayResultMenu {
-    /**
-    * Generic data object.
-    */
-    'Data': Array<Menu>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Array<Menu>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiArrayResultMenu.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api array result
-*/
 export class RestApiArrayResultMenuItemOptionSet {
     /**
     * Generic data object.
@@ -9586,6 +9712,29 @@ export class RestApiArrayResultMenuSectionItem {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultMenuSectionItem.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultMenuSummary {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<MenuSummary>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<MenuSummary>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultMenuSummary.attributeTypeMap;
     }
 }
 
@@ -17364,6 +17513,7 @@ export class WebhookSubscriptionUpdatedEvent {
 let enumsMap: {[index: string]: any} = {
         "ApmHourlyDataPoint.DayEnum": ApmHourlyDataPoint.DayEnum,
         "App.AppAccessLevelEnum": App.AppAccessLevelEnum,
+        "App.AppResourceSetEnum": App.AppResourceSetEnum,
         "BusinessHoursOverride.DeliveryTypeEnum": BusinessHoursOverride.DeliveryTypeEnum,
         "BusinessHoursOverride.TypeEnum": BusinessHoursOverride.TypeEnum,
         "BusinessHoursOverrideBase.DeliveryTypeEnum": BusinessHoursOverrideBase.DeliveryTypeEnum,
@@ -17512,6 +17662,7 @@ let typeMap: {[index: string]: any} = {
     "MenuSectionItemDeletedEvent": MenuSectionItemDeletedEvent,
     "MenuSectionItemUpdatedEvent": MenuSectionItemUpdatedEvent,
     "MenuSectionUpdatedEvent": MenuSectionUpdatedEvent,
+    "MenuSummary": MenuSummary,
     "MenuUpdatedEvent": MenuUpdatedEvent,
     "Metadata": Metadata,
     "OAuthClient": OAuthClient,
@@ -17553,11 +17704,11 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
     "RestApiArrayResultLocalisedTimeZone": RestApiArrayResultLocalisedTimeZone,
-    "RestApiArrayResultMenu": RestApiArrayResultMenu,
     "RestApiArrayResultMenuItemOptionSet": RestApiArrayResultMenuItemOptionSet,
     "RestApiArrayResultMenuItemOptionSetItem": RestApiArrayResultMenuItemOptionSetItem,
     "RestApiArrayResultMenuSection": RestApiArrayResultMenuSection,
     "RestApiArrayResultMenuSectionItem": RestApiArrayResultMenuSectionItem,
+    "RestApiArrayResultMenuSummary": RestApiArrayResultMenuSummary,
     "RestApiArrayResultMetadata": RestApiArrayResultMetadata,
     "RestApiArrayResultOAuthClient": RestApiArrayResultOAuthClient,
     "RestApiArrayResultOauthClientRedirectUri": RestApiArrayResultOauthClientRedirectUri,
@@ -23444,7 +23595,7 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary Clone a menu, (without attaching stores)
+     * @summary [PRIVATE API]Clone a menu, (without attaching stores)
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
@@ -23500,7 +23651,64 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary Mark a Menu as Deleted
+     * @summary [PRIVATE API]Create a new menu
+     * @param appId App identifier
+     * @param {*} [options] Override http request options.
+     */
+    public createNewMenuForApp (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: number;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/menus'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createNewMenuForApp.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: number;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "number");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API]Mark a Menu as Deleted
      * @param menuId Get Menus for this appId
      * @param {*} [options] Override http request options.
      */
@@ -23965,12 +24173,12 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary Get menus by appId
+     * @summary [PRIVATE API]Get menus by appId
      * @param appId Get Menus for this appId
      * @param {*} [options] Override http request options.
      */
-    public getMenusByWhiteLabelConfigId (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenu;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/app/{appId}'
+    public getMenusByAppId (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuSummary;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/menus'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -23978,7 +24186,7 @@ export class MenusApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getMenusByWhiteLabelConfigId.');
+            throw new Error('Required parameter appId was null or undefined when calling getMenusByAppId.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -24005,12 +24213,12 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenu;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuSummary;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenu");
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuSummary");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -24176,7 +24384,7 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary Lock/Unlock a Menu for Editing
+     * @summary [PRIVATE API]Lock/Unlock a Menu for Editing
      * @param menuId Menu identifier
      * @param locked True: Locks menu for editing, False: Unlocks for editing
      * @param {*} [options] Override http request options.
@@ -24239,7 +24447,7 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary Set Menus Name
+     * @summary [PRIVATE API]Set Menus Name
      * @param menuId Menu identifier
      * @param name Name to set for this Menu
      * @param {*} [options] Override http request options.
