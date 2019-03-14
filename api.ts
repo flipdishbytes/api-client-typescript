@@ -765,8 +765,9 @@ export namespace App {
         ViewStoresOpeningHours = <any> 'ViewStoresOpeningHours',
         UpdateStoresOpenForCollectionOrDelivery = <any> 'UpdateStoresOpenForCollectionOrDelivery',
         UpdateStoresOpeningHours = <any> 'UpdateStoresOpeningHours',
-        UpdateStoresOpeningHoursOverride = <any> 'UpdateStoresOpeningHoursOverride',
-        UpdateStoresOpeningHoursOverrideTemporary = <any> 'UpdateStoresOpeningHoursOverrideTemporary',
+        ViewStoresOpeningHoursOverride = <any> 'ViewStoresOpeningHoursOverride',
+        EditStoresOpeningHoursOverride = <any> 'EditStoresOpeningHoursOverride',
+        EditStoresOpeningHoursOverrideTemporary = <any> 'EditStoresOpeningHoursOverrideTemporary',
         UpdateStoresName = <any> 'UpdateStoresName',
         UpdatePrinterTerminalsAssign = <any> 'UpdatePrinterTerminalsAssign',
         UpdatePrinterTerminalsToggle = <any> 'UpdatePrinterTerminalsToggle',
@@ -2329,6 +2330,10 @@ export class EventSearchResult {
     */
     'OrderAcceptedEvent'?: Array<OrderAcceptedEvent>;
     /**
+    * Order dispatched events
+    */
+    'OrderDispatchedEvent'?: Array<OrderDispatchedEvent>;
+    /**
     * Order created events
     */
     'OrderCreatedEvent'?: Array<OrderCreatedEvent>;
@@ -2589,6 +2594,11 @@ export class EventSearchResult {
             "name": "OrderAcceptedEvent",
             "baseName": "OrderAcceptedEvent",
             "type": "Array<OrderAcceptedEvent>"
+        },
+        {
+            "name": "OrderDispatchedEvent",
+            "baseName": "OrderDispatchedEvent",
+            "type": "Array<OrderDispatchedEvent>"
         },
         {
             "name": "OrderCreatedEvent",
@@ -7505,6 +7515,92 @@ export class OrderCreatedEvent {
 
     static getAttributeTypeMap() {
         return OrderCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Order Dispatched Event
+*/
+export class OrderDispatchedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Order Rejected Time
+    */
+    'OrderDispatchedTime'?: Date;
+    /**
+    * Order
+    */
+    'Order'?: Order;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "OrderDispatchedTime",
+            "baseName": "OrderDispatchedTime",
+            "type": "Date"
+        },
+        {
+            "name": "Order",
+            "baseName": "Order",
+            "type": "Order"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderDispatchedEvent.attributeTypeMap;
     }
 }
 
@@ -17671,6 +17767,7 @@ let typeMap: {[index: string]: any} = {
     "Order": Order,
     "OrderAcceptedEvent": OrderAcceptedEvent,
     "OrderCreatedEvent": OrderCreatedEvent,
+    "OrderDispatchedEvent": OrderDispatchedEvent,
     "OrderItem": OrderItem,
     "OrderItemOption": OrderItemOption,
     "OrderRatingUpdatedEvent": OrderRatingUpdatedEvent,
@@ -25292,6 +25389,62 @@ export class OrdersApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(acceptObject, "Accept")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * To dispatch an order send a POST request with `Id` path parameter which identifies the order.
+     * @summary Dispatch order
+     * @param id Order identifier
+     * @param {*} [options] Override http request options.
+     */
+    public dispatchOrder (id: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/orders/{id}/dispatch'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling dispatchOrder.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
