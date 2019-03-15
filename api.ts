@@ -815,6 +815,196 @@ export namespace App {
     }
 }
 /**
+* Application created event
+*/
+export class AppCreatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * App Name
+    */
+    'AppName'?: string;
+    /**
+    * Country Id
+    */
+    'CountryId'?: string;
+    /**
+    * User information
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "AppName",
+            "baseName": "AppName",
+            "type": "string"
+        },
+        {
+            "name": "CountryId",
+            "baseName": "CountryId",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Application updated event
+*/
+export class AppUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * App Name
+    */
+    'AppName'?: string;
+    /**
+    * Country Id
+    */
+    'CountryId'?: string;
+    /**
+    * User information
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "AppName",
+            "baseName": "AppName",
+            "type": "string"
+        },
+        {
+            "name": "CountryId",
+            "baseName": "CountryId",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * 
 */
 export class BusinessHoursOverride {
@@ -2322,6 +2512,14 @@ export class DeliveryZoneUpdatedEvent {
 */
 export class EventSearchResult {
     /**
+    * App Created Event
+    */
+    'AppCreatedEvent'?: Array<AppCreatedEvent>;
+    /**
+    * App Updated Event
+    */
+    'AppUpdatedEvent'?: Array<AppUpdatedEvent>;
+    /**
     * Client Analytics events
     */
     'AnalyticsClientEvent'?: Array<AnalyticsClientEvent>;
@@ -2585,6 +2783,16 @@ export class EventSearchResult {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AppCreatedEvent",
+            "baseName": "AppCreatedEvent",
+            "type": "Array<AppCreatedEvent>"
+        },
+        {
+            "name": "AppUpdatedEvent",
+            "baseName": "AppUpdatedEvent",
+            "type": "Array<AppUpdatedEvent>"
+        },
         {
             "name": "AnalyticsClientEvent",
             "baseName": "AnalyticsClientEvent",
@@ -6715,10 +6923,6 @@ export class MenuSummary {
     */
     'VersionNumber'?: number;
     /**
-    * Image url
-    */
-    'ImageUrl'?: string;
-    /**
     * Name of Menu, only shown in portal
     */
     'Name'?: string;
@@ -6748,11 +6952,6 @@ export class MenuSummary {
             "name": "VersionNumber",
             "baseName": "VersionNumber",
             "type": "number"
-        },
-        {
-            "name": "ImageUrl",
-            "baseName": "ImageUrl",
-            "type": "string"
         },
         {
             "name": "Name",
@@ -17686,6 +17885,8 @@ let typeMap: {[index: string]: any} = {
     "ApmHourlyDataPoint": ApmHourlyDataPoint,
     "ApmStatistics": ApmStatistics,
     "App": App,
+    "AppCreatedEvent": AppCreatedEvent,
+    "AppUpdatedEvent": AppUpdatedEvent,
     "BusinessHoursOverride": BusinessHoursOverride,
     "BusinessHoursOverrideBase": BusinessHoursOverrideBase,
     "BusinessHoursPeriod": BusinessHoursPeriod,
