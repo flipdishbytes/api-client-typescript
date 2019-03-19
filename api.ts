@@ -4826,6 +4826,56 @@ export namespace MenuBase {
     }
 }
 /**
+* Menu Checkpoint
+*/
+export class MenuCheckpoint {
+    /**
+    * Identifier of Menu Checkpoint
+    */
+    'MenuCheckpointId'?: number;
+    /**
+    * Time of creation of checkpoint
+    */
+    'Time'?: Date;
+    /**
+    * Name of checkpoint
+    */
+    'Name'?: string;
+    /**
+    * Url that points to Serialized Checkpoint
+    */
+    'Url'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuCheckpointId",
+            "baseName": "MenuCheckpointId",
+            "type": "number"
+        },
+        {
+            "name": "Time",
+            "baseName": "Time",
+            "type": "Date"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Url",
+            "baseName": "Url",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuCheckpoint.attributeTypeMap;
+    }
+}
+
+/**
 * Menu created event
 */
 export class MenuCreatedEvent {
@@ -9915,6 +9965,29 @@ export class RestApiArrayResultLocalisedTimeZone {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultLocalisedTimeZone.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultMenuCheckpoint {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<MenuCheckpoint>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<MenuCheckpoint>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultMenuCheckpoint.attributeTypeMap;
     }
 }
 
@@ -17936,6 +18009,7 @@ let typeMap: {[index: string]: any} = {
     "LumpDiscountDetails": LumpDiscountDetails,
     "Menu": Menu,
     "MenuBase": MenuBase,
+    "MenuCheckpoint": MenuCheckpoint,
     "MenuCreatedEvent": MenuCreatedEvent,
     "MenuItemOptionSet": MenuItemOptionSet,
     "MenuItemOptionSetBase": MenuItemOptionSetBase,
@@ -18002,6 +18076,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
     "RestApiArrayResultLocalisedTimeZone": RestApiArrayResultLocalisedTimeZone,
+    "RestApiArrayResultMenuCheckpoint": RestApiArrayResultMenuCheckpoint,
     "RestApiArrayResultMenuItemOptionSet": RestApiArrayResultMenuItemOptionSet,
     "RestApiArrayResultMenuItemOptionSetItem": RestApiArrayResultMenuItemOptionSetItem,
     "RestApiArrayResultMenuSection": RestApiArrayResultMenuSection,
@@ -24517,6 +24592,126 @@ export class MenusApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuSummary");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API]Get a Menus Checkpoints
+     * @param menuId Menu identifier
+     * @param {*} [options] Override http request options.
+     */
+    public getMenusCheckpoints (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuCheckpoint;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/checkpoints'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling getMenusCheckpoints.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuCheckpoint;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuCheckpoint");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API]Restore a Menu to a checkpoint
+     * @param menuId Menu identifier
+     * @param checkpointId Checkpoint to restore menu to
+     * @param {*} [options] Override http request options.
+     */
+    public restoreAMenuCheckpoint (menuId: number, checkpointId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/checkpoints/{checkpointId}/restore'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'checkpointId' + '}', encodeURIComponent(String(checkpointId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling restoreAMenuCheckpoint.');
+        }
+
+        // verify required parameter 'checkpointId' is not null or undefined
+        if (checkpointId === null || checkpointId === undefined) {
+            throw new Error('Required parameter checkpointId was null or undefined when calling restoreAMenuCheckpoint.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
