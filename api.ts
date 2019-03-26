@@ -6957,6 +6957,29 @@ export class MenuSectionUpdatedEvent {
 }
 
 /**
+* Menu Store Names
+*/
+export class MenuStoreNames {
+    /**
+    * Names of stores associated with menu
+    */
+    'StoreNames'?: Array<string>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreNames",
+            "baseName": "StoreNames",
+            "type": "Array<string>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuStoreNames.attributeTypeMap;
+    }
+}
+
+/**
 * Menu Summary
 */
 export class MenuSummary {
@@ -10086,6 +10109,29 @@ export class RestApiArrayResultMenuSectionItem {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultMenuStoreNames {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<MenuStoreNames>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<MenuStoreNames>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultMenuStoreNames.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultMenuSummary {
     /**
     * Generic data object.
@@ -10322,6 +10368,10 @@ export class RestApiErrorResult {
     */
     'Message': string;
     /**
+    * Stack trace
+    */
+    'StackTrace'?: string;
+    /**
     * List of errors grouped by field name
     */
     'Errors'?: Array<ValidationErrorResult>;
@@ -10332,6 +10382,11 @@ export class RestApiErrorResult {
         {
             "name": "Message",
             "baseName": "Message",
+            "type": "string"
+        },
+        {
+            "name": "StackTrace",
+            "baseName": "StackTrace",
             "type": "string"
         },
         {
@@ -18033,6 +18088,7 @@ let typeMap: {[index: string]: any} = {
     "MenuSectionItemDeletedEvent": MenuSectionItemDeletedEvent,
     "MenuSectionItemUpdatedEvent": MenuSectionItemUpdatedEvent,
     "MenuSectionUpdatedEvent": MenuSectionUpdatedEvent,
+    "MenuStoreNames": MenuStoreNames,
     "MenuSummary": MenuSummary,
     "MenuUpdatedEvent": MenuUpdatedEvent,
     "Metadata": Metadata,
@@ -18081,6 +18137,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultMenuItemOptionSetItem": RestApiArrayResultMenuItemOptionSetItem,
     "RestApiArrayResultMenuSection": RestApiArrayResultMenuSection,
     "RestApiArrayResultMenuSectionItem": RestApiArrayResultMenuSectionItem,
+    "RestApiArrayResultMenuStoreNames": RestApiArrayResultMenuStoreNames,
     "RestApiArrayResultMenuSummary": RestApiArrayResultMenuSummary,
     "RestApiArrayResultMetadata": RestApiArrayResultMetadata,
     "RestApiArrayResultOAuthClient": RestApiArrayResultOAuthClient,
@@ -23972,7 +24029,7 @@ export class MenusApi {
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
-    public createDraftMenuFromExistingMenu (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public createDraftMenuFromExistingMenu (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenu;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/clone'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -24008,11 +24065,12 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenu;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMenu");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -24535,6 +24593,63 @@ export class MenusApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultMetadata");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API]Get menus store names
+     * @param menuId Menu identifier
+     * @param {*} [options] Override http request options.
+     */
+    public getMenuStoreNames (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuStoreNames;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/stores'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling getMenuStoreNames.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuStoreNames;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuStoreNames");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
