@@ -780,12 +780,13 @@ export namespace App {
         CreateDeliveryZones = <any> 'CreateDeliveryZones',
         UpdateDeliveryZones = <any> 'UpdateDeliveryZones',
         DeleteDeliveryZones = <any> 'DeleteDeliveryZones',
+        ViewMenu = <any> 'ViewMenu',
         CreateMenu = <any> 'CreateMenu',
         UpdateMenu = <any> 'UpdateMenu',
         DeleteMenu = <any> 'DeleteMenu',
         UpdateMenuLock = <any> 'UpdateMenuLock',
-        UpdateMenuPrices = <any> 'UpdateMenuPrices',
         UpdateMenuItemsHideTemporarily = <any> 'UpdateMenuItemsHideTemporarily',
+        EditMenuImage = <any> 'EditMenuImage',
         ViewVouchers = <any> 'ViewVouchers',
         CreateVouchers = <any> 'CreateVouchers',
         UpdateVouchers = <any> 'UpdateVouchers',
@@ -7889,6 +7890,10 @@ export class OrderItem {
     */
     'Metadata'?: { [key: string]: string; };
     /**
+    * Public id of the Menu Item
+    */
+    'MenuItemPublicId'?: string;
+    /**
     * Menu section name
     */
     'MenuSectionName'?: string;
@@ -7937,6 +7942,11 @@ export class OrderItem {
             "name": "Metadata",
             "baseName": "Metadata",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "MenuItemPublicId",
+            "baseName": "MenuItemPublicId",
+            "type": "string"
         },
         {
             "name": "MenuSectionName",
@@ -7998,6 +8008,10 @@ export class OrderItemOption {
     */
     'Metadata'?: { [key: string]: string; };
     /**
+    * Public id of the Menu Item Option
+    */
+    'MenuItemOptionPublicId'?: string;
+    /**
     * Menu item option identifier
     */
     'MenuItemOptionId'?: number;
@@ -8029,6 +8043,11 @@ export class OrderItemOption {
             "name": "Metadata",
             "baseName": "Metadata",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "MenuItemOptionPublicId",
+            "baseName": "MenuItemOptionPublicId",
+            "type": "string"
         },
         {
             "name": "MenuItemOptionId",
