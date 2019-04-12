@@ -1576,226 +1576,6 @@ export namespace CreateTeammate {
     }
 }
 /**
-* Voucher
-*/
-export class CreateVoucher {
-    /**
-    * Voucher Type
-    */
-    'VoucherType'?: CreateVoucher.VoucherTypeEnum;
-    /**
-    * Add item details
-    */
-    'AddItemDetails'?: AddItemDetails;
-    /**
-    * Credit note details
-    */
-    'CreditNoteDetails'?: CreditNoteDetails;
-    /**
-    * Lump discount details
-    */
-    'LumpDiscountDetails'?: LumpDiscountDetails;
-    /**
-    * Percent discount details
-    */
-    'PercentDiscountDetails'?: PercentDiscountDetails;
-    /**
-    * Voucher Code
-    */
-    'Code'?: string;
-    /**
-    * Voucher Description (Visible on printout)
-    */
-    'Description'?: string;
-    /**
-    * Stores that this voucher applies to
-    */
-    'Stores'?: Array<number>;
-    /**
-    * Valid on orders on or above
-    */
-    'ValidOnOrdersOver'?: number;
-    /**
-    * Takes priority
-    */
-    'TakesPriority'?: boolean;
-    /**
-    * Is voucher enabled
-    */
-    'IsEnabled'?: boolean;
-    /**
-    * Is voucher automatically applied
-    */
-    'IsAutomaticallyApplied'?: boolean;
-    /**
-    * Include delivery fees
-    */
-    'IncludeDeliveryFee'?: boolean;
-    /**
-    * Valid for delivery orders
-    */
-    'IsValidForDeliveryOrders'?: boolean;
-    /**
-    * Valid for pickup orders
-    */
-    'IsValidForPickupOrders'?: boolean;
-    /**
-    * Valid for orders payed online
-    */
-    'IsValidForOrdersPayedOnline'?: boolean;
-    /**
-    * Valid for orders payed in cash
-    */
-    'IsValidForOrdersPayedByCash'?: boolean;
-    /**
-    * Valid only on the first order by the customer
-    */
-    'IsValidForFirstOrderOnly'?: boolean;
-    /**
-    * Valid once per customer
-    */
-    'IsValidOncePerCustomer'?: boolean;
-    /**
-    * Valid only once, by any customer (once used cannot be used again by any other customer)
-    */
-    'IsValidOnlyOnce'?: boolean;
-    /**
-    * Voucher Starts On (Time in UTC)
-    */
-    'StartDate'?: Date;
-    /**
-    * Voucher Expires On (Time in UTC)
-    */
-    'ExpiryDate'?: Date;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "VoucherType",
-            "baseName": "VoucherType",
-            "type": "CreateVoucher.VoucherTypeEnum"
-        },
-        {
-            "name": "AddItemDetails",
-            "baseName": "AddItemDetails",
-            "type": "AddItemDetails"
-        },
-        {
-            "name": "CreditNoteDetails",
-            "baseName": "CreditNoteDetails",
-            "type": "CreditNoteDetails"
-        },
-        {
-            "name": "LumpDiscountDetails",
-            "baseName": "LumpDiscountDetails",
-            "type": "LumpDiscountDetails"
-        },
-        {
-            "name": "PercentDiscountDetails",
-            "baseName": "PercentDiscountDetails",
-            "type": "PercentDiscountDetails"
-        },
-        {
-            "name": "Code",
-            "baseName": "Code",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "Stores",
-            "baseName": "Stores",
-            "type": "Array<number>"
-        },
-        {
-            "name": "ValidOnOrdersOver",
-            "baseName": "ValidOnOrdersOver",
-            "type": "number"
-        },
-        {
-            "name": "TakesPriority",
-            "baseName": "TakesPriority",
-            "type": "boolean"
-        },
-        {
-            "name": "IsEnabled",
-            "baseName": "IsEnabled",
-            "type": "boolean"
-        },
-        {
-            "name": "IsAutomaticallyApplied",
-            "baseName": "IsAutomaticallyApplied",
-            "type": "boolean"
-        },
-        {
-            "name": "IncludeDeliveryFee",
-            "baseName": "IncludeDeliveryFee",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForDeliveryOrders",
-            "baseName": "IsValidForDeliveryOrders",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForPickupOrders",
-            "baseName": "IsValidForPickupOrders",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForOrdersPayedOnline",
-            "baseName": "IsValidForOrdersPayedOnline",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForOrdersPayedByCash",
-            "baseName": "IsValidForOrdersPayedByCash",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForFirstOrderOnly",
-            "baseName": "IsValidForFirstOrderOnly",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidOncePerCustomer",
-            "baseName": "IsValidOncePerCustomer",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidOnlyOnce",
-            "baseName": "IsValidOnlyOnce",
-            "type": "boolean"
-        },
-        {
-            "name": "StartDate",
-            "baseName": "StartDate",
-            "type": "Date"
-        },
-        {
-            "name": "ExpiryDate",
-            "baseName": "ExpiryDate",
-            "type": "Date"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return CreateVoucher.attributeTypeMap;
-    }
-}
-
-export namespace CreateVoucher {
-    export enum VoucherTypeEnum {
-        PercentageDiscount = <any> 'PercentageDiscount',
-        LumpDiscount = <any> 'LumpDiscount',
-        AddItem = <any> 'AddItem',
-        CreditNote = <any> 'CreditNote'
-    }
-}
-/**
 * Credit note details
 */
 export class CreditNoteDetails {
@@ -16639,6 +16419,10 @@ export class Voucher {
     */
     'VoucherId'?: number;
     /**
+    * Voucher Code
+    */
+    'Code'?: string;
+    /**
     * Voucher Status
     */
     'Status'?: Voucher.StatusEnum;
@@ -16651,9 +16435,9 @@ export class Voucher {
     */
     'VoucherSubType'?: Voucher.VoucherSubTypeEnum;
     /**
-    * Currency of the voucher
+    * Voucher Expires On (Time in UTC)
     */
-    'Currency'?: Voucher.CurrencyEnum;
+    'StartDate'?: Date;
     /**
     * Add item details
     */
@@ -16671,69 +16455,17 @@ export class Voucher {
     */
     'PercentDiscountDetails'?: PercentDiscountDetails;
     /**
-    * Voucher Code
+    * Currency of the voucher
     */
-    'Code'?: string;
+    'Currency'?: Voucher.CurrencyEnum;
     /**
     * Voucher Description (Visible on printout)
     */
     'Description'?: string;
     /**
-    * Stores that this voucher applies to
-    */
-    'Stores'?: Array<number>;
-    /**
-    * Valid on orders on or above
-    */
-    'ValidOnOrdersOver'?: number;
-    /**
-    * Takes priority
-    */
-    'TakesPriority'?: boolean;
-    /**
     * Is voucher enabled
     */
     'IsEnabled'?: boolean;
-    /**
-    * Is voucher automatically applied
-    */
-    'IsAutomaticallyApplied'?: boolean;
-    /**
-    * Include delivery fees
-    */
-    'IncludeDeliveryFee'?: boolean;
-    /**
-    * Valid for delivery orders
-    */
-    'IsValidForDeliveryOrders'?: boolean;
-    /**
-    * Valid for pickup orders
-    */
-    'IsValidForPickupOrders'?: boolean;
-    /**
-    * Valid for orders payed online
-    */
-    'IsValidForOrdersPayedOnline'?: boolean;
-    /**
-    * Valid for orders payed in cash
-    */
-    'IsValidForOrdersPayedByCash'?: boolean;
-    /**
-    * Valid only on the first order by the customer
-    */
-    'IsValidForFirstOrderOnly'?: boolean;
-    /**
-    * Valid once per customer
-    */
-    'IsValidOncePerCustomer'?: boolean;
-    /**
-    * Valid only once, by any customer (once used cannot be used again by any other customer)
-    */
-    'IsValidOnlyOnce'?: boolean;
-    /**
-    * Voucher Starts On (Time in UTC)
-    */
-    'StartDate'?: Date;
     /**
     * Voucher Expires On (Time in UTC)
     */
@@ -16746,6 +16478,11 @@ export class Voucher {
             "name": "VoucherId",
             "baseName": "VoucherId",
             "type": "number"
+        },
+        {
+            "name": "Code",
+            "baseName": "Code",
+            "type": "string"
         },
         {
             "name": "Status",
@@ -16763,9 +16500,9 @@ export class Voucher {
             "type": "Voucher.VoucherSubTypeEnum"
         },
         {
-            "name": "Currency",
-            "baseName": "Currency",
-            "type": "Voucher.CurrencyEnum"
+            "name": "StartDate",
+            "baseName": "StartDate",
+            "type": "Date"
         },
         {
             "name": "AddItemDetails",
@@ -16788,9 +16525,9 @@ export class Voucher {
             "type": "PercentDiscountDetails"
         },
         {
-            "name": "Code",
-            "baseName": "Code",
-            "type": "string"
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "Voucher.CurrencyEnum"
         },
         {
             "name": "Description",
@@ -16798,74 +16535,9 @@ export class Voucher {
             "type": "string"
         },
         {
-            "name": "Stores",
-            "baseName": "Stores",
-            "type": "Array<number>"
-        },
-        {
-            "name": "ValidOnOrdersOver",
-            "baseName": "ValidOnOrdersOver",
-            "type": "number"
-        },
-        {
-            "name": "TakesPriority",
-            "baseName": "TakesPriority",
-            "type": "boolean"
-        },
-        {
             "name": "IsEnabled",
             "baseName": "IsEnabled",
             "type": "boolean"
-        },
-        {
-            "name": "IsAutomaticallyApplied",
-            "baseName": "IsAutomaticallyApplied",
-            "type": "boolean"
-        },
-        {
-            "name": "IncludeDeliveryFee",
-            "baseName": "IncludeDeliveryFee",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForDeliveryOrders",
-            "baseName": "IsValidForDeliveryOrders",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForPickupOrders",
-            "baseName": "IsValidForPickupOrders",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForOrdersPayedOnline",
-            "baseName": "IsValidForOrdersPayedOnline",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForOrdersPayedByCash",
-            "baseName": "IsValidForOrdersPayedByCash",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForFirstOrderOnly",
-            "baseName": "IsValidForFirstOrderOnly",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidOncePerCustomer",
-            "baseName": "IsValidOncePerCustomer",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidOnlyOnce",
-            "baseName": "IsValidOnlyOnce",
-            "type": "boolean"
-        },
-        {
-            "name": "StartDate",
-            "baseName": "StartDate",
-            "type": "Date"
         },
         {
             "name": "ExpiryDate",
@@ -17021,69 +16693,13 @@ export namespace Voucher {
 */
 export class VoucherBase {
     /**
-    * Voucher Code
-    */
-    'Code'?: string;
-    /**
     * Voucher Description (Visible on printout)
     */
     'Description'?: string;
     /**
-    * Stores that this voucher applies to
-    */
-    'Stores'?: Array<number>;
-    /**
-    * Valid on orders on or above
-    */
-    'ValidOnOrdersOver'?: number;
-    /**
-    * Takes priority
-    */
-    'TakesPriority'?: boolean;
-    /**
     * Is voucher enabled
     */
     'IsEnabled'?: boolean;
-    /**
-    * Is voucher automatically applied
-    */
-    'IsAutomaticallyApplied'?: boolean;
-    /**
-    * Include delivery fees
-    */
-    'IncludeDeliveryFee'?: boolean;
-    /**
-    * Valid for delivery orders
-    */
-    'IsValidForDeliveryOrders'?: boolean;
-    /**
-    * Valid for pickup orders
-    */
-    'IsValidForPickupOrders'?: boolean;
-    /**
-    * Valid for orders payed online
-    */
-    'IsValidForOrdersPayedOnline'?: boolean;
-    /**
-    * Valid for orders payed in cash
-    */
-    'IsValidForOrdersPayedByCash'?: boolean;
-    /**
-    * Valid only on the first order by the customer
-    */
-    'IsValidForFirstOrderOnly'?: boolean;
-    /**
-    * Valid once per customer
-    */
-    'IsValidOncePerCustomer'?: boolean;
-    /**
-    * Valid only once, by any customer (once used cannot be used again by any other customer)
-    */
-    'IsValidOnlyOnce'?: boolean;
-    /**
-    * Voucher Starts On (Time in UTC)
-    */
-    'StartDate'?: Date;
     /**
     * Voucher Expires On (Time in UTC)
     */
@@ -17093,84 +16709,14 @@ export class VoucherBase {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "Code",
-            "baseName": "Code",
-            "type": "string"
-        },
-        {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "Stores",
-            "baseName": "Stores",
-            "type": "Array<number>"
-        },
-        {
-            "name": "ValidOnOrdersOver",
-            "baseName": "ValidOnOrdersOver",
-            "type": "number"
-        },
-        {
-            "name": "TakesPriority",
-            "baseName": "TakesPriority",
-            "type": "boolean"
-        },
-        {
             "name": "IsEnabled",
             "baseName": "IsEnabled",
             "type": "boolean"
-        },
-        {
-            "name": "IsAutomaticallyApplied",
-            "baseName": "IsAutomaticallyApplied",
-            "type": "boolean"
-        },
-        {
-            "name": "IncludeDeliveryFee",
-            "baseName": "IncludeDeliveryFee",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForDeliveryOrders",
-            "baseName": "IsValidForDeliveryOrders",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForPickupOrders",
-            "baseName": "IsValidForPickupOrders",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForOrdersPayedOnline",
-            "baseName": "IsValidForOrdersPayedOnline",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForOrdersPayedByCash",
-            "baseName": "IsValidForOrdersPayedByCash",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForFirstOrderOnly",
-            "baseName": "IsValidForFirstOrderOnly",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidOncePerCustomer",
-            "baseName": "IsValidOncePerCustomer",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidOnlyOnce",
-            "baseName": "IsValidOnlyOnce",
-            "type": "boolean"
-        },
-        {
-            "name": "StartDate",
-            "baseName": "StartDate",
-            "type": "Date"
         },
         {
             "name": "ExpiryDate",
@@ -17639,6 +17185,10 @@ export class VoucherWithStats {
     */
     'VoucherId'?: number;
     /**
+    * Voucher Code
+    */
+    'Code'?: string;
+    /**
     * Voucher Status
     */
     'Status'?: VoucherWithStats.StatusEnum;
@@ -17651,9 +17201,9 @@ export class VoucherWithStats {
     */
     'VoucherSubType'?: VoucherWithStats.VoucherSubTypeEnum;
     /**
-    * Currency of the voucher
+    * Voucher Expires On (Time in UTC)
     */
-    'Currency'?: VoucherWithStats.CurrencyEnum;
+    'StartDate'?: Date;
     /**
     * Add item details
     */
@@ -17671,69 +17221,17 @@ export class VoucherWithStats {
     */
     'PercentDiscountDetails'?: PercentDiscountDetails;
     /**
-    * Voucher Code
+    * Currency of the voucher
     */
-    'Code'?: string;
+    'Currency'?: VoucherWithStats.CurrencyEnum;
     /**
     * Voucher Description (Visible on printout)
     */
     'Description'?: string;
     /**
-    * Stores that this voucher applies to
-    */
-    'Stores'?: Array<number>;
-    /**
-    * Valid on orders on or above
-    */
-    'ValidOnOrdersOver'?: number;
-    /**
-    * Takes priority
-    */
-    'TakesPriority'?: boolean;
-    /**
     * Is voucher enabled
     */
     'IsEnabled'?: boolean;
-    /**
-    * Is voucher automatically applied
-    */
-    'IsAutomaticallyApplied'?: boolean;
-    /**
-    * Include delivery fees
-    */
-    'IncludeDeliveryFee'?: boolean;
-    /**
-    * Valid for delivery orders
-    */
-    'IsValidForDeliveryOrders'?: boolean;
-    /**
-    * Valid for pickup orders
-    */
-    'IsValidForPickupOrders'?: boolean;
-    /**
-    * Valid for orders payed online
-    */
-    'IsValidForOrdersPayedOnline'?: boolean;
-    /**
-    * Valid for orders payed in cash
-    */
-    'IsValidForOrdersPayedByCash'?: boolean;
-    /**
-    * Valid only on the first order by the customer
-    */
-    'IsValidForFirstOrderOnly'?: boolean;
-    /**
-    * Valid once per customer
-    */
-    'IsValidOncePerCustomer'?: boolean;
-    /**
-    * Valid only once, by any customer (once used cannot be used again by any other customer)
-    */
-    'IsValidOnlyOnce'?: boolean;
-    /**
-    * Voucher Starts On (Time in UTC)
-    */
-    'StartDate'?: Date;
     /**
     * Voucher Expires On (Time in UTC)
     */
@@ -17773,6 +17271,11 @@ export class VoucherWithStats {
             "type": "number"
         },
         {
+            "name": "Code",
+            "baseName": "Code",
+            "type": "string"
+        },
+        {
             "name": "Status",
             "baseName": "Status",
             "type": "VoucherWithStats.StatusEnum"
@@ -17788,9 +17291,9 @@ export class VoucherWithStats {
             "type": "VoucherWithStats.VoucherSubTypeEnum"
         },
         {
-            "name": "Currency",
-            "baseName": "Currency",
-            "type": "VoucherWithStats.CurrencyEnum"
+            "name": "StartDate",
+            "baseName": "StartDate",
+            "type": "Date"
         },
         {
             "name": "AddItemDetails",
@@ -17813,9 +17316,9 @@ export class VoucherWithStats {
             "type": "PercentDiscountDetails"
         },
         {
-            "name": "Code",
-            "baseName": "Code",
-            "type": "string"
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "VoucherWithStats.CurrencyEnum"
         },
         {
             "name": "Description",
@@ -17823,74 +17326,9 @@ export class VoucherWithStats {
             "type": "string"
         },
         {
-            "name": "Stores",
-            "baseName": "Stores",
-            "type": "Array<number>"
-        },
-        {
-            "name": "ValidOnOrdersOver",
-            "baseName": "ValidOnOrdersOver",
-            "type": "number"
-        },
-        {
-            "name": "TakesPriority",
-            "baseName": "TakesPriority",
-            "type": "boolean"
-        },
-        {
             "name": "IsEnabled",
             "baseName": "IsEnabled",
             "type": "boolean"
-        },
-        {
-            "name": "IsAutomaticallyApplied",
-            "baseName": "IsAutomaticallyApplied",
-            "type": "boolean"
-        },
-        {
-            "name": "IncludeDeliveryFee",
-            "baseName": "IncludeDeliveryFee",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForDeliveryOrders",
-            "baseName": "IsValidForDeliveryOrders",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForPickupOrders",
-            "baseName": "IsValidForPickupOrders",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForOrdersPayedOnline",
-            "baseName": "IsValidForOrdersPayedOnline",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForOrdersPayedByCash",
-            "baseName": "IsValidForOrdersPayedByCash",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForFirstOrderOnly",
-            "baseName": "IsValidForFirstOrderOnly",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidOncePerCustomer",
-            "baseName": "IsValidOncePerCustomer",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidOnlyOnce",
-            "baseName": "IsValidOnlyOnce",
-            "type": "boolean"
-        },
-        {
-            "name": "StartDate",
-            "baseName": "StartDate",
-            "type": "Date"
         },
         {
             "name": "ExpiryDate",
@@ -18533,7 +17971,6 @@ let enumsMap: {[index: string]: any} = {
         "BusinessHoursPeriod.DayOfWeekEnum": BusinessHoursPeriod.DayOfWeekEnum,
         "BusinessHoursPeriodBase.DayOfWeekEnum": BusinessHoursPeriodBase.DayOfWeekEnum,
         "CreateTeammate.AppAccessLevelEnum": CreateTeammate.AppAccessLevelEnum,
-        "CreateVoucher.VoucherTypeEnum": CreateVoucher.VoucherTypeEnum,
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
         "LightspeedSettings.PriceTypeEnum": LightspeedSettings.PriceTypeEnum,
         "Menu.MenuSectionBehaviourEnum": Menu.MenuSectionBehaviourEnum,
@@ -18616,7 +18053,6 @@ let typeMap: {[index: string]: any} = {
     "Coordinates": Coordinates,
     "CreateAccountModel": CreateAccountModel,
     "CreateTeammate": CreateTeammate,
-    "CreateVoucher": CreateVoucher,
     "CreditNoteDetails": CreditNoteDetails,
     "CurrencyData": CurrencyData,
     "CustomerConsentUpdatedEvent": CustomerConsentUpdatedEvent,
@@ -29968,70 +29404,6 @@ export class VouchersApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Create voucher
-     * @param appId App Name Id
-     * @param voucher Voucher Details
-     * @param {*} [options] Override http request options.
-     */
-    public createVoucher (appId: string, voucher: CreateVoucher, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/vouchers/{appId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling createVoucher.');
-        }
-
-        // verify required parameter 'voucher' is not null or undefined
-        if (voucher === null || voucher === undefined) {
-            throw new Error('Required parameter voucher was null or undefined when calling createVoucher.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(voucher, "CreateVoucher")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultVoucherWithStats");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @summary [PRIVATE API] Get voucher by identifier
      * @param voucherId Id of the voucher
      * @param {*} [options] Override http request options.
@@ -30256,12 +29628,9 @@ export class VouchersApi {
      * @summary [PRIVATE API] Updates voucher
      * @param voucherId Id of the voucher
      * @param voucher Updated details for the voucher
-     * @param percentValue Percent voucher value (can have 1 of 3)
-     * @param lumpValue Lump voucher value (can have 1 of 3)
-     * @param freeItemId Free Item Id (can have 1 of 3)
      * @param {*} [options] Override http request options.
      */
-    public updateVoucher (voucherId: number, voucher: VoucherBase, percentValue?: number, lumpValue?: number, freeItemId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
+    public updateVoucher (voucherId: number, voucher: VoucherBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
         let localVarQueryParameters: any = {};
@@ -30276,18 +29645,6 @@ export class VouchersApi {
         // verify required parameter 'voucher' is not null or undefined
         if (voucher === null || voucher === undefined) {
             throw new Error('Required parameter voucher was null or undefined when calling updateVoucher.');
-        }
-
-        if (percentValue !== undefined) {
-            localVarQueryParameters['percentValue'] = ObjectSerializer.serialize(percentValue, "number");
-        }
-
-        if (lumpValue !== undefined) {
-            localVarQueryParameters['lumpValue'] = ObjectSerializer.serialize(lumpValue, "number");
-        }
-
-        if (freeItemId !== undefined) {
-            localVarQueryParameters['freeItemId'] = ObjectSerializer.serialize(freeItemId, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
