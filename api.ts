@@ -1616,6 +1616,10 @@ export class CreateVoucher {
     */
     'ValidOnOrdersOver'?: number;
     /**
+    * Takes priority
+    */
+    'TakesPriority'?: boolean;
+    /**
     * Is voucher enabled
     */
     'IsEnabled'?: boolean;
@@ -1711,6 +1715,11 @@ export class CreateVoucher {
             "name": "ValidOnOrdersOver",
             "baseName": "ValidOnOrdersOver",
             "type": "number"
+        },
+        {
+            "name": "TakesPriority",
+            "baseName": "TakesPriority",
+            "type": "boolean"
         },
         {
             "name": "IsEnabled",
@@ -16678,6 +16687,10 @@ export class Voucher {
     */
     'ValidOnOrdersOver'?: number;
     /**
+    * Takes priority
+    */
+    'TakesPriority'?: boolean;
+    /**
     * Is voucher enabled
     */
     'IsEnabled'?: boolean;
@@ -16793,6 +16806,11 @@ export class Voucher {
             "name": "ValidOnOrdersOver",
             "baseName": "ValidOnOrdersOver",
             "type": "number"
+        },
+        {
+            "name": "TakesPriority",
+            "baseName": "TakesPriority",
+            "type": "boolean"
         },
         {
             "name": "IsEnabled",
@@ -17019,6 +17037,10 @@ export class VoucherBase {
     */
     'ValidOnOrdersOver'?: number;
     /**
+    * Takes priority
+    */
+    'TakesPriority'?: boolean;
+    /**
     * Is voucher enabled
     */
     'IsEnabled'?: boolean;
@@ -17089,6 +17111,11 @@ export class VoucherBase {
             "name": "ValidOnOrdersOver",
             "baseName": "ValidOnOrdersOver",
             "type": "number"
+        },
+        {
+            "name": "TakesPriority",
+            "baseName": "TakesPriority",
+            "type": "boolean"
         },
         {
             "name": "IsEnabled",
@@ -17660,6 +17687,10 @@ export class VoucherWithStats {
     */
     'ValidOnOrdersOver'?: number;
     /**
+    * Takes priority
+    */
+    'TakesPriority'?: boolean;
+    /**
     * Is voucher enabled
     */
     'IsEnabled'?: boolean;
@@ -17800,6 +17831,11 @@ export class VoucherWithStats {
             "name": "ValidOnOrdersOver",
             "baseName": "ValidOnOrdersOver",
             "type": "number"
+        },
+        {
+            "name": "TakesPriority",
+            "baseName": "TakesPriority",
+            "type": "boolean"
         },
         {
             "name": "IsEnabled",
@@ -29934,11 +29970,10 @@ export class VouchersApi {
      * 
      * @summary [PRIVATE API] Create voucher
      * @param appId App Name Id
-     * @param storeId Store list
      * @param voucher Voucher Details
      * @param {*} [options] Override http request options.
      */
-    public createVoucher (appId: string, storeId: Array<number>, voucher: CreateVoucher, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
+    public createVoucher (appId: string, voucher: CreateVoucher, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{appId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -29950,18 +29985,9 @@ export class VouchersApi {
             throw new Error('Required parameter appId was null or undefined when calling createVoucher.');
         }
 
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling createVoucher.');
-        }
-
         // verify required parameter 'voucher' is not null or undefined
         if (voucher === null || voucher === undefined) {
             throw new Error('Required parameter voucher was null or undefined when calling createVoucher.');
-        }
-
-        if (storeId !== undefined) {
-            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
