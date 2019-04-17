@@ -3436,6 +3436,98 @@ export class GroupedCoordinates {
 }
 
 /**
+* 
+*/
+export class HomeAction {
+    /**
+    * 
+    */
+    'HomeActionCardId'?: number;
+    /**
+    * Type of Action
+    */
+    'HomeActionType'?: HomeAction.HomeActionTypeEnum;
+    /**
+    * 
+    */
+    'Order'?: number;
+    /**
+    * 
+    */
+    'TitleKey'?: string;
+    /**
+    * 
+    */
+    'ActionKey'?: string;
+    /**
+    * 
+    */
+    'DescriptionKey'?: string;
+    /**
+    * 
+    */
+    'Action'?: string;
+    /**
+    * 
+    */
+    'Dismissible'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "HomeActionCardId",
+            "baseName": "HomeActionCardId",
+            "type": "number"
+        },
+        {
+            "name": "HomeActionType",
+            "baseName": "HomeActionType",
+            "type": "HomeAction.HomeActionTypeEnum"
+        },
+        {
+            "name": "Order",
+            "baseName": "Order",
+            "type": "number"
+        },
+        {
+            "name": "TitleKey",
+            "baseName": "TitleKey",
+            "type": "string"
+        },
+        {
+            "name": "ActionKey",
+            "baseName": "ActionKey",
+            "type": "string"
+        },
+        {
+            "name": "DescriptionKey",
+            "baseName": "DescriptionKey",
+            "type": "string"
+        },
+        {
+            "name": "Action",
+            "baseName": "Action",
+            "type": "string"
+        },
+        {
+            "name": "Dismissible",
+            "baseName": "Dismissible",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HomeAction.attributeTypeMap;
+    }
+}
+
+export namespace HomeAction {
+    export enum HomeActionTypeEnum {
+        Portal = <any> 'Portal',
+        External = <any> 'External'
+    }
+}
+/**
 * Http Request and Response Log
 */
 export class HttpRequestAndResponseLog {
@@ -10212,6 +10304,29 @@ export class RestApiArrayResultDeliveryZone {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultDeliveryZone.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultHomeAction {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<HomeAction>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<HomeAction>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultHomeAction.attributeTypeMap;
     }
 }
 
@@ -18535,6 +18650,7 @@ let enumsMap: {[index: string]: any} = {
         "CreateTeammate.AppAccessLevelEnum": CreateTeammate.AppAccessLevelEnum,
         "CreateVoucher.VoucherTypeEnum": CreateVoucher.VoucherTypeEnum,
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
+        "HomeAction.HomeActionTypeEnum": HomeAction.HomeActionTypeEnum,
         "LightspeedSettings.PriceTypeEnum": LightspeedSettings.PriceTypeEnum,
         "Menu.MenuSectionBehaviourEnum": Menu.MenuSectionBehaviourEnum,
         "MenuBase.MenuSectionBehaviourEnum": MenuBase.MenuSectionBehaviourEnum,
@@ -18632,6 +18748,7 @@ let typeMap: {[index: string]: any} = {
     "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
     "GroupedCoordinates": GroupedCoordinates,
+    "HomeAction": HomeAction,
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
     "JobAddress": JobAddress,
     "JobCancellation": JobCancellation,
@@ -18722,6 +18839,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultApmHourlyDataPoint": RestApiArrayResultApmHourlyDataPoint,
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
+    "RestApiArrayResultHomeAction": RestApiArrayResultHomeAction,
     "RestApiArrayResultLocalisedTimeZone": RestApiArrayResultLocalisedTimeZone,
     "RestApiArrayResultMenuCheckpoint": RestApiArrayResultMenuCheckpoint,
     "RestApiArrayResultMenuItemOptionSet": RestApiArrayResultMenuItemOptionSet,
@@ -21578,6 +21696,173 @@ export class HeartbeatApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum HomeApiApiKeys {
+}
+
+export class HomeApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: HomeApiApiKeys, value: string) {
+        (this.authentications as any)[HomeApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Dismiss Home Action
+     * @param homeActionId Id of the action
+     * @param {*} [options] Override http request options.
+     */
+    public dismissHomeAction (homeActionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/home/{homeActionId}'
+            .replace('{' + 'homeActionId' + '}', encodeURIComponent(String(homeActionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'homeActionId' is not null or undefined
+        if (homeActionId === null || homeActionId === undefined) {
+            throw new Error('Required parameter homeActionId was null or undefined when calling dismissHomeAction.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Get Home Actions
+     * @param appId App Name Id
+     * @param {*} [options] Override http request options.
+     */
+    public getHomeActions (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultHomeAction;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/home';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getHomeActions.');
+        }
+
+        if (appId !== undefined) {
+            localVarQueryParameters['appId'] = ObjectSerializer.serialize(appId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultHomeAction;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultHomeAction");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
