@@ -1016,6 +1016,289 @@ export class AppUpdatedEvent {
 /**
 * 
 */
+export class BankAccountCreate {
+    /**
+    * Address lf the bank
+    */
+    'BankAddress'?: string;
+    /**
+    * CountryCode of the Bank Account
+    */
+    'BankCountryCode'?: string;
+    /**
+    * Account Holders Address
+    */
+    'AccountHolderAddress'?: string;
+    /**
+    * Account Holders Country Code
+    */
+    'AccountHolderCountryCode'?: string;
+    /**
+    * Account Holders Vat Number
+    */
+    'VatNumber'?: string;
+    /**
+    * Name of this account
+    */
+    'AccountName'?: string;
+    /**
+    * IBAN of this account
+    */
+    'Iban'?: string;
+    /**
+    * SWIFT of this bank account
+    */
+    'Swift'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "BankAddress",
+            "baseName": "BankAddress",
+            "type": "string"
+        },
+        {
+            "name": "BankCountryCode",
+            "baseName": "BankCountryCode",
+            "type": "string"
+        },
+        {
+            "name": "AccountHolderAddress",
+            "baseName": "AccountHolderAddress",
+            "type": "string"
+        },
+        {
+            "name": "AccountHolderCountryCode",
+            "baseName": "AccountHolderCountryCode",
+            "type": "string"
+        },
+        {
+            "name": "VatNumber",
+            "baseName": "VatNumber",
+            "type": "string"
+        },
+        {
+            "name": "AccountName",
+            "baseName": "AccountName",
+            "type": "string"
+        },
+        {
+            "name": "Iban",
+            "baseName": "Iban",
+            "type": "string"
+        },
+        {
+            "name": "Swift",
+            "baseName": "Swift",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BankAccountCreate.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class BankAccountDetail {
+    /**
+    * Id of this account
+    */
+    'Id'?: number;
+    /**
+    * Store Names that are attached to this account
+    */
+    'StoreNames'?: Array<string>;
+    /**
+    * Status of Account
+    */
+    'AccountState'?: BankAccountDetail.AccountStateEnum;
+    /**
+    * Address lf the bank
+    */
+    'BankAddress'?: string;
+    /**
+    * CountryCode of the Bank Account
+    */
+    'BankCountryCode'?: string;
+    /**
+    * Account Holders Address
+    */
+    'AccountHolderAddress'?: string;
+    /**
+    * Account Holders Country Code
+    */
+    'AccountHolderCountryCode'?: string;
+    /**
+    * Account Holders Vat Number
+    */
+    'VatNumber'?: string;
+    /**
+    * Name of this account
+    */
+    'AccountName'?: string;
+    /**
+    * IBAN of this account
+    */
+    'Iban'?: string;
+    /**
+    * SWIFT of this bank account
+    */
+    'Swift'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "StoreNames",
+            "baseName": "StoreNames",
+            "type": "Array<string>"
+        },
+        {
+            "name": "AccountState",
+            "baseName": "AccountState",
+            "type": "BankAccountDetail.AccountStateEnum"
+        },
+        {
+            "name": "BankAddress",
+            "baseName": "BankAddress",
+            "type": "string"
+        },
+        {
+            "name": "BankCountryCode",
+            "baseName": "BankCountryCode",
+            "type": "string"
+        },
+        {
+            "name": "AccountHolderAddress",
+            "baseName": "AccountHolderAddress",
+            "type": "string"
+        },
+        {
+            "name": "AccountHolderCountryCode",
+            "baseName": "AccountHolderCountryCode",
+            "type": "string"
+        },
+        {
+            "name": "VatNumber",
+            "baseName": "VatNumber",
+            "type": "string"
+        },
+        {
+            "name": "AccountName",
+            "baseName": "AccountName",
+            "type": "string"
+        },
+        {
+            "name": "Iban",
+            "baseName": "Iban",
+            "type": "string"
+        },
+        {
+            "name": "Swift",
+            "baseName": "Swift",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BankAccountDetail.attributeTypeMap;
+    }
+}
+
+export namespace BankAccountDetail {
+    export enum AccountStateEnum {
+        Unverified = <any> 'Unverified',
+        AwatingVerification = <any> 'AwatingVerification',
+        Verified = <any> 'Verified',
+        Grandfathered = <any> 'Grandfathered'
+    }
+}
+/**
+* 
+*/
+export class BankAccountSummary {
+    /**
+    * Id of this account
+    */
+    'Id'?: number;
+    /**
+    * Store Names that are attached to this account
+    */
+    'StoreNames'?: Array<string>;
+    /**
+    * Status of Account
+    */
+    'AccountState'?: BankAccountSummary.AccountStateEnum;
+    /**
+    * Name of this account
+    */
+    'AccountName'?: string;
+    /**
+    * IBAN of this account
+    */
+    'Iban'?: string;
+    /**
+    * SWIFT of this bank account
+    */
+    'Swift'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "StoreNames",
+            "baseName": "StoreNames",
+            "type": "Array<string>"
+        },
+        {
+            "name": "AccountState",
+            "baseName": "AccountState",
+            "type": "BankAccountSummary.AccountStateEnum"
+        },
+        {
+            "name": "AccountName",
+            "baseName": "AccountName",
+            "type": "string"
+        },
+        {
+            "name": "Iban",
+            "baseName": "Iban",
+            "type": "string"
+        },
+        {
+            "name": "Swift",
+            "baseName": "Swift",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BankAccountSummary.attributeTypeMap;
+    }
+}
+
+export namespace BankAccountSummary {
+    export enum AccountStateEnum {
+        Unverified = <any> 'Unverified',
+        AwatingVerification = <any> 'AwatingVerification',
+        Verified = <any> 'Verified',
+        Grandfathered = <any> 'Grandfathered'
+    }
+}
+/**
+* 
+*/
 export class BusinessHoursOverride {
     /**
     * Unique identifier
@@ -10264,6 +10547,29 @@ export class RestApiArrayResultApmHourlyDataPoint {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultBankAccountSummary {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<BankAccountSummary>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<BankAccountSummary>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultBankAccountSummary.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultBusinessHoursPeriod {
     /**
     * Generic data object.
@@ -11501,6 +11807,29 @@ export class RestApiResultApmStatistics {
 
     static getAttributeTypeMap() {
         return RestApiResultApmStatistics.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultBankAccountDetail {
+    /**
+    * Generic data object.
+    */
+    'Data': BankAccountDetail;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "BankAccountDetail"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultBankAccountDetail.attributeTypeMap;
     }
 }
 
@@ -18641,6 +18970,8 @@ let enumsMap: {[index: string]: any} = {
         "ApmHourlyDataPoint.DayEnum": ApmHourlyDataPoint.DayEnum,
         "App.AppAccessLevelEnum": App.AppAccessLevelEnum,
         "App.AppResourceSetEnum": App.AppResourceSetEnum,
+        "BankAccountDetail.AccountStateEnum": BankAccountDetail.AccountStateEnum,
+        "BankAccountSummary.AccountStateEnum": BankAccountSummary.AccountStateEnum,
         "BusinessHoursOverride.DeliveryTypeEnum": BusinessHoursOverride.DeliveryTypeEnum,
         "BusinessHoursOverride.TypeEnum": BusinessHoursOverride.TypeEnum,
         "BusinessHoursOverrideBase.DeliveryTypeEnum": BusinessHoursOverrideBase.DeliveryTypeEnum,
@@ -18721,6 +19052,9 @@ let typeMap: {[index: string]: any} = {
     "App": App,
     "AppCreatedEvent": AppCreatedEvent,
     "AppUpdatedEvent": AppUpdatedEvent,
+    "BankAccountCreate": BankAccountCreate,
+    "BankAccountDetail": BankAccountDetail,
+    "BankAccountSummary": BankAccountSummary,
     "BusinessHoursOverride": BusinessHoursOverride,
     "BusinessHoursOverrideBase": BusinessHoursOverrideBase,
     "BusinessHoursPeriod": BusinessHoursPeriod,
@@ -18837,6 +19171,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultApmCurrencyDataPoint": RestApiArrayResultApmCurrencyDataPoint,
     "RestApiArrayResultApmDataPoint": RestApiArrayResultApmDataPoint,
     "RestApiArrayResultApmHourlyDataPoint": RestApiArrayResultApmHourlyDataPoint,
+    "RestApiArrayResultBankAccountSummary": RestApiArrayResultBankAccountSummary,
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
     "RestApiArrayResultHomeAction": RestApiArrayResultHomeAction,
@@ -18875,6 +19210,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
     "RestApiResultApmStatistics": RestApiResultApmStatistics,
+    "RestApiResultBankAccountDetail": RestApiResultBankAccountDetail,
     "RestApiResultBusinessHoursOverride": RestApiResultBusinessHoursOverride,
     "RestApiResultBusinessHoursPeriod": RestApiResultBusinessHoursPeriod,
     "RestApiResultCard": RestApiResultCard,
@@ -20495,6 +20831,514 @@ export class AuthorizationTokensApi {
 
         let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum BankAccountApiApiKeys {
+}
+
+export class BankAccountApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: BankAccountApiApiKeys, value: string) {
+        (this.authentications as any)[BankAccountApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Attach Bank Account to Store
+     * @param appId App Name
+     * @param accountId Id of account to be updated
+     * @param storeId Store to be attached to Bank account
+     * @param {*} [options] Override http request options.
+     */
+    public attachBankAccountToStore (appId: string, accountId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{accountId}/store/{storeId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'accountId' + '}', encodeURIComponent(String(accountId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling attachBankAccountToStore.');
+        }
+
+        // verify required parameter 'accountId' is not null or undefined
+        if (accountId === null || accountId === undefined) {
+            throw new Error('Required parameter accountId was null or undefined when calling attachBankAccountToStore.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling attachBankAccountToStore.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Create a new Bank Account and attach to this App
+     * @param appId App Name
+     * @param account Account to be created
+     * @param {*} [options] Override http request options.
+     */
+    public createBankAccount (appId: string, account: BankAccountCreate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createBankAccount.');
+        }
+
+        // verify required parameter 'account' is not null or undefined
+        if (account === null || account === undefined) {
+            throw new Error('Required parameter account was null or undefined when calling createBankAccount.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(account, "BankAccountCreate")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultBankAccountDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Delete BankAccount
+     * @param appId App Name
+     * @param id Id of account to be marked as deleted
+     * @param {*} [options] Override http request options.
+     */
+    public deleteBankAccount (appId: string, id: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{id}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling deleteBankAccount.');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling deleteBankAccount.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Get BankAccount Detail by Id
+     * @param id Id of account
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getBankAccount (id: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getBankAccount.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getBankAccount.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultBankAccountDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Get List of BankAccounts for WL
+     * @param appId App Name
+     * @param {*} [options] Override http request options.
+     */
+    public getBankAccounts (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultBankAccountSummary;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getBankAccounts.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultBankAccountSummary;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultBankAccountSummary");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Update BankAccount
+     * @param appId App Name
+     * @param id Id of account to be updated
+     * @param account Details to update account with
+     * @param {*} [options] Override http request options.
+     */
+    public updateBankAccount (appId: string, id: number, account: BankAccountCreate, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{id}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateBankAccount.');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateBankAccount.');
+        }
+
+        // verify required parameter 'account' is not null or undefined
+        if (account === null || account === undefined) {
+            throw new Error('Required parameter account was null or undefined when calling updateBankAccount.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(account, "BankAccountCreate")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Update State of Bank Account
+     * @param appId App Name
+     * @param accountId Id of account to be updated
+     * @param state 
+     * @param {*} [options] Override http request options.
+     */
+    public updateBankAccountState (appId: string, accountId: number, state: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{accountId}/state/{state}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'accountId' + '}', encodeURIComponent(String(accountId)))
+            .replace('{' + 'state' + '}', encodeURIComponent(String(state)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateBankAccountState.');
+        }
+
+        // verify required parameter 'accountId' is not null or undefined
+        if (accountId === null || accountId === undefined) {
+            throw new Error('Required parameter accountId was null or undefined when calling updateBankAccountState.');
+        }
+
+        // verify required parameter 'state' is not null or undefined
+        if (state === null || state === undefined) {
+            throw new Error('Required parameter state was null or undefined when calling updateBankAccountState.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
