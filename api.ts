@@ -10938,6 +10938,29 @@ export class RestApiArrayResultRestApiDefaultResponse {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultStoreStatistics {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<StoreStatistics>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<StoreStatistics>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultStoreStatistics.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultTeammate {
     /**
     * Generic data object.
@@ -14531,6 +14554,38 @@ export class StoreCreatedEvent {
 }
 
 /**
+* Store Data Point
+*/
+export class StoreDataPoint {
+    /**
+    * Day
+    */
+    'Day'?: Date;
+    /**
+    * Value for the day
+    */
+    'Value'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Day",
+            "baseName": "Day",
+            "type": "Date"
+        },
+        {
+            "name": "Value",
+            "baseName": "Value",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreDataPoint.attributeTypeMap;
+    }
+}
+
+/**
 * Store Deleted Event
 */
 export class StoreDeletedEvent {
@@ -15550,6 +15605,38 @@ export class StoreOpeningHoursUpdatedEvent {
 
     static getAttributeTypeMap() {
         return StoreOpeningHoursUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Store statistics
+*/
+export class StoreStatistics {
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * Store Data Points
+    */
+    'Data'?: Array<StoreDataPoint>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<StoreDataPoint>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreStatistics.attributeTypeMap;
     }
 }
 
@@ -19188,6 +19275,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultOauthClientRedirectUri": RestApiArrayResultOauthClientRedirectUri,
     "RestApiArrayResultProcessingFeeConfig": RestApiArrayResultProcessingFeeConfig,
     "RestApiArrayResultRestApiDefaultResponse": RestApiArrayResultRestApiDefaultResponse,
+    "RestApiArrayResultStoreStatistics": RestApiArrayResultStoreStatistics,
     "RestApiArrayResultTeammate": RestApiArrayResultTeammate,
     "RestApiArrayResultVoucherDataPoint": RestApiArrayResultVoucherDataPoint,
     "RestApiArrayResultWebhookSubscription": RestApiArrayResultWebhookSubscription,
@@ -19262,6 +19350,7 @@ let typeMap: {[index: string]: any} = {
     "StoreCloneSettings": StoreCloneSettings,
     "StoreCreateBase": StoreCreateBase,
     "StoreCreatedEvent": StoreCreatedEvent,
+    "StoreDataPoint": StoreDataPoint,
     "StoreDeletedEvent": StoreDeletedEvent,
     "StoreGroup": StoreGroup,
     "StoreGroupBase": StoreGroupBase,
@@ -19271,6 +19360,7 @@ let typeMap: {[index: string]: any} = {
     "StoreGroupUpdatedEvent": StoreGroupUpdatedEvent,
     "StoreNote": StoreNote,
     "StoreOpeningHoursUpdatedEvent": StoreOpeningHoursUpdatedEvent,
+    "StoreStatistics": StoreStatistics,
     "StoreSummary": StoreSummary,
     "StoreUpdatedEvent": StoreUpdatedEvent,
     "StuartSettings": StuartSettings,
@@ -22663,7 +22753,8 @@ export class HomeApi {
      * @param {*} [options] Override http request options.
      */
     public getHomeActions (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultHomeAction;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/home';
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/home'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -22671,10 +22762,6 @@ export class HomeApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getHomeActions.');
-        }
-
-        if (appId !== undefined) {
-            localVarQueryParameters['appId'] = ObjectSerializer.serialize(appId, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -22707,6 +22794,63 @@ export class HomeApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultHomeAction");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Get Home Statistics
+     * @param appId App Name Id
+     * @param {*} [options] Override http request options.
+     */
+    public getHomeStatistics (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/home/stats'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getHomeStatistics.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -29212,6 +29356,72 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultStore");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param storeId 
+     * @param {*} [options] Override http request options.
+     */
+    public getStoreNetSales (appId: string, storeId: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreStatistics;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/stats'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getStoreNetSales.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getStoreNetSales.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreStatistics;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultStoreStatistics");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
