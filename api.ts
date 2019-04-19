@@ -8018,6 +8018,10 @@ export class Order {
     * Rejection reason. Can have value if the order is rejected.
     */
     'RejectionReason'?: Order.RejectionReasonEnum;
+    /**
+    * Amount refunded to customer.
+    */
+    'RefundedAmount'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -8151,6 +8155,11 @@ export class Order {
             "name": "RejectionReason",
             "baseName": "RejectionReason",
             "type": "Order.RejectionReasonEnum"
+        },
+        {
+            "name": "RefundedAmount",
+            "baseName": "RefundedAmount",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -10375,9 +10384,13 @@ export class Refund {
 */
 export class Reject {
     /**
-    * Reject reason
+    * Reject reason.
     */
     'RejectReason': Reject.RejectReasonEnum;
+    /**
+    * Notify customer. The server will not send and SMS to the customer if the value is true.
+    */
+    'DoNotNotifyCustomer'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -10386,6 +10399,11 @@ export class Reject {
             "name": "RejectReason",
             "baseName": "RejectReason",
             "type": "Reject.RejectReasonEnum"
+        },
+        {
+            "name": "DoNotNotifyCustomer",
+            "baseName": "DoNotNotifyCustomer",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
