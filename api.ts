@@ -736,7 +736,6 @@ export namespace App {
         ManagedOwner = <any> 'ManagedOwner',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
-        StoreReadWriteAccess = <any> 'StoreReadWriteAccess',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger'
     }
@@ -753,7 +752,6 @@ export namespace App {
         CreateTeammateStoreOwner = <any> 'CreateTeammateStoreOwner',
         CreateTeammateStoreManager = <any> 'CreateTeammateStoreManager',
         CreateTeammateStoreStaff = <any> 'CreateTeammateStoreStaff',
-        CreateTeammateStoreReadWriteAccess = <any> 'CreateTeammateStoreReadWriteAccess',
         CreateTeammateStoreReadAccess = <any> 'CreateTeammateStoreReadAccess',
         CreateTeammateFinanceManager = <any> 'CreateTeammateFinanceManager',
         ViewApmConfigurations = <any> 'ViewApmConfigurations',
@@ -804,6 +802,7 @@ export namespace App {
         CreateBankAccounts = <any> 'CreateBankAccounts',
         UpdateBankAccounts = <any> 'UpdateBankAccounts',
         UpdateBankAccountsAssign = <any> 'UpdateBankAccountsAssign',
+        ViewAssignedBankAccount = <any> 'ViewAssignedBankAccount',
         ViewFeesConfigurations = <any> 'ViewFeesConfigurations',
         EditFeesConfigurations = <any> 'EditFeesConfigurations',
         ViewAppStatistics = <any> 'ViewAppStatistics',
@@ -1014,6 +1013,127 @@ export class AppUpdatedEvent {
 }
 
 /**
+* BANK ACCOUNT
+*/
+export class BankAccount {
+    /**
+    * Id of this account
+    */
+    'Id'?: number;
+    /**
+    * Name of this account
+    */
+    'AccountName'?: string;
+    /**
+    * IBAN of this account
+    */
+    'Iban'?: string;
+    /**
+    * SWIFT of this bank account
+    */
+    'Swift'?: string;
+    /**
+    * Status of Account
+    */
+    'AccountState'?: BankAccount.AccountStateEnum;
+    /**
+    * Store Names that are attached to this account
+    */
+    'StoreNames'?: Array<string>;
+    /**
+    * Address lf the bank
+    */
+    'BankAddress'?: string;
+    /**
+    * CountryCode of the Bank Account
+    */
+    'BankCountryCode'?: string;
+    /**
+    * Account Holders Address
+    */
+    'AccountHolderAddress'?: string;
+    /**
+    * Account Holders Country Code
+    */
+    'AccountHolderCountryCode'?: string;
+    /**
+    * Account Holders Vat Number
+    */
+    'VatNumber'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "AccountName",
+            "baseName": "AccountName",
+            "type": "string"
+        },
+        {
+            "name": "Iban",
+            "baseName": "Iban",
+            "type": "string"
+        },
+        {
+            "name": "Swift",
+            "baseName": "Swift",
+            "type": "string"
+        },
+        {
+            "name": "AccountState",
+            "baseName": "AccountState",
+            "type": "BankAccount.AccountStateEnum"
+        },
+        {
+            "name": "StoreNames",
+            "baseName": "StoreNames",
+            "type": "Array<string>"
+        },
+        {
+            "name": "BankAddress",
+            "baseName": "BankAddress",
+            "type": "string"
+        },
+        {
+            "name": "BankCountryCode",
+            "baseName": "BankCountryCode",
+            "type": "string"
+        },
+        {
+            "name": "AccountHolderAddress",
+            "baseName": "AccountHolderAddress",
+            "type": "string"
+        },
+        {
+            "name": "AccountHolderCountryCode",
+            "baseName": "AccountHolderCountryCode",
+            "type": "string"
+        },
+        {
+            "name": "VatNumber",
+            "baseName": "VatNumber",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BankAccount.attributeTypeMap;
+    }
+}
+
+export namespace BankAccount {
+    export enum AccountStateEnum {
+        Unverified = <any> 'Unverified',
+        AwatingVerification = <any> 'AwatingVerification',
+        Verified = <any> 'Verified',
+        Grandfathered = <any> 'Grandfathered'
+    }
+}
+/**
 * 
 */
 export class BankAccountCreate {
@@ -1096,6 +1216,74 @@ export class BankAccountCreate {
 
     static getAttributeTypeMap() {
         return BankAccountCreate.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class BankAccountCreatedEvent {
+    /**
+    * The create bank account
+    */
+    'BankAccount'?: BankAccount;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "BankAccount",
+            "baseName": "BankAccount",
+            "type": "BankAccount"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BankAccountCreatedEvent.attributeTypeMap;
     }
 }
 
@@ -1296,6 +1484,74 @@ export namespace BankAccountSummary {
         Grandfathered = <any> 'Grandfathered'
     }
 }
+/**
+* 
+*/
+export class BankAccountUpdatedEvent {
+    /**
+    * The create bank account
+    */
+    'BankAccount'?: BankAccount;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "BankAccount",
+            "baseName": "BankAccount",
+            "type": "BankAccount"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BankAccountUpdatedEvent.attributeTypeMap;
+    }
+}
+
 /**
 * 
 */
@@ -1853,7 +2109,6 @@ export namespace CreateTeammate {
         ManagedOwner = <any> 'ManagedOwner',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
-        StoreReadWriteAccess = <any> 'StoreReadWriteAccess',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger'
     }
@@ -3291,6 +3546,14 @@ export class EventSearchResult {
     * Teammate deleted event
     */
     'TeammateDeletedEvent'?: Array<TeammateDeletedEvent>;
+    /**
+    * Bank account created event
+    */
+    'BankAccountCreatedEvent'?: Array<BankAccountCreatedEvent>;
+    /**
+    * Bank account updated event
+    */
+    'BankAccountUpdatedEvent'?: Array<BankAccountUpdatedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -3629,6 +3892,16 @@ export class EventSearchResult {
             "name": "TeammateDeletedEvent",
             "baseName": "TeammateDeletedEvent",
             "type": "Array<TeammateDeletedEvent>"
+        },
+        {
+            "name": "BankAccountCreatedEvent",
+            "baseName": "BankAccountCreatedEvent",
+            "type": "Array<BankAccountCreatedEvent>"
+        },
+        {
+            "name": "BankAccountUpdatedEvent",
+            "baseName": "BankAccountUpdatedEvent",
+            "type": "Array<BankAccountUpdatedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -3810,6 +4083,29 @@ export namespace HomeAction {
         External = <any> 'External'
     }
 }
+/**
+* Home statitstics
+*/
+export class HomeStatistics {
+    /**
+    * Money saved
+    */
+    'TotalMoneySaved'?: Array<CurrencyData>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "TotalMoneySaved",
+            "baseName": "TotalMoneySaved",
+            "type": "Array<CurrencyData>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HomeStatistics.attributeTypeMap;
+    }
+}
+
 /**
 * Http Request and Response Log
 */
@@ -11992,6 +12288,29 @@ export class RestApiResultDeliveryZone {
 /**
 * Rest api result
 */
+export class RestApiResultHomeStatistics {
+    /**
+    * Generic data object.
+    */
+    'Data': HomeStatistics;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "HomeStatistics"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultHomeStatistics.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultJobResponse {
     /**
     * Generic data object.
@@ -12964,6 +13283,30 @@ export class SearchCriteria {
     * Event names to filter in
     */
     'Name'?: Array<string>;
+    /**
+    * 
+    */
+    'OrderId'?: number;
+    /**
+    * 
+    */
+    'StoreId'?: number;
+    /**
+    * 
+    */
+    'StoreGroupId'?: number;
+    /**
+    * 
+    */
+    'UserId'?: number;
+    /**
+    * 
+    */
+    'VoucherCode'?: string;
+    /**
+    * 
+    */
+    'EventType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -12992,6 +13335,36 @@ export class SearchCriteria {
             "name": "Name",
             "baseName": "Name",
             "type": "Array<string>"
+        },
+        {
+            "name": "OrderId",
+            "baseName": "OrderId",
+            "type": "number"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
+            "type": "number"
+        },
+        {
+            "name": "UserId",
+            "baseName": "UserId",
+            "type": "number"
+        },
+        {
+            "name": "VoucherCode",
+            "baseName": "VoucherCode",
+            "type": "string"
+        },
+        {
+            "name": "EventType",
+            "baseName": "EventType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -16458,7 +16831,6 @@ export namespace Teammate {
         ManagedOwner = <any> 'ManagedOwner',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
-        StoreReadWriteAccess = <any> 'StoreReadWriteAccess',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger'
     }
@@ -16512,7 +16884,6 @@ export namespace TeammateBase {
         ManagedOwner = <any> 'ManagedOwner',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
-        StoreReadWriteAccess = <any> 'StoreReadWriteAccess',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger'
     }
@@ -19075,6 +19446,7 @@ let enumsMap: {[index: string]: any} = {
         "ApmHourlyDataPoint.DayEnum": ApmHourlyDataPoint.DayEnum,
         "App.AppAccessLevelEnum": App.AppAccessLevelEnum,
         "App.AppResourceSetEnum": App.AppResourceSetEnum,
+        "BankAccount.AccountStateEnum": BankAccount.AccountStateEnum,
         "BankAccountDetail.AccountStateEnum": BankAccountDetail.AccountStateEnum,
         "BankAccountSummary.AccountStateEnum": BankAccountSummary.AccountStateEnum,
         "BusinessHoursOverride.DeliveryTypeEnum": BusinessHoursOverride.DeliveryTypeEnum,
@@ -19157,9 +19529,12 @@ let typeMap: {[index: string]: any} = {
     "App": App,
     "AppCreatedEvent": AppCreatedEvent,
     "AppUpdatedEvent": AppUpdatedEvent,
+    "BankAccount": BankAccount,
     "BankAccountCreate": BankAccountCreate,
+    "BankAccountCreatedEvent": BankAccountCreatedEvent,
     "BankAccountDetail": BankAccountDetail,
     "BankAccountSummary": BankAccountSummary,
+    "BankAccountUpdatedEvent": BankAccountUpdatedEvent,
     "BusinessHoursOverride": BusinessHoursOverride,
     "BusinessHoursOverrideBase": BusinessHoursOverrideBase,
     "BusinessHoursPeriod": BusinessHoursPeriod,
@@ -19188,6 +19563,7 @@ let typeMap: {[index: string]: any} = {
     "FeeSummary": FeeSummary,
     "GroupedCoordinates": GroupedCoordinates,
     "HomeAction": HomeAction,
+    "HomeStatistics": HomeStatistics,
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
     "JobAddress": JobAddress,
     "JobCancellation": JobCancellation,
@@ -19322,6 +19698,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultCard": RestApiResultCard,
     "RestApiResultCoordinates": RestApiResultCoordinates,
     "RestApiResultDeliveryZone": RestApiResultDeliveryZone,
+    "RestApiResultHomeStatistics": RestApiResultHomeStatistics,
     "RestApiResultJobResponse": RestApiResultJobResponse,
     "RestApiResultLightspeedSettings": RestApiResultLightspeedSettings,
     "RestApiResultMenu": RestApiResultMenu,
@@ -21843,9 +22220,15 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param name Event names to filter in
+     * @param orderId 
+     * @param storeId 
+     * @param storeGroupId 
+     * @param userId 
+     * @param voucherCode 
+     * @param eventType 
      * @param {*} [options] Override http request options.
      */
-    public getCustomerEvents (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getCustomerEvents (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, voucherCode?: string, eventType?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/customer/{customerId}'
             .replace('{' + 'customerId' + '}', encodeURIComponent(String(customerId)));
         let localVarQueryParameters: any = {};
@@ -21875,6 +22258,30 @@ export class EventsApi {
 
         if (name !== undefined) {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
+        }
+
+        if (orderId !== undefined) {
+            localVarQueryParameters['orderId'] = ObjectSerializer.serialize(orderId, "number");
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
+        }
+
+        if (storeGroupId !== undefined) {
+            localVarQueryParameters['storeGroupId'] = ObjectSerializer.serialize(storeGroupId, "number");
+        }
+
+        if (userId !== undefined) {
+            localVarQueryParameters['userId'] = ObjectSerializer.serialize(userId, "number");
+        }
+
+        if (voucherCode !== undefined) {
+            localVarQueryParameters['voucherCode'] = ObjectSerializer.serialize(voucherCode, "string");
+        }
+
+        if (eventType !== undefined) {
+            localVarQueryParameters['eventType'] = ObjectSerializer.serialize(eventType, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -21927,9 +22334,15 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param name Event names to filter in
+     * @param orderId 
+     * @param storeId2 
+     * @param storeGroupId 
+     * @param userId 
+     * @param voucherCode 
+     * @param eventType 
      * @param {*} [options] Override http request options.
      */
-    public getEvents (storeId?: number, whiteLabelId?: number, customerId?: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getEvents (storeId?: number, whiteLabelId?: number, customerId?: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, orderId?: number, storeId2?: number, storeGroupId?: number, userId?: number, voucherCode?: string, eventType?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -21965,6 +22378,30 @@ export class EventsApi {
 
         if (name !== undefined) {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
+        }
+
+        if (orderId !== undefined) {
+            localVarQueryParameters['orderId'] = ObjectSerializer.serialize(orderId, "number");
+        }
+
+        if (storeId2 !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId2, "number");
+        }
+
+        if (storeGroupId !== undefined) {
+            localVarQueryParameters['storeGroupId'] = ObjectSerializer.serialize(storeGroupId, "number");
+        }
+
+        if (userId !== undefined) {
+            localVarQueryParameters['userId'] = ObjectSerializer.serialize(userId, "number");
+        }
+
+        if (voucherCode !== undefined) {
+            localVarQueryParameters['voucherCode'] = ObjectSerializer.serialize(voucherCode, "string");
+        }
+
+        if (eventType !== undefined) {
+            localVarQueryParameters['eventType'] = ObjectSerializer.serialize(eventType, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -22072,9 +22509,15 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param name Event names to filter in
+     * @param orderId 
+     * @param storeId 
+     * @param storeGroupId 
+     * @param userId 
+     * @param voucherCode 
+     * @param eventType 
      * @param {*} [options] Override http request options.
      */
-    public getMenuEvents (menuId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getMenuEvents (menuId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, voucherCode?: string, eventType?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/menu/{menuId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -22104,6 +22547,30 @@ export class EventsApi {
 
         if (name !== undefined) {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
+        }
+
+        if (orderId !== undefined) {
+            localVarQueryParameters['orderId'] = ObjectSerializer.serialize(orderId, "number");
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
+        }
+
+        if (storeGroupId !== undefined) {
+            localVarQueryParameters['storeGroupId'] = ObjectSerializer.serialize(storeGroupId, "number");
+        }
+
+        if (userId !== undefined) {
+            localVarQueryParameters['userId'] = ObjectSerializer.serialize(userId, "number");
+        }
+
+        if (voucherCode !== undefined) {
+            localVarQueryParameters['voucherCode'] = ObjectSerializer.serialize(voucherCode, "string");
+        }
+
+        if (eventType !== undefined) {
+            localVarQueryParameters['eventType'] = ObjectSerializer.serialize(eventType, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -22154,9 +22621,15 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param name Event names to filter in
+     * @param orderId2 
+     * @param storeId 
+     * @param storeGroupId 
+     * @param userId 
+     * @param voucherCode 
+     * @param eventType 
      * @param {*} [options] Override http request options.
      */
-    public getOrderEvents (orderId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getOrderEvents (orderId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, orderId2?: number, storeId?: number, storeGroupId?: number, userId?: number, voucherCode?: string, eventType?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/order/{orderId}'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
@@ -22186,6 +22659,30 @@ export class EventsApi {
 
         if (name !== undefined) {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
+        }
+
+        if (orderId2 !== undefined) {
+            localVarQueryParameters['orderId'] = ObjectSerializer.serialize(orderId2, "number");
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
+        }
+
+        if (storeGroupId !== undefined) {
+            localVarQueryParameters['storeGroupId'] = ObjectSerializer.serialize(storeGroupId, "number");
+        }
+
+        if (userId !== undefined) {
+            localVarQueryParameters['userId'] = ObjectSerializer.serialize(userId, "number");
+        }
+
+        if (voucherCode !== undefined) {
+            localVarQueryParameters['voucherCode'] = ObjectSerializer.serialize(voucherCode, "string");
+        }
+
+        if (eventType !== undefined) {
+            localVarQueryParameters['eventType'] = ObjectSerializer.serialize(eventType, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -22236,9 +22733,15 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param name Event names to filter in
+     * @param orderId 
+     * @param storeId 
+     * @param storeGroupId 
+     * @param userId 
+     * @param voucherCode 
+     * @param eventType 
      * @param {*} [options] Override http request options.
      */
-    public getOrderEventsByCustomer (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getOrderEventsByCustomer (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, voucherCode?: string, eventType?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/order';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -22271,6 +22774,30 @@ export class EventsApi {
 
         if (name !== undefined) {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
+        }
+
+        if (orderId !== undefined) {
+            localVarQueryParameters['orderId'] = ObjectSerializer.serialize(orderId, "number");
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
+        }
+
+        if (storeGroupId !== undefined) {
+            localVarQueryParameters['storeGroupId'] = ObjectSerializer.serialize(storeGroupId, "number");
+        }
+
+        if (userId !== undefined) {
+            localVarQueryParameters['userId'] = ObjectSerializer.serialize(userId, "number");
+        }
+
+        if (voucherCode !== undefined) {
+            localVarQueryParameters['voucherCode'] = ObjectSerializer.serialize(voucherCode, "string");
+        }
+
+        if (eventType !== undefined) {
+            localVarQueryParameters['eventType'] = ObjectSerializer.serialize(eventType, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -22321,9 +22848,15 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param name Event names to filter in
+     * @param orderId 
+     * @param storeId2 
+     * @param storeGroupId 
+     * @param userId 
+     * @param voucherCode 
+     * @param eventType 
      * @param {*} [options] Override http request options.
      */
-    public getStoreEvents (storeId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getStoreEvents (storeId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, orderId?: number, storeId2?: number, storeGroupId?: number, userId?: number, voucherCode?: string, eventType?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/store/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -22353,6 +22886,30 @@ export class EventsApi {
 
         if (name !== undefined) {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
+        }
+
+        if (orderId !== undefined) {
+            localVarQueryParameters['orderId'] = ObjectSerializer.serialize(orderId, "number");
+        }
+
+        if (storeId2 !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId2, "number");
+        }
+
+        if (storeGroupId !== undefined) {
+            localVarQueryParameters['storeGroupId'] = ObjectSerializer.serialize(storeGroupId, "number");
+        }
+
+        if (userId !== undefined) {
+            localVarQueryParameters['userId'] = ObjectSerializer.serialize(userId, "number");
+        }
+
+        if (voucherCode !== undefined) {
+            localVarQueryParameters['voucherCode'] = ObjectSerializer.serialize(voucherCode, "string");
+        }
+
+        if (eventType !== undefined) {
+            localVarQueryParameters['eventType'] = ObjectSerializer.serialize(eventType, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -22403,9 +22960,15 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param name Event names to filter in
+     * @param orderId 
+     * @param storeId 
+     * @param storeGroupId 
+     * @param userId2 
+     * @param voucherCode 
+     * @param eventType 
      * @param {*} [options] Override http request options.
      */
-    public getUserEvents (userId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getUserEvents (userId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, orderId?: number, storeId?: number, storeGroupId?: number, userId2?: number, voucherCode?: string, eventType?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/user/{userId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -22435,6 +22998,30 @@ export class EventsApi {
 
         if (name !== undefined) {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
+        }
+
+        if (orderId !== undefined) {
+            localVarQueryParameters['orderId'] = ObjectSerializer.serialize(orderId, "number");
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
+        }
+
+        if (storeGroupId !== undefined) {
+            localVarQueryParameters['storeGroupId'] = ObjectSerializer.serialize(storeGroupId, "number");
+        }
+
+        if (userId2 !== undefined) {
+            localVarQueryParameters['userId'] = ObjectSerializer.serialize(userId2, "number");
+        }
+
+        if (voucherCode !== undefined) {
+            localVarQueryParameters['voucherCode'] = ObjectSerializer.serialize(voucherCode, "string");
+        }
+
+        if (eventType !== undefined) {
+            localVarQueryParameters['eventType'] = ObjectSerializer.serialize(eventType, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -22485,9 +23072,15 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param name Event names to filter in
+     * @param orderId 
+     * @param storeId 
+     * @param storeGroupId 
+     * @param userId 
+     * @param voucherCode 
+     * @param eventType 
      * @param {*} [options] Override http request options.
      */
-    public getWhiteLabelEvents (whitelabelId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getWhiteLabelEvents (whitelabelId: number, limit?: number, page?: number, start?: Date, end?: Date, name?: Array<string>, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, voucherCode?: string, eventType?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/whitelabel/{whitelabelId}'
             .replace('{' + 'whitelabelId' + '}', encodeURIComponent(String(whitelabelId)));
         let localVarQueryParameters: any = {};
@@ -22517,6 +23110,30 @@ export class EventsApi {
 
         if (name !== undefined) {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "Array<string>");
+        }
+
+        if (orderId !== undefined) {
+            localVarQueryParameters['orderId'] = ObjectSerializer.serialize(orderId, "number");
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
+        }
+
+        if (storeGroupId !== undefined) {
+            localVarQueryParameters['storeGroupId'] = ObjectSerializer.serialize(storeGroupId, "number");
+        }
+
+        if (userId !== undefined) {
+            localVarQueryParameters['userId'] = ObjectSerializer.serialize(userId, "number");
+        }
+
+        if (voucherCode !== undefined) {
+            localVarQueryParameters['voucherCode'] = ObjectSerializer.serialize(voucherCode, "string");
+        }
+
+        if (eventType !== undefined) {
+            localVarQueryParameters['eventType'] = ObjectSerializer.serialize(eventType, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -22827,7 +23444,7 @@ export class HomeApi {
      * @param appId App Name Id
      * @param {*} [options] Override http request options.
      */
-    public getHomeStatistics (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public getHomeStatistics (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHomeStatistics;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/home/stats'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -22863,12 +23480,12 @@ export class HomeApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHomeStatistics;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultHomeStatistics");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
