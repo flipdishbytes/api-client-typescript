@@ -2122,6 +2122,10 @@ export class CreateVoucher {
     */
     'VoucherType'?: CreateVoucher.VoucherTypeEnum;
     /**
+    * Stores that this voucher applies to
+    */
+    'Stores'?: Array<number>;
+    /**
     * Add item details
     */
     'AddItemDetails'?: AddItemDetails;
@@ -2145,10 +2149,6 @@ export class CreateVoucher {
     * Voucher Description (Visible on printout)
     */
     'Description'?: string;
-    /**
-    * Stores that this voucher applies to
-    */
-    'Stores'?: Array<number>;
     /**
     * Valid on orders on or above
     */
@@ -2215,6 +2215,11 @@ export class CreateVoucher {
             "type": "CreateVoucher.VoucherTypeEnum"
         },
         {
+            "name": "Stores",
+            "baseName": "Stores",
+            "type": "Array<number>"
+        },
+        {
             "name": "AddItemDetails",
             "baseName": "AddItemDetails",
             "type": "AddItemDetails"
@@ -2243,11 +2248,6 @@ export class CreateVoucher {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
-        },
-        {
-            "name": "Stores",
-            "baseName": "Stores",
-            "type": "Array<number>"
         },
         {
             "name": "ValidOnOrdersOver",
@@ -17575,6 +17575,10 @@ export class Voucher {
     */
     'Currency'?: Voucher.CurrencyEnum;
     /**
+    * Stores that this voucher applies to
+    */
+    'Stores'?: Array<number>;
+    /**
     * Add item details
     */
     'AddItemDetails'?: AddItemDetails;
@@ -17598,10 +17602,6 @@ export class Voucher {
     * Voucher Description (Visible on printout)
     */
     'Description'?: string;
-    /**
-    * Stores that this voucher applies to
-    */
-    'Stores'?: Array<number>;
     /**
     * Valid on orders on or above
     */
@@ -17688,6 +17688,11 @@ export class Voucher {
             "type": "Voucher.CurrencyEnum"
         },
         {
+            "name": "Stores",
+            "baseName": "Stores",
+            "type": "Array<number>"
+        },
+        {
             "name": "AddItemDetails",
             "baseName": "AddItemDetails",
             "type": "AddItemDetails"
@@ -17716,11 +17721,6 @@ export class Voucher {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
-        },
-        {
-            "name": "Stores",
-            "baseName": "Stores",
-            "type": "Array<number>"
         },
         {
             "name": "ValidOnOrdersOver",
@@ -17949,10 +17949,6 @@ export class VoucherBase {
     */
     'Description'?: string;
     /**
-    * Stores that this voucher applies to
-    */
-    'Stores'?: Array<number>;
-    /**
     * Valid on orders on or above
     */
     'ValidOnOrdersOver'?: number;
@@ -18021,11 +18017,6 @@ export class VoucherBase {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
-        },
-        {
-            "name": "Stores",
-            "baseName": "Stores",
-            "type": "Array<number>"
         },
         {
             "name": "ValidOnOrdersOver",
@@ -18575,6 +18566,10 @@ export class VoucherWithStats {
     */
     'Currency'?: VoucherWithStats.CurrencyEnum;
     /**
+    * Stores that this voucher applies to
+    */
+    'Stores'?: Array<number>;
+    /**
     * Add item details
     */
     'AddItemDetails'?: AddItemDetails;
@@ -18598,10 +18593,6 @@ export class VoucherWithStats {
     * Voucher Description (Visible on printout)
     */
     'Description'?: string;
-    /**
-    * Stores that this voucher applies to
-    */
-    'Stores'?: Array<number>;
     /**
     * Valid on orders on or above
     */
@@ -18713,6 +18704,11 @@ export class VoucherWithStats {
             "type": "VoucherWithStats.CurrencyEnum"
         },
         {
+            "name": "Stores",
+            "baseName": "Stores",
+            "type": "Array<number>"
+        },
+        {
             "name": "AddItemDetails",
             "baseName": "AddItemDetails",
             "type": "AddItemDetails"
@@ -18741,11 +18737,6 @@ export class VoucherWithStats {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
-        },
-        {
-            "name": "Stores",
-            "baseName": "Stores",
-            "type": "Array<number>"
         },
         {
             "name": "ValidOnOrdersOver",
@@ -32230,12 +32221,13 @@ export class VouchersApi {
      * @summary [PRIVATE API] Updates voucher
      * @param voucherId Id of the voucher
      * @param voucher Updated details for the voucher
+     * @param storeId 
      * @param percentValue Percent voucher value (can have 1 of 3)
      * @param lumpValue Lump voucher value (can have 1 of 3)
      * @param freeItemId Free Item Id (can have 1 of 3)
      * @param {*} [options] Override http request options.
      */
-    public updateVoucher (voucherId: number, voucher: VoucherBase, percentValue?: number, lumpValue?: number, freeItemId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
+    public updateVoucher (voucherId: number, voucher: VoucherBase, storeId?: Array<number>, percentValue?: number, lumpValue?: number, freeItemId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
         let localVarQueryParameters: any = {};
@@ -32250,6 +32242,10 @@ export class VouchersApi {
         // verify required parameter 'voucher' is not null or undefined
         if (voucher === null || voucher === undefined) {
             throw new Error('Required parameter voucher was null or undefined when calling updateVoucher.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
         }
 
         if (percentValue !== undefined) {
