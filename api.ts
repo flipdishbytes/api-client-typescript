@@ -3002,6 +3002,10 @@ export class DeliveryZoneCreatedEvent {
     */
     'StoreId'?: number;
     /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
     * User which created delivery zone for this store
     */
     'User'?: UserEventInfo;
@@ -3041,6 +3045,11 @@ export class DeliveryZoneCreatedEvent {
         {
             "name": "StoreId",
             "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
             "type": "number"
         },
         {
@@ -3097,6 +3106,10 @@ export class DeliveryZoneDeletedEvent {
     */
     'StoreId'?: number;
     /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
     * User which deleted delivery zone for this store
     */
     'User'?: UserEventInfo;
@@ -3136,6 +3149,11 @@ export class DeliveryZoneDeletedEvent {
         {
             "name": "StoreId",
             "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
             "type": "number"
         },
         {
@@ -3192,6 +3210,10 @@ export class DeliveryZoneUpdatedEvent {
     */
     'StoreId'?: number;
     /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
     * User which updated delivery zone for this store
     */
     'User'?: UserEventInfo;
@@ -3234,6 +3256,11 @@ export class DeliveryZoneUpdatedEvent {
             "type": "number"
         },
         {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
+            "type": "number"
+        },
+        {
             "name": "User",
             "baseName": "User",
             "type": "UserEventInfo"
@@ -3271,6 +3298,47 @@ export class DeliveryZoneUpdatedEvent {
 
     static getAttributeTypeMap() {
         return DeliveryZoneUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Device settings for Hydra
+*/
+export class DeviceSettings {
+    /**
+    * Gets or sets the device volume
+    */
+    'Volume': number;
+    /**
+    * Gets or sets the font size used on the device
+    */
+    'FontSize': number;
+    /**
+    * Gets or sets the display brightness on the device
+    */
+    'Brightness': number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Volume",
+            "baseName": "Volume",
+            "type": "number"
+        },
+        {
+            "name": "FontSize",
+            "baseName": "FontSize",
+            "type": "number"
+        },
+        {
+            "name": "Brightness",
+            "baseName": "Brightness",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DeviceSettings.attributeTypeMap;
     }
 }
 
@@ -4243,6 +4311,154 @@ export class HttpRequestAndResponseLog {
 
     static getAttributeTypeMap() {
         return HttpRequestAndResponseLog.attributeTypeMap;
+    }
+}
+
+/**
+* Hydra configuration
+*/
+export class HydraConfig {
+    /**
+    * Minimum version
+    */
+    'MinimumVersion': string;
+    /**
+    * Payment options
+    */
+    'PaymentOptions': Array<HydraConfig.PaymentOptionsEnum>;
+    /**
+    * Device settings
+    */
+    'DeviceSettings': DeviceSettings;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MinimumVersion",
+            "baseName": "MinimumVersion",
+            "type": "string"
+        },
+        {
+            "name": "PaymentOptions",
+            "baseName": "PaymentOptions",
+            "type": "Array<HydraConfig.PaymentOptionsEnum>"
+        },
+        {
+            "name": "DeviceSettings",
+            "baseName": "DeviceSettings",
+            "type": "DeviceSettings"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HydraConfig.attributeTypeMap;
+    }
+}
+
+export namespace HydraConfig {
+    export enum PaymentOptionsEnum {
+        Online = <any> 'Online',
+        Emv = <any> 'Emv',
+        Counter = <any> 'Counter'
+    }
+}
+/**
+* Hdyra login result
+*/
+export class HydraRegistration {
+    /**
+    * App
+    */
+    'AppId': string;
+    /**
+    * Store to assign the hydra
+    */
+    'StoreId': number;
+    /**
+    * Hydra device name
+    */
+    'DeviceName': string;
+    /**
+    * 6 digit PIN code (not starting with zero).
+    */
+    'PinCode'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "DeviceName",
+            "baseName": "DeviceName",
+            "type": "string"
+        },
+        {
+            "name": "PinCode",
+            "baseName": "PinCode",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HydraRegistration.attributeTypeMap;
+    }
+}
+
+/**
+* Hdyra status
+*/
+export class HydraStatus {
+    /**
+    * 
+    */
+    'AppId': string;
+    /**
+    * Store to assign the hydra
+    */
+    'StoreId'?: number;
+    /**
+    * The device has been already registered
+    */
+    'IsRegistered': boolean;
+    /**
+    * 6 digit PIN code (not starting with zero).
+    */
+    'PinCode'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "IsRegistered",
+            "baseName": "IsRegistered",
+            "type": "boolean"
+        },
+        {
+            "name": "PinCode",
+            "baseName": "PinCode",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HydraStatus.attributeTypeMap;
     }
 }
 
@@ -6058,6 +6274,10 @@ export class MenuItemOptionSetCreatedEvent {
     */
     'MenuId'?: number;
     /**
+    * Menu name
+    */
+    'MenuName'?: string;
+    /**
     * Description
     */
     'Description'?: string;
@@ -6097,6 +6317,11 @@ export class MenuItemOptionSetCreatedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
+        },
+        {
+            "name": "MenuName",
+            "baseName": "MenuName",
+            "type": "string"
         },
         {
             "name": "Description",
@@ -6153,6 +6378,10 @@ export class MenuItemOptionSetDeletedEvent {
     */
     'MenuId'?: number;
     /**
+    * Menu name
+    */
+    'MenuName'?: string;
+    /**
     * Description
     */
     'Description'?: string;
@@ -6192,6 +6421,11 @@ export class MenuItemOptionSetDeletedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
+        },
+        {
+            "name": "MenuName",
+            "baseName": "MenuName",
+            "type": "string"
         },
         {
             "name": "Description",
@@ -6409,6 +6643,10 @@ export class MenuItemOptionSetItemCreatedEvent {
     */
     'MenuId'?: number;
     /**
+    * Menu name
+    */
+    'MenuName'?: string;
+    /**
     * Description
     */
     'Description'?: string;
@@ -6448,6 +6686,11 @@ export class MenuItemOptionSetItemCreatedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
+        },
+        {
+            "name": "MenuName",
+            "baseName": "MenuName",
+            "type": "string"
         },
         {
             "name": "Description",
@@ -6504,6 +6747,10 @@ export class MenuItemOptionSetItemDeletedEvent {
     */
     'MenuId'?: number;
     /**
+    * Menu name
+    */
+    'MenuName'?: string;
+    /**
     * Description
     */
     'Description'?: string;
@@ -6543,6 +6790,11 @@ export class MenuItemOptionSetItemDeletedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
+        },
+        {
+            "name": "MenuName",
+            "baseName": "MenuName",
+            "type": "string"
         },
         {
             "name": "Description",
@@ -6599,6 +6851,10 @@ export class MenuItemOptionSetItemUpdatedEvent {
     */
     'MenuId'?: number;
     /**
+    * Menu name
+    */
+    'MenuName'?: string;
+    /**
     * Description
     */
     'Description'?: string;
@@ -6638,6 +6894,11 @@ export class MenuItemOptionSetItemUpdatedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
+        },
+        {
+            "name": "MenuName",
+            "baseName": "MenuName",
+            "type": "string"
         },
         {
             "name": "Description",
@@ -6694,6 +6955,10 @@ export class MenuItemOptionSetUpdatedEvent {
     */
     'MenuId'?: number;
     /**
+    * Menu name
+    */
+    'MenuName'?: string;
+    /**
     * Description
     */
     'Description'?: string;
@@ -6733,6 +6998,11 @@ export class MenuItemOptionSetUpdatedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
+        },
+        {
+            "name": "MenuName",
+            "baseName": "MenuName",
+            "type": "string"
         },
         {
             "name": "Description",
@@ -7023,6 +7293,10 @@ export class MenuSectionCreatedEvent {
     */
     'MenuId'?: number;
     /**
+    * Menu name
+    */
+    'MenuName'?: string;
+    /**
     * Description
     */
     'Description'?: string;
@@ -7062,6 +7336,11 @@ export class MenuSectionCreatedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
+        },
+        {
+            "name": "MenuName",
+            "baseName": "MenuName",
+            "type": "string"
         },
         {
             "name": "Description",
@@ -7118,6 +7397,10 @@ export class MenuSectionDeletedEvent {
     */
     'MenuId'?: number;
     /**
+    * Menu name
+    */
+    'MenuName'?: string;
+    /**
     * Description
     */
     'Description'?: string;
@@ -7157,6 +7440,11 @@ export class MenuSectionDeletedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
+        },
+        {
+            "name": "MenuName",
+            "baseName": "MenuName",
+            "type": "string"
         },
         {
             "name": "Description",
@@ -7485,6 +7773,10 @@ export class MenuSectionItemCreatedEvent {
     */
     'MenuId'?: number;
     /**
+    * Menu name
+    */
+    'MenuName'?: string;
+    /**
     * Description
     */
     'Description'?: string;
@@ -7524,6 +7816,11 @@ export class MenuSectionItemCreatedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
+        },
+        {
+            "name": "MenuName",
+            "baseName": "MenuName",
+            "type": "string"
         },
         {
             "name": "Description",
@@ -7580,6 +7877,10 @@ export class MenuSectionItemDeletedEvent {
     */
     'MenuId'?: number;
     /**
+    * Menu name
+    */
+    'MenuName'?: string;
+    /**
     * Event description
     */
     'Description'?: string;
@@ -7619,6 +7920,11 @@ export class MenuSectionItemDeletedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
+        },
+        {
+            "name": "MenuName",
+            "baseName": "MenuName",
+            "type": "string"
         },
         {
             "name": "Description",
@@ -7675,6 +7981,10 @@ export class MenuSectionItemUpdatedEvent {
     */
     'MenuId'?: number;
     /**
+    * Menu name
+    */
+    'MenuName'?: string;
+    /**
     * Event description
     */
     'Description'?: string;
@@ -7714,6 +8024,11 @@ export class MenuSectionItemUpdatedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
+        },
+        {
+            "name": "MenuName",
+            "baseName": "MenuName",
+            "type": "string"
         },
         {
             "name": "Description",
@@ -7770,6 +8085,10 @@ export class MenuSectionUpdatedEvent {
     */
     'MenuId'?: number;
     /**
+    * Menu name
+    */
+    'MenuName'?: string;
+    /**
     * Event description
     */
     'Description'?: string;
@@ -7809,6 +8128,11 @@ export class MenuSectionUpdatedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
+        },
+        {
+            "name": "MenuName",
+            "baseName": "MenuName",
+            "type": "string"
         },
         {
             "name": "Description",
@@ -9728,6 +10052,45 @@ export class PasswordResetModel {
 }
 
 /**
+* Pay order
+*/
+export class PayOrder {
+    /**
+    * 6 digit PIN code (not starting with zero).
+    */
+    'PaymentOption': PayOrder.PaymentOptionEnum;
+    /**
+    * Chef note
+    */
+    'ChefNote'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PaymentOption",
+            "baseName": "PaymentOption",
+            "type": "PayOrder.PaymentOptionEnum"
+        },
+        {
+            "name": "ChefNote",
+            "baseName": "ChefNote",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayOrder.attributeTypeMap;
+    }
+}
+
+export namespace PayOrder {
+    export enum PaymentOptionEnum {
+        Online = <any> 'Online',
+        Emv = <any> 'Emv',
+        Counter = <any> 'Counter'
+    }
+}
+/**
 * Percent discount details
 */
 export class PercentDiscountDetails {
@@ -10120,6 +10483,10 @@ export class PrinterAssignedToStoreEvent {
     */
     'StoreId'?: number;
     /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
     * Info User
     */
     'User'?: UserEventInfo;
@@ -10160,6 +10527,11 @@ export class PrinterAssignedToStoreEvent {
         {
             "name": "StoreId",
             "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
             "type": "number"
         },
         {
@@ -10215,6 +10587,10 @@ export class PrinterTurnedOffEvent {
     */
     'StoreId'?: number;
     /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
     * Info User
     */
     'User'?: UserEventInfo;
@@ -10255,6 +10631,11 @@ export class PrinterTurnedOffEvent {
         {
             "name": "StoreId",
             "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
             "type": "number"
         },
         {
@@ -10310,6 +10691,10 @@ export class PrinterTurnedOnEvent {
     */
     'StoreId'?: number;
     /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
     * Info User
     */
     'User'?: UserEventInfo;
@@ -10350,6 +10735,11 @@ export class PrinterTurnedOnEvent {
         {
             "name": "StoreId",
             "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
             "type": "number"
         },
         {
@@ -10405,6 +10795,10 @@ export class PrinterUnassignedFromStoreEvent {
     */
     'StoreId'?: number;
     /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
     * Info User
     */
     'User'?: UserEventInfo;
@@ -10445,6 +10839,11 @@ export class PrinterUnassignedFromStoreEvent {
         {
             "name": "StoreId",
             "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
             "type": "number"
         },
         {
@@ -12305,6 +12704,52 @@ export class RestApiResultHomeStatistics {
 
     static getAttributeTypeMap() {
         return RestApiResultHomeStatistics.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultHydraConfig {
+    /**
+    * Generic data object.
+    */
+    'Data': HydraConfig;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "HydraConfig"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultHydraConfig.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultHydraStatus {
+    /**
+    * Generic data object.
+    */
+    'Data': HydraStatus;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "HydraStatus"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultHydraStatus.attributeTypeMap;
     }
 }
 
@@ -14261,6 +14706,10 @@ export class StoreAddressUpdatedEvent {
     */
     'StoreId'?: number;
     /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
     * User which updated this store address
     */
     'User'?: UserEventInfo;
@@ -14299,6 +14748,11 @@ export class StoreAddressUpdatedEvent {
         {
             "name": "StoreId",
             "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
             "type": "number"
         },
         {
@@ -14608,6 +15062,10 @@ export class StoreBusinessHoursOverrideCreatedEvent {
     */
     'StoreId'?: number;
     /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
     * User which deleted delivery zone for this store
     */
     'User'?: UserEventInfo;
@@ -14647,6 +15105,11 @@ export class StoreBusinessHoursOverrideCreatedEvent {
         {
             "name": "StoreId",
             "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
             "type": "number"
         },
         {
@@ -14703,6 +15166,10 @@ export class StoreBusinessHoursOverrideDeletedEvent {
     */
     'StoreId'?: number;
     /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
     * User which deleted delivery zone for this store
     */
     'User'?: UserEventInfo;
@@ -14742,6 +15209,11 @@ export class StoreBusinessHoursOverrideDeletedEvent {
         {
             "name": "StoreId",
             "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
             "type": "number"
         },
         {
@@ -14989,6 +15461,10 @@ export class StoreDeletedEvent {
     */
     'StoreId'?: number;
     /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
     * User which deleted this store
     */
     'User'?: UserEventInfo;
@@ -15028,6 +15504,11 @@ export class StoreDeletedEvent {
         {
             "name": "StoreId",
             "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
             "type": "number"
         },
         {
@@ -15926,6 +16407,10 @@ export class StoreOpeningHoursUpdatedEvent {
     */
     'StoreId'?: number;
     /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
     * User which updated opening hours for this store
     */
     'User'?: UserEventInfo;
@@ -15961,6 +16446,11 @@ export class StoreOpeningHoursUpdatedEvent {
         {
             "name": "StoreId",
             "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
             "type": "number"
         },
         {
@@ -16228,6 +16718,10 @@ export class StoreUpdatedEvent {
     */
     'StoreId'?: number;
     /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
     * User which updated this store
     */
     'User'?: UserEventInfo;
@@ -16267,6 +16761,11 @@ export class StoreUpdatedEvent {
         {
             "name": "StoreId",
             "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
             "type": "number"
         },
         {
@@ -16897,6 +17396,10 @@ export class TeammateDeletedEvent {
     */
     'Teammate'?: Teammate;
     /**
+    * User who deleted the teammate
+    */
+    'User'?: UserEventInfo;
+    /**
     * The event name
     */
     'EventName'?: string;
@@ -16924,6 +17427,11 @@ export class TeammateDeletedEvent {
             "name": "Teammate",
             "baseName": "Teammate",
             "type": "Teammate"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "EventName",
@@ -16965,6 +17473,10 @@ export class TeammateInviteAcceptedEvent {
     */
     'Teammate'?: Teammate;
     /**
+    * User who accepted the invitation
+    */
+    'User'?: UserEventInfo;
+    /**
     * The event name
     */
     'EventName'?: string;
@@ -16992,6 +17504,11 @@ export class TeammateInviteAcceptedEvent {
             "name": "Teammate",
             "baseName": "Teammate",
             "type": "Teammate"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "EventName",
@@ -17033,6 +17550,10 @@ export class TeammateInviteSentEvent {
     */
     'Teammate'?: Teammate;
     /**
+    * User who sent the invitation
+    */
+    'User'?: UserEventInfo;
+    /**
     * The event name
     */
     'EventName'?: string;
@@ -17060,6 +17581,11 @@ export class TeammateInviteSentEvent {
             "name": "Teammate",
             "baseName": "Teammate",
             "type": "Teammate"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "EventName",
@@ -17101,6 +17627,10 @@ export class TeammateUpdatedEvent {
     */
     'Teammate'?: Teammate;
     /**
+    * User who updated the teammate
+    */
+    'User'?: UserEventInfo;
+    /**
     * The event name
     */
     'EventName'?: string;
@@ -17128,6 +17658,11 @@ export class TeammateUpdatedEvent {
             "name": "Teammate",
             "baseName": "Teammate",
             "type": "Teammate"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "EventName",
@@ -19450,6 +19985,7 @@ let enumsMap: {[index: string]: any} = {
         "CreateVoucher.VoucherTypeEnum": CreateVoucher.VoucherTypeEnum,
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
         "HomeAction.HomeActionTypeEnum": HomeAction.HomeActionTypeEnum,
+        "HydraConfig.PaymentOptionsEnum": HydraConfig.PaymentOptionsEnum,
         "LightspeedSettings.PriceTypeEnum": LightspeedSettings.PriceTypeEnum,
         "Menu.MenuSectionBehaviourEnum": Menu.MenuSectionBehaviourEnum,
         "MenuBase.MenuSectionBehaviourEnum": MenuBase.MenuSectionBehaviourEnum,
@@ -19476,6 +20012,7 @@ let enumsMap: {[index: string]: any} = {
         "OrderSummary.CurrencyEnum": OrderSummary.CurrencyEnum,
         "OrderVoucherSummary.TypeEnum": OrderVoucherSummary.TypeEnum,
         "OrderVoucherSummary.SubTypeEnum": OrderVoucherSummary.SubTypeEnum,
+        "PayOrder.PaymentOptionEnum": PayOrder.PaymentOptionEnum,
         "PhoneCall.CallStatusEnum": PhoneCall.CallStatusEnum,
         "ProcessingFeeConfig.PaymentAccountTypeEnum": ProcessingFeeConfig.PaymentAccountTypeEnum,
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
@@ -19550,12 +20087,16 @@ let typeMap: {[index: string]: any} = {
     "DeliveryZoneCreatedEvent": DeliveryZoneCreatedEvent,
     "DeliveryZoneDeletedEvent": DeliveryZoneDeletedEvent,
     "DeliveryZoneUpdatedEvent": DeliveryZoneUpdatedEvent,
+    "DeviceSettings": DeviceSettings,
     "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
     "GroupedCoordinates": GroupedCoordinates,
     "HomeAction": HomeAction,
     "HomeStatistics": HomeStatistics,
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
+    "HydraConfig": HydraConfig,
+    "HydraRegistration": HydraRegistration,
+    "HydraStatus": HydraStatus,
     "JobAddress": JobAddress,
     "JobCancellation": JobCancellation,
     "JobContact": JobContact,
@@ -19622,6 +20163,7 @@ let typeMap: {[index: string]: any} = {
     "OrderTipUpdatedEvent": OrderTipUpdatedEvent,
     "OrderVoucherSummary": OrderVoucherSummary,
     "PasswordResetModel": PasswordResetModel,
+    "PayOrder": PayOrder,
     "PercentDiscountDetails": PercentDiscountDetails,
     "PhoneCall": PhoneCall,
     "PhoneCallEndedEvent": PhoneCallEndedEvent,
@@ -19690,6 +20232,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultCoordinates": RestApiResultCoordinates,
     "RestApiResultDeliveryZone": RestApiResultDeliveryZone,
     "RestApiResultHomeStatistics": RestApiResultHomeStatistics,
+    "RestApiResultHydraConfig": RestApiResultHydraConfig,
+    "RestApiResultHydraStatus": RestApiResultHydraStatus,
     "RestApiResultJobResponse": RestApiResultJobResponse,
     "RestApiResultLightspeedSettings": RestApiResultLightspeedSettings,
     "RestApiResultMenu": RestApiResultMenu,
@@ -23317,11 +23861,12 @@ export class HomeApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Dismiss Home Action
+     * @summary [PRIVATE API] Complete Home Action
      * @param homeActionId Id of the action
+     * @param isDismissed 
      * @param {*} [options] Override http request options.
      */
-    public dismissHomeAction (homeActionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public completeHomeAction (homeActionId: number, isDismissed: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/home/{homeActionId}'
             .replace('{' + 'homeActionId' + '}', encodeURIComponent(String(homeActionId)));
         let localVarQueryParameters: any = {};
@@ -23330,7 +23875,16 @@ export class HomeApi {
 
         // verify required parameter 'homeActionId' is not null or undefined
         if (homeActionId === null || homeActionId === undefined) {
-            throw new Error('Required parameter homeActionId was null or undefined when calling dismissHomeAction.');
+            throw new Error('Required parameter homeActionId was null or undefined when calling completeHomeAction.');
+        }
+
+        // verify required parameter 'isDismissed' is not null or undefined
+        if (isDismissed === null || isDismissed === undefined) {
+            throw new Error('Required parameter isDismissed was null or undefined when calling completeHomeAction.');
+        }
+
+        if (isDismissed !== undefined) {
+            localVarQueryParameters['isDismissed'] = ObjectSerializer.serialize(isDismissed, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -23612,6 +24166,331 @@ export class HttpRequestResponseLogsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultHttpRequestAndResponseLog");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum HydraApiApiKeys {
+}
+
+export class HydraApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: HydraApiApiKeys, value: string) {
+        (this.authentications as any)[HydraApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param {*} [options] Override http request options.
+     */
+    public getRegistration (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/hydra/registration';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultHydraStatus");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [Private]
+     * @param {*} [options] Override http request options.
+     */
+    public getSettings (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraConfig;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/hydra/settings';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHydraConfig;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultHydraConfig");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [Private]
+     * @param deviceId 
+     * @param {*} [options] Override http request options.
+     */
+    public login (deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/hydra/{deviceId}/login'
+            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'deviceId' is not null or undefined
+        if (deviceId === null || deviceId === undefined) {
+            throw new Error('Required parameter deviceId was null or undefined when calling login.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [Private]
+     * @param orderId 
+     * @param payOrder 
+     * @param {*} [options] Override http request options.
+     */
+    public payOrder (orderId: number, payOrder: PayOrder, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/hydra/payorder/{orderId}'
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orderId' is not null or undefined
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling payOrder.');
+        }
+
+        // verify required parameter 'payOrder' is not null or undefined
+        if (payOrder === null || payOrder === undefined) {
+            throw new Error('Required parameter payOrder was null or undefined when calling payOrder.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(payOrder, "PayOrder")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [Private]
+     * @param hydraRegistration 
+     * @param {*} [options] Override http request options.
+     */
+    public register (hydraRegistration: HydraRegistration, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/hydra/registration';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'hydraRegistration' is not null or undefined
+        if (hydraRegistration === null || hydraRegistration === undefined) {
+            throw new Error('Required parameter hydraRegistration was null or undefined when calling register.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(hydraRegistration, "HydraRegistration")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultHydraStatus");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -29658,6 +30537,63 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestApiDefaultResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get Stores Bank Account Id
+     * @param storeId Store identifier
+     * @param {*} [options] Override http request options.
+     */
+    public getBankAccount (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/bankaccount'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getBankAccount.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiIntegerResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
