@@ -195,6 +195,10 @@ export class AccountDetail {
     * Display the time in time zone local to the user
     */
     'DisplayTimesInUserLocalTimeZone'?: boolean;
+    /**
+    * Show hidden features
+    */
+    'ShowHiddenFeatures'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -238,6 +242,11 @@ export class AccountDetail {
             "name": "DisplayTimesInUserLocalTimeZone",
             "baseName": "DisplayTimesInUserLocalTimeZone",
             "type": "boolean"
+        },
+        {
+            "name": "ShowHiddenFeatures",
+            "baseName": "ShowHiddenFeatures",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -265,6 +274,10 @@ export class AccountDetailBase {
     * Display the time in time zone local to the user
     */
     'DisplayTimesInUserLocalTimeZone'?: boolean;
+    /**
+    * Show hidden features
+    */
+    'ShowHiddenFeatures'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -287,6 +300,11 @@ export class AccountDetailBase {
         {
             "name": "DisplayTimesInUserLocalTimeZone",
             "baseName": "DisplayTimesInUserLocalTimeZone",
+            "type": "boolean"
+        },
+        {
+            "name": "ShowHiddenFeatures",
+            "baseName": "ShowHiddenFeatures",
             "type": "boolean"
         }    ];
 
@@ -4066,7 +4084,7 @@ export class HomeAction {
     /**
     * 
     */
-    'HomeActionCardId'?: number;
+    'HomeActionId'?: number;
     /**
     * Type of Action
     */
@@ -4100,8 +4118,8 @@ export class HomeAction {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "HomeActionCardId",
-            "baseName": "HomeActionCardId",
+            "name": "HomeActionId",
+            "baseName": "HomeActionId",
             "type": "number"
         },
         {
@@ -8392,21 +8410,21 @@ export class Metadata {
 /**
 * Oauth client (also knowns as 'app')
 */
-export class OAuthClient {
+export class OAuthApp {
     /**
-    * Oauth client identifier
+    * OAuth App Identifier
     */
-    'ClientId'?: string;
+    'OauthAppId'?: string;
     /**
-    * Oauth client name
+    * OAuth App Name
     */
-    'ClientName'?: string;
+    'OauthAppName'?: string;
     /**
-    * Oauth client owner user identifier
+    * OAuth App owner user identifier
     */
     'OwnerUserId'?: number;
     /**
-    * Oauth client logo uri
+    * OAuth App logo uri
     */
     'LogoUri'?: string;
 
@@ -8414,13 +8432,13 @@ export class OAuthClient {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "ClientId",
-            "baseName": "ClientId",
+            "name": "OauthAppId",
+            "baseName": "OauthAppId",
             "type": "string"
         },
         {
-            "name": "ClientName",
-            "baseName": "ClientName",
+            "name": "OauthAppName",
+            "baseName": "OauthAppName",
             "type": "string"
         },
         {
@@ -8435,7 +8453,7 @@ export class OAuthClient {
         }    ];
 
     static getAttributeTypeMap() {
-        return OAuthClient.attributeTypeMap;
+        return OAuthApp.attributeTypeMap;
     }
 }
 
@@ -11559,11 +11577,11 @@ export class RestApiArrayResultMetadata {
 /**
 * Rest api array result
 */
-export class RestApiArrayResultOAuthClient {
+export class RestApiArrayResultOAuthApp {
     /**
     * Generic data object.
     */
-    'Data': Array<OAuthClient>;
+    'Data': Array<OAuthApp>;
 
     static discriminator: string | undefined = undefined;
 
@@ -11571,11 +11589,11 @@ export class RestApiArrayResultOAuthClient {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "Array<OAuthClient>"
+            "type": "Array<OAuthApp>"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiArrayResultOAuthClient.attributeTypeMap;
+        return RestApiArrayResultOAuthApp.attributeTypeMap;
     }
 }
 
@@ -12963,11 +12981,11 @@ export class RestApiResultMetadata {
 /**
 * Rest api result
 */
-export class RestApiResultOAuthClient {
+export class RestApiResultOAuthApp {
     /**
     * Generic data object.
     */
-    'Data': OAuthClient;
+    'Data': OAuthApp;
 
     static discriminator: string | undefined = undefined;
 
@@ -12975,11 +12993,11 @@ export class RestApiResultOAuthClient {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "OAuthClient"
+            "type": "OAuthApp"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiResultOAuthClient.attributeTypeMap;
+        return RestApiResultOAuthApp.attributeTypeMap;
     }
 }
 
@@ -18114,6 +18132,10 @@ export class Voucher {
     */
     'Stores'?: Array<number>;
     /**
+    * Stores that this voucher applies to
+    */
+    'StoreNames'?: Array<string>;
+    /**
     * Add item details
     */
     'AddItemDetails'?: AddItemDetails;
@@ -18226,6 +18248,11 @@ export class Voucher {
             "name": "Stores",
             "baseName": "Stores",
             "type": "Array<number>"
+        },
+        {
+            "name": "StoreNames",
+            "baseName": "StoreNames",
+            "type": "Array<string>"
         },
         {
             "name": "AddItemDetails",
@@ -19105,6 +19132,10 @@ export class VoucherWithStats {
     */
     'Stores'?: Array<number>;
     /**
+    * Stores that this voucher applies to
+    */
+    'StoreNames'?: Array<string>;
+    /**
     * Add item details
     */
     'AddItemDetails'?: AddItemDetails;
@@ -19242,6 +19273,11 @@ export class VoucherWithStats {
             "name": "Stores",
             "baseName": "Stores",
             "type": "Array<number>"
+        },
+        {
+            "name": "StoreNames",
+            "baseName": "StoreNames",
+            "type": "Array<string>"
         },
         {
             "name": "AddItemDetails",
@@ -20147,7 +20183,7 @@ let typeMap: {[index: string]: any} = {
     "MenuSummary": MenuSummary,
     "MenuUpdatedEvent": MenuUpdatedEvent,
     "Metadata": Metadata,
-    "OAuthClient": OAuthClient,
+    "OAuthApp": OAuthApp,
     "OAuthTokenModel": OAuthTokenModel,
     "OauthClientRedirectUri": OauthClientRedirectUri,
     "Order": Order,
@@ -20198,7 +20234,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultMenuStoreNames": RestApiArrayResultMenuStoreNames,
     "RestApiArrayResultMenuSummary": RestApiArrayResultMenuSummary,
     "RestApiArrayResultMetadata": RestApiArrayResultMetadata,
-    "RestApiArrayResultOAuthClient": RestApiArrayResultOAuthClient,
+    "RestApiArrayResultOAuthApp": RestApiArrayResultOAuthApp,
     "RestApiArrayResultOauthClientRedirectUri": RestApiArrayResultOauthClientRedirectUri,
     "RestApiArrayResultProcessingFeeConfig": RestApiArrayResultProcessingFeeConfig,
     "RestApiArrayResultRestApiDefaultResponse": RestApiArrayResultRestApiDefaultResponse,
@@ -20243,7 +20279,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultMenuSectionAvailability": RestApiResultMenuSectionAvailability,
     "RestApiResultMenuSectionItem": RestApiResultMenuSectionItem,
     "RestApiResultMetadata": RestApiResultMetadata,
-    "RestApiResultOAuthClient": RestApiResultOAuthClient,
+    "RestApiResultOAuthApp": RestApiResultOAuthApp,
     "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
     "RestApiResultOrder": RestApiResultOrder,
     "RestApiResultProcessingFeeConfig": RestApiResultProcessingFeeConfig,
@@ -21763,21 +21799,28 @@ export class AuthorizationTokensApi {
     /**
      * 
      * @summary Get authorization tokens
-     * @param clientId Client identifier
+     * @param oauthAppId Client identifier
+     * @param appId 
      * @param page Requested page number
      * @param limit Requested page limit
      * @param {*} [options] Override http request options.
      */
-    public getAuthorizationTokens (clientId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOAuthTokenModel;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/authorizationtokens/{clientId}'
-            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
+    public getAuthorizationTokens (oauthAppId: string, appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOAuthTokenModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/authorizationtokens/{oauthAppId}'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'clientId' is not null or undefined
-        if (clientId === null || clientId === undefined) {
-            throw new Error('Required parameter clientId was null or undefined when calling getAuthorizationTokens.');
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling getAuthorizationTokens.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAuthorizationTokens.');
         }
 
         if (page !== undefined) {
@@ -21831,11 +21874,13 @@ export class AuthorizationTokensApi {
      * 
      * @summary Revoke token
      * @param key Token identifier key
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public revokeToken (key: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/authorizationtokens/{key}'
-            .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
+    public revokeToken (key: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/authorizationtokens/{key}'
+            .replace('{' + 'key' + '}', encodeURIComponent(String(key)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -21843,6 +21888,11 @@ export class AuthorizationTokensApi {
         // verify required parameter 'key' is not null or undefined
         if (key === null || key === undefined) {
             throw new Error('Required parameter key was null or undefined when calling revokeToken.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling revokeToken.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -23862,16 +23912,23 @@ export class HomeApi {
     /**
      * 
      * @summary [PRIVATE API] Complete Home Action
+     * @param appId App Name Id
      * @param homeActionId Id of the action
      * @param isDismissed 
      * @param {*} [options] Override http request options.
      */
-    public completeHomeAction (homeActionId: number, isDismissed: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/home/{homeActionId}'
+    public completeHomeAction (appId: string, homeActionId: number, isDismissed: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/home/{homeActionId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'homeActionId' + '}', encodeURIComponent(String(homeActionId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling completeHomeAction.');
+        }
 
         // verify required parameter 'homeActionId' is not null or undefined
         if (homeActionId === null || homeActionId === undefined) {
@@ -24095,13 +24152,15 @@ export class HttpRequestResponseLogsApi {
      * @summary Get API interaction logs
      * @param start Start date time
      * @param end End date time
+     * @param appId 
      * @param filterByUserId User id (optional)
      * @param page Page number
      * @param limit Page size
      * @param {*} [options] Override http request options.
      */
-    public getLogs (start: Date, end: Date, filterByUserId?: number, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultHttpRequestAndResponseLog;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/interactions/logs';
+    public getLogs (start: Date, end: Date, appId: string, filterByUserId?: number, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultHttpRequestAndResponseLog;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/interactions/logs'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -24114,6 +24173,11 @@ export class HttpRequestResponseLogsApi {
         // verify required parameter 'end' is not null or undefined
         if (end === null || end === undefined) {
             throw new Error('Required parameter end was null or undefined when calling getLogs.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getLogs.');
         }
 
         if (start !== undefined) {
@@ -28668,26 +28732,33 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Create OAuth client redirect uri
-     * @param oAuthClientId OAuth client identifier
+     * @summary Create OAuth App redirect uri
+     * @param oauthAppId OAuth App identifier
      * @param uri Redirect uri
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public addRedirectUri (oAuthClientId: string, uri: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOauthClientRedirectUri;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis'
-            .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)));
+    public addRedirectUri (oauthAppId: string, uri: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOauthClientRedirectUri;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/{oauthAppId}/redirecturis'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'oAuthClientId' is not null or undefined
-        if (oAuthClientId === null || oAuthClientId === undefined) {
-            throw new Error('Required parameter oAuthClientId was null or undefined when calling addRedirectUri.');
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling addRedirectUri.');
         }
 
         // verify required parameter 'uri' is not null or undefined
         if (uri === null || uri === undefined) {
             throw new Error('Required parameter uri was null or undefined when calling addRedirectUri.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling addRedirectUri.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -28732,19 +28803,26 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Create OAuth client
-     * @param oAuthClient OAuth client
+     * @summary Create OAuth App
+     * @param oAuthApp OAuth App
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public createOAuthClient (oAuthClient: OAuthClient, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/oauthclients';
+    public createOAuthApp (oAuthApp: OAuthApp, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'oAuthClient' is not null or undefined
-        if (oAuthClient === null || oAuthClient === undefined) {
-            throw new Error('Required parameter oAuthClient was null or undefined when calling createOAuthClient.');
+        // verify required parameter 'oAuthApp' is not null or undefined
+        if (oAuthApp === null || oAuthApp === undefined) {
+            throw new Error('Required parameter oAuthApp was null or undefined when calling createOAuthApp.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createOAuthApp.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -28758,7 +28836,7 @@ export class OAuthClientsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(oAuthClient, "OAuthClient")
+            body: ObjectSerializer.serialize(oAuthApp, "OAuthApp")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -28788,20 +28866,27 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Delete OAuth client
-     * @param oAuthClientId OAuth client identifier
+     * @summary Delete OAuth App
+     * @param oauthAppId OAuth App identifier
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public deleteOAuthClient (oAuthClientId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}'
-            .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)));
+    public deleteOAuthApp (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/{oauthAppId}'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'oAuthClientId' is not null or undefined
-        if (oAuthClientId === null || oAuthClientId === undefined) {
-            throw new Error('Required parameter oAuthClientId was null or undefined when calling deleteOAuthClient.');
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling deleteOAuthApp.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling deleteOAuthApp.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -28844,20 +28929,25 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Get OAuth client by identifier
-     * @param clientId OAuth client identifier
+     * @summary Get all OAuth Apps
+     * @param appId 
+     * @param oauthAppName 
      * @param {*} [options] Override http request options.
      */
-    public getOAuthClientByClientId (clientId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOAuthClient;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{clientId}'
-            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
+    public getOAuthApps (appId: string, oauthAppName?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOAuthApp;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'clientId' is not null or undefined
-        if (clientId === null || clientId === undefined) {
-            throw new Error('Required parameter clientId was null or undefined when calling getOAuthClientByClientId.');
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getOAuthApps.');
+        }
+
+        if (oauthAppName !== undefined) {
+            localVarQueryParameters['oauthAppName'] = ObjectSerializer.serialize(oauthAppName, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -28884,12 +28974,12 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOAuthClient;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOAuthApp;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultOAuthClient");
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultOAuthApp");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -28901,20 +28991,27 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Get OAuth client secret key
-     * @param clientId OAuth client identifier
+     * @summary Get OAuth App by identifier
+     * @param oauthAppId OAuth App identifier
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getOAuthClientSecret (clientId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{clientId}/secret'
-            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
+    public getOAuthClientByClientId (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOAuthApp;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/{oauthAppId}'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'clientId' is not null or undefined
-        if (clientId === null || clientId === undefined) {
-            throw new Error('Required parameter clientId was null or undefined when calling getOAuthClientSecret.');
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling getOAuthClientByClientId.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getOAuthClientByClientId.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -28941,12 +29038,12 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOAuthApp;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultOAuthApp");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -28958,70 +29055,27 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Get all OAuth client
+     * @summary Get OAuth App secret key
+     * @param oauthAppId OAuth App identifier
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getOAuthClients (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOAuthClient;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/oauthclients';
+    public getOAuthClientSecret (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/{oauthAppId}/secret'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling getOAuthClientSecret.');
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOAuthClient;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultOAuthClient");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Get OAuth access token for client
-     * @param oAuthClientId OAuth client identifier
-     * @param {*} [options] Override http request options.
-     */
-    public getOauthAccessToken (oAuthClientId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/accesstoken'
-            .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
 
-        // verify required parameter 'oAuthClientId' is not null or undefined
-        if (oAuthClientId === null || oAuthClientId === undefined) {
-            throw new Error('Required parameter oAuthClientId was null or undefined when calling getOauthAccessToken.');
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getOAuthClientSecret.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -29065,20 +29119,91 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Get OAuth client redirect uris
-     * @param oAuthClientId OAuth client identifier
+     * @summary Get OAuth access token for App
+     * @param oauthAppId OAuth App identifier
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getRedirectUris (oAuthClientId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOauthClientRedirectUri;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis'
-            .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)));
+    public getOauthAccessToken (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/{oauthAppId}/accesstoken'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'oAuthClientId' is not null or undefined
-        if (oAuthClientId === null || oAuthClientId === undefined) {
-            throw new Error('Required parameter oAuthClientId was null or undefined when calling getRedirectUris.');
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling getOauthAccessToken.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getOauthAccessToken.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get OAuth App redirect uris
+     * @param oauthAppId OAuth App identifier
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getRedirectUris (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOauthClientRedirectUri;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/{oauthAppId}/redirecturis'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling getRedirectUris.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getRedirectUris.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -29122,27 +29247,34 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Delete OAuth client redirect uri
-     * @param oAuthClientId OAuth client identifier
+     * @summary Delete OAuth App redirect uri
+     * @param oauthAppId OAuth App identifier
      * @param uriId Redirect uri identifier
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public removeRedirectUri (oAuthClientId: string, uriId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oAuthClientId}/redirecturis/{uriId}'
-            .replace('{' + 'oAuthClientId' + '}', encodeURIComponent(String(oAuthClientId)))
-            .replace('{' + 'uriId' + '}', encodeURIComponent(String(uriId)));
+    public removeRedirectUri (oauthAppId: string, uriId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/{oauthAppId}/redirecturis/{uriId}'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'uriId' + '}', encodeURIComponent(String(uriId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'oAuthClientId' is not null or undefined
-        if (oAuthClientId === null || oAuthClientId === undefined) {
-            throw new Error('Required parameter oAuthClientId was null or undefined when calling removeRedirectUri.');
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling removeRedirectUri.');
         }
 
         // verify required parameter 'uriId' is not null or undefined
         if (uriId === null || uriId === undefined) {
             throw new Error('Required parameter uriId was null or undefined when calling removeRedirectUri.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling removeRedirectUri.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -33288,26 +33420,33 @@ export class WebhooksApi {
     }
     /**
      * 
-     * @summary Create a webhook subscription for you Oauth client
-     * @param clientId Oauth client identifier
+     * @summary Create a webhook subscription for you Oauth App
+     * @param oauthAppId Oauth App identifier
      * @param webhookSubscription Webhook subscription object
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public craeteWebhookSubscription (clientId: string, webhookSubscription: WebhookSubscription, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions'
-            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
+    public craeteWebhookSubscription (oauthAppId: string, webhookSubscription: WebhookSubscription, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'clientId' is not null or undefined
-        if (clientId === null || clientId === undefined) {
-            throw new Error('Required parameter clientId was null or undefined when calling craeteWebhookSubscription.');
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling craeteWebhookSubscription.');
         }
 
         // verify required parameter 'webhookSubscription' is not null or undefined
         if (webhookSubscription === null || webhookSubscription === undefined) {
             throw new Error('Required parameter webhookSubscription was null or undefined when calling craeteWebhookSubscription.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling craeteWebhookSubscription.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -33353,23 +33492,25 @@ export class WebhooksApi {
     /**
      * 
      * @summary Add event name to your webhook subscription
-     * @param clientId Oauth client identifier
+     * @param oauthAppId Oauth App identifier
      * @param webhookSubscriptionId Webhook subscription identifier
      * @param eventName Webhook subscription event name
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public createWebhookSubscriptionEventNames (clientId: string, webhookSubscriptionId: number, eventName: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events/{eventName}'
-            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
+    public createWebhookSubscriptionEventNames (oauthAppId: string, webhookSubscriptionId: number, eventName: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions/{webhookSubscriptionId}/events/{eventName}'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
-            .replace('{' + 'eventName' + '}', encodeURIComponent(String(eventName)));
+            .replace('{' + 'eventName' + '}', encodeURIComponent(String(eventName)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'clientId' is not null or undefined
-        if (clientId === null || clientId === undefined) {
-            throw new Error('Required parameter clientId was null or undefined when calling createWebhookSubscriptionEventNames.');
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling createWebhookSubscriptionEventNames.');
         }
 
         // verify required parameter 'webhookSubscriptionId' is not null or undefined
@@ -33380,6 +33521,11 @@ export class WebhooksApi {
         // verify required parameter 'eventName' is not null or undefined
         if (eventName === null || eventName === undefined) {
             throw new Error('Required parameter eventName was null or undefined when calling createWebhookSubscriptionEventNames.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createWebhookSubscriptionEventNames.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -33423,26 +33569,33 @@ export class WebhooksApi {
     /**
      * 
      * @summary Delete you webhook subscription
-     * @param clientId Oauth client identifier
+     * @param oauthAppId Oauth App identifier
      * @param webhookSubscriptionId Webhook subscription identifier
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public deleteWebhookSubscription (clientId: string, webhookSubscriptionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}'
-            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
-            .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
+    public deleteWebhookSubscription (oauthAppId: string, webhookSubscriptionId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions/{webhookSubscriptionId}'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'clientId' is not null or undefined
-        if (clientId === null || clientId === undefined) {
-            throw new Error('Required parameter clientId was null or undefined when calling deleteWebhookSubscription.');
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling deleteWebhookSubscription.');
         }
 
         // verify required parameter 'webhookSubscriptionId' is not null or undefined
         if (webhookSubscriptionId === null || webhookSubscriptionId === undefined) {
             throw new Error('Required parameter webhookSubscriptionId was null or undefined when calling deleteWebhookSubscription.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling deleteWebhookSubscription.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -33486,23 +33639,25 @@ export class WebhooksApi {
     /**
      * 
      * @summary Remove event name to your webhook subscription
-     * @param clientId Oauth client identifier
+     * @param oauthAppId Oauth App identifier
      * @param webhookSubscriptionId Webhook subscription identifier
      * @param eventName Webhook subscription event name
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public deleteWebhookSubscriptionEventName (clientId: string, webhookSubscriptionId: number, eventName: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events/{eventName}'
-            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
+    public deleteWebhookSubscriptionEventName (oauthAppId: string, webhookSubscriptionId: number, eventName: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions/{webhookSubscriptionId}/events/{eventName}'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
-            .replace('{' + 'eventName' + '}', encodeURIComponent(String(eventName)));
+            .replace('{' + 'eventName' + '}', encodeURIComponent(String(eventName)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'clientId' is not null or undefined
-        if (clientId === null || clientId === undefined) {
-            throw new Error('Required parameter clientId was null or undefined when calling deleteWebhookSubscriptionEventName.');
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling deleteWebhookSubscriptionEventName.');
         }
 
         // verify required parameter 'webhookSubscriptionId' is not null or undefined
@@ -33513,6 +33668,11 @@ export class WebhooksApi {
         // verify required parameter 'eventName' is not null or undefined
         if (eventName === null || eventName === undefined) {
             throw new Error('Required parameter eventName was null or undefined when calling deleteWebhookSubscriptionEventName.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling deleteWebhookSubscriptionEventName.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -33556,13 +33716,20 @@ export class WebhooksApi {
     /**
      * 
      * @summary Get all webhook subscription event names
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getWebhookEventNames (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/webhooks/events';
+    public getWebhookEventNames (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/events'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getWebhookEventNames.');
+        }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
@@ -33606,26 +33773,33 @@ export class WebhooksApi {
     /**
      * 
      * @summary Get your webhook subscriptions selected event names
-     * @param clientId Oauth client identifier
+     * @param oauthAppId Oauth App identifier
      * @param webhookSubscriptionId Webhook subscription identifier
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getWebhookEventNamesBySubscriptionId (clientId: string, webhookSubscriptionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/events'
-            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
-            .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
+    public getWebhookEventNamesBySubscriptionId (oauthAppId: string, webhookSubscriptionId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions/{webhookSubscriptionId}/events'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'clientId' is not null or undefined
-        if (clientId === null || clientId === undefined) {
-            throw new Error('Required parameter clientId was null or undefined when calling getWebhookEventNamesBySubscriptionId.');
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling getWebhookEventNamesBySubscriptionId.');
         }
 
         // verify required parameter 'webhookSubscriptionId' is not null or undefined
         if (webhookSubscriptionId === null || webhookSubscriptionId === undefined) {
             throw new Error('Required parameter webhookSubscriptionId was null or undefined when calling getWebhookEventNamesBySubscriptionId.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getWebhookEventNamesBySubscriptionId.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -33670,25 +33844,27 @@ export class WebhooksApi {
     /**
      * 
      * @summary Get logs for your webhook subscription
-     * @param clientId Oauth client identifier
+     * @param oauthAppId Oauth App identifier
      * @param webhookSubscriptionId Webhook subscription identifier
      * @param start Start time
      * @param end End time
+     * @param appId 
      * @param page Page number
      * @param limit Page size
      * @param {*} [options] Override http request options.
      */
-    public getWebhookLogs (clientId: string, webhookSubscriptionId: number, start: Date, end: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultWebhookLog;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}/logs'
-            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
-            .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
+    public getWebhookLogs (oauthAppId: string, webhookSubscriptionId: number, start: Date, end: Date, appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultWebhookLog;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions/{webhookSubscriptionId}/logs'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'clientId' is not null or undefined
-        if (clientId === null || clientId === undefined) {
-            throw new Error('Required parameter clientId was null or undefined when calling getWebhookLogs.');
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling getWebhookLogs.');
         }
 
         // verify required parameter 'webhookSubscriptionId' is not null or undefined
@@ -33704,6 +33880,11 @@ export class WebhooksApi {
         // verify required parameter 'end' is not null or undefined
         if (end === null || end === undefined) {
             throw new Error('Required parameter end was null or undefined when calling getWebhookLogs.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getWebhookLogs.');
         }
 
         if (start !== undefined) {
@@ -33763,20 +33944,27 @@ export class WebhooksApi {
     }
     /**
      * 
-     * @summary Get all webhook subscriptions by your Oauth client id
-     * @param clientId Oauth client identifier
+     * @summary Get all webhook subscriptions by your Oauth App id
+     * @param oauthAppId Oauth App identifier
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getWebhookSubscriptions (clientId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultWebhookSubscription;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions'
-            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
+    public getWebhookSubscriptions (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultWebhookSubscription;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'clientId' is not null or undefined
-        if (clientId === null || clientId === undefined) {
-            throw new Error('Required parameter clientId was null or undefined when calling getWebhookSubscriptions.');
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling getWebhookSubscriptions.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getWebhookSubscriptions.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -33821,22 +34009,24 @@ export class WebhooksApi {
     /**
      * 
      * @summary Update a webhook subscription object
-     * @param clientId Oauth client identifier
+     * @param oauthAppId Oauth App identifier
      * @param webhookSubscriptionId Webhook subscription identifier
      * @param webhookSubscription Webhook subscription object
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public updateWebhookSubscription (clientId: string, webhookSubscriptionId: number, webhookSubscription: WebhookSubscription, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/webhooks/{clientId}/subscriptions/{webhookSubscriptionId}'
-            .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
-            .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
+    public updateWebhookSubscription (oauthAppId: string, webhookSubscriptionId: number, webhookSubscription: WebhookSubscription, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions/{webhookSubscriptionId}'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'clientId' is not null or undefined
-        if (clientId === null || clientId === undefined) {
-            throw new Error('Required parameter clientId was null or undefined when calling updateWebhookSubscription.');
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling updateWebhookSubscription.');
         }
 
         // verify required parameter 'webhookSubscriptionId' is not null or undefined
@@ -33847,6 +34037,11 @@ export class WebhooksApi {
         // verify required parameter 'webhookSubscription' is not null or undefined
         if (webhookSubscription === null || webhookSubscription === undefined) {
             throw new Error('Required parameter webhookSubscription was null or undefined when calling updateWebhookSubscription.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateWebhookSubscription.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
