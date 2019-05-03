@@ -8735,6 +8735,10 @@ export class Order {
     */
     'UserRating'?: number;
     /**
+    * Status of the payment
+    */
+    'PaymentStatus'?: Order.PaymentStatusEnum;
+    /**
     * Rejection reason. Can have value if the order is rejected.
     */
     'RejectionReason'?: Order.RejectionReasonEnum;
@@ -8867,6 +8871,11 @@ export class Order {
             "type": "number"
         },
         {
+            "name": "PaymentStatus",
+            "baseName": "PaymentStatus",
+            "type": "Order.PaymentStatusEnum"
+        },
+        {
             "name": "RejectionReason",
             "baseName": "RejectionReason",
             "type": "Order.RejectionReasonEnum"
@@ -8926,6 +8935,13 @@ export namespace Order {
         Sms = <any> 'Sms',
         PwaAndroid = <any> 'PwaAndroid',
         PwaIos = <any> 'PwaIos'
+    }
+    export enum PaymentStatusEnum {
+        Paid = <any> 'Paid',
+        Unpaid = <any> 'Unpaid',
+        Refunded = <any> 'Refunded',
+        PartiallyRefunded = <any> 'PartiallyRefunded',
+        Disputed = <any> 'Disputed'
     }
     export enum RejectionReasonEnum {
         TooBusy = <any> 'TooBusy',
@@ -20136,6 +20152,7 @@ let enumsMap: {[index: string]: any} = {
         "Order.PaymentAccountTypeEnum": Order.PaymentAccountTypeEnum,
         "Order.OrderStateEnum": Order.OrderStateEnum,
         "Order.AppTypeEnum": Order.AppTypeEnum,
+        "Order.PaymentStatusEnum": Order.PaymentStatusEnum,
         "Order.RejectionReasonEnum": Order.RejectionReasonEnum,
         "OrderSummary.DeliveryTypeEnum": OrderSummary.DeliveryTypeEnum,
         "OrderSummary.OrderStateEnum": OrderSummary.OrderStateEnum,
