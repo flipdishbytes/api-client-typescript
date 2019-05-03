@@ -180,6 +180,10 @@ export class AccountDetail {
     */
     'IsSelfServeUser'?: boolean;
     /**
+    * Accounts Id
+    */
+    'AccountId'?: number;
+    /**
     * Name
     */
     'Name'?: string;
@@ -222,6 +226,11 @@ export class AccountDetail {
             "name": "IsSelfServeUser",
             "baseName": "IsSelfServeUser",
             "type": "boolean"
+        },
+        {
+            "name": "AccountId",
+            "baseName": "AccountId",
+            "type": "number"
         },
         {
             "name": "Name",
@@ -1302,6 +1311,74 @@ export class BankAccountCreatedEvent {
 
     static getAttributeTypeMap() {
         return BankAccountCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class BankAccountDeletedEvent {
+    /**
+    * The create bank account
+    */
+    'BankAccount'?: BankAccount;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "BankAccount",
+            "baseName": "BankAccount",
+            "type": "BankAccount"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BankAccountDeletedEvent.attributeTypeMap;
     }
 }
 
@@ -3640,6 +3717,10 @@ export class EventSearchResult {
     * Bank account updated event
     */
     'BankAccountUpdatedEvent'?: Array<BankAccountUpdatedEvent>;
+    /**
+    * Bank account updated event
+    */
+    'BankAccountDeletedEvent'?: Array<BankAccountDeletedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -3988,6 +4069,11 @@ export class EventSearchResult {
             "name": "BankAccountUpdatedEvent",
             "baseName": "BankAccountUpdatedEvent",
             "type": "Array<BankAccountUpdatedEvent>"
+        },
+        {
+            "name": "BankAccountDeletedEvent",
+            "baseName": "BankAccountDeletedEvent",
+            "type": "Array<BankAccountDeletedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -8649,10 +8735,6 @@ export class Order {
     */
     'UserRating'?: number;
     /**
-    * Status of the payment
-    */
-    'PaymentStatus'?: Order.PaymentStatusEnum;
-    /**
     * Rejection reason. Can have value if the order is rejected.
     */
     'RejectionReason'?: Order.RejectionReasonEnum;
@@ -8785,11 +8867,6 @@ export class Order {
             "type": "number"
         },
         {
-            "name": "PaymentStatus",
-            "baseName": "PaymentStatus",
-            "type": "Order.PaymentStatusEnum"
-        },
-        {
             "name": "RejectionReason",
             "baseName": "RejectionReason",
             "type": "Order.RejectionReasonEnum"
@@ -8849,13 +8926,6 @@ export namespace Order {
         Sms = <any> 'Sms',
         PwaAndroid = <any> 'PwaAndroid',
         PwaIos = <any> 'PwaIos'
-    }
-    export enum PaymentStatusEnum {
-        Paid = <any> 'Paid',
-        Unpaid = <any> 'Unpaid',
-        Refunded = <any> 'Refunded',
-        PartiallyRefunded = <any> 'PartiallyRefunded',
-        Disputed = <any> 'Disputed'
     }
     export enum RejectionReasonEnum {
         TooBusy = <any> 'TooBusy',
@@ -9630,9 +9700,17 @@ export class OrderSummary {
     */
     'CustomerPhoneNumber'?: string;
     /**
-    * This is the sum of the OrderItemsAmount, DeliveryAmount, TipAmount and Voucher.Amount (which is usually negative) and OnlineOrderingFee for cash orders.  It does not include the OnlineOrderingFee in the case of card orders as this fee is charged by Flipdish directly to the customer.
+    * This is the sum of the OrderItemsAmount, DeliveryAmount, TipAmount and Voucher.Amount (which is usually negative) and OnlineOrderingFee  It does include the OnlineOrderingFee
     */
     'Amount'?: number;
+    /**
+    * Refunded amount
+    */
+    'RefundedAmount'?: number;
+    /**
+    * Payment Account
+    */
+    'PaymentAccountType'?: OrderSummary.PaymentAccountTypeEnum;
     /**
     * Status of the payment
     */
@@ -9691,6 +9769,16 @@ export class OrderSummary {
             "type": "number"
         },
         {
+            "name": "RefundedAmount",
+            "baseName": "RefundedAmount",
+            "type": "number"
+        },
+        {
+            "name": "PaymentAccountType",
+            "baseName": "PaymentAccountType",
+            "type": "OrderSummary.PaymentAccountTypeEnum"
+        },
+        {
             "name": "PaymentStatus",
             "baseName": "PaymentStatus",
             "type": "OrderSummary.PaymentStatusEnum"
@@ -9725,6 +9813,14 @@ export namespace OrderSummary {
         RejectedAutomatically = <any> 'RejectedAutomatically',
         RejectedAfterBeingAccepted = <any> 'RejectedAfterBeingAccepted',
         AcceptedAndRefunded = <any> 'AcceptedAndRefunded'
+    }
+    export enum PaymentAccountTypeEnum {
+        Card = <any> 'Card',
+        Cash = <any> 'Cash',
+        Ideal = <any> 'Ideal',
+        Bancontact = <any> 'Bancontact',
+        Giropay = <any> 'Giropay',
+        Eps = <any> 'Eps'
     }
     export enum PaymentStatusEnum {
         Paid = <any> 'Paid',
@@ -20040,10 +20136,10 @@ let enumsMap: {[index: string]: any} = {
         "Order.PaymentAccountTypeEnum": Order.PaymentAccountTypeEnum,
         "Order.OrderStateEnum": Order.OrderStateEnum,
         "Order.AppTypeEnum": Order.AppTypeEnum,
-        "Order.PaymentStatusEnum": Order.PaymentStatusEnum,
         "Order.RejectionReasonEnum": Order.RejectionReasonEnum,
         "OrderSummary.DeliveryTypeEnum": OrderSummary.DeliveryTypeEnum,
         "OrderSummary.OrderStateEnum": OrderSummary.OrderStateEnum,
+        "OrderSummary.PaymentAccountTypeEnum": OrderSummary.PaymentAccountTypeEnum,
         "OrderSummary.PaymentStatusEnum": OrderSummary.PaymentStatusEnum,
         "OrderSummary.CurrencyEnum": OrderSummary.CurrencyEnum,
         "OrderVoucherSummary.TypeEnum": OrderVoucherSummary.TypeEnum,
@@ -20096,6 +20192,7 @@ let typeMap: {[index: string]: any} = {
     "BankAccount": BankAccount,
     "BankAccountCreate": BankAccountCreate,
     "BankAccountCreatedEvent": BankAccountCreatedEvent,
+    "BankAccountDeletedEvent": BankAccountDeletedEvent,
     "BankAccountDetail": BankAccountDetail,
     "BankAccountSummary": BankAccountSummary,
     "BankAccountUpdatedEvent": BankAccountUpdatedEvent,
