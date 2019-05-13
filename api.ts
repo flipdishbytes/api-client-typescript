@@ -1040,6 +1040,38 @@ export class AppUpdatedEvent {
 }
 
 /**
+* Assigned to Store Bank Account
+*/
+export class AssignedBankAccount {
+    /**
+    * Id of Bank Account
+    */
+    'Id'?: number;
+    /**
+    * Name of Bank Account
+    */
+    'BankAccountName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "BankAccountName",
+            "baseName": "BankAccountName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AssignedBankAccount.attributeTypeMap;
+    }
+}
+
+/**
 * BANK ACCOUNT
 */
 export class BankAccount {
@@ -12706,6 +12738,29 @@ export class RestApiResultApmStatistics {
 /**
 * Rest api result
 */
+export class RestApiResultAssignedBankAccount {
+    /**
+    * Generic data object.
+    */
+    'Data': AssignedBankAccount;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "AssignedBankAccount"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultAssignedBankAccount.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultBankAccountDetail {
     /**
     * Generic data object.
@@ -20233,6 +20288,7 @@ let typeMap: {[index: string]: any} = {
     "App": App,
     "AppCreatedEvent": AppCreatedEvent,
     "AppUpdatedEvent": AppUpdatedEvent,
+    "AssignedBankAccount": AssignedBankAccount,
     "BankAccount": BankAccount,
     "BankAccountCreate": BankAccountCreate,
     "BankAccountCreatedEvent": BankAccountCreatedEvent,
@@ -20402,6 +20458,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
     "RestApiResultApmStatistics": RestApiResultApmStatistics,
+    "RestApiResultAssignedBankAccount": RestApiResultAssignedBankAccount,
     "RestApiResultBankAccountDetail": RestApiResultBankAccountDetail,
     "RestApiResultBusinessHoursOverride": RestApiResultBusinessHoursOverride,
     "RestApiResultBusinessHoursPeriod": RestApiResultBusinessHoursPeriod,
@@ -30881,7 +30938,7 @@ export class StoresApi {
      * @param storeId Store identifier
      * @param {*} [options] Override http request options.
      */
-    public getBankAccount (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }> {
+    public getBankAccount (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAssignedBankAccount;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/bankaccount'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -30917,12 +30974,12 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAssignedBankAccount;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiIntegerResult");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAssignedBankAccount");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
