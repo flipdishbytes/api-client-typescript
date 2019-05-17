@@ -14206,6 +14206,10 @@ export class SearchCriteria {
     * Events that have event type\\s
     */
     'EventType'?: Array<string>;
+    /**
+    * Unique Identifier of Event, if this is specified, all other criteria are ignored.
+    */
+    'FlipdishEventId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -14269,6 +14273,11 @@ export class SearchCriteria {
             "name": "EventType",
             "baseName": "EventType",
             "type": "Array<string>"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -23385,9 +23394,10 @@ export class EventsApi {
      * @param userName Events that have User Name
      * @param voucherCode Events that have voucher code
      * @param eventType Events that have event type\\s
+     * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getCustomerEvents (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getCustomerEvents (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/customer/{customerId}'
             .replace('{' + 'customerId' + '}', encodeURIComponent(String(customerId)));
         let localVarQueryParameters: any = {};
@@ -23447,6 +23457,10 @@ export class EventsApi {
             localVarQueryParameters['eventType'] = ObjectSerializer.serialize(eventType, "Array<string>");
         }
 
+        if (flipdishEventId !== undefined) {
+            localVarQueryParameters['flipdishEventId'] = ObjectSerializer.serialize(flipdishEventId, "string");
+        }
+
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -23504,9 +23518,10 @@ export class EventsApi {
      * @param userName Events that have User Name
      * @param voucherCode Events that have voucher code
      * @param eventType Events that have event type\\s
+     * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getEvents (storeId?: number, whiteLabelId?: number, customerId?: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId2?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getEvents (storeId?: number, whiteLabelId?: number, customerId?: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId2?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -23570,6 +23585,10 @@ export class EventsApi {
 
         if (eventType !== undefined) {
             localVarQueryParameters['eventType'] = ObjectSerializer.serialize(eventType, "Array<string>");
+        }
+
+        if (flipdishEventId !== undefined) {
+            localVarQueryParameters['flipdishEventId'] = ObjectSerializer.serialize(flipdishEventId, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -23684,9 +23703,10 @@ export class EventsApi {
      * @param userName Events that have User Name
      * @param voucherCode Events that have voucher code
      * @param eventType Events that have event type\\s
+     * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getMenuEvents (menuId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getMenuEvents (menuId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/menu/{menuId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -23746,6 +23766,10 @@ export class EventsApi {
             localVarQueryParameters['eventType'] = ObjectSerializer.serialize(eventType, "Array<string>");
         }
 
+        if (flipdishEventId !== undefined) {
+            localVarQueryParameters['flipdishEventId'] = ObjectSerializer.serialize(flipdishEventId, "string");
+        }
+
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -23801,9 +23825,10 @@ export class EventsApi {
      * @param userName Events that have User Name
      * @param voucherCode Events that have voucher code
      * @param eventType Events that have event type\\s
+     * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getOrderEvents (orderId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId2?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getOrderEvents (orderId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId2?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/order/{orderId}'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
@@ -23863,6 +23888,10 @@ export class EventsApi {
             localVarQueryParameters['eventType'] = ObjectSerializer.serialize(eventType, "Array<string>");
         }
 
+        if (flipdishEventId !== undefined) {
+            localVarQueryParameters['flipdishEventId'] = ObjectSerializer.serialize(flipdishEventId, "string");
+        }
+
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -23918,9 +23947,10 @@ export class EventsApi {
      * @param userName Events that have User Name
      * @param voucherCode Events that have voucher code
      * @param eventType Events that have event type\\s
+     * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getOrderEventsByCustomer (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getOrderEventsByCustomer (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/order';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -23983,6 +24013,10 @@ export class EventsApi {
             localVarQueryParameters['eventType'] = ObjectSerializer.serialize(eventType, "Array<string>");
         }
 
+        if (flipdishEventId !== undefined) {
+            localVarQueryParameters['flipdishEventId'] = ObjectSerializer.serialize(flipdishEventId, "string");
+        }
+
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -24038,9 +24072,10 @@ export class EventsApi {
      * @param userName Events that have User Name
      * @param voucherCode Events that have voucher code
      * @param eventType Events that have event type\\s
+     * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getStoreEvents (storeId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId2?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getStoreEvents (storeId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId2?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/store/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -24100,6 +24135,10 @@ export class EventsApi {
             localVarQueryParameters['eventType'] = ObjectSerializer.serialize(eventType, "Array<string>");
         }
 
+        if (flipdishEventId !== undefined) {
+            localVarQueryParameters['flipdishEventId'] = ObjectSerializer.serialize(flipdishEventId, "string");
+        }
+
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -24155,9 +24194,10 @@ export class EventsApi {
      * @param userName Events that have User Name
      * @param voucherCode Events that have voucher code
      * @param eventType Events that have event type\\s
+     * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getUserEvents (userId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId2?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getUserEvents (userId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId2?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/user/{userId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -24217,6 +24257,10 @@ export class EventsApi {
             localVarQueryParameters['eventType'] = ObjectSerializer.serialize(eventType, "Array<string>");
         }
 
+        if (flipdishEventId !== undefined) {
+            localVarQueryParameters['flipdishEventId'] = ObjectSerializer.serialize(flipdishEventId, "string");
+        }
+
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -24272,9 +24316,10 @@ export class EventsApi {
      * @param userName Events that have User Name
      * @param voucherCode Events that have voucher code
      * @param eventType Events that have event type\\s
+     * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getWhiteLabelEvents (whitelabelId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getWhiteLabelEvents (whitelabelId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/whitelabel/{whitelabelId}'
             .replace('{' + 'whitelabelId' + '}', encodeURIComponent(String(whitelabelId)));
         let localVarQueryParameters: any = {};
@@ -24332,6 +24377,10 @@ export class EventsApi {
 
         if (eventType !== undefined) {
             localVarQueryParameters['eventType'] = ObjectSerializer.serialize(eventType, "Array<string>");
+        }
+
+        if (flipdishEventId !== undefined) {
+            localVarQueryParameters['flipdishEventId'] = ObjectSerializer.serialize(flipdishEventId, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
