@@ -830,6 +830,7 @@ export namespace App {
         UpdateBankAccounts = <any> 'UpdateBankAccounts',
         UpdateBankAccountsAssign = <any> 'UpdateBankAccountsAssign',
         ViewAssignedBankAccount = <any> 'ViewAssignedBankAccount',
+        VerifyBankAccounts = <any> 'VerifyBankAccounts',
         ViewFeesConfigurations = <any> 'ViewFeesConfigurations',
         EditFeesConfigurations = <any> 'EditFeesConfigurations',
         ViewAppStatistics = <any> 'ViewAppStatistics',
@@ -12145,29 +12146,6 @@ export class RestApiArrayResultVoucherDataPoint {
 }
 
 /**
-* Rest api array result
-*/
-export class RestApiArrayResultWebhookSubscription {
-    /**
-    * Generic data object.
-    */
-    'Data': Array<WebhookSubscription>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Array<WebhookSubscription>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiArrayResultWebhookSubscription.attributeTypeMap;
-    }
-}
-
-/**
 * Rest api default response
 */
 export class RestApiDefaultResponse {
@@ -12924,6 +12902,56 @@ export class RestApiPaginationResultWebhookLog {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultWebhookLog.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
+export class RestApiPaginationResultWebhookSubscription {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<WebhookSubscription>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<WebhookSubscription>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultWebhookSubscription.attributeTypeMap;
     }
 }
 
@@ -20822,7 +20850,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultStoreStatistics": RestApiArrayResultStoreStatistics,
     "RestApiArrayResultTeammate": RestApiArrayResultTeammate,
     "RestApiArrayResultVoucherDataPoint": RestApiArrayResultVoucherDataPoint,
-    "RestApiArrayResultWebhookSubscription": RestApiArrayResultWebhookSubscription,
     "RestApiDefaultResponse": RestApiDefaultResponse,
     "RestApiErrorResult": RestApiErrorResult,
     "RestApiEventSearchPaginationResult": RestApiEventSearchPaginationResult,
@@ -20840,6 +20867,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultStoreGroupExtended": RestApiPaginationResultStoreGroupExtended,
     "RestApiPaginationResultVoucherSummary": RestApiPaginationResultVoucherSummary,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
+    "RestApiPaginationResultWebhookSubscription": RestApiPaginationResultWebhookSubscription,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
     "RestApiResultApmStatistics": RestApiResultApmStatistics,
     "RestApiResultAssignedBankAccount": RestApiResultAssignedBankAccount,
@@ -30264,11 +30292,13 @@ export class OrdersApi {
      * @summary Get orders by filter
      * @param physicalRestaurantId Physical restaurant identifiers
      * @param state Order states
+     * @param from Order has been placed after this parameter value
+     * @param to Order has been placed before this parameter value
      * @param page Requested page number
      * @param limit Requested page limit
      * @param {*} [options] Override http request options.
      */
-    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
+    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, from?: Date, to?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -30280,6 +30310,14 @@ export class OrdersApi {
 
         if (state !== undefined) {
             localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>");
+        }
+
+        if (from !== undefined) {
+            localVarQueryParameters['from'] = ObjectSerializer.serialize(from, "Date");
+        }
+
+        if (to !== undefined) {
+            localVarQueryParameters['to'] = ObjectSerializer.serialize(to, "Date");
         }
 
         if (page !== undefined) {
@@ -34665,9 +34703,11 @@ export class WebhooksApi {
      * @summary Get all webhook subscriptions by your Oauth App id
      * @param oauthAppId Oauth App identifier
      * @param appId 
+     * @param page 
+     * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getWebhookSubscriptions (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultWebhookSubscription;  }> {
+    public getWebhookSubscriptions (oauthAppId: string, appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultWebhookSubscription;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -34683,6 +34723,14 @@ export class WebhooksApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getWebhookSubscriptions.');
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -34709,12 +34757,12 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultWebhookSubscription;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultWebhookSubscription;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultWebhookSubscription");
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultWebhookSubscription");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
