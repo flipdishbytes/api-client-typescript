@@ -4581,6 +4581,10 @@ export class HomeStatistics {
 */
 export class HttpRequestAndResponseLog {
     /**
+    * Id of the log
+    */
+    'Guid'?: string;
+    /**
     * Verb associated with the HTTP call.
     */
     'Verb'?: string;
@@ -4640,6 +4644,11 @@ export class HttpRequestAndResponseLog {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Guid",
+            "baseName": "Guid",
+            "type": "string"
+        },
         {
             "name": "Verb",
             "baseName": "Verb",
@@ -24844,11 +24853,12 @@ export class HttpRequestResponseLogsApi {
      * @param end End date time
      * @param appId 
      * @param filterByUserId User id (optional)
+     * @param guid Id of the log
      * @param page Page number
      * @param limit Page size
      * @param {*} [options] Override http request options.
      */
-    public getLogs (start: Date, end: Date, appId: string, filterByUserId?: number, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultHttpRequestAndResponseLog;  }> {
+    public getLogs (start: Date, end: Date, appId: string, filterByUserId?: number, guid?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultHttpRequestAndResponseLog;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/interactions/logs'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -24880,6 +24890,10 @@ export class HttpRequestResponseLogsApi {
 
         if (filterByUserId !== undefined) {
             localVarQueryParameters['filterByUserId'] = ObjectSerializer.serialize(filterByUserId, "number");
+        }
+
+        if (guid !== undefined) {
+            localVarQueryParameters['guid'] = ObjectSerializer.serialize(guid, "string");
         }
 
         if (page !== undefined) {
