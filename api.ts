@@ -10840,6 +10840,99 @@ export class PhoneCallStartedEvent {
 }
 
 /**
+* Pre Order Config
+*/
+export class PreOrderConfig {
+    /**
+    * Lead Time in Minutes
+    */
+    'LeadTimeMinutes'?: number;
+    /**
+    * Interval in minutes
+    */
+    'IntervalMinutes'?: number;
+    /**
+    * Max Days to order ahead
+    */
+    'MaxOrderAheadDays'?: number;
+    /**
+    * Show ASAP as option
+    */
+    'IncludeAsap'?: boolean;
+    /**
+    * Granual Init' Time
+    */
+    'IncludeMoreGranularInitialTime'?: boolean;
+    /**
+    * Cut off time previous day
+    */
+    'CutOffTimePreviousDayBasic'?: string;
+    /**
+    * Cut off time current day
+    */
+    'CutOffTimeCurrentDayBasic'?: string;
+    /**
+    * Type of time displayed.
+    */
+    'PreOrderTimeDisplayType'?: PreOrderConfig.PreOrderTimeDisplayTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LeadTimeMinutes",
+            "baseName": "LeadTimeMinutes",
+            "type": "number"
+        },
+        {
+            "name": "IntervalMinutes",
+            "baseName": "IntervalMinutes",
+            "type": "number"
+        },
+        {
+            "name": "MaxOrderAheadDays",
+            "baseName": "MaxOrderAheadDays",
+            "type": "number"
+        },
+        {
+            "name": "IncludeAsap",
+            "baseName": "IncludeAsap",
+            "type": "boolean"
+        },
+        {
+            "name": "IncludeMoreGranularInitialTime",
+            "baseName": "IncludeMoreGranularInitialTime",
+            "type": "boolean"
+        },
+        {
+            "name": "CutOffTimePreviousDayBasic",
+            "baseName": "CutOffTimePreviousDayBasic",
+            "type": "string"
+        },
+        {
+            "name": "CutOffTimeCurrentDayBasic",
+            "baseName": "CutOffTimeCurrentDayBasic",
+            "type": "string"
+        },
+        {
+            "name": "PreOrderTimeDisplayType",
+            "baseName": "PreOrderTimeDisplayType",
+            "type": "PreOrderConfig.PreOrderTimeDisplayTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PreOrderConfig.attributeTypeMap;
+    }
+}
+
+export namespace PreOrderConfig {
+    export enum PreOrderTimeDisplayTypeEnum {
+        SingleTime = <any> 'SingleTime',
+        StartAndEndTime = <any> 'StartAndEndTime',
+        DayOnly = <any> 'DayOnly'
+    }
+}
+/**
 * Predefined answer
 */
 export class PredefinedAnswer {
@@ -13513,6 +13606,29 @@ export class RestApiResultOrder {
 
     static getAttributeTypeMap() {
         return RestApiResultOrder.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultPreOrderConfig {
+    /**
+    * Generic data object.
+    */
+    'Data': PreOrderConfig;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "PreOrderConfig"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultPreOrderConfig.attributeTypeMap;
     }
 }
 
@@ -20665,6 +20781,7 @@ let enumsMap: {[index: string]: any} = {
         "OrderVoucherSummary.SubTypeEnum": OrderVoucherSummary.SubTypeEnum,
         "PayOrder.PaymentOptionEnum": PayOrder.PaymentOptionEnum,
         "PhoneCall.CallStatusEnum": PhoneCall.CallStatusEnum,
+        "PreOrderConfig.PreOrderTimeDisplayTypeEnum": PreOrderConfig.PreOrderTimeDisplayTypeEnum,
         "ProcessingFeeConfig.PaymentAccountTypeEnum": ProcessingFeeConfig.PaymentAccountTypeEnum,
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
         "RedeemInvitationResult.InvitationStatusEnum": RedeemInvitationResult.InvitationStatusEnum,
@@ -20822,6 +20939,7 @@ let typeMap: {[index: string]: any} = {
     "PhoneCall": PhoneCall,
     "PhoneCallEndedEvent": PhoneCallEndedEvent,
     "PhoneCallStartedEvent": PhoneCallStartedEvent,
+    "PreOrderConfig": PreOrderConfig,
     "PredefinedAnswer": PredefinedAnswer,
     "Printer": Printer,
     "PrinterAssignedToStoreEvent": PrinterAssignedToStoreEvent,
@@ -20901,6 +21019,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultOAuthApp": RestApiResultOAuthApp,
     "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
     "RestApiResultOrder": RestApiResultOrder,
+    "RestApiResultPreOrderConfig": RestApiResultPreOrderConfig,
     "RestApiResultProcessingFeeConfig": RestApiResultProcessingFeeConfig,
     "RestApiResultRedeemInvitationResult": RestApiResultRedeemInvitationResult,
     "RestApiResultStore": RestApiResultStore,
@@ -31643,6 +31762,70 @@ export class StoresApi {
     }
     /**
      * 
+     * @summary Get the pre order config for a store, by type
+     * @param storeId Store identifier
+     * @param preOrderType \&quot;delivery\&quot; or \&quot;pickup\&quot;
+     * @param {*} [options] Override http request options.
+     */
+    public getPreOrderConfig (storeId: number, preOrderType: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPreOrderConfig;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/preorderconfig/{preOrderType}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'preOrderType' + '}', encodeURIComponent(String(preOrderType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getPreOrderConfig.');
+        }
+
+        // verify required parameter 'preOrderType' is not null or undefined
+        if (preOrderType === null || preOrderType === undefined) {
+            throw new Error('Required parameter preOrderType was null or undefined when calling getPreOrderConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPreOrderConfig;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultPreOrderConfig");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Get processing fee configs by store identifier
      * @param storeId Store identifier
      * @param appNameId App Name Id(Not used, still here for compatability reasons)
@@ -32099,6 +32282,77 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultBusinessHoursPeriod");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary UPDATE pre order config for a store, by type
+     * @param storeId Store identifier
+     * @param preOrderType \&quot;delivery\&quot; or \&quot;pickup\&quot;
+     * @param preOrderConfig Update pre order config values
+     * @param {*} [options] Override http request options.
+     */
+    public updatePreOrderConfig (storeId: number, preOrderType: string, preOrderConfig: PreOrderConfig, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/preorderconfig/{preOrderType}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'preOrderType' + '}', encodeURIComponent(String(preOrderType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling updatePreOrderConfig.');
+        }
+
+        // verify required parameter 'preOrderType' is not null or undefined
+        if (preOrderType === null || preOrderType === undefined) {
+            throw new Error('Required parameter preOrderType was null or undefined when calling updatePreOrderConfig.');
+        }
+
+        // verify required parameter 'preOrderConfig' is not null or undefined
+        if (preOrderConfig === null || preOrderConfig === undefined) {
+            throw new Error('Required parameter preOrderConfig was null or undefined when calling updatePreOrderConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(preOrderConfig, "PreOrderConfig")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestApiDefaultResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
