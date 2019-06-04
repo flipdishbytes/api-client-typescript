@@ -855,6 +855,7 @@ export namespace App {
         ViewAppAuditLogs = <any> 'ViewAppAuditLogs',
         ViewCustomerAuditLogs = <any> 'ViewCustomerAuditLogs',
         ViewPrinterAuditLogs = <any> 'ViewPrinterAuditLogs',
+        ViewHydraAuditLogs = <any> 'ViewHydraAuditLogs',
         SendPushNotificationToCustomer = <any> 'SendPushNotificationToCustomer'
     }
 }
@@ -4774,7 +4775,7 @@ export namespace HydraConfig {
     }
 }
 /**
-* Hdyra login result
+* Hydra login result
 */
 export class HydraRegistration {
     /**
@@ -4824,7 +4825,7 @@ export class HydraRegistration {
 }
 
 /**
-* Hdyra status
+* Hydra status
 */
 export class HydraStatus {
     /**
@@ -10488,45 +10489,6 @@ export class PasswordResetModel {
     }
 }
 
-/**
-* Pay order
-*/
-export class PayOrder {
-    /**
-    * 6 digit PIN code (not starting with zero).
-    */
-    'PaymentOption': PayOrder.PaymentOptionEnum;
-    /**
-    * Chef note
-    */
-    'ChefNote'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "PaymentOption",
-            "baseName": "PaymentOption",
-            "type": "PayOrder.PaymentOptionEnum"
-        },
-        {
-            "name": "ChefNote",
-            "baseName": "ChefNote",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return PayOrder.attributeTypeMap;
-    }
-}
-
-export namespace PayOrder {
-    export enum PaymentOptionEnum {
-        Online = <any> 'Online',
-        Emv = <any> 'Emv',
-        Counter = <any> 'Counter'
-    }
-}
 /**
 * Percent discount details
 */
@@ -20779,7 +20741,6 @@ let enumsMap: {[index: string]: any} = {
         "OrderSummary.CurrencyEnum": OrderSummary.CurrencyEnum,
         "OrderVoucherSummary.TypeEnum": OrderVoucherSummary.TypeEnum,
         "OrderVoucherSummary.SubTypeEnum": OrderVoucherSummary.SubTypeEnum,
-        "PayOrder.PaymentOptionEnum": PayOrder.PaymentOptionEnum,
         "PhoneCall.CallStatusEnum": PhoneCall.CallStatusEnum,
         "PreOrderConfig.PreOrderTimeDisplayTypeEnum": PreOrderConfig.PreOrderTimeDisplayTypeEnum,
         "ProcessingFeeConfig.PaymentAccountTypeEnum": ProcessingFeeConfig.PaymentAccountTypeEnum,
@@ -20934,7 +20895,6 @@ let typeMap: {[index: string]: any} = {
     "OrderTipUpdatedEvent": OrderTipUpdatedEvent,
     "OrderVoucherSummary": OrderVoucherSummary,
     "PasswordResetModel": PasswordResetModel,
-    "PayOrder": PayOrder,
     "PercentDiscountDetails": PercentDiscountDetails,
     "PhoneCall": PhoneCall,
     "PhoneCallEndedEvent": PhoneCallEndedEvent,
@@ -22925,7 +22885,7 @@ export class BankAccountApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getBankAccount (id: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
+    public getBankAccountById (id: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -22935,12 +22895,12 @@ export class BankAccountApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getBankAccount.');
+            throw new Error('Required parameter id was null or undefined when calling getBankAccountById.');
         }
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getBankAccount.');
+            throw new Error('Required parameter appId was null or undefined when calling getBankAccountById.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -23659,7 +23619,6 @@ export class EventsApi {
     /**
      * 
      * @summary Get events  For technical reasons, the number of records returned is limited to 100.
-     * @param storeId Store Id
      * @param whiteLabelId White Label Id
      * @param customerId Customer Id
      * @param limit The maximum elements to return
@@ -23667,7 +23626,7 @@ export class EventsApi {
      * @param start Start date
      * @param end End date
      * @param orderId Events that have Order Id
-     * @param storeId2 Events that have Store Id
+     * @param storeId Events that have Store Id
      * @param storeGroupId Events that have Store Group Id
      * @param userId Events that have User Id
      * @param userEmail Events that have User Email
@@ -23677,15 +23636,11 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getEvents (storeId?: number, whiteLabelId?: number, customerId?: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId2?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getEvents (whiteLabelId?: number, customerId?: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
-
-        if (storeId !== undefined) {
-            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
-        }
 
         if (whiteLabelId !== undefined) {
             localVarQueryParameters['whiteLabelId'] = ObjectSerializer.serialize(whiteLabelId, "number");
@@ -23715,8 +23670,8 @@ export class EventsApi {
             localVarQueryParameters['orderId'] = ObjectSerializer.serialize(orderId, "number");
         }
 
-        if (storeId2 !== undefined) {
-            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId2, "number");
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
         }
 
         if (storeGroupId !== undefined) {
@@ -25215,9 +25170,10 @@ export class HydraApi {
      * 
      * @summary [Private]
      * @param deviceId 
+     * @param hydraUserType 
      * @param {*} [options] Override http request options.
      */
-    public login (deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public loginWithDeviceId (deviceId: string, hydraUserType?: 'Kiosk' | 'Terminal', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/hydra/{deviceId}/login'
             .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
         let localVarQueryParameters: any = {};
@@ -25226,7 +25182,11 @@ export class HydraApi {
 
         // verify required parameter 'deviceId' is not null or undefined
         if (deviceId === null || deviceId === undefined) {
-            throw new Error('Required parameter deviceId was null or undefined when calling login.');
+            throw new Error('Required parameter deviceId was null or undefined when calling loginWithDeviceId.');
+        }
+
+        if (hydraUserType !== undefined) {
+            localVarQueryParameters['hydraUserType'] = ObjectSerializer.serialize(hydraUserType, "'Kiosk' | 'Terminal'");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -25240,69 +25200,6 @@ export class HydraApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary [Private]
-     * @param orderId 
-     * @param payOrder 
-     * @param {*} [options] Override http request options.
-     */
-    public payOrder (orderId: number, payOrder: PayOrder, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/hydra/payorder/{orderId}'
-            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'orderId' is not null or undefined
-        if (orderId === null || orderId === undefined) {
-            throw new Error('Required parameter orderId was null or undefined when calling payOrder.');
-        }
-
-        // verify required parameter 'payOrder' is not null or undefined
-        if (payOrder === null || payOrder === undefined) {
-            throw new Error('Required parameter payOrder was null or undefined when calling payOrder.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(payOrder, "PayOrder")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -25378,6 +25275,62 @@ export class HydraApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultHydraStatus");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [Private]
+     * @param deviceId 
+     * @param {*} [options] Override http request options.
+     */
+    public unAssign (deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/hydra/{deviceId}/registration'
+            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'deviceId' is not null or undefined
+        if (deviceId === null || deviceId === undefined) {
+            throw new Error('Required parameter deviceId was null or undefined when calling unAssign.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -31573,7 +31526,7 @@ export class StoresApi {
      * @param storeId Store identifier
      * @param {*} [options] Override http request options.
      */
-    public getBankAccount (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAssignedBankAccount;  }> {
+    public getBankAccountForStore (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAssignedBankAccount;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/bankaccount'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -31582,7 +31535,7 @@ export class StoresApi {
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getBankAccount.');
+            throw new Error('Required parameter storeId was null or undefined when calling getBankAccountForStore.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
