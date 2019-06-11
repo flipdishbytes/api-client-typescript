@@ -3809,6 +3809,10 @@ export class EventSearchResult {
     */
     'StoreOpeningHoursUpdatedEvent'?: Array<StoreOpeningHoursUpdatedEvent>;
     /**
+    * Store opening hours updated events
+    */
+    'StoreMenuAssignedEvent'?: Array<StoreMenuAssignedEvent>;
+    /**
     * Store business hours override created events
     */
     'StoreBusinessHoursOverrideCreatedEvent'?: Array<StoreBusinessHoursOverrideCreatedEvent>;
@@ -4020,6 +4024,22 @@ export class EventSearchResult {
     * Bank account updated event
     */
     'BankAccountDeletedEvent'?: Array<BankAccountDeletedEvent>;
+    /**
+    * Hydra assigned event
+    */
+    'HydraAssignedEvent'?: Array<HydraAssignedEvent>;
+    /**
+    * Hydra reset requested event
+    */
+    'HydraRequestResetEvent'?: Array<HydraRequestResetEvent>;
+    /**
+    * Hydra settings changed event
+    */
+    'HydraSettingChangedEvent'?: Array<HydraSettingChangedEvent>;
+    /**
+    * Hydra un-assigned event
+    */
+    'HydraUnAssignedEvent'?: Array<HydraUnAssignedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -4108,6 +4128,11 @@ export class EventSearchResult {
             "name": "StoreOpeningHoursUpdatedEvent",
             "baseName": "StoreOpeningHoursUpdatedEvent",
             "type": "Array<StoreOpeningHoursUpdatedEvent>"
+        },
+        {
+            "name": "StoreMenuAssignedEvent",
+            "baseName": "StoreMenuAssignedEvent",
+            "type": "Array<StoreMenuAssignedEvent>"
         },
         {
             "name": "StoreBusinessHoursOverrideCreatedEvent",
@@ -4373,6 +4398,26 @@ export class EventSearchResult {
             "name": "BankAccountDeletedEvent",
             "baseName": "BankAccountDeletedEvent",
             "type": "Array<BankAccountDeletedEvent>"
+        },
+        {
+            "name": "HydraAssignedEvent",
+            "baseName": "HydraAssignedEvent",
+            "type": "Array<HydraAssignedEvent>"
+        },
+        {
+            "name": "HydraRequestResetEvent",
+            "baseName": "HydraRequestResetEvent",
+            "type": "Array<HydraRequestResetEvent>"
+        },
+        {
+            "name": "HydraSettingChangedEvent",
+            "baseName": "HydraSettingChangedEvent",
+            "type": "Array<HydraSettingChangedEvent>"
+        },
+        {
+            "name": "HydraUnAssignedEvent",
+            "baseName": "HydraUnAssignedEvent",
+            "type": "Array<HydraUnAssignedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4727,6 +4772,83 @@ export class HttpRequestAndResponseLog {
 }
 
 /**
+* Hydra assigned event
+*/
+export class HydraAssignedEvent {
+    /**
+    * User who made the change
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Status of Hydra
+    */
+    'HydraStatus'?: HydraStatus;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "HydraStatus",
+            "baseName": "HydraStatus",
+            "type": "HydraStatus"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HydraAssignedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Hydra configuration
 */
 export class HydraConfig {
@@ -4825,6 +4947,151 @@ export class HydraRegistration {
 }
 
 /**
+* Hydra request reset event
+*/
+export class HydraRequestResetEvent {
+    /**
+    * User who initiated the change
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HydraRequestResetEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Hydra settings changed
+*/
+export class HydraSettingChangedEvent {
+    /**
+    * User who made the change
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Hydra configuration
+    */
+    'HydraConfig'?: HydraConfig;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "HydraConfig",
+            "baseName": "HydraConfig",
+            "type": "HydraConfig"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HydraSettingChangedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Hydra status
 */
 export class HydraStatus {
@@ -4871,6 +5138,83 @@ export class HydraStatus {
 
     static getAttributeTypeMap() {
         return HydraStatus.attributeTypeMap;
+    }
+}
+
+/**
+* Hydra unassigned event
+*/
+export class HydraUnAssignedEvent {
+    /**
+    * User who made the change
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Status of Hydra
+    */
+    'HydraStatus'?: HydraStatus;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "HydraStatus",
+            "baseName": "HydraStatus",
+            "type": "HydraStatus"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HydraUnAssignedEvent.attributeTypeMap;
     }
 }
 
@@ -10895,6 +11239,29 @@ export namespace PreOrderConfig {
     }
 }
 /**
+* Time order can be placed
+*/
+export class PreOrderTime {
+    /**
+    * Time
+    */
+    'Time'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Time",
+            "baseName": "Time",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PreOrderTime.attributeTypeMap;
+    }
+}
+
+/**
 * Predefined answer
 */
 export class PredefinedAnswer {
@@ -12091,6 +12458,29 @@ export class RestApiArrayResultOauthClientRedirectUri {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultOauthClientRedirectUri.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultPreOrderTime {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<PreOrderTime>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<PreOrderTime>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultPreOrderTime.attributeTypeMap;
     }
 }
 
@@ -13689,6 +14079,29 @@ export class RestApiResultStoreAddress {
 /**
 * Rest api result
 */
+export class RestApiResultStoreEndOfDayReport {
+    /**
+    * Generic data object.
+    */
+    'Data': StoreEndOfDayReport;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "StoreEndOfDayReport"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultStoreEndOfDayReport.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultStoreGroup {
     /**
     * Generic data object.
@@ -14829,6 +15242,14 @@ export class Store {
     */
     'Currency'?: Store.CurrencyEnum;
     /**
+    * Is PerOrder Enabled for Delivery
+    */
+    'PreOrderDeliveryEnabled'?: boolean;
+    /**
+    * Is PerOrder Enabled for Pickup
+    */
+    'PreOrderPickupEnabled'?: boolean;
+    /**
     * Phone number
     */
     'PhoneNumber'?: string;
@@ -15010,6 +15431,16 @@ export class Store {
             "name": "Currency",
             "baseName": "Currency",
             "type": "Store.CurrencyEnum"
+        },
+        {
+            "name": "PreOrderDeliveryEnabled",
+            "baseName": "PreOrderDeliveryEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "PreOrderPickupEnabled",
+            "baseName": "PreOrderPickupEnabled",
+            "type": "boolean"
         },
         {
             "name": "PhoneNumber",
@@ -16261,6 +16692,370 @@ export class StoreDeletedEvent {
 }
 
 /**
+* Store end of day report
+*/
+export class StoreEndOfDayReport {
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * Store name
+    */
+    'StoreName'?: string;
+    /**
+    * Currency
+    */
+    'Currency'?: StoreEndOfDayReport.CurrencyEnum;
+    /**
+    * Order Count
+    */
+    'OrderCount'?: number;
+    /**
+    * Order Value
+    */
+    'OrderValue'?: number;
+    /**
+    * Order Value Excluding Delivery Fees
+    */
+    'OrderValueExcludingDeliveryFees'?: number;
+    /**
+    * Collection Order Count
+    */
+    'CollectionOrderCount'?: number;
+    /**
+    * Collection Cash Order Count
+    */
+    'CollectionCashOrderCount'?: number;
+    /**
+    * Collection Paid Online Order Count
+    */
+    'CollectionPaidOnlineOrderCount'?: number;
+    /**
+    * Collection Order Value
+    */
+    'CollectionOrderValue'?: number;
+    /**
+    * Collection Cash Order Value
+    */
+    'CollectionCashOrderValue'?: number;
+    /**
+    * Collection Paid Online Order Value
+    */
+    'CollectionPaidOnlineOrderValue'?: number;
+    /**
+    * Delivery Order Count
+    */
+    'DeliveryOrderCount'?: number;
+    /**
+    * Delivery Cash Order Count
+    */
+    'DeliveryCashOrderCount'?: number;
+    /**
+    * Delivery Paid Online Order Count
+    */
+    'DeliveryPaidOnlineOrderCount'?: number;
+    /**
+    * Delivery Order Value
+    */
+    'DeliveryOrderValue'?: number;
+    /**
+    * Delivery Cash Order Value
+    */
+    'DeliveryCashOrderValue'?: number;
+    /**
+    * Delivery Paid Online Order Value
+    */
+    'DeliveryPaidOnlineOrderValue'?: number;
+    /**
+    * Paid Online Order Count
+    */
+    'PaidOnlineOrderCount'?: number;
+    /**
+    * Cash Order Count
+    */
+    'CashOrderCount'?: number;
+    /**
+    * Paid Online Order Value
+    */
+    'PaidOnlineOrderValue'?: number;
+    /**
+    * Cash Order Value
+    */
+    'CashOrderValue'?: number;
+    /**
+    * Paid Online Order Value Excluding Delivery Fees
+    */
+    'PaidOnlineOrderValueExcludingDeliveryFees'?: number;
+    /**
+    * Cash Order Value Excluding Delivery Fees
+    */
+    'CashOrderValueExcludingDeliveryFees'?: number;
+    /**
+    * Start Time
+    */
+    'StartTime'?: Date;
+    /**
+    * End Time
+    */
+    'EndTime'?: Date;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreName",
+            "baseName": "StoreName",
+            "type": "string"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "StoreEndOfDayReport.CurrencyEnum"
+        },
+        {
+            "name": "OrderCount",
+            "baseName": "OrderCount",
+            "type": "number"
+        },
+        {
+            "name": "OrderValue",
+            "baseName": "OrderValue",
+            "type": "number"
+        },
+        {
+            "name": "OrderValueExcludingDeliveryFees",
+            "baseName": "OrderValueExcludingDeliveryFees",
+            "type": "number"
+        },
+        {
+            "name": "CollectionOrderCount",
+            "baseName": "CollectionOrderCount",
+            "type": "number"
+        },
+        {
+            "name": "CollectionCashOrderCount",
+            "baseName": "CollectionCashOrderCount",
+            "type": "number"
+        },
+        {
+            "name": "CollectionPaidOnlineOrderCount",
+            "baseName": "CollectionPaidOnlineOrderCount",
+            "type": "number"
+        },
+        {
+            "name": "CollectionOrderValue",
+            "baseName": "CollectionOrderValue",
+            "type": "number"
+        },
+        {
+            "name": "CollectionCashOrderValue",
+            "baseName": "CollectionCashOrderValue",
+            "type": "number"
+        },
+        {
+            "name": "CollectionPaidOnlineOrderValue",
+            "baseName": "CollectionPaidOnlineOrderValue",
+            "type": "number"
+        },
+        {
+            "name": "DeliveryOrderCount",
+            "baseName": "DeliveryOrderCount",
+            "type": "number"
+        },
+        {
+            "name": "DeliveryCashOrderCount",
+            "baseName": "DeliveryCashOrderCount",
+            "type": "number"
+        },
+        {
+            "name": "DeliveryPaidOnlineOrderCount",
+            "baseName": "DeliveryPaidOnlineOrderCount",
+            "type": "number"
+        },
+        {
+            "name": "DeliveryOrderValue",
+            "baseName": "DeliveryOrderValue",
+            "type": "number"
+        },
+        {
+            "name": "DeliveryCashOrderValue",
+            "baseName": "DeliveryCashOrderValue",
+            "type": "number"
+        },
+        {
+            "name": "DeliveryPaidOnlineOrderValue",
+            "baseName": "DeliveryPaidOnlineOrderValue",
+            "type": "number"
+        },
+        {
+            "name": "PaidOnlineOrderCount",
+            "baseName": "PaidOnlineOrderCount",
+            "type": "number"
+        },
+        {
+            "name": "CashOrderCount",
+            "baseName": "CashOrderCount",
+            "type": "number"
+        },
+        {
+            "name": "PaidOnlineOrderValue",
+            "baseName": "PaidOnlineOrderValue",
+            "type": "number"
+        },
+        {
+            "name": "CashOrderValue",
+            "baseName": "CashOrderValue",
+            "type": "number"
+        },
+        {
+            "name": "PaidOnlineOrderValueExcludingDeliveryFees",
+            "baseName": "PaidOnlineOrderValueExcludingDeliveryFees",
+            "type": "number"
+        },
+        {
+            "name": "CashOrderValueExcludingDeliveryFees",
+            "baseName": "CashOrderValueExcludingDeliveryFees",
+            "type": "number"
+        },
+        {
+            "name": "StartTime",
+            "baseName": "StartTime",
+            "type": "Date"
+        },
+        {
+            "name": "EndTime",
+            "baseName": "EndTime",
+            "type": "Date"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreEndOfDayReport.attributeTypeMap;
+    }
+}
+
+export namespace StoreEndOfDayReport {
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD'
+    }
+}
+/**
 * Store Group
 */
 export class StoreGroup {
@@ -17058,6 +17853,101 @@ export class StoreGroupUpdatedEvent {
 
     static getAttributeTypeMap() {
         return StoreGroupUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Menu Assigned To Store Event
+*/
+export class StoreMenuAssignedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * MenuId Id
+    */
+    'MenuId'?: number;
+    /**
+    * User who assigned the menu to the store
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreMenuAssignedEvent.attributeTypeMap;
     }
 }
 
@@ -20751,6 +21641,7 @@ let enumsMap: {[index: string]: any} = {
         "StatisticsCurrencyDataPoint.CurrencyEnum": StatisticsCurrencyDataPoint.CurrencyEnum,
         "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
         "Store.CurrencyEnum": Store.CurrencyEnum,
+        "StoreEndOfDayReport.CurrencyEnum": StoreEndOfDayReport.CurrencyEnum,
         "StoreGroup.CurrencyEnum": StoreGroup.CurrencyEnum,
         "StoreGroupBase.CurrencyEnum": StoreGroupBase.CurrencyEnum,
         "StoreGroupExtended.CurrencyEnum": StoreGroupExtended.CurrencyEnum,
@@ -20826,9 +21717,13 @@ let typeMap: {[index: string]: any} = {
     "HomeAction": HomeAction,
     "HomeStatistics": HomeStatistics,
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
+    "HydraAssignedEvent": HydraAssignedEvent,
     "HydraConfig": HydraConfig,
     "HydraRegistration": HydraRegistration,
+    "HydraRequestResetEvent": HydraRequestResetEvent,
+    "HydraSettingChangedEvent": HydraSettingChangedEvent,
     "HydraStatus": HydraStatus,
+    "HydraUnAssignedEvent": HydraUnAssignedEvent,
     "JobAddress": JobAddress,
     "JobCancellation": JobCancellation,
     "JobContact": JobContact,
@@ -20900,6 +21795,7 @@ let typeMap: {[index: string]: any} = {
     "PhoneCallEndedEvent": PhoneCallEndedEvent,
     "PhoneCallStartedEvent": PhoneCallStartedEvent,
     "PreOrderConfig": PreOrderConfig,
+    "PreOrderTime": PreOrderTime,
     "PredefinedAnswer": PredefinedAnswer,
     "Printer": Printer,
     "PrinterAssignedToStoreEvent": PrinterAssignedToStoreEvent,
@@ -20932,6 +21828,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultMetadata": RestApiArrayResultMetadata,
     "RestApiArrayResultOAuthApp": RestApiArrayResultOAuthApp,
     "RestApiArrayResultOauthClientRedirectUri": RestApiArrayResultOauthClientRedirectUri,
+    "RestApiArrayResultPreOrderTime": RestApiArrayResultPreOrderTime,
     "RestApiArrayResultProcessingFeeConfig": RestApiArrayResultProcessingFeeConfig,
     "RestApiArrayResultRestApiDefaultResponse": RestApiArrayResultRestApiDefaultResponse,
     "RestApiArrayResultStoreStatistics": RestApiArrayResultStoreStatistics,
@@ -20984,6 +21881,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultRedeemInvitationResult": RestApiResultRedeemInvitationResult,
     "RestApiResultStore": RestApiResultStore,
     "RestApiResultStoreAddress": RestApiResultStoreAddress,
+    "RestApiResultStoreEndOfDayReport": RestApiResultStoreEndOfDayReport,
     "RestApiResultStoreGroup": RestApiResultStoreGroup,
     "RestApiResultStoreGroupBase": RestApiResultStoreGroupBase,
     "RestApiResultStuartSettings": RestApiResultStuartSettings,
@@ -21016,12 +21914,14 @@ let typeMap: {[index: string]: any} = {
     "StoreCreatedEvent": StoreCreatedEvent,
     "StoreDataPoint": StoreDataPoint,
     "StoreDeletedEvent": StoreDeletedEvent,
+    "StoreEndOfDayReport": StoreEndOfDayReport,
     "StoreGroup": StoreGroup,
     "StoreGroupBase": StoreGroupBase,
     "StoreGroupCreatedEvent": StoreGroupCreatedEvent,
     "StoreGroupDeletedEvent": StoreGroupDeletedEvent,
     "StoreGroupExtended": StoreGroupExtended,
     "StoreGroupUpdatedEvent": StoreGroupUpdatedEvent,
+    "StoreMenuAssignedEvent": StoreMenuAssignedEvent,
     "StoreNote": StoreNote,
     "StoreOpeningHoursUpdatedEvent": StoreOpeningHoursUpdatedEvent,
     "StoreStatistics": StoreStatistics,
@@ -31263,6 +32163,70 @@ export class StoresApi {
     }
     /**
      * 
+     * @summary Assign Menu to Store
+     * @param storeId Store identifier
+     * @param menuId Id of Menu to assign to store
+     * @param {*} [options] Override http request options.
+     */
+    public assignMenu (storeId: number, menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/menu/{menuId}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling assignMenu.');
+        }
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling assignMenu.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestApiDefaultResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Clone store with store clone settings
      * @param storeId Store identifier
      * @param settings Settings for cloning the store
@@ -31715,15 +32679,77 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get the pre order config for a store, by type
+     * @summary Get store end of day report
      * @param storeId Store identifier
-     * @param preOrderType \&quot;delivery\&quot; or \&quot;pickup\&quot;
+     * @param date Store identifier
      * @param {*} [options] Override http request options.
      */
-    public getPreOrderConfig (storeId: number, preOrderType: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPreOrderConfig;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/preorderconfig/{preOrderType}'
+    public getEndOfDayReport (storeId: number, date?: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreEndOfDayReport;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/endofdayreport'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getEndOfDayReport.');
+        }
+
+        if (date !== undefined) {
+            localVarQueryParameters['date'] = ObjectSerializer.serialize(date, "Date");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStoreEndOfDayReport;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStoreEndOfDayReport");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get the pre order config for a store, by type
+     * @param storeId Store identifier
+     * @param deliveryType \&quot;delivery\&quot; or \&quot;pickup\&quot;
+     * @param {*} [options] Override http request options.
+     */
+    public getPreOrderConfig (storeId: number, deliveryType: 'Delivery' | 'Pickup', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPreOrderConfig;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/preorderconfig/{deliveryType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
-            .replace('{' + 'preOrderType' + '}', encodeURIComponent(String(preOrderType)));
+            .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -31733,9 +32759,9 @@ export class StoresApi {
             throw new Error('Required parameter storeId was null or undefined when calling getPreOrderConfig.');
         }
 
-        // verify required parameter 'preOrderType' is not null or undefined
-        if (preOrderType === null || preOrderType === undefined) {
-            throw new Error('Required parameter preOrderType was null or undefined when calling getPreOrderConfig.');
+        // verify required parameter 'deliveryType' is not null or undefined
+        if (deliveryType === null || deliveryType === undefined) {
+            throw new Error('Required parameter deliveryType was null or undefined when calling getPreOrderConfig.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -31768,6 +32794,80 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultPreOrderConfig");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get the Preview times of the pre-order configuration
+     * @param storeId Store identifier
+     * @param deliveryType \&quot;delivery\&quot; or \&quot;pickup\&quot;
+     * @param date optional parameter to show results from
+     * @param {*} [options] Override http request options.
+     */
+    public getPreOrderPreview (storeId: number, deliveryType: 'Delivery' | 'Pickup', date: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPreOrderTime;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/preorderconfig/{deliveryType}/preview'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getPreOrderPreview.');
+        }
+
+        // verify required parameter 'deliveryType' is not null or undefined
+        if (deliveryType === null || deliveryType === undefined) {
+            throw new Error('Required parameter deliveryType was null or undefined when calling getPreOrderPreview.');
+        }
+
+        // verify required parameter 'date' is not null or undefined
+        if (date === null || date === undefined) {
+            throw new Error('Required parameter date was null or undefined when calling getPreOrderPreview.');
+        }
+
+        if (date !== undefined) {
+            localVarQueryParameters['date'] = ObjectSerializer.serialize(date, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPreOrderTime;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultPreOrderTime");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -32248,14 +33348,88 @@ export class StoresApi {
      * 
      * @summary UPDATE pre order config for a store, by type
      * @param storeId Store identifier
-     * @param preOrderType \&quot;delivery\&quot; or \&quot;pickup\&quot;
+     * @param deliveryType \&quot;delivery\&quot; or \&quot;pickup\&quot;
+     * @param enabled Update pre order config values
+     * @param {*} [options] Override http request options.
+     */
+    public setPreOrdeEnabled (storeId: number, deliveryType: 'Delivery' | 'Pickup', enabled: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/preorderconfig/{deliveryType}/enabled'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling setPreOrdeEnabled.');
+        }
+
+        // verify required parameter 'deliveryType' is not null or undefined
+        if (deliveryType === null || deliveryType === undefined) {
+            throw new Error('Required parameter deliveryType was null or undefined when calling setPreOrdeEnabled.');
+        }
+
+        // verify required parameter 'enabled' is not null or undefined
+        if (enabled === null || enabled === undefined) {
+            throw new Error('Required parameter enabled was null or undefined when calling setPreOrdeEnabled.');
+        }
+
+        if (enabled !== undefined) {
+            localVarQueryParameters['enabled'] = ObjectSerializer.serialize(enabled, "boolean");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestApiDefaultResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary UPDATE pre order config for a store, by type
+     * @param storeId Store identifier
+     * @param deliveryType \&quot;delivery\&quot; or \&quot;pickup\&quot;
      * @param preOrderConfig Update pre order config values
      * @param {*} [options] Override http request options.
      */
-    public updatePreOrderConfig (storeId: number, preOrderType: string, preOrderConfig: PreOrderConfig, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/preorderconfig/{preOrderType}'
+    public updatePreOrderConfig (storeId: number, deliveryType: 'Delivery' | 'Pickup', preOrderConfig: PreOrderConfig, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/preorderconfig/{deliveryType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
-            .replace('{' + 'preOrderType' + '}', encodeURIComponent(String(preOrderType)));
+            .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -32265,9 +33439,9 @@ export class StoresApi {
             throw new Error('Required parameter storeId was null or undefined when calling updatePreOrderConfig.');
         }
 
-        // verify required parameter 'preOrderType' is not null or undefined
-        if (preOrderType === null || preOrderType === undefined) {
-            throw new Error('Required parameter preOrderType was null or undefined when calling updatePreOrderConfig.');
+        // verify required parameter 'deliveryType' is not null or undefined
+        if (deliveryType === null || deliveryType === undefined) {
+            throw new Error('Required parameter deliveryType was null or undefined when calling updatePreOrderConfig.');
         }
 
         // verify required parameter 'preOrderConfig' is not null or undefined
