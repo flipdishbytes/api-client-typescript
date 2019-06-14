@@ -651,9 +651,33 @@ export class App {
     */
     'AppId'?: string;
     /**
-    * App name
+    * Country identifier
     */
-    'Name'?: string;
+    'CountryId'?: string;
+    /**
+    * Icon url (Application Icon \\ Logo)
+    */
+    'IconUrl'?: string;
+    /**
+    * Icon thumbnail url (Application Icon \\ Logo thumbnail)
+    */
+    'IconThumbnailUrl'?: string;
+    /**
+    * Languages to be available in the application
+    */
+    'Languages'?: Array<Language>;
+    /**
+    * Available Languages for Apps\\Staff
+    */
+    'AvailableAppLanguages'?: Array<Language>;
+    /**
+    * App access level for the logged in user
+    */
+    'AppAccessLevel'?: App.AppAccessLevelEnum;
+    /**
+    * Constitutes a list of available resources
+    */
+    'AppResourceSet'?: Array<App.AppResourceSetEnum>;
     /**
     * Center of the map coordinates
     */
@@ -667,29 +691,21 @@ export class App {
     */
     'MapSouthWest'?: Coordinates;
     /**
-    * App access level for the logged in user
+    * App name
     */
-    'AppAccessLevel'?: App.AppAccessLevelEnum;
+    'Name'?: string;
     /**
-    * Icon url
+    * Domain on which the app is allowed to be hosted
     */
-    'IconUrl'?: string;
+    'Domain'?: string;
     /**
-    * Icon thumbnail url
+    * Main color of the web \\ android \\ ios applications
     */
-    'IconThumbnailUrl'?: string;
+    'MainColor'?: string;
     /**
-    * Country identifier
+    * Application Category
     */
-    'CountryId'?: string;
-    /**
-    * Available Languages for Apps\\Staff
-    */
-    'AvailableAppLanguages'?: Array<Language>;
-    /**
-    * Constitutes a list of available resources
-    */
-    'AppResourceSet'?: Array<App.AppResourceSetEnum>;
+    'ApplicationCategory'?: App.ApplicationCategoryEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -700,9 +716,39 @@ export class App {
             "type": "string"
         },
         {
-            "name": "Name",
-            "baseName": "Name",
+            "name": "CountryId",
+            "baseName": "CountryId",
             "type": "string"
+        },
+        {
+            "name": "IconUrl",
+            "baseName": "IconUrl",
+            "type": "string"
+        },
+        {
+            "name": "IconThumbnailUrl",
+            "baseName": "IconThumbnailUrl",
+            "type": "string"
+        },
+        {
+            "name": "Languages",
+            "baseName": "Languages",
+            "type": "Array<Language>"
+        },
+        {
+            "name": "AvailableAppLanguages",
+            "baseName": "AvailableAppLanguages",
+            "type": "Array<Language>"
+        },
+        {
+            "name": "AppAccessLevel",
+            "baseName": "AppAccessLevel",
+            "type": "App.AppAccessLevelEnum"
+        },
+        {
+            "name": "AppResourceSet",
+            "baseName": "AppResourceSet",
+            "type": "Array<App.AppResourceSetEnum>"
         },
         {
             "name": "MapCenter",
@@ -720,34 +766,24 @@ export class App {
             "type": "Coordinates"
         },
         {
-            "name": "AppAccessLevel",
-            "baseName": "AppAccessLevel",
-            "type": "App.AppAccessLevelEnum"
-        },
-        {
-            "name": "IconUrl",
-            "baseName": "IconUrl",
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
-            "name": "IconThumbnailUrl",
-            "baseName": "IconThumbnailUrl",
+            "name": "Domain",
+            "baseName": "Domain",
             "type": "string"
         },
         {
-            "name": "CountryId",
-            "baseName": "CountryId",
+            "name": "MainColor",
+            "baseName": "MainColor",
             "type": "string"
         },
         {
-            "name": "AvailableAppLanguages",
-            "baseName": "AvailableAppLanguages",
-            "type": "Array<Language>"
-        },
-        {
-            "name": "AppResourceSet",
-            "baseName": "AppResourceSet",
-            "type": "Array<App.AppResourceSetEnum>"
+            "name": "ApplicationCategory",
+            "baseName": "ApplicationCategory",
+            "type": "App.ApplicationCategoryEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -770,7 +806,6 @@ export namespace App {
         ViewApp = <any> 'ViewApp',
         CreateApp = <any> 'CreateApp',
         UpdateApp = <any> 'UpdateApp',
-        UpdateAppName = <any> 'UpdateAppName',
         EditAppAssets = <any> 'EditAppAssets',
         ViewTeammates = <any> 'ViewTeammates',
         EditTeammates = <any> 'EditTeammates',
@@ -856,7 +891,70 @@ export namespace App {
         ViewCustomerAuditLogs = <any> 'ViewCustomerAuditLogs',
         ViewPrinterAuditLogs = <any> 'ViewPrinterAuditLogs',
         ViewHydraAuditLogs = <any> 'ViewHydraAuditLogs',
+        ViewPushNotificationAuditLogs = <any> 'ViewPushNotificationAuditLogs',
         SendPushNotificationToCustomer = <any> 'SendPushNotificationToCustomer'
+    }
+    export enum ApplicationCategoryEnum {
+        Restaurant = <any> 'Restaurant',
+        Cafe = <any> 'Cafe',
+        Convenience = <any> 'Convenience'
+    }
+}
+/**
+* Application configuration
+*/
+export class AppConfigUpdateModel {
+    /**
+    * App name
+    */
+    'Name'?: string;
+    /**
+    * Domain on which the app is allowed to be hosted
+    */
+    'Domain'?: string;
+    /**
+    * Main color of the web \\ android \\ ios applications
+    */
+    'MainColor'?: string;
+    /**
+    * Application Category
+    */
+    'ApplicationCategory'?: AppConfigUpdateModel.ApplicationCategoryEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Domain",
+            "baseName": "Domain",
+            "type": "string"
+        },
+        {
+            "name": "MainColor",
+            "baseName": "MainColor",
+            "type": "string"
+        },
+        {
+            "name": "ApplicationCategory",
+            "baseName": "ApplicationCategory",
+            "type": "AppConfigUpdateModel.ApplicationCategoryEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppConfigUpdateModel.attributeTypeMap;
+    }
+}
+
+export namespace AppConfigUpdateModel {
+    export enum ApplicationCategoryEnum {
+        Restaurant = <any> 'Restaurant',
+        Cafe = <any> 'Cafe',
+        Convenience = <any> 'Convenience'
     }
 }
 /**
@@ -3825,6 +3923,10 @@ export class EventSearchResult {
     */
     'StoreUpdatedEvent'?: Array<StoreUpdatedEvent>;
     /**
+    * Store updated events
+    */
+    'StorePreOrderConfigUpdatedEvent'?: Array<StorePreOrderConfigUpdatedEvent>;
+    /**
     * Menu created events
     */
     'MenuCreatedEvent'?: Array<MenuCreatedEvent>;
@@ -4148,6 +4250,11 @@ export class EventSearchResult {
             "name": "StoreUpdatedEvent",
             "baseName": "StoreUpdatedEvent",
             "type": "Array<StoreUpdatedEvent>"
+        },
+        {
+            "name": "StorePreOrderConfigUpdatedEvent",
+            "baseName": "StorePreOrderConfigUpdatedEvent",
+            "type": "Array<StorePreOrderConfigUpdatedEvent>"
         },
         {
             "name": "MenuCreatedEvent",
@@ -5946,6 +6053,10 @@ export class Language {
     * Display Order
     */
     'DisplayOrder'?: number;
+    /**
+    * Language Name
+    */
+    'Name'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -5959,6 +6070,11 @@ export class Language {
             "name": "DisplayOrder",
             "baseName": "DisplayOrder",
             "type": "number"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -11802,6 +11918,38 @@ export namespace ProcessingFeeConfig {
     }
 }
 /**
+* Push Notification
+*/
+export class PushNotification {
+    /**
+    * Title
+    */
+    'Title'?: string;
+    /**
+    * Message
+    */
+    'Message': string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Title",
+            "baseName": "Title",
+            "type": "string"
+        },
+        {
+            "name": "Message",
+            "baseName": "Message",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PushNotification.attributeTypeMap;
+    }
+}
+
+/**
 * A class that represents a single opening period in a day.  This starts 'StartTime' after midnight and runs for a 'Period'  after that, on the given DayOfWeek.
 */
 export class Range {
@@ -13452,6 +13600,29 @@ export class RestApiResultApmStatistics {
 
     static getAttributeTypeMap() {
         return RestApiResultApmStatistics.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultApp {
+    /**
+    * Generic data object.
+    */
+    'Data': App;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "App"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultApp.attributeTypeMap;
     }
 }
 
@@ -18088,6 +18259,101 @@ export class StoreOpeningHoursUpdatedEvent {
 }
 
 /**
+* Store Pre order config updated
+*/
+export class StorePreOrderConfigUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * User which deleted delivery zone for this store
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Pre Order Configuration
+    */
+    'PreOrderConfig'?: PreOrderConfig;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "PreOrderConfig",
+            "baseName": "PreOrderConfig",
+            "type": "PreOrderConfig"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StorePreOrderConfigUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Store statistics
 */
 export class StoreStatistics {
@@ -21588,6 +21854,8 @@ let enumsMap: {[index: string]: any} = {
         "ApmHourlyDataPoint.DayEnum": ApmHourlyDataPoint.DayEnum,
         "App.AppAccessLevelEnum": App.AppAccessLevelEnum,
         "App.AppResourceSetEnum": App.AppResourceSetEnum,
+        "App.ApplicationCategoryEnum": App.ApplicationCategoryEnum,
+        "AppConfigUpdateModel.ApplicationCategoryEnum": AppConfigUpdateModel.ApplicationCategoryEnum,
         "BankAccount.AccountStateEnum": BankAccount.AccountStateEnum,
         "BankAccountCreate.CurrencyCodeEnum": BankAccountCreate.CurrencyCodeEnum,
         "BankAccountDetail.AccountStateEnum": BankAccountDetail.AccountStateEnum,
@@ -21676,6 +21944,7 @@ let typeMap: {[index: string]: any} = {
     "ApmHourlyDataPoint": ApmHourlyDataPoint,
     "ApmStatistics": ApmStatistics,
     "App": App,
+    "AppConfigUpdateModel": AppConfigUpdateModel,
     "AppCreatedEvent": AppCreatedEvent,
     "AppUpdatedEvent": AppUpdatedEvent,
     "AssignedBankAccount": AssignedBankAccount,
@@ -21803,6 +22072,7 @@ let typeMap: {[index: string]: any} = {
     "PrinterTurnedOnEvent": PrinterTurnedOnEvent,
     "PrinterUnassignedFromStoreEvent": PrinterUnassignedFromStoreEvent,
     "ProcessingFeeConfig": ProcessingFeeConfig,
+    "PushNotification": PushNotification,
     "Range": Range,
     "RedeemInvitationResult": RedeemInvitationResult,
     "Refund": Refund,
@@ -21854,6 +22124,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultWebhookSubscription": RestApiPaginationResultWebhookSubscription,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
     "RestApiResultApmStatistics": RestApiResultApmStatistics,
+    "RestApiResultApp": RestApiResultApp,
     "RestApiResultAssignedBankAccount": RestApiResultAssignedBankAccount,
     "RestApiResultBankAccountDetail": RestApiResultBankAccountDetail,
     "RestApiResultBusinessHoursOverride": RestApiResultBusinessHoursOverride,
@@ -21924,6 +22195,7 @@ let typeMap: {[index: string]: any} = {
     "StoreMenuAssignedEvent": StoreMenuAssignedEvent,
     "StoreNote": StoreNote,
     "StoreOpeningHoursUpdatedEvent": StoreOpeningHoursUpdatedEvent,
+    "StorePreOrderConfigUpdatedEvent": StorePreOrderConfigUpdatedEvent,
     "StoreStatistics": StoreStatistics,
     "StoreSummary": StoreSummary,
     "StoreUpdatedEvent": StoreUpdatedEvent,
@@ -23281,6 +23553,63 @@ export class AppsApi {
     }
     /**
      * 
+     * @summary Get the application configuration
+     * @param appId Application identifier
+     * @param {*} [options] Override http request options.
+     */
+    public getApp (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getApp.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultApp");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Get Apps
      * @param nameFilter 
      * @param page 
@@ -23335,6 +23664,201 @@ export class AppsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultApp");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Set the application configuration
+     * @param appId Application identifier
+     * @param appConfigUpdate Changes to the configuration
+     * @param {*} [options] Override http request options.
+     */
+    public setAppConfig (appId: string, appConfigUpdate: AppConfigUpdateModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/config'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling setAppConfig.');
+        }
+
+        // verify required parameter 'appConfigUpdate' is not null or undefined
+        if (appConfigUpdate === null || appConfigUpdate === undefined) {
+            throw new Error('Required parameter appConfigUpdate was null or undefined when calling setAppConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(appConfigUpdate, "AppConfigUpdateModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultApp");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Set the application languages
+     * @param appId Application identifier
+     * @param languages New list of languages
+     * @param {*} [options] Override http request options.
+     */
+    public setAppLanguages (appId: string, languages: Array<Language>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/config/languages'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling setAppLanguages.');
+        }
+
+        // verify required parameter 'languages' is not null or undefined
+        if (languages === null || languages === undefined) {
+            throw new Error('Required parameter languages was null or undefined when calling setAppLanguages.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(languages, "Array<Language>")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultApp");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Set the application logo \\ icon
+     * @param appId Application identifier
+     * @param Image Menu image
+     * @param {*} [options] Override http request options.
+     */
+    public uploadAppLogo (appId: string, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/logo'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling uploadAppLogo.');
+        }
+
+        // verify required parameter 'Image' is not null or undefined
+        if (Image === null || Image === undefined) {
+            throw new Error('Required parameter Image was null or undefined when calling uploadAppLogo.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (Image !== undefined) {
+            localVarFormParams['Image'] = Image;
+        }
+        localVarUseFormData = true;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -28196,6 +28720,83 @@ export class MenuSectionItemsApi {
     }
     /**
      * 
+     * @summary [PRIVATE API]Move an Item within a menu
+     * @param menuId Menu identifier
+     * @param menuSectionId Section to put item in (will usually be original section)
+     * @param menuSectionItemId ID of Item to be moved
+     * @param destinationDisplayOrder New Display Order of item
+     * @param {*} [options] Override http request options.
+     */
+    public moveMenuItem (menuId: number, menuSectionId: number, menuSectionItemId: number, destinationDisplayOrder: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/setorder/{destinationDisplayOrder}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'destinationDisplayOrder' + '}', encodeURIComponent(String(destinationDisplayOrder)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling moveMenuItem.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling moveMenuItem.');
+        }
+
+        // verify required parameter 'menuSectionItemId' is not null or undefined
+        if (menuSectionItemId === null || menuSectionItemId === undefined) {
+            throw new Error('Required parameter menuSectionItemId was null or undefined when calling moveMenuItem.');
+        }
+
+        // verify required parameter 'destinationDisplayOrder' is not null or undefined
+        if (destinationDisplayOrder === null || destinationDisplayOrder === undefined) {
+            throw new Error('Required parameter destinationDisplayOrder was null or undefined when calling moveMenuItem.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Update menu section item
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
@@ -31662,6 +32263,119 @@ export class ProcessingFeeConfigsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultProcessingFeeConfig");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum PushNotificationsApiApiKeys {
+}
+
+export class PushNotificationsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: PushNotificationsApiApiKeys, value: string) {
+        (this.authentications as any)[PushNotificationsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Push notification to cutomers
+     * @param appId 
+     * @param notification Notifiaction to send
+     * @param {*} [options] Override http request options.
+     */
+    public sendPushNotification (appId: string, notification: PushNotification, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/pushnotifications/{appId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling sendPushNotification.');
+        }
+
+        // verify required parameter 'notification' is not null or undefined
+        if (notification === null || notification === undefined) {
+            throw new Error('Required parameter notification was null or undefined when calling sendPushNotification.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(notification, "PushNotification")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
