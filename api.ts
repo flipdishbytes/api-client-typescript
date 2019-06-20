@@ -868,6 +868,8 @@ export namespace App {
         VerifyBankAccounts = <any> 'VerifyBankAccounts',
         ViewFeesConfigurations = <any> 'ViewFeesConfigurations',
         EditFeesConfigurations = <any> 'EditFeesConfigurations',
+        ViewHydraConfig = <any> 'ViewHydraConfig',
+        UpdateHydraConfigManage = <any> 'UpdateHydraConfigManage',
         ViewAppStatistics = <any> 'ViewAppStatistics',
         ViewApmStatistics = <any> 'ViewApmStatistics',
         ViewCampaignsStatistics = <any> 'ViewCampaignsStatistics',
@@ -5004,13 +5006,89 @@ export namespace HydraConfig {
     }
 }
 /**
-* Hydra login result
+* Hydra device details
 */
-export class HydraRegistration {
+export class HydraDeviceDetails {
     /**
-    * App
+    * Device Id or Serial Number
     */
-    'AppId': string;
+    'DeviceId'?: string;
+    /**
+    * Type of the device
+    */
+    'DeviceType'?: HydraDeviceDetails.DeviceTypeEnum;
+    /**
+    * Status of the device
+    */
+    'Status'?: HydraDeviceDetails.StatusEnum;
+    /**
+    * Device Name
+    */
+    'DeviceName'?: string;
+    /**
+    * Store Names
+    */
+    'StoreNames'?: Array<HydraStoreData>;
+    /**
+    * Last poll time in UTC
+    */
+    'LastPollUtc'?: Date;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeviceId",
+            "baseName": "DeviceId",
+            "type": "string"
+        },
+        {
+            "name": "DeviceType",
+            "baseName": "DeviceType",
+            "type": "HydraDeviceDetails.DeviceTypeEnum"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "HydraDeviceDetails.StatusEnum"
+        },
+        {
+            "name": "DeviceName",
+            "baseName": "DeviceName",
+            "type": "string"
+        },
+        {
+            "name": "StoreNames",
+            "baseName": "StoreNames",
+            "type": "Array<HydraStoreData>"
+        },
+        {
+            "name": "LastPollUtc",
+            "baseName": "LastPollUtc",
+            "type": "Date"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HydraDeviceDetails.attributeTypeMap;
+    }
+}
+
+export namespace HydraDeviceDetails {
+    export enum DeviceTypeEnum {
+        Kiosk = <any> 'Kiosk',
+        Terminal = <any> 'Terminal',
+        LegacyPrinter = <any> 'LegacyPrinter'
+    }
+    export enum StatusEnum {
+        Online = <any> 'Online',
+        PossiblyOffline = <any> 'PossiblyOffline',
+        Offline = <any> 'Offline'
+    }
+}
+/**
+* Hydra registration result
+*/
+export class HydraRegistrationRequest {
     /**
     * Store to assign the hydra
     */
@@ -5028,11 +5106,6 @@ export class HydraRegistration {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "AppId",
-            "baseName": "AppId",
-            "type": "string"
-        },
-        {
             "name": "StoreId",
             "baseName": "StoreId",
             "type": "number"
@@ -5049,7 +5122,7 @@ export class HydraRegistration {
         }    ];
 
     static getAttributeTypeMap() {
-        return HydraRegistration.attributeTypeMap;
+        return HydraRegistrationRequest.attributeTypeMap;
     }
 }
 
@@ -5245,6 +5318,38 @@ export class HydraStatus {
 
     static getAttributeTypeMap() {
         return HydraStatus.attributeTypeMap;
+    }
+}
+
+/**
+* Store Data
+*/
+export class HydraStoreData {
+    /**
+    * Id of the store
+    */
+    'StoreId'?: number;
+    /**
+    * Name of the store
+    */
+    'StoreName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreName",
+            "baseName": "StoreName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HydraStoreData.attributeTypeMap;
     }
 }
 
@@ -11918,15 +12023,15 @@ export namespace ProcessingFeeConfig {
     }
 }
 /**
-* Push Notification
+* Push Notification Details
 */
 export class PushNotification {
     /**
-    * Title
+    * Title of the notification
     */
     'Title'?: string;
     /**
-    * Message
+    * Message of the notification
     */
     'Message': string;
 
@@ -12353,6 +12458,29 @@ export class RestApiArrayResultHomeAction {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultHomeAction.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultHydraDeviceDetails {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<HydraDeviceDetails>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<HydraDeviceDetails>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultHydraDeviceDetails.attributeTypeMap;
     }
 }
 
@@ -21872,6 +22000,8 @@ let enumsMap: {[index: string]: any} = {
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
         "HomeAction.HomeActionTypeEnum": HomeAction.HomeActionTypeEnum,
         "HydraConfig.PaymentOptionsEnum": HydraConfig.PaymentOptionsEnum,
+        "HydraDeviceDetails.DeviceTypeEnum": HydraDeviceDetails.DeviceTypeEnum,
+        "HydraDeviceDetails.StatusEnum": HydraDeviceDetails.StatusEnum,
         "LightspeedSettings.PriceTypeEnum": LightspeedSettings.PriceTypeEnum,
         "Menu.MenuSectionBehaviourEnum": Menu.MenuSectionBehaviourEnum,
         "MenuBase.MenuSectionBehaviourEnum": MenuBase.MenuSectionBehaviourEnum,
@@ -21988,10 +22118,12 @@ let typeMap: {[index: string]: any} = {
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
     "HydraAssignedEvent": HydraAssignedEvent,
     "HydraConfig": HydraConfig,
-    "HydraRegistration": HydraRegistration,
+    "HydraDeviceDetails": HydraDeviceDetails,
+    "HydraRegistrationRequest": HydraRegistrationRequest,
     "HydraRequestResetEvent": HydraRequestResetEvent,
     "HydraSettingChangedEvent": HydraSettingChangedEvent,
     "HydraStatus": HydraStatus,
+    "HydraStoreData": HydraStoreData,
     "HydraUnAssignedEvent": HydraUnAssignedEvent,
     "JobAddress": JobAddress,
     "JobCancellation": JobCancellation,
@@ -22087,6 +22219,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
     "RestApiArrayResultHomeAction": RestApiArrayResultHomeAction,
+    "RestApiArrayResultHydraDeviceDetails": RestApiArrayResultHydraDeviceDetails,
     "RestApiArrayResultLocalisedTimeZone": RestApiArrayResultLocalisedTimeZone,
     "RestApiArrayResultMenuCheckpoint": RestApiArrayResultMenuCheckpoint,
     "RestApiArrayResultMenuItemOptionSet": RestApiArrayResultMenuItemOptionSet,
@@ -26493,6 +26626,95 @@ export class HydraApi {
     }
     /**
      * 
+     * @summary [Private]
+     * @param appId 
+     * @param deviceType 
+     * @param pageIndex 
+     * @param pageSize 
+     * @param storeId 
+     * @param deviceName 
+     * @param deviceSerial 
+     * @param {*} [options] Override http request options.
+     */
+    public getAttachedDevices (appId: string, deviceType: 'Kiosk' | 'Terminal' | 'LegacyPrinter', pageIndex?: number, pageSize?: number, storeId?: number, deviceName?: string, deviceSerial?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultHydraDeviceDetails;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/{deviceType}/list'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'deviceType' + '}', encodeURIComponent(String(deviceType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAttachedDevices.');
+        }
+
+        // verify required parameter 'deviceType' is not null or undefined
+        if (deviceType === null || deviceType === undefined) {
+            throw new Error('Required parameter deviceType was null or undefined when calling getAttachedDevices.');
+        }
+
+        if (pageIndex !== undefined) {
+            localVarQueryParameters['pageIndex'] = ObjectSerializer.serialize(pageIndex, "number");
+        }
+
+        if (pageSize !== undefined) {
+            localVarQueryParameters['pageSize'] = ObjectSerializer.serialize(pageSize, "number");
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
+        }
+
+        if (deviceName !== undefined) {
+            localVarQueryParameters['deviceName'] = ObjectSerializer.serialize(deviceName, "string");
+        }
+
+        if (deviceSerial !== undefined) {
+            localVarQueryParameters['deviceSerial'] = ObjectSerializer.serialize(deviceSerial, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultHydraDeviceDetails;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultHydraDeviceDetails");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @param {*} [options] Override http request options.
      */
     public getRegistration (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }> {
@@ -26597,7 +26819,7 @@ export class HydraApi {
      * @param hydraUserType 
      * @param {*} [options] Override http request options.
      */
-    public loginWithDeviceId (deviceId: string, hydraUserType?: 'Kiosk' | 'Terminal', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public loginWithDeviceId (deviceId: string, hydraUserType?: 'Kiosk' | 'Terminal' | 'LegacyPrinter', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/hydra/{deviceId}/login'
             .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
         let localVarQueryParameters: any = {};
@@ -26610,7 +26832,7 @@ export class HydraApi {
         }
 
         if (hydraUserType !== undefined) {
-            localVarQueryParameters['hydraUserType'] = ObjectSerializer.serialize(hydraUserType, "'Kiosk' | 'Terminal'");
+            localVarQueryParameters['hydraUserType'] = ObjectSerializer.serialize(hydraUserType, "'Kiosk' | 'Terminal' | 'LegacyPrinter'");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -26654,14 +26876,21 @@ export class HydraApi {
     /**
      * 
      * @summary [Private]
+     * @param appId 
      * @param hydraRegistration 
      * @param {*} [options] Override http request options.
      */
-    public register (hydraRegistration: HydraRegistration, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/hydra/registration';
+    public register (appId: string, hydraRegistration: HydraRegistrationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/registration'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling register.');
+        }
 
         // verify required parameter 'hydraRegistration' is not null or undefined
         if (hydraRegistration === null || hydraRegistration === undefined) {
@@ -26679,7 +26908,7 @@ export class HydraApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(hydraRegistration, "HydraRegistration")
+            body: ObjectSerializer.serialize(hydraRegistration, "HydraRegistrationRequest")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -26711,15 +26940,22 @@ export class HydraApi {
     /**
      * 
      * @summary [Private]
+     * @param appId 
      * @param deviceId 
      * @param {*} [options] Override http request options.
      */
-    public unAssign (deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/hydra/{deviceId}/registration'
+    public unAssign (appId: string, deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/{deviceId}/registration'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling unAssign.');
+        }
 
         // verify required parameter 'deviceId' is not null or undefined
         if (deviceId === null || deviceId === undefined) {
@@ -32324,13 +32560,13 @@ export class PushNotificationsApi {
     }
     /**
      * 
-     * @summary Push notification to cutomers
-     * @param appId 
-     * @param notification Notifiaction to send
+     * @summary Send a push notification to a customer
+     * @param appId Application Id
+     * @param notification Notification to send
      * @param {*} [options] Override http request options.
      */
     public sendPushNotification (appId: string, notification: PushNotification, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/pushnotifications/{appId}'
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/pushnotifications'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
