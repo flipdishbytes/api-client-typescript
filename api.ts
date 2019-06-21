@@ -4144,6 +4144,18 @@ export class EventSearchResult {
     * Hydra un-assigned event
     */
     'HydraUnAssignedEvent'?: Array<HydraUnAssignedEvent>;
+    /**
+    * Push notification scheduled event
+    */
+    'PushNotificationScheduledEvent'?: Array<PushNotificationScheduledEvent>;
+    /**
+    * Push notification sent event
+    */
+    'PushNotificationSentEvent'?: Array<PushNotificationSentEvent>;
+    /**
+    * Push notification deleted event
+    */
+    'PushNotificationDeletedEvent'?: Array<PushNotificationDeletedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -4527,6 +4539,21 @@ export class EventSearchResult {
             "name": "HydraUnAssignedEvent",
             "baseName": "HydraUnAssignedEvent",
             "type": "Array<HydraUnAssignedEvent>"
+        },
+        {
+            "name": "PushNotificationScheduledEvent",
+            "baseName": "PushNotificationScheduledEvent",
+            "type": "Array<PushNotificationScheduledEvent>"
+        },
+        {
+            "name": "PushNotificationSentEvent",
+            "baseName": "PushNotificationSentEvent",
+            "type": "Array<PushNotificationSentEvent>"
+        },
+        {
+            "name": "PushNotificationDeletedEvent",
+            "baseName": "PushNotificationDeletedEvent",
+            "type": "Array<PushNotificationDeletedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -12023,9 +12050,90 @@ export namespace ProcessingFeeConfig {
     }
 }
 /**
+* 
+*/
+export class PushNotificationDeletedEvent {
+    /**
+    * 
+    */
+    'Description'?: string;
+    /**
+    * 
+    */
+    'PushNotification'?: PushNotificationRequest;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "PushNotification",
+            "baseName": "PushNotification",
+            "type": "PushNotificationRequest"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PushNotificationDeletedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Push Notification Details
 */
-export class PushNotification {
+export class PushNotificationRequest {
+    /**
+    * UTC Time at which to send the push notification
+    */
+    'ScheduledTime'?: Date;
     /**
     * Title of the notification
     */
@@ -12039,6 +12147,11 @@ export class PushNotification {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "ScheduledTime",
+            "baseName": "ScheduledTime",
+            "type": "Date"
+        },
+        {
             "name": "Title",
             "baseName": "Title",
             "type": "string"
@@ -12050,7 +12163,170 @@ export class PushNotification {
         }    ];
 
     static getAttributeTypeMap() {
-        return PushNotification.attributeTypeMap;
+        return PushNotificationRequest.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class PushNotificationScheduledEvent {
+    /**
+    * 
+    */
+    'User'?: UserEventInfo;
+    /**
+    * 
+    */
+    'Description'?: string;
+    /**
+    * 
+    */
+    'PushNotification'?: PushNotificationRequest;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "PushNotification",
+            "baseName": "PushNotification",
+            "type": "PushNotificationRequest"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PushNotificationScheduledEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class PushNotificationSentEvent {
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * 
+    */
+    'PushNotification'?: PushNotificationRequest;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "PushNotification",
+            "baseName": "PushNotification",
+            "type": "PushNotificationRequest"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PushNotificationSentEvent.attributeTypeMap;
     }
 }
 
@@ -22204,7 +22480,10 @@ let typeMap: {[index: string]: any} = {
     "PrinterTurnedOnEvent": PrinterTurnedOnEvent,
     "PrinterUnassignedFromStoreEvent": PrinterUnassignedFromStoreEvent,
     "ProcessingFeeConfig": ProcessingFeeConfig,
-    "PushNotification": PushNotification,
+    "PushNotificationDeletedEvent": PushNotificationDeletedEvent,
+    "PushNotificationRequest": PushNotificationRequest,
+    "PushNotificationScheduledEvent": PushNotificationScheduledEvent,
+    "PushNotificationSentEvent": PushNotificationSentEvent,
     "Range": Range,
     "RedeemInvitationResult": RedeemInvitationResult,
     "Refund": Refund,
@@ -32560,12 +32839,86 @@ export class PushNotificationsApi {
     }
     /**
      * 
-     * @summary Send a push notification to a customer
-     * @param appId Application Id
-     * @param notification Notification to send
+     * @summary [PRIVATE] Push notification to cutomers
+     * @param appId 
+     * @param scheduledPushNotificationId ID of Scheduled push notifiaction to delete
+     * @param pushNotificationId 
      * @param {*} [options] Override http request options.
      */
-    public sendPushNotification (appId: string, notification: PushNotification, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deletePushNotification (appId: string, scheduledPushNotificationId: number, pushNotificationId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/pushnotifications/{pushNotificationId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'pushNotificationId' + '}', encodeURIComponent(String(pushNotificationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling deletePushNotification.');
+        }
+
+        // verify required parameter 'scheduledPushNotificationId' is not null or undefined
+        if (scheduledPushNotificationId === null || scheduledPushNotificationId === undefined) {
+            throw new Error('Required parameter scheduledPushNotificationId was null or undefined when calling deletePushNotification.');
+        }
+
+        // verify required parameter 'pushNotificationId' is not null or undefined
+        if (pushNotificationId === null || pushNotificationId === undefined) {
+            throw new Error('Required parameter pushNotificationId was null or undefined when calling deletePushNotification.');
+        }
+
+        if (scheduledPushNotificationId !== undefined) {
+            localVarQueryParameters['scheduledPushNotificationId'] = ObjectSerializer.serialize(scheduledPushNotificationId, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE] Push notification to cutomers
+     * @param appId 
+     * @param page 
+     * @param limit 
+     * @param {*} [options] Override http request options.
+     */
+    public getPushNotifications (appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/pushnotifications'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -32574,12 +32927,77 @@ export class PushNotificationsApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling sendPushNotification.');
+            throw new Error('Required parameter appId was null or undefined when calling getPushNotifications.');
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE] Push notification to cutomers
+     * @param appId Application Id
+     * @param notification Notification to send
+     * @param {*} [options] Override http request options.
+     */
+    public schedulePushNotification (appId: string, notification: PushNotificationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/pushnotifications'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling schedulePushNotification.');
         }
 
         // verify required parameter 'notification' is not null or undefined
         if (notification === null || notification === undefined) {
-            throw new Error('Required parameter notification was null or undefined when calling sendPushNotification.');
+            throw new Error('Required parameter notification was null or undefined when calling schedulePushNotification.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -32593,7 +33011,7 @@ export class PushNotificationsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(notification, "PushNotification")
+            body: ObjectSerializer.serialize(notification, "PushNotificationRequest")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
