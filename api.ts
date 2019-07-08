@@ -651,6 +651,14 @@ export class App {
     */
     'AppId'?: string;
     /**
+    * Has iOS app in store
+    */
+    'HasIosApp'?: boolean;
+    /**
+    * Has Android app in play store
+    */
+    'HasAndroidApp'?: boolean;
+    /**
     * Country identifier
     */
     'CountryId'?: string;
@@ -695,9 +703,9 @@ export class App {
     */
     'Name'?: string;
     /**
-    * Domain on which the app is allowed to be hosted
+    * HostName on which the app is allowed to be hosted
     */
-    'Domain'?: string;
+    'HostName'?: string;
     /**
     * Main color of the web \\ android \\ ios applications
     */
@@ -714,6 +722,16 @@ export class App {
             "name": "AppId",
             "baseName": "AppId",
             "type": "string"
+        },
+        {
+            "name": "HasIosApp",
+            "baseName": "HasIosApp",
+            "type": "boolean"
+        },
+        {
+            "name": "HasAndroidApp",
+            "baseName": "HasAndroidApp",
+            "type": "boolean"
         },
         {
             "name": "CountryId",
@@ -771,8 +789,8 @@ export class App {
             "type": "string"
         },
         {
-            "name": "Domain",
-            "baseName": "Domain",
+            "name": "HostName",
+            "baseName": "HostName",
             "type": "string"
         },
         {
@@ -911,9 +929,9 @@ export class AppConfigUpdateModel {
     */
     'Name'?: string;
     /**
-    * Domain on which the app is allowed to be hosted
+    * HostName on which the app is allowed to be hosted
     */
-    'Domain'?: string;
+    'HostName'?: string;
     /**
     * Main color of the web \\ android \\ ios applications
     */
@@ -932,8 +950,8 @@ export class AppConfigUpdateModel {
             "type": "string"
         },
         {
-            "name": "Domain",
-            "baseName": "Domain",
+            "name": "HostName",
+            "baseName": "HostName",
             "type": "string"
         },
         {
@@ -1331,6 +1349,14 @@ export class BankAccountCreate {
     */
     'CurrencyCode'?: BankAccountCreate.CurrencyCodeEnum;
     /**
+    * List of stores to attach to Account
+    */
+    'StoreIds'?: Array<number>;
+    /**
+    * Name of Bank
+    */
+    'BankName'?: string;
+    /**
     * Name of this account
     */
     'AccountName'?: string;
@@ -1342,6 +1368,10 @@ export class BankAccountCreate {
     * SWIFT of this bank account
     */
     'Swift'?: string;
+    /**
+    * National Clearing Code (BSB in Australia, Routing Number in USA/Canada, NCC in NZ)
+    */
+    'NationalClearingCode'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1377,6 +1407,16 @@ export class BankAccountCreate {
             "type": "BankAccountCreate.CurrencyCodeEnum"
         },
         {
+            "name": "StoreIds",
+            "baseName": "StoreIds",
+            "type": "Array<number>"
+        },
+        {
+            "name": "BankName",
+            "baseName": "BankName",
+            "type": "string"
+        },
+        {
             "name": "AccountName",
             "baseName": "AccountName",
             "type": "string"
@@ -1389,6 +1429,11 @@ export class BankAccountCreate {
         {
             "name": "Swift",
             "baseName": "Swift",
+            "type": "string"
+        },
+        {
+            "name": "NationalClearingCode",
+            "baseName": "NationalClearingCode",
             "type": "string"
         }    ];
 
@@ -1690,6 +1735,14 @@ export class BankAccountDetail {
     */
     'CurrencyCode'?: BankAccountDetail.CurrencyCodeEnum;
     /**
+    * List of stores to attach to Account
+    */
+    'StoreIds'?: Array<number>;
+    /**
+    * Name of Bank
+    */
+    'BankName'?: string;
+    /**
     * Name of this account
     */
     'AccountName'?: string;
@@ -1701,6 +1754,10 @@ export class BankAccountDetail {
     * SWIFT of this bank account
     */
     'Swift'?: string;
+    /**
+    * National Clearing Code (BSB in Australia, Routing Number in USA/Canada, NCC in NZ)
+    */
+    'NationalClearingCode'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1751,6 +1808,16 @@ export class BankAccountDetail {
             "type": "BankAccountDetail.CurrencyCodeEnum"
         },
         {
+            "name": "StoreIds",
+            "baseName": "StoreIds",
+            "type": "Array<number>"
+        },
+        {
+            "name": "BankName",
+            "baseName": "BankName",
+            "type": "string"
+        },
+        {
             "name": "AccountName",
             "baseName": "AccountName",
             "type": "string"
@@ -1763,6 +1830,11 @@ export class BankAccountDetail {
         {
             "name": "Swift",
             "baseName": "Swift",
+            "type": "string"
+        },
+        {
+            "name": "NationalClearingCode",
+            "baseName": "NationalClearingCode",
             "type": "string"
         }    ];
 
@@ -1925,6 +1997,10 @@ export class BankAccountSummary {
     * SWIFT of this bank account
     */
     'Swift'?: string;
+    /**
+    * National Clearing Code (BSB in Australia, Routing Number in USA/Canada, NCC in NZ)
+    */
+    'NationalClearingCode'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1962,6 +2038,11 @@ export class BankAccountSummary {
         {
             "name": "Swift",
             "baseName": "Swift",
+            "type": "string"
+        },
+        {
+            "name": "NationalClearingCode",
+            "baseName": "NationalClearingCode",
             "type": "string"
         }    ];
 
@@ -6807,6 +6888,47 @@ export class LumpDiscountDetails {
 }
 
 /**
+* Represents a masked phone number
+*/
+export class MaskedPhoneNumber {
+    /**
+    * Defines if the feature is enabled
+    */
+    'IsEnabled'?: boolean;
+    /**
+    * Defines the phone number to call
+    */
+    'PhoneNumber'?: string;
+    /**
+    * Defines the code to enter
+    */
+    'Code'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "PhoneNumber",
+            "baseName": "PhoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "Code",
+            "baseName": "Code",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MaskedPhoneNumber.attributeTypeMap;
+    }
+}
+
+/**
 * Menu
 */
 export class Menu {
@@ -7278,10 +7400,6 @@ export class MenuItemOptionSetCreatedEvent {
     */
     'MenuId'?: number;
     /**
-    * Menu name
-    */
-    'MenuName'?: string;
-    /**
     * Description
     */
     'Description'?: string;
@@ -7321,11 +7439,6 @@ export class MenuItemOptionSetCreatedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
-        },
-        {
-            "name": "MenuName",
-            "baseName": "MenuName",
-            "type": "string"
         },
         {
             "name": "Description",
@@ -7382,10 +7495,6 @@ export class MenuItemOptionSetDeletedEvent {
     */
     'MenuId'?: number;
     /**
-    * Menu name
-    */
-    'MenuName'?: string;
-    /**
     * Description
     */
     'Description'?: string;
@@ -7425,11 +7534,6 @@ export class MenuItemOptionSetDeletedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
-        },
-        {
-            "name": "MenuName",
-            "baseName": "MenuName",
-            "type": "string"
         },
         {
             "name": "Description",
@@ -7647,10 +7751,6 @@ export class MenuItemOptionSetItemCreatedEvent {
     */
     'MenuId'?: number;
     /**
-    * Menu name
-    */
-    'MenuName'?: string;
-    /**
     * Description
     */
     'Description'?: string;
@@ -7690,11 +7790,6 @@ export class MenuItemOptionSetItemCreatedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
-        },
-        {
-            "name": "MenuName",
-            "baseName": "MenuName",
-            "type": "string"
         },
         {
             "name": "Description",
@@ -7751,10 +7846,6 @@ export class MenuItemOptionSetItemDeletedEvent {
     */
     'MenuId'?: number;
     /**
-    * Menu name
-    */
-    'MenuName'?: string;
-    /**
     * Description
     */
     'Description'?: string;
@@ -7794,11 +7885,6 @@ export class MenuItemOptionSetItemDeletedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
-        },
-        {
-            "name": "MenuName",
-            "baseName": "MenuName",
-            "type": "string"
         },
         {
             "name": "Description",
@@ -7855,10 +7941,6 @@ export class MenuItemOptionSetItemUpdatedEvent {
     */
     'MenuId'?: number;
     /**
-    * Menu name
-    */
-    'MenuName'?: string;
-    /**
     * Description
     */
     'Description'?: string;
@@ -7898,11 +7980,6 @@ export class MenuItemOptionSetItemUpdatedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
-        },
-        {
-            "name": "MenuName",
-            "baseName": "MenuName",
-            "type": "string"
         },
         {
             "name": "Description",
@@ -7959,10 +8036,6 @@ export class MenuItemOptionSetUpdatedEvent {
     */
     'MenuId'?: number;
     /**
-    * Menu name
-    */
-    'MenuName'?: string;
-    /**
     * Description
     */
     'Description'?: string;
@@ -8002,11 +8075,6 @@ export class MenuItemOptionSetUpdatedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
-        },
-        {
-            "name": "MenuName",
-            "baseName": "MenuName",
-            "type": "string"
         },
         {
             "name": "Description",
@@ -8297,10 +8365,6 @@ export class MenuSectionCreatedEvent {
     */
     'MenuId'?: number;
     /**
-    * Menu name
-    */
-    'MenuName'?: string;
-    /**
     * Description
     */
     'Description'?: string;
@@ -8340,11 +8404,6 @@ export class MenuSectionCreatedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
-        },
-        {
-            "name": "MenuName",
-            "baseName": "MenuName",
-            "type": "string"
         },
         {
             "name": "Description",
@@ -8401,10 +8460,6 @@ export class MenuSectionDeletedEvent {
     */
     'MenuId'?: number;
     /**
-    * Menu name
-    */
-    'MenuName'?: string;
-    /**
     * Description
     */
     'Description'?: string;
@@ -8444,11 +8499,6 @@ export class MenuSectionDeletedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
-        },
-        {
-            "name": "MenuName",
-            "baseName": "MenuName",
-            "type": "string"
         },
         {
             "name": "Description",
@@ -8777,10 +8827,6 @@ export class MenuSectionItemCreatedEvent {
     */
     'MenuId'?: number;
     /**
-    * Menu name
-    */
-    'MenuName'?: string;
-    /**
     * Description
     */
     'Description'?: string;
@@ -8820,11 +8866,6 @@ export class MenuSectionItemCreatedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
-        },
-        {
-            "name": "MenuName",
-            "baseName": "MenuName",
-            "type": "string"
         },
         {
             "name": "Description",
@@ -8881,10 +8922,6 @@ export class MenuSectionItemDeletedEvent {
     */
     'MenuId'?: number;
     /**
-    * Menu name
-    */
-    'MenuName'?: string;
-    /**
     * Event description
     */
     'Description'?: string;
@@ -8924,11 +8961,6 @@ export class MenuSectionItemDeletedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
-        },
-        {
-            "name": "MenuName",
-            "baseName": "MenuName",
-            "type": "string"
         },
         {
             "name": "Description",
@@ -8985,10 +9017,6 @@ export class MenuSectionItemUpdatedEvent {
     */
     'MenuId'?: number;
     /**
-    * Menu name
-    */
-    'MenuName'?: string;
-    /**
     * Event description
     */
     'Description'?: string;
@@ -9028,11 +9056,6 @@ export class MenuSectionItemUpdatedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
-        },
-        {
-            "name": "MenuName",
-            "baseName": "MenuName",
-            "type": "string"
         },
         {
             "name": "Description",
@@ -9089,10 +9112,6 @@ export class MenuSectionUpdatedEvent {
     */
     'MenuId'?: number;
     /**
-    * Menu name
-    */
-    'MenuName'?: string;
-    /**
     * Event description
     */
     'Description'?: string;
@@ -9132,11 +9151,6 @@ export class MenuSectionUpdatedEvent {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
-        },
-        {
-            "name": "MenuName",
-            "baseName": "MenuName",
-            "type": "string"
         },
         {
             "name": "Description",
@@ -9567,6 +9581,10 @@ export class Order {
     */
     'CustomerLocation'?: Coordinates;
     /**
+    * Represents customers masked phone number
+    */
+    'MaskedPhoneNumber'?: MaskedPhoneNumber;
+    /**
     * Order identifier
     */
     'OrderId'?: number;
@@ -9684,6 +9702,11 @@ export class Order {
             "name": "CustomerLocation",
             "baseName": "CustomerLocation",
             "type": "Coordinates"
+        },
+        {
+            "name": "MaskedPhoneNumber",
+            "baseName": "MaskedPhoneNumber",
+            "type": "MaskedPhoneNumber"
         },
         {
             "name": "OrderId",
@@ -12168,6 +12191,65 @@ export class PushNotificationRequest {
 }
 
 /**
+* Push Notification
+*/
+export class PushNotificationResponse {
+    /**
+    * Sent
+    */
+    'Sent'?: boolean;
+    /**
+    * Push notification identifier
+    */
+    'ScheduledPushNotificationId'?: number;
+    /**
+    * UTC Time at which to send the push notification
+    */
+    'ScheduledTime'?: Date;
+    /**
+    * Title of the notification
+    */
+    'Title'?: string;
+    /**
+    * Message of the notification
+    */
+    'Message': string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Sent",
+            "baseName": "Sent",
+            "type": "boolean"
+        },
+        {
+            "name": "ScheduledPushNotificationId",
+            "baseName": "ScheduledPushNotificationId",
+            "type": "number"
+        },
+        {
+            "name": "ScheduledTime",
+            "baseName": "ScheduledTime",
+            "type": "Date"
+        },
+        {
+            "name": "Title",
+            "baseName": "Title",
+            "type": "string"
+        },
+        {
+            "name": "Message",
+            "baseName": "Message",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PushNotificationResponse.attributeTypeMap;
+    }
+}
+
+/**
 * 
 */
 export class PushNotificationScheduledEvent {
@@ -13664,6 +13746,56 @@ export class RestApiPaginationResultPhoneCall {
 /**
 * Rest api pagination result
 */
+export class RestApiPaginationResultPushNotificationResponse {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<PushNotificationResponse>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<PushNotificationResponse>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultPushNotificationResponse.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultStore {
     /**
     * Current page index
@@ -13808,6 +13940,56 @@ export class RestApiPaginationResultStoreGroupExtended {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultStoreGroupExtended.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
+export class RestApiPaginationResultStoreHeader {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<StoreHeader>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<StoreHeader>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultStoreHeader.attributeTypeMap;
     }
 }
 
@@ -14579,6 +14761,29 @@ export class RestApiResultProcessingFeeConfig {
 
     static getAttributeTypeMap() {
         return RestApiResultProcessingFeeConfig.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultPushNotificationResponse {
+    /**
+    * Generic data object.
+    */
+    'Data': PushNotificationResponse;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "PushNotificationResponse"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultPushNotificationResponse.attributeTypeMap;
     }
 }
 
@@ -18156,6 +18361,10 @@ export class StoreGroupExtended {
     */
     'GroupedCoordinates'?: Array<GroupedCoordinates>;
     /**
+    * Store Ids associated with Store Group
+    */
+    'StoreIds'?: Array<number>;
+    /**
     * Unique Store Group Identifier
     */
     'StoreGroupId'?: number;
@@ -18188,6 +18397,11 @@ export class StoreGroupExtended {
             "name": "GroupedCoordinates",
             "baseName": "GroupedCoordinates",
             "type": "Array<GroupedCoordinates>"
+        },
+        {
+            "name": "StoreIds",
+            "baseName": "StoreIds",
+            "type": "Array<number>"
         },
         {
             "name": "StoreGroupId",
@@ -18428,6 +18642,38 @@ export class StoreGroupUpdatedEvent {
 
     static getAttributeTypeMap() {
         return StoreGroupUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Represents the most basic store information, used mostly for searches
+*/
+export class StoreHeader {
+    /**
+    * Store identifier
+    */
+    'StoreId'?: number;
+    /**
+    * Name
+    */
+    'Name'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreHeader.attributeTypeMap;
     }
 }
 
@@ -22421,6 +22667,7 @@ let typeMap: {[index: string]: any} = {
     "LoyaltyCampaignDeletedEvent": LoyaltyCampaignDeletedEvent,
     "LoyaltyCampaignUpdatedEvent": LoyaltyCampaignUpdatedEvent,
     "LumpDiscountDetails": LumpDiscountDetails,
+    "MaskedPhoneNumber": MaskedPhoneNumber,
     "Menu": Menu,
     "MenuBase": MenuBase,
     "MenuCheckpoint": MenuCheckpoint,
@@ -22482,6 +22729,7 @@ let typeMap: {[index: string]: any} = {
     "ProcessingFeeConfig": ProcessingFeeConfig,
     "PushNotificationDeletedEvent": PushNotificationDeletedEvent,
     "PushNotificationRequest": PushNotificationRequest,
+    "PushNotificationResponse": PushNotificationResponse,
     "PushNotificationScheduledEvent": PushNotificationScheduledEvent,
     "PushNotificationSentEvent": PushNotificationSentEvent,
     "Range": Range,
@@ -22528,9 +22776,11 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultOrder": RestApiPaginationResultOrder,
     "RestApiPaginationResultOrderSummary": RestApiPaginationResultOrderSummary,
     "RestApiPaginationResultPhoneCall": RestApiPaginationResultPhoneCall,
+    "RestApiPaginationResultPushNotificationResponse": RestApiPaginationResultPushNotificationResponse,
     "RestApiPaginationResultStore": RestApiPaginationResultStore,
     "RestApiPaginationResultStoreGroup": RestApiPaginationResultStoreGroup,
     "RestApiPaginationResultStoreGroupExtended": RestApiPaginationResultStoreGroupExtended,
+    "RestApiPaginationResultStoreHeader": RestApiPaginationResultStoreHeader,
     "RestApiPaginationResultVoucherSummary": RestApiPaginationResultVoucherSummary,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiPaginationResultWebhookSubscription": RestApiPaginationResultWebhookSubscription,
@@ -22561,6 +22811,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultOrder": RestApiResultOrder,
     "RestApiResultPreOrderConfig": RestApiResultPreOrderConfig,
     "RestApiResultProcessingFeeConfig": RestApiResultProcessingFeeConfig,
+    "RestApiResultPushNotificationResponse": RestApiResultPushNotificationResponse,
     "RestApiResultRedeemInvitationResult": RestApiResultRedeemInvitationResult,
     "RestApiResultStore": RestApiResultStore,
     "RestApiResultStoreAddress": RestApiResultStoreAddress,
@@ -22604,6 +22855,7 @@ let typeMap: {[index: string]: any} = {
     "StoreGroupDeletedEvent": StoreGroupDeletedEvent,
     "StoreGroupExtended": StoreGroupExtended,
     "StoreGroupUpdatedEvent": StoreGroupUpdatedEvent,
+    "StoreHeader": StoreHeader,
     "StoreMenuAssignedEvent": StoreMenuAssignedEvent,
     "StoreNote": StoreNote,
     "StoreOpeningHoursUpdatedEvent": StoreOpeningHoursUpdatedEvent,
@@ -24911,9 +25163,10 @@ export class BankAccountApi {
      * @param appId App Name
      * @param accountId Id of account to be updated
      * @param state 
+     * @param reason Reason for state change, Manadatory for rejections
      * @param {*} [options] Override http request options.
      */
-    public updateBankAccountState (appId: string, accountId: number, state: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateBankAccountState (appId: string, accountId: number, state: string, reason: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{accountId}/state/{state}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'accountId' + '}', encodeURIComponent(String(accountId)))
@@ -24937,6 +25190,11 @@ export class BankAccountApi {
             throw new Error('Required parameter state was null or undefined when calling updateBankAccountState.');
         }
 
+        // verify required parameter 'reason' is not null or undefined
+        if (reason === null || reason === undefined) {
+            throw new Error('Required parameter reason was null or undefined when calling updateBankAccountState.');
+        }
+
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -24948,6 +25206,7 @@ export class BankAccountApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+            body: ObjectSerializer.serialize(reason, "string")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -26552,6 +26811,56 @@ export class HomeApi {
         if (isDismissed !== undefined) {
             localVarQueryParameters['isDismissed'] = ObjectSerializer.serialize(isDismissed, "boolean");
         }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Complete Home Action
+     * @param {*} [options] Override http request options.
+     */
+    public dismissOldPortalAction (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/home/dismissoldportalaction';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
@@ -32842,13 +33151,12 @@ export class PushNotificationsApi {
      * @summary [PRIVATE] Push notification to cutomers
      * @param appId 
      * @param scheduledPushNotificationId ID of Scheduled push notifiaction to delete
-     * @param pushNotificationId 
      * @param {*} [options] Override http request options.
      */
-    public deletePushNotification (appId: string, scheduledPushNotificationId: number, pushNotificationId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/pushnotifications/{pushNotificationId}'
+    public deletePushNotification (appId: string, scheduledPushNotificationId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/pushnotifications/{scheduledPushNotificationId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'pushNotificationId' + '}', encodeURIComponent(String(pushNotificationId)));
+            .replace('{' + 'scheduledPushNotificationId' + '}', encodeURIComponent(String(scheduledPushNotificationId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -32861,15 +33169,6 @@ export class PushNotificationsApi {
         // verify required parameter 'scheduledPushNotificationId' is not null or undefined
         if (scheduledPushNotificationId === null || scheduledPushNotificationId === undefined) {
             throw new Error('Required parameter scheduledPushNotificationId was null or undefined when calling deletePushNotification.');
-        }
-
-        // verify required parameter 'pushNotificationId' is not null or undefined
-        if (pushNotificationId === null || pushNotificationId === undefined) {
-            throw new Error('Required parameter pushNotificationId was null or undefined when calling deletePushNotification.');
-        }
-
-        if (scheduledPushNotificationId !== undefined) {
-            localVarQueryParameters['scheduledPushNotificationId'] = ObjectSerializer.serialize(scheduledPushNotificationId, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -32918,7 +33217,7 @@ export class PushNotificationsApi {
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getPushNotifications (appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public getPushNotifications (appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPushNotificationResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/pushnotifications'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -32962,11 +33261,12 @@ export class PushNotificationsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPushNotificationResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultPushNotificationResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -32983,7 +33283,7 @@ export class PushNotificationsApi {
      * @param notification Notification to send
      * @param {*} [options] Override http request options.
      */
-    public schedulePushNotification (appId: string, notification: PushNotificationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public schedulePushNotification (appId: string, notification: PushNotificationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPushNotificationResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/pushnotifications'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -33025,11 +33325,83 @@ export class PushNotificationsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPushNotificationResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultPushNotificationResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE] Update the push notification
+     * @param appId Application Id
+     * @param scheduledPushNotificationId Notification Id
+     * @param notification Notification to send
+     * @param {*} [options] Override http request options.
+     */
+    public updatePushNotification (appId: string, scheduledPushNotificationId: number, notification: PushNotificationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPushNotificationResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/pushnotifications/{scheduledPushNotificationId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'scheduledPushNotificationId' + '}', encodeURIComponent(String(scheduledPushNotificationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updatePushNotification.');
+        }
+
+        // verify required parameter 'scheduledPushNotificationId' is not null or undefined
+        if (scheduledPushNotificationId === null || scheduledPushNotificationId === undefined) {
+            throw new Error('Required parameter scheduledPushNotificationId was null or undefined when calling updatePushNotification.');
+        }
+
+        // verify required parameter 'notification' is not null or undefined
+        if (notification === null || notification === undefined) {
+            throw new Error('Required parameter notification was null or undefined when calling updatePushNotification.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(notification, "PushNotificationRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPushNotificationResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultPushNotificationResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -34424,6 +34796,73 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultStore");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get all stores by app name id
+     * @param appId App Name Id
+     * @param page 
+     * @param limit 
+     * @param {*} [options] Override http request options.
+     */
+    public getStoreHeadersByAppId (appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreHeader;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/header'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getStoreHeadersByAppId.');
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreHeader;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultStoreHeader");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
