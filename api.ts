@@ -2601,6 +2601,14 @@ export class CreateAccountModel {
     * LanguageId
     */
     'LanguageId'?: string;
+    /**
+    * Referral ID
+    */
+    'Rid'?: number;
+    /**
+    * Campaign ID
+    */
+    'Cid'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -2618,6 +2626,16 @@ export class CreateAccountModel {
         {
             "name": "LanguageId",
             "baseName": "LanguageId",
+            "type": "string"
+        },
+        {
+            "name": "Rid",
+            "baseName": "Rid",
+            "type": "number"
+        },
+        {
+            "name": "Cid",
+            "baseName": "Cid",
             "type": "string"
         }    ];
 
@@ -5399,6 +5417,10 @@ export class HydraStatus {
     * 6 digit PIN code (not starting with zero).
     */
     'PinCode'?: number;
+    /**
+    * Hydra images (covers)
+    */
+    'Images'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
@@ -5422,6 +5444,11 @@ export class HydraStatus {
             "name": "PinCode",
             "baseName": "PinCode",
             "type": "number"
+        },
+        {
+            "name": "Images",
+            "baseName": "Images",
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -8123,6 +8150,29 @@ export class MenuItemOptionSetUpdatedEvent {
 }
 
 /**
+* Collection of Display Orders for a Menu Object (Menu Section / Menu Items / Option Sets etc)
+*/
+export class MenuObjectDisplayOrders {
+    /**
+    * List of Objects and their new Display Orders
+    */
+    'DisplayOrders'?: Array<ObjectDisplayOrder>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DisplayOrders",
+            "baseName": "DisplayOrders",
+            "type": "Array<ObjectDisplayOrder>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuObjectDisplayOrders.attributeTypeMap;
+    }
+}
+
+/**
 * Menu section
 */
 export class MenuSection {
@@ -9545,6 +9595,38 @@ export class OauthClientRedirectUri {
 
     static getAttributeTypeMap() {
         return OauthClientRedirectUri.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class ObjectDisplayOrder {
+    /**
+    * ID of object to be ordered
+    */
+    'Id'?: number;
+    /**
+    * New Display order
+    */
+    'DisplayOrder'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ObjectDisplayOrder.attributeTypeMap;
     }
 }
 
@@ -22682,6 +22764,7 @@ let typeMap: {[index: string]: any} = {
     "MenuItemOptionSetItemDeletedEvent": MenuItemOptionSetItemDeletedEvent,
     "MenuItemOptionSetItemUpdatedEvent": MenuItemOptionSetItemUpdatedEvent,
     "MenuItemOptionSetUpdatedEvent": MenuItemOptionSetUpdatedEvent,
+    "MenuObjectDisplayOrders": MenuObjectDisplayOrders,
     "MenuSection": MenuSection,
     "MenuSectionAvailability": MenuSectionAvailability,
     "MenuSectionAvailabilityBase": MenuSectionAvailabilityBase,
@@ -22701,6 +22784,7 @@ let typeMap: {[index: string]: any} = {
     "OAuthApp": OAuthApp,
     "OAuthTokenModel": OAuthTokenModel,
     "OauthClientRedirectUri": OauthClientRedirectUri,
+    "ObjectDisplayOrder": ObjectDisplayOrder,
     "Order": Order,
     "OrderAcceptedEvent": OrderAcceptedEvent,
     "OrderCreatedEvent": OrderCreatedEvent,
@@ -30359,6 +30443,76 @@ export class MenuSectionsApi {
     }
     /**
      * 
+     * @summary Re-arrange Items within a Section
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param displayOrders Item Ids and their new display order
+     * @param {*} [options] Override http request options.
+     */
+    public menuSectionsSetItemDisplayOrders (menuId: number, menuSectionId: number, displayOrders: MenuObjectDisplayOrders, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitemdisplayorders'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menuSectionsSetItemDisplayOrders.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling menuSectionsSetItemDisplayOrders.');
+        }
+
+        // verify required parameter 'displayOrders' is not null or undefined
+        if (displayOrders === null || displayOrders === undefined) {
+            throw new Error('Required parameter displayOrders was null or undefined when calling menuSectionsSetItemDisplayOrders.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(displayOrders, "MenuObjectDisplayOrders")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Update menu section
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
@@ -31298,6 +31452,69 @@ export class MenusApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuCheckpoint");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Re-arrange Sections within a Menu
+     * @param menuId Menu identifier
+     * @param displayOrders Section Ids and their new display order
+     * @param {*} [options] Override http request options.
+     */
+    public menusSetItemDisplayOrders (menuId: number, displayOrders: MenuObjectDisplayOrders, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sectiondisplayorders'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menusSetItemDisplayOrders.');
+        }
+
+        // verify required parameter 'displayOrders' is not null or undefined
+        if (displayOrders === null || displayOrders === undefined) {
+            throw new Error('Required parameter displayOrders was null or undefined when calling menusSetItemDisplayOrders.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(displayOrders, "MenuObjectDisplayOrders")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
