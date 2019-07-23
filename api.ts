@@ -4857,6 +4857,41 @@ export class HomeStatistics {
     }
 }
 
+export class HttpPostedFileBase {
+    'ContentLength'?: number;
+    'ContentType'?: string;
+    'FileName'?: string;
+    'InputStream'?: Stream;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ContentLength",
+            "baseName": "ContentLength",
+            "type": "number"
+        },
+        {
+            "name": "ContentType",
+            "baseName": "ContentType",
+            "type": "string"
+        },
+        {
+            "name": "FileName",
+            "baseName": "FileName",
+            "type": "string"
+        },
+        {
+            "name": "InputStream",
+            "baseName": "InputStream",
+            "type": "Stream"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HttpPostedFileBase.attributeTypeMap;
+    }
+}
+
 /**
 * Http Request and Response Log
 */
@@ -5421,6 +5456,10 @@ export class HydraStatus {
     * Hydra images (covers)
     */
     'Images'?: Array<string>;
+    /**
+    * Hydra User Type
+    */
+    'UserType'?: HydraStatus.UserTypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -5449,6 +5488,11 @@ export class HydraStatus {
             "name": "Images",
             "baseName": "Images",
             "type": "Array<string>"
+        },
+        {
+            "name": "UserType",
+            "baseName": "UserType",
+            "type": "HydraStatus.UserTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -5456,6 +5500,13 @@ export class HydraStatus {
     }
 }
 
+export namespace HydraStatus {
+    export enum UserTypeEnum {
+        Kiosk = <any> 'Kiosk',
+        Terminal = <any> 'Terminal',
+        LegacyPrinter = <any> 'LegacyPrinter'
+    }
+}
 /**
 * Store Data
 */
@@ -5562,6 +5613,286 @@ export class HydraUnAssignedEvent {
 
     static getAttributeTypeMap() {
         return HydraUnAssignedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Index Page
+*/
+export class IndexPage {
+    /**
+    * Testimonials
+    */
+    'Testimonials'?: Array<WebsiteTestimonial>;
+    /**
+    * Images
+    */
+    'Images'?: Array<WebsiteImage>;
+    /**
+    * About section enabled
+    */
+    'AboutSectionEnabled'?: boolean;
+    /**
+    * About section title
+    */
+    'AboutSectionTitle'?: string;
+    /**
+    * About section title left
+    */
+    'AboutSectionLeftTitle'?: string;
+    /**
+    * About section text left
+    */
+    'AboutSectionLeftBody'?: string;
+    /**
+    * About section title right
+    */
+    'AboutSectionRightTitle'?: string;
+    /**
+    * About section text right
+    */
+    'AboutSectionRightBody'?: string;
+    /**
+    * Opening hours section Enabled
+    */
+    'OpeningHoursEnabled'?: boolean;
+    /**
+    * Menu Preview section Enabled
+    */
+    'MenuPreviewEnabled'?: boolean;
+    /**
+    * Gallery section enabled
+    */
+    'GalleryEnabled'?: boolean;
+    /**
+    * Testimonials section Enabled
+    */
+    'TestimonialsEnabled'?: boolean;
+    /**
+    * Contact Form section Enabled
+    */
+    'ContactFormEnabled'?: boolean;
+    /**
+    * Contact Form Email
+    */
+    'ContactFormEmail'?: string;
+    /**
+    * Map section Enabled
+    */
+    'MapEnabled'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Testimonials",
+            "baseName": "Testimonials",
+            "type": "Array<WebsiteTestimonial>"
+        },
+        {
+            "name": "Images",
+            "baseName": "Images",
+            "type": "Array<WebsiteImage>"
+        },
+        {
+            "name": "AboutSectionEnabled",
+            "baseName": "AboutSectionEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "AboutSectionTitle",
+            "baseName": "AboutSectionTitle",
+            "type": "string"
+        },
+        {
+            "name": "AboutSectionLeftTitle",
+            "baseName": "AboutSectionLeftTitle",
+            "type": "string"
+        },
+        {
+            "name": "AboutSectionLeftBody",
+            "baseName": "AboutSectionLeftBody",
+            "type": "string"
+        },
+        {
+            "name": "AboutSectionRightTitle",
+            "baseName": "AboutSectionRightTitle",
+            "type": "string"
+        },
+        {
+            "name": "AboutSectionRightBody",
+            "baseName": "AboutSectionRightBody",
+            "type": "string"
+        },
+        {
+            "name": "OpeningHoursEnabled",
+            "baseName": "OpeningHoursEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "MenuPreviewEnabled",
+            "baseName": "MenuPreviewEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "GalleryEnabled",
+            "baseName": "GalleryEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "TestimonialsEnabled",
+            "baseName": "TestimonialsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "ContactFormEnabled",
+            "baseName": "ContactFormEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "ContactFormEmail",
+            "baseName": "ContactFormEmail",
+            "type": "string"
+        },
+        {
+            "name": "MapEnabled",
+            "baseName": "MapEnabled",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return IndexPage.attributeTypeMap;
+    }
+}
+
+/**
+* Base of Index Page
+*/
+export class IndexPageBase {
+    /**
+    * About section enabled
+    */
+    'AboutSectionEnabled'?: boolean;
+    /**
+    * About section title
+    */
+    'AboutSectionTitle'?: string;
+    /**
+    * About section title left
+    */
+    'AboutSectionLeftTitle'?: string;
+    /**
+    * About section text left
+    */
+    'AboutSectionLeftBody'?: string;
+    /**
+    * About section title right
+    */
+    'AboutSectionRightTitle'?: string;
+    /**
+    * About section text right
+    */
+    'AboutSectionRightBody'?: string;
+    /**
+    * Opening hours section Enabled
+    */
+    'OpeningHoursEnabled'?: boolean;
+    /**
+    * Menu Preview section Enabled
+    */
+    'MenuPreviewEnabled'?: boolean;
+    /**
+    * Gallery section enabled
+    */
+    'GalleryEnabled'?: boolean;
+    /**
+    * Testimonials section Enabled
+    */
+    'TestimonialsEnabled'?: boolean;
+    /**
+    * Contact Form section Enabled
+    */
+    'ContactFormEnabled'?: boolean;
+    /**
+    * Contact Form Email
+    */
+    'ContactFormEmail'?: string;
+    /**
+    * Map section Enabled
+    */
+    'MapEnabled'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AboutSectionEnabled",
+            "baseName": "AboutSectionEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "AboutSectionTitle",
+            "baseName": "AboutSectionTitle",
+            "type": "string"
+        },
+        {
+            "name": "AboutSectionLeftTitle",
+            "baseName": "AboutSectionLeftTitle",
+            "type": "string"
+        },
+        {
+            "name": "AboutSectionLeftBody",
+            "baseName": "AboutSectionLeftBody",
+            "type": "string"
+        },
+        {
+            "name": "AboutSectionRightTitle",
+            "baseName": "AboutSectionRightTitle",
+            "type": "string"
+        },
+        {
+            "name": "AboutSectionRightBody",
+            "baseName": "AboutSectionRightBody",
+            "type": "string"
+        },
+        {
+            "name": "OpeningHoursEnabled",
+            "baseName": "OpeningHoursEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "MenuPreviewEnabled",
+            "baseName": "MenuPreviewEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "GalleryEnabled",
+            "baseName": "GalleryEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "TestimonialsEnabled",
+            "baseName": "TestimonialsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "ContactFormEnabled",
+            "baseName": "ContactFormEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "ContactFormEmail",
+            "baseName": "ContactFormEmail",
+            "type": "string"
+        },
+        {
+            "name": "MapEnabled",
+            "baseName": "MapEnabled",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return IndexPageBase.attributeTypeMap;
     }
 }
 
@@ -12904,29 +13235,6 @@ export class RestApiArrayResultHomeAction {
 /**
 * Rest api array result
 */
-export class RestApiArrayResultHydraDeviceDetails {
-    /**
-    * Generic data object.
-    */
-    'Data': Array<HydraDeviceDetails>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Array<HydraDeviceDetails>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiArrayResultHydraDeviceDetails.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api array result
-*/
 export class RestApiArrayResultLocalisedTimeZone {
     /**
     * Generic data object.
@@ -13622,6 +13930,56 @@ export class RestApiPaginationResultHttpRequestAndResponseLog {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultHttpRequestAndResponseLog.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
+export class RestApiPaginationResultHydraDeviceDetails {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<HydraDeviceDetails>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<HydraDeviceDetails>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultHydraDeviceDetails.attributeTypeMap;
     }
 }
 
@@ -14527,6 +14885,52 @@ export class RestApiResultHydraStatus {
 /**
 * Rest api result
 */
+export class RestApiResultIndexPage {
+    /**
+    * Generic data object.
+    */
+    'Data': IndexPage;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "IndexPage"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultIndexPage.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultIndexPageBase {
+    /**
+    * Generic data object.
+    */
+    'Data': IndexPageBase;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "IndexPageBase"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultIndexPageBase.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultJobResponse {
     /**
     * Generic data object.
@@ -15119,6 +15523,52 @@ export class RestApiResultVoucherWithStats {
 
     static getAttributeTypeMap() {
         return RestApiResultVoucherWithStats.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultWebsiteImage {
+    /**
+    * Generic data object.
+    */
+    'Data': WebsiteImage;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "WebsiteImage"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultWebsiteImage.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultWebsiteTestimonial {
+    /**
+    * Generic data object.
+    */
+    'Data': WebsiteTestimonial;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "WebsiteTestimonial"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultWebsiteTestimonial.attributeTypeMap;
     }
 }
 
@@ -19405,6 +19855,65 @@ export class StoreUpdatedEvent {
     }
 }
 
+export class Stream {
+    'CanRead'?: boolean;
+    'CanSeek'?: boolean;
+    'CanTimeout'?: boolean;
+    'CanWrite'?: boolean;
+    'Length'?: number;
+    'Position'?: number;
+    'ReadTimeout'?: number;
+    'WriteTimeout'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CanRead",
+            "baseName": "CanRead",
+            "type": "boolean"
+        },
+        {
+            "name": "CanSeek",
+            "baseName": "CanSeek",
+            "type": "boolean"
+        },
+        {
+            "name": "CanTimeout",
+            "baseName": "CanTimeout",
+            "type": "boolean"
+        },
+        {
+            "name": "CanWrite",
+            "baseName": "CanWrite",
+            "type": "boolean"
+        },
+        {
+            "name": "Length",
+            "baseName": "Length",
+            "type": "number"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "ReadTimeout",
+            "baseName": "ReadTimeout",
+            "type": "number"
+        },
+        {
+            "name": "WriteTimeout",
+            "baseName": "WriteTimeout",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Stream.attributeTypeMap;
+    }
+}
+
 /**
 * Stuart settings
 */
@@ -22581,6 +23090,131 @@ export class WebhookSubscriptionUpdatedEvent {
     }
 }
 
+/**
+* Represents a website image
+*/
+export class WebsiteImage {
+    /**
+    * Represents the id of the image
+    */
+    'ImageId'?: number;
+    /**
+    * Represents the location of the image
+    */
+    'ImageLocation'?: WebsiteImage.ImageLocationEnum;
+    /**
+    * Represents the image url
+    */
+    'ImageUrl'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ImageId",
+            "baseName": "ImageId",
+            "type": "number"
+        },
+        {
+            "name": "ImageLocation",
+            "baseName": "ImageLocation",
+            "type": "WebsiteImage.ImageLocationEnum"
+        },
+        {
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WebsiteImage.attributeTypeMap;
+    }
+}
+
+export namespace WebsiteImage {
+    export enum ImageLocationEnum {
+        IndexHeader = <any> 'IndexHeader',
+        IndexAboutSectionLeft = <any> 'IndexAboutSectionLeft',
+        IndexAboutSectionRight = <any> 'IndexAboutSectionRight',
+        IndexGalleryHeader = <any> 'IndexGalleryHeader',
+        IndexOpeningHoursHeader = <any> 'IndexOpeningHoursHeader',
+        IndexTestimonialsHeader = <any> 'IndexTestimonialsHeader',
+        GalleryHeader = <any> 'GalleryHeader'
+    }
+}
+/**
+* Represents a testimonial
+*/
+export class WebsiteTestimonial {
+    /**
+    * Id of the testimonial
+    */
+    'TestimonialId'?: number;
+    /**
+    * Author of the testimonial
+    */
+    'Author'?: string;
+    /**
+    * Message of the testimonial
+    */
+    'Message'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "TestimonialId",
+            "baseName": "TestimonialId",
+            "type": "number"
+        },
+        {
+            "name": "Author",
+            "baseName": "Author",
+            "type": "string"
+        },
+        {
+            "name": "Message",
+            "baseName": "Message",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WebsiteTestimonial.attributeTypeMap;
+    }
+}
+
+/**
+* Represents a testimonial base
+*/
+export class WebsiteTestimonialBase {
+    /**
+    * Author of the testimonial
+    */
+    'Author'?: string;
+    /**
+    * Message of the testimonial
+    */
+    'Message'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Author",
+            "baseName": "Author",
+            "type": "string"
+        },
+        {
+            "name": "Message",
+            "baseName": "Message",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WebsiteTestimonialBase.attributeTypeMap;
+    }
+}
+
 
 let enumsMap: {[index: string]: any} = {
         "ApmHourlyDataPoint.DayEnum": ApmHourlyDataPoint.DayEnum,
@@ -22606,6 +23240,7 @@ let enumsMap: {[index: string]: any} = {
         "HydraConfig.PaymentOptionsEnum": HydraConfig.PaymentOptionsEnum,
         "HydraDeviceDetails.DeviceTypeEnum": HydraDeviceDetails.DeviceTypeEnum,
         "HydraDeviceDetails.StatusEnum": HydraDeviceDetails.StatusEnum,
+        "HydraStatus.UserTypeEnum": HydraStatus.UserTypeEnum,
         "LightspeedSettings.PriceTypeEnum": LightspeedSettings.PriceTypeEnum,
         "Menu.MenuSectionBehaviourEnum": Menu.MenuSectionBehaviourEnum,
         "MenuBase.MenuSectionBehaviourEnum": MenuBase.MenuSectionBehaviourEnum,
@@ -22665,6 +23300,7 @@ let enumsMap: {[index: string]: any} = {
         "VoucherWithStats.VoucherTypeEnum": VoucherWithStats.VoucherTypeEnum,
         "VoucherWithStats.VoucherSubTypeEnum": VoucherWithStats.VoucherSubTypeEnum,
         "VoucherWithStats.CurrencyEnum": VoucherWithStats.CurrencyEnum,
+        "WebsiteImage.ImageLocationEnum": WebsiteImage.ImageLocationEnum,
 }
 
 let typeMap: {[index: string]: any} = {
@@ -22719,6 +23355,7 @@ let typeMap: {[index: string]: any} = {
     "GroupedCoordinates": GroupedCoordinates,
     "HomeAction": HomeAction,
     "HomeStatistics": HomeStatistics,
+    "HttpPostedFileBase": HttpPostedFileBase,
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
     "HydraAssignedEvent": HydraAssignedEvent,
     "HydraConfig": HydraConfig,
@@ -22729,6 +23366,8 @@ let typeMap: {[index: string]: any} = {
     "HydraStatus": HydraStatus,
     "HydraStoreData": HydraStoreData,
     "HydraUnAssignedEvent": HydraUnAssignedEvent,
+    "IndexPage": IndexPage,
+    "IndexPageBase": IndexPageBase,
     "JobAddress": JobAddress,
     "JobCancellation": JobCancellation,
     "JobContact": JobContact,
@@ -22830,7 +23469,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
     "RestApiArrayResultHomeAction": RestApiArrayResultHomeAction,
-    "RestApiArrayResultHydraDeviceDetails": RestApiArrayResultHydraDeviceDetails,
     "RestApiArrayResultLocalisedTimeZone": RestApiArrayResultLocalisedTimeZone,
     "RestApiArrayResultMenuCheckpoint": RestApiArrayResultMenuCheckpoint,
     "RestApiArrayResultMenuItemOptionSet": RestApiArrayResultMenuItemOptionSet,
@@ -22856,6 +23494,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultApp": RestApiPaginationResultApp,
     "RestApiPaginationResultBusinessHoursOverride": RestApiPaginationResultBusinessHoursOverride,
     "RestApiPaginationResultHttpRequestAndResponseLog": RestApiPaginationResultHttpRequestAndResponseLog,
+    "RestApiPaginationResultHydraDeviceDetails": RestApiPaginationResultHydraDeviceDetails,
     "RestApiPaginationResultOAuthTokenModel": RestApiPaginationResultOAuthTokenModel,
     "RestApiPaginationResultOrder": RestApiPaginationResultOrder,
     "RestApiPaginationResultOrderSummary": RestApiPaginationResultOrderSummary,
@@ -22881,6 +23520,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultHomeStatistics": RestApiResultHomeStatistics,
     "RestApiResultHydraConfig": RestApiResultHydraConfig,
     "RestApiResultHydraStatus": RestApiResultHydraStatus,
+    "RestApiResultIndexPage": RestApiResultIndexPage,
+    "RestApiResultIndexPageBase": RestApiResultIndexPageBase,
     "RestApiResultJobResponse": RestApiResultJobResponse,
     "RestApiResultLightspeedSettings": RestApiResultLightspeedSettings,
     "RestApiResultMenu": RestApiResultMenu,
@@ -22907,6 +23548,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultSubscriptionPlansResponse": RestApiResultSubscriptionPlansResponse,
     "RestApiResultTeammate": RestApiResultTeammate,
     "RestApiResultVoucherWithStats": RestApiResultVoucherWithStats,
+    "RestApiResultWebsiteImage": RestApiResultWebsiteImage,
+    "RestApiResultWebsiteTestimonial": RestApiResultWebsiteTestimonial,
     "RestApiStringArrayResult": RestApiStringArrayResult,
     "RestApiStringResult": RestApiStringResult,
     "RestApiUnauthorizedResult": RestApiUnauthorizedResult,
@@ -22947,6 +23590,7 @@ let typeMap: {[index: string]: any} = {
     "StoreStatistics": StoreStatistics,
     "StoreSummary": StoreSummary,
     "StoreUpdatedEvent": StoreUpdatedEvent,
+    "Stream": Stream,
     "StuartSettings": StuartSettings,
     "Subscription": Subscription,
     "SubscriptionBase": SubscriptionBase,
@@ -22979,6 +23623,9 @@ let typeMap: {[index: string]: any} = {
     "WebhookSubscriptionDeletedEvent": WebhookSubscriptionDeletedEvent,
     "WebhookSubscriptionEventInfo": WebhookSubscriptionEventInfo,
     "WebhookSubscriptionUpdatedEvent": WebhookSubscriptionUpdatedEvent,
+    "WebsiteImage": WebsiteImage,
+    "WebsiteTestimonial": WebsiteTestimonial,
+    "WebsiteTestimonialBase": WebsiteTestimonialBase,
 }
 
 export interface Authentication {
@@ -27308,7 +27955,7 @@ export class HydraApi {
      * @param deviceSerial 
      * @param {*} [options] Override http request options.
      */
-    public getAttachedDevices (appId: string, deviceType: 'Kiosk' | 'Terminal' | 'LegacyPrinter', pageIndex?: number, pageSize?: number, storeId?: number, deviceName?: string, deviceSerial?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultHydraDeviceDetails;  }> {
+    public getAttachedDevices (appId: string, deviceType: 'Kiosk' | 'Terminal' | 'LegacyPrinter', pageIndex?: number, pageSize?: number, storeId?: number, deviceName?: string, deviceSerial?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultHydraDeviceDetails;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/{deviceType}/list'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'deviceType' + '}', encodeURIComponent(String(deviceType)));
@@ -27370,12 +28017,12 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultHydraDeviceDetails;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultHydraDeviceDetails;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultHydraDeviceDetails");
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultHydraDeviceDetails");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -38259,6 +38906,446 @@ export class WebhooksApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum WebsiteApiApiKeys {
+}
+
+export class WebsiteApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: WebsiteApiApiKeys, value: string) {
+        (this.authentications as any)[WebsiteApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Add a testimonial
+     * @param appId Application identifier
+     * @param testimonial Testimonial to be added
+     * @param {*} [options] Override http request options.
+     */
+    public addTestimonial (appId: string, testimonial: WebsiteTestimonialBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteTestimonial;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/website/testimonial'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling addTestimonial.');
+        }
+
+        // verify required parameter 'testimonial' is not null or undefined
+        if (testimonial === null || testimonial === undefined) {
+            throw new Error('Required parameter testimonial was null or undefined when calling addTestimonial.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(testimonial, "WebsiteTestimonialBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteTestimonial;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultWebsiteTestimonial");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Delete Website Image
+     * @param appId Application identifier
+     * @param imageId Id of the image
+     * @param {*} [options] Override http request options.
+     */
+    public deleteWebsiteImage (appId: string, imageId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/website/image/{imageId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling deleteWebsiteImage.');
+        }
+
+        // verify required parameter 'imageId' is not null or undefined
+        if (imageId === null || imageId === undefined) {
+            throw new Error('Required parameter imageId was null or undefined when calling deleteWebsiteImage.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Edit a testimonial
+     * @param appId Application identifier
+     * @param testimonialId Id of the testimonial to edit
+     * @param testimonial New values of the testimonial
+     * @param {*} [options] Override http request options.
+     */
+    public editTestimonial (appId: string, testimonialId: number, testimonial: WebsiteTestimonialBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteTestimonial;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/website/testimonial/{testimonialId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'testimonialId' + '}', encodeURIComponent(String(testimonialId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling editTestimonial.');
+        }
+
+        // verify required parameter 'testimonialId' is not null or undefined
+        if (testimonialId === null || testimonialId === undefined) {
+            throw new Error('Required parameter testimonialId was null or undefined when calling editTestimonial.');
+        }
+
+        // verify required parameter 'testimonial' is not null or undefined
+        if (testimonial === null || testimonial === undefined) {
+            throw new Error('Required parameter testimonial was null or undefined when calling editTestimonial.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(testimonial, "WebsiteTestimonialBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteTestimonial;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultWebsiteTestimonial");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get Index Configuration
+     * @param appId Application identifier
+     * @param {*} [options] Override http request options.
+     */
+    public getIndexConfiguration (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultIndexPage;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/website/index'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getIndexConfiguration.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultIndexPage;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultIndexPage");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Set Index Configuration
+     * @param appId Application identifier
+     * @param indexPage New index page definition
+     * @param {*} [options] Override http request options.
+     */
+    public setIndexConfiguration (appId: string, indexPage: IndexPageBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultIndexPageBase;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/website/index'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling setIndexConfiguration.');
+        }
+
+        // verify required parameter 'indexPage' is not null or undefined
+        if (indexPage === null || indexPage === undefined) {
+            throw new Error('Required parameter indexPage was null or undefined when calling setIndexConfiguration.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(indexPage, "IndexPageBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultIndexPageBase;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultIndexPageBase");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Upload Website Image
+     * @param appId Application identifier
+     * @param imageLocation Section for which to upload the image
+     * @param file Image data
+     * @param {*} [options] Override http request options.
+     */
+    public uploadWebsiteImage (appId: string, imageLocation: 'IndexHeader' | 'IndexAboutSectionLeft' | 'IndexAboutSectionRight' | 'IndexGalleryHeader' | 'IndexOpeningHoursHeader' | 'IndexTestimonialsHeader' | 'GalleryHeader', file: HttpPostedFileBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteImage;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/website/image/{imageLocation}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'imageLocation' + '}', encodeURIComponent(String(imageLocation)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling uploadWebsiteImage.');
+        }
+
+        // verify required parameter 'imageLocation' is not null or undefined
+        if (imageLocation === null || imageLocation === undefined) {
+            throw new Error('Required parameter imageLocation was null or undefined when calling uploadWebsiteImage.');
+        }
+
+        // verify required parameter 'file' is not null or undefined
+        if (file === null || file === undefined) {
+            throw new Error('Required parameter file was null or undefined when calling uploadWebsiteImage.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(file, "HttpPostedFileBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteImage;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultWebsiteImage");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
