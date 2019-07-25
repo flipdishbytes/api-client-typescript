@@ -3980,6 +3980,10 @@ export class EventSearchResult {
     */
     'OrderTipUpdatedEvent'?: Array<OrderTipUpdatedEvent>;
     /**
+    * Order Terminal Notification events
+    */
+    'OrderTerminalNotifications'?: Array<OrderTerminalNotification>;
+    /**
     * Store created events
     */
     'StoreCreatedEvent'?: Array<StoreCreatedEvent>;
@@ -4308,6 +4312,11 @@ export class EventSearchResult {
             "name": "OrderTipUpdatedEvent",
             "baseName": "OrderTipUpdatedEvent",
             "type": "Array<OrderTipUpdatedEvent>"
+        },
+        {
+            "name": "OrderTerminalNotifications",
+            "baseName": "OrderTerminalNotifications",
+            "type": "Array<OrderTerminalNotification>"
         },
         {
             "name": "StoreCreatedEvent",
@@ -4854,41 +4863,6 @@ export class HomeStatistics {
 
     static getAttributeTypeMap() {
         return HomeStatistics.attributeTypeMap;
-    }
-}
-
-export class HttpPostedFileBase {
-    'ContentLength'?: number;
-    'ContentType'?: string;
-    'FileName'?: string;
-    'InputStream'?: Stream;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "ContentLength",
-            "baseName": "ContentLength",
-            "type": "number"
-        },
-        {
-            "name": "ContentType",
-            "baseName": "ContentType",
-            "type": "string"
-        },
-        {
-            "name": "FileName",
-            "baseName": "FileName",
-            "type": "string"
-        },
-        {
-            "name": "InputStream",
-            "baseName": "InputStream",
-            "type": "Stream"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return HttpPostedFileBase.attributeTypeMap;
     }
 }
 
@@ -11297,6 +11271,101 @@ export namespace OrderSummary {
     }
 }
 /**
+* Order Terminal Notification
+*/
+export class OrderTerminalNotification {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Notification Sent
+    */
+    'Notification'?: string;
+    /**
+    * Order
+    */
+    'Order'?: Order;
+    /**
+    * TerminalId
+    */
+    'TerminalId'?: string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Notification",
+            "baseName": "Notification",
+            "type": "string"
+        },
+        {
+            "name": "Order",
+            "baseName": "Order",
+            "type": "Order"
+        },
+        {
+            "name": "TerminalId",
+            "baseName": "TerminalId",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderTerminalNotification.attributeTypeMap;
+    }
+}
+
+/**
 * Order Tip Update Event
 */
 export class OrderTipUpdatedEvent {
@@ -11514,6 +11583,56 @@ export class PasswordResetModel {
 
     static getAttributeTypeMap() {
         return PasswordResetModel.attributeTypeMap;
+    }
+}
+
+/**
+* Details of Payment Terminal
+*/
+export class PaymentTerminalDetails {
+    /**
+    * Terminal Id (tid)
+    */
+    'TerminalId'?: string;
+    /**
+    * Status of Terminal
+    */
+    'Status'?: string;
+    /**
+    * Currency configured on the terminal
+    */
+    'Currency'?: string;
+    /**
+    * Location to Device
+    */
+    'Uri'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "TerminalId",
+            "baseName": "TerminalId",
+            "type": "string"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "string"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "string"
+        },
+        {
+            "name": "Uri",
+            "baseName": "Uri",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PaymentTerminalDetails.attributeTypeMap;
     }
 }
 
@@ -15201,6 +15320,29 @@ export class RestApiResultOrder {
 
     static getAttributeTypeMap() {
         return RestApiResultOrder.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultPaymentTerminalDetails {
+    /**
+    * Generic data object.
+    */
+    'Data': PaymentTerminalDetails;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "PaymentTerminalDetails"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultPaymentTerminalDetails.attributeTypeMap;
     }
 }
 
@@ -19855,65 +19997,6 @@ export class StoreUpdatedEvent {
     }
 }
 
-export class Stream {
-    'CanRead'?: boolean;
-    'CanSeek'?: boolean;
-    'CanTimeout'?: boolean;
-    'CanWrite'?: boolean;
-    'Length'?: number;
-    'Position'?: number;
-    'ReadTimeout'?: number;
-    'WriteTimeout'?: number;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "CanRead",
-            "baseName": "CanRead",
-            "type": "boolean"
-        },
-        {
-            "name": "CanSeek",
-            "baseName": "CanSeek",
-            "type": "boolean"
-        },
-        {
-            "name": "CanTimeout",
-            "baseName": "CanTimeout",
-            "type": "boolean"
-        },
-        {
-            "name": "CanWrite",
-            "baseName": "CanWrite",
-            "type": "boolean"
-        },
-        {
-            "name": "Length",
-            "baseName": "Length",
-            "type": "number"
-        },
-        {
-            "name": "Position",
-            "baseName": "Position",
-            "type": "number"
-        },
-        {
-            "name": "ReadTimeout",
-            "baseName": "ReadTimeout",
-            "type": "number"
-        },
-        {
-            "name": "WriteTimeout",
-            "baseName": "WriteTimeout",
-            "type": "number"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Stream.attributeTypeMap;
-    }
-}
-
 /**
 * Stuart settings
 */
@@ -23355,7 +23438,6 @@ let typeMap: {[index: string]: any} = {
     "GroupedCoordinates": GroupedCoordinates,
     "HomeAction": HomeAction,
     "HomeStatistics": HomeStatistics,
-    "HttpPostedFileBase": HttpPostedFileBase,
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
     "HydraAssignedEvent": HydraAssignedEvent,
     "HydraConfig": HydraConfig,
@@ -23434,9 +23516,11 @@ let typeMap: {[index: string]: any} = {
     "OrderRefundedEvent": OrderRefundedEvent,
     "OrderRejectedEvent": OrderRejectedEvent,
     "OrderSummary": OrderSummary,
+    "OrderTerminalNotification": OrderTerminalNotification,
     "OrderTipUpdatedEvent": OrderTipUpdatedEvent,
     "OrderVoucherSummary": OrderVoucherSummary,
     "PasswordResetModel": PasswordResetModel,
+    "PaymentTerminalDetails": PaymentTerminalDetails,
     "PercentDiscountDetails": PercentDiscountDetails,
     "PhoneCall": PhoneCall,
     "PhoneCallEndedEvent": PhoneCallEndedEvent,
@@ -23534,6 +23618,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultOAuthApp": RestApiResultOAuthApp,
     "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
     "RestApiResultOrder": RestApiResultOrder,
+    "RestApiResultPaymentTerminalDetails": RestApiResultPaymentTerminalDetails,
     "RestApiResultPreOrderConfig": RestApiResultPreOrderConfig,
     "RestApiResultProcessingFeeConfig": RestApiResultProcessingFeeConfig,
     "RestApiResultPushNotificationResponse": RestApiResultPushNotificationResponse,
@@ -23590,7 +23675,6 @@ let typeMap: {[index: string]: any} = {
     "StoreStatistics": StoreStatistics,
     "StoreSummary": StoreSummary,
     "StoreUpdatedEvent": StoreUpdatedEvent,
-    "Stream": Stream,
     "StuartSettings": StuartSettings,
     "Subscription": Subscription,
     "SubscriptionBase": SubscriptionBase,
@@ -25200,7 +25284,7 @@ export class AppsApi {
      * 
      * @summary Set the application logo \\ icon
      * @param appId Application identifier
-     * @param Image Menu image
+     * @param Image App Logo
      * @param {*} [options] Override http request options.
      */
     public uploadAppLogo (appId: string, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -28122,6 +28206,63 @@ export class HydraApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultHydraConfig");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [Private]
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getTerminalDetails (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalDetails;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/terminal'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getTerminalDetails.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalDetails;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultPaymentTerminalDetails");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -39031,6 +39172,69 @@ export class WebsiteApi {
     }
     /**
      * 
+     * @summary Delete a testimonial
+     * @param appId Application identifier
+     * @param testimonialId Id of the testimonial to delete
+     * @param {*} [options] Override http request options.
+     */
+    public deleteTestimonial (appId: string, testimonialId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/website/testimonial/{testimonialId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'testimonialId' + '}', encodeURIComponent(String(testimonialId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling deleteTestimonial.');
+        }
+
+        // verify required parameter 'testimonialId' is not null or undefined
+        if (testimonialId === null || testimonialId === undefined) {
+            throw new Error('Required parameter testimonialId was null or undefined when calling deleteTestimonial.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Delete Website Image
      * @param appId Application identifier
      * @param imageId Id of the image
@@ -39289,10 +39493,10 @@ export class WebsiteApi {
      * @summary Upload Website Image
      * @param appId Application identifier
      * @param imageLocation Section for which to upload the image
-     * @param file Image data
+     * @param Image App Logo
      * @param {*} [options] Override http request options.
      */
-    public uploadWebsiteImage (appId: string, imageLocation: 'IndexHeader' | 'IndexAboutSectionLeft' | 'IndexAboutSectionRight' | 'IndexGalleryHeader' | 'IndexOpeningHoursHeader' | 'IndexTestimonialsHeader' | 'GalleryHeader', file: HttpPostedFileBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteImage;  }> {
+    public uploadWebsiteImage (appId: string, imageLocation: 'IndexHeader' | 'IndexAboutSectionLeft' | 'IndexAboutSectionRight' | 'IndexGalleryHeader' | 'IndexOpeningHoursHeader' | 'IndexTestimonialsHeader' | 'GalleryHeader', Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteImage;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/website/image/{imageLocation}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'imageLocation' + '}', encodeURIComponent(String(imageLocation)));
@@ -39310,14 +39514,19 @@ export class WebsiteApi {
             throw new Error('Required parameter imageLocation was null or undefined when calling uploadWebsiteImage.');
         }
 
-        // verify required parameter 'file' is not null or undefined
-        if (file === null || file === undefined) {
-            throw new Error('Required parameter file was null or undefined when calling uploadWebsiteImage.');
+        // verify required parameter 'Image' is not null or undefined
+        if (Image === null || Image === undefined) {
+            throw new Error('Required parameter Image was null or undefined when calling uploadWebsiteImage.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
+
+        if (Image !== undefined) {
+            localVarFormParams['Image'] = Image;
+        }
+        localVarUseFormData = true;
 
         let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
@@ -39326,7 +39535,6 @@ export class WebsiteApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(file, "HttpPostedFileBase")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
