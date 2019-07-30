@@ -714,6 +714,10 @@ export class App {
     * Application Category
     */
     'ApplicationCategory'?: App.ApplicationCategoryEnum;
+    /**
+    * Is Panacea Enabled
+    */
+    'IsPanaceaEnabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -802,6 +806,11 @@ export class App {
             "name": "ApplicationCategory",
             "baseName": "ApplicationCategory",
             "type": "App.ApplicationCategoryEnum"
+        },
+        {
+            "name": "IsPanaceaEnabled",
+            "baseName": "IsPanaceaEnabled",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -940,6 +949,10 @@ export class AppConfigUpdateModel {
     * Application Category
     */
     'ApplicationCategory'?: AppConfigUpdateModel.ApplicationCategoryEnum;
+    /**
+    * Is Panacea Enabled
+    */
+    'IsPanaceaEnabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -963,6 +976,11 @@ export class AppConfigUpdateModel {
             "name": "ApplicationCategory",
             "baseName": "ApplicationCategory",
             "type": "AppConfigUpdateModel.ApplicationCategoryEnum"
+        },
+        {
+            "name": "IsPanaceaEnabled",
+            "baseName": "IsPanaceaEnabled",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -5611,6 +5629,10 @@ export class IndexPage {
     */
     'AboutSectionTitle'?: string;
     /**
+    * About section sub-title
+    */
+    'AboutSectionSubtitle'?: string;
+    /**
     * About section title left
     */
     'AboutSectionLeftTitle'?: string;
@@ -5676,6 +5698,11 @@ export class IndexPage {
         {
             "name": "AboutSectionTitle",
             "baseName": "AboutSectionTitle",
+            "type": "string"
+        },
+        {
+            "name": "AboutSectionSubtitle",
+            "baseName": "AboutSectionSubtitle",
             "type": "string"
         },
         {
@@ -5752,6 +5779,10 @@ export class IndexPageBase {
     */
     'AboutSectionTitle'?: string;
     /**
+    * About section sub-title
+    */
+    'AboutSectionSubtitle'?: string;
+    /**
     * About section title left
     */
     'AboutSectionLeftTitle'?: string;
@@ -5807,6 +5838,11 @@ export class IndexPageBase {
         {
             "name": "AboutSectionTitle",
             "baseName": "AboutSectionTitle",
+            "type": "string"
+        },
+        {
+            "name": "AboutSectionSubtitle",
+            "baseName": "AboutSectionSubtitle",
             "type": "string"
         },
         {
@@ -23219,10 +23255,9 @@ export namespace WebsiteImage {
         IndexHeader = <any> 'IndexHeader',
         IndexAboutSectionLeft = <any> 'IndexAboutSectionLeft',
         IndexAboutSectionRight = <any> 'IndexAboutSectionRight',
-        IndexGalleryHeader = <any> 'IndexGalleryHeader',
+        IndexGallery = <any> 'IndexGallery',
         IndexOpeningHoursHeader = <any> 'IndexOpeningHoursHeader',
-        IndexTestimonialsHeader = <any> 'IndexTestimonialsHeader',
-        GalleryHeader = <any> 'GalleryHeader'
+        IndexTestimonialsHeader = <any> 'IndexTestimonialsHeader'
     }
 }
 /**
@@ -39496,7 +39531,7 @@ export class WebsiteApi {
      * @param Image App Logo
      * @param {*} [options] Override http request options.
      */
-    public uploadWebsiteImage (appId: string, imageLocation: 'IndexHeader' | 'IndexAboutSectionLeft' | 'IndexAboutSectionRight' | 'IndexGalleryHeader' | 'IndexOpeningHoursHeader' | 'IndexTestimonialsHeader' | 'GalleryHeader', Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteImage;  }> {
+    public uploadWebsiteImage (appId: string, imageLocation: 'IndexHeader' | 'IndexAboutSectionLeft' | 'IndexAboutSectionRight' | 'IndexGallery' | 'IndexOpeningHoursHeader' | 'IndexTestimonialsHeader', Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteImage;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/website/image/{imageLocation}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'imageLocation' + '}', encodeURIComponent(String(imageLocation)));
