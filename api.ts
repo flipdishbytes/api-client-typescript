@@ -714,6 +714,10 @@ export class App {
     * Application Category
     */
     'ApplicationCategory'?: App.ApplicationCategoryEnum;
+    /**
+    * Is Panacea Enabled
+    */
+    'IsPanaceaEnabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -802,6 +806,11 @@ export class App {
             "name": "ApplicationCategory",
             "baseName": "ApplicationCategory",
             "type": "App.ApplicationCategoryEnum"
+        },
+        {
+            "name": "IsPanaceaEnabled",
+            "baseName": "IsPanaceaEnabled",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -940,6 +949,10 @@ export class AppConfigUpdateModel {
     * Application Category
     */
     'ApplicationCategory'?: AppConfigUpdateModel.ApplicationCategoryEnum;
+    /**
+    * Is Panacea Enabled
+    */
+    'IsPanaceaEnabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -963,6 +976,11 @@ export class AppConfigUpdateModel {
             "name": "ApplicationCategory",
             "baseName": "ApplicationCategory",
             "type": "AppConfigUpdateModel.ApplicationCategoryEnum"
+        },
+        {
+            "name": "IsPanaceaEnabled",
+            "baseName": "IsPanaceaEnabled",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -5611,6 +5629,10 @@ export class IndexPage {
     */
     'AboutSectionTitle'?: string;
     /**
+    * About section sub-title
+    */
+    'AboutSectionSubtitle'?: string;
+    /**
     * About section title left
     */
     'AboutSectionLeftTitle'?: string;
@@ -5676,6 +5698,11 @@ export class IndexPage {
         {
             "name": "AboutSectionTitle",
             "baseName": "AboutSectionTitle",
+            "type": "string"
+        },
+        {
+            "name": "AboutSectionSubtitle",
+            "baseName": "AboutSectionSubtitle",
             "type": "string"
         },
         {
@@ -5752,6 +5779,10 @@ export class IndexPageBase {
     */
     'AboutSectionTitle'?: string;
     /**
+    * About section sub-title
+    */
+    'AboutSectionSubtitle'?: string;
+    /**
     * About section title left
     */
     'AboutSectionLeftTitle'?: string;
@@ -5807,6 +5838,11 @@ export class IndexPageBase {
         {
             "name": "AboutSectionTitle",
             "baseName": "AboutSectionTitle",
+            "type": "string"
+        },
+        {
+            "name": "AboutSectionSubtitle",
+            "baseName": "AboutSectionSubtitle",
             "type": "string"
         },
         {
@@ -9641,6 +9677,47 @@ export class MenuSummary {
 
     static getAttributeTypeMap() {
         return MenuSummary.attributeTypeMap;
+    }
+}
+
+/**
+* Tax Rates Associated with a Menu
+*/
+export class MenuTaxRate {
+    /**
+    * Id of Tax Rate
+    */
+    'TaxRateId'?: number;
+    /**
+    * Name of Tax Rate
+    */
+    'Name'?: string;
+    /**
+    * In Percentage
+    */
+    'Rate'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "TaxRateId",
+            "baseName": "TaxRateId",
+            "type": "number"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Rate",
+            "baseName": "Rate",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuTaxRate.attributeTypeMap;
     }
 }
 
@@ -23219,10 +23296,9 @@ export namespace WebsiteImage {
         IndexHeader = <any> 'IndexHeader',
         IndexAboutSectionLeft = <any> 'IndexAboutSectionLeft',
         IndexAboutSectionRight = <any> 'IndexAboutSectionRight',
-        IndexGalleryHeader = <any> 'IndexGalleryHeader',
+        IndexGallery = <any> 'IndexGallery',
         IndexOpeningHoursHeader = <any> 'IndexOpeningHoursHeader',
-        IndexTestimonialsHeader = <any> 'IndexTestimonialsHeader',
-        GalleryHeader = <any> 'GalleryHeader'
+        IndexTestimonialsHeader = <any> 'IndexTestimonialsHeader'
     }
 }
 /**
@@ -23500,6 +23576,7 @@ let typeMap: {[index: string]: any} = {
     "MenuSectionUpdatedEvent": MenuSectionUpdatedEvent,
     "MenuStoreNames": MenuStoreNames,
     "MenuSummary": MenuSummary,
+    "MenuTaxRate": MenuTaxRate,
     "MenuUpdatedEvent": MenuUpdatedEvent,
     "Metadata": Metadata,
     "OAuthApp": OAuthApp,
@@ -29153,6 +29230,97 @@ export class MenuOptionSetItemsApi {
     }
     /**
      * 
+     * @summary [Private API] Set Tax Rate on OptionSetItem
+     * @param menuId Menu identifier
+     * @param menuSectionId 
+     * @param menuSectionItemId 
+     * @param optionSetId 
+     * @param menuItemOptionSetItemId Option set item identifier
+     * @param taxRateId Tax Rate to use
+     * @param {*} [options] Override http request options.
+     */
+    public setOptionSetItemTax (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, taxRateId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}/taxrate/{taxRateId}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)))
+            .replace('{' + 'menuItemOptionSetItemId' + '}', encodeURIComponent(String(menuItemOptionSetItemId)))
+            .replace('{' + 'taxRateId' + '}', encodeURIComponent(String(taxRateId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling setOptionSetItemTax.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling setOptionSetItemTax.');
+        }
+
+        // verify required parameter 'menuSectionItemId' is not null or undefined
+        if (menuSectionItemId === null || menuSectionItemId === undefined) {
+            throw new Error('Required parameter menuSectionItemId was null or undefined when calling setOptionSetItemTax.');
+        }
+
+        // verify required parameter 'optionSetId' is not null or undefined
+        if (optionSetId === null || optionSetId === undefined) {
+            throw new Error('Required parameter optionSetId was null or undefined when calling setOptionSetItemTax.');
+        }
+
+        // verify required parameter 'menuItemOptionSetItemId' is not null or undefined
+        if (menuItemOptionSetItemId === null || menuItemOptionSetItemId === undefined) {
+            throw new Error('Required parameter menuItemOptionSetItemId was null or undefined when calling setOptionSetItemTax.');
+        }
+
+        // verify required parameter 'taxRateId' is not null or undefined
+        if (taxRateId === null || taxRateId === undefined) {
+            throw new Error('Required parameter taxRateId was null or undefined when calling setOptionSetItemTax.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Update menu item option set item
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
@@ -30451,6 +30619,83 @@ export class MenuSectionItemsApi {
         // verify required parameter 'destinationDisplayOrder' is not null or undefined
         if (destinationDisplayOrder === null || destinationDisplayOrder === undefined) {
             throw new Error('Required parameter destinationDisplayOrder was null or undefined when calling moveMenuItem.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API]Move an Item within a menu
+     * @param menuId Menu identifier
+     * @param menuSectionId Section to put item in (will usually be original section)
+     * @param menuSectionItemId ID of Item to be moved
+     * @param taxRateId tax rate to be set against item
+     * @param {*} [options] Override http request options.
+     */
+    public setSectionItemTax (menuId: number, menuSectionId: number, menuSectionItemId: number, taxRateId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/taxrate/{taxRateId}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'taxRateId' + '}', encodeURIComponent(String(taxRateId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling setSectionItemTax.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling setSectionItemTax.');
+        }
+
+        // verify required parameter 'menuSectionItemId' is not null or undefined
+        if (menuSectionItemId === null || menuSectionItemId === undefined) {
+            throw new Error('Required parameter menuSectionItemId was null or undefined when calling setSectionItemTax.');
+        }
+
+        // verify required parameter 'taxRateId' is not null or undefined
+        if (taxRateId === null || taxRateId === undefined) {
+            throw new Error('Required parameter taxRateId was null or undefined when calling setSectionItemTax.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -32251,7 +32496,197 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary Re-arrange Sections within a Menu
+     * @summary [PRIVATE API]Add a new Tax Rate to a Menu
+     * @param menuId Menu identifier
+     * @param taxRate Tax Rate to Add
+     * @param {*} [options] Override http request options.
+     */
+    public menusAddTaxRate (menuId: number, taxRate: MenuTaxRate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: MenuTaxRate;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/taxrate'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menusAddTaxRate.');
+        }
+
+        // verify required parameter 'taxRate' is not null or undefined
+        if (taxRate === null || taxRate === undefined) {
+            throw new Error('Required parameter taxRate was null or undefined when calling menusAddTaxRate.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(taxRate, "MenuTaxRate")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: MenuTaxRate;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "MenuTaxRate");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API]Remove a Menus Tax Rate, can only remove a tax rate that does not have items/optionSetItems attached
+     * @param menuId Menu identifier
+     * @param taxId Id of Menu Tax to be removed
+     * @param {*} [options] Override http request options.
+     */
+    public menusDeleteTaxRate (menuId: number, taxId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/tax/{taxId}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'taxId' + '}', encodeURIComponent(String(taxId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menusDeleteTaxRate.');
+        }
+
+        // verify required parameter 'taxId' is not null or undefined
+        if (taxId === null || taxId === undefined) {
+            throw new Error('Required parameter taxId was null or undefined when calling menusDeleteTaxRate.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API]Set if tax shows for a Menu
+     * @param menuId Menu identifier
+     * @param show Boolean show or dont show tax (Exclusive tax type can only ever be TRUE)
+     * @param {*} [options] Override http request options.
+     */
+    public menusSetDisplayOnMenuTax (menuId: number, show: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/tax/show/{show}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'show' + '}', encodeURIComponent(String(show)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menusSetDisplayOnMenuTax.');
+        }
+
+        // verify required parameter 'show' is not null or undefined
+        if (show === null || show === undefined) {
+            throw new Error('Required parameter show was null or undefined when calling menusSetDisplayOnMenuTax.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API]Re-arrange Sections within a Menu
      * @param menuId Menu identifier
      * @param displayOrders Section Ids and their new display order
      * @param {*} [options] Override http request options.
@@ -32285,6 +32720,139 @@ export class MenusApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(displayOrders, "MenuObjectDisplayOrders")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API]Update Percentage rate of Tax Rate
+     * @param menuId Menu identifier
+     * @param taxId Id of Menu Tax to be removed
+     * @param taxRate Percentage tax rate
+     * @param {*} [options] Override http request options.
+     */
+    public menusSetTaxRatePercent (menuId: number, taxId: number, taxRate: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/tax/{taxId}/rate/{taxRate}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'taxId' + '}', encodeURIComponent(String(taxId)))
+            .replace('{' + 'taxRate' + '}', encodeURIComponent(String(taxRate)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menusSetTaxRatePercent.');
+        }
+
+        // verify required parameter 'taxId' is not null or undefined
+        if (taxId === null || taxId === undefined) {
+            throw new Error('Required parameter taxId was null or undefined when calling menusSetTaxRatePercent.');
+        }
+
+        // verify required parameter 'taxRate' is not null or undefined
+        if (taxRate === null || taxRate === undefined) {
+            throw new Error('Required parameter taxRate was null or undefined when calling menusSetTaxRatePercent.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API]Set the type of Tax on a Menu
+     * @param menuId Menu identifier
+     * @param type Type of Tax
+     * @param {*} [options] Override http request options.
+     */
+    public menusUpdateTaxType (menuId: number, type: 'IncludedInBasePrice' | 'ExcludedFromBasePrice', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/tax/type/{type}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'type' + '}', encodeURIComponent(String(type)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menusUpdateTaxType.');
+        }
+
+        // verify required parameter 'type' is not null or undefined
+        if (type === null || type === undefined) {
+            throw new Error('Required parameter type was null or undefined when calling menusUpdateTaxType.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -39496,7 +40064,7 @@ export class WebsiteApi {
      * @param Image App Logo
      * @param {*} [options] Override http request options.
      */
-    public uploadWebsiteImage (appId: string, imageLocation: 'IndexHeader' | 'IndexAboutSectionLeft' | 'IndexAboutSectionRight' | 'IndexGalleryHeader' | 'IndexOpeningHoursHeader' | 'IndexTestimonialsHeader' | 'GalleryHeader', Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteImage;  }> {
+    public uploadWebsiteImage (appId: string, imageLocation: 'IndexHeader' | 'IndexAboutSectionLeft' | 'IndexAboutSectionRight' | 'IndexGallery' | 'IndexOpeningHoursHeader' | 'IndexTestimonialsHeader', Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteImage;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/website/image/{imageLocation}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'imageLocation' + '}', encodeURIComponent(String(imageLocation)));
