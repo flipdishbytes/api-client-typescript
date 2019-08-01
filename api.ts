@@ -3954,6 +3954,101 @@ export class DeviceSettings {
 }
 
 /**
+* Order Terminal Notification
+*/
+export class EmvNotificationEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Notification Sent
+    */
+    'Notification'?: string;
+    /**
+    * Order
+    */
+    'Order'?: Order;
+    /**
+    * TerminalId
+    */
+    'TerminalId'?: string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Notification",
+            "baseName": "Notification",
+            "type": "string"
+        },
+        {
+            "name": "Order",
+            "baseName": "Order",
+            "type": "Order"
+        },
+        {
+            "name": "TerminalId",
+            "baseName": "TerminalId",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return EmvNotificationEvent.attributeTypeMap;
+    }
+}
+
+/**
 * 
 */
 export class EventSearchResult {
@@ -4000,7 +4095,7 @@ export class EventSearchResult {
     /**
     * Order Terminal Notification events
     */
-    'OrderTerminalNotifications'?: Array<OrderTerminalNotification>;
+    'OrderTerminalNotifications'?: Array<EmvNotificationEvent>;
     /**
     * Store created events
     */
@@ -4334,7 +4429,7 @@ export class EventSearchResult {
         {
             "name": "OrderTerminalNotifications",
             "baseName": "OrderTerminalNotifications",
-            "type": "Array<OrderTerminalNotification>"
+            "type": "Array<EmvNotificationEvent>"
         },
         {
             "name": "StoreCreatedEvent",
@@ -11347,101 +11442,6 @@ export namespace OrderSummary {
         TWD = <any> 'TWD'
     }
 }
-/**
-* Order Terminal Notification
-*/
-export class OrderTerminalNotification {
-    /**
-    * The event name
-    */
-    'EventName'?: string;
-    /**
-    * Notification Sent
-    */
-    'Notification'?: string;
-    /**
-    * Order
-    */
-    'Order'?: Order;
-    /**
-    * TerminalId
-    */
-    'TerminalId'?: string;
-    /**
-    * Description
-    */
-    'Description'?: string;
-    /**
-    * The identitfier of the event
-    */
-    'FlipdishEventId'?: string;
-    /**
-    * The time of creation of the event
-    */
-    'CreateTime'?: Date;
-    /**
-    * Position
-    */
-    'Position'?: number;
-    /**
-    * App id
-    */
-    'AppId'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "EventName",
-            "baseName": "EventName",
-            "type": "string"
-        },
-        {
-            "name": "Notification",
-            "baseName": "Notification",
-            "type": "string"
-        },
-        {
-            "name": "Order",
-            "baseName": "Order",
-            "type": "Order"
-        },
-        {
-            "name": "TerminalId",
-            "baseName": "TerminalId",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "FlipdishEventId",
-            "baseName": "FlipdishEventId",
-            "type": "string"
-        },
-        {
-            "name": "CreateTime",
-            "baseName": "CreateTime",
-            "type": "Date"
-        },
-        {
-            "name": "Position",
-            "baseName": "Position",
-            "type": "number"
-        },
-        {
-            "name": "AppId",
-            "baseName": "AppId",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return OrderTerminalNotification.attributeTypeMap;
-    }
-}
-
 /**
 * Order Tip Update Event
 */
@@ -23509,6 +23509,7 @@ let typeMap: {[index: string]: any} = {
     "DeliveryZoneDeletedEvent": DeliveryZoneDeletedEvent,
     "DeliveryZoneUpdatedEvent": DeliveryZoneUpdatedEvent,
     "DeviceSettings": DeviceSettings,
+    "EmvNotificationEvent": EmvNotificationEvent,
     "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
     "GroupedCoordinates": GroupedCoordinates,
@@ -23593,7 +23594,6 @@ let typeMap: {[index: string]: any} = {
     "OrderRefundedEvent": OrderRefundedEvent,
     "OrderRejectedEvent": OrderRejectedEvent,
     "OrderSummary": OrderSummary,
-    "OrderTerminalNotification": OrderTerminalNotification,
     "OrderTipUpdatedEvent": OrderTipUpdatedEvent,
     "OrderVoucherSummary": OrderVoucherSummary,
     "PasswordResetModel": PasswordResetModel,
