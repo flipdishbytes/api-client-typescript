@@ -4361,10 +4361,6 @@ export class EventSearchResult {
     */
     'HydraUnAssignedEvent'?: Array<HydraUnAssignedEvent>;
     /**
-    * Hydra connection state change
-    */
-    'HydraConnectionStatusChangedEvent'?: Array<HydraConnectionStatusChangedEvent>;
-    /**
     * Push notification scheduled event
     */
     'PushNotificationScheduledEvent'?: Array<PushNotificationScheduledEvent>;
@@ -4764,11 +4760,6 @@ export class EventSearchResult {
             "name": "HydraUnAssignedEvent",
             "baseName": "HydraUnAssignedEvent",
             "type": "Array<HydraUnAssignedEvent>"
-        },
-        {
-            "name": "HydraConnectionStatusChangedEvent",
-            "baseName": "HydraConnectionStatusChangedEvent",
-            "type": "Array<HydraConnectionStatusChangedEvent>"
         },
         {
             "name": "PushNotificationScheduledEvent",
@@ -5260,99 +5251,6 @@ export namespace HydraConfig {
         Online = <any> 'Online',
         Emv = <any> 'Emv',
         Counter = <any> 'Counter'
-    }
-}
-/**
-* Hydra Connection Status Changed Event
-*/
-export class HydraConnectionStatusChangedEvent {
-    /**
-    * Hydra Device Id
-    */
-    'DeviceId'?: string;
-    /**
-    * Hydra Device Status
-    */
-    'HydraDeviceStatus'?: HydraConnectionStatusChangedEvent.HydraDeviceStatusEnum;
-    /**
-    * Hydra Last Poll Time
-    */
-    'PollTime'?: Date;
-    /**
-    * The event name
-    */
-    'EventName'?: string;
-    /**
-    * The identitfier of the event
-    */
-    'FlipdishEventId'?: string;
-    /**
-    * The time of creation of the event
-    */
-    'CreateTime'?: Date;
-    /**
-    * Position
-    */
-    'Position'?: number;
-    /**
-    * App id
-    */
-    'AppId'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "DeviceId",
-            "baseName": "DeviceId",
-            "type": "string"
-        },
-        {
-            "name": "HydraDeviceStatus",
-            "baseName": "HydraDeviceStatus",
-            "type": "HydraConnectionStatusChangedEvent.HydraDeviceStatusEnum"
-        },
-        {
-            "name": "PollTime",
-            "baseName": "PollTime",
-            "type": "Date"
-        },
-        {
-            "name": "EventName",
-            "baseName": "EventName",
-            "type": "string"
-        },
-        {
-            "name": "FlipdishEventId",
-            "baseName": "FlipdishEventId",
-            "type": "string"
-        },
-        {
-            "name": "CreateTime",
-            "baseName": "CreateTime",
-            "type": "Date"
-        },
-        {
-            "name": "Position",
-            "baseName": "Position",
-            "type": "number"
-        },
-        {
-            "name": "AppId",
-            "baseName": "AppId",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return HydraConnectionStatusChangedEvent.attributeTypeMap;
-    }
-}
-
-export namespace HydraConnectionStatusChangedEvent {
-    export enum HydraDeviceStatusEnum {
-        Online = <any> 'Online',
-        PossiblyOffline = <any> 'PossiblyOffline',
-        Offline = <any> 'Offline'
     }
 }
 /**
@@ -23499,7 +23397,6 @@ let enumsMap: {[index: string]: any} = {
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
         "HomeAction.HomeActionTypeEnum": HomeAction.HomeActionTypeEnum,
         "HydraConfig.PaymentOptionsEnum": HydraConfig.PaymentOptionsEnum,
-        "HydraConnectionStatusChangedEvent.HydraDeviceStatusEnum": HydraConnectionStatusChangedEvent.HydraDeviceStatusEnum,
         "HydraDeviceDetails.DeviceTypeEnum": HydraDeviceDetails.DeviceTypeEnum,
         "HydraDeviceDetails.StatusEnum": HydraDeviceDetails.StatusEnum,
         "HydraStatus.UserTypeEnum": HydraStatus.UserTypeEnum,
@@ -23621,7 +23518,6 @@ let typeMap: {[index: string]: any} = {
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
     "HydraAssignedEvent": HydraAssignedEvent,
     "HydraConfig": HydraConfig,
-    "HydraConnectionStatusChangedEvent": HydraConnectionStatusChangedEvent,
     "HydraDeviceDetails": HydraDeviceDetails,
     "HydraRegistrationRequest": HydraRegistrationRequest,
     "HydraRequestResetEvent": HydraRequestResetEvent,
