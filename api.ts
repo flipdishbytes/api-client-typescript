@@ -718,6 +718,10 @@ export class App {
     * Is Panacea Enabled
     */
     'IsPanaceaEnabled'?: boolean;
+    /**
+    * Cookie Consent Prompt Enabled
+    */
+    'CookieConsentPromptEnabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -810,6 +814,11 @@ export class App {
         {
             "name": "IsPanaceaEnabled",
             "baseName": "IsPanaceaEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "CookieConsentPromptEnabled",
+            "baseName": "CookieConsentPromptEnabled",
             "type": "boolean"
         }    ];
 
@@ -953,6 +962,10 @@ export class AppConfigUpdateModel {
     * Is Panacea Enabled
     */
     'IsPanaceaEnabled'?: boolean;
+    /**
+    * Cookie Consent Prompt Enabled
+    */
+    'CookieConsentPromptEnabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -980,6 +993,11 @@ export class AppConfigUpdateModel {
         {
             "name": "IsPanaceaEnabled",
             "baseName": "IsPanaceaEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "CookieConsentPromptEnabled",
+            "baseName": "CookieConsentPromptEnabled",
             "type": "boolean"
         }    ];
 
