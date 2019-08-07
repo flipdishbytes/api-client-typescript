@@ -9878,6 +9878,53 @@ export class MenuSummary {
 }
 
 /**
+* Tax information for Menu
+*/
+export class MenuTaxDetails {
+    /**
+    * Tax Rates
+    */
+    'TaxRates'?: Array<MenuTaxRate>;
+    /**
+    * Display tax for Menu
+    */
+    'DisplayTax'?: boolean;
+    /**
+    * TaxType
+    */
+    'TaxType'?: MenuTaxDetails.TaxTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "TaxRates",
+            "baseName": "TaxRates",
+            "type": "Array<MenuTaxRate>"
+        },
+        {
+            "name": "DisplayTax",
+            "baseName": "DisplayTax",
+            "type": "boolean"
+        },
+        {
+            "name": "TaxType",
+            "baseName": "TaxType",
+            "type": "MenuTaxDetails.TaxTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuTaxDetails.attributeTypeMap;
+    }
+}
+
+export namespace MenuTaxDetails {
+    export enum TaxTypeEnum {
+        IncludedInBasePrice = <any> 'IncludedInBasePrice',
+        ExcludedFromBasePrice = <any> 'ExcludedFromBasePrice'
+    }
+}
+/**
 * Tax Rates Associated with a Menu
 */
 export class MenuTaxRate {
@@ -13711,6 +13758,29 @@ export class RestApiArrayResultMenuSummary {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultMenuSummary.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultMenuTaxDetails {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<MenuTaxDetails>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<MenuTaxDetails>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultMenuTaxDetails.attributeTypeMap;
     }
 }
 
@@ -23516,6 +23586,7 @@ let enumsMap: {[index: string]: any} = {
         "MenuSectionItem.CellLayoutTypeEnum": MenuSectionItem.CellLayoutTypeEnum,
         "MenuSectionItemBase.SpicinessRatingEnum": MenuSectionItemBase.SpicinessRatingEnum,
         "MenuSectionItemBase.CellLayoutTypeEnum": MenuSectionItemBase.CellLayoutTypeEnum,
+        "MenuTaxDetails.TaxTypeEnum": MenuTaxDetails.TaxTypeEnum,
         "Order.DeliveryTypeEnum": Order.DeliveryTypeEnum,
         "Order.PickupLocationTypeEnum": Order.PickupLocationTypeEnum,
         "Order.PaymentAccountTypeEnum": Order.PaymentAccountTypeEnum,
@@ -23681,6 +23752,7 @@ let typeMap: {[index: string]: any} = {
     "MenuSectionUpdatedEvent": MenuSectionUpdatedEvent,
     "MenuStoreNames": MenuStoreNames,
     "MenuSummary": MenuSummary,
+    "MenuTaxDetails": MenuTaxDetails,
     "MenuTaxRate": MenuTaxRate,
     "MenuUpdatedEvent": MenuUpdatedEvent,
     "Metadata": Metadata,
@@ -23742,6 +23814,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultMenuSectionItem": RestApiArrayResultMenuSectionItem,
     "RestApiArrayResultMenuStoreNames": RestApiArrayResultMenuStoreNames,
     "RestApiArrayResultMenuSummary": RestApiArrayResultMenuSummary,
+    "RestApiArrayResultMenuTaxDetails": RestApiArrayResultMenuTaxDetails,
     "RestApiArrayResultMetadata": RestApiArrayResultMetadata,
     "RestApiArrayResultOAuthApp": RestApiArrayResultOAuthApp,
     "RestApiArrayResultOauthClientRedirectUri": RestApiArrayResultOauthClientRedirectUri,
@@ -32475,6 +32548,63 @@ export class MenusApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuStoreNames");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API]Get menus tax details
+     * @param menuId Menu identifier
+     * @param {*} [options] Override http request options.
+     */
+    public getMenuTaxDetails (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuTaxDetails;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/tax'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling getMenuTaxDetails.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuTaxDetails;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuTaxDetails");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
