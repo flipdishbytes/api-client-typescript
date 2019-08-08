@@ -12290,17 +12290,26 @@ export namespace PreOrderConfig {
 */
 export class PreOrderTime {
     /**
-    * Time
+    * Start Time
     */
-    'Time'?: string;
+    'StartTime'?: Date;
+    /**
+    * End Time
+    */
+    'EndTime'?: Date;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "Time",
-            "baseName": "Time",
-            "type": "string"
+            "name": "StartTime",
+            "baseName": "StartTime",
+            "type": "Date"
+        },
+        {
+            "name": "EndTime",
+            "baseName": "EndTime",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
@@ -32748,70 +32757,6 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary [PRIVATE API]Add a new Tax Rate to a Menu
-     * @param menuId Menu identifier
-     * @param taxRate Tax Rate to Add
-     * @param {*} [options] Override http request options.
-     */
-    public menusAddTaxRate (menuId: number, taxRate: MenuTaxRate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: MenuTaxRate;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/taxrate'
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling menusAddTaxRate.');
-        }
-
-        // verify required parameter 'taxRate' is not null or undefined
-        if (taxRate === null || taxRate === undefined) {
-            throw new Error('Required parameter taxRate was null or undefined when calling menusAddTaxRate.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(taxRate, "MenuTaxRate")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: MenuTaxRate;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "MenuTaxRate");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @summary [PRIVATE API]Remove a Menus Tax Rate, can only remove a tax rate that does not have items/optionSetItems attached
      * @param menuId Menu identifier
      * @param taxId Id of Menu Tax to be removed
@@ -33001,76 +32946,6 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary [PRIVATE API]Update Percentage rate of Tax Rate
-     * @param menuId Menu identifier
-     * @param taxId Id of Menu Tax to be removed
-     * @param taxRate Percentage tax rate
-     * @param {*} [options] Override http request options.
-     */
-    public menusSetTaxRatePercent (menuId: number, taxId: number, taxRate: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/tax/{taxId}/rate/{taxRate}'
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
-            .replace('{' + 'taxId' + '}', encodeURIComponent(String(taxId)))
-            .replace('{' + 'taxRate' + '}', encodeURIComponent(String(taxRate)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling menusSetTaxRatePercent.');
-        }
-
-        // verify required parameter 'taxId' is not null or undefined
-        if (taxId === null || taxId === undefined) {
-            throw new Error('Required parameter taxId was null or undefined when calling menusSetTaxRatePercent.');
-        }
-
-        // verify required parameter 'taxRate' is not null or undefined
-        if (taxRate === null || taxRate === undefined) {
-            throw new Error('Required parameter taxRate was null or undefined when calling menusSetTaxRatePercent.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @summary [PRIVATE API]Set the type of Tax on a Menu
      * @param menuId Menu identifier
      * @param type Type of Tax
@@ -33123,6 +32998,70 @@ export class MenusApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API]Add/Update a Tax Rate
+     * @param menuId Menu identifier
+     * @param taxRate Tax Rate to Add/Update
+     * @param {*} [options] Override http request options.
+     */
+    public menusUpsertTaxRate (menuId: number, taxRate: MenuTaxRate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: MenuTaxRate;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/taxrate'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menusUpsertTaxRate.');
+        }
+
+        // verify required parameter 'taxRate' is not null or undefined
+        if (taxRate === null || taxRate === undefined) {
+            throw new Error('Required parameter taxRate was null or undefined when calling menusUpsertTaxRate.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(taxRate, "MenuTaxRate")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: MenuTaxRate;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "MenuTaxRate");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -36373,10 +36312,17 @@ export class StoresApi {
      * @summary Get the Preview times of the pre-order configuration
      * @param storeId Store identifier
      * @param deliveryType \&quot;delivery\&quot; or \&quot;pickup\&quot;
-     * @param date optional parameter to show results from
+     * @param preOrderConfig_leadTimeMinutes Lead Time in Minutes
+     * @param preOrderConfig_intervalMinutes Interval in minutes
+     * @param preOrderConfig_maxOrderAheadDays Max Days to order ahead
+     * @param preOrderConfig_includeAsap Show ASAP as option
+     * @param preOrderConfig_includeMoreGranularInitialTime Granual Init&#39; Time
+     * @param preOrderConfig_cutOffTimePreviousDayBasic Cut off time previous day
+     * @param preOrderConfig_cutOffTimeCurrentDayBasic Cut off time current day
+     * @param preOrderConfig_preOrderTimeDisplayType Type of time displayed.
      * @param {*} [options] Override http request options.
      */
-    public getPreOrderPreview (storeId: number, deliveryType: 'Delivery' | 'Pickup', date: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPreOrderTime;  }> {
+    public getPreOrderPreview (storeId: number, deliveryType: 'Delivery' | 'Pickup', preOrderConfig_leadTimeMinutes?: number, preOrderConfig_intervalMinutes?: number, preOrderConfig_maxOrderAheadDays?: number, preOrderConfig_includeAsap?: boolean, preOrderConfig_includeMoreGranularInitialTime?: boolean, preOrderConfig_cutOffTimePreviousDayBasic?: string, preOrderConfig_cutOffTimeCurrentDayBasic?: string, preOrderConfig_preOrderTimeDisplayType?: 'SingleTime' | 'StartAndEndTime' | 'DayOnly', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPreOrderTime;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/preorderconfig/{deliveryType}/preview'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
@@ -36394,13 +36340,36 @@ export class StoresApi {
             throw new Error('Required parameter deliveryType was null or undefined when calling getPreOrderPreview.');
         }
 
-        // verify required parameter 'date' is not null or undefined
-        if (date === null || date === undefined) {
-            throw new Error('Required parameter date was null or undefined when calling getPreOrderPreview.');
+        if (preOrderConfig_leadTimeMinutes !== undefined) {
+            localVarQueryParameters['preOrderConfig.leadTimeMinutes'] = ObjectSerializer.serialize(preOrderConfig_leadTimeMinutes, "number");
         }
 
-        if (date !== undefined) {
-            localVarQueryParameters['date'] = ObjectSerializer.serialize(date, "string");
+        if (preOrderConfig_intervalMinutes !== undefined) {
+            localVarQueryParameters['preOrderConfig.intervalMinutes'] = ObjectSerializer.serialize(preOrderConfig_intervalMinutes, "number");
+        }
+
+        if (preOrderConfig_maxOrderAheadDays !== undefined) {
+            localVarQueryParameters['preOrderConfig.maxOrderAheadDays'] = ObjectSerializer.serialize(preOrderConfig_maxOrderAheadDays, "number");
+        }
+
+        if (preOrderConfig_includeAsap !== undefined) {
+            localVarQueryParameters['preOrderConfig.includeAsap'] = ObjectSerializer.serialize(preOrderConfig_includeAsap, "boolean");
+        }
+
+        if (preOrderConfig_includeMoreGranularInitialTime !== undefined) {
+            localVarQueryParameters['preOrderConfig.includeMoreGranularInitialTime'] = ObjectSerializer.serialize(preOrderConfig_includeMoreGranularInitialTime, "boolean");
+        }
+
+        if (preOrderConfig_cutOffTimePreviousDayBasic !== undefined) {
+            localVarQueryParameters['preOrderConfig.cutOffTimePreviousDayBasic'] = ObjectSerializer.serialize(preOrderConfig_cutOffTimePreviousDayBasic, "string");
+        }
+
+        if (preOrderConfig_cutOffTimeCurrentDayBasic !== undefined) {
+            localVarQueryParameters['preOrderConfig.cutOffTimeCurrentDayBasic'] = ObjectSerializer.serialize(preOrderConfig_cutOffTimeCurrentDayBasic, "string");
+        }
+
+        if (preOrderConfig_preOrderTimeDisplayType !== undefined) {
+            localVarQueryParameters['preOrderConfig.preOrderTimeDisplayType'] = ObjectSerializer.serialize(preOrderConfig_preOrderTimeDisplayType, "'SingleTime' | 'StartAndEndTime' | 'DayOnly'");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
