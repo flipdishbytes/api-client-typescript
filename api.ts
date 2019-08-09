@@ -36526,11 +36526,12 @@ export class StoresApi {
      * 
      * @summary Get all stores by app name id
      * @param appId App Name Id
+     * @param storeNameQuery 
      * @param page 
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getStoreHeadersByAppId (appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreHeader;  }> {
+    public getStoreHeadersByAppId (appId: string, storeNameQuery?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreHeader;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/header'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -36540,6 +36541,10 @@ export class StoresApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getStoreHeadersByAppId.');
+        }
+
+        if (storeNameQuery !== undefined) {
+            localVarQueryParameters['storeNameQuery'] = ObjectSerializer.serialize(storeNameQuery, "string");
         }
 
         if (page !== undefined) {
