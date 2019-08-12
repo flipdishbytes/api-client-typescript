@@ -9956,6 +9956,14 @@ export class MenuTaxDetails {
     * TaxType
     */
     'TaxType'?: MenuTaxDetails.TaxTypeEnum;
+    /**
+    * ItemIds and TaxIds
+    */
+    'ItemTaxes'?: { [key: string]: number; };
+    /**
+    * SetItemIds and TaxIds
+    */
+    'SetItemTaxes'?: { [key: string]: number; };
 
     static discriminator: string | undefined = undefined;
 
@@ -9974,6 +9982,16 @@ export class MenuTaxDetails {
             "name": "TaxType",
             "baseName": "TaxType",
             "type": "MenuTaxDetails.TaxTypeEnum"
+        },
+        {
+            "name": "ItemTaxes",
+            "baseName": "ItemTaxes",
+            "type": "{ [key: string]: number; }"
+        },
+        {
+            "name": "SetItemTaxes",
+            "baseName": "SetItemTaxes",
+            "type": "{ [key: string]: number; }"
         }    ];
 
     static getAttributeTypeMap() {
