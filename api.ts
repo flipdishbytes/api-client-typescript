@@ -3996,6 +3996,26 @@ export class EmvNotificationEvent {
     */
     'Description'?: string;
     /**
+    * Expirey Date
+    */
+    'ExpDate'?: string;
+    /**
+    * Card Type
+    */
+    'CardType'?: string;
+    /**
+    * Payment Method
+    */
+    'PaymentMethod'?: string;
+    /**
+    * Masked Account Number
+    */
+    'AccountNumber'?: string;
+    /**
+    * Auth Code
+    */
+    'AuthCode'?: string;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -4038,6 +4058,31 @@ export class EmvNotificationEvent {
         {
             "name": "Description",
             "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "ExpDate",
+            "baseName": "ExpDate",
+            "type": "string"
+        },
+        {
+            "name": "CardType",
+            "baseName": "CardType",
+            "type": "string"
+        },
+        {
+            "name": "PaymentMethod",
+            "baseName": "PaymentMethod",
+            "type": "string"
+        },
+        {
+            "name": "AccountNumber",
+            "baseName": "AccountNumber",
+            "type": "string"
+        },
+        {
+            "name": "AuthCode",
+            "baseName": "AuthCode",
             "type": "string"
         },
         {
