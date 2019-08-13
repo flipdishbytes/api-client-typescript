@@ -3996,6 +3996,26 @@ export class EmvNotificationEvent {
     */
     'Description'?: string;
     /**
+    * Expirey Date
+    */
+    'ExpDate'?: string;
+    /**
+    * Card Type
+    */
+    'CardType'?: string;
+    /**
+    * Payment Method
+    */
+    'PaymentMethod'?: string;
+    /**
+    * Masked Account Number
+    */
+    'AccountNumber'?: string;
+    /**
+    * Auth Code
+    */
+    'AuthCode'?: string;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -4038,6 +4058,31 @@ export class EmvNotificationEvent {
         {
             "name": "Description",
             "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "ExpDate",
+            "baseName": "ExpDate",
+            "type": "string"
+        },
+        {
+            "name": "CardType",
+            "baseName": "CardType",
+            "type": "string"
+        },
+        {
+            "name": "PaymentMethod",
+            "baseName": "PaymentMethod",
+            "type": "string"
+        },
+        {
+            "name": "AccountNumber",
+            "baseName": "AccountNumber",
+            "type": "string"
+        },
+        {
+            "name": "AuthCode",
+            "baseName": "AuthCode",
             "type": "string"
         },
         {
@@ -9911,6 +9956,14 @@ export class MenuTaxDetails {
     * TaxType
     */
     'TaxType'?: MenuTaxDetails.TaxTypeEnum;
+    /**
+    * ItemIds and TaxIds
+    */
+    'ItemTaxes'?: { [key: string]: number; };
+    /**
+    * SetItemIds and TaxIds
+    */
+    'SetItemTaxes'?: { [key: string]: number; };
 
     static discriminator: string | undefined = undefined;
 
@@ -9929,6 +9982,16 @@ export class MenuTaxDetails {
             "name": "TaxType",
             "baseName": "TaxType",
             "type": "MenuTaxDetails.TaxTypeEnum"
+        },
+        {
+            "name": "ItemTaxes",
+            "baseName": "ItemTaxes",
+            "type": "{ [key: string]: number; }"
+        },
+        {
+            "name": "SetItemTaxes",
+            "baseName": "SetItemTaxes",
+            "type": "{ [key: string]: number; }"
         }    ];
 
     static getAttributeTypeMap() {
@@ -11877,6 +11940,74 @@ export class PaymentTerminalDetails {
 
     static getAttributeTypeMap() {
         return PaymentTerminalDetails.attributeTypeMap;
+    }
+}
+
+/**
+* Details of Payment Terminal Transaction
+*/
+export class PaymentTerminalTransactionDetails {
+    /**
+    * Card Type
+    */
+    'CardSchemeName'?: string;
+    /**
+    * Expirey Date on Card
+    */
+    'DateOfExpirey'?: string;
+    /**
+    * AuthCode
+    */
+    'AuthCode'?: string;
+    /**
+    * State of Request, \"PENDING\" is not yet completed
+    */
+    'TransactionResult'?: string;
+    /**
+    * Masked PAN
+    */
+    'PrimaryAccountNumber'?: string;
+    /**
+    * Type of Verification.
+    */
+    'CardholderVerificationMethod'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CardSchemeName",
+            "baseName": "CardSchemeName",
+            "type": "string"
+        },
+        {
+            "name": "DateOfExpirey",
+            "baseName": "DateOfExpirey",
+            "type": "string"
+        },
+        {
+            "name": "AuthCode",
+            "baseName": "AuthCode",
+            "type": "string"
+        },
+        {
+            "name": "TransactionResult",
+            "baseName": "TransactionResult",
+            "type": "string"
+        },
+        {
+            "name": "PrimaryAccountNumber",
+            "baseName": "PrimaryAccountNumber",
+            "type": "string"
+        },
+        {
+            "name": "CardholderVerificationMethod",
+            "baseName": "CardholderVerificationMethod",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PaymentTerminalTransactionDetails.attributeTypeMap;
     }
 }
 
@@ -15619,6 +15750,29 @@ export class RestApiResultPaymentTerminalDetails {
 
     static getAttributeTypeMap() {
         return RestApiResultPaymentTerminalDetails.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultPaymentTerminalTransactionDetails {
+    /**
+    * Generic data object.
+    */
+    'Data': PaymentTerminalTransactionDetails;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "PaymentTerminalTransactionDetails"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultPaymentTerminalTransactionDetails.attributeTypeMap;
     }
 }
 
@@ -23801,6 +23955,7 @@ let typeMap: {[index: string]: any} = {
     "OrderVoucherSummary": OrderVoucherSummary,
     "PasswordResetModel": PasswordResetModel,
     "PaymentTerminalDetails": PaymentTerminalDetails,
+    "PaymentTerminalTransactionDetails": PaymentTerminalTransactionDetails,
     "PercentDiscountDetails": PercentDiscountDetails,
     "PhoneCall": PhoneCall,
     "PhoneCallEndedEvent": PhoneCallEndedEvent,
@@ -23900,6 +24055,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
     "RestApiResultOrder": RestApiResultOrder,
     "RestApiResultPaymentTerminalDetails": RestApiResultPaymentTerminalDetails,
+    "RestApiResultPaymentTerminalTransactionDetails": RestApiResultPaymentTerminalTransactionDetails,
     "RestApiResultPreOrderConfig": RestApiResultPreOrderConfig,
     "RestApiResultProcessingFeeConfig": RestApiResultProcessingFeeConfig,
     "RestApiResultPushNotificationResponse": RestApiResultPushNotificationResponse,
@@ -28399,6 +28555,127 @@ export class HydraApi {
     }
     /**
      * 
+     * @summary [Private]
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getEMVTerminalDetails (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalDetails;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvterminal'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getEMVTerminalDetails.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalDetails;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultPaymentTerminalDetails");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [Private]
+     * @param orderId 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getEmvOrderState (orderId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalTransactionDetails;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvorderstate/{orderId}'
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orderId' is not null or undefined
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling getEmvOrderState.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getEmvOrderState.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalTransactionDetails;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultPaymentTerminalTransactionDetails");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @param {*} [options] Override http request options.
      */
     public getRegistration (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }> {
@@ -28487,63 +28764,6 @@ export class HydraApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultHydraConfig");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary [Private]
-     * @param appId 
-     * @param {*} [options] Override http request options.
-     */
-    public getTerminalDetails (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalDetails;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/terminal'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getTerminalDetails.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalDetails;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultPaymentTerminalDetails");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
