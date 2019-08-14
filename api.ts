@@ -11954,7 +11954,7 @@ export class PaymentTerminalTransactionDetails {
     /**
     * Expirey Date on Card
     */
-    'DateOfExpirey'?: string;
+    'DateOfExpiry'?: string;
     /**
     * AuthCode
     */
@@ -11981,8 +11981,8 @@ export class PaymentTerminalTransactionDetails {
             "type": "string"
         },
         {
-            "name": "DateOfExpirey",
-            "baseName": "DateOfExpirey",
+            "name": "DateOfExpiry",
+            "baseName": "DateOfExpiry",
             "type": "string"
         },
         {
