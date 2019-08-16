@@ -5503,9 +5503,9 @@ export namespace HydraDeviceDetails {
 */
 export class HydraRegistrationRequest {
     /**
-    * Store to assign the hydra
+    * Stores to assign the hydra
     */
-    'StoreId': number;
+    'StoreIds': Array<number>;
     /**
     * Hydra device name
     */
@@ -5519,9 +5519,9 @@ export class HydraRegistrationRequest {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "StoreId",
-            "baseName": "StoreId",
-            "type": "number"
+            "name": "StoreIds",
+            "baseName": "StoreIds",
+            "type": "Array<number>"
         },
         {
             "name": "DeviceName",
@@ -5695,7 +5695,7 @@ export class HydraStatus {
     /**
     * Store to assign the hydra
     */
-    'StoreId'?: number;
+    'StoreIds'?: Array<number>;
     /**
     * The device has been already registered
     */
@@ -5722,9 +5722,9 @@ export class HydraStatus {
             "type": "string"
         },
         {
-            "name": "StoreId",
-            "baseName": "StoreId",
-            "type": "number"
+            "name": "StoreIds",
+            "baseName": "StoreIds",
+            "type": "Array<number>"
         },
         {
             "name": "IsRegistered",
@@ -28512,6 +28512,68 @@ export class HydraApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param orderId 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public cancelEmvPayment (orderId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/cancelemvpayment/{orderId}'
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orderId' is not null or undefined
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling cancelEmvPayment.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling cancelEmvPayment.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
     }
     /**
      * 
