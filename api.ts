@@ -1408,6 +1408,10 @@ export class BankAccountCreate {
     * National Clearing Code (BSB in Australia, Routing Number in USA/Canada, NCC in NZ)
     */
     'NationalClearingCode'?: string;
+    /**
+    * Reason for Rejection
+    */
+    'RejectionReason'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1470,6 +1474,11 @@ export class BankAccountCreate {
         {
             "name": "NationalClearingCode",
             "baseName": "NationalClearingCode",
+            "type": "string"
+        },
+        {
+            "name": "RejectionReason",
+            "baseName": "RejectionReason",
             "type": "string"
         }    ];
 
@@ -1794,6 +1803,10 @@ export class BankAccountDetail {
     * National Clearing Code (BSB in Australia, Routing Number in USA/Canada, NCC in NZ)
     */
     'NationalClearingCode'?: string;
+    /**
+    * Reason for Rejection
+    */
+    'RejectionReason'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1871,6 +1884,11 @@ export class BankAccountDetail {
         {
             "name": "NationalClearingCode",
             "baseName": "NationalClearingCode",
+            "type": "string"
+        },
+        {
+            "name": "RejectionReason",
+            "baseName": "RejectionReason",
             "type": "string"
         }    ];
 
@@ -2037,6 +2055,10 @@ export class BankAccountSummary {
     * National Clearing Code (BSB in Australia, Routing Number in USA/Canada, NCC in NZ)
     */
     'NationalClearingCode'?: string;
+    /**
+    * Reason for Rejection
+    */
+    'RejectionReason'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -2079,6 +2101,11 @@ export class BankAccountSummary {
         {
             "name": "NationalClearingCode",
             "baseName": "NationalClearingCode",
+            "type": "string"
+        },
+        {
+            "name": "RejectionReason",
+            "baseName": "RejectionReason",
             "type": "string"
         }    ];
 
