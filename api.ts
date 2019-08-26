@@ -19965,6 +19965,14 @@ export class StoreOpeningHoursUpdatedEvent {
     */
     'User'?: UserEventInfo;
     /**
+    * The period that was updated
+    */
+    'BusinessHoursPeriodOld'?: BusinessHoursPeriod;
+    /**
+    * The new values of the period
+    */
+    'BusinessHoursPeriod'?: BusinessHoursPeriod;
+    /**
     * Description
     */
     'Description'?: string;
@@ -20007,6 +20015,16 @@ export class StoreOpeningHoursUpdatedEvent {
             "name": "User",
             "baseName": "User",
             "type": "UserEventInfo"
+        },
+        {
+            "name": "BusinessHoursPeriodOld",
+            "baseName": "BusinessHoursPeriodOld",
+            "type": "BusinessHoursPeriod"
+        },
+        {
+            "name": "BusinessHoursPeriod",
+            "baseName": "BusinessHoursPeriod",
+            "type": "BusinessHoursPeriod"
         },
         {
             "name": "Description",
