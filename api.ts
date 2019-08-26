@@ -31150,6 +31150,83 @@ export class MenuSectionItemsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Section to put item in (will usually be original section)
      * @param menuSectionItemId ID of Item to be moved
+     * @param destinationDisplayOrder New Display Order of item
+     * @param {*} [options] Override http request options.
+     */
+    public moveMenuItem (menuId: number, menuSectionId: number, menuSectionItemId: number, destinationDisplayOrder: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/setorder/{destinationDisplayOrder}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'destinationDisplayOrder' + '}', encodeURIComponent(String(destinationDisplayOrder)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling moveMenuItem.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling moveMenuItem.');
+        }
+
+        // verify required parameter 'menuSectionItemId' is not null or undefined
+        if (menuSectionItemId === null || menuSectionItemId === undefined) {
+            throw new Error('Required parameter menuSectionItemId was null or undefined when calling moveMenuItem.');
+        }
+
+        // verify required parameter 'destinationDisplayOrder' is not null or undefined
+        if (destinationDisplayOrder === null || destinationDisplayOrder === undefined) {
+            throw new Error('Required parameter destinationDisplayOrder was null or undefined when calling moveMenuItem.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API]Move an Item within a menu
+     * @param menuId Menu identifier
+     * @param menuSectionId Section to put item in (will usually be original section)
+     * @param menuSectionItemId ID of Item to be moved
      * @param taxRateId tax rate to be set against item
      * @param {*} [options] Override http request options.
      */
