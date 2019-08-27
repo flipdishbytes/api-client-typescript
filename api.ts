@@ -1408,6 +1408,10 @@ export class BankAccountCreate {
     * National Clearing Code (BSB in Australia, Routing Number in USA/Canada, NCC in NZ)
     */
     'NationalClearingCode'?: string;
+    /**
+    * Reason for Rejection
+    */
+    'RejectionReason'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1470,6 +1474,11 @@ export class BankAccountCreate {
         {
             "name": "NationalClearingCode",
             "baseName": "NationalClearingCode",
+            "type": "string"
+        },
+        {
+            "name": "RejectionReason",
+            "baseName": "RejectionReason",
             "type": "string"
         }    ];
 
@@ -1794,6 +1803,10 @@ export class BankAccountDetail {
     * National Clearing Code (BSB in Australia, Routing Number in USA/Canada, NCC in NZ)
     */
     'NationalClearingCode'?: string;
+    /**
+    * Reason for Rejection
+    */
+    'RejectionReason'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1871,6 +1884,11 @@ export class BankAccountDetail {
         {
             "name": "NationalClearingCode",
             "baseName": "NationalClearingCode",
+            "type": "string"
+        },
+        {
+            "name": "RejectionReason",
+            "baseName": "RejectionReason",
             "type": "string"
         }    ];
 
@@ -2037,6 +2055,10 @@ export class BankAccountSummary {
     * National Clearing Code (BSB in Australia, Routing Number in USA/Canada, NCC in NZ)
     */
     'NationalClearingCode'?: string;
+    /**
+    * Reason for Rejection
+    */
+    'RejectionReason'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -2079,6 +2101,11 @@ export class BankAccountSummary {
         {
             "name": "NationalClearingCode",
             "baseName": "NationalClearingCode",
+            "type": "string"
+        },
+        {
+            "name": "RejectionReason",
+            "baseName": "RejectionReason",
             "type": "string"
         }    ];
 
@@ -6971,6 +6998,10 @@ export class LightspeedSettings {
     * The menu id of the store
     */
     'MenuId'?: number;
+    /**
+    * Table ID to send orders
+    */
+    'TableId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -7028,6 +7059,11 @@ export class LightspeedSettings {
         {
             "name": "MenuId",
             "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "TableId",
+            "baseName": "TableId",
             "type": "number"
         }    ];
 
@@ -19938,6 +19974,14 @@ export class StoreOpeningHoursUpdatedEvent {
     */
     'User'?: UserEventInfo;
     /**
+    * The period that was updated
+    */
+    'BusinessHoursPeriodOld'?: BusinessHoursPeriod;
+    /**
+    * The new values of the period
+    */
+    'BusinessHoursPeriod'?: BusinessHoursPeriod;
+    /**
     * Description
     */
     'Description'?: string;
@@ -19980,6 +20024,16 @@ export class StoreOpeningHoursUpdatedEvent {
             "name": "User",
             "baseName": "User",
             "type": "UserEventInfo"
+        },
+        {
+            "name": "BusinessHoursPeriodOld",
+            "baseName": "BusinessHoursPeriodOld",
+            "type": "BusinessHoursPeriod"
+        },
+        {
+            "name": "BusinessHoursPeriod",
+            "baseName": "BusinessHoursPeriod",
+            "type": "BusinessHoursPeriod"
         },
         {
             "name": "Description",
@@ -31108,6 +31162,83 @@ export class MenuSectionItemsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuSectionItem");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API]Move an Item within a menu
+     * @param menuId Menu identifier
+     * @param menuSectionId Section to put item in (will usually be original section)
+     * @param menuSectionItemId ID of Item to be moved
+     * @param destinationDisplayOrder New Display Order of item
+     * @param {*} [options] Override http request options.
+     */
+    public moveMenuItem (menuId: number, menuSectionId: number, menuSectionItemId: number, destinationDisplayOrder: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/setorder/{destinationDisplayOrder}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'destinationDisplayOrder' + '}', encodeURIComponent(String(destinationDisplayOrder)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling moveMenuItem.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling moveMenuItem.');
+        }
+
+        // verify required parameter 'menuSectionItemId' is not null or undefined
+        if (menuSectionItemId === null || menuSectionItemId === undefined) {
+            throw new Error('Required parameter menuSectionItemId was null or undefined when calling moveMenuItem.');
+        }
+
+        // verify required parameter 'destinationDisplayOrder' is not null or undefined
+        if (destinationDisplayOrder === null || destinationDisplayOrder === undefined) {
+            throw new Error('Required parameter destinationDisplayOrder was null or undefined when calling moveMenuItem.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
