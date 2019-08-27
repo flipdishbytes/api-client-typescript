@@ -6998,6 +6998,10 @@ export class LightspeedSettings {
     * The menu id of the store
     */
     'MenuId'?: number;
+    /**
+    * Table ID to send orders
+    */
+    'TableId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -7055,6 +7059,11 @@ export class LightspeedSettings {
         {
             "name": "MenuId",
             "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "TableId",
+            "baseName": "TableId",
             "type": "number"
         }    ];
 
