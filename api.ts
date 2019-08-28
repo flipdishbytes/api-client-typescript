@@ -35135,9 +35135,10 @@ export class OrdersApi {
      * @param state Order states
      * @param page Requested page number
      * @param limit Requested page limit
+     * @param orderByRequestedForTime 
      * @param {*} [options] Override http request options.
      */
-    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
+    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, orderByRequestedForTime?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/orders/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -35167,6 +35168,10 @@ export class OrdersApi {
 
         if (limit !== undefined) {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (orderByRequestedForTime !== undefined) {
+            localVarQueryParameters['orderByRequestedForTime'] = ObjectSerializer.serialize(orderByRequestedForTime, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
