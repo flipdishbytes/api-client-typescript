@@ -14142,6 +14142,29 @@ export class RestApiArrayResultStoreStatistics {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultSupportedCountry {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<SupportedCountry>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<SupportedCountry>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultSupportedCountry.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultTeammate {
     /**
     * Generic data object.
@@ -20895,6 +20918,127 @@ export class SubscriptionWithToken {
 }
 
 /**
+* Describes a supported country
+*/
+export class SupportedCountry {
+    /**
+    * Country code
+    */
+    'CountryCode'?: string;
+    /**
+    * Nice display name for a country
+    */
+    'Name'?: string;
+    /**
+    * Country phone code
+    */
+    'PhoneCode'?: number;
+    /**
+    * Language code
+    */
+    'LanguageCode'?: string;
+    /**
+    * Language name
+    */
+    'LanguageName'?: string;
+    /**
+    * One time phone number
+    */
+    'OtpNumber'?: string;
+    /**
+    * Support phone number
+    */
+    'SupportNumber'?: string;
+    /**
+    * Address layout
+    */
+    'AddressLayout'?: SupportedCountry.AddressLayoutEnum;
+    /**
+    * Post code type
+    */
+    'PostCodeType'?: SupportedCountry.PostCodeTypeEnum;
+    /**
+    * Supported region
+    */
+    'SupportRegion'?: SupportedCountry.SupportRegionEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CountryCode",
+            "baseName": "CountryCode",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "PhoneCode",
+            "baseName": "PhoneCode",
+            "type": "number"
+        },
+        {
+            "name": "LanguageCode",
+            "baseName": "LanguageCode",
+            "type": "string"
+        },
+        {
+            "name": "LanguageName",
+            "baseName": "LanguageName",
+            "type": "string"
+        },
+        {
+            "name": "OtpNumber",
+            "baseName": "OtpNumber",
+            "type": "string"
+        },
+        {
+            "name": "SupportNumber",
+            "baseName": "SupportNumber",
+            "type": "string"
+        },
+        {
+            "name": "AddressLayout",
+            "baseName": "AddressLayout",
+            "type": "SupportedCountry.AddressLayoutEnum"
+        },
+        {
+            "name": "PostCodeType",
+            "baseName": "PostCodeType",
+            "type": "SupportedCountry.PostCodeTypeEnum"
+        },
+        {
+            "name": "SupportRegion",
+            "baseName": "SupportRegion",
+            "type": "SupportedCountry.SupportRegionEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SupportedCountry.attributeTypeMap;
+    }
+}
+
+export namespace SupportedCountry {
+    export enum AddressLayoutEnum {
+        BuildingFirst = <any> 'BuildingFirst',
+        AddressFirst = <any> 'AddressFirst',
+        FullStreetAddressFirst = <any> 'FullStreetAddressFirst'
+    }
+    export enum PostCodeTypeEnum {
+        None = <any> 'None',
+        PostCode = <any> 'PostCode',
+        Zip = <any> 'Zip'
+    }
+    export enum SupportRegionEnum {
+        Default = <any> 'Default',
+        Spain = <any> 'Spain',
+        Benelux = <any> 'Benelux'
+    }
+}
+/**
 * 
 */
 export class Teammate {
@@ -23854,6 +23998,9 @@ let enumsMap: {[index: string]: any} = {
         "StuartSettings.PackageTypeEnum": StuartSettings.PackageTypeEnum,
         "Subscription.StatusEnum": Subscription.StatusEnum,
         "SubscriptionPlan.IntervalEnum": SubscriptionPlan.IntervalEnum,
+        "SupportedCountry.AddressLayoutEnum": SupportedCountry.AddressLayoutEnum,
+        "SupportedCountry.PostCodeTypeEnum": SupportedCountry.PostCodeTypeEnum,
+        "SupportedCountry.SupportRegionEnum": SupportedCountry.SupportRegionEnum,
         "Teammate.InvitationStatusEnum": Teammate.InvitationStatusEnum,
         "Teammate.AppAccessLevelEnum": Teammate.AppAccessLevelEnum,
         "TeammateBase.AppAccessLevelEnum": TeammateBase.AppAccessLevelEnum,
@@ -24058,6 +24205,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultProcessingFeeConfig": RestApiArrayResultProcessingFeeConfig,
     "RestApiArrayResultRestApiDefaultResponse": RestApiArrayResultRestApiDefaultResponse,
     "RestApiArrayResultStoreStatistics": RestApiArrayResultStoreStatistics,
+    "RestApiArrayResultSupportedCountry": RestApiArrayResultSupportedCountry,
     "RestApiArrayResultTeammate": RestApiArrayResultTeammate,
     "RestApiArrayResultVoucherDataPoint": RestApiArrayResultVoucherDataPoint,
     "RestApiDefaultResponse": RestApiDefaultResponse,
@@ -24172,6 +24320,7 @@ let typeMap: {[index: string]: any} = {
     "SubscriptionPlan": SubscriptionPlan,
     "SubscriptionPlansResponse": SubscriptionPlansResponse,
     "SubscriptionWithToken": SubscriptionWithToken,
+    "SupportedCountry": SupportedCountry,
     "Teammate": Teammate,
     "TeammateBase": TeammateBase,
     "TeammateDeletedEvent": TeammateDeletedEvent,
@@ -25634,6 +25783,56 @@ export class AppsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultApp");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get the application configuration
+     * @param {*} [options] Override http request options.
+     */
+    public getSupportedCountries (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSupportedCountry;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/supportedcountries';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSupportedCountry;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultSupportedCountry");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
