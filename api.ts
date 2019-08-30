@@ -663,13 +663,9 @@ export class App {
     */
     'CountryId'?: string;
     /**
-    * Icon url (Application Icon \\ Logo)
+    * Application Logo
     */
-    'IconUrl'?: string;
-    /**
-    * Icon thumbnail url (Application Icon \\ Logo thumbnail)
-    */
-    'IconThumbnailUrl'?: string;
+    'LogoImageUrl'?: string;
     /**
     * Languages to be available in the application
     */
@@ -747,13 +743,8 @@ export class App {
             "type": "string"
         },
         {
-            "name": "IconUrl",
-            "baseName": "IconUrl",
-            "type": "string"
-        },
-        {
-            "name": "IconThumbnailUrl",
-            "baseName": "IconThumbnailUrl",
+            "name": "LogoImageUrl",
+            "baseName": "LogoImageUrl",
             "type": "string"
         },
         {
