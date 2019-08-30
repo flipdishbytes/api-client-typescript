@@ -19515,9 +19515,9 @@ export class StoreGroupExtended {
     */
     'GroupedCoordinates'?: Array<GroupedCoordinates>;
     /**
-    * Store Ids associated with Store Group
+    * Store Headers associated with Store Group
     */
-    'StoreIds'?: Array<number>;
+    'StoreHeaders'?: Array<StoreHeader>;
     /**
     * Unique Store Group Identifier
     */
@@ -19553,9 +19553,9 @@ export class StoreGroupExtended {
             "type": "Array<GroupedCoordinates>"
         },
         {
-            "name": "StoreIds",
-            "baseName": "StoreIds",
-            "type": "Array<number>"
+            "name": "StoreHeaders",
+            "baseName": "StoreHeaders",
+            "type": "Array<StoreHeader>"
         },
         {
             "name": "StoreGroupId",
