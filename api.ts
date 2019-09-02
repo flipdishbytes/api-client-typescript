@@ -19988,6 +19988,10 @@ export class StoreOpeningHoursUpdatedEvent {
     */
     'User'?: UserEventInfo;
     /**
+    * Type of opening hours Delivery / Pickup
+    */
+    'DeliveryType'?: StoreOpeningHoursUpdatedEvent.DeliveryTypeEnum;
+    /**
     * The period that was updated
     */
     'BusinessHoursPeriodOld'?: BusinessHoursPeriod;
@@ -20040,6 +20044,11 @@ export class StoreOpeningHoursUpdatedEvent {
             "type": "UserEventInfo"
         },
         {
+            "name": "DeliveryType",
+            "baseName": "DeliveryType",
+            "type": "StoreOpeningHoursUpdatedEvent.DeliveryTypeEnum"
+        },
+        {
             "name": "BusinessHoursPeriodOld",
             "baseName": "BusinessHoursPeriodOld",
             "type": "BusinessHoursPeriod"
@@ -20080,6 +20089,12 @@ export class StoreOpeningHoursUpdatedEvent {
     }
 }
 
+export namespace StoreOpeningHoursUpdatedEvent {
+    export enum DeliveryTypeEnum {
+        Delivery = <any> 'Delivery',
+        Pickup = <any> 'Pickup'
+    }
+}
 /**
 * Store Pre order config updated
 */
@@ -23985,6 +24000,7 @@ let enumsMap: {[index: string]: any} = {
         "StoreGroup.CurrencyEnum": StoreGroup.CurrencyEnum,
         "StoreGroupBase.CurrencyEnum": StoreGroupBase.CurrencyEnum,
         "StoreGroupExtended.CurrencyEnum": StoreGroupExtended.CurrencyEnum,
+        "StoreOpeningHoursUpdatedEvent.DeliveryTypeEnum": StoreOpeningHoursUpdatedEvent.DeliveryTypeEnum,
         "StoreSummary.CurrencyEnum": StoreSummary.CurrencyEnum,
         "StuartSettings.PackageTypeEnum": StuartSettings.PackageTypeEnum,
         "Subscription.StatusEnum": Subscription.StatusEnum,
