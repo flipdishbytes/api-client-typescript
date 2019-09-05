@@ -10639,6 +10639,10 @@ export class Order {
     */
     'OrderId'?: number;
     /**
+    * Local order Id. This is used for displaying a \"shorter\" order ID for customers (eg. Kiosk orders)
+    */
+    'LocalOrderId'?: string;
+    /**
     * Delivery type
     */
     'DeliveryType'?: Order.DeliveryTypeEnum;
@@ -10762,6 +10766,11 @@ export class Order {
             "name": "OrderId",
             "baseName": "OrderId",
             "type": "number"
+        },
+        {
+            "name": "LocalOrderId",
+            "baseName": "LocalOrderId",
+            "type": "string"
         },
         {
             "name": "DeliveryType",
