@@ -887,6 +887,9 @@ export namespace App {
         UpdateVouchersExtendDisable = <any> 'UpdateVouchersExtendDisable',
         ViewWebsiteContent = <any> 'ViewWebsiteContent',
         EditWebsiteContent = <any> 'EditWebsiteContent',
+        ViewWebsiteDnsVerified = <any> 'ViewWebsiteDnsVerified',
+        ViewWebsiteCertificateCreated = <any> 'ViewWebsiteCertificateCreated',
+        ViewWebsiteCertificateRenewed = <any> 'ViewWebsiteCertificateRenewed',
         ViewBankAccounts = <any> 'ViewBankAccounts',
         CreateBankAccounts = <any> 'CreateBankAccounts',
         UpdateBankAccounts = <any> 'UpdateBankAccounts',
@@ -2576,6 +2579,142 @@ export class CardWithToken {
 }
 
 /**
+* The DNS for the Hostname verified
+*/
+export class CertificateCreatedEvent {
+    /**
+    * Description
+    */
+    'Hostname'?: string;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Hostname",
+            "baseName": "Hostname",
+            "type": "string"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CertificateCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* The DNS for the Hostname verified
+*/
+export class CertificateRenewedEvent {
+    /**
+    * Description
+    */
+    'Hostname'?: string;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Hostname",
+            "baseName": "Hostname",
+            "type": "string"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CertificateRenewedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Change password model
 */
 export class ChangePasswordModel {
@@ -3990,6 +4129,74 @@ export class DeviceSettings {
 }
 
 /**
+* The DNS for the Hostname verified
+*/
+export class DnsVerifiedEvent {
+    /**
+    * Description
+    */
+    'Hostname'?: string;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Hostname",
+            "baseName": "Hostname",
+            "type": "string"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DnsVerifiedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Order Terminal Notification
 */
 export class EmvNotificationEvent {
@@ -4457,6 +4664,18 @@ export class EventSearchResult {
     * Push notification deleted event
     */
     'PushNotificationDeletedEvent'?: Array<PushNotificationDeletedEvent>;
+    /**
+    * DNS Verified
+    */
+    'DnsVerifiedEvent'?: Array<DnsVerifiedEvent>;
+    /**
+    * Certificate created
+    */
+    'CertificateCreatedEvent'?: Array<CertificateCreatedEvent>;
+    /**
+    * Certificate renewed
+    */
+    'CertificateRenewedEvent'?: Array<CertificateRenewedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -4865,6 +5084,21 @@ export class EventSearchResult {
             "name": "PushNotificationDeletedEvent",
             "baseName": "PushNotificationDeletedEvent",
             "type": "Array<PushNotificationDeletedEvent>"
+        },
+        {
+            "name": "DnsVerifiedEvent",
+            "baseName": "DnsVerifiedEvent",
+            "type": "Array<DnsVerifiedEvent>"
+        },
+        {
+            "name": "CertificateCreatedEvent",
+            "baseName": "CertificateCreatedEvent",
+            "type": "Array<CertificateCreatedEvent>"
+        },
+        {
+            "name": "CertificateRenewedEvent",
+            "baseName": "CertificateRenewedEvent",
+            "type": "Array<CertificateRenewedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -10405,6 +10639,10 @@ export class Order {
     */
     'OrderId'?: number;
     /**
+    * Local order Id. This is used for displaying a \"shorter\" order ID for customers (eg. Kiosk orders)
+    */
+    'LocalOrderId'?: string;
+    /**
     * Delivery type
     */
     'DeliveryType'?: Order.DeliveryTypeEnum;
@@ -10528,6 +10766,11 @@ export class Order {
             "name": "OrderId",
             "baseName": "OrderId",
             "type": "number"
+        },
+        {
+            "name": "LocalOrderId",
+            "baseName": "LocalOrderId",
+            "type": "string"
         },
         {
             "name": "DeliveryType",
@@ -24054,6 +24297,8 @@ let typeMap: {[index: string]: any} = {
     "Card": Card,
     "CardBase": CardBase,
     "CardWithToken": CardWithToken,
+    "CertificateCreatedEvent": CertificateCreatedEvent,
+    "CertificateRenewedEvent": CertificateRenewedEvent,
     "ChangePasswordModel": ChangePasswordModel,
     "Coordinates": Coordinates,
     "CreateAccountModel": CreateAccountModel,
@@ -24072,6 +24317,7 @@ let typeMap: {[index: string]: any} = {
     "DeliveryZoneDeletedEvent": DeliveryZoneDeletedEvent,
     "DeliveryZoneUpdatedEvent": DeliveryZoneUpdatedEvent,
     "DeviceSettings": DeviceSettings,
+    "DnsVerifiedEvent": DnsVerifiedEvent,
     "EmvNotificationEvent": EmvNotificationEvent,
     "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
