@@ -4241,6 +4241,10 @@ export class EmvNotificationEvent {
     */
     'AuthCode'?: string;
     /**
+    * Payment Provider Message
+    */
+    'ProviderMessage'?: string;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -4308,6 +4312,11 @@ export class EmvNotificationEvent {
         {
             "name": "AuthCode",
             "baseName": "AuthCode",
+            "type": "string"
+        },
+        {
+            "name": "ProviderMessage",
+            "baseName": "ProviderMessage",
             "type": "string"
         },
         {
