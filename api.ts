@@ -1115,6 +1115,10 @@ export class AppUpdatedEvent {
     */
     'Description'?: string;
     /**
+    * A summary of changes made
+    */
+    'Changes'?: string;
+    /**
     * App Name
     */
     'AppName'?: string;
@@ -1154,6 +1158,11 @@ export class AppUpdatedEvent {
         {
             "name": "Description",
             "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Changes",
+            "baseName": "Changes",
             "type": "string"
         },
         {
