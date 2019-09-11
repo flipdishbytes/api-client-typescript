@@ -4241,6 +4241,10 @@ export class EmvNotificationEvent {
     */
     'AuthCode'?: string;
     /**
+    * Payment Provider Message
+    */
+    'ProviderMessage'?: string;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -4308,6 +4312,11 @@ export class EmvNotificationEvent {
         {
             "name": "AuthCode",
             "baseName": "AuthCode",
+            "type": "string"
+        },
+        {
+            "name": "ProviderMessage",
+            "baseName": "ProviderMessage",
             "type": "string"
         },
         {
@@ -26161,6 +26170,73 @@ export class AppsApi {
     }
     /**
      * 
+     * @summary Set the application hostname.
+     * @param appId Application identifier.
+     * @param hostname The new Hostname.
+     * @param {*} [options] Override http request options.
+     */
+    public setAppHostname (appId: string, hostname: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/hostname'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling setAppHostname.');
+        }
+
+        // verify required parameter 'hostname' is not null or undefined
+        if (hostname === null || hostname === undefined) {
+            throw new Error('Required parameter hostname was null or undefined when calling setAppHostname.');
+        }
+
+        if (hostname !== undefined) {
+            localVarQueryParameters['hostname'] = ObjectSerializer.serialize(hostname, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Set the application languages
      * @param appId Application identifier
      * @param languages New list of languages
@@ -41288,6 +41364,62 @@ export class WebsiteApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultWebsiteImage");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Triggers a Check DNS Process
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public websiteCheckNow (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/website/dnscheck'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling websiteCheckNow.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
