@@ -4138,38 +4138,6 @@ export class DeviceSettings {
 }
 
 /**
-* Holds the information for the A and CNAME Records of a domain.
-*/
-export class DnsRecordInformation {
-    /**
-    * indicates whether the CNAME record it's ready or not.
-    */
-    'IsCNameReady'?: boolean;
-    /**
-    * indicates whether the A record it's ready or not.
-    */
-    'IsAReady'?: boolean;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "IsCNameReady",
-            "baseName": "IsCNameReady",
-            "type": "boolean"
-        },
-        {
-            "name": "IsAReady",
-            "baseName": "IsAReady",
-            "type": "boolean"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return DnsRecordInformation.attributeTypeMap;
-    }
-}
-
-/**
 * The DNS for the Hostname verified
 */
 export class DnsVerifiedEvent {
@@ -15685,29 +15653,6 @@ export class RestApiResultDeliveryZone {
 /**
 * Rest api result
 */
-export class RestApiResultDnsRecordInformation {
-    /**
-    * Generic data object.
-    */
-    'Data': DnsRecordInformation;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "DnsRecordInformation"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiResultDnsRecordInformation.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api result
-*/
 export class RestApiResultHomeStatistics {
     /**
     * Generic data object.
@@ -24390,7 +24335,6 @@ let typeMap: {[index: string]: any} = {
     "DeliveryZoneDeletedEvent": DeliveryZoneDeletedEvent,
     "DeliveryZoneUpdatedEvent": DeliveryZoneUpdatedEvent,
     "DeviceSettings": DeviceSettings,
-    "DnsRecordInformation": DnsRecordInformation,
     "DnsVerifiedEvent": DnsVerifiedEvent,
     "EmvNotificationEvent": EmvNotificationEvent,
     "EventSearchResult": EventSearchResult,
@@ -24566,7 +24510,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultCard": RestApiResultCard,
     "RestApiResultCoordinates": RestApiResultCoordinates,
     "RestApiResultDeliveryZone": RestApiResultDeliveryZone,
-    "RestApiResultDnsRecordInformation": RestApiResultDnsRecordInformation,
     "RestApiResultHomeStatistics": RestApiResultHomeStatistics,
     "RestApiResultHydraConfig": RestApiResultHydraConfig,
     "RestApiResultHydraStatus": RestApiResultHydraStatus,
@@ -26056,63 +25999,6 @@ export class AppsApi {
         });
     }
     /**
-     * A domain might be ready but still need 10 minutes to work properly because of HAProxy.
-     * @summary Get the application hostname DNS delegation states for A and CNAME records.
-     * @param appId Application identifier.
-     * @param {*} [options] Override http request options.
-     */
-    public getAppHostnameStatus (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDnsRecordInformation;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/hostnamestatus'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getAppHostnameStatus.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultDnsRecordInformation;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultDnsRecordInformation");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
      * 
      * @summary Get Apps
      * @param nameFilter 
@@ -26292,7 +26178,7 @@ export class AppsApi {
         });
     }
     /**
-     * If no subdomain is specified in {hostname} 'www' will be appended.
+     * 
      * @summary Set the application hostname.
      * @param appId Application identifier.
      * @param hostname The new Hostname.
