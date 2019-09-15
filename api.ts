@@ -11642,6 +11642,10 @@ export class OrderRejectedEvent {
     */
     'OrderRejectedTime'?: Date;
     /**
+    * Reason for Rejection
+    */
+    'Reason'?: string;
+    /**
     * Order
     */
     'Order'?: Order;
@@ -11679,6 +11683,11 @@ export class OrderRejectedEvent {
             "name": "OrderRejectedTime",
             "baseName": "OrderRejectedTime",
             "type": "Date"
+        },
+        {
+            "name": "Reason",
+            "baseName": "Reason",
+            "type": "string"
         },
         {
             "name": "Order",
