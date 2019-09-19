@@ -5595,6 +5595,22 @@ export class HydraConfig {
     * Device settings
     */
     'DeviceSettings': DeviceSettings;
+    /**
+    * Version of the device
+    */
+    'Version'?: string;
+    /**
+    * Build number of the device
+    */
+    'BuildNumber'?: string;
+    /**
+    * SHA of the commit
+    */
+    'GitSha'?: string;
+    /**
+    * Build branch
+    */
+    'GitBranch'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -5613,6 +5629,26 @@ export class HydraConfig {
             "name": "DeviceSettings",
             "baseName": "DeviceSettings",
             "type": "DeviceSettings"
+        },
+        {
+            "name": "Version",
+            "baseName": "Version",
+            "type": "string"
+        },
+        {
+            "name": "BuildNumber",
+            "baseName": "BuildNumber",
+            "type": "string"
+        },
+        {
+            "name": "GitSha",
+            "baseName": "GitSha",
+            "type": "string"
+        },
+        {
+            "name": "GitBranch",
+            "baseName": "GitBranch",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -5748,6 +5784,22 @@ export class HydraDeviceDetails {
     * Last poll time in UTC
     */
     'LastPollUtc'?: Date;
+    /**
+    * Version of the device
+    */
+    'Version'?: string;
+    /**
+    * Build number of the device
+    */
+    'BuildNumber'?: string;
+    /**
+    * SHA of the commit
+    */
+    'GitSha'?: string;
+    /**
+    * Build branch
+    */
+    'GitBranch'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -5781,6 +5833,26 @@ export class HydraDeviceDetails {
             "name": "LastPollUtc",
             "baseName": "LastPollUtc",
             "type": "Date"
+        },
+        {
+            "name": "Version",
+            "baseName": "Version",
+            "type": "string"
+        },
+        {
+            "name": "BuildNumber",
+            "baseName": "BuildNumber",
+            "type": "string"
+        },
+        {
+            "name": "GitSha",
+            "baseName": "GitSha",
+            "type": "string"
+        },
+        {
+            "name": "GitBranch",
+            "baseName": "GitBranch",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7274,9 +7346,21 @@ export class LightspeedSettings {
     */
     'MenuId'?: number;
     /**
-    * Table ID to send orders
+    * Collection Table ID to send orders
     */
-    'TableId'?: number;
+    'CollectionTableId'?: number;
+    /**
+    * Delivery Table ID to send orders
+    */
+    'DeliveryTableId'?: number;
+    /**
+    * Collection Table IDs to send orders to
+    */
+    'CollectionTableIds'?: { [key: string]: string; };
+    /**
+    * Delivery Table IDs to send orders to
+    */
+    'DeliveryTableIds'?: { [key: string]: string; };
 
     static discriminator: string | undefined = undefined;
 
@@ -7337,9 +7421,24 @@ export class LightspeedSettings {
             "type": "number"
         },
         {
-            "name": "TableId",
-            "baseName": "TableId",
+            "name": "CollectionTableId",
+            "baseName": "CollectionTableId",
             "type": "number"
+        },
+        {
+            "name": "DeliveryTableId",
+            "baseName": "DeliveryTableId",
+            "type": "number"
+        },
+        {
+            "name": "CollectionTableIds",
+            "baseName": "CollectionTableIds",
+            "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "DeliveryTableIds",
+            "baseName": "DeliveryTableIds",
+            "type": "{ [key: string]: string; }"
         }    ];
 
     static getAttributeTypeMap() {
