@@ -4643,6 +4643,10 @@ export class EventSearchResult {
     */
     'UserDeletedEvent'?: Array<UserDeletedEvent>;
     /**
+    * User password created event
+    */
+    'UserCreatedPasswordEvent'?: Array<UserPasswordCreatedEvent>;
+    /**
     * Voucher created event
     */
     'VoucherCreatedEvent'?: Array<VoucherCreatedEvent>;
@@ -5044,6 +5048,11 @@ export class EventSearchResult {
             "name": "UserDeletedEvent",
             "baseName": "UserDeletedEvent",
             "type": "Array<UserDeletedEvent>"
+        },
+        {
+            "name": "UserCreatedPasswordEvent",
+            "baseName": "UserCreatedPasswordEvent",
+            "type": "Array<UserPasswordCreatedEvent>"
         },
         {
             "name": "VoucherCreatedEvent",
@@ -22232,6 +22241,83 @@ export class UserLoginEvent {
 }
 
 /**
+* User created password event
+*/
+export class UserPasswordCreatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * The user
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserPasswordCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * User updated event
 */
 export class UserUpdatedEvent {
@@ -24776,6 +24862,7 @@ let typeMap: {[index: string]: any} = {
     "UserDeletedEvent": UserDeletedEvent,
     "UserEventInfo": UserEventInfo,
     "UserLoginEvent": UserLoginEvent,
+    "UserPasswordCreatedEvent": UserPasswordCreatedEvent,
     "UserUpdatedEvent": UserUpdatedEvent,
     "ValidationErrorResult": ValidationErrorResult,
     "Voucher": Voucher,
