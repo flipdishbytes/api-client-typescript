@@ -4539,6 +4539,10 @@ export class EventSearchResult {
     */
     'MenuItemOptionSetItemDeletedEvent'?: Array<MenuItemOptionSetItemDeletedEvent>;
     /**
+    * Menu checkpoint created event
+    */
+    'MenuCheckpointCreatedEvent'?: Array<MenuCheckpointCreatedEvent>;
+    /**
     * Store group created events
     */
     'StoreGroupCreatedEvent'?: Array<StoreGroupCreatedEvent>;
@@ -4918,6 +4922,11 @@ export class EventSearchResult {
             "name": "MenuItemOptionSetItemDeletedEvent",
             "baseName": "MenuItemOptionSetItemDeletedEvent",
             "type": "Array<MenuItemOptionSetItemDeletedEvent>"
+        },
+        {
+            "name": "MenuCheckpointCreatedEvent",
+            "baseName": "MenuCheckpointCreatedEvent",
+            "type": "Array<MenuCheckpointCreatedEvent>"
         },
         {
             "name": "StoreGroupCreatedEvent",
@@ -8161,6 +8170,92 @@ export class MenuCheckpoint {
 
     static getAttributeTypeMap() {
         return MenuCheckpoint.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class MenuCheckpointCreatedEvent {
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * User who has created the menu
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Menu identifier
+    */
+    'Menu'?: Menu;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Menu",
+            "baseName": "Menu",
+            "type": "Menu"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuCheckpointCreatedEvent.attributeTypeMap;
     }
 }
 
@@ -24638,6 +24733,7 @@ let typeMap: {[index: string]: any} = {
     "Menu": Menu,
     "MenuBase": MenuBase,
     "MenuCheckpoint": MenuCheckpoint,
+    "MenuCheckpointCreatedEvent": MenuCheckpointCreatedEvent,
     "MenuCreatedEvent": MenuCreatedEvent,
     "MenuItemOptionSet": MenuItemOptionSet,
     "MenuItemOptionSetBase": MenuItemOptionSetBase,
