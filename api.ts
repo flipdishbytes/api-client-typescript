@@ -4651,6 +4651,10 @@ export class EventSearchResult {
     */
     'UserCreatedPasswordEvent'?: Array<UserPasswordCreatedEvent>;
     /**
+    * User answered signup questions event
+    */
+    'UserAnsweredSignupQuestionsEvent'?: Array<UserAnsweredSignupQuestionsEvent>;
+    /**
     * Voucher created event
     */
     'VoucherCreatedEvent'?: Array<VoucherCreatedEvent>;
@@ -5062,6 +5066,11 @@ export class EventSearchResult {
             "name": "UserCreatedPasswordEvent",
             "baseName": "UserCreatedPasswordEvent",
             "type": "Array<UserPasswordCreatedEvent>"
+        },
+        {
+            "name": "UserAnsweredSignupQuestionsEvent",
+            "baseName": "UserAnsweredSignupQuestionsEvent",
+            "type": "Array<UserAnsweredSignupQuestionsEvent>"
         },
         {
             "name": "VoucherCreatedEvent",
@@ -22055,6 +22064,83 @@ export class TeammateUpdatedEvent {
 }
 
 /**
+* User answered signup questions event
+*/
+export class UserAnsweredSignupQuestionsEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The user
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The users answers
+    */
+    'SignupAnswers'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "SignupAnswers",
+            "baseName": "SignupAnswers",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserAnsweredSignupQuestionsEvent.attributeTypeMap;
+    }
+}
+
+/**
 * User created event
 */
 export class UserCreatedEvent {
@@ -24954,6 +25040,7 @@ let typeMap: {[index: string]: any} = {
     "TeammateInviteAcceptedEvent": TeammateInviteAcceptedEvent,
     "TeammateInviteSentEvent": TeammateInviteSentEvent,
     "TeammateUpdatedEvent": TeammateUpdatedEvent,
+    "UserAnsweredSignupQuestionsEvent": UserAnsweredSignupQuestionsEvent,
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
     "UserEventInfo": UserEventInfo,
@@ -29806,6 +29893,76 @@ export class HydraApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary [Private]
+     * @param appId 
+     * @param hydraUserId 
+     * @param emvTerminalId 
+     * @param {*} [options] Override http request options.
+     */
+    public assignEmv (appId: string, hydraUserId: number, emvTerminalId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvterminal/{hydraUserId}/{emvTerminalId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'hydraUserId' + '}', encodeURIComponent(String(hydraUserId)))
+            .replace('{' + 'emvTerminalId' + '}', encodeURIComponent(String(emvTerminalId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling assignEmv.');
+        }
+
+        // verify required parameter 'hydraUserId' is not null or undefined
+        if (hydraUserId === null || hydraUserId === undefined) {
+            throw new Error('Required parameter hydraUserId was null or undefined when calling assignEmv.');
+        }
+
+        // verify required parameter 'emvTerminalId' is not null or undefined
+        if (emvTerminalId === null || emvTerminalId === undefined) {
+            throw new Error('Required parameter emvTerminalId was null or undefined when calling assignEmv.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
     }
     /**
      * 
