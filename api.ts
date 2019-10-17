@@ -4955,6 +4955,10 @@ export class EventSearchResult {
     * Certificate renewed
     */
     'CertificateRenewedEvent'?: Array<CertificateRenewedEvent>;
+    /**
+    * Panacea vanity url updated
+    */
+    'WebsiteVanityUrlUpdatedEvent'?: Array<WebsiteVanityUrlUpdatedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -5393,6 +5397,11 @@ export class EventSearchResult {
             "name": "CertificateRenewedEvent",
             "baseName": "CertificateRenewedEvent",
             "type": "Array<CertificateRenewedEvent>"
+        },
+        {
+            "name": "WebsiteVanityUrlUpdatedEvent",
+            "baseName": "WebsiteVanityUrlUpdatedEvent",
+            "type": "Array<WebsiteVanityUrlUpdatedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -24966,6 +24975,92 @@ export class WebsiteTestimonialBase {
     }
 }
 
+/**
+* Website vanity url
+*/
+export class WebsiteVanityUrlUpdatedEvent {
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * User who has updated the url
+    */
+    'User'?: UserEventInfo;
+    /**
+    * New vanity url
+    */
+    'VanityUrl'?: string;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "VanityUrl",
+            "baseName": "VanityUrl",
+            "type": "string"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WebsiteVanityUrlUpdatedEvent.attributeTypeMap;
+    }
+}
+
 
 let enumsMap: {[index: string]: any} = {
         "ApmHourlyDataPoint.DayEnum": ApmHourlyDataPoint.DayEnum,
@@ -25410,6 +25505,7 @@ let typeMap: {[index: string]: any} = {
     "WebsiteImage": WebsiteImage,
     "WebsiteTestimonial": WebsiteTestimonial,
     "WebsiteTestimonialBase": WebsiteTestimonialBase,
+    "WebsiteVanityUrlUpdatedEvent": WebsiteVanityUrlUpdatedEvent,
 }
 
 export interface Authentication {
