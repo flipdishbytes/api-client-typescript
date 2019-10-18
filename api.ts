@@ -28483,7 +28483,7 @@ export class DeliveryTrackingApi {
      * @param driverInvitation 
      * @param {*} [options] Override http request options.
      */
-    public inviteDriverToApp (appId: string, driverInvitation: DriverInvitation, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public inviteDriverToApp (appId: string, driverInvitation: DriverInvitation, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDriver;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/drivers'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -28525,11 +28525,12 @@ export class DeliveryTrackingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultDriver;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultDriver");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
