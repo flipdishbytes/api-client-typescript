@@ -14563,6 +14563,29 @@ export class RestApiArrayResultDeliveryZone {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultDriver {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<Driver>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<Driver>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultDriver.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultDriverStore {
     /**
     * Generic data object.
@@ -25338,6 +25361,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultBankAccountSummary": RestApiArrayResultBankAccountSummary,
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
+    "RestApiArrayResultDriver": RestApiArrayResultDriver,
     "RestApiArrayResultDriverStore": RestApiArrayResultDriverStore,
     "RestApiArrayResultHomeAction": RestApiArrayResultHomeAction,
     "RestApiArrayResultLocalisedTimeZone": RestApiArrayResultLocalisedTimeZone,
@@ -28410,7 +28434,7 @@ export class DeliveryTrackingApi {
      * @param presence 
      * @param {*} [options] Override http request options.
      */
-    public getDrivers (appId: string, name?: string, phoneNumber?: string, storeId?: number, presence?: 'Offline' | 'Online', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public getDrivers (appId: string, name?: string, phoneNumber?: string, storeId?: number, presence?: 'Offline' | 'Online', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDriver;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/drivers'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -28462,11 +28486,12 @@ export class DeliveryTrackingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDriver;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultDriver");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -28483,7 +28508,7 @@ export class DeliveryTrackingApi {
      * @param driverInvitation 
      * @param {*} [options] Override http request options.
      */
-    public inviteDriverToApp (appId: string, driverInvitation: DriverInvitation, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public inviteDriverToApp (appId: string, driverInvitation: DriverInvitation, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDriver;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/drivers'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -28525,11 +28550,12 @@ export class DeliveryTrackingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultDriver;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultDriver");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -35171,11 +35197,13 @@ export class MenusApi {
      * 
      * @summary [PRIVATE API]Clone a menu, (without attaching stores)
      * @param menuId Menu identifier
+     * @param newName Name of the new Menu
      * @param {*} [options] Override http request options.
      */
-    public createDraftMenuFromExistingMenu (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenu;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/clone'
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+    public createDraftMenuFromExistingMenu (menuId: number, newName: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenu;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/clone/{newName}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'newName' + '}', encodeURIComponent(String(newName)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -35183,6 +35211,11 @@ export class MenusApi {
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
             throw new Error('Required parameter menuId was null or undefined when calling createDraftMenuFromExistingMenu.');
+        }
+
+        // verify required parameter 'newName' is not null or undefined
+        if (newName === null || newName === undefined) {
+            throw new Error('Required parameter newName was null or undefined when calling createDraftMenuFromExistingMenu.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
