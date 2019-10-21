@@ -35197,11 +35197,13 @@ export class MenusApi {
      * 
      * @summary [PRIVATE API]Clone a menu, (without attaching stores)
      * @param menuId Menu identifier
+     * @param newName Name of the new Menu
      * @param {*} [options] Override http request options.
      */
-    public createDraftMenuFromExistingMenu (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenu;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/clone'
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+    public createDraftMenuFromExistingMenu (menuId: number, newName: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenu;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/clone/{newName}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'newName' + '}', encodeURIComponent(String(newName)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -35209,6 +35211,11 @@ export class MenusApi {
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
             throw new Error('Required parameter menuId was null or undefined when calling createDraftMenuFromExistingMenu.');
+        }
+
+        // verify required parameter 'newName' is not null or undefined
+        if (newName === null || newName === undefined) {
+            throw new Error('Required parameter newName was null or undefined when calling createDraftMenuFromExistingMenu.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
