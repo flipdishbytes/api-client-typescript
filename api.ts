@@ -4959,6 +4959,10 @@ export class EventSearchResult {
     * Panacea vanity url updated
     */
     'WebsiteVanityUrlUpdatedEvent'?: Array<WebsiteVanityUrlUpdatedEvent>;
+    /**
+    * Website updated
+    */
+    'WebsiteUpdatedEvent'?: Array<WebsiteUpdatedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -5402,6 +5406,11 @@ export class EventSearchResult {
             "name": "WebsiteVanityUrlUpdatedEvent",
             "baseName": "WebsiteVanityUrlUpdatedEvent",
             "type": "Array<WebsiteVanityUrlUpdatedEvent>"
+        },
+        {
+            "name": "WebsiteUpdatedEvent",
+            "baseName": "WebsiteUpdatedEvent",
+            "type": "Array<WebsiteUpdatedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -24999,6 +25008,92 @@ export class WebsiteTestimonialBase {
 }
 
 /**
+* WebsiteUpdatedEvent
+*/
+export class WebsiteUpdatedEvent {
+    /**
+    * App Name id of the whitelabel of the website
+    */
+    'AppNameId'?: string;
+    /**
+    * User updating the website
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Description of event
+    */
+    'Description'?: string;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AppNameId",
+            "baseName": "AppNameId",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WebsiteUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Website vanity url
 */
 export class WebsiteVanityUrlUpdatedEvent {
@@ -25529,6 +25624,7 @@ let typeMap: {[index: string]: any} = {
     "WebsiteImage": WebsiteImage,
     "WebsiteTestimonial": WebsiteTestimonial,
     "WebsiteTestimonialBase": WebsiteTestimonialBase,
+    "WebsiteUpdatedEvent": WebsiteUpdatedEvent,
     "WebsiteVanityUrlUpdatedEvent": WebsiteVanityUrlUpdatedEvent,
 }
 
