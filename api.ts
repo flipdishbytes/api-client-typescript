@@ -17670,6 +17670,29 @@ export class SearchCriteria {
 }
 
 /**
+* Set Driver Name
+*/
+export class SetDriverNameModel {
+    /**
+    * The new name of the Driver.
+    */
+    'Name'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SetDriverNameModel.attributeTypeMap;
+    }
+}
+
+/**
 * Set password with PIN model
 */
 export class SetPasswordWithPinModel {
@@ -25554,6 +25577,7 @@ let typeMap: {[index: string]: any} = {
     "RetentionCampaignDeletedEvent": RetentionCampaignDeletedEvent,
     "RetentionCampaignUpdatedEvent": RetentionCampaignUpdatedEvent,
     "SearchCriteria": SearchCriteria,
+    "SetDriverNameModel": SetDriverNameModel,
     "SetPasswordWithPinModel": SetPasswordWithPinModel,
     "SignupStep": SignupStep,
     "SmsInfo": SmsInfo,
@@ -29406,18 +29430,18 @@ export class DriversApi {
     /**
      * 
      * @summary Update driver profile
-     * @param name 
+     * @param setDriverName 
      * @param {*} [options] Override http request options.
      */
-    public setDriverName (name: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public setDriverName (setDriverName: SetDriverNameModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/profile';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling setDriverName.');
+        // verify required parameter 'setDriverName' is not null or undefined
+        if (setDriverName === null || setDriverName === undefined) {
+            throw new Error('Required parameter setDriverName was null or undefined when calling setDriverName.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -29431,7 +29455,7 @@ export class DriversApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(name, "string")
+            body: ObjectSerializer.serialize(setDriverName, "SetDriverNameModel")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
