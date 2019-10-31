@@ -12288,13 +12288,13 @@ export namespace OrderSummary {
     }
     export enum OrderStateEnum {
         Created = <any> 'Created',
-        PlacedCanBeCancelled = <any> 'PlacedCanBeCancelled',
         ReadyToProcess = <any> 'ReadyToProcess',
         AcceptedByRestaurant = <any> 'AcceptedByRestaurant',
         Dispatched = <any> 'Dispatched',
         Delivered = <any> 'Delivered',
         Cancelled = <any> 'Cancelled',
         ManualReview = <any> 'ManualReview',
+        PlacedCanBeCancelled = <any> 'PlacedCanBeCancelled',
         RejectedByStore = <any> 'RejectedByStore',
         RejectedByFlipdish = <any> 'RejectedByFlipdish',
         RejectedAutomatically = <any> 'RejectedAutomatically',
@@ -29069,10 +29069,10 @@ export class DriversApi {
     }
     /**
      * 
-     * @summary Set driver profile image
+     * @summary Set driver profile image and returns it's url
      * @param {*} [options] Override http request options.
      */
-    public setDriverProfileImage (options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public setDriverProfileImage (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/profile/image';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -29102,11 +29102,12 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -29118,12 +29119,12 @@ export class DriversApi {
     }
     /**
      * ...
-     * @summary Change delivey tracking status
+     * @summary Change delivey tracking status and return the updated status.
      * @param orderId Order identifier
      * @param deliveryTrackingStatus 
      * @param {*} [options] Override http request options.
      */
-    public updateDeliveryTrackingStatus (orderId: number, deliveryTrackingStatus: 'Unassigned' | 'Unaccepted' | 'Accepted' | 'Carrying' | 'OnTheWay' | 'ArrivedAtLocation' | 'Delivered' | 'CannotDeliver', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateDeliveryTrackingStatus (orderId: number, deliveryTrackingStatus: 'Unassigned' | 'Unaccepted' | 'Accepted' | 'Carrying' | 'OnTheWay' | 'ArrivedAtLocation' | 'Delivered' | 'CannotDeliver', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/tracking/{deliveryTrackingStatus}'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)))
             .replace('{' + 'deliveryTrackingStatus' + '}', encodeURIComponent(String(deliveryTrackingStatus)));
@@ -29165,11 +29166,12 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -37367,7 +37369,7 @@ export class OrdersApi {
      * @param limit Requested page limit
      * @param {*} [options] Override http request options.
      */
-    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, from?: Date, to?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
+    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'PlacedCanBeCancelled' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, from?: Date, to?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -37378,7 +37380,7 @@ export class OrdersApi {
         }
 
         if (state !== undefined) {
-            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>");
+            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<'Created' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'PlacedCanBeCancelled' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>");
         }
 
         if (from !== undefined) {
@@ -37448,7 +37450,7 @@ export class OrdersApi {
      * @param orderByRequestedForTime 
      * @param {*} [options] Override http request options.
      */
-    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, orderByRequestedForTime?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
+    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'PlacedCanBeCancelled' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, orderByRequestedForTime?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/orders/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -37469,7 +37471,7 @@ export class OrdersApi {
         }
 
         if (state !== undefined) {
-            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>");
+            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<'Created' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'PlacedCanBeCancelled' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>");
         }
 
         if (page !== undefined) {
