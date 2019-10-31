@@ -17505,6 +17505,29 @@ export class SearchCriteria {
 }
 
 /**
+* Set Driver Name
+*/
+export class SetDriverNameModel {
+    /**
+    * The new name of the Driver.
+    */
+    'Name'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SetDriverNameModel.attributeTypeMap;
+    }
+}
+
+/**
 * Set password with PIN model
 */
 export class SetPasswordWithPinModel {
@@ -18033,6 +18056,14 @@ export class Store {
     */
     'EtaInDeliveryConfirmationSmsEnabled'?: boolean;
     /**
+    * Is the Store Archived
+    */
+    'IsArchived'?: boolean;
+    /**
+    * Is the Store Published
+    */
+    'IsPublished'?: boolean;
+    /**
     * Name
     */
     'Name'?: string;
@@ -18246,6 +18277,16 @@ export class Store {
         {
             "name": "EtaInDeliveryConfirmationSmsEnabled",
             "baseName": "EtaInDeliveryConfirmationSmsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "IsArchived",
+            "baseName": "IsArchived",
+            "type": "boolean"
+        },
+        {
+            "name": "IsPublished",
+            "baseName": "IsPublished",
             "type": "boolean"
         },
         {
@@ -18728,6 +18769,14 @@ export class StoreBase {
     */
     'EtaInDeliveryConfirmationSmsEnabled'?: boolean;
     /**
+    * Is the Store Archived
+    */
+    'IsArchived'?: boolean;
+    /**
+    * Is the Store Published
+    */
+    'IsPublished'?: boolean;
+    /**
     * Name
     */
     'Name'?: string;
@@ -18856,6 +18905,16 @@ export class StoreBase {
         {
             "name": "EtaInDeliveryConfirmationSmsEnabled",
             "baseName": "EtaInDeliveryConfirmationSmsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "IsArchived",
+            "baseName": "IsArchived",
+            "type": "boolean"
+        },
+        {
+            "name": "IsPublished",
+            "baseName": "IsPublished",
             "type": "boolean"
         },
         {
@@ -25045,6 +25104,7 @@ let typeMap: {[index: string]: any} = {
     "RetentionCampaignDeletedEvent": RetentionCampaignDeletedEvent,
     "RetentionCampaignUpdatedEvent": RetentionCampaignUpdatedEvent,
     "SearchCriteria": SearchCriteria,
+    "SetDriverNameModel": SetDriverNameModel,
     "SetPasswordWithPinModel": SetPasswordWithPinModel,
     "SignupStep": SignupStep,
     "SmsInfo": SmsInfo,
@@ -28892,18 +28952,18 @@ export class DriversApi {
     /**
      * 
      * @summary Update driver profile
-     * @param name 
+     * @param setDriverName 
      * @param {*} [options] Override http request options.
      */
-    public setDriverName (name: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public setDriverName (setDriverName: SetDriverNameModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/profile';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling setDriverName.');
+        // verify required parameter 'setDriverName' is not null or undefined
+        if (setDriverName === null || setDriverName === undefined) {
+            throw new Error('Required parameter setDriverName was null or undefined when calling setDriverName.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -28917,7 +28977,7 @@ export class DriversApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(name, "string")
+            body: ObjectSerializer.serialize(setDriverName, "SetDriverNameModel")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -38506,6 +38566,62 @@ export class StoresApi {
     }
     /**
      * 
+     * @summary Archive store
+     * @param storeId Store identifier
+     * @param {*} [options] Override http request options.
+     */
+    public archiveStore (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/archive'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling archiveStore.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Assign Menu to Store
      * @param storeId Store identifier
      * @param menuId Id of Menu to assign to store
@@ -38886,9 +39002,9 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get Bussiness hours
+     * @summary Get Business hours
      * @param storeId Store identifier
-     * @param deliveryType Deliery type
+     * @param deliveryType Delivery type
      * @param {*} [options] Override http request options.
      */
     public getBusinessHours (storeId: number, deliveryType: 'Delivery' | 'Pickup', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultBusinessHoursPeriod;  }> {
@@ -39578,7 +39694,7 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get all stores
+     * @summary Get all stores, excluding archived ones
      * @param searchQuery Search query
      * @param page Requested page index
      * @param limit Requested page limit
