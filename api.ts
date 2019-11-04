@@ -4359,6 +4359,142 @@ export namespace DriverStore {
     }
 }
 /**
+* Defines the order data required for driver tracking
+*/
+export class DriverTrackingOrder {
+    /**
+    * Order Id
+    */
+    'OrderId'?: number;
+    /**
+    * Pretified address string in country format
+    */
+    'Address'?: string;
+    /**
+    * Delivery Notes
+    */
+    'DeliveryNotes'?: string;
+    /**
+    * Phone number of the store
+    */
+    'StorePhoneNumber'?: string;
+    /**
+    * App Icon of the store
+    */
+    'AppIconUrl'?: string;
+    /**
+    * Pub nub channel id
+    */
+    'PubNubChannelId'?: string;
+    /**
+    * Payment method description i.e Cash/Card/iDeal/Paypal
+    */
+    'PaymentMethodDescription'?: string;
+    /**
+    * Last 4 digits of the card if applicable otherwise null
+    */
+    'LastFourDigits'?: string;
+    /**
+    * Order lines of the order
+    */
+    'DriverTrackingOrderLines'?: Array<DriverTrackingOrderLine>;
+    /**
+    * Total amount for the order including tax
+    */
+    'TotalAmount'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrderId",
+            "baseName": "OrderId",
+            "type": "number"
+        },
+        {
+            "name": "Address",
+            "baseName": "Address",
+            "type": "string"
+        },
+        {
+            "name": "DeliveryNotes",
+            "baseName": "DeliveryNotes",
+            "type": "string"
+        },
+        {
+            "name": "StorePhoneNumber",
+            "baseName": "StorePhoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "AppIconUrl",
+            "baseName": "AppIconUrl",
+            "type": "string"
+        },
+        {
+            "name": "PubNubChannelId",
+            "baseName": "PubNubChannelId",
+            "type": "string"
+        },
+        {
+            "name": "PaymentMethodDescription",
+            "baseName": "PaymentMethodDescription",
+            "type": "string"
+        },
+        {
+            "name": "LastFourDigits",
+            "baseName": "LastFourDigits",
+            "type": "string"
+        },
+        {
+            "name": "DriverTrackingOrderLines",
+            "baseName": "DriverTrackingOrderLines",
+            "type": "Array<DriverTrackingOrderLine>"
+        },
+        {
+            "name": "TotalAmount",
+            "baseName": "TotalAmount",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DriverTrackingOrder.attributeTypeMap;
+    }
+}
+
+/**
+* Defines an order line for driver tracking
+*/
+export class DriverTrackingOrderLine {
+    /**
+    * Item name from the order
+    */
+    'ItemName'?: string;
+    /**
+    * Quantity of items
+    */
+    'Quantity'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ItemName",
+            "baseName": "ItemName",
+            "type": "string"
+        },
+        {
+            "name": "Quantity",
+            "baseName": "Quantity",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DriverTrackingOrderLine.attributeTypeMap;
+    }
+}
+
+/**
 * Order Terminal Notification
 */
 export class EmvNotificationEvent {
@@ -4531,6 +4667,14 @@ export class EventSearchResult {
     * Order dispatched events
     */
     'OrderDispatchedEvent'?: Array<OrderDispatchedEvent>;
+    /**
+    * Order delivery tracking created events
+    */
+    'OrderDeliveryTrackingCreatedEvent'?: Array<OrderDeliveryTrackingCreatedEvent>;
+    /**
+    * Order delivery tracking updated events
+    */
+    'OrderDeliveryTrackingStatusUpdatedEvent'?: Array<OrderDeliveryTrackingStatusUpdatedEvent>;
     /**
     * Order created events
     */
@@ -4895,6 +5039,16 @@ export class EventSearchResult {
             "name": "OrderDispatchedEvent",
             "baseName": "OrderDispatchedEvent",
             "type": "Array<OrderDispatchedEvent>"
+        },
+        {
+            "name": "OrderDeliveryTrackingCreatedEvent",
+            "baseName": "OrderDeliveryTrackingCreatedEvent",
+            "type": "Array<OrderDeliveryTrackingCreatedEvent>"
+        },
+        {
+            "name": "OrderDeliveryTrackingStatusUpdatedEvent",
+            "baseName": "OrderDeliveryTrackingStatusUpdatedEvent",
+            "type": "Array<OrderDeliveryTrackingStatusUpdatedEvent>"
         },
         {
             "name": "OrderCreatedEvent",
@@ -11554,6 +11708,160 @@ export class OrderCreatedEvent {
 
     static getAttributeTypeMap() {
         return OrderCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class OrderDeliveryTrackingCreatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Order
+    */
+    'DriverTrackingOrder'?: DriverTrackingOrder;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "DriverTrackingOrder",
+            "baseName": "DriverTrackingOrder",
+            "type": "DriverTrackingOrder"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderDeliveryTrackingCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class OrderDeliveryTrackingStatusUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Order
+    */
+    'Order'?: Order;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Order",
+            "baseName": "Order",
+            "type": "Order"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderDeliveryTrackingStatusUpdatedEvent.attributeTypeMap;
     }
 }
 
@@ -24884,6 +25192,8 @@ let typeMap: {[index: string]: any} = {
     "DriverLoginModel": DriverLoginModel,
     "DriverRequestLoginPinModel": DriverRequestLoginPinModel,
     "DriverStore": DriverStore,
+    "DriverTrackingOrder": DriverTrackingOrder,
+    "DriverTrackingOrderLine": DriverTrackingOrderLine,
     "EmvNotificationEvent": EmvNotificationEvent,
     "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
@@ -24965,6 +25275,8 @@ let typeMap: {[index: string]: any} = {
     "Order": Order,
     "OrderAcceptedEvent": OrderAcceptedEvent,
     "OrderCreatedEvent": OrderCreatedEvent,
+    "OrderDeliveryTrackingCreatedEvent": OrderDeliveryTrackingCreatedEvent,
+    "OrderDeliveryTrackingStatusUpdatedEvent": OrderDeliveryTrackingStatusUpdatedEvent,
     "OrderDispatchedEvent": OrderDispatchedEvent,
     "OrderIdAndSequenceNumber": OrderIdAndSequenceNumber,
     "OrderItem": OrderItem,
