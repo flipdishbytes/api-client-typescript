@@ -4653,6 +4653,74 @@ export class EmvNotificationEvent {
 }
 
 /**
+* EMV Payment Terminal
+*/
+export class EmvTerminalWithAssignments {
+    /**
+    * Flipdish Identifier of Terminal
+    */
+    'EmvTerminalId'?: number;
+    /**
+    * External Identifier of Terminal
+    */
+    'TerminalId'?: string;
+    /**
+    * true if the terminal is assigned to a hydra device (e.g. a kiosk)
+    */
+    'IsAssignedToHydraDevice'?: boolean;
+    /**
+    * hydra device id (null if the terminal is not assigned to any hydra device)
+    */
+    'HydraConfigId'?: number;
+    /**
+    * external hydra device id (null if the terminal is not assigned to any hydra device)
+    */
+    'HydraDeviceId'?: string;
+    /**
+    * hydra device name (null if the terminal is not assigned to any hydra device)
+    */
+    'HydraName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EmvTerminalId",
+            "baseName": "EmvTerminalId",
+            "type": "number"
+        },
+        {
+            "name": "TerminalId",
+            "baseName": "TerminalId",
+            "type": "string"
+        },
+        {
+            "name": "IsAssignedToHydraDevice",
+            "baseName": "IsAssignedToHydraDevice",
+            "type": "boolean"
+        },
+        {
+            "name": "HydraConfigId",
+            "baseName": "HydraConfigId",
+            "type": "number"
+        },
+        {
+            "name": "HydraDeviceId",
+            "baseName": "HydraDeviceId",
+            "type": "string"
+        },
+        {
+            "name": "HydraName",
+            "baseName": "HydraName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return EmvTerminalWithAssignments.attributeTypeMap;
+    }
+}
+
+/**
 * 
 */
 export class EventSearchResult {
@@ -25204,6 +25272,7 @@ let typeMap: {[index: string]: any} = {
     "DriverRequestLoginPinModel": DriverRequestLoginPinModel,
     "DriverStore": DriverStore,
     "EmvNotificationEvent": EmvNotificationEvent,
+    "EmvTerminalWithAssignments": EmvTerminalWithAssignments,
     "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
     "GroupedCoordinates": GroupedCoordinates,
@@ -31324,16 +31393,16 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary [Private]
+     * @summary Assign an EMV terminal to a kiosk
      * @param appId 
-     * @param hydraUserId 
+     * @param hydraConfigId 
      * @param emvTerminalId 
      * @param {*} [options] Override http request options.
      */
-    public assignEmv (appId: string, hydraUserId: number, emvTerminalId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvterminal/{hydraUserId}/{emvTerminalId}'
+    public assignEmv (appId: string, hydraConfigId: number, emvTerminalId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvterminal/assign/{hydraConfigId}/{emvTerminalId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'hydraUserId' + '}', encodeURIComponent(String(hydraUserId)))
+            .replace('{' + 'hydraConfigId' + '}', encodeURIComponent(String(hydraConfigId)))
             .replace('{' + 'emvTerminalId' + '}', encodeURIComponent(String(emvTerminalId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -31344,9 +31413,9 @@ export class HydraApi {
             throw new Error('Required parameter appId was null or undefined when calling assignEmv.');
         }
 
-        // verify required parameter 'hydraUserId' is not null or undefined
-        if (hydraUserId === null || hydraUserId === undefined) {
-            throw new Error('Required parameter hydraUserId was null or undefined when calling assignEmv.');
+        // verify required parameter 'hydraConfigId' is not null or undefined
+        if (hydraConfigId === null || hydraConfigId === undefined) {
+            throw new Error('Required parameter hydraConfigId was null or undefined when calling assignEmv.');
         }
 
         // verify required parameter 'emvTerminalId' is not null or undefined
@@ -31765,6 +31834,63 @@ export class HydraApi {
     }
     /**
      * 
+     * @summary List EMV terminals belonging to the given AppNameId
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public hydraGetEmvsForAppId (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: EmvTerminalWithAssignments;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/emvterminals'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling hydraGetEmvsForAppId.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: EmvTerminalWithAssignments;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "EmvTerminalWithAssignments");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary [Private]
      * @param deviceId 
      * @param hydraUserType 
@@ -31919,6 +32045,69 @@ export class HydraApi {
 
         let localVarRequestOptions: localVarRequest.Options = {
             method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Unassign the currently assigned EMV terminal from a kiosk
+     * @param appId 
+     * @param hydraConfigId 
+     * @param {*} [options] Override http request options.
+     */
+    public unassignEmv (appId: string, hydraConfigId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvterminal/unassign/{hydraConfigId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'hydraConfigId' + '}', encodeURIComponent(String(hydraConfigId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling unassignEmv.');
+        }
+
+        // verify required parameter 'hydraConfigId' is not null or undefined
+        if (hydraConfigId === null || hydraConfigId === undefined) {
+            throw new Error('Required parameter hydraConfigId was null or undefined when calling unassignEmv.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
