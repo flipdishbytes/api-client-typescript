@@ -4657,10 +4657,6 @@ export class EmvNotificationEvent {
 */
 export class EmvTerminalWithAssignments {
     /**
-    * Flipdish Identifier of Terminal
-    */
-    'EmvTerminalId'?: number;
-    /**
     * External Identifier of Terminal
     */
     'TerminalId'?: string;
@@ -4684,11 +4680,6 @@ export class EmvTerminalWithAssignments {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "EmvTerminalId",
-            "baseName": "EmvTerminalId",
-            "type": "number"
-        },
         {
             "name": "TerminalId",
             "baseName": "TerminalId",
@@ -4717,6 +4708,29 @@ export class EmvTerminalWithAssignments {
 
     static getAttributeTypeMap() {
         return EmvTerminalWithAssignments.attributeTypeMap;
+    }
+}
+
+/**
+* List of EMV payment terminals with assigned hydra devices
+*/
+export class EmvTerminalWithAssignmentsCollection {
+    /**
+    * List of terminals with assigned Hydra device
+    */
+    'Terminals'?: Array<EmvTerminalWithAssignments>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Terminals",
+            "baseName": "Terminals",
+            "type": "Array<EmvTerminalWithAssignments>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return EmvTerminalWithAssignmentsCollection.attributeTypeMap;
     }
 }
 
@@ -16580,6 +16594,29 @@ export class RestApiResultDriver {
 /**
 * Rest api result
 */
+export class RestApiResultEmvTerminalWithAssignmentsCollection {
+    /**
+    * Generic data object.
+    */
+    'Data': EmvTerminalWithAssignmentsCollection;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "EmvTerminalWithAssignmentsCollection"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultEmvTerminalWithAssignmentsCollection.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultHomeStatistics {
     /**
     * Generic data object.
@@ -25273,6 +25310,7 @@ let typeMap: {[index: string]: any} = {
     "DriverStore": DriverStore,
     "EmvNotificationEvent": EmvNotificationEvent,
     "EmvTerminalWithAssignments": EmvTerminalWithAssignments,
+    "EmvTerminalWithAssignmentsCollection": EmvTerminalWithAssignmentsCollection,
     "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
     "GroupedCoordinates": GroupedCoordinates,
@@ -25453,6 +25491,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultDeliveryZone": RestApiResultDeliveryZone,
     "RestApiResultDnsRecordInformation": RestApiResultDnsRecordInformation,
     "RestApiResultDriver": RestApiResultDriver,
+    "RestApiResultEmvTerminalWithAssignmentsCollection": RestApiResultEmvTerminalWithAssignmentsCollection,
     "RestApiResultHomeStatistics": RestApiResultHomeStatistics,
     "RestApiResultHydraConfig": RestApiResultHydraConfig,
     "RestApiResultHydraStatus": RestApiResultHydraStatus,
@@ -31838,7 +31877,7 @@ export class HydraApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public hydraGetEmvsForAppId (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: EmvTerminalWithAssignments;  }> {
+    public hydraGetEmvsForAppId (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultEmvTerminalWithAssignmentsCollection;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/emvterminals'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -31874,12 +31913,12 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: EmvTerminalWithAssignments;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultEmvTerminalWithAssignmentsCollection;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "EmvTerminalWithAssignments");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultEmvTerminalWithAssignmentsCollection");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
