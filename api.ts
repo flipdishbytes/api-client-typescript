@@ -17927,29 +17927,6 @@ export class SearchCriteria {
 }
 
 /**
-* Set Driver Name
-*/
-export class SetDriverNameModel {
-    /**
-    * The new name of the Driver.
-    */
-    'Name'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return SetDriverNameModel.attributeTypeMap;
-    }
-}
-
-/**
 * Set password with PIN model
 */
 export class SetPasswordWithPinModel {
@@ -22420,6 +22397,38 @@ export class TeammateUpdatedEvent {
 }
 
 /**
+* Set Driver Name
+*/
+export class UpdateDriverProfileModel {
+    /**
+    * The new name of the Driver.
+    */
+    'Name'?: string;
+    /**
+    * Push notifications token, can be null
+    */
+    'PushNotificationsToken'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "PushNotificationsToken",
+            "baseName": "PushNotificationsToken",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateDriverProfileModel.attributeTypeMap;
+    }
+}
+
+/**
 * User answered signup questions event
 */
 export class UserAnsweredSignupQuestionsEvent {
@@ -25533,7 +25542,6 @@ let typeMap: {[index: string]: any} = {
     "RetentionCampaignDeletedEvent": RetentionCampaignDeletedEvent,
     "RetentionCampaignUpdatedEvent": RetentionCampaignUpdatedEvent,
     "SearchCriteria": SearchCriteria,
-    "SetDriverNameModel": SetDriverNameModel,
     "SetPasswordWithPinModel": SetPasswordWithPinModel,
     "SignupStep": SignupStep,
     "SmsInfo": SmsInfo,
@@ -25574,6 +25582,7 @@ let typeMap: {[index: string]: any} = {
     "TeammateInviteAcceptedEvent": TeammateInviteAcceptedEvent,
     "TeammateInviteSentEvent": TeammateInviteSentEvent,
     "TeammateUpdatedEvent": TeammateUpdatedEvent,
+    "UpdateDriverProfileModel": UpdateDriverProfileModel,
     "UserAnsweredSignupQuestionsEvent": UserAnsweredSignupQuestionsEvent,
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
@@ -29380,62 +29389,6 @@ export class DriversApi {
     }
     /**
      * 
-     * @summary Update driver profile
-     * @param setDriverName 
-     * @param {*} [options] Override http request options.
-     */
-    public setDriverName (setDriverName: SetDriverNameModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/drivers/profile';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'setDriverName' is not null or undefined
-        if (setDriverName === null || setDriverName === undefined) {
-            throw new Error('Required parameter setDriverName was null or undefined when calling setDriverName.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(setDriverName, "SetDriverNameModel")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @param storeId 
      * @param presence 
      * @param {*} [options] Override http request options.
@@ -29601,6 +29554,62 @@ export class DriversApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update driver profile
+     * @param updateDriverProfile 
+     * @param {*} [options] Override http request options.
+     */
+    public updateDriverProfile (updateDriverProfile: UpdateDriverProfileModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/drivers/profile';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'updateDriverProfile' is not null or undefined
+        if (updateDriverProfile === null || updateDriverProfile === undefined) {
+            throw new Error('Required parameter updateDriverProfile was null or undefined when calling updateDriverProfile.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(updateDriverProfile, "UpdateDriverProfileModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
