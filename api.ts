@@ -6172,6 +6172,10 @@ export namespace HydraConnectionStatusChangedEvent {
 */
 export class HydraDeviceDetails {
     /**
+    * Flipdish internal device identifier
+    */
+    'HydraConfigId'?: number;
+    /**
     * Device Id or Serial Number
     */
     'DeviceId'?: string;
@@ -6215,6 +6219,11 @@ export class HydraDeviceDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "HydraConfigId",
+            "baseName": "HydraConfigId",
+            "type": "number"
+        },
         {
             "name": "DeviceId",
             "baseName": "DeviceId",
