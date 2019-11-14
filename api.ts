@@ -29708,7 +29708,7 @@ export class DriversApi {
     }
     /**
      * ...
-     * @summary Change delivey tracking status and return the updated status.
+     * @summary Change delivery tracking status and return the updated status.
      * @param orderId Order identifier
      * @param deliveryTrackingStatus 
      * @param {*} [options] Override http request options.
@@ -31655,7 +31655,7 @@ export class HydraApi {
      * @param {*} [options] Override http request options.
      */
     public assignEmv (appId: string, hydraConfigId: number, emvTerminalId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/{hydraConfigId}/emvterminal/{emvTerminalId}/assign'
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvterminal/assign/{hydraConfigId}/{emvTerminalId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'hydraConfigId' + '}', encodeURIComponent(String(hydraConfigId)))
             .replace('{' + 'emvTerminalId' + '}', encodeURIComponent(String(emvTerminalId)));
@@ -31719,11 +31719,13 @@ export class HydraApi {
     /**
      * 
      * @param orderId 
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public cancelEmvPayment (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/hydra/cancelemvpayment/{orderId}'
-            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
+    public cancelEmvPayment (orderId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/cancelemvpayment/{orderId}'
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -31731,6 +31733,11 @@ export class HydraApi {
         // verify required parameter 'orderId' is not null or undefined
         if (orderId === null || orderId === undefined) {
             throw new Error('Required parameter orderId was null or undefined when calling cancelEmvPayment.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling cancelEmvPayment.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -31863,13 +31870,20 @@ export class HydraApi {
     /**
      * 
      * @summary [Private]
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getEMVTerminalDetails (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalDetails;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/hydra/emvterminal';
+    public getEMVTerminalDetails (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalDetails;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvterminal'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getEMVTerminalDetails.');
+        }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
@@ -31914,11 +31928,13 @@ export class HydraApi {
      * 
      * @summary [Private]
      * @param orderId 
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getEmvOrderState (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalTransactionDetails;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/hydra/emvorderstate/{orderId}'
-            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
+    public getEmvOrderState (orderId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalTransactionDetails;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvorderstate/{orderId}'
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -31926,6 +31942,11 @@ export class HydraApi {
         // verify required parameter 'orderId' is not null or undefined
         if (orderId === null || orderId === undefined) {
             throw new Error('Required parameter orderId was null or undefined when calling getEmvOrderState.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getEmvOrderState.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -32447,7 +32468,7 @@ export class HydraApi {
      * @param {*} [options] Override http request options.
      */
     public unassignEmv (appId: string, hydraConfigId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/{hydraConfigId}/emvterminal/unassign'
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvterminal/unassign/{hydraConfigId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'hydraConfigId' + '}', encodeURIComponent(String(hydraConfigId)));
         let localVarQueryParameters: any = {};
