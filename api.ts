@@ -3416,6 +3416,18 @@ export class CustomerDeliveryTrackingOrder {
     * Total amount for the order including tax
     */
     'TotalAmount'?: number;
+    /**
+    * Currency
+    */
+    'Currency'?: CustomerDeliveryTrackingOrder.CurrencyEnum;
+    /**
+    * Customer Location Latitude
+    */
+    'Latitude'?: number;
+    /**
+    * Customer Location Longitude
+    */
+    'Longitude'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -3469,6 +3481,21 @@ export class CustomerDeliveryTrackingOrder {
             "name": "TotalAmount",
             "baseName": "TotalAmount",
             "type": "number"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "CustomerDeliveryTrackingOrder.CurrencyEnum"
+        },
+        {
+            "name": "Latitude",
+            "baseName": "Latitude",
+            "type": "number"
+        },
+        {
+            "name": "Longitude",
+            "baseName": "Longitude",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -3476,6 +3503,122 @@ export class CustomerDeliveryTrackingOrder {
     }
 }
 
+export namespace CustomerDeliveryTrackingOrder {
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD'
+    }
+}
 /**
 * Defines an order line for driver tracking
 */
@@ -3485,9 +3628,9 @@ export class CustomerDeliveryTrackingOrderLine {
     */
     'ItemName'?: string;
     /**
-    * Quantity of items
+    * Selected option names
     */
-    'Quantity'?: number;
+    'SelectedOptions'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
@@ -3498,9 +3641,9 @@ export class CustomerDeliveryTrackingOrderLine {
             "type": "string"
         },
         {
-            "name": "Quantity",
-            "baseName": "Quantity",
-            "type": "number"
+            "name": "SelectedOptions",
+            "baseName": "SelectedOptions",
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4655,9 +4798,81 @@ export class EmvNotificationEvent {
 /**
 * EMV Payment Terminal
 */
-export class EmvTerminalWithAssignments {
+export class EmvTerminal {
+    /**
+    * Flipdish Identifier of Terminal
+    */
+    'EmvTerminalId'?: number;
     /**
     * External Identifier of Terminal
+    */
+    'TerminalId'?: string;
+    /**
+    * URL at which terminal can be accessed
+    */
+    'Url'?: string;
+    /**
+    * TOKEN required to access terminal
+    */
+    'Token'?: string;
+    /**
+    * Identifies us to Provider
+    */
+    'SoftwareHouseId'?: string;
+    /**
+    * Identifies installer of terminal
+    */
+    'InstallerId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EmvTerminalId",
+            "baseName": "EmvTerminalId",
+            "type": "number"
+        },
+        {
+            "name": "TerminalId",
+            "baseName": "TerminalId",
+            "type": "string"
+        },
+        {
+            "name": "Url",
+            "baseName": "Url",
+            "type": "string"
+        },
+        {
+            "name": "Token",
+            "baseName": "Token",
+            "type": "string"
+        },
+        {
+            "name": "SoftwareHouseId",
+            "baseName": "SoftwareHouseId",
+            "type": "string"
+        },
+        {
+            "name": "InstallerId",
+            "baseName": "InstallerId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return EmvTerminal.attributeTypeMap;
+    }
+}
+
+/**
+* EMV Payment Terminal
+*/
+export class EmvTerminalWithAssignments {
+    /**
+    * Flipdish Internal identifier of the Terminal
+    */
+    'EmvTerminalId'?: string;
+    /**
+    * External Identifier of the Terminal
     */
     'TerminalId'?: string;
     /**
@@ -4680,6 +4895,11 @@ export class EmvTerminalWithAssignments {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EmvTerminalId",
+            "baseName": "EmvTerminalId",
+            "type": "string"
+        },
         {
             "name": "TerminalId",
             "baseName": "TerminalId",
@@ -4708,29 +4928,6 @@ export class EmvTerminalWithAssignments {
 
     static getAttributeTypeMap() {
         return EmvTerminalWithAssignments.attributeTypeMap;
-    }
-}
-
-/**
-* List of EMV payment terminals with assigned hydra devices
-*/
-export class EmvTerminalWithAssignmentsCollection {
-    /**
-    * List of terminals with assigned Hydra device
-    */
-    'Terminals'?: Array<EmvTerminalWithAssignments>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Terminals",
-            "baseName": "Terminals",
-            "type": "Array<EmvTerminalWithAssignments>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return EmvTerminalWithAssignmentsCollection.attributeTypeMap;
     }
 }
 
@@ -14930,6 +15127,29 @@ export class RestApiArrayResultDriverStore {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultEmvTerminalWithAssignments {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<EmvTerminalWithAssignments>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<EmvTerminalWithAssignments>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultEmvTerminalWithAssignments.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultHomeAction {
     /**
     * Generic data object.
@@ -16597,29 +16817,6 @@ export class RestApiResultDriver {
 
     static getAttributeTypeMap() {
         return RestApiResultDriver.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api result
-*/
-export class RestApiResultEmvTerminalWithAssignmentsCollection {
-    /**
-    * Generic data object.
-    */
-    'Data': EmvTerminalWithAssignmentsCollection;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "EmvTerminalWithAssignmentsCollection"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiResultEmvTerminalWithAssignmentsCollection.attributeTypeMap;
     }
 }
 
@@ -25198,6 +25395,7 @@ let enumsMap: {[index: string]: any} = {
         "CreateTeammate.AppAccessLevelEnum": CreateTeammate.AppAccessLevelEnum,
         "CreateVoucher.VoucherTypeEnum": CreateVoucher.VoucherTypeEnum,
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
+        "CustomerDeliveryTrackingOrder.CurrencyEnum": CustomerDeliveryTrackingOrder.CurrencyEnum,
         "DriverStore.PresenceEnum": DriverStore.PresenceEnum,
         "HomeAction.HomeActionTypeEnum": HomeAction.HomeActionTypeEnum,
         "HydraConfig.PaymentOptionsEnum": HydraConfig.PaymentOptionsEnum,
@@ -25327,8 +25525,8 @@ let typeMap: {[index: string]: any} = {
     "DriverRequestLoginPinModel": DriverRequestLoginPinModel,
     "DriverStore": DriverStore,
     "EmvNotificationEvent": EmvNotificationEvent,
+    "EmvTerminal": EmvTerminal,
     "EmvTerminalWithAssignments": EmvTerminalWithAssignments,
-    "EmvTerminalWithAssignmentsCollection": EmvTerminalWithAssignmentsCollection,
     "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
     "GroupedCoordinates": GroupedCoordinates,
@@ -25457,6 +25655,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
     "RestApiArrayResultDriver": RestApiArrayResultDriver,
     "RestApiArrayResultDriverStore": RestApiArrayResultDriverStore,
+    "RestApiArrayResultEmvTerminalWithAssignments": RestApiArrayResultEmvTerminalWithAssignments,
     "RestApiArrayResultHomeAction": RestApiArrayResultHomeAction,
     "RestApiArrayResultLocalisedTimeZone": RestApiArrayResultLocalisedTimeZone,
     "RestApiArrayResultMenuCheckpoint": RestApiArrayResultMenuCheckpoint,
@@ -25509,7 +25708,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultDeliveryZone": RestApiResultDeliveryZone,
     "RestApiResultDnsRecordInformation": RestApiResultDnsRecordInformation,
     "RestApiResultDriver": RestApiResultDriver,
-    "RestApiResultEmvTerminalWithAssignmentsCollection": RestApiResultEmvTerminalWithAssignmentsCollection,
     "RestApiResultHomeStatistics": RestApiResultHomeStatistics,
     "RestApiResultHydraConfig": RestApiResultHydraConfig,
     "RestApiResultHydraStatus": RestApiResultHydraStatus,
@@ -31457,7 +31655,7 @@ export class HydraApi {
      * @param {*} [options] Override http request options.
      */
     public assignEmv (appId: string, hydraConfigId: number, emvTerminalId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvterminal/assign/{hydraConfigId}/{emvTerminalId}'
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/{hydraConfigId}/emvterminal/{emvTerminalId}/assign'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'hydraConfigId' + '}', encodeURIComponent(String(hydraConfigId)))
             .replace('{' + 'emvTerminalId' + '}', encodeURIComponent(String(emvTerminalId)));
@@ -31521,13 +31719,11 @@ export class HydraApi {
     /**
      * 
      * @param orderId 
-     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public cancelEmvPayment (orderId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/cancelemvpayment/{orderId}'
-            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)))
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+    public cancelEmvPayment (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/hydra/cancelemvpayment/{orderId}'
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -31535,11 +31731,6 @@ export class HydraApi {
         // verify required parameter 'orderId' is not null or undefined
         if (orderId === null || orderId === undefined) {
             throw new Error('Required parameter orderId was null or undefined when calling cancelEmvPayment.');
-        }
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling cancelEmvPayment.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -31672,20 +31863,13 @@ export class HydraApi {
     /**
      * 
      * @summary [Private]
-     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getEMVTerminalDetails (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalDetails;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvterminal'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+    public getEMVTerminalDetails (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalDetails;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/hydra/emvterminal';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getEMVTerminalDetails.');
-        }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
@@ -31730,13 +31914,11 @@ export class HydraApi {
      * 
      * @summary [Private]
      * @param orderId 
-     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getEmvOrderState (orderId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalTransactionDetails;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvorderstate/{orderId}'
-            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)))
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+    public getEmvOrderState (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalTransactionDetails;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/hydra/emvorderstate/{orderId}'
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -31744,11 +31926,6 @@ export class HydraApi {
         // verify required parameter 'orderId' is not null or undefined
         if (orderId === null || orderId === undefined) {
             throw new Error('Required parameter orderId was null or undefined when calling getEmvOrderState.');
-        }
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getEmvOrderState.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -31891,11 +32068,139 @@ export class HydraApi {
     }
     /**
      * 
+     * @summary [Private]
+     * @param appId 
+     * @param emv 
+     * @param {*} [options] Override http request options.
+     */
+    public hydraCreateEmv (appId: string, emv: EmvTerminal, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/emvterminals'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling hydraCreateEmv.');
+        }
+
+        // verify required parameter 'emv' is not null or undefined
+        if (emv === null || emv === undefined) {
+            throw new Error('Required parameter emv was null or undefined when calling hydraCreateEmv.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(emv, "EmvTerminal")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [Private]
+     * @param appId 
+     * @param id 
+     * @param {*} [options] Override http request options.
+     */
+    public hydraDeleteEmv (appId: string, id: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/emvterminals/{id}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling hydraDeleteEmv.');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling hydraDeleteEmv.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary List EMV terminals belonging to the given AppNameId
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public hydraGetEmvsForAppId (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultEmvTerminalWithAssignmentsCollection;  }> {
+    public hydraGetEmvsForAppId (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultEmvTerminalWithAssignments;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/emvterminals'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -31931,12 +32236,12 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultEmvTerminalWithAssignmentsCollection;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultEmvTerminalWithAssignments;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultEmvTerminalWithAssignmentsCollection");
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultEmvTerminalWithAssignments");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -32142,7 +32447,7 @@ export class HydraApi {
      * @param {*} [options] Override http request options.
      */
     public unassignEmv (appId: string, hydraConfigId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvterminal/unassign/{hydraConfigId}'
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/{hydraConfigId}/emvterminal/unassign'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'hydraConfigId' + '}', encodeURIComponent(String(hydraConfigId)));
         let localVarQueryParameters: any = {};
@@ -40606,7 +40911,7 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Publish store
+     * @summary Unpublish store
      * @param storeId Store identifier
      * @param {*} [options] Override http request options.
      */
