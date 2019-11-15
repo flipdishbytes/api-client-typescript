@@ -5028,6 +5028,22 @@ export class EventSearchResult {
     */
     'StoreBusinessHoursOverrideDeletedEvent'?: Array<StoreBusinessHoursOverrideDeletedEvent>;
     /**
+    * Store archived events
+    */
+    'StoreArchivedEvent'?: Array<StoreArchivedEvent>;
+    /**
+    * Store unarchived events
+    */
+    'StoreUnarchivedEvent'?: Array<StoreUnarchivedEvent>;
+    /**
+    * Store published events
+    */
+    'StorePublishedEvent'?: Array<StorePublishedEvent>;
+    /**
+    * Store unpublished events
+    */
+    'StoreUnpublishedEvent'?: Array<StoreUnpublishedEvent>;
+    /**
     * Store updated events
     */
     'StoreUpdatedEvent'?: Array<StoreUpdatedEvent>;
@@ -5417,6 +5433,26 @@ export class EventSearchResult {
             "name": "StoreBusinessHoursOverrideDeletedEvent",
             "baseName": "StoreBusinessHoursOverrideDeletedEvent",
             "type": "Array<StoreBusinessHoursOverrideDeletedEvent>"
+        },
+        {
+            "name": "StoreArchivedEvent",
+            "baseName": "StoreArchivedEvent",
+            "type": "Array<StoreArchivedEvent>"
+        },
+        {
+            "name": "StoreUnarchivedEvent",
+            "baseName": "StoreUnarchivedEvent",
+            "type": "Array<StoreUnarchivedEvent>"
+        },
+        {
+            "name": "StorePublishedEvent",
+            "baseName": "StorePublishedEvent",
+            "type": "Array<StorePublishedEvent>"
+        },
+        {
+            "name": "StoreUnpublishedEvent",
+            "baseName": "StoreUnpublishedEvent",
+            "type": "Array<StoreUnpublishedEvent>"
         },
         {
             "name": "StoreUpdatedEvent",
@@ -19278,6 +19314,110 @@ export class StoreAddressUpdatedEvent {
 }
 
 /**
+* Store Archived Event
+*/
+export class StoreArchivedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
+    * User which archived this store
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Archived Store
+    */
+    'Store'?: Store;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Store",
+            "baseName": "Store",
+            "type": "Store"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreArchivedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Store Base
 */
 export class StoreBase {
@@ -21612,6 +21752,110 @@ export class StorePreOrderConfigUpdatedEvent {
 }
 
 /**
+* Store Published Event
+*/
+export class StorePublishedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
+    * User which published this store
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Published Store
+    */
+    'Store'?: Store;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Store",
+            "baseName": "Store",
+            "type": "Store"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StorePublishedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Store statistics
 */
 export class StoreStatistics {
@@ -21827,6 +22071,214 @@ export namespace StoreSummary {
         TWD = <any> 'TWD'
     }
 }
+/**
+* Store Unarchived Event
+*/
+export class StoreUnarchivedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
+    * User which unarchived this store
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Unarchived Store
+    */
+    'Store'?: Store;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Store",
+            "baseName": "Store",
+            "type": "Store"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreUnarchivedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Store Unpublished Event
+*/
+export class StoreUnpublishedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
+    * User which unpublished this store
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Unpublished Store
+    */
+    'Store'?: Store;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Store",
+            "baseName": "Store",
+            "type": "Store"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreUnpublishedEvent.attributeTypeMap;
+    }
+}
+
 /**
 * Store Updated Event
 */
@@ -25758,6 +26210,7 @@ let typeMap: {[index: string]: any} = {
     "StoreAddress": StoreAddress,
     "StoreAddressBase": StoreAddressBase,
     "StoreAddressUpdatedEvent": StoreAddressUpdatedEvent,
+    "StoreArchivedEvent": StoreArchivedEvent,
     "StoreBase": StoreBase,
     "StoreBusinessHoursOverrideCreatedEvent": StoreBusinessHoursOverrideCreatedEvent,
     "StoreBusinessHoursOverrideDeletedEvent": StoreBusinessHoursOverrideDeletedEvent,
@@ -25778,8 +26231,11 @@ let typeMap: {[index: string]: any} = {
     "StoreNote": StoreNote,
     "StoreOpeningHoursUpdatedEvent": StoreOpeningHoursUpdatedEvent,
     "StorePreOrderConfigUpdatedEvent": StorePreOrderConfigUpdatedEvent,
+    "StorePublishedEvent": StorePublishedEvent,
     "StoreStatistics": StoreStatistics,
     "StoreSummary": StoreSummary,
+    "StoreUnarchivedEvent": StoreUnarchivedEvent,
+    "StoreUnpublishedEvent": StoreUnpublishedEvent,
     "StoreUpdatedEvent": StoreUpdatedEvent,
     "StuartSettings": StuartSettings,
     "SupportedCountry": SupportedCountry,
