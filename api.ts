@@ -3428,6 +3428,26 @@ export class CustomerDeliveryTrackingOrder {
     * Customer Location Longitude
     */
     'Longitude'?: number;
+    /**
+    * Order placed time
+    */
+    'Placed'?: Date;
+    /**
+    * Order requested for
+    */
+    'RequestedFor'?: Date;
+    /**
+    * Driver Id
+    */
+    'DriverId'?: number;
+    /**
+    * Driver Name
+    */
+    'DriverName'?: string;
+    /**
+    * Driver Image
+    */
+    'DriverImage'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -3496,6 +3516,31 @@ export class CustomerDeliveryTrackingOrder {
             "name": "Longitude",
             "baseName": "Longitude",
             "type": "number"
+        },
+        {
+            "name": "Placed",
+            "baseName": "Placed",
+            "type": "Date"
+        },
+        {
+            "name": "RequestedFor",
+            "baseName": "RequestedFor",
+            "type": "Date"
+        },
+        {
+            "name": "DriverId",
+            "baseName": "DriverId",
+            "type": "number"
+        },
+        {
+            "name": "DriverName",
+            "baseName": "DriverName",
+            "type": "string"
+        },
+        {
+            "name": "DriverImage",
+            "baseName": "DriverImage",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4431,18 +4476,6 @@ export class DnsVerifiedEvent {
 */
 export class Driver {
     /**
-    * 
-    */
-    'Stores'?: Array<DriverStore>;
-    /**
-    * Profile image url
-    */
-    'ProfileImageUrl'?: string;
-    /**
-    * Driver Key
-    */
-    'DriverKey'?: string;
-    /**
     * User Id
     */
     'UserId'?: number;
@@ -4455,28 +4488,21 @@ export class Driver {
     */
     'UserPhoneNumber'?: string;
     /**
-    * User Email
+    * 
     */
-    'UserEmail'?: string;
+    'Stores'?: Array<DriverStore>;
+    /**
+    * Profile image url
+    */
+    'ProfileImageUrl'?: string;
+    /**
+    * Driver Key
+    */
+    'DriverKey'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Stores",
-            "baseName": "Stores",
-            "type": "Array<DriverStore>"
-        },
-        {
-            "name": "ProfileImageUrl",
-            "baseName": "ProfileImageUrl",
-            "type": "string"
-        },
-        {
-            "name": "DriverKey",
-            "baseName": "DriverKey",
-            "type": "string"
-        },
         {
             "name": "UserId",
             "baseName": "UserId",
@@ -4493,8 +4519,18 @@ export class Driver {
             "type": "string"
         },
         {
-            "name": "UserEmail",
-            "baseName": "UserEmail",
+            "name": "Stores",
+            "baseName": "Stores",
+            "type": "Array<DriverStore>"
+        },
+        {
+            "name": "ProfileImageUrl",
+            "baseName": "ProfileImageUrl",
+            "type": "string"
+        },
+        {
+            "name": "DriverKey",
+            "baseName": "DriverKey",
             "type": "string"
         }    ];
 
@@ -23055,17 +23091,36 @@ export class TeammateUpdatedEvent {
 }
 
 /**
-* Set Driver Name
+* UpdateDriver Push Notification Token
+*/
+export class UpdateDriverNotificationToken {
+    /**
+    * Push notifications token, cannot be null
+    */
+    'PushNotificationsToken': string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PushNotificationsToken",
+            "baseName": "PushNotificationsToken",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateDriverNotificationToken.attributeTypeMap;
+    }
+}
+
+/**
+* Update Driver Profile
 */
 export class UpdateDriverProfileModel {
     /**
     * The new name of the Driver.
     */
     'Name'?: string;
-    /**
-    * Push notifications token, can be null
-    */
-    'PushNotificationsToken'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -23073,11 +23128,6 @@ export class UpdateDriverProfileModel {
         {
             "name": "Name",
             "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "PushNotificationsToken",
-            "baseName": "PushNotificationsToken",
             "type": "string"
         }    ];
 
@@ -26245,6 +26295,7 @@ let typeMap: {[index: string]: any} = {
     "TeammateInviteAcceptedEvent": TeammateInviteAcceptedEvent,
     "TeammateInviteSentEvent": TeammateInviteSentEvent,
     "TeammateUpdatedEvent": TeammateUpdatedEvent,
+    "UpdateDriverNotificationToken": UpdateDriverNotificationToken,
     "UpdateDriverProfileModel": UpdateDriverProfileModel,
     "UserAnsweredSignupQuestionsEvent": UserAnsweredSignupQuestionsEvent,
     "UserCreatedEvent": UserCreatedEvent,
@@ -29791,6 +29842,62 @@ export class DriversApi {
     }
     /**
      * 
+     * @summary Add driver token
+     * @param updateDriverToken 
+     * @param {*} [options] Override http request options.
+     */
+    public addDriverNotificationToken (updateDriverToken: UpdateDriverNotificationToken, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/drivers/token';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'updateDriverToken' is not null or undefined
+        if (updateDriverToken === null || updateDriverToken === undefined) {
+            throw new Error('Required parameter updateDriverToken was null or undefined when calling addDriverNotificationToken.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(updateDriverToken, "UpdateDriverNotificationToken")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Delete driver profile image
      * @param {*} [options] Override http request options.
      */
@@ -30041,6 +30148,62 @@ export class DriversApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultDriverStore");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Delete driver token
+     * @param removeDriverToken 
+     * @param {*} [options] Override http request options.
+     */
+    public removeDriverNotificationToken (removeDriverToken: UpdateDriverNotificationToken, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/drivers/token';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'removeDriverToken' is not null or undefined
+        if (removeDriverToken === null || removeDriverToken === undefined) {
+            throw new Error('Required parameter removeDriverToken was null or undefined when calling removeDriverNotificationToken.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(removeDriverToken, "UpdateDriverNotificationToken")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
