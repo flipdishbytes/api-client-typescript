@@ -3448,6 +3448,10 @@ export class CustomerDeliveryTrackingOrder {
     * Driver Image
     */
     'DriverImage'?: string;
+    /**
+    * 
+    */
+    'EstimatedMinutesForDelivery'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -3541,6 +3545,11 @@ export class CustomerDeliveryTrackingOrder {
             "name": "DriverImage",
             "baseName": "DriverImage",
             "type": "string"
+        },
+        {
+            "name": "EstimatedMinutesForDelivery",
+            "baseName": "EstimatedMinutesForDelivery",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
