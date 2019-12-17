@@ -13805,6 +13805,14 @@ export class PreOrderConfig {
     * Type of time displayed.
     */
     'PreOrderTimeDisplayType'?: PreOrderConfig.PreOrderTimeDisplayTypeEnum;
+    /**
+    * Specifies whether a customer can pre-order outside the store opening hours or not.
+    */
+    'AlwaysAppearOpen'?: boolean;
+    /**
+    * Force customer to select collection time.
+    */
+    'RequireExplicitSelectAlways'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -13848,6 +13856,16 @@ export class PreOrderConfig {
             "name": "PreOrderTimeDisplayType",
             "baseName": "PreOrderTimeDisplayType",
             "type": "PreOrderConfig.PreOrderTimeDisplayTypeEnum"
+        },
+        {
+            "name": "AlwaysAppearOpen",
+            "baseName": "AlwaysAppearOpen",
+            "type": "boolean"
+        },
+        {
+            "name": "RequireExplicitSelectAlways",
+            "baseName": "RequireExplicitSelectAlways",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -40798,9 +40816,11 @@ export class StoresApi {
      * @param preOrderConfig_cutOffTimePreviousDayBasic Cut off time previous day
      * @param preOrderConfig_cutOffTimeCurrentDayBasic Cut off time current day
      * @param preOrderConfig_preOrderTimeDisplayType Type of time displayed.
+     * @param preOrderConfig_alwaysAppearOpen Specifies whether a customer can pre-order outside the store opening hours or not.
+     * @param preOrderConfig_requireExplicitSelectAlways Force customer to select collection time.
      * @param {*} [options] Override http request options.
      */
-    public getPreOrderPreview (storeId: number, deliveryType: 'Delivery' | 'Pickup', preOrderConfig_leadTimeMinutes?: number, preOrderConfig_intervalMinutes?: number, preOrderConfig_maxOrderAheadDays?: number, preOrderConfig_includeAsap?: boolean, preOrderConfig_includeMoreGranularInitialTime?: boolean, preOrderConfig_cutOffTimePreviousDayBasic?: string, preOrderConfig_cutOffTimeCurrentDayBasic?: string, preOrderConfig_preOrderTimeDisplayType?: 'SingleTime' | 'StartAndEndTime' | 'DayOnly', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPreOrderTime;  }> {
+    public getPreOrderPreview (storeId: number, deliveryType: 'Delivery' | 'Pickup', preOrderConfig_leadTimeMinutes?: number, preOrderConfig_intervalMinutes?: number, preOrderConfig_maxOrderAheadDays?: number, preOrderConfig_includeAsap?: boolean, preOrderConfig_includeMoreGranularInitialTime?: boolean, preOrderConfig_cutOffTimePreviousDayBasic?: string, preOrderConfig_cutOffTimeCurrentDayBasic?: string, preOrderConfig_preOrderTimeDisplayType?: 'SingleTime' | 'StartAndEndTime' | 'DayOnly', preOrderConfig_alwaysAppearOpen?: boolean, preOrderConfig_requireExplicitSelectAlways?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPreOrderTime;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/preorderconfig/{deliveryType}/preview'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
@@ -40848,6 +40868,14 @@ export class StoresApi {
 
         if (preOrderConfig_preOrderTimeDisplayType !== undefined) {
             localVarQueryParameters['preOrderConfig.preOrderTimeDisplayType'] = ObjectSerializer.serialize(preOrderConfig_preOrderTimeDisplayType, "'SingleTime' | 'StartAndEndTime' | 'DayOnly'");
+        }
+
+        if (preOrderConfig_alwaysAppearOpen !== undefined) {
+            localVarQueryParameters['preOrderConfig.alwaysAppearOpen'] = ObjectSerializer.serialize(preOrderConfig_alwaysAppearOpen, "boolean");
+        }
+
+        if (preOrderConfig_requireExplicitSelectAlways !== undefined) {
+            localVarQueryParameters['preOrderConfig.requireExplicitSelectAlways'] = ObjectSerializer.serialize(preOrderConfig_requireExplicitSelectAlways, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
