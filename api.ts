@@ -29107,6 +29107,76 @@ export class DeliveryTrackingApi {
     }
     /**
      * 
+     * @summary [PRIVATE] Assign driver to order
+     * @param appId 
+     * @param orderId 
+     * @param driverId 
+     * @param {*} [options] Override http request options.
+     */
+    public assignDriverToOrder (appId: string, orderId: number, driverId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/drivers/{driverId}/orders/{orderId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)))
+            .replace('{' + 'driverId' + '}', encodeURIComponent(String(driverId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling assignDriverToOrder.');
+        }
+
+        // verify required parameter 'orderId' is not null or undefined
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling assignDriverToOrder.');
+        }
+
+        // verify required parameter 'driverId' is not null or undefined
+        if (driverId === null || driverId === undefined) {
+            throw new Error('Required parameter driverId was null or undefined when calling assignDriverToOrder.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Assign driver to multiple orders
      * @param appId 
      * @param driverId 
@@ -29148,76 +29218,6 @@ export class DeliveryTrackingApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(orderIdAndSequenceNumbers, "Array<OrderIdAndSequenceNumber>")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary [PRIVATE] Assign driver to order
-     * @param appId 
-     * @param orderId 
-     * @param driverId 
-     * @param {*} [options] Override http request options.
-     */
-    public assignDriverToOrders_1 (appId: string, orderId: number, driverId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/drivers/{driverId}/orders/{orderId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)))
-            .replace('{' + 'driverId' + '}', encodeURIComponent(String(driverId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling assignDriverToOrders_1.');
-        }
-
-        // verify required parameter 'orderId' is not null or undefined
-        if (orderId === null || orderId === undefined) {
-            throw new Error('Required parameter orderId was null or undefined when calling assignDriverToOrders_1.');
-        }
-
-        // verify required parameter 'driverId' is not null or undefined
-        if (driverId === null || driverId === undefined) {
-            throw new Error('Required parameter driverId was null or undefined when calling assignDriverToOrders_1.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
