@@ -5097,6 +5097,18 @@ export class EventSearchResult {
     */
     'StorePreOrderConfigUpdatedEvent'?: Array<StorePreOrderConfigUpdatedEvent>;
     /**
+    * Store logo created events
+    */
+    'StoreLogoCreatedEvent'?: Array<StoreLogoCreatedEvent>;
+    /**
+    * Store logo updated events
+    */
+    'StoreLogoUpdatedEvent'?: Array<StoreLogoUpdatedEvent>;
+    /**
+    * Store logo deleted events
+    */
+    'StoreLogoDeletedEvent'?: Array<StoreLogoDeletedEvent>;
+    /**
     * Menu created events
     */
     'MenuCreatedEvent'?: Array<MenuCreatedEvent>;
@@ -5508,6 +5520,21 @@ export class EventSearchResult {
             "name": "StorePreOrderConfigUpdatedEvent",
             "baseName": "StorePreOrderConfigUpdatedEvent",
             "type": "Array<StorePreOrderConfigUpdatedEvent>"
+        },
+        {
+            "name": "StoreLogoCreatedEvent",
+            "baseName": "StoreLogoCreatedEvent",
+            "type": "Array<StoreLogoCreatedEvent>"
+        },
+        {
+            "name": "StoreLogoUpdatedEvent",
+            "baseName": "StoreLogoUpdatedEvent",
+            "type": "Array<StoreLogoUpdatedEvent>"
+        },
+        {
+            "name": "StoreLogoDeletedEvent",
+            "baseName": "StoreLogoDeletedEvent",
+            "type": "Array<StoreLogoDeletedEvent>"
         },
         {
             "name": "MenuCreatedEvent",
@@ -18668,6 +18695,10 @@ export class Store {
     */
     'PreOrderPickupEnabled'?: boolean;
     /**
+    * Url for logo image
+    */
+    'LogoUrl'?: string;
+    /**
     * Phone number
     */
     'PhoneNumber'?: string;
@@ -18867,6 +18898,11 @@ export class Store {
             "name": "PreOrderPickupEnabled",
             "baseName": "PreOrderPickupEnabled",
             "type": "boolean"
+        },
+        {
+            "name": "LogoUrl",
+            "baseName": "LogoUrl",
+            "type": "string"
         },
         {
             "name": "PhoneNumber",
@@ -21452,6 +21488,264 @@ export class StoreHeader {
 
     static getAttributeTypeMap() {
         return StoreHeader.attributeTypeMap;
+    }
+}
+
+/**
+* Store logo created
+*/
+export class StoreLogoCreatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * ID of store that the logo has been added to
+    */
+    'StoreId'?: number;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * User who added the logo
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreLogoCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Store logo deleted
+*/
+export class StoreLogoDeletedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * ID of store that the logo has been added to
+    */
+    'StoreId'?: number;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * User who removed the logo
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreLogoDeletedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Store logo updated
+*/
+export class StoreLogoUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * ID of store that the logo has been added to
+    */
+    'StoreId'?: number;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * User who updated the logo
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreLogoUpdatedEvent.attributeTypeMap;
     }
 }
 
@@ -26304,6 +26598,9 @@ let typeMap: {[index: string]: any} = {
     "StoreGroupExtended": StoreGroupExtended,
     "StoreGroupUpdatedEvent": StoreGroupUpdatedEvent,
     "StoreHeader": StoreHeader,
+    "StoreLogoCreatedEvent": StoreLogoCreatedEvent,
+    "StoreLogoDeletedEvent": StoreLogoDeletedEvent,
+    "StoreLogoUpdatedEvent": StoreLogoUpdatedEvent,
     "StoreMenuAssignedEvent": StoreMenuAssignedEvent,
     "StoreNote": StoreNote,
     "StoreOpeningHoursUpdatedEvent": StoreOpeningHoursUpdatedEvent,
@@ -40107,6 +40404,63 @@ export class StoresApi {
     }
     /**
      * 
+     * @summary Add a logo image for a store
+     * @param storeId Store identifier
+     * @param {*} [options] Override http request options.
+     */
+    public addLogoImage (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/logo'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling addLogoImage.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestApiDefaultResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Archive store
      * @param storeId Store identifier
      * @param {*} [options] Override http request options.
@@ -40486,6 +40840,63 @@ export class StoresApi {
     }
     /**
      * 
+     * @summary Removes the logo image associated with a store
+     * @param storeId Store identifier
+     * @param {*} [options] Override http request options.
+     */
+    public deleteLogoImage (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/logo'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling deleteLogoImage.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestApiDefaultResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Get Stores Bank Account Id
      * @param storeId Store identifier
      * @param {*} [options] Override http request options.
@@ -40730,6 +41141,63 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultStoreEndOfDayReport");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get the logo image url for a store
+     * @param storeId Store identifier
+     * @param {*} [options] Override http request options.
+     */
+    public getLogoImage (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/logo'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getLogoImage.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestApiDefaultResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
