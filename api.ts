@@ -33220,9 +33220,10 @@ export class HydraApi {
      * @summary [Private]
      * @param deviceId 
      * @param hydraUserType 
+     * @param serialNumber 
      * @param {*} [options] Override http request options.
      */
-    public loginWithDeviceId (deviceId: string, hydraUserType?: 'Kiosk' | 'Terminal' | 'LegacyPrinter', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public loginWithDeviceId (deviceId: string, hydraUserType?: 'Kiosk' | 'Terminal' | 'LegacyPrinter', serialNumber?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/hydra/{deviceId}/login'
             .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
         let localVarQueryParameters: any = {};
@@ -33236,6 +33237,10 @@ export class HydraApi {
 
         if (hydraUserType !== undefined) {
             localVarQueryParameters['hydraUserType'] = ObjectSerializer.serialize(hydraUserType, "'Kiosk' | 'Terminal' | 'LegacyPrinter'");
+        }
+
+        if (serialNumber !== undefined) {
+            localVarQueryParameters['serialNumber'] = ObjectSerializer.serialize(serialNumber, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
