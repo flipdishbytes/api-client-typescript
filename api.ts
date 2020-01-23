@@ -11595,6 +11595,10 @@ export class Order {
     */
     'MaskedPhoneNumber'?: MaskedPhoneNumber;
     /**
+    * Represents table service drop off location
+    */
+    'DropOffLocationId'?: number;
+    /**
     * Order identifier
     */
     'OrderId'?: number;
@@ -11737,6 +11741,11 @@ export class Order {
             "name": "MaskedPhoneNumber",
             "baseName": "MaskedPhoneNumber",
             "type": "MaskedPhoneNumber"
+        },
+        {
+            "name": "DropOffLocationId",
+            "baseName": "DropOffLocationId",
+            "type": "number"
         },
         {
             "name": "OrderId",
