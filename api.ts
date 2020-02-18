@@ -11905,7 +11905,8 @@ export namespace Order {
         Bancontact = <any> 'Bancontact',
         Giropay = <any> 'Giropay',
         Eps = <any> 'Eps',
-        Emv = <any> 'Emv'
+        Emv = <any> 'Emv',
+        PayPal = <any> 'PayPal'
     }
     export enum OrderStateEnum {
         Created = <any> 'Created',
@@ -13067,7 +13068,8 @@ export namespace OrderSummary {
         Bancontact = <any> 'Bancontact',
         Giropay = <any> 'Giropay',
         Eps = <any> 'Eps',
-        Emv = <any> 'Emv'
+        Emv = <any> 'Emv',
+        PayPal = <any> 'PayPal'
     }
     export enum PaymentStatusEnum {
         Paid = <any> 'Paid',
@@ -14535,7 +14537,8 @@ export namespace ProcessingFeeConfig {
         Bancontact = <any> 'Bancontact',
         Giropay = <any> 'Giropay',
         Eps = <any> 'Eps',
-        Emv = <any> 'Emv'
+        Emv = <any> 'Emv',
+        PayPal = <any> 'PayPal'
     }
 }
 /**
@@ -41540,7 +41543,7 @@ export class StoresApi {
      * @param appNameId App Name Id(Not used, still here for compatability reasons)
      * @param {*} [options] Override http request options.
      */
-    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: 'Card' | 'Cash' | 'Ideal' | 'Bancontact' | 'Giropay' | 'Eps' | 'Emv', appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }> {
+    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: 'Card' | 'Cash' | 'Ideal' | 'Bancontact' | 'Giropay' | 'Eps' | 'Emv' | 'PayPal', appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs/{paymentAccountType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'paymentAccountType' + '}', encodeURIComponent(String(paymentAccountType)));
