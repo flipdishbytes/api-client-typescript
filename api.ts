@@ -11609,6 +11609,10 @@ export class Order {
     */
     'DropOffLocationId'?: number;
     /**
+    * Time store has accepted the order for
+    */
+    'AcceptedFor'?: Date;
+    /**
     * Order identifier
     */
     'OrderId'?: number;
@@ -11756,6 +11760,11 @@ export class Order {
             "name": "DropOffLocationId",
             "baseName": "DropOffLocationId",
             "type": "number"
+        },
+        {
+            "name": "AcceptedFor",
+            "baseName": "AcceptedFor",
+            "type": "Date"
         },
         {
             "name": "OrderId",
@@ -12951,6 +12960,10 @@ export class OrderSummary {
     * id of the collection/drop off location
     */
     'DropOffLocationId'?: number;
+    /**
+    * Time store has accepted the order for
+    */
+    'AcceptedFor'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -13034,6 +13047,11 @@ export class OrderSummary {
             "name": "DropOffLocationId",
             "baseName": "DropOffLocationId",
             "type": "number"
+        },
+        {
+            "name": "AcceptedFor",
+            "baseName": "AcceptedFor",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
