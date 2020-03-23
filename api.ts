@@ -41871,8 +41871,9 @@ export class StoresApi {
     }
     /**
      * 
-     * @param appId 
-     * @param storeId 
+     * @summary Get stores statistics by app name id and storeIds
+     * @param appId App Name Id
+     * @param storeId Store Ids
      * @param {*} [options] Override http request options.
      */
     public getStoreNetSales (appId: string, storeId: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreStatistics;  }> {
