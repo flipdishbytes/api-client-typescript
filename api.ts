@@ -23149,9 +23149,13 @@ export class StuartSettings {
     */
     'MinutesToPickupBeforeThanDeliveryTime'?: number;
     /**
-    * PackageType
+    * Package type
     */
     'PackageType'?: StuartSettings.PackageTypeEnum;
+    /**
+    * Transport type
+    */
+    'TransportType'?: StuartSettings.TransportTypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -23185,6 +23189,11 @@ export class StuartSettings {
             "name": "PackageType",
             "baseName": "PackageType",
             "type": "StuartSettings.PackageTypeEnum"
+        },
+        {
+            "name": "TransportType",
+            "baseName": "TransportType",
+            "type": "StuartSettings.TransportTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -23199,6 +23208,15 @@ export namespace StuartSettings {
         Medium = <any> 'Medium',
         Large = <any> 'Large',
         Xlarge = <any> 'Xlarge'
+    }
+    export enum TransportTypeEnum {
+        Bike = <any> 'Bike',
+        Cargobike = <any> 'Cargobike',
+        Cargobikexl = <any> 'Cargobikexl',
+        Motorbike = <any> 'Motorbike',
+        Motorbikexl = <any> 'Motorbikexl',
+        Car = <any> 'Car',
+        Van = <any> 'Van'
     }
 }
 /**
@@ -26660,6 +26678,7 @@ let enumsMap: {[index: string]: any} = {
         "StoreOpeningHoursUpdatedEvent.DeliveryTypeEnum": StoreOpeningHoursUpdatedEvent.DeliveryTypeEnum,
         "StoreSummary.CurrencyEnum": StoreSummary.CurrencyEnum,
         "StuartSettings.PackageTypeEnum": StuartSettings.PackageTypeEnum,
+        "StuartSettings.TransportTypeEnum": StuartSettings.TransportTypeEnum,
         "SupportedCountry.AddressLayoutEnum": SupportedCountry.AddressLayoutEnum,
         "SupportedCountry.PostCodeTypeEnum": SupportedCountry.PostCodeTypeEnum,
         "SupportedCountry.SupportRegionEnum": SupportedCountry.SupportRegionEnum,
