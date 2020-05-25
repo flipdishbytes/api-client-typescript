@@ -4418,13 +4418,17 @@ export class DeviceSettings {
 */
 export class DnsRecordInformation {
     /**
-    * indicates whether the CNAME record it's ready or not.
+    * indicates whether the CNAME record is ready or not.
     */
     'IsCNameReady'?: boolean;
     /**
-    * indicates whether the A record it's ready or not.
+    * indicates whether the A record is ready or not.
     */
     'IsAReady'?: boolean;
+    /**
+    * indicates whether the API CNAME record is ready or not.
+    */
+    'IsApiCNameReady'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -4437,6 +4441,11 @@ export class DnsRecordInformation {
         {
             "name": "IsAReady",
             "baseName": "IsAReady",
+            "type": "boolean"
+        },
+        {
+            "name": "IsApiCNameReady",
+            "baseName": "IsApiCNameReady",
             "type": "boolean"
         }    ];
 
@@ -28865,9 +28874,10 @@ export class AppsApi {
      * @summary Set the application hostname.
      * @param appId Application identifier.
      * @param hostname The new Hostname.
+     * @param isEmbed Will the website be embedded
      * @param {*} [options] Override http request options.
      */
-    public setAppHostname (appId: string, hostname: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public setAppHostname (appId: string, hostname: string, isEmbed?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/hostname'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -28886,6 +28896,10 @@ export class AppsApi {
 
         if (hostname !== undefined) {
             localVarQueryParameters['hostname'] = ObjectSerializer.serialize(hostname, "string");
+        }
+
+        if (isEmbed !== undefined) {
+            localVarQueryParameters['isEmbed'] = ObjectSerializer.serialize(isEmbed, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
