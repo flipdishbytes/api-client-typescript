@@ -897,6 +897,7 @@ export namespace App {
         EditStoresOpeningHoursOverrideTemporary = <any> 'EditStoresOpeningHoursOverrideTemporary',
         UpdateStoresName = <any> 'UpdateStoresName',
         EditStoreKioskSettings = <any> 'EditStoreKioskSettings',
+        EditStoreOrderCapacity = <any> 'EditStoreOrderCapacity',
         UpdatePrinterTerminalsAssign = <any> 'UpdatePrinterTerminalsAssign',
         UpdatePrinterTerminalsToggle = <any> 'UpdatePrinterTerminalsToggle',
         EditStoreNotifications = <any> 'EditStoreNotifications',
@@ -15168,7 +15169,7 @@ export class Refund {
     */
     'RefundAmount': number;
     /**
-    * If ture, the system sends notification to the customer about the refund
+    * If true, the system sends notification to the customer about the refund
     */
     'NotifyCustomer': boolean;
 
@@ -17860,6 +17861,29 @@ export class RestApiResultStoreGroupBase {
 /**
 * Rest api result
 */
+export class RestApiResultStoreOrderCapacityConfig {
+    /**
+    * Generic data object.
+    */
+    'Data': StoreOrderCapacityConfig;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "StoreOrderCapacityConfig"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultStoreOrderCapacityConfig.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultStuartSettings {
     /**
     * Generic data object.
@@ -19074,7 +19098,7 @@ export class Store {
     */
     'EmailAddress'?: string;
     /**
-    * Staff Language (used for communcation with the staff)  Emails, Printouts etc
+    * Staff Language (used for communication with the staff)  Emails, Printouts etc
     */
     'StaffLanguage'?: string;
 
@@ -19896,7 +19920,7 @@ export class StoreBase {
     */
     'EmailAddress'?: string;
     /**
-    * Staff Language (used for communcation with the staff)  Emails, Printouts etc
+    * Staff Language (used for communication with the staff)  Emails, Printouts etc
     */
     'StaffLanguage'?: string;
 
@@ -20293,7 +20317,7 @@ export class StoreCreateBase {
     */
     'EmailAddress'?: string;
     /**
-    * Staff Language (used for communcation with the staff)  Emails, Printouts etc
+    * Staff Language (used for communication with the staff)  Emails, Printouts etc
     */
     'StaffLanguage'?: string;
 
@@ -22450,6 +22474,141 @@ export namespace StoreOpeningHoursUpdatedEvent {
     export enum DeliveryTypeEnum {
         Delivery = <any> 'Delivery',
         Pickup = <any> 'Pickup'
+    }
+}
+/**
+* Represents one store's order capacity configuration
+*/
+export class StoreOrderCapacityConfig {
+    /**
+    * Store identifier
+    */
+    'StoreId'?: number;
+    /**
+    * Signifies whether the order capacity configuration is for Delivery / Pickup
+    */
+    'DeliveryType'?: StoreOrderCapacityConfig.DeliveryTypeEnum;
+    /**
+    * Store Interval - time between orders, e.g. 10 minutes between each order time available to customer
+    */
+    'StoreIntervalInMinutes'?: number;
+    /**
+    * Order capacity periods
+    */
+    'OrderCapacityPeriods'?: Array<StoreOrderCapacityPeriod>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "DeliveryType",
+            "baseName": "DeliveryType",
+            "type": "StoreOrderCapacityConfig.DeliveryTypeEnum"
+        },
+        {
+            "name": "StoreIntervalInMinutes",
+            "baseName": "StoreIntervalInMinutes",
+            "type": "number"
+        },
+        {
+            "name": "OrderCapacityPeriods",
+            "baseName": "OrderCapacityPeriods",
+            "type": "Array<StoreOrderCapacityPeriod>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreOrderCapacityConfig.attributeTypeMap;
+    }
+}
+
+export namespace StoreOrderCapacityConfig {
+    export enum DeliveryTypeEnum {
+        Delivery = <any> 'Delivery',
+        Pickup = <any> 'Pickup'
+    }
+}
+/**
+* Represents a single order capacity period
+*/
+export class StoreOrderCapacityPeriod {
+    /**
+    * The maximum number of orders per each store order interval in this order capacity period.  E.g. for a period from 9:00 till 11:00, if the store's interval is 10 minutes, and MaxOrderNumberPerStoreInterval is set to 5,  it means that within each 10-minute interval between 9:00 and 11:00 (i.e. 9:00-9:10, 9:10-9:20, .. , 10:50-11:00) it will be possible to  request at most 5 orders.
+    */
+    'MaxOrderNumberPerStoreInterval'?: number;
+    /**
+    * Day of the week the period pertains to
+    */
+    'DayOfTheWeek'?: StoreOrderCapacityPeriod.DayOfTheWeekEnum;
+    /**
+    * The hour the period starts at
+    */
+    'PeriodStartHour'?: number;
+    /**
+    * The minutes after the hour the period starts at
+    */
+    'PeriodStartMinutes'?: number;
+    /**
+    * The hour the period ends at
+    */
+    'PeriodEndHour'?: number;
+    /**
+    * The minutes after the hour the period ends at
+    */
+    'PeriodEndMinutes'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MaxOrderNumberPerStoreInterval",
+            "baseName": "MaxOrderNumberPerStoreInterval",
+            "type": "number"
+        },
+        {
+            "name": "DayOfTheWeek",
+            "baseName": "DayOfTheWeek",
+            "type": "StoreOrderCapacityPeriod.DayOfTheWeekEnum"
+        },
+        {
+            "name": "PeriodStartHour",
+            "baseName": "PeriodStartHour",
+            "type": "number"
+        },
+        {
+            "name": "PeriodStartMinutes",
+            "baseName": "PeriodStartMinutes",
+            "type": "number"
+        },
+        {
+            "name": "PeriodEndHour",
+            "baseName": "PeriodEndHour",
+            "type": "number"
+        },
+        {
+            "name": "PeriodEndMinutes",
+            "baseName": "PeriodEndMinutes",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreOrderCapacityPeriod.attributeTypeMap;
+    }
+}
+
+export namespace StoreOrderCapacityPeriod {
+    export enum DayOfTheWeekEnum {
+        Sunday = <any> 'Sunday',
+        Monday = <any> 'Monday',
+        Tuesday = <any> 'Tuesday',
+        Wednesday = <any> 'Wednesday',
+        Thursday = <any> 'Thursday',
+        Friday = <any> 'Friday',
+        Saturday = <any> 'Saturday'
     }
 }
 /**
@@ -26749,6 +26908,8 @@ let enumsMap: {[index: string]: any} = {
         "StoreGroupBase.CurrencyEnum": StoreGroupBase.CurrencyEnum,
         "StoreGroupExtended.CurrencyEnum": StoreGroupExtended.CurrencyEnum,
         "StoreOpeningHoursUpdatedEvent.DeliveryTypeEnum": StoreOpeningHoursUpdatedEvent.DeliveryTypeEnum,
+        "StoreOrderCapacityConfig.DeliveryTypeEnum": StoreOrderCapacityConfig.DeliveryTypeEnum,
+        "StoreOrderCapacityPeriod.DayOfTheWeekEnum": StoreOrderCapacityPeriod.DayOfTheWeekEnum,
         "StoreSummary.CurrencyEnum": StoreSummary.CurrencyEnum,
         "StuartSettings.PackageTypeEnum": StuartSettings.PackageTypeEnum,
         "StuartSettings.TransportTypeEnum": StuartSettings.TransportTypeEnum,
@@ -27041,6 +27202,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultStoreEndOfDayReport": RestApiResultStoreEndOfDayReport,
     "RestApiResultStoreGroup": RestApiResultStoreGroup,
     "RestApiResultStoreGroupBase": RestApiResultStoreGroupBase,
+    "RestApiResultStoreOrderCapacityConfig": RestApiResultStoreOrderCapacityConfig,
     "RestApiResultStuartSettings": RestApiResultStuartSettings,
     "RestApiResultTeammate": RestApiResultTeammate,
     "RestApiResultVoucherWithStats": RestApiResultVoucherWithStats,
@@ -27088,6 +27250,8 @@ let typeMap: {[index: string]: any} = {
     "StoreMenuAssignedEvent": StoreMenuAssignedEvent,
     "StoreNote": StoreNote,
     "StoreOpeningHoursUpdatedEvent": StoreOpeningHoursUpdatedEvent,
+    "StoreOrderCapacityConfig": StoreOrderCapacityConfig,
+    "StoreOrderCapacityPeriod": StoreOrderCapacityPeriod,
     "StorePreOrderConfigUpdatedEvent": StorePreOrderConfigUpdatedEvent,
     "StorePublishedEvent": StorePublishedEvent,
     "StoreStatistics": StoreStatistics,
@@ -40911,6 +41075,197 @@ export class StoreGroupsApi {
         });
     }
 }
+export enum StoreOrderCapacityApiApiKeys {
+}
+
+export class StoreOrderCapacityApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: StoreOrderCapacityApiApiKeys, value: string) {
+        (this.authentications as any)[StoreOrderCapacityApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Get store's order capacity configuration
+     * @param appId App Name Id
+     * @param storeId Store Id
+     * @param deliveryType Delivery / Pickup
+     * @param {*} [options] Override http request options.
+     */
+    public getStoreOrderCapacity (appId: string, storeId: number, deliveryType: 'Delivery' | 'Pickup', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreOrderCapacityConfig;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/storeordercapacity/{appId}/{storeId}/{deliveryType}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getStoreOrderCapacity.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getStoreOrderCapacity.');
+        }
+
+        // verify required parameter 'deliveryType' is not null or undefined
+        if (deliveryType === null || deliveryType === undefined) {
+            throw new Error('Required parameter deliveryType was null or undefined when calling getStoreOrderCapacity.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStoreOrderCapacityConfig;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStoreOrderCapacityConfig");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Create or update a store's order capacity configuration
+     * @param storeId Store identifier
+     * @param newOrderCapacityConfig new order capacity configuration
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public updateStoreOrderCapacityConfig (storeId: number, newOrderCapacityConfig: StoreOrderCapacityConfig, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/storeordercapacity/{appId}/{storeId}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling updateStoreOrderCapacityConfig.');
+        }
+
+        // verify required parameter 'newOrderCapacityConfig' is not null or undefined
+        if (newOrderCapacityConfig === null || newOrderCapacityConfig === undefined) {
+            throw new Error('Required parameter newOrderCapacityConfig was null or undefined when calling updateStoreOrderCapacityConfig.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateStoreOrderCapacityConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(newOrderCapacityConfig, "StoreOrderCapacityConfig")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
 export enum StoresApiApiKeys {
 }
 
@@ -42299,9 +42654,9 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Set Bussiness hours
+     * @summary Set Business hours
      * @param storeId Store identifier
-     * @param deliveryType Deliery type
+     * @param deliveryType Delivery type
      * @param businessHoursPeriod Business Hours Period
      * @param {*} [options] Override http request options.
      */
