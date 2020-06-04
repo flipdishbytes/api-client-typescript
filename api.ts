@@ -715,6 +715,10 @@ export class App {
     */
     'AppResourceSet'?: Array<App.AppResourceSetEnum>;
     /**
+    * Feature flags
+    */
+    'Features'?: Array<string>;
+    /**
     * Center of the map coordinates
     */
     'MapCenter'?: Coordinates;
@@ -798,6 +802,11 @@ export class App {
             "name": "AppResourceSet",
             "baseName": "AppResourceSet",
             "type": "Array<App.AppResourceSetEnum>"
+        },
+        {
+            "name": "Features",
+            "baseName": "Features",
+            "type": "Array<string>"
         },
         {
             "name": "MapCenter",
