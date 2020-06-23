@@ -2800,6 +2800,468 @@ export class CreateAccountModel {
 }
 
 /**
+* Create menu object
+*/
+export class CreateFullMenu {
+    /**
+    * Name of Menu, only shown in portal
+    */
+    'Name'?: string;
+    /**
+    * Menu sections (startes, main etc)
+    */
+    'MenuSections'?: Array<CreateFullMenuSection>;
+    /**
+    * Display menu section link on UI
+    */
+    'DisplaySectionLinks'?: boolean;
+    /**
+    * Menu section behaviour
+    */
+    'MenuSectionBehaviour'?: CreateFullMenu.MenuSectionBehaviourEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "MenuSections",
+            "baseName": "MenuSections",
+            "type": "Array<CreateFullMenuSection>"
+        },
+        {
+            "name": "DisplaySectionLinks",
+            "baseName": "DisplaySectionLinks",
+            "type": "boolean"
+        },
+        {
+            "name": "MenuSectionBehaviour",
+            "baseName": "MenuSectionBehaviour",
+            "type": "CreateFullMenu.MenuSectionBehaviourEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateFullMenu.attributeTypeMap;
+    }
+}
+
+export namespace CreateFullMenu {
+    export enum MenuSectionBehaviourEnum {
+        ExpandSingle = <any> 'ExpandSingle',
+        ExpandMultiple = <any> 'ExpandMultiple'
+    }
+}
+/**
+* Create menu item option set
+*/
+export class CreateFullMenuItemOptionSet {
+    /**
+    * Option set items
+    */
+    'MenuItemOptionSetItems'?: Array<CreateFullMenuItemOptionSetItem>;
+    /**
+    * Menu item option set name
+    */
+    'Name'?: string;
+    /**
+    * Is master option set. This can affect the layout of the options in the menu displayed to the customer. Usually it is true if the option could be considerd a standalone item as opposed to an addition (\"with ketchup\") or modifier (\"large\").
+    */
+    'IsMasterOptionSet'?: boolean;
+    /**
+    * Display order. Displayed in ascending order.
+    */
+    'DisplayOrder'?: number;
+    /**
+    * Minimum items must be selected
+    */
+    'MinSelectCount'?: number;
+    /**
+    * Maximum number of items can be selected
+    */
+    'MaxSelectCount'?: number;
+    /**
+    * Small | Medium | Large  Affects the layout of the menu.
+    */
+    'CellLayoutType'?: CreateFullMenuItemOptionSet.CellLayoutTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuItemOptionSetItems",
+            "baseName": "MenuItemOptionSetItems",
+            "type": "Array<CreateFullMenuItemOptionSetItem>"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "IsMasterOptionSet",
+            "baseName": "IsMasterOptionSet",
+            "type": "boolean"
+        },
+        {
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
+            "type": "number"
+        },
+        {
+            "name": "MinSelectCount",
+            "baseName": "MinSelectCount",
+            "type": "number"
+        },
+        {
+            "name": "MaxSelectCount",
+            "baseName": "MaxSelectCount",
+            "type": "number"
+        },
+        {
+            "name": "CellLayoutType",
+            "baseName": "CellLayoutType",
+            "type": "CreateFullMenuItemOptionSet.CellLayoutTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateFullMenuItemOptionSet.attributeTypeMap;
+    }
+}
+
+export namespace CreateFullMenuItemOptionSet {
+    export enum CellLayoutTypeEnum {
+        Small = <any> 'Small',
+        Medium = <any> 'Medium',
+        Large = <any> 'Large',
+        HiddenImage = <any> 'HiddenImage'
+    }
+}
+/**
+* Create menu item option set item
+*/
+export class CreateFullMenuItemOptionSetItem {
+    /**
+    * List of metadata
+    */
+    'Metadata'?: Array<CreateMetadata>;
+    /**
+    * Name
+    */
+    'Name'?: string;
+    /**
+    * Price
+    */
+    'Price'?: number;
+    /**
+    * Is available
+    */
+    'IsAvailable'?: boolean;
+    /**
+    * Display order. Displayed in ascending order.
+    */
+    'DisplayOrder'?: number;
+    /**
+    * Small | Medium | Large  Affects the layout of the menu.
+    */
+    'CellLayoutType'?: CreateFullMenuItemOptionSetItem.CellLayoutTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Metadata",
+            "baseName": "Metadata",
+            "type": "Array<CreateMetadata>"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Price",
+            "baseName": "Price",
+            "type": "number"
+        },
+        {
+            "name": "IsAvailable",
+            "baseName": "IsAvailable",
+            "type": "boolean"
+        },
+        {
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
+            "type": "number"
+        },
+        {
+            "name": "CellLayoutType",
+            "baseName": "CellLayoutType",
+            "type": "CreateFullMenuItemOptionSetItem.CellLayoutTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateFullMenuItemOptionSetItem.attributeTypeMap;
+    }
+}
+
+export namespace CreateFullMenuItemOptionSetItem {
+    export enum CellLayoutTypeEnum {
+        Small = <any> 'Small',
+        Medium = <any> 'Medium',
+        Large = <any> 'Large',
+        HiddenImage = <any> 'HiddenImage'
+    }
+}
+/**
+* Create menu section
+*/
+export class CreateFullMenuSection {
+    /**
+    * Menu section availability
+    */
+    'MenuSectionAvailability'?: MenuSectionAvailability;
+    /**
+    * Menu items
+    */
+    'MenuItems'?: Array<CreateFullMenuSectionItem>;
+    /**
+    * Name
+    */
+    'Name'?: string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Display order
+    */
+    'DisplayOrder'?: number;
+    /**
+    * Is available
+    */
+    'IsAvailable'?: boolean;
+    /**
+    * Is hidden from customer. Perhaps when the item is out of stock.
+    */
+    'IsHiddenFromCustomers'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuSectionAvailability",
+            "baseName": "MenuSectionAvailability",
+            "type": "MenuSectionAvailability"
+        },
+        {
+            "name": "MenuItems",
+            "baseName": "MenuItems",
+            "type": "Array<CreateFullMenuSectionItem>"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
+            "type": "number"
+        },
+        {
+            "name": "IsAvailable",
+            "baseName": "IsAvailable",
+            "type": "boolean"
+        },
+        {
+            "name": "IsHiddenFromCustomers",
+            "baseName": "IsHiddenFromCustomers",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateFullMenuSection.attributeTypeMap;
+    }
+}
+
+/**
+* Create menu section item
+*/
+export class CreateFullMenuSectionItem {
+    /**
+    * Menu item option sets
+    */
+    'MenuItemOptionSets'?: Array<CreateFullMenuItemOptionSet>;
+    /**
+    * List of metadata
+    */
+    'Metadata'?: Array<CreateMetadata>;
+    /**
+    * Menu item name (like \"Korma\")
+    */
+    'Name'?: string;
+    /**
+    * Description (like \"A lovely dish from the east\")
+    */
+    'Description'?: string;
+    /**
+    * Spiciness rating
+    */
+    'SpicinessRating'?: CreateFullMenuSectionItem.SpicinessRatingEnum;
+    /**
+    * Price - this is only used when there is no master option set and should be set to 0 if a master option set exists.
+    */
+    'Price'?: number;
+    /**
+    * Display order
+    */
+    'DisplayOrder'?: number;
+    /**
+    * To be set true if the item or an option of the item contains an alcoholic drink.
+    */
+    'Alcohol'?: boolean;
+    /**
+    * True if we accept orders for this item still
+    */
+    'IsAvailable'?: boolean;
+    /**
+    * Small | Medium | Large  Affects the layout of the menu.
+    */
+    'CellLayoutType'?: CreateFullMenuSectionItem.CellLayoutTypeEnum;
+    /**
+    * If true, then vouchers won't be applied for this item
+    */
+    'DisableVouchers'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuItemOptionSets",
+            "baseName": "MenuItemOptionSets",
+            "type": "Array<CreateFullMenuItemOptionSet>"
+        },
+        {
+            "name": "Metadata",
+            "baseName": "Metadata",
+            "type": "Array<CreateMetadata>"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "SpicinessRating",
+            "baseName": "SpicinessRating",
+            "type": "CreateFullMenuSectionItem.SpicinessRatingEnum"
+        },
+        {
+            "name": "Price",
+            "baseName": "Price",
+            "type": "number"
+        },
+        {
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
+            "type": "number"
+        },
+        {
+            "name": "Alcohol",
+            "baseName": "Alcohol",
+            "type": "boolean"
+        },
+        {
+            "name": "IsAvailable",
+            "baseName": "IsAvailable",
+            "type": "boolean"
+        },
+        {
+            "name": "CellLayoutType",
+            "baseName": "CellLayoutType",
+            "type": "CreateFullMenuSectionItem.CellLayoutTypeEnum"
+        },
+        {
+            "name": "DisableVouchers",
+            "baseName": "DisableVouchers",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateFullMenuSectionItem.attributeTypeMap;
+    }
+}
+
+export namespace CreateFullMenuSectionItem {
+    export enum SpicinessRatingEnum {
+        NotRated = <any> 'NotRated',
+        Mild = <any> 'Mild',
+        Medium = <any> 'Medium',
+        Hot = <any> 'Hot'
+    }
+    export enum CellLayoutTypeEnum {
+        Small = <any> 'Small',
+        Medium = <any> 'Medium',
+        Large = <any> 'Large',
+        HiddenImage = <any> 'HiddenImage'
+    }
+}
+/**
+* Create metadata
+*/
+export class CreateMetadata {
+    /**
+    * Store identifier
+    */
+    'StoreId'?: number;
+    /**
+    * Metadata key (Unique identifier)
+    */
+    'Key'?: string;
+    /**
+    * Metadata value
+    */
+    'Value'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Key",
+            "baseName": "Key",
+            "type": "string"
+        },
+        {
+            "name": "Value",
+            "baseName": "Value",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateMetadata.attributeTypeMap;
+    }
+}
+
+/**
 * 
 */
 export class CreateTeammate {
@@ -8147,6 +8609,10 @@ export class LightspeedSettings {
     * Delivery Table IDs to send orders to
     */
     'DeliveryTableIds'?: { [key: string]: string; };
+    /**
+    * Exclude tax
+    */
+    'UseTaxInclusivePrices'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -8225,6 +8691,11 @@ export class LightspeedSettings {
             "name": "DeliveryTableIds",
             "baseName": "DeliveryTableIds",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "UseTaxInclusivePrices",
+            "baseName": "UseTaxInclusivePrices",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -9508,6 +9979,10 @@ export class MenuItemOptionSetItem {
     */
     'PublicId'?: string;
     /**
+    * List of metadata
+    */
+    'Metadata'?: Array<CreateMetadata>;
+    /**
     * Name
     */
     'Name'?: string;
@@ -9545,6 +10020,11 @@ export class MenuItemOptionSetItem {
             "name": "PublicId",
             "baseName": "PublicId",
             "type": "string"
+        },
+        {
+            "name": "Metadata",
+            "baseName": "Metadata",
+            "type": "Array<CreateMetadata>"
         },
         {
             "name": "Name",
@@ -10508,6 +10988,10 @@ export class MenuSectionItem {
     */
     'PublicId'?: string;
     /**
+    * List of metadata
+    */
+    'Metadata'?: Array<CreateMetadata>;
+    /**
     * Menu item name (like \"Korma\")
     */
     'Name'?: string;
@@ -10576,6 +11060,11 @@ export class MenuSectionItem {
             "name": "PublicId",
             "baseName": "PublicId",
             "type": "string"
+        },
+        {
+            "name": "Metadata",
+            "baseName": "Metadata",
+            "type": "Array<CreateMetadata>"
         },
         {
             "name": "Name",
@@ -22560,6 +23049,29 @@ export namespace StoreOrderCapacityConfig {
     }
 }
 /**
+* Represents one store's order capacity configuration edit
+*/
+export class StoreOrderCapacityConfigEditModel {
+    /**
+    * Order capacity periods
+    */
+    'OrderCapacityPeriods'?: Array<StoreOrderCapacityPeriod>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrderCapacityPeriods",
+            "baseName": "OrderCapacityPeriods",
+            "type": "Array<StoreOrderCapacityPeriod>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreOrderCapacityConfigEditModel.attributeTypeMap;
+    }
+}
+
+/**
 * Represents a single order capacity period
 */
 export class StoreOrderCapacityPeriod {
@@ -26876,6 +27388,11 @@ let enumsMap: {[index: string]: any} = {
         "BusinessHoursOverrideBase.TypeEnum": BusinessHoursOverrideBase.TypeEnum,
         "BusinessHoursPeriod.DayOfWeekEnum": BusinessHoursPeriod.DayOfWeekEnum,
         "BusinessHoursPeriodBase.DayOfWeekEnum": BusinessHoursPeriodBase.DayOfWeekEnum,
+        "CreateFullMenu.MenuSectionBehaviourEnum": CreateFullMenu.MenuSectionBehaviourEnum,
+        "CreateFullMenuItemOptionSet.CellLayoutTypeEnum": CreateFullMenuItemOptionSet.CellLayoutTypeEnum,
+        "CreateFullMenuItemOptionSetItem.CellLayoutTypeEnum": CreateFullMenuItemOptionSetItem.CellLayoutTypeEnum,
+        "CreateFullMenuSectionItem.SpicinessRatingEnum": CreateFullMenuSectionItem.SpicinessRatingEnum,
+        "CreateFullMenuSectionItem.CellLayoutTypeEnum": CreateFullMenuSectionItem.CellLayoutTypeEnum,
         "CreateTeammate.AppAccessLevelEnum": CreateTeammate.AppAccessLevelEnum,
         "CreateVoucher.VoucherTypeEnum": CreateVoucher.VoucherTypeEnum,
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
@@ -26992,6 +27509,12 @@ let typeMap: {[index: string]: any} = {
     "ChangePasswordModel": ChangePasswordModel,
     "Coordinates": Coordinates,
     "CreateAccountModel": CreateAccountModel,
+    "CreateFullMenu": CreateFullMenu,
+    "CreateFullMenuItemOptionSet": CreateFullMenuItemOptionSet,
+    "CreateFullMenuItemOptionSetItem": CreateFullMenuItemOptionSetItem,
+    "CreateFullMenuSection": CreateFullMenuSection,
+    "CreateFullMenuSectionItem": CreateFullMenuSectionItem,
+    "CreateMetadata": CreateMetadata,
     "CreateTeammate": CreateTeammate,
     "CreateVoucher": CreateVoucher,
     "CreditNoteDetails": CreditNoteDetails,
@@ -27278,6 +27801,7 @@ let typeMap: {[index: string]: any} = {
     "StoreNote": StoreNote,
     "StoreOpeningHoursUpdatedEvent": StoreOpeningHoursUpdatedEvent,
     "StoreOrderCapacityConfig": StoreOrderCapacityConfig,
+    "StoreOrderCapacityConfigEditModel": StoreOrderCapacityConfigEditModel,
     "StoreOrderCapacityPeriod": StoreOrderCapacityPeriod,
     "StorePreOrderConfigUpdatedEvent": StorePreOrderConfigUpdatedEvent,
     "StorePublishedEvent": StorePublishedEvent,
@@ -37424,11 +37948,12 @@ export class MenusApi {
     }
     /**
      * 
-     * @summary [PRIVATE API]Create a new menu
+     * @summary Create a new menu. If request body is empty, the system will create a menu with default items.
      * @param appId App identifier
+     * @param menu Menu
      * @param {*} [options] Override http request options.
      */
-    public createNewMenuForApp (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: number;  }> {
+    public createNewMenuForApp (appId: string, menu: CreateFullMenu, options: any = {}) : Promise<{ response: http.IncomingMessage; body: number;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/menus'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -37438,6 +37963,11 @@ export class MenusApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling createNewMenuForApp.');
+        }
+
+        // verify required parameter 'menu' is not null or undefined
+        if (menu === null || menu === undefined) {
+            throw new Error('Required parameter menu was null or undefined when calling createNewMenuForApp.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -37451,6 +37981,7 @@ export class MenusApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+            body: ObjectSerializer.serialize(menu, "CreateFullMenu")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -41160,7 +41691,7 @@ export class StoreOrderCapacityApi {
      * @param {*} [options] Override http request options.
      */
     public getStoreOrderCapacity (appId: string, storeId: number, deliveryType: 'Delivery' | 'Pickup', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreOrderCapacityConfig;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/storeordercapacity/{appId}/{storeId}/{deliveryType}'
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/storeordercapacity/{storeId}/{deliveryType}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
@@ -41226,12 +41757,13 @@ export class StoreOrderCapacityApi {
      * 
      * @summary Create or update a store's order capacity configuration
      * @param storeId Store identifier
+     * @param deliveryType Delivery / Pickup
      * @param newOrderCapacityConfig new order capacity configuration
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public updateStoreOrderCapacityConfig (storeId: number, newOrderCapacityConfig: StoreOrderCapacityConfig, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/storeordercapacity/{appId}/{storeId}'
+    public updateStoreOrderCapacityConfig (storeId: number, deliveryType: 'Delivery' | 'Pickup', newOrderCapacityConfig: StoreOrderCapacityConfigEditModel, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/storeordercapacity/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -41243,6 +41775,11 @@ export class StoreOrderCapacityApi {
             throw new Error('Required parameter storeId was null or undefined when calling updateStoreOrderCapacityConfig.');
         }
 
+        // verify required parameter 'deliveryType' is not null or undefined
+        if (deliveryType === null || deliveryType === undefined) {
+            throw new Error('Required parameter deliveryType was null or undefined when calling updateStoreOrderCapacityConfig.');
+        }
+
         // verify required parameter 'newOrderCapacityConfig' is not null or undefined
         if (newOrderCapacityConfig === null || newOrderCapacityConfig === undefined) {
             throw new Error('Required parameter newOrderCapacityConfig was null or undefined when calling updateStoreOrderCapacityConfig.');
@@ -41251,6 +41788,10 @@ export class StoreOrderCapacityApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling updateStoreOrderCapacityConfig.');
+        }
+
+        if (deliveryType !== undefined) {
+            localVarQueryParameters['deliveryType'] = ObjectSerializer.serialize(deliveryType, "'Delivery' | 'Pickup'");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -41264,7 +41805,7 @@ export class StoreOrderCapacityApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(newOrderCapacityConfig, "StoreOrderCapacityConfig")
+            body: ObjectSerializer.serialize(newOrderCapacityConfig, "StoreOrderCapacityConfigEditModel")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
