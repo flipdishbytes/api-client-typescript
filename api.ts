@@ -2808,9 +2808,17 @@ export class CreateFullMenu {
     */
     'Name'?: string;
     /**
+    * Image url
+    */
+    'ImageUrl'?: string;
+    /**
     * Menu sections (startes, main etc)
     */
     'MenuSections'?: Array<CreateFullMenuSection>;
+    /**
+    * Menu tax rates
+    */
+    'TaxRates'?: Array<CreateMenuTaxRate>;
     /**
     * Display menu section link on UI
     */
@@ -2819,6 +2827,10 @@ export class CreateFullMenu {
     * Menu section behaviour
     */
     'MenuSectionBehaviour'?: CreateFullMenu.MenuSectionBehaviourEnum;
+    /**
+    * Tax type
+    */
+    'TaxType'?: CreateFullMenu.TaxTypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -2829,9 +2841,19 @@ export class CreateFullMenu {
             "type": "string"
         },
         {
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
+            "type": "string"
+        },
+        {
             "name": "MenuSections",
             "baseName": "MenuSections",
             "type": "Array<CreateFullMenuSection>"
+        },
+        {
+            "name": "TaxRates",
+            "baseName": "TaxRates",
+            "type": "Array<CreateMenuTaxRate>"
         },
         {
             "name": "DisplaySectionLinks",
@@ -2842,6 +2864,11 @@ export class CreateFullMenu {
             "name": "MenuSectionBehaviour",
             "baseName": "MenuSectionBehaviour",
             "type": "CreateFullMenu.MenuSectionBehaviourEnum"
+        },
+        {
+            "name": "TaxType",
+            "baseName": "TaxType",
+            "type": "CreateFullMenu.TaxTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -2853,6 +2880,10 @@ export namespace CreateFullMenu {
     export enum MenuSectionBehaviourEnum {
         ExpandSingle = <any> 'ExpandSingle',
         ExpandMultiple = <any> 'ExpandMultiple'
+    }
+    export enum TaxTypeEnum {
+        IncludedInBasePrice = <any> 'IncludedInBasePrice',
+        ExcludedFromBasePrice = <any> 'ExcludedFromBasePrice'
     }
 }
 /**
@@ -2945,9 +2976,17 @@ export namespace CreateFullMenuItemOptionSet {
 */
 export class CreateFullMenuItemOptionSetItem {
     /**
+    * Image url
+    */
+    'ImageUrl'?: string;
+    /**
     * List of metadata
     */
     'Metadata'?: Array<CreateMetadata>;
+    /**
+    * Tax rate name
+    */
+    'TaxRateName'?: string;
     /**
     * Name
     */
@@ -2973,9 +3012,19 @@ export class CreateFullMenuItemOptionSetItem {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
+            "type": "string"
+        },
+        {
             "name": "Metadata",
             "baseName": "Metadata",
             "type": "Array<CreateMetadata>"
+        },
+        {
+            "name": "TaxRateName",
+            "baseName": "TaxRateName",
+            "type": "string"
         },
         {
             "name": "Name",
@@ -3021,6 +3070,10 @@ export namespace CreateFullMenuItemOptionSetItem {
 */
 export class CreateFullMenuSection {
     /**
+    * Image url
+    */
+    'ImageUrl'?: string;
+    /**
     * Menu section availability
     */
     'MenuSectionAvailability'?: MenuSectionAvailability;
@@ -3052,6 +3105,11 @@ export class CreateFullMenuSection {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
+            "type": "string"
+        },
         {
             "name": "MenuSectionAvailability",
             "baseName": "MenuSectionAvailability",
@@ -3098,6 +3156,10 @@ export class CreateFullMenuSection {
 */
 export class CreateFullMenuSectionItem {
     /**
+    * Image url
+    */
+    'ImageUrl'?: string;
+    /**
     * Menu item option sets
     */
     'MenuItemOptionSets'?: Array<CreateFullMenuItemOptionSet>;
@@ -3105,6 +3167,10 @@ export class CreateFullMenuSectionItem {
     * List of metadata
     */
     'Metadata'?: Array<CreateMetadata>;
+    /**
+    * Tax rate name
+    */
+    'TaxRateName'?: string;
     /**
     * Menu item name (like \"Korma\")
     */
@@ -3146,6 +3212,11 @@ export class CreateFullMenuSectionItem {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
+            "type": "string"
+        },
+        {
             "name": "MenuItemOptionSets",
             "baseName": "MenuItemOptionSets",
             "type": "Array<CreateFullMenuItemOptionSet>"
@@ -3154,6 +3225,11 @@ export class CreateFullMenuSectionItem {
             "name": "Metadata",
             "baseName": "Metadata",
             "type": "Array<CreateMetadata>"
+        },
+        {
+            "name": "TaxRateName",
+            "baseName": "TaxRateName",
+            "type": "string"
         },
         {
             "name": "Name",
@@ -3220,6 +3296,38 @@ export namespace CreateFullMenuSectionItem {
         HiddenImage = <any> 'HiddenImage'
     }
 }
+/**
+* Tax Rates Associated with a Menu
+*/
+export class CreateMenuTaxRate {
+    /**
+    * Name of Tax Rate
+    */
+    'Name'?: string;
+    /**
+    * In Percentage
+    */
+    'Rate'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Rate",
+            "baseName": "Rate",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateMenuTaxRate.attributeTypeMap;
+    }
+}
+
 /**
 * Create metadata
 */
@@ -5635,6 +5743,10 @@ export class EventSearchResult {
     */
     'MenuUpdatedEvent'?: Array<MenuUpdatedEvent>;
     /**
+    * Menu uploaded events
+    */
+    'MenuUploadedEvent'?: Array<MenuUploadedEvent>;
+    /**
     * Menu section created events
     */
     'MenuSectionCreatedEvent'?: Array<MenuSectionCreatedEvent>;
@@ -6068,6 +6180,11 @@ export class EventSearchResult {
             "name": "MenuUpdatedEvent",
             "baseName": "MenuUpdatedEvent",
             "type": "Array<MenuUpdatedEvent>"
+        },
+        {
+            "name": "MenuUploadedEvent",
+            "baseName": "MenuUploadedEvent",
+            "type": "Array<MenuUploadedEvent>"
         },
         {
             "name": "MenuSectionCreatedEvent",
@@ -9256,6 +9373,10 @@ export class Menu {
     */
     'MenuSections'?: Array<MenuSection>;
     /**
+    * Menu tax rates
+    */
+    'TaxRates'?: Array<MenuTaxRate>;
+    /**
     * Display menu section link on UI
     */
     'DisplaySectionLinks'?: boolean;
@@ -9263,6 +9384,10 @@ export class Menu {
     * Menu section behaviour
     */
     'MenuSectionBehaviour'?: Menu.MenuSectionBehaviourEnum;
+    /**
+    * Tax type
+    */
+    'TaxType'?: Menu.TaxTypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -9303,6 +9428,11 @@ export class Menu {
             "type": "Array<MenuSection>"
         },
         {
+            "name": "TaxRates",
+            "baseName": "TaxRates",
+            "type": "Array<MenuTaxRate>"
+        },
+        {
             "name": "DisplaySectionLinks",
             "baseName": "DisplaySectionLinks",
             "type": "boolean"
@@ -9311,6 +9441,11 @@ export class Menu {
             "name": "MenuSectionBehaviour",
             "baseName": "MenuSectionBehaviour",
             "type": "Menu.MenuSectionBehaviourEnum"
+        },
+        {
+            "name": "TaxType",
+            "baseName": "TaxType",
+            "type": "Menu.TaxTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -9322,6 +9457,10 @@ export namespace Menu {
     export enum MenuSectionBehaviourEnum {
         ExpandSingle = <any> 'ExpandSingle',
         ExpandMultiple = <any> 'ExpandMultiple'
+    }
+    export enum TaxTypeEnum {
+        IncludedInBasePrice = <any> 'IncludedInBasePrice',
+        ExcludedFromBasePrice = <any> 'ExcludedFromBasePrice'
     }
 }
 /**
@@ -9336,6 +9475,10 @@ export class MenuBase {
     * Menu section behaviour
     */
     'MenuSectionBehaviour'?: MenuBase.MenuSectionBehaviourEnum;
+    /**
+    * Tax type
+    */
+    'TaxType'?: MenuBase.TaxTypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -9349,6 +9492,11 @@ export class MenuBase {
             "name": "MenuSectionBehaviour",
             "baseName": "MenuSectionBehaviour",
             "type": "MenuBase.MenuSectionBehaviourEnum"
+        },
+        {
+            "name": "TaxType",
+            "baseName": "TaxType",
+            "type": "MenuBase.TaxTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -9360,6 +9508,10 @@ export namespace MenuBase {
     export enum MenuSectionBehaviourEnum {
         ExpandSingle = <any> 'ExpandSingle',
         ExpandMultiple = <any> 'ExpandMultiple'
+    }
+    export enum TaxTypeEnum {
+        IncludedInBasePrice = <any> 'IncludedInBasePrice',
+        ExcludedFromBasePrice = <any> 'ExcludedFromBasePrice'
     }
 }
 /**
@@ -11900,6 +12052,92 @@ export class MenuUpdatedEvent {
 
     static getAttributeTypeMap() {
         return MenuUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Menu uploaded event
+*/
+export class MenuUploadedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * User who has uploaded the menu
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The menu
+    */
+    'Menu'?: Menu;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Menu",
+            "baseName": "Menu",
+            "type": "Menu"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuUploadedEvent.attributeTypeMap;
     }
 }
 
@@ -27389,6 +27627,7 @@ let enumsMap: {[index: string]: any} = {
         "BusinessHoursPeriod.DayOfWeekEnum": BusinessHoursPeriod.DayOfWeekEnum,
         "BusinessHoursPeriodBase.DayOfWeekEnum": BusinessHoursPeriodBase.DayOfWeekEnum,
         "CreateFullMenu.MenuSectionBehaviourEnum": CreateFullMenu.MenuSectionBehaviourEnum,
+        "CreateFullMenu.TaxTypeEnum": CreateFullMenu.TaxTypeEnum,
         "CreateFullMenuItemOptionSet.CellLayoutTypeEnum": CreateFullMenuItemOptionSet.CellLayoutTypeEnum,
         "CreateFullMenuItemOptionSetItem.CellLayoutTypeEnum": CreateFullMenuItemOptionSetItem.CellLayoutTypeEnum,
         "CreateFullMenuSectionItem.SpicinessRatingEnum": CreateFullMenuSectionItem.SpicinessRatingEnum,
@@ -27406,7 +27645,9 @@ let enumsMap: {[index: string]: any} = {
         "HydraStatus.UserTypeEnum": HydraStatus.UserTypeEnum,
         "LightspeedSettings.PriceTypeEnum": LightspeedSettings.PriceTypeEnum,
         "Menu.MenuSectionBehaviourEnum": Menu.MenuSectionBehaviourEnum,
+        "Menu.TaxTypeEnum": Menu.TaxTypeEnum,
         "MenuBase.MenuSectionBehaviourEnum": MenuBase.MenuSectionBehaviourEnum,
+        "MenuBase.TaxTypeEnum": MenuBase.TaxTypeEnum,
         "MenuItemOptionSet.CellLayoutTypeEnum": MenuItemOptionSet.CellLayoutTypeEnum,
         "MenuItemOptionSetBase.CellLayoutTypeEnum": MenuItemOptionSetBase.CellLayoutTypeEnum,
         "MenuItemOptionSetItem.CellLayoutTypeEnum": MenuItemOptionSetItem.CellLayoutTypeEnum,
@@ -27514,6 +27755,7 @@ let typeMap: {[index: string]: any} = {
     "CreateFullMenuItemOptionSetItem": CreateFullMenuItemOptionSetItem,
     "CreateFullMenuSection": CreateFullMenuSection,
     "CreateFullMenuSectionItem": CreateFullMenuSectionItem,
+    "CreateMenuTaxRate": CreateMenuTaxRate,
     "CreateMetadata": CreateMetadata,
     "CreateTeammate": CreateTeammate,
     "CreateVoucher": CreateVoucher,
@@ -27614,6 +27856,7 @@ let typeMap: {[index: string]: any} = {
     "MenuTaxDetails": MenuTaxDetails,
     "MenuTaxRate": MenuTaxRate,
     "MenuUpdatedEvent": MenuUpdatedEvent,
+    "MenuUploadedEvent": MenuUploadedEvent,
     "Metadata": Metadata,
     "OAuthApp": OAuthApp,
     "OAuthTokenModel": OAuthTokenModel,
@@ -39548,6 +39791,74 @@ export class MenusApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Create a new menu from xlsx file.
+     * @param appId App identifier
+     * @param Menu Uploaded xlsx menu
+     * @param {*} [options] Override http request options.
+     */
+    public uploadNewMenuForApp (appId: string, Menu: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: number;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/menus/xlsx'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling uploadNewMenuForApp.');
+        }
+
+        // verify required parameter 'Menu' is not null or undefined
+        if (Menu === null || Menu === undefined) {
+            throw new Error('Required parameter Menu was null or undefined when calling uploadNewMenuForApp.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (Menu !== undefined) {
+            localVarFormParams['Menu'] = Menu;
+        }
+        localVarUseFormData = true;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: number;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "number");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
