@@ -38196,7 +38196,7 @@ export class MenusApi {
      * @param menu Menu
      * @param {*} [options] Override http request options.
      */
-    public createNewMenuForApp (appId: string, menu: CreateFullMenu, options: any = {}) : Promise<{ response: http.IncomingMessage; body: number;  }> {
+    public createNewMenuForApp (appId: string, menu?: CreateFullMenu, options: any = {}) : Promise<{ response: http.IncomingMessage; body: number;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/menus'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -38206,11 +38206,6 @@ export class MenusApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling createNewMenuForApp.');
-        }
-
-        // verify required parameter 'menu' is not null or undefined
-        if (menu === null || menu === undefined) {
-            throw new Error('Required parameter menu was null or undefined when calling createNewMenuForApp.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
