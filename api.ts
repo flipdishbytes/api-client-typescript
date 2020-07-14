@@ -8117,6 +8117,10 @@ export class FlipdishPublicModelsV1EventsEventSearchResult {
     * Website updated
     */
     'WebsiteUpdatedEvent'?: Array<FlipdishPublicModelsV1EventsWebsiteWebsiteUpdatedEvent>;
+    /**
+    * Order capacity config updated
+    */
+    'StoreOrderCapacityUpdatedEvent'?: Array<FlipdishPublicModelsV1EventsOrderCapacityStoreOrderCapacityUpdatedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -8620,6 +8624,11 @@ export class FlipdishPublicModelsV1EventsEventSearchResult {
             "name": "WebsiteUpdatedEvent",
             "baseName": "WebsiteUpdatedEvent",
             "type": "Array<FlipdishPublicModelsV1EventsWebsiteWebsiteUpdatedEvent>"
+        },
+        {
+            "name": "StoreOrderCapacityUpdatedEvent",
+            "baseName": "StoreOrderCapacityUpdatedEvent",
+            "type": "Array<FlipdishPublicModelsV1EventsOrderCapacityStoreOrderCapacityUpdatedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -10871,6 +10880,101 @@ export class FlipdishPublicModelsV1EventsOrderAcceptedEvent {
 
     static getAttributeTypeMap() {
         return FlipdishPublicModelsV1EventsOrderAcceptedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Store's Order Capacity Configuration Updated
+*/
+export class FlipdishPublicModelsV1EventsOrderCapacityStoreOrderCapacityUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Id of the store whose order capacity configuration has been updated
+    */
+    'StoreId'?: number;
+    /**
+    * User which updated order capacity configuration for this store
+    */
+    'User'?: FlipdishPublicModelsV1UserEventInfo;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Updated order capacity configuration
+    */
+    'OrderCapacityConfig'?: FlipdishPublicModelsV1OrderCapacityStoreOrderCapacityConfigEditModel;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "FlipdishPublicModelsV1UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "OrderCapacityConfig",
+            "baseName": "OrderCapacityConfig",
+            "type": "FlipdishPublicModelsV1OrderCapacityStoreOrderCapacityConfigEditModel"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FlipdishPublicModelsV1EventsOrderCapacityStoreOrderCapacityUpdatedEvent.attributeTypeMap;
     }
 }
 
@@ -27958,6 +28062,7 @@ let typeMap: {[index: string]: any} = {
     "FlipdishPublicModelsV1EventsMenuUpdatedEvent": FlipdishPublicModelsV1EventsMenuUpdatedEvent,
     "FlipdishPublicModelsV1EventsMenuUploadedEvent": FlipdishPublicModelsV1EventsMenuUploadedEvent,
     "FlipdishPublicModelsV1EventsOrderAcceptedEvent": FlipdishPublicModelsV1EventsOrderAcceptedEvent,
+    "FlipdishPublicModelsV1EventsOrderCapacityStoreOrderCapacityUpdatedEvent": FlipdishPublicModelsV1EventsOrderCapacityStoreOrderCapacityUpdatedEvent,
     "FlipdishPublicModelsV1EventsOrderCreatedEvent": FlipdishPublicModelsV1EventsOrderCreatedEvent,
     "FlipdishPublicModelsV1EventsOrderCustomerTrackingCreatedEvent": FlipdishPublicModelsV1EventsOrderCustomerTrackingCreatedEvent,
     "FlipdishPublicModelsV1EventsOrderDeliveryTrackingStatusUpdatedEvent": FlipdishPublicModelsV1EventsOrderDeliveryTrackingStatusUpdatedEvent,
