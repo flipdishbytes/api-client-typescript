@@ -3147,10 +3147,6 @@ export namespace CreateFullMenuItemOptionSet {
 */
 export class CreateFullMenuItemOptionSetItem {
     /**
-    * Image url
-    */
-    'ImageUrl'?: string;
-    /**
     * List of metadata
     */
     'Metadata'?: Array<CreateMetadata>;
@@ -3178,15 +3174,14 @@ export class CreateFullMenuItemOptionSetItem {
     * Small | Medium | Large  Affects the layout of the menu.
     */
     'CellLayoutType'?: CreateFullMenuItemOptionSetItem.CellLayoutTypeEnum;
+    /**
+    * Image url
+    */
+    'ImageUrl'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "ImageUrl",
-            "baseName": "ImageUrl",
-            "type": "string"
-        },
         {
             "name": "Metadata",
             "baseName": "Metadata",
@@ -3221,6 +3216,11 @@ export class CreateFullMenuItemOptionSetItem {
             "name": "CellLayoutType",
             "baseName": "CellLayoutType",
             "type": "CreateFullMenuItemOptionSetItem.CellLayoutTypeEnum"
+        },
+        {
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -3240,10 +3240,6 @@ export namespace CreateFullMenuItemOptionSetItem {
 * Create menu section
 */
 export class CreateFullMenuSection {
-    /**
-    * Image url
-    */
-    'ImageUrl'?: string;
     /**
     * Menu section availability
     */
@@ -3272,15 +3268,14 @@ export class CreateFullMenuSection {
     * Is hidden from customer. Perhaps when the item is out of stock.
     */
     'IsHiddenFromCustomers'?: boolean;
+    /**
+    * Image url
+    */
+    'ImageUrl'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "ImageUrl",
-            "baseName": "ImageUrl",
-            "type": "string"
-        },
         {
             "name": "MenuSectionAvailability",
             "baseName": "MenuSectionAvailability",
@@ -3315,6 +3310,11 @@ export class CreateFullMenuSection {
             "name": "IsHiddenFromCustomers",
             "baseName": "IsHiddenFromCustomers",
             "type": "boolean"
+        },
+        {
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -3326,10 +3326,6 @@ export class CreateFullMenuSection {
 * Create menu section item
 */
 export class CreateFullMenuSectionItem {
-    /**
-    * Image url
-    */
-    'ImageUrl'?: string;
     /**
     * Menu item option sets
     */
@@ -3378,15 +3374,14 @@ export class CreateFullMenuSectionItem {
     * If true, then vouchers won't be applied for this item
     */
     'DisableVouchers'?: boolean;
+    /**
+    * Image url
+    */
+    'ImageUrl'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "ImageUrl",
-            "baseName": "ImageUrl",
-            "type": "string"
-        },
         {
             "name": "MenuItemOptionSets",
             "baseName": "MenuItemOptionSets",
@@ -3446,6 +3441,11 @@ export class CreateFullMenuSectionItem {
             "name": "DisableVouchers",
             "baseName": "DisableVouchers",
             "type": "boolean"
+        },
+        {
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -10305,10 +10305,6 @@ export class MenuItemOptionSetItem {
     */
     'MenuItemOptionSetItemId'?: number;
     /**
-    * Image url
-    */
-    'ImageUrl'?: string;
-    /**
     * Permanent reference to the item.
     */
     'PublicId'?: string;
@@ -10336,6 +10332,10 @@ export class MenuItemOptionSetItem {
     * Small | Medium | Large  Affects the layout of the menu.
     */
     'CellLayoutType'?: MenuItemOptionSetItem.CellLayoutTypeEnum;
+    /**
+    * Image url
+    */
+    'ImageUrl'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -10344,11 +10344,6 @@ export class MenuItemOptionSetItem {
             "name": "MenuItemOptionSetItemId",
             "baseName": "MenuItemOptionSetItemId",
             "type": "number"
-        },
-        {
-            "name": "ImageUrl",
-            "baseName": "ImageUrl",
-            "type": "string"
         },
         {
             "name": "PublicId",
@@ -10384,6 +10379,11 @@ export class MenuItemOptionSetItem {
             "name": "CellLayoutType",
             "baseName": "CellLayoutType",
             "type": "MenuItemOptionSetItem.CellLayoutTypeEnum"
+        },
+        {
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -10423,6 +10423,10 @@ export class MenuItemOptionSetItemBase {
     * Small | Medium | Large  Affects the layout of the menu.
     */
     'CellLayoutType'?: MenuItemOptionSetItemBase.CellLayoutTypeEnum;
+    /**
+    * Image url
+    */
+    'ImageUrl'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -10451,6 +10455,11 @@ export class MenuItemOptionSetItemBase {
             "name": "CellLayoutType",
             "baseName": "CellLayoutType",
             "type": "MenuItemOptionSetItemBase.CellLayoutTypeEnum"
+        },
+        {
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -10878,10 +10887,6 @@ export class MenuSection {
     */
     'MenuSectionId'?: number;
     /**
-    * Image url
-    */
-    'ImageUrl'?: string;
-    /**
     * Menu items
     */
     'MenuItems'?: Array<MenuSectionItem>;
@@ -10913,6 +10918,10 @@ export class MenuSection {
     * Is hidden from customer. Perhaps when the item is out of stock.
     */
     'IsHiddenFromCustomers'?: boolean;
+    /**
+    * Image url
+    */
+    'ImageUrl'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -10921,11 +10930,6 @@ export class MenuSection {
             "name": "MenuSectionId",
             "baseName": "MenuSectionId",
             "type": "number"
-        },
-        {
-            "name": "ImageUrl",
-            "baseName": "ImageUrl",
-            "type": "string"
         },
         {
             "name": "MenuItems",
@@ -10966,6 +10970,11 @@ export class MenuSection {
             "name": "IsHiddenFromCustomers",
             "baseName": "IsHiddenFromCustomers",
             "type": "boolean"
+        },
+        {
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -11068,6 +11077,10 @@ export class MenuSectionBase {
     * Is hidden from customer. Perhaps when the item is out of stock.
     */
     'IsHiddenFromCustomers'?: boolean;
+    /**
+    * Image url
+    */
+    'ImageUrl'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -11096,6 +11109,11 @@ export class MenuSectionBase {
             "name": "IsHiddenFromCustomers",
             "baseName": "IsHiddenFromCustomers",
             "type": "boolean"
+        },
+        {
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -11306,10 +11324,6 @@ export class MenuSectionItem {
     */
     'ActualPrice'?: number;
     /**
-    * Image url
-    */
-    'ImageUrl'?: string;
-    /**
     * Menu item option sets
     */
     'MenuItemOptionSets'?: Array<MenuItemOptionSet>;
@@ -11361,6 +11375,10 @@ export class MenuSectionItem {
     * If true, then vouchers won't be applied for this item
     */
     'DisableVouchers'?: boolean;
+    /**
+    * Image url
+    */
+    'ImageUrl'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -11374,11 +11392,6 @@ export class MenuSectionItem {
             "name": "ActualPrice",
             "baseName": "ActualPrice",
             "type": "number"
-        },
-        {
-            "name": "ImageUrl",
-            "baseName": "ImageUrl",
-            "type": "string"
         },
         {
             "name": "MenuItemOptionSets",
@@ -11444,6 +11457,11 @@ export class MenuSectionItem {
             "name": "DisableVouchers",
             "baseName": "DisableVouchers",
             "type": "boolean"
+        },
+        {
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -11505,6 +11523,10 @@ export class MenuSectionItemBase {
     * If true, then vouchers won't be applied for this item
     */
     'DisableVouchers'?: boolean;
+    /**
+    * Image url
+    */
+    'ImageUrl'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -11553,6 +11575,11 @@ export class MenuSectionItemBase {
             "name": "DisableVouchers",
             "baseName": "DisableVouchers",
             "type": "boolean"
+        },
+        {
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
