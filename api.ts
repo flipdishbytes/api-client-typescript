@@ -323,6 +323,127 @@ export class AccountDetailBase {
 }
 
 /**
+* Represents the format of a bank account field
+*/
+export class AccountFieldDefinition {
+    /**
+    * Depending on the Key, the field's value will be stored in a different field in PayeeBankAccountData
+    */
+    'Key'?: AccountFieldDefinition.KeyEnum;
+    /**
+    * Display name of the field
+    */
+    'DisplayName'?: string;
+    /**
+    * There are some fields that are of type known to the frontend (IBAN, Swift) -- for those frontend should use its own validation library, e.g. ibantools
+    */
+    'Type'?: AccountFieldDefinition.TypeEnum;
+    /**
+    * Minimum length of the field
+    */
+    'MinLength'?: number;
+    /**
+    * Maximum length of the field
+    */
+    'MaxLength'?: number;
+    /**
+    * Is the field digits (numeric) only
+    */
+    'DigitsOnly'?: boolean;
+    /**
+    * Regex for validating the field (if specified)
+    */
+    'Regex'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Key",
+            "baseName": "Key",
+            "type": "AccountFieldDefinition.KeyEnum"
+        },
+        {
+            "name": "DisplayName",
+            "baseName": "DisplayName",
+            "type": "string"
+        },
+        {
+            "name": "Type",
+            "baseName": "Type",
+            "type": "AccountFieldDefinition.TypeEnum"
+        },
+        {
+            "name": "MinLength",
+            "baseName": "MinLength",
+            "type": "number"
+        },
+        {
+            "name": "MaxLength",
+            "baseName": "MaxLength",
+            "type": "number"
+        },
+        {
+            "name": "DigitsOnly",
+            "baseName": "DigitsOnly",
+            "type": "boolean"
+        },
+        {
+            "name": "Regex",
+            "baseName": "Regex",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AccountFieldDefinition.attributeTypeMap;
+    }
+}
+
+export namespace AccountFieldDefinition {
+    export enum KeyEnum {
+        Iban = <any> 'Iban',
+        AccountNumber = <any> 'AccountNumber',
+        RoutingNumber = <any> 'RoutingNumber',
+        BSB = <any> 'BSB',
+        BranchCode = <any> 'BranchCode',
+        BankCode = <any> 'BankCode',
+        InstitutionNumber = <any> 'InstitutionNumber',
+        TransitNumber = <any> 'TransitNumber',
+        ClearingCode = <any> 'ClearingCode',
+        IfscCode = <any> 'IfscCode',
+        Clabe = <any> 'Clabe',
+        SortCode = <any> 'SortCode'
+    }
+    export enum TypeEnum {
+        None = <any> 'None',
+        Iban = <any> 'Iban',
+        Swift = <any> 'Swift'
+    }
+}
+/**
+* List of field definitions per country
+*/
+export class AccountFieldsDefinitions {
+    /**
+    * List of field definitions per country
+    */
+    'DefinitionsPerCountry'?: { [key: string]: Array<AccountFieldDefinition>; };
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DefinitionsPerCountry",
+            "baseName": "DefinitionsPerCountry",
+            "type": "{ [key: string]: Array<AccountFieldDefinition>; }"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AccountFieldsDefinitions.attributeTypeMap;
+    }
+}
+
+/**
 * Add item details
 */
 export class AddItemDetails {
@@ -1445,6 +1566,10 @@ export class BankAccountCreate {
     */
     'BankName'?: string;
     /**
+    * Business Type
+    */
+    'BusinessType'?: BankAccountCreate.BusinessTypeEnum;
+    /**
     * Name of this account
     */
     'AccountName'?: string;
@@ -1507,6 +1632,11 @@ export class BankAccountCreate {
             "name": "BankName",
             "baseName": "BankName",
             "type": "string"
+        },
+        {
+            "name": "BusinessType",
+            "baseName": "BusinessType",
+            "type": "BankAccountCreate.BusinessTypeEnum"
         },
         {
             "name": "AccountName",
@@ -1654,6 +1784,12 @@ export namespace BankAccountCreate {
         MOP = <any> 'MOP',
         TWD = <any> 'TWD',
         BMD = <any> 'BMD'
+    }
+    export enum BusinessTypeEnum {
+        Individual = <any> 'Individual',
+        Company = <any> 'Company',
+        NonProfit = <any> 'NonProfit',
+        GovernmentEntity = <any> 'GovernmentEntity'
     }
 }
 /**
@@ -1809,6 +1945,10 @@ export class BankAccountDetail {
     */
     'AccountState'?: BankAccountDetail.AccountStateEnum;
     /**
+    * Information about the Stripe connected account associated with this bank account (if any)
+    */
+    'StripeConnectedAccountInfo'?: StripeConnectedAccountInfo;
+    /**
     * Address lf the bank
     */
     'BankAddress'?: string;
@@ -1840,6 +1980,10 @@ export class BankAccountDetail {
     * Name of Bank
     */
     'BankName'?: string;
+    /**
+    * Business Type
+    */
+    'BusinessType'?: BankAccountDetail.BusinessTypeEnum;
     /**
     * Name of this account
     */
@@ -1880,6 +2024,11 @@ export class BankAccountDetail {
             "type": "BankAccountDetail.AccountStateEnum"
         },
         {
+            "name": "StripeConnectedAccountInfo",
+            "baseName": "StripeConnectedAccountInfo",
+            "type": "StripeConnectedAccountInfo"
+        },
+        {
             "name": "BankAddress",
             "baseName": "BankAddress",
             "type": "string"
@@ -1918,6 +2067,11 @@ export class BankAccountDetail {
             "name": "BankName",
             "baseName": "BankName",
             "type": "string"
+        },
+        {
+            "name": "BusinessType",
+            "baseName": "BusinessType",
+            "type": "BankAccountDetail.BusinessTypeEnum"
         },
         {
             "name": "AccountName",
@@ -2072,6 +2226,12 @@ export namespace BankAccountDetail {
         TWD = <any> 'TWD',
         BMD = <any> 'BMD'
     }
+    export enum BusinessTypeEnum {
+        Individual = <any> 'Individual',
+        Company = <any> 'Company',
+        NonProfit = <any> 'NonProfit',
+        GovernmentEntity = <any> 'GovernmentEntity'
+    }
 }
 /**
 * 
@@ -2093,6 +2253,10 @@ export class BankAccountSummary {
     * Currency of Account
     */
     'CurrencyCode'?: string;
+    /**
+    * Information about the Stripe connected account associated with this bank account (if any)
+    */
+    'StripeConnectedAccountInfo'?: StripeConnectedAccountInfo;
     /**
     * Name of this account
     */
@@ -2136,6 +2300,11 @@ export class BankAccountSummary {
             "name": "CurrencyCode",
             "baseName": "CurrencyCode",
             "type": "string"
+        },
+        {
+            "name": "StripeConnectedAccountInfo",
+            "baseName": "StripeConnectedAccountInfo",
+            "type": "StripeConnectedAccountInfo"
         },
         {
             "name": "AccountName",
@@ -17785,6 +17954,29 @@ export class RestApiResultAccountDetail {
 /**
 * Rest api result
 */
+export class RestApiResultAccountFieldsDefinitions {
+    /**
+    * Generic data object.
+    */
+    'Data': AccountFieldsDefinitions;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "AccountFieldsDefinitions"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultAccountFieldsDefinitions.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultApmStatistics {
     /**
     * Generic data object.
@@ -18676,6 +18868,29 @@ export class RestApiResultStoreOrderCapacityConfig {
 
     static getAttributeTypeMap() {
         return RestApiResultStoreOrderCapacityConfig.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultStripeConnectedAccount {
+    /**
+    * Generic data object.
+    */
+    'Data': StripeConnectedAccount;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "StripeConnectedAccount"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultStripeConnectedAccount.attributeTypeMap;
     }
 }
 
@@ -24298,6 +24513,205 @@ export class StoreUpdatedEvent {
 }
 
 /**
+* Represents a request for Stripe account link creation
+*/
+export class StripeAccountLinkRequest {
+    /**
+    * Stripe's own connected account identifier
+    */
+    'StripeId'?: string;
+    /**
+    * URL to be hit if link creation succeeds
+    */
+    'SuccessUrl'?: string;
+    /**
+    * URL to be hit if link creation fails
+    */
+    'FailureUrl'?: string;
+    /**
+    * Which information to collect from users at this stage
+    */
+    'Collect'?: StripeAccountLinkRequest.CollectEnum;
+    /**
+    * Either onboarding or edit user information
+    */
+    'Type'?: StripeAccountLinkRequest.TypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StripeId",
+            "baseName": "StripeId",
+            "type": "string"
+        },
+        {
+            "name": "SuccessUrl",
+            "baseName": "SuccessUrl",
+            "type": "string"
+        },
+        {
+            "name": "FailureUrl",
+            "baseName": "FailureUrl",
+            "type": "string"
+        },
+        {
+            "name": "Collect",
+            "baseName": "Collect",
+            "type": "StripeAccountLinkRequest.CollectEnum"
+        },
+        {
+            "name": "Type",
+            "baseName": "Type",
+            "type": "StripeAccountLinkRequest.TypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StripeAccountLinkRequest.attributeTypeMap;
+    }
+}
+
+export namespace StripeAccountLinkRequest {
+    export enum CollectEnum {
+        CurrentlyDue = <any> 'CurrentlyDue',
+        EventuallyDue = <any> 'EventuallyDue'
+    }
+    export enum TypeEnum {
+        Onboarding = <any> 'Onboarding',
+        Update = <any> 'Update'
+    }
+}
+/**
+* Represents a Stripe custom connected account
+*/
+export class StripeConnectedAccount {
+    /**
+    * Flipdish connected account identifier
+    */
+    'FlipdishConnectedAccountId'?: number;
+    /**
+    * Stripe's own connected account identifier
+    */
+    'StripeId'?: string;
+    /**
+    * Id of the WhitelabelConfig the connected account is assigned to
+    */
+    'WhitelabelConfigId'?: number;
+    /**
+    * Card payments capability status (Inactive, Pending, Active, Unrequested)
+    */
+    'CardPaymentsStatus'?: StripeConnectedAccount.CardPaymentsStatusEnum;
+    /**
+    * Transfers capability status (Inactive, Pending, Active, Unrequested)
+    */
+    'TransfersStatus'?: StripeConnectedAccount.TransfersStatusEnum;
+    /**
+    * Current status of the account
+    */
+    'AccountStatus'?: StripeConnectedAccount.AccountStatusEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "FlipdishConnectedAccountId",
+            "baseName": "FlipdishConnectedAccountId",
+            "type": "number"
+        },
+        {
+            "name": "StripeId",
+            "baseName": "StripeId",
+            "type": "string"
+        },
+        {
+            "name": "WhitelabelConfigId",
+            "baseName": "WhitelabelConfigId",
+            "type": "number"
+        },
+        {
+            "name": "CardPaymentsStatus",
+            "baseName": "CardPaymentsStatus",
+            "type": "StripeConnectedAccount.CardPaymentsStatusEnum"
+        },
+        {
+            "name": "TransfersStatus",
+            "baseName": "TransfersStatus",
+            "type": "StripeConnectedAccount.TransfersStatusEnum"
+        },
+        {
+            "name": "AccountStatus",
+            "baseName": "AccountStatus",
+            "type": "StripeConnectedAccount.AccountStatusEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StripeConnectedAccount.attributeTypeMap;
+    }
+}
+
+export namespace StripeConnectedAccount {
+    export enum CardPaymentsStatusEnum {
+        Inactive = <any> 'Inactive',
+        Pending = <any> 'Pending',
+        Active = <any> 'Active',
+        Unrequested = <any> 'Unrequested'
+    }
+    export enum TransfersStatusEnum {
+        Inactive = <any> 'Inactive',
+        Pending = <any> 'Pending',
+        Active = <any> 'Active',
+        Unrequested = <any> 'Unrequested'
+    }
+    export enum AccountStatusEnum {
+        Disabled = <any> 'Disabled',
+        Enabled = <any> 'Enabled',
+        AdditionalInformationRequired = <any> 'AdditionalInformationRequired',
+        PendingVerification = <any> 'PendingVerification',
+        Unverified = <any> 'Unverified'
+    }
+}
+/**
+* Represents information about a Stripe connected account associated with a bank account
+*/
+export class StripeConnectedAccountInfo {
+    /**
+    * Stripe connected account status
+    */
+    'AccountStatus'?: StripeConnectedAccountInfo.AccountStatusEnum;
+    /**
+    * Stripe connected account id
+    */
+    'StripeId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AccountStatus",
+            "baseName": "AccountStatus",
+            "type": "StripeConnectedAccountInfo.AccountStatusEnum"
+        },
+        {
+            "name": "StripeId",
+            "baseName": "StripeId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StripeConnectedAccountInfo.attributeTypeMap;
+    }
+}
+
+export namespace StripeConnectedAccountInfo {
+    export enum AccountStatusEnum {
+        Disabled = <any> 'Disabled',
+        Enabled = <any> 'Enabled',
+        AdditionalInformationRequired = <any> 'AdditionalInformationRequired',
+        PendingVerification = <any> 'PendingVerification',
+        Unverified = <any> 'Unverified'
+    }
+}
+/**
 * Stuart settings
 */
 export class StuartSettings {
@@ -27776,6 +28190,8 @@ export class WebsiteVanityUrlUpdatedEvent {
 
 
 let enumsMap: {[index: string]: any} = {
+        "AccountFieldDefinition.KeyEnum": AccountFieldDefinition.KeyEnum,
+        "AccountFieldDefinition.TypeEnum": AccountFieldDefinition.TypeEnum,
         "ApmHourlyDataPoint.DayEnum": ApmHourlyDataPoint.DayEnum,
         "App.AppAccessLevelEnum": App.AppAccessLevelEnum,
         "App.AppResourceSetEnum": App.AppResourceSetEnum,
@@ -27783,8 +28199,10 @@ let enumsMap: {[index: string]: any} = {
         "AppConfigUpdateModel.ApplicationCategoryEnum": AppConfigUpdateModel.ApplicationCategoryEnum,
         "BankAccount.AccountStateEnum": BankAccount.AccountStateEnum,
         "BankAccountCreate.CurrencyCodeEnum": BankAccountCreate.CurrencyCodeEnum,
+        "BankAccountCreate.BusinessTypeEnum": BankAccountCreate.BusinessTypeEnum,
         "BankAccountDetail.AccountStateEnum": BankAccountDetail.AccountStateEnum,
         "BankAccountDetail.CurrencyCodeEnum": BankAccountDetail.CurrencyCodeEnum,
+        "BankAccountDetail.BusinessTypeEnum": BankAccountDetail.BusinessTypeEnum,
         "BankAccountSummary.AccountStateEnum": BankAccountSummary.AccountStateEnum,
         "BusinessHoursOverride.DeliveryTypeEnum": BusinessHoursOverride.DeliveryTypeEnum,
         "BusinessHoursOverride.TypeEnum": BusinessHoursOverride.TypeEnum,
@@ -27864,6 +28282,12 @@ let enumsMap: {[index: string]: any} = {
         "StoreOrderCapacityConfig.DeliveryTypeEnum": StoreOrderCapacityConfig.DeliveryTypeEnum,
         "StoreOrderCapacityPeriod.DayOfTheWeekEnum": StoreOrderCapacityPeriod.DayOfTheWeekEnum,
         "StoreSummary.CurrencyEnum": StoreSummary.CurrencyEnum,
+        "StripeAccountLinkRequest.CollectEnum": StripeAccountLinkRequest.CollectEnum,
+        "StripeAccountLinkRequest.TypeEnum": StripeAccountLinkRequest.TypeEnum,
+        "StripeConnectedAccount.CardPaymentsStatusEnum": StripeConnectedAccount.CardPaymentsStatusEnum,
+        "StripeConnectedAccount.TransfersStatusEnum": StripeConnectedAccount.TransfersStatusEnum,
+        "StripeConnectedAccount.AccountStatusEnum": StripeConnectedAccount.AccountStatusEnum,
+        "StripeConnectedAccountInfo.AccountStatusEnum": StripeConnectedAccountInfo.AccountStatusEnum,
         "StuartSettings.PackageTypeEnum": StuartSettings.PackageTypeEnum,
         "StuartSettings.TransportTypeEnum": StuartSettings.TransportTypeEnum,
         "SupportedCountry.AddressLayoutEnum": SupportedCountry.AddressLayoutEnum,
@@ -27890,6 +28314,8 @@ let typeMap: {[index: string]: any} = {
     "Accept": Accept,
     "AccountDetail": AccountDetail,
     "AccountDetailBase": AccountDetailBase,
+    "AccountFieldDefinition": AccountFieldDefinition,
+    "AccountFieldsDefinitions": AccountFieldsDefinitions,
     "AddItemDetails": AddItemDetails,
     "AllMetadataResult": AllMetadataResult,
     "AnalyticsClientEvent": AnalyticsClientEvent,
@@ -28125,6 +28551,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiPaginationResultWebhookSubscription": RestApiPaginationResultWebhookSubscription,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
+    "RestApiResultAccountFieldsDefinitions": RestApiResultAccountFieldsDefinitions,
     "RestApiResultApmStatistics": RestApiResultApmStatistics,
     "RestApiResultApp": RestApiResultApp,
     "RestApiResultAssignedBankAccount": RestApiResultAssignedBankAccount,
@@ -28164,6 +28591,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultStoreGroup": RestApiResultStoreGroup,
     "RestApiResultStoreGroupBase": RestApiResultStoreGroupBase,
     "RestApiResultStoreOrderCapacityConfig": RestApiResultStoreOrderCapacityConfig,
+    "RestApiResultStripeConnectedAccount": RestApiResultStripeConnectedAccount,
     "RestApiResultStuartSettings": RestApiResultStuartSettings,
     "RestApiResultTeammate": RestApiResultTeammate,
     "RestApiResultVoucherWithStats": RestApiResultVoucherWithStats,
@@ -28222,6 +28650,9 @@ let typeMap: {[index: string]: any} = {
     "StoreUnarchivedEvent": StoreUnarchivedEvent,
     "StoreUnpublishedEvent": StoreUnpublishedEvent,
     "StoreUpdatedEvent": StoreUpdatedEvent,
+    "StripeAccountLinkRequest": StripeAccountLinkRequest,
+    "StripeConnectedAccount": StripeConnectedAccount,
+    "StripeConnectedAccountInfo": StripeConnectedAccountInfo,
     "StuartSettings": StuartSettings,
     "SupportedCountry": SupportedCountry,
     "Teammate": Teammate,
@@ -30823,6 +31254,63 @@ export class BankAccountApi {
     }
     /**
      * 
+     * @summary Get bank account fields definitions
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getFieldDefinitions (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAccountFieldsDefinitions;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/field-definitions'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getFieldDefinitions.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAccountFieldsDefinitions;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAccountFieldsDefinitions");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary [PRIVATE API] Update BankAccount
      * @param appId App Name
      * @param id Id of account to be updated
@@ -30897,7 +31385,7 @@ export class BankAccountApi {
      * @param appId App Name
      * @param accountId Id of account to be updated
      * @param state New state
-     * @param reason Reason for state change, Manadatory for rejections
+     * @param reason Reason for state change, Mandatory for rejections
      * @param {*} [options] Override http request options.
      */
     public updateBankAccountState (appId: string, accountId: number, state: string, reason: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -44230,6 +44718,321 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultCoordinates");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum StripeCustomConnectApiApiKeys {
+}
+
+export class StripeCustomConnectApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: StripeCustomConnectApiApiKeys, value: string) {
+        (this.authentications as any)[StripeCustomConnectApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Get the Stripe connected account associated with the bank account of bankAccountId, if any
+     * @param appId App Name Id
+     * @param bankAccountId Bank Account Id
+     * @param {*} [options] Override http request options.
+     */
+    public createStripeConnectedAccount (appId: string, bankAccountId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/create-account'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createStripeConnectedAccount.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling createStripeConnectedAccount.');
+        }
+
+        if (bankAccountId !== undefined) {
+            localVarQueryParameters['bankAccountId'] = ObjectSerializer.serialize(bankAccountId, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStripeConnectedAccount");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Gets a single-use Stripe URL for the given account
+     * @param appId 
+     * @param stripeAccountLinkRequest 
+     * @param {*} [options] Override http request options.
+     */
+    public createStripeConnectedAccountLink (appId: string, stripeAccountLinkRequest: StripeAccountLinkRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/create-account-link'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createStripeConnectedAccountLink.');
+        }
+
+        // verify required parameter 'stripeAccountLinkRequest' is not null or undefined
+        if (stripeAccountLinkRequest === null || stripeAccountLinkRequest === undefined) {
+            throw new Error('Required parameter stripeAccountLinkRequest was null or undefined when calling createStripeConnectedAccountLink.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(stripeAccountLinkRequest, "StripeAccountLinkRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStripeConnectedAccount");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get the Stripe connected account associated with the bank account of bankAccountId, if any
+     * @param appId App Name Id
+     * @param bankAccountId Bank Account Id
+     * @param {*} [options] Override http request options.
+     */
+    public getCustomConnectAccount (appId: string, bankAccountId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/account'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getCustomConnectAccount.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling getCustomConnectAccount.');
+        }
+
+        if (bankAccountId !== undefined) {
+            localVarQueryParameters['bankAccountId'] = ObjectSerializer.serialize(bankAccountId, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStripeConnectedAccount");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Gets the current verification status of the given connected account
+     * @param appId 
+     * @param stripeId 
+     * @param {*} [options] Override http request options.
+     */
+    public getVerificationStatus (appId: string, stripeId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/verification-status'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getVerificationStatus.');
+        }
+
+        // verify required parameter 'stripeId' is not null or undefined
+        if (stripeId === null || stripeId === undefined) {
+            throw new Error('Required parameter stripeId was null or undefined when calling getVerificationStatus.');
+        }
+
+        if (stripeId !== undefined) {
+            localVarQueryParameters['stripeId'] = ObjectSerializer.serialize(stripeId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStripeConnectedAccount");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
