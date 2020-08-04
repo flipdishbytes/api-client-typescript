@@ -6736,6 +6736,65 @@ export class FeeSummary {
 }
 
 /**
+* Base Event
+*/
+export class FlipdishEventBase {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FlipdishEventBase.attributeTypeMap;
+    }
+}
+
+/**
 * Describes coordinates that have a group
 */
 export class GroupedCoordinates {
@@ -15724,6 +15783,10 @@ export namespace ProcessingFeeConfig {
 */
 export class PushNotificationDeletedEvent {
     /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
     * 
     */
     'Description'?: string;
@@ -15731,10 +15794,6 @@ export class PushNotificationDeletedEvent {
     * 
     */
     'PushNotification'?: PushNotificationRequest;
-    /**
-    * The event name
-    */
-    'EventName'?: string;
     /**
     * The identitfier of the event
     */
@@ -15756,6 +15815,11 @@ export class PushNotificationDeletedEvent {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
@@ -15764,11 +15828,6 @@ export class PushNotificationDeletedEvent {
             "name": "PushNotification",
             "baseName": "PushNotification",
             "type": "PushNotificationRequest"
-        },
-        {
-            "name": "EventName",
-            "baseName": "EventName",
-            "type": "string"
         },
         {
             "name": "FlipdishEventId",
@@ -15901,6 +15960,10 @@ export class PushNotificationResponse {
 */
 export class PushNotificationScheduledEvent {
     /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
     * 
     */
     'User'?: UserEventInfo;
@@ -15912,10 +15975,6 @@ export class PushNotificationScheduledEvent {
     * 
     */
     'PushNotification'?: PushNotificationRequest;
-    /**
-    * The event name
-    */
-    'EventName'?: string;
     /**
     * The identitfier of the event
     */
@@ -15937,6 +15996,11 @@ export class PushNotificationScheduledEvent {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
             "name": "User",
             "baseName": "User",
             "type": "UserEventInfo"
@@ -15950,11 +16014,6 @@ export class PushNotificationScheduledEvent {
             "name": "PushNotification",
             "baseName": "PushNotification",
             "type": "PushNotificationRequest"
-        },
-        {
-            "name": "EventName",
-            "baseName": "EventName",
-            "type": "string"
         },
         {
             "name": "FlipdishEventId",
@@ -15987,6 +16046,10 @@ export class PushNotificationScheduledEvent {
 */
 export class PushNotificationSentEvent {
     /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
     * Description
     */
     'Description'?: string;
@@ -15994,10 +16057,6 @@ export class PushNotificationSentEvent {
     * 
     */
     'PushNotification'?: PushNotificationRequest;
-    /**
-    * The event name
-    */
-    'EventName'?: string;
     /**
     * The identitfier of the event
     */
@@ -16019,6 +16078,11 @@ export class PushNotificationSentEvent {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
@@ -16027,11 +16091,6 @@ export class PushNotificationSentEvent {
             "name": "PushNotification",
             "baseName": "PushNotification",
             "type": "PushNotificationRequest"
-        },
-        {
-            "name": "EventName",
-            "baseName": "EventName",
-            "type": "string"
         },
         {
             "name": "FlipdishEventId",
@@ -20655,6 +20714,10 @@ export class StoreAddressBase {
 */
 export class StoreAddressUpdatedEvent {
     /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
     * Store Id
     */
     'StoreId'?: number;
@@ -20675,10 +20738,6 @@ export class StoreAddressUpdatedEvent {
     */
     'StoreAddress'?: StoreAddress;
     /**
-    * The event name
-    */
-    'EventName'?: string;
-    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -20698,6 +20757,11 @@ export class StoreAddressUpdatedEvent {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
         {
             "name": "StoreId",
             "baseName": "StoreId",
@@ -20722,11 +20786,6 @@ export class StoreAddressUpdatedEvent {
             "name": "StoreAddress",
             "baseName": "StoreAddress",
             "type": "StoreAddress"
-        },
-        {
-            "name": "EventName",
-            "baseName": "EventName",
-            "type": "string"
         },
         {
             "name": "FlipdishEventId",
@@ -22331,6 +22390,10 @@ export namespace StoreGroupBase {
 */
 export class StoreGroupCreatedEvent {
     /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
     * Store Group Id
     */
     'StoreGroupId'?: number;
@@ -22346,10 +22409,6 @@ export class StoreGroupCreatedEvent {
     * Created store group
     */
     'StoreGroup'?: StoreGroup;
-    /**
-    * The event name
-    */
-    'EventName'?: string;
     /**
     * The identitfier of the event
     */
@@ -22371,6 +22430,11 @@ export class StoreGroupCreatedEvent {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
             "name": "StoreGroupId",
             "baseName": "StoreGroupId",
             "type": "number"
@@ -22389,11 +22453,6 @@ export class StoreGroupCreatedEvent {
             "name": "StoreGroup",
             "baseName": "StoreGroup",
             "type": "StoreGroup"
-        },
-        {
-            "name": "EventName",
-            "baseName": "EventName",
-            "type": "string"
         },
         {
             "name": "FlipdishEventId",
@@ -22426,6 +22485,10 @@ export class StoreGroupCreatedEvent {
 */
 export class StoreGroupDeletedEvent {
     /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
     * Store Group Id
     */
     'StoreGroupId'?: number;
@@ -22441,10 +22504,6 @@ export class StoreGroupDeletedEvent {
     * Deleted store group
     */
     'StoreGroup'?: StoreGroup;
-    /**
-    * The event name
-    */
-    'EventName'?: string;
     /**
     * The identitfier of the event
     */
@@ -22466,6 +22525,11 @@ export class StoreGroupDeletedEvent {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
             "name": "StoreGroupId",
             "baseName": "StoreGroupId",
             "type": "number"
@@ -22484,11 +22548,6 @@ export class StoreGroupDeletedEvent {
             "name": "StoreGroup",
             "baseName": "StoreGroup",
             "type": "StoreGroup"
-        },
-        {
-            "name": "EventName",
-            "baseName": "EventName",
-            "type": "string"
         },
         {
             "name": "FlipdishEventId",
@@ -22724,6 +22783,10 @@ export namespace StoreGroupExtended {
 */
 export class StoreGroupUpdatedEvent {
     /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
     * Store Group Id
     */
     'StoreGroupId'?: number;
@@ -22739,10 +22802,6 @@ export class StoreGroupUpdatedEvent {
     * Updated store group
     */
     'StoreGroup'?: StoreGroup;
-    /**
-    * The event name
-    */
-    'EventName'?: string;
     /**
     * The identitfier of the event
     */
@@ -22764,6 +22823,11 @@ export class StoreGroupUpdatedEvent {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
             "name": "StoreGroupId",
             "baseName": "StoreGroupId",
             "type": "number"
@@ -22782,11 +22846,6 @@ export class StoreGroupUpdatedEvent {
             "name": "StoreGroup",
             "baseName": "StoreGroup",
             "type": "StoreGroup"
-        },
-        {
-            "name": "EventName",
-            "baseName": "EventName",
-            "type": "string"
         },
         {
             "name": "FlipdishEventId",
@@ -27440,6 +27499,47 @@ export namespace VoucherWithStats {
     }
 }
 /**
+* Sample payload of a webhook event
+*/
+export class WebhookEventSample {
+    /**
+    * Event name
+    */
+    'Type'?: string;
+    /**
+    * Sample event creation date and time
+    */
+    'CreateTime'?: Date;
+    /**
+    * Sample event body
+    */
+    'Body'?: FlipdishEventBase;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Type",
+            "baseName": "Type",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Body",
+            "baseName": "Body",
+            "type": "FlipdishEventBase"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WebhookEventSample.attributeTypeMap;
+    }
+}
+
+/**
 * Webhook log
 */
 export class WebhookLog {
@@ -28407,6 +28507,7 @@ let typeMap: {[index: string]: any} = {
     "EmvTerminalWithAssignments": EmvTerminalWithAssignments,
     "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
+    "FlipdishEventBase": FlipdishEventBase,
     "GroupedCoordinates": GroupedCoordinates,
     "HomeAction": HomeAction,
     "HomeStatistics": HomeStatistics,
@@ -28706,6 +28807,7 @@ let typeMap: {[index: string]: any} = {
     "VoucherSummary": VoucherSummary,
     "VoucherUpdatedEvent": VoucherUpdatedEvent,
     "VoucherWithStats": VoucherWithStats,
+    "WebhookEventSample": WebhookEventSample,
     "WebhookLog": WebhookLog,
     "WebhookSubscription": WebhookSubscription,
     "WebhookSubscriptionCreatedEvent": WebhookSubscriptionCreatedEvent,
@@ -46853,6 +46955,89 @@ export class WebhooksApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiStringArrayResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get a sample event from a webhook subscription
+     * @param eventName 
+     * @param appId 
+     * @param oauthAppId 
+     * @param webhookSubscriptionId 
+     * @param version 
+     * @param {*} [options] Override http request options.
+     */
+    public getWebhookEventSample (eventName: string, appId: string, oauthAppId: string, webhookSubscriptionId: string, version?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: WebhookEventSample;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions/{webhookSubscriptionId}/events/{eventName}/test'
+            .replace('{' + 'eventName' + '}', encodeURIComponent(String(eventName)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'eventName' is not null or undefined
+        if (eventName === null || eventName === undefined) {
+            throw new Error('Required parameter eventName was null or undefined when calling getWebhookEventSample.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getWebhookEventSample.');
+        }
+
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling getWebhookEventSample.');
+        }
+
+        // verify required parameter 'webhookSubscriptionId' is not null or undefined
+        if (webhookSubscriptionId === null || webhookSubscriptionId === undefined) {
+            throw new Error('Required parameter webhookSubscriptionId was null or undefined when calling getWebhookEventSample.');
+        }
+
+        if (version !== undefined) {
+            localVarQueryParameters['version'] = ObjectSerializer.serialize(version, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: WebhookEventSample;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "WebhookEventSample");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
