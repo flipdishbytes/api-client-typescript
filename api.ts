@@ -1566,10 +1566,6 @@ export class BankAccountCreate {
     */
     'BankName'?: string;
     /**
-    * Business Type
-    */
-    'BusinessType'?: BankAccountCreate.BusinessTypeEnum;
-    /**
     * Name of this account
     */
     'AccountName'?: string;
@@ -1589,6 +1585,10 @@ export class BankAccountCreate {
     * Reason for Rejection
     */
     'RejectionReason'?: string;
+    /**
+    * Business Type
+    */
+    'BusinessType'?: BankAccountCreate.BusinessTypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -1634,11 +1634,6 @@ export class BankAccountCreate {
             "type": "string"
         },
         {
-            "name": "BusinessType",
-            "baseName": "BusinessType",
-            "type": "BankAccountCreate.BusinessTypeEnum"
-        },
-        {
             "name": "AccountName",
             "baseName": "AccountName",
             "type": "string"
@@ -1662,6 +1657,11 @@ export class BankAccountCreate {
             "name": "RejectionReason",
             "baseName": "RejectionReason",
             "type": "string"
+        },
+        {
+            "name": "BusinessType",
+            "baseName": "BusinessType",
+            "type": "BankAccountCreate.BusinessTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1981,10 +1981,6 @@ export class BankAccountDetail {
     */
     'BankName'?: string;
     /**
-    * Business Type
-    */
-    'BusinessType'?: BankAccountDetail.BusinessTypeEnum;
-    /**
     * Name of this account
     */
     'AccountName'?: string;
@@ -2004,6 +2000,10 @@ export class BankAccountDetail {
     * Reason for Rejection
     */
     'RejectionReason'?: string;
+    /**
+    * Business Type
+    */
+    'BusinessType'?: BankAccountDetail.BusinessTypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -2069,11 +2069,6 @@ export class BankAccountDetail {
             "type": "string"
         },
         {
-            "name": "BusinessType",
-            "baseName": "BusinessType",
-            "type": "BankAccountDetail.BusinessTypeEnum"
-        },
-        {
             "name": "AccountName",
             "baseName": "AccountName",
             "type": "string"
@@ -2097,6 +2092,11 @@ export class BankAccountDetail {
             "name": "RejectionReason",
             "baseName": "RejectionReason",
             "type": "string"
+        },
+        {
+            "name": "BusinessType",
+            "baseName": "BusinessType",
+            "type": "BankAccountDetail.BusinessTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -2277,6 +2277,10 @@ export class BankAccountSummary {
     * Reason for Rejection
     */
     'RejectionReason'?: string;
+    /**
+    * Business Type
+    */
+    'BusinessType'?: BankAccountSummary.BusinessTypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -2330,6 +2334,11 @@ export class BankAccountSummary {
             "name": "RejectionReason",
             "baseName": "RejectionReason",
             "type": "string"
+        },
+        {
+            "name": "BusinessType",
+            "baseName": "BusinessType",
+            "type": "BankAccountSummary.BusinessTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -2343,6 +2352,12 @@ export namespace BankAccountSummary {
         AwatingVerification = <any> 'AwatingVerification',
         Verified = <any> 'Verified',
         Grandfathered = <any> 'Grandfathered'
+    }
+    export enum BusinessTypeEnum {
+        Individual = <any> 'Individual',
+        Company = <any> 'Company',
+        NonProfit = <any> 'NonProfit',
+        GovernmentEntity = <any> 'GovernmentEntity'
     }
 }
 /**
@@ -19649,6 +19664,46 @@ export class SearchCriteria {
 }
 
 /**
+* 
+*/
+export class SetBankAccountBusinessTypeRequest {
+    /**
+    * Flipdish Id of the bank account
+    */
+    'BankAccountId'?: number;
+    /**
+    * Business type of the account
+    */
+    'BusinessType'?: SetBankAccountBusinessTypeRequest.BusinessTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "BankAccountId",
+            "baseName": "BankAccountId",
+            "type": "number"
+        },
+        {
+            "name": "BusinessType",
+            "baseName": "BusinessType",
+            "type": "SetBankAccountBusinessTypeRequest.BusinessTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SetBankAccountBusinessTypeRequest.attributeTypeMap;
+    }
+}
+
+export namespace SetBankAccountBusinessTypeRequest {
+    export enum BusinessTypeEnum {
+        Individual = <any> 'Individual',
+        Company = <any> 'Company',
+        NonProfit = <any> 'NonProfit',
+        GovernmentEntity = <any> 'GovernmentEntity'
+    }
+}
+/**
 * Set password with PIN model
 */
 export class SetPasswordWithPinModel {
@@ -24609,11 +24664,7 @@ export class StripeAccountLinkRequest {
     /**
     * URL to be hit if link creation succeeds
     */
-    'SuccessUrl'?: string;
-    /**
-    * URL to be hit if link creation fails
-    */
-    'FailureUrl'?: string;
+    'ReturnUrl'?: string;
     /**
     * Which information to collect from users at this stage
     */
@@ -24632,13 +24683,8 @@ export class StripeAccountLinkRequest {
             "type": "string"
         },
         {
-            "name": "SuccessUrl",
-            "baseName": "SuccessUrl",
-            "type": "string"
-        },
-        {
-            "name": "FailureUrl",
-            "baseName": "FailureUrl",
+            "name": "ReturnUrl",
+            "baseName": "ReturnUrl",
             "type": "string"
         },
         {
@@ -28331,6 +28377,7 @@ let enumsMap: {[index: string]: any} = {
         "BankAccountDetail.CurrencyCodeEnum": BankAccountDetail.CurrencyCodeEnum,
         "BankAccountDetail.BusinessTypeEnum": BankAccountDetail.BusinessTypeEnum,
         "BankAccountSummary.AccountStateEnum": BankAccountSummary.AccountStateEnum,
+        "BankAccountSummary.BusinessTypeEnum": BankAccountSummary.BusinessTypeEnum,
         "BusinessHoursOverride.DeliveryTypeEnum": BusinessHoursOverride.DeliveryTypeEnum,
         "BusinessHoursOverride.TypeEnum": BusinessHoursOverride.TypeEnum,
         "BusinessHoursOverrideBase.DeliveryTypeEnum": BusinessHoursOverrideBase.DeliveryTypeEnum,
@@ -28397,6 +28444,7 @@ let enumsMap: {[index: string]: any} = {
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
         "RedeemInvitationResult.InvitationStatusEnum": RedeemInvitationResult.InvitationStatusEnum,
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
+        "SetBankAccountBusinessTypeRequest.BusinessTypeEnum": SetBankAccountBusinessTypeRequest.BusinessTypeEnum,
         "SignupStep.ActionEnum": SignupStep.ActionEnum,
         "StatisticsCurrencyDataPoint.CurrencyEnum": StatisticsCurrencyDataPoint.CurrencyEnum,
         "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
@@ -28733,6 +28781,7 @@ let typeMap: {[index: string]: any} = {
     "RetentionCampaignDeletedEvent": RetentionCampaignDeletedEvent,
     "RetentionCampaignUpdatedEvent": RetentionCampaignUpdatedEvent,
     "SearchCriteria": SearchCriteria,
+    "SetBankAccountBusinessTypeRequest": SetBankAccountBusinessTypeRequest,
     "SetPasswordWithPinModel": SetPasswordWithPinModel,
     "SignupStep": SignupStep,
     "SmsInfo": SmsInfo,
@@ -31135,7 +31184,7 @@ export class BankAccountApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Create a new Bank Account and attach to this App
+     * @summary Create a new Bank Account and attach to this App
      * @param appId App Name
      * @param account Account to be created
      * @param {*} [options] Override http request options.
@@ -44908,13 +44957,77 @@ export class StripeCustomConnectApi {
     }
     /**
      * 
-     * @summary Get the Stripe connected account associated with the bank account of bankAccountId, if any
+     * @summary Create a new Bank Account and Stripe connected account
+     * @param appId App Name
+     * @param account Account to be created
+     * @param {*} [options] Override http request options.
+     */
+    public createBankAccountAndConnectedAccount (appId: string, account: BankAccountCreate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/bank-account'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createBankAccountAndConnectedAccount.');
+        }
+
+        // verify required parameter 'account' is not null or undefined
+        if (account === null || account === undefined) {
+            throw new Error('Required parameter account was null or undefined when calling createBankAccountAndConnectedAccount.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(account, "BankAccountCreate")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultBankAccountDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Create or update a Stripe connected account associated with the bank account of bankAccountId
      * @param appId App Name Id
      * @param bankAccountId Bank Account Id
      * @param {*} [options] Override http request options.
      */
     public createStripeConnectedAccount (appId: string, bankAccountId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/create-account'
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/create-update-account'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -44930,10 +45043,6 @@ export class StripeCustomConnectApi {
             throw new Error('Required parameter bankAccountId was null or undefined when calling createStripeConnectedAccount.');
         }
 
-        if (bankAccountId !== undefined) {
-            localVarQueryParameters['bankAccountId'] = ObjectSerializer.serialize(bankAccountId, "number");
-        }
-
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -44945,6 +45054,7 @@ export class StripeCustomConnectApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+            body: ObjectSerializer.serialize(bankAccountId, "number")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -45039,73 +45149,6 @@ export class StripeCustomConnectApi {
     }
     /**
      * 
-     * @summary Get the Stripe connected account associated with the bank account of bankAccountId, if any
-     * @param appId App Name Id
-     * @param bankAccountId Bank Account Id
-     * @param {*} [options] Override http request options.
-     */
-    public getCustomConnectAccount (appId: string, bankAccountId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/account'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getCustomConnectAccount.');
-        }
-
-        // verify required parameter 'bankAccountId' is not null or undefined
-        if (bankAccountId === null || bankAccountId === undefined) {
-            throw new Error('Required parameter bankAccountId was null or undefined when calling getCustomConnectAccount.');
-        }
-
-        if (bankAccountId !== undefined) {
-            localVarQueryParameters['bankAccountId'] = ObjectSerializer.serialize(bankAccountId, "number");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultStripeConnectedAccount");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @summary Gets the current verification status of the given connected account
      * @param appId 
      * @param stripeId 
@@ -45162,6 +45205,136 @@ export class StripeCustomConnectApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultStripeConnectedAccount");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update bank account's BusinessType and create a Stripe Connected Account
+     * @param appId App Name
+     * @param request SetBankAccountBusinessType request
+     * @param {*} [options] Override http request options.
+     */
+    public setBankAccountBusinessType (appId: string, request: SetBankAccountBusinessTypeRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/bank-account/businesstype'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling setBankAccountBusinessType.');
+        }
+
+        // verify required parameter 'request' is not null or undefined
+        if (request === null || request === undefined) {
+            throw new Error('Required parameter request was null or undefined when calling setBankAccountBusinessType.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(request, "SetBankAccountBusinessTypeRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultBankAccountDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param linkRequestId 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public stripeCustomConnectRefresh (linkRequestId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/refresh-link'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'linkRequestId' is not null or undefined
+        if (linkRequestId === null || linkRequestId === undefined) {
+            throw new Error('Required parameter linkRequestId was null or undefined when calling stripeCustomConnectRefresh.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling stripeCustomConnectRefresh.');
+        }
+
+        if (linkRequestId !== undefined) {
+            localVarQueryParameters['linkRequestId'] = ObjectSerializer.serialize(linkRequestId, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
