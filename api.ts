@@ -1088,6 +1088,7 @@ export namespace App {
         ViewPrinterAuditLogs = <any> 'ViewPrinterAuditLogs',
         ViewHydraAuditLogs = <any> 'ViewHydraAuditLogs',
         ViewPushNotificationAuditLogs = <any> 'ViewPushNotificationAuditLogs',
+        ViewStripeCustomConnectedAccountAuditLogs = <any> 'ViewStripeCustomConnectedAccountAuditLogs',
         SendPushNotificationToCustomer = <any> 'SendPushNotificationToCustomer',
         InviteDriverToApp = <any> 'InviteDriverToApp',
         GetDriverForApp = <any> 'GetDriverForApp',
