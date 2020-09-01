@@ -421,6 +421,54 @@ export namespace AccountFieldDefinition {
     }
 }
 /**
+* Represents one populated account field (its key and value)
+*/
+export class AccountFieldKeyValuePair {
+    /**
+    * Depending on the Key, the field's value will be stored in a different field in PayeeBankAccountData
+    */
+    'Key'?: AccountFieldKeyValuePair.KeyEnum;
+    /**
+    * The value of the field
+    */
+    'Value'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Key",
+            "baseName": "Key",
+            "type": "AccountFieldKeyValuePair.KeyEnum"
+        },
+        {
+            "name": "Value",
+            "baseName": "Value",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AccountFieldKeyValuePair.attributeTypeMap;
+    }
+}
+
+export namespace AccountFieldKeyValuePair {
+    export enum KeyEnum {
+        Iban = <any> 'Iban',
+        AccountNumber = <any> 'AccountNumber',
+        RoutingNumber = <any> 'RoutingNumber',
+        BSB = <any> 'BSB',
+        BranchCode = <any> 'BranchCode',
+        BankCode = <any> 'BankCode',
+        InstitutionNumber = <any> 'InstitutionNumber',
+        TransitNumber = <any> 'TransitNumber',
+        ClearingCode = <any> 'ClearingCode',
+        IfscCode = <any> 'IfscCode',
+        Clabe = <any> 'Clabe',
+        SortCode = <any> 'SortCode'
+    }
+}
+/**
 * List of field definitions per country
 */
 export class AccountFieldsDefinitions {
@@ -1430,6 +1478,10 @@ export class BankAccount {
     */
     'Swift'?: string;
     /**
+    * A list of one or more populated account fields (field key-value pairs).  If this list contains at least one item, the Iban, Swift and NationalClearingCode fields should be ignored.
+    */
+    'PopulatedAccountFields'?: Array<AccountFieldKeyValuePair>;
+    /**
     * Status of Account
     */
     'AccountState'?: BankAccount.AccountStateEnum;
@@ -1480,6 +1532,11 @@ export class BankAccount {
             "name": "Swift",
             "baseName": "Swift",
             "type": "string"
+        },
+        {
+            "name": "PopulatedAccountFields",
+            "baseName": "PopulatedAccountFields",
+            "type": "Array<AccountFieldKeyValuePair>"
         },
         {
             "name": "AccountState",
@@ -1583,6 +1640,10 @@ export class BankAccountCreate {
     */
     'NationalClearingCode'?: string;
     /**
+    * A list of one or more populated account fields (field key-value pairs).  If this list contains at least one item, the Iban, Swift and NationalClearingCode fields will be ignored.
+    */
+    'PopulatedAccountFields'?: Array<AccountFieldKeyValuePair>;
+    /**
     * Reason for Rejection
     */
     'RejectionReason'?: string;
@@ -1653,6 +1714,11 @@ export class BankAccountCreate {
             "name": "NationalClearingCode",
             "baseName": "NationalClearingCode",
             "type": "string"
+        },
+        {
+            "name": "PopulatedAccountFields",
+            "baseName": "PopulatedAccountFields",
+            "type": "Array<AccountFieldKeyValuePair>"
         },
         {
             "name": "RejectionReason",
@@ -1998,6 +2064,10 @@ export class BankAccountDetail {
     */
     'NationalClearingCode'?: string;
     /**
+    * A list of one or more populated account fields (field key-value pairs).  If this list contains at least one item, the Iban, Swift and NationalClearingCode fields will be ignored.
+    */
+    'PopulatedAccountFields'?: Array<AccountFieldKeyValuePair>;
+    /**
     * Reason for Rejection
     */
     'RejectionReason'?: string;
@@ -2088,6 +2158,11 @@ export class BankAccountDetail {
             "name": "NationalClearingCode",
             "baseName": "NationalClearingCode",
             "type": "string"
+        },
+        {
+            "name": "PopulatedAccountFields",
+            "baseName": "PopulatedAccountFields",
+            "type": "Array<AccountFieldKeyValuePair>"
         },
         {
             "name": "RejectionReason",
@@ -2235,6 +2310,166 @@ export namespace BankAccountDetail {
     }
 }
 /**
+* Represents a request to update bank account information details
+*/
+export class BankAccountDetailsUpdateRequest {
+    /**
+    * Bank account identifier
+    */
+    'BankAccountId'?: number;
+    /**
+    * Bank account name
+    */
+    'AccountName'?: string;
+    /**
+    * Address of the bank account
+    */
+    'BankAddress'?: string;
+    /**
+    * Country code of the bank account
+    */
+    'BankCountryCode'?: string;
+    /**
+    * Address of the payee
+    */
+    'PayeeAddress'?: string;
+    /**
+    * Country code of the payee
+    */
+    'PayeeCountryCode'?: string;
+    'BankAccountFields'?: BankAccountDetailsUpdateRequestBankAccountFields;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "BankAccountId",
+            "baseName": "BankAccountId",
+            "type": "number"
+        },
+        {
+            "name": "AccountName",
+            "baseName": "AccountName",
+            "type": "string"
+        },
+        {
+            "name": "BankAddress",
+            "baseName": "BankAddress",
+            "type": "string"
+        },
+        {
+            "name": "BankCountryCode",
+            "baseName": "BankCountryCode",
+            "type": "string"
+        },
+        {
+            "name": "PayeeAddress",
+            "baseName": "PayeeAddress",
+            "type": "string"
+        },
+        {
+            "name": "PayeeCountryCode",
+            "baseName": "PayeeCountryCode",
+            "type": "string"
+        },
+        {
+            "name": "BankAccountFields",
+            "baseName": "BankAccountFields",
+            "type": "BankAccountDetailsUpdateRequestBankAccountFields"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BankAccountDetailsUpdateRequest.attributeTypeMap;
+    }
+}
+
+/**
+* Bank account fields, determined by this account's BankCountryCode
+*/
+export class BankAccountDetailsUpdateRequestBankAccountFields {
+    'Iban'?: string;
+    'AccountNumber'?: string;
+    'RoutingNumber'?: string;
+    'Bsb'?: string;
+    'BranchCode'?: string;
+    'BankCode'?: string;
+    'InstitutionNumber'?: string;
+    'TransitNumber'?: string;
+    'ClearingCode'?: string;
+    'IfscCode'?: string;
+    'Clabe'?: string;
+    'SortCode'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Iban",
+            "baseName": "Iban",
+            "type": "string"
+        },
+        {
+            "name": "AccountNumber",
+            "baseName": "AccountNumber",
+            "type": "string"
+        },
+        {
+            "name": "RoutingNumber",
+            "baseName": "RoutingNumber",
+            "type": "string"
+        },
+        {
+            "name": "Bsb",
+            "baseName": "Bsb",
+            "type": "string"
+        },
+        {
+            "name": "BranchCode",
+            "baseName": "BranchCode",
+            "type": "string"
+        },
+        {
+            "name": "BankCode",
+            "baseName": "BankCode",
+            "type": "string"
+        },
+        {
+            "name": "InstitutionNumber",
+            "baseName": "InstitutionNumber",
+            "type": "string"
+        },
+        {
+            "name": "TransitNumber",
+            "baseName": "TransitNumber",
+            "type": "string"
+        },
+        {
+            "name": "ClearingCode",
+            "baseName": "ClearingCode",
+            "type": "string"
+        },
+        {
+            "name": "IfscCode",
+            "baseName": "IfscCode",
+            "type": "string"
+        },
+        {
+            "name": "Clabe",
+            "baseName": "Clabe",
+            "type": "string"
+        },
+        {
+            "name": "SortCode",
+            "baseName": "SortCode",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BankAccountDetailsUpdateRequestBankAccountFields.attributeTypeMap;
+    }
+}
+
+/**
 * 
 */
 export class BankAccountSummary {
@@ -2274,6 +2509,10 @@ export class BankAccountSummary {
     * National Clearing Code (BSB in Australia, Routing Number in USA/Canada, NCC in NZ)
     */
     'NationalClearingCode'?: string;
+    /**
+    * A list of one or more populated account fields (field key-value pairs).  If this list contains at least one item, the Iban, Swift and NationalClearingCode fields will be ignored.
+    */
+    'PopulatedAccountFields'?: Array<AccountFieldKeyValuePair>;
     /**
     * Reason for Rejection
     */
@@ -2330,6 +2569,11 @@ export class BankAccountSummary {
             "name": "NationalClearingCode",
             "baseName": "NationalClearingCode",
             "type": "string"
+        },
+        {
+            "name": "PopulatedAccountFields",
+            "baseName": "PopulatedAccountFields",
+            "type": "Array<AccountFieldKeyValuePair>"
         },
         {
             "name": "RejectionReason",
@@ -17102,6 +17346,10 @@ export class RestApiErrorResult {
     */
     'Message': string;
     /**
+    * Error code
+    */
+    'ErrorCode'?: number;
+    /**
     * Stack trace
     */
     'StackTrace'?: string;
@@ -17117,6 +17365,11 @@ export class RestApiErrorResult {
             "name": "Message",
             "baseName": "Message",
             "type": "string"
+        },
+        {
+            "name": "ErrorCode",
+            "baseName": "ErrorCode",
+            "type": "number"
         },
         {
             "name": "StackTrace",
@@ -24800,7 +25053,9 @@ export namespace StripeConnectedAccount {
         Enabled = <any> 'Enabled',
         AdditionalInformationRequired = <any> 'AdditionalInformationRequired',
         PendingVerification = <any> 'PendingVerification',
-        Unverified = <any> 'Unverified'
+        Unverified = <any> 'Unverified',
+        Rejected = <any> 'Rejected',
+        UpdateExternalAccount = <any> 'UpdateExternalAccount'
     }
 }
 /**
@@ -24841,7 +25096,9 @@ export namespace StripeConnectedAccountInfo {
         Enabled = <any> 'Enabled',
         AdditionalInformationRequired = <any> 'AdditionalInformationRequired',
         PendingVerification = <any> 'PendingVerification',
-        Unverified = <any> 'Unverified'
+        Unverified = <any> 'Unverified',
+        Rejected = <any> 'Rejected',
+        UpdateExternalAccount = <any> 'UpdateExternalAccount'
     }
 }
 /**
@@ -28366,6 +28623,7 @@ export class WebsiteVanityUrlUpdatedEvent {
 let enumsMap: {[index: string]: any} = {
         "AccountFieldDefinition.KeyEnum": AccountFieldDefinition.KeyEnum,
         "AccountFieldDefinition.TypeEnum": AccountFieldDefinition.TypeEnum,
+        "AccountFieldKeyValuePair.KeyEnum": AccountFieldKeyValuePair.KeyEnum,
         "ApmHourlyDataPoint.DayEnum": ApmHourlyDataPoint.DayEnum,
         "App.AppAccessLevelEnum": App.AppAccessLevelEnum,
         "App.AppResourceSetEnum": App.AppResourceSetEnum,
@@ -28491,6 +28749,7 @@ let typeMap: {[index: string]: any} = {
     "AccountDetail": AccountDetail,
     "AccountDetailBase": AccountDetailBase,
     "AccountFieldDefinition": AccountFieldDefinition,
+    "AccountFieldKeyValuePair": AccountFieldKeyValuePair,
     "AccountFieldsDefinitions": AccountFieldsDefinitions,
     "AddItemDetails": AddItemDetails,
     "AllMetadataResult": AllMetadataResult,
@@ -28509,6 +28768,8 @@ let typeMap: {[index: string]: any} = {
     "BankAccountCreatedEvent": BankAccountCreatedEvent,
     "BankAccountDeletedEvent": BankAccountDeletedEvent,
     "BankAccountDetail": BankAccountDetail,
+    "BankAccountDetailsUpdateRequest": BankAccountDetailsUpdateRequest,
+    "BankAccountDetailsUpdateRequestBankAccountFields": BankAccountDetailsUpdateRequestBankAccountFields,
     "BankAccountSummary": BankAccountSummary,
     "BankAccountUpdatedEvent": BankAccountUpdatedEvent,
     "BusinessHoursOverride": BusinessHoursOverride,
@@ -31117,14 +31378,14 @@ export class BankAccountApi {
      * 
      * @summary [PRIVATE API] Attach Bank Account to Store
      * @param appId App Name
-     * @param accountId Id of account to be updated
+     * @param bankAccountId Id of account to be updated
      * @param storeId Store to be attached to Bank account
      * @param {*} [options] Override http request options.
      */
-    public attachBankAccountToStore (appId: string, accountId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{accountId}/store/{storeId}'
+    public attachBankAccountToStore (appId: string, bankAccountId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/store/{storeId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'accountId' + '}', encodeURIComponent(String(accountId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -31135,9 +31396,9 @@ export class BankAccountApi {
             throw new Error('Required parameter appId was null or undefined when calling attachBankAccountToStore.');
         }
 
-        // verify required parameter 'accountId' is not null or undefined
-        if (accountId === null || accountId === undefined) {
-            throw new Error('Required parameter accountId was null or undefined when calling attachBankAccountToStore.');
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling attachBankAccountToStore.');
         }
 
         // verify required parameter 'storeId' is not null or undefined
@@ -31249,15 +31510,15 @@ export class BankAccountApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Delete BankAccount
+     * @summary Delete BankAccount
      * @param appId App Name
-     * @param id Id of account to be marked as deleted
+     * @param bankAccountId Id of account to be marked as deleted
      * @param {*} [options] Override http request options.
      */
-    public deleteBankAccount (appId: string, id: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{id}'
+    public deleteBankAccount (appId: string, bankAccountId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -31267,9 +31528,9 @@ export class BankAccountApi {
             throw new Error('Required parameter appId was null or undefined when calling deleteBankAccount.');
         }
 
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteBankAccount.');
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling deleteBankAccount.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -31312,22 +31573,22 @@ export class BankAccountApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get BankAccount Detail by Id
-     * @param id Id of account
+     * @summary Get BankAccount Detail by Id
+     * @param bankAccountId Id of account
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getBankAccountById (id: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{id}'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
+    public getBankAccountById (bankAccountId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}'
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getBankAccountById.');
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling getBankAccountById.');
         }
 
         // verify required parameter 'appId' is not null or undefined
@@ -31376,7 +31637,7 @@ export class BankAccountApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get List of BankAccounts for WL
+     * @summary Get List of BankAccounts for WL
      * @param appId App Name
      * @param {*} [options] Override http request options.
      */
@@ -31490,16 +31751,16 @@ export class BankAccountApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Update BankAccount
+     * @summary Update BankAccount
      * @param appId App Name
-     * @param id Id of account to be updated
+     * @param bankAccountId Id of account to be updated
      * @param account Details to update account with
      * @param {*} [options] Override http request options.
      */
-    public updateBankAccount (appId: string, id: number, account: BankAccountCreate, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{id}'
+    public updateBankAccount (appId: string, bankAccountId: number, account: BankAccountCreate, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -31509,9 +31770,9 @@ export class BankAccountApi {
             throw new Error('Required parameter appId was null or undefined when calling updateBankAccount.');
         }
 
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateBankAccount.');
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling updateBankAccount.');
         }
 
         // verify required parameter 'account' is not null or undefined
@@ -31562,15 +31823,15 @@ export class BankAccountApi {
      * 
      * @summary [PRIVATE API] Update State of Bank Account
      * @param appId App Name
-     * @param accountId Id of account to be updated
+     * @param bankAccountId Id of account to be updated
      * @param state New state
      * @param reason Reason for state change, Mandatory for rejections
      * @param {*} [options] Override http request options.
      */
-    public updateBankAccountState (appId: string, accountId: number, state: string, reason: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{accountId}/state/{state}'
+    public updateBankAccountState (appId: string, bankAccountId: number, state: string, reason: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/state/{state}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'accountId' + '}', encodeURIComponent(String(accountId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
             .replace('{' + 'state' + '}', encodeURIComponent(String(state)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -31581,9 +31842,9 @@ export class BankAccountApi {
             throw new Error('Required parameter appId was null or undefined when calling updateBankAccountState.');
         }
 
-        // verify required parameter 'accountId' is not null or undefined
-        if (accountId === null || accountId === undefined) {
-            throw new Error('Required parameter accountId was null or undefined when calling updateBankAccountState.');
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling updateBankAccountState.');
         }
 
         // verify required parameter 'state' is not null or undefined
@@ -45028,8 +45289,9 @@ export class StripeCustomConnectApi {
      * @param {*} [options] Override http request options.
      */
     public createStripeConnectedAccount (appId: string, bankAccountId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/create-update-account'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/{bankAccountId}/create-update-account'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -45055,7 +45317,6 @@ export class StripeCustomConnectApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(bankAccountId, "number")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -45087,13 +45348,15 @@ export class StripeCustomConnectApi {
     /**
      * 
      * @summary Gets a single-use Stripe URL for the given account
-     * @param appId 
+     * @param appId App Name
+     * @param stripeConnectedAccountId Stripe Connected Account Id
      * @param stripeAccountLinkRequest 
      * @param {*} [options] Override http request options.
      */
-    public createStripeConnectedAccountLink (appId: string, stripeAccountLinkRequest: StripeAccountLinkRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/create-account-link'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+    public createStripeConnectedAccountLink (appId: string, stripeConnectedAccountId: string, stripeAccountLinkRequest: StripeAccountLinkRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/{stripeConnectedAccountId}/create-account-link'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'stripeConnectedAccountId' + '}', encodeURIComponent(String(stripeConnectedAccountId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -45101,6 +45364,11 @@ export class StripeCustomConnectApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling createStripeConnectedAccountLink.');
+        }
+
+        // verify required parameter 'stripeConnectedAccountId' is not null or undefined
+        if (stripeConnectedAccountId === null || stripeConnectedAccountId === undefined) {
+            throw new Error('Required parameter stripeConnectedAccountId was null or undefined when calling createStripeConnectedAccountLink.');
         }
 
         // verify required parameter 'stripeAccountLinkRequest' is not null or undefined
@@ -45150,12 +45418,140 @@ export class StripeCustomConnectApi {
     }
     /**
      * 
-     * @summary Gets the current verification status of the given connected account
+     * @summary THIS IS JUST TEMPORARY FOR BACKWARD COMPATIBILITY WITH PORTAL, WILL BE DEACTIVATED WHEN PORTAL IS UPDATED TO USE THE NEW METHOD  (\"bank-account/{bankAccountId}/businesstype\")  Gets a single-use Stripe URL for the given account
      * @param appId 
-     * @param stripeId 
+     * @param stripeAccountLinkRequest 
      * @param {*} [options] Override http request options.
      */
-    public getVerificationStatus (appId: string, stripeId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
+    public createStripeConnectedAccountLinkOld (appId: string, stripeAccountLinkRequest: StripeAccountLinkRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/create-account-link'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createStripeConnectedAccountLinkOld.');
+        }
+
+        // verify required parameter 'stripeAccountLinkRequest' is not null or undefined
+        if (stripeAccountLinkRequest === null || stripeAccountLinkRequest === undefined) {
+            throw new Error('Required parameter stripeAccountLinkRequest was null or undefined when calling createStripeConnectedAccountLinkOld.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(stripeAccountLinkRequest, "StripeAccountLinkRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStripeConnectedAccount");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary THIS IS JUST TEMPORARY FOR BACKWARD COMPATIBILITY WITH PORTAL, WILL BE DEACTIVATED WHEN PORTAL IS UPDATED TO USE THE NEW METHOD  (\"{bankAccountId}/create-update-account\")  Create or update a Stripe connected account associated with the bank account of bankAccountId
+     * @param appId App Name Id
+     * @param bankAccountId Bank Account Id
+     * @param {*} [options] Override http request options.
+     */
+    public createStripeConnectedAccountOld (appId: string, bankAccountId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/create-update-account'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createStripeConnectedAccountOld.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling createStripeConnectedAccountOld.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(bankAccountId, "number")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStripeConnectedAccount");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Gets the current verification status of the given connected account
+     * @param appId 
+     * @param stripeConnectedAccountId 
+     * @param {*} [options] Override http request options.
+     */
+    public getVerificationStatus (appId: string, stripeConnectedAccountId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/verification-status'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -45167,13 +45563,13 @@ export class StripeCustomConnectApi {
             throw new Error('Required parameter appId was null or undefined when calling getVerificationStatus.');
         }
 
-        // verify required parameter 'stripeId' is not null or undefined
-        if (stripeId === null || stripeId === undefined) {
-            throw new Error('Required parameter stripeId was null or undefined when calling getVerificationStatus.');
+        // verify required parameter 'stripeConnectedAccountId' is not null or undefined
+        if (stripeConnectedAccountId === null || stripeConnectedAccountId === undefined) {
+            throw new Error('Required parameter stripeConnectedAccountId was null or undefined when calling getVerificationStatus.');
         }
 
-        if (stripeId !== undefined) {
-            localVarQueryParameters['stripeId'] = ObjectSerializer.serialize(stripeId, "string");
+        if (stripeConnectedAccountId !== undefined) {
+            localVarQueryParameters['stripeConnectedAccountId'] = ObjectSerializer.serialize(stripeConnectedAccountId, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -45219,12 +45615,14 @@ export class StripeCustomConnectApi {
      * 
      * @summary Update bank account's BusinessType and create a Stripe Connected Account
      * @param appId App Name
-     * @param request SetBankAccountBusinessType request
+     * @param bankAccountId Bank Account Id
+     * @param businessType Bank Account business type
      * @param {*} [options] Override http request options.
      */
-    public setBankAccountBusinessType (appId: string, request: SetBankAccountBusinessTypeRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/bank-account/businesstype'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+    public setBankAccountBusinessType (appId: string, bankAccountId: number, businessType: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/bank-account/{bankAccountId}/businesstype'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -45234,9 +45632,78 @@ export class StripeCustomConnectApi {
             throw new Error('Required parameter appId was null or undefined when calling setBankAccountBusinessType.');
         }
 
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling setBankAccountBusinessType.');
+        }
+
+        // verify required parameter 'businessType' is not null or undefined
+        if (businessType === null || businessType === undefined) {
+            throw new Error('Required parameter businessType was null or undefined when calling setBankAccountBusinessType.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(businessType, "string")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultBankAccountDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary THIS IS JUST TEMPORARY FOR BACKWARD COMPATIBILITY WITH PORTAL, WILL BE DEACTIVATED WHEN PORTAL IS UPDATED TO USE THE NEW METHOD  (\"bank-account/{bankAccountId}/businesstype\")  Update bank account's BusinessType and create a Stripe Connected Account
+     * @param appId App Name
+     * @param request SetBankAccountBusinessType request
+     * @param {*} [options] Override http request options.
+     */
+    public setBankAccountBusinessTypeOld (appId: string, request: SetBankAccountBusinessTypeRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/bank-account/businesstype'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling setBankAccountBusinessTypeOld.');
+        }
+
         // verify required parameter 'request' is not null or undefined
         if (request === null || request === undefined) {
-            throw new Error('Required parameter request was null or undefined when calling setBankAccountBusinessType.');
+            throw new Error('Required parameter request was null or undefined when calling setBankAccountBusinessTypeOld.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -45336,6 +45803,77 @@ export class StripeCustomConnectApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update bank account details
+     * @param appId App Name Id
+     * @param bankAccountId Bank Account Id
+     * @param updateRequest 
+     * @param {*} [options] Override http request options.
+     */
+    public updateBankAccountDetails (appId: string, bankAccountId: number, updateRequest: BankAccountDetailsUpdateRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/{bankAccountId}/update-bank-account-details'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateBankAccountDetails.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling updateBankAccountDetails.');
+        }
+
+        // verify required parameter 'updateRequest' is not null or undefined
+        if (updateRequest === null || updateRequest === undefined) {
+            throw new Error('Required parameter updateRequest was null or undefined when calling updateBankAccountDetails.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(updateRequest, "BankAccountDetailsUpdateRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStripeConnectedAccount");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
