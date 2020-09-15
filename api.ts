@@ -412,12 +412,12 @@ export namespace AccountFieldDefinition {
         ClearingCode = <any> 'ClearingCode',
         IfscCode = <any> 'IfscCode',
         Clabe = <any> 'Clabe',
-        SortCode = <any> 'SortCode'
+        SortCode = <any> 'SortCode',
+        Swift = <any> 'Swift'
     }
     export enum TypeEnum {
         None = <any> 'None',
-        Iban = <any> 'Iban',
-        Swift = <any> 'Swift'
+        Iban = <any> 'Iban'
     }
 }
 /**
@@ -465,7 +465,8 @@ export namespace AccountFieldKeyValuePair {
         ClearingCode = <any> 'ClearingCode',
         IfscCode = <any> 'IfscCode',
         Clabe = <any> 'Clabe',
-        SortCode = <any> 'SortCode'
+        SortCode = <any> 'SortCode',
+        Swift = <any> 'Swift'
     }
 }
 /**
