@@ -9473,13 +9473,13 @@ export class LoyaltyCampaign {
     */
     'CampaignId'?: number;
     /**
-    * Date and time of campaign beginning
-    */
-    'From'?: Date;
-    /**
     * Statistics of campaign
     */
     'Statistics'?: CampaignStatistics;
+    /**
+    * Stores this campaign applies to with campaign start time in Utc
+    */
+    'Stores'?: Array<StoreCampaignStartTime>;
     /**
     * Number of orders customer needs to make, before receiving voucher
     */
@@ -9522,14 +9522,14 @@ export class LoyaltyCampaign {
             "type": "number"
         },
         {
-            "name": "From",
-            "baseName": "From",
-            "type": "Date"
-        },
-        {
             "name": "Statistics",
             "baseName": "Statistics",
             "type": "CampaignStatistics"
+        },
+        {
+            "name": "Stores",
+            "baseName": "Stores",
+            "type": "Array<StoreCampaignStartTime>"
         },
         {
             "name": "OrdersBeforeReceivingVoucher",
@@ -19728,13 +19728,13 @@ export class RetentionCampaign {
     */
     'CampaignId'?: number;
     /**
-    * Date and time of campaign beginning
-    */
-    'From'?: Date;
-    /**
     * Statistics of campaign
     */
     'Statistics'?: CampaignStatistics;
+    /**
+    * Stores this campaign applies to with campaign start time in Utc
+    */
+    'Stores'?: Array<StoreCampaignStartTime>;
     /**
     * Time in minutes, after which customer will receive retention voucher if he/she does not order
     */
@@ -19781,14 +19781,14 @@ export class RetentionCampaign {
             "type": "number"
         },
         {
-            "name": "From",
-            "baseName": "From",
-            "type": "Date"
-        },
-        {
             "name": "Statistics",
             "baseName": "Statistics",
             "type": "CampaignStatistics"
+        },
+        {
+            "name": "Stores",
+            "baseName": "Stores",
+            "type": "Array<StoreCampaignStartTime>"
         },
         {
             "name": "NotifyCustomerAfterMinutes",
@@ -22141,6 +22141,38 @@ export class StoreBusinessHoursOverrideDeletedEvent {
 
     static getAttributeTypeMap() {
         return StoreBusinessHoursOverrideDeletedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Store campaign start time
+*/
+export class StoreCampaignStartTime {
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * Campaign start time in Utc
+    */
+    'TsStart'?: Date;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "TsStart",
+            "baseName": "TsStart",
+            "type": "Date"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreCampaignStartTime.attributeTypeMap;
     }
 }
 
@@ -29568,6 +29600,7 @@ let typeMap: {[index: string]: any} = {
     "StoreBase": StoreBase,
     "StoreBusinessHoursOverrideCreatedEvent": StoreBusinessHoursOverrideCreatedEvent,
     "StoreBusinessHoursOverrideDeletedEvent": StoreBusinessHoursOverrideDeletedEvent,
+    "StoreCampaignStartTime": StoreCampaignStartTime,
     "StoreCloneSettings": StoreCloneSettings,
     "StoreCreateBase": StoreCreateBase,
     "StoreCreatedEvent": StoreCreatedEvent,
