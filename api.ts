@@ -3203,6 +3203,56 @@ export class Coordinates {
 }
 
 /**
+* List of field definitions per country
+*/
+export class CountryWithAccountFieldsDefinitions {
+    /**
+    * Country 2-letter ISO code
+    */
+    'CountryCode'?: string;
+    /**
+    * Display name of the country
+    */
+    'DisplayName'?: string;
+    /**
+    * Country support type (supported-by-stripe-cc, supported-by-flipdish,not-supported)
+    */
+    'SupportType'?: string;
+    /**
+    * Bank Account field definitions
+    */
+    'FieldDefinitions'?: Array<AccountFieldDefinition>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CountryCode",
+            "baseName": "CountryCode",
+            "type": "string"
+        },
+        {
+            "name": "DisplayName",
+            "baseName": "DisplayName",
+            "type": "string"
+        },
+        {
+            "name": "SupportType",
+            "baseName": "SupportType",
+            "type": "string"
+        },
+        {
+            "name": "FieldDefinitions",
+            "baseName": "FieldDefinitions",
+            "type": "Array<AccountFieldDefinition>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CountryWithAccountFieldsDefinitions.attributeTypeMap;
+    }
+}
+
+/**
 * Create account model
 */
 export class CreateAccountModel {
@@ -16936,6 +16986,29 @@ export class RestApiArrayResultBusinessHoursPeriod {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultCountryWithAccountFieldsDefinitions {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<CountryWithAccountFieldsDefinitions>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<CountryWithAccountFieldsDefinitions>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultCountryWithAccountFieldsDefinitions.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultDeliveryZone {
     /**
     * Generic data object.
@@ -20352,46 +20425,6 @@ export class SearchCriteria {
     }
 }
 
-/**
-* 
-*/
-export class SetBankAccountBusinessTypeRequest {
-    /**
-    * Flipdish Id of the bank account
-    */
-    'BankAccountId'?: number;
-    /**
-    * Business type of the account
-    */
-    'BusinessType'?: SetBankAccountBusinessTypeRequest.BusinessTypeEnum;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "BankAccountId",
-            "baseName": "BankAccountId",
-            "type": "number"
-        },
-        {
-            "name": "BusinessType",
-            "baseName": "BusinessType",
-            "type": "SetBankAccountBusinessTypeRequest.BusinessTypeEnum"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return SetBankAccountBusinessTypeRequest.attributeTypeMap;
-    }
-}
-
-export namespace SetBankAccountBusinessTypeRequest {
-    export enum BusinessTypeEnum {
-        Individual = <any> 'Individual',
-        Company = <any> 'Company',
-        NonProfit = <any> 'NonProfit',
-        GovernmentEntity = <any> 'GovernmentEntity'
-    }
-}
 /**
 * Set password with PIN model
 */
@@ -25605,6 +25638,10 @@ export class StripeConnectedAccountInfo {
     * Stripe connected account id
     */
     'StripeId'?: string;
+    /**
+    * Current status of the Card Payment capability of the account
+    */
+    'CardPaymentStatus'?: StripeConnectedAccountInfo.CardPaymentStatusEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -25618,6 +25655,11 @@ export class StripeConnectedAccountInfo {
             "name": "StripeId",
             "baseName": "StripeId",
             "type": "string"
+        },
+        {
+            "name": "CardPaymentStatus",
+            "baseName": "CardPaymentStatus",
+            "type": "StripeConnectedAccountInfo.CardPaymentStatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -25634,6 +25676,12 @@ export namespace StripeConnectedAccountInfo {
         Unverified = <any> 'Unverified',
         Rejected = <any> 'Rejected',
         UpdateExternalAccount = <any> 'UpdateExternalAccount'
+    }
+    export enum CardPaymentStatusEnum {
+        Inactive = <any> 'Inactive',
+        Pending = <any> 'Pending',
+        Active = <any> 'Active',
+        Unrequested = <any> 'Unrequested'
     }
 }
 /**
@@ -29239,7 +29287,6 @@ let enumsMap: {[index: string]: any} = {
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
         "RedeemInvitationResult.InvitationStatusEnum": RedeemInvitationResult.InvitationStatusEnum,
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
-        "SetBankAccountBusinessTypeRequest.BusinessTypeEnum": SetBankAccountBusinessTypeRequest.BusinessTypeEnum,
         "SignupStep.ActionEnum": SignupStep.ActionEnum,
         "StatisticsCurrencyDataPoint.CurrencyEnum": StatisticsCurrencyDataPoint.CurrencyEnum,
         "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
@@ -29258,6 +29305,7 @@ let enumsMap: {[index: string]: any} = {
         "StripeConnectedAccount.TransfersStatusEnum": StripeConnectedAccount.TransfersStatusEnum,
         "StripeConnectedAccount.AccountStatusEnum": StripeConnectedAccount.AccountStatusEnum,
         "StripeConnectedAccountInfo.AccountStatusEnum": StripeConnectedAccountInfo.AccountStatusEnum,
+        "StripeConnectedAccountInfo.CardPaymentStatusEnum": StripeConnectedAccountInfo.CardPaymentStatusEnum,
         "StuartSettings.PackageTypeEnum": StuartSettings.PackageTypeEnum,
         "StuartSettings.TransportTypeEnum": StuartSettings.TransportTypeEnum,
         "SupportedCountry.AddressLayoutEnum": SupportedCountry.AddressLayoutEnum,
@@ -29316,6 +29364,7 @@ let typeMap: {[index: string]: any} = {
     "CertificateRenewedEvent": CertificateRenewedEvent,
     "ChangePasswordModel": ChangePasswordModel,
     "Coordinates": Coordinates,
+    "CountryWithAccountFieldsDefinitions": CountryWithAccountFieldsDefinitions,
     "CreateAccountModel": CreateAccountModel,
     "CreateFullMenu": CreateFullMenu,
     "CreateFullMenuItemOptionSet": CreateFullMenuItemOptionSet,
@@ -29480,6 +29529,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultApmHourlyDataPoint": RestApiArrayResultApmHourlyDataPoint,
     "RestApiArrayResultBankAccountSummary": RestApiArrayResultBankAccountSummary,
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
+    "RestApiArrayResultCountryWithAccountFieldsDefinitions": RestApiArrayResultCountryWithAccountFieldsDefinitions,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
     "RestApiArrayResultDriver": RestApiArrayResultDriver,
     "RestApiArrayResultDriverStore": RestApiArrayResultDriverStore,
@@ -29586,7 +29636,6 @@ let typeMap: {[index: string]: any} = {
     "RetentionCampaignDeletedEvent": RetentionCampaignDeletedEvent,
     "RetentionCampaignUpdatedEvent": RetentionCampaignUpdatedEvent,
     "SearchCriteria": SearchCriteria,
-    "SetBankAccountBusinessTypeRequest": SetBankAccountBusinessTypeRequest,
     "SetPasswordWithPinModel": SetPasswordWithPinModel,
     "SignupStep": SignupStep,
     "SmsInfo": SmsInfo,
@@ -32228,6 +32277,63 @@ export class BankAccountApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultBankAccountSummary");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get bank account fields definitions
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getCountriesWithFieldDefinitions (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultCountryWithAccountFieldsDefinitions;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/countries-field-definitions'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getCountriesWithFieldDefinitions.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultCountryWithAccountFieldsDefinitions;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultCountryWithAccountFieldsDefinitions");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -46645,134 +46751,6 @@ export class StripeCustomConnectApi {
     }
     /**
      * 
-     * @summary THIS IS JUST TEMPORARY FOR BACKWARD COMPATIBILITY WITH PORTAL, WILL BE DEACTIVATED WHEN PORTAL IS UPDATED TO USE THE NEW METHOD  (\"bank-account/{bankAccountId}/businesstype\")  Gets a single-use Stripe URL for the given account
-     * @param appId 
-     * @param stripeAccountLinkRequest 
-     * @param {*} [options] Override http request options.
-     */
-    public createStripeConnectedAccountLinkOld (appId: string, stripeAccountLinkRequest: StripeAccountLinkRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/create-account-link'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling createStripeConnectedAccountLinkOld.');
-        }
-
-        // verify required parameter 'stripeAccountLinkRequest' is not null or undefined
-        if (stripeAccountLinkRequest === null || stripeAccountLinkRequest === undefined) {
-            throw new Error('Required parameter stripeAccountLinkRequest was null or undefined when calling createStripeConnectedAccountLinkOld.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(stripeAccountLinkRequest, "StripeAccountLinkRequest")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultStripeConnectedAccount");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary THIS IS JUST TEMPORARY FOR BACKWARD COMPATIBILITY WITH PORTAL, WILL BE DEACTIVATED WHEN PORTAL IS UPDATED TO USE THE NEW METHOD  (\"{bankAccountId}/create-update-account\")  Create or update a Stripe connected account associated with the bank account of bankAccountId
-     * @param appId App Name Id
-     * @param bankAccountId Bank Account Id
-     * @param {*} [options] Override http request options.
-     */
-    public createStripeConnectedAccountOld (appId: string, bankAccountId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/create-update-account'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling createStripeConnectedAccountOld.');
-        }
-
-        // verify required parameter 'bankAccountId' is not null or undefined
-        if (bankAccountId === null || bankAccountId === undefined) {
-            throw new Error('Required parameter bankAccountId was null or undefined when calling createStripeConnectedAccountOld.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(bankAccountId, "number")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultStripeConnectedAccount");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @summary Gets the current verification status of the given connected account
      * @param appId 
      * @param stripeConnectedAccountId 
@@ -46911,70 +46889,6 @@ export class StripeCustomConnectApi {
     }
     /**
      * 
-     * @summary THIS IS JUST TEMPORARY FOR BACKWARD COMPATIBILITY WITH PORTAL, WILL BE DEACTIVATED WHEN PORTAL IS UPDATED TO USE THE NEW METHOD  (\"bank-account/{bankAccountId}/businesstype\")  Update bank account's BusinessType and create a Stripe Connected Account
-     * @param appId App Name
-     * @param request SetBankAccountBusinessType request
-     * @param {*} [options] Override http request options.
-     */
-    public setBankAccountBusinessTypeOld (appId: string, request: SetBankAccountBusinessTypeRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/bank-account/businesstype'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling setBankAccountBusinessTypeOld.');
-        }
-
-        // verify required parameter 'request' is not null or undefined
-        if (request === null || request === undefined) {
-            throw new Error('Required parameter request was null or undefined when calling setBankAccountBusinessTypeOld.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(request, "SetBankAccountBusinessTypeRequest")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultBankAccountDetail");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @param linkRequestId 
      * @param appId 
      * @param {*} [options] Override http request options.
@@ -47044,7 +46958,7 @@ export class StripeCustomConnectApi {
      * @summary Update bank account details
      * @param appId App Name Id
      * @param bankAccountId Bank Account Id
-     * @param updateRequest 
+     * @param updateRequest fields to be updated
      * @param {*} [options] Override http request options.
      */
     public updateBankAccountDetails (appId: string, bankAccountId: number, updateRequest: BankAccountDetailsUpdateRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
