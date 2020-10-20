@@ -845,6 +845,29 @@ export class ApmStatistics {
 }
 
 /**
+* APM status
+*/
+export class ApmStatus {
+    /**
+    * Indicates if APM is active or otherwise
+    */
+    'IsApmEnabled'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "IsApmEnabled",
+            "baseName": "IsApmEnabled",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ApmStatus.attributeTypeMap;
+    }
+}
+
+/**
 * App
 */
 export class App {
@@ -1114,6 +1137,8 @@ export namespace App {
         EditFeesConfigurations = <any> 'EditFeesConfigurations',
         ViewHydraConfig = <any> 'ViewHydraConfig',
         UpdateHydraConfigManage = <any> 'UpdateHydraConfigManage',
+        ViewCustomers = <any> 'ViewCustomers',
+        EditCustomers = <any> 'EditCustomers',
         ViewAppStatistics = <any> 'ViewAppStatistics',
         ViewApmStatistics = <any> 'ViewApmStatistics',
         ViewCampaignsStatistics = <any> 'ViewCampaignsStatistics',
@@ -4374,6 +4399,65 @@ export namespace CurrencyData {
     }
 }
 /**
+* Defines a customer
+*/
+export class Customer {
+    /**
+    * Id of the customer
+    */
+    'CustomerId'?: number;
+    /**
+    * Customer registration date
+    */
+    'RegistrationDate'?: Date;
+    /**
+    * Customer can place cash orders
+    */
+    'CashOrdersEnabled'?: boolean;
+    /**
+    * Customer can place card orders
+    */
+    'CardOrdersEnabled'?: boolean;
+    /**
+    * Customer can receive marketing
+    */
+    'MarketingEnabled'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CustomerId",
+            "baseName": "CustomerId",
+            "type": "number"
+        },
+        {
+            "name": "RegistrationDate",
+            "baseName": "RegistrationDate",
+            "type": "Date"
+        },
+        {
+            "name": "CashOrdersEnabled",
+            "baseName": "CashOrdersEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "CardOrdersEnabled",
+            "baseName": "CardOrdersEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "MarketingEnabled",
+            "baseName": "MarketingEnabled",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Customer.attributeTypeMap;
+    }
+}
+
+/**
 * Customer consent updated
 */
 export class CustomerConsentUpdatedEvent {
@@ -4926,6 +5010,47 @@ export class CustomerSummary {
 
     static getAttributeTypeMap() {
         return CustomerSummary.attributeTypeMap;
+    }
+}
+
+/**
+* Defines a customer update model
+*/
+export class CustomerUpdateModel {
+    /**
+    * Customer can place cash orders
+    */
+    'CashOrdersEnabled'?: boolean;
+    /**
+    * Customer can place card orders
+    */
+    'CardOrdersEnabled'?: boolean;
+    /**
+    * Customer can receive marketing
+    */
+    'MarketingEnabled'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CashOrdersEnabled",
+            "baseName": "CashOrdersEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "CardOrdersEnabled",
+            "baseName": "CardOrdersEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "MarketingEnabled",
+            "baseName": "MarketingEnabled",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CustomerUpdateModel.attributeTypeMap;
     }
 }
 
@@ -18706,6 +18831,29 @@ export class RestApiResultApmStatistics {
 /**
 * Rest api result
 */
+export class RestApiResultApmStatus {
+    /**
+    * Generic data object.
+    */
+    'Data': ApmStatus;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "ApmStatus"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultApmStatus.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultApp {
     /**
     * Generic data object.
@@ -18861,6 +19009,29 @@ export class RestApiResultCoordinates {
 
     static getAttributeTypeMap() {
         return RestApiResultCoordinates.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultCustomer {
+    /**
+    * Generic data object.
+    */
+    'Data': Customer;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Customer"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultCustomer.attributeTypeMap;
     }
 }
 
@@ -29404,6 +29575,7 @@ let typeMap: {[index: string]: any} = {
     "ApmDataPoint": ApmDataPoint,
     "ApmHourlyDataPoint": ApmHourlyDataPoint,
     "ApmStatistics": ApmStatistics,
+    "ApmStatus": ApmStatus,
     "App": App,
     "AppCompliance": AppCompliance,
     "AppConfigUpdateModel": AppConfigUpdateModel,
@@ -29440,11 +29612,13 @@ let typeMap: {[index: string]: any} = {
     "CreateVoucher": CreateVoucher,
     "CreditNoteDetails": CreditNoteDetails,
     "CurrencyData": CurrencyData,
+    "Customer": Customer,
     "CustomerConsentUpdatedEvent": CustomerConsentUpdatedEvent,
     "CustomerCreatedEvent": CustomerCreatedEvent,
     "CustomerDeliveryTrackingOrder": CustomerDeliveryTrackingOrder,
     "CustomerDeliveryTrackingOrderLine": CustomerDeliveryTrackingOrderLine,
     "CustomerSummary": CustomerSummary,
+    "CustomerUpdateModel": CustomerUpdateModel,
     "CustomerUpdatedEvent": CustomerUpdatedEvent,
     "DeliveryLocation": DeliveryLocation,
     "DeliveryZone": DeliveryZone,
@@ -29644,6 +29818,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
     "RestApiResultAccountFieldsDefinitions": RestApiResultAccountFieldsDefinitions,
     "RestApiResultApmStatistics": RestApiResultApmStatistics,
+    "RestApiResultApmStatus": RestApiResultApmStatus,
     "RestApiResultApp": RestApiResultApp,
     "RestApiResultAppCompliance": RestApiResultAppCompliance,
     "RestApiResultAssignedBankAccount": RestApiResultAssignedBankAccount,
@@ -29651,6 +29826,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultBusinessHoursOverride": RestApiResultBusinessHoursOverride,
     "RestApiResultBusinessHoursPeriod": RestApiResultBusinessHoursPeriod,
     "RestApiResultCoordinates": RestApiResultCoordinates,
+    "RestApiResultCustomer": RestApiResultCustomer,
     "RestApiResultDeliveryZone": RestApiResultDeliveryZone,
     "RestApiResultDnsRecordInformation": RestApiResultDnsRecordInformation,
     "RestApiResultDriver": RestApiResultDriver,
@@ -30716,8 +30892,65 @@ export class ApmApi {
     }
     /**
      * 
+     * @summary [PRIVATE API] Returns true if APM is enabled on at least one store in an application
+     * @param appId App Id
+     * @param {*} [options] Override http request options.
+     */
+    public getApmStatus (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApmStatus;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/status'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getApmStatus.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultApmStatus;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultApmStatus");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary [PRIVATE API] Get Basic Statistics
-     * @param appId App Name
+     * @param appId App Id
      * @param storeId List of stores to search by
      * @param {*} [options] Override http request options.
      */
@@ -30779,7 +31012,7 @@ export class ApmApi {
     /**
      * 
      * @summary [PRIVATE API] Get Calendar statistics
-     * @param appId App Name
+     * @param appId App Id
      * @param storeId List of stores to search by
      * @param {*} [options] Override http request options.
      */
@@ -30841,7 +31074,7 @@ export class ApmApi {
     /**
      * 
      * @summary [PRIVATE API] Get Calls Statistics
-     * @param appId App Name
+     * @param appId App Id
      * @param aggregateDataBy Aggregate data by day \\ week
      * @param dataPointLimit Amount of data points per request
      * @param storeId List of stores to search by
@@ -30915,7 +31148,7 @@ export class ApmApi {
     /**
      * 
      * @summary [PRIVATE API] Get Order Statistics (Value of Orders)
-     * @param appId App Name
+     * @param appId App Id
      * @param aggregateDataBy Aggregate data by day \\ week
      * @param dataPointLimit Amount of data points per request
      * @param storeId List of stores to search by
@@ -30989,7 +31222,7 @@ export class ApmApi {
     /**
      * 
      * @summary [PRIVATE API] Get paginated APM call list
-     * @param appId App Name
+     * @param appId App Id
      * @param page Requested page index
      * @param limit Requested page limit
      * @param storeId List of stores to search by
@@ -33408,6 +33641,191 @@ export class CampaignsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultRetentionCampaign");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum CustomersApiApiKeys {
+}
+
+export class CustomersApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: CustomersApiApiKeys, value: string) {
+        (this.authentications as any)[CustomersApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Get customer of an app by Id
+     * @param appId App Name Id
+     * @param customerId Customer Id
+     * @param {*} [options] Override http request options.
+     */
+    public getCustomerById (appId: string, customerId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCustomer;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customers/{customerId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'customerId' + '}', encodeURIComponent(String(customerId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getCustomerById.');
+        }
+
+        // verify required parameter 'customerId' is not null or undefined
+        if (customerId === null || customerId === undefined) {
+            throw new Error('Required parameter customerId was null or undefined when calling getCustomerById.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCustomer;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultCustomer");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update customer of an app by Id
+     * @param appId App Name Id
+     * @param customerId Customer Id
+     * @param updateCustomer Updated customer information
+     * @param {*} [options] Override http request options.
+     */
+    public updateCustomerById (appId: string, customerId: number, updateCustomer: CustomerUpdateModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCustomer;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customers/{customerId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'customerId' + '}', encodeURIComponent(String(customerId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateCustomerById.');
+        }
+
+        // verify required parameter 'customerId' is not null or undefined
+        if (customerId === null || customerId === undefined) {
+            throw new Error('Required parameter customerId was null or undefined when calling updateCustomerById.');
+        }
+
+        // verify required parameter 'updateCustomer' is not null or undefined
+        if (updateCustomer === null || updateCustomer === undefined) {
+            throw new Error('Required parameter updateCustomer was null or undefined when calling updateCustomerById.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(updateCustomer, "CustomerUpdateModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCustomer;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultCustomer");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
