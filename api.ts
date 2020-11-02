@@ -25957,6 +25957,10 @@ export class StuartSettings {
     * Transport type
     */
     'TransportType'?: StuartSettings.TransportTypeEnum;
+    /**
+    * Determines if Flipdish order should be cancel when Stuart cancels delivery
+    */
+    'CancelOrderIfStuartCancelDelivery'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -25995,6 +25999,11 @@ export class StuartSettings {
             "name": "TransportType",
             "baseName": "TransportType",
             "type": "StuartSettings.TransportTypeEnum"
+        },
+        {
+            "name": "CancelOrderIfStuartCancelDelivery",
+            "baseName": "CancelOrderIfStuartCancelDelivery",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -39998,9 +40007,4 @@ export class MenuSectionItemsApi {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuSectionItem");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                   
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayR
