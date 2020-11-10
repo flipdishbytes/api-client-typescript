@@ -1170,7 +1170,8 @@ export namespace App {
         RemoveDriverFromApp = <any> 'RemoveDriverFromApp',
         AssignDriverToOrder = <any> 'AssignDriverToOrder',
         UnassignDriverFromOrder = <any> 'UnassignDriverFromOrder',
-        UpdateOrdersDeliveryTrackingStatus = <any> 'UpdateOrdersDeliveryTrackingStatus'
+        UpdateOrdersDeliveryTrackingStatus = <any> 'UpdateOrdersDeliveryTrackingStatus',
+        ViewPayouts = <any> 'ViewPayouts'
     }
     export enum ApplicationCategoryEnum {
         Restaurant = <any> 'Restaurant',
