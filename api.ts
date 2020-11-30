@@ -39400,4 +39400,339 @@ export class MenuOptionSetsApi {
      * @param optionSetId Option set identifier
      * @param {*} [options] Override http request options.
      */
-    public deleteMenuItemOptionSet (menuId: number, menuSectionI
+    public deleteMenuItemOptionSet (menuId: number, menuSectionItemId: number, menuSectionId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling deleteMenuItemOptionSet.');
+        }
+
+        // verify required parameter 'menuSectionItemId' is not null or undefined
+        if (menuSectionItemId === null || menuSectionItemId === undefined) {
+            throw new Error('Required parameter menuSectionItemId was null or undefined when calling deleteMenuItemOptionSet.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling deleteMenuItemOptionSet.');
+        }
+
+        // verify required parameter 'optionSetId' is not null or undefined
+        if (optionSetId === null || optionSetId === undefined) {
+            throw new Error('Required parameter optionSetId was null or undefined when calling deleteMenuItemOptionSet.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Delete option set image
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
+     * @param optionSetId Option set identifier
+     * @param {*} [options] Override http request options.
+     */
+    public deleteOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/image'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling deleteOptionSetImage.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling deleteOptionSetImage.');
+        }
+
+        // verify required parameter 'menuSectionItemId' is not null or undefined
+        if (menuSectionItemId === null || menuSectionItemId === undefined) {
+            throw new Error('Required parameter menuSectionItemId was null or undefined when calling deleteOptionSetImage.');
+        }
+
+        // verify required parameter 'optionSetId' is not null or undefined
+        if (optionSetId === null || optionSetId === undefined) {
+            throw new Error('Required parameter optionSetId was null or undefined when calling deleteOptionSetImage.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get menu item option set by identifier
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
+     * @param optionSetId Menu item option set identifier
+     * @param {*} [options] Override http request options.
+     */
+    public getMenuItemOptionSetById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSet;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling getMenuItemOptionSetById.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling getMenuItemOptionSetById.');
+        }
+
+        // verify required parameter 'menuSectionItemId' is not null or undefined
+        if (menuSectionItemId === null || menuSectionItemId === undefined) {
+            throw new Error('Required parameter menuSectionItemId was null or undefined when calling getMenuItemOptionSetById.');
+        }
+
+        // verify required parameter 'optionSetId' is not null or undefined
+        if (optionSetId === null || optionSetId === undefined) {
+            throw new Error('Required parameter optionSetId was null or undefined when calling getMenuItemOptionSetById.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSet;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMenuItemOptionSet");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get menu item option sets
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
+     * @param {*} [options] Override http request options.
+     */
+    public getMenuItemOptionSets (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSet;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling getMenuItemOptionSets.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling getMenuItemOptionSets.');
+        }
+
+        // verify required parameter 'menuSectionItemId' is not null or undefined
+        if (menuSectionItemId === null || menuSectionItemId === undefined) {
+            throw new Error('Required parameter menuSectionItemId was null or undefined when calling getMenuItemOptionSets.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSet;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuItemOptionSet");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update menu item option set
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
+     * @param optionSetId Option set identifier
+     * @param menuItemOptionSet Menu item option set (delta)
+     * @param {*} [options] Override http request options.
+     */
+    public updateMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSet: MenuItemOptionSetBase, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
+            .replace('{' + 'optionSetId' + '}', encodeURIComponent(String(optionSetId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling updateMenuItemOptionSet.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling updateMenuItemOptionSet.');
+        }
+
+        // verify required parameter 'menuSectionItemId' is not null or undefined
+        if (menuSectionItemId === null || menuSectionItemId === undefined) {
+            throw new Error('Required parameter menuSectionItemId was null or undefined when calling updateMenuItemOptionSet.');
+        }
+
+        // verify required parameter 'optionSetId' is not null or undefined
+        if (optionSetId === null || optionSetId === undefined) {
+            throw new Error('Required parameter optionSetId was null or undefined when calling updateMenuItemOptionSet.');
+        }
+
+        // verify required parameter 'menuItemOptionSet' is not null or undefined
+        i
