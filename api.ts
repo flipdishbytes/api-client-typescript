@@ -15715,7 +15715,7 @@ export namespace Payout {
     export enum PayoutStatusEnum {
         Pending = <any> 'Pending',
         InTransit = <any> 'InTransit',
-        Complete = <any> 'Complete',
+        Paid = <any> 'Paid',
         Failed = <any> 'Failed',
         Cancelled = <any> 'Cancelled'
     }
@@ -15893,7 +15893,7 @@ export namespace PayoutSummary {
     export enum PayoutStatusEnum {
         Pending = <any> 'Pending',
         InTransit = <any> 'InTransit',
-        Complete = <any> 'Complete',
+        Paid = <any> 'Paid',
         Failed = <any> 'Failed',
         Cancelled = <any> 'Cancelled'
     }
@@ -45008,10 +45008,10 @@ export class OrdersApi {
         });
     }
 }
-export enum PayoutApiApiKeys {
+export enum PayoutsApiApiKeys {
 }
 
-export class PayoutApi {
+export class PayoutsApi {
     protected _basePath = defaultBasePath;
     protected defaultHeaders : any = {};
     protected _useQuerystring : boolean = false;
@@ -45050,8 +45050,8 @@ export class PayoutApi {
 	this.authentications.default = auth;
     }
 
-    public setApiKey(key: PayoutApiApiKeys, value: string) {
-        (this.authentications as any)[PayoutApiApiKeys[key]].apiKey = value;
+    public setApiKey(key: PayoutsApiApiKeys, value: string) {
+        (this.authentications as any)[PayoutsApiApiKeys[key]].apiKey = value;
     }
 
     set accessToken(token: string) {
@@ -45061,13 +45061,13 @@ export class PayoutApi {
      * This api was changed from private to public. It is still in progress and not meant to be used at the moment.
      * @summary Get list of payout summaries
      * @param appId 
-     * @param accountName 
+     * @param payeeBankAccountDataId 
      * @param startDate 
      * @param endDate 
      * @param status 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutSummaries (appId: string, accountName?: string, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Complete' | 'Failed' | 'Cancelled', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPayoutSummary;  }> {
+    public getPayoutSummaries (appId: string, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPayoutSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -45079,8 +45079,8 @@ export class PayoutApi {
             throw new Error('Required parameter appId was null or undefined when calling getPayoutSummaries.');
         }
 
-        if (accountName !== undefined) {
-            localVarQueryParameters['accountName'] = ObjectSerializer.serialize(accountName, "string");
+        if (payeeBankAccountDataId !== undefined) {
+            localVarQueryParameters['payeeBankAccountDataId'] = ObjectSerializer.serialize(payeeBankAccountDataId, "number");
         }
 
         if (startDate !== undefined) {
@@ -45092,7 +45092,7 @@ export class PayoutApi {
         }
 
         if (status !== undefined) {
-            localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "'Pending' | 'InTransit' | 'Complete' | 'Failed' | 'Cancelled'");
+            localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -45135,10 +45135,10 @@ export class PayoutApi {
         });
     }
     /**
-     * This api was changed from private to public. It is still in progress and not meant to be used at the moment.
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get list of payouts
      * @param appId 
-     * @param accountName 
+     * @param payeeBankAccountDataId 
      * @param startDate 
      * @param endDate 
      * @param status 
@@ -45146,7 +45146,7 @@ export class PayoutApi {
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getPayouts (appId: string, accountName?: string, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Complete' | 'Failed' | 'Cancelled', page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayout;  }> {
+    public getPayouts (appId: string, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayout;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -45158,8 +45158,8 @@ export class PayoutApi {
             throw new Error('Required parameter appId was null or undefined when calling getPayouts.');
         }
 
-        if (accountName !== undefined) {
-            localVarQueryParameters['accountName'] = ObjectSerializer.serialize(accountName, "string");
+        if (payeeBankAccountDataId !== undefined) {
+            localVarQueryParameters['payeeBankAccountDataId'] = ObjectSerializer.serialize(payeeBankAccountDataId, "number");
         }
 
         if (startDate !== undefined) {
@@ -45171,7 +45171,7 @@ export class PayoutApi {
         }
 
         if (status !== undefined) {
-            localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "'Pending' | 'InTransit' | 'Complete' | 'Failed' | 'Cancelled'");
+            localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'");
         }
 
         if (page !== undefined) {
