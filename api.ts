@@ -45058,7 +45058,7 @@ export class PayoutsApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * This api was changed from private to public. It is still in progress and not meant to be used at the moment.
+     * BETA - this endpoint is under development, do not use it in your production system
      * @summary Get list of payout summaries
      * @param appId 
      * @param payeeBankAccountDataId 
@@ -45135,7 +45135,7 @@ export class PayoutsApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
+     * BETA - this endpoint is under development, do not use it in your production system
      * @summary Get list of payouts
      * @param appId 
      * @param payeeBankAccountDataId 
