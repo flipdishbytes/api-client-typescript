@@ -41790,7 +41790,7 @@ export class MenuSectionsApi {
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      * @param menuSection Menu section changes (delta)
-     * @param undoAfter An optional time period, in hours, after which the hide-section operaton will be undone.
+     * @param undoAfter An optional time period, in hours, after which the hide-section operation will be undone.
      * @param {*} [options] Override http request options.
      */
     public updateMenuSection (menuId: number, menuSectionId: number, menuSection: MenuSectionBase, undoAfter?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
