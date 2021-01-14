@@ -4250,6 +4250,76 @@ export class CreditNoteDetails {
     }
 }
 
+export class CspReport {
+    'Document_uri'?: string;
+    'Referrer'?: string;
+    'Violated_directive'?: string;
+    'Effective_directive'?: string;
+    'Original_policy'?: string;
+    'Blocked_uri'?: string;
+    'Status_code'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Document_uri",
+            "baseName": "Document-uri",
+            "type": "string"
+        },
+        {
+            "name": "Referrer",
+            "baseName": "Referrer",
+            "type": "string"
+        },
+        {
+            "name": "Violated_directive",
+            "baseName": "Violated-directive",
+            "type": "string"
+        },
+        {
+            "name": "Effective_directive",
+            "baseName": "Effective-directive",
+            "type": "string"
+        },
+        {
+            "name": "Original_policy",
+            "baseName": "Original-policy",
+            "type": "string"
+        },
+        {
+            "name": "Blocked_uri",
+            "baseName": "Blocked-uri",
+            "type": "string"
+        },
+        {
+            "name": "Status_code",
+            "baseName": "Status-code",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CspReport.attributeTypeMap;
+    }
+}
+
+export class CspReportRequest {
+    'Csp_report'?: CspReport;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Csp_report",
+            "baseName": "Csp-report",
+            "type": "CspReport"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CspReportRequest.attributeTypeMap;
+    }
+}
+
 /**
 * A single currency data piece, with no date
 */
@@ -15840,11 +15910,11 @@ export namespace Payout {
     }
 }
 /**
-* Holds the information for an on order related to a payout
+* Holds the information for a chargeback related to a payout
 */
 export class PayoutChargeback {
     /**
-    * The id of the order the refund was for
+    * The id of the order the chargeback was for
     */
     'OrderId'?: number;
     /**
@@ -15871,6 +15941,10 @@ export class PayoutChargeback {
     * Store name
     */
     'StoreName'?: string;
+    /**
+    * Store id
+    */
+    'StoreId'?: number;
     /**
     * Chargeback amount
     */
@@ -15917,6 +15991,11 @@ export class PayoutChargeback {
             "name": "StoreName",
             "baseName": "StoreName",
             "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
         },
         {
             "name": "ChargebackAmount",
@@ -16056,7 +16135,7 @@ export namespace PayoutChargeback {
     }
 }
 /**
-* Holds the information for an on order related to a payout
+* Holds the information for an order related to a payout
 */
 export class PayoutOrder {
     /**
@@ -16123,6 +16202,14 @@ export class PayoutOrder {
     * Order net sales amount
     */
     'NetSales'?: number;
+    /**
+    * Store name
+    */
+    'StoreName'?: string;
+    /**
+    * Store id
+    */
+    'StoreId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -16205,6 +16292,16 @@ export class PayoutOrder {
         {
             "name": "NetSales",
             "baseName": "NetSales",
+            "type": "number"
+        },
+        {
+            "name": "StoreName",
+            "baseName": "StoreName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
             "type": "number"
         }    ];
 
@@ -16335,7 +16432,213 @@ export namespace PayoutOrder {
     }
 }
 /**
-* Holds the information for an on order related to a payout
+* Holds the information for a charge related to a payout
+*/
+export class PayoutOtherCharge {
+    /**
+    * The id of the charge
+    */
+    'ChargeId'?: number;
+    /**
+    * Currency of the charge
+    */
+    'Currency'?: PayoutOtherCharge.CurrencyEnum;
+    /**
+    * The id of the payout the order is related to
+    */
+    'PayoutId'?: number;
+    /**
+    * The date the order was placed
+    */
+    'ChargeDate'?: Date;
+    /**
+    * Charge type
+    */
+    'ChargeType'?: PayoutOtherCharge.ChargeTypeEnum;
+    /**
+    * Charge description
+    */
+    'ChargeDescription'?: string;
+    /**
+    * Store name
+    */
+    'StoreName'?: string;
+    /**
+    * Store id
+    */
+    'StoreId'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ChargeId",
+            "baseName": "ChargeId",
+            "type": "number"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "PayoutOtherCharge.CurrencyEnum"
+        },
+        {
+            "name": "PayoutId",
+            "baseName": "PayoutId",
+            "type": "number"
+        },
+        {
+            "name": "ChargeDate",
+            "baseName": "ChargeDate",
+            "type": "Date"
+        },
+        {
+            "name": "ChargeType",
+            "baseName": "ChargeType",
+            "type": "PayoutOtherCharge.ChargeTypeEnum"
+        },
+        {
+            "name": "ChargeDescription",
+            "baseName": "ChargeDescription",
+            "type": "string"
+        },
+        {
+            "name": "StoreName",
+            "baseName": "StoreName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutOtherCharge.attributeTypeMap;
+    }
+}
+
+export namespace PayoutOtherCharge {
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD',
+        BMD = <any> 'BMD'
+    }
+    export enum ChargeTypeEnum {
+        Other = <any> 'Other'
+    }
+}
+/**
+* Holds the information for a refund related to a payout
 */
 export class PayoutRefund {
     /**
@@ -16366,6 +16669,10 @@ export class PayoutRefund {
     * Store name
     */
     'StoreName'?: string;
+    /**
+    * Store id
+    */
+    'StoreId'?: number;
     /**
     * Refunded sales amount
     */
@@ -16420,6 +16727,11 @@ export class PayoutRefund {
             "name": "StoreName",
             "baseName": "StoreName",
             "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
         },
         {
             "name": "RefundedSales",
@@ -19796,6 +20108,56 @@ export class RestApiPaginationResultPayoutOrder {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultPayoutOrder.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
+export class RestApiPaginationResultPayoutOtherCharge {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<PayoutOtherCharge>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<PayoutOtherCharge>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultPayoutOtherCharge.attributeTypeMap;
     }
 }
 
@@ -31070,6 +31432,8 @@ let enumsMap: {[index: string]: any} = {
         "PayoutChargeback.OrderTypeEnum": PayoutChargeback.OrderTypeEnum,
         "PayoutOrder.OrderTypeEnum": PayoutOrder.OrderTypeEnum,
         "PayoutOrder.OrderCurrencyEnum": PayoutOrder.OrderCurrencyEnum,
+        "PayoutOtherCharge.CurrencyEnum": PayoutOtherCharge.CurrencyEnum,
+        "PayoutOtherCharge.ChargeTypeEnum": PayoutOtherCharge.ChargeTypeEnum,
         "PayoutRefund.OrderCurrencyEnum": PayoutRefund.OrderCurrencyEnum,
         "PayoutRefund.OrderTypeEnum": PayoutRefund.OrderTypeEnum,
         "PayoutSummary.PayoutStatusEnum": PayoutSummary.PayoutStatusEnum,
@@ -31171,6 +31535,8 @@ let typeMap: {[index: string]: any} = {
     "CreateTeammate": CreateTeammate,
     "CreateVoucher": CreateVoucher,
     "CreditNoteDetails": CreditNoteDetails,
+    "CspReport": CspReport,
+    "CspReportRequest": CspReportRequest,
     "CurrencyData": CurrencyData,
     "Customer": Customer,
     "CustomerConsentUpdatedEvent": CustomerConsentUpdatedEvent,
@@ -31300,6 +31666,7 @@ let typeMap: {[index: string]: any} = {
     "Payout": Payout,
     "PayoutChargeback": PayoutChargeback,
     "PayoutOrder": PayoutOrder,
+    "PayoutOtherCharge": PayoutOtherCharge,
     "PayoutRefund": PayoutRefund,
     "PayoutSummary": PayoutSummary,
     "PercentDiscountDetails": PercentDiscountDetails,
@@ -31377,6 +31744,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultPayout": RestApiPaginationResultPayout,
     "RestApiPaginationResultPayoutChargeback": RestApiPaginationResultPayoutChargeback,
     "RestApiPaginationResultPayoutOrder": RestApiPaginationResultPayoutOrder,
+    "RestApiPaginationResultPayoutOtherCharge": RestApiPaginationResultPayoutOtherCharge,
     "RestApiPaginationResultPayoutRefund": RestApiPaginationResultPayoutRefund,
     "RestApiPaginationResultPhoneCall": RestApiPaginationResultPhoneCall,
     "RestApiPaginationResultPushNotificationResponse": RestApiPaginationResultPushNotificationResponse,
@@ -35213,6 +35581,112 @@ export class CampaignsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultRetentionCampaign");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum ContentSecurityPolicyApiApiKeys {
+}
+
+export class ContentSecurityPolicyApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: ContentSecurityPolicyApiApiKeys, value: string) {
+        (this.authentications as any)[ContentSecurityPolicyApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param request 
+     * @param {*} [options] Override http request options.
+     */
+    public contentSecurityPolicyReport (request: CspReportRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/csp/report';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'request' is not null or undefined
+        if (request === null || request === undefined) {
+            throw new Error('Required parameter request was null or undefined when calling contentSecurityPolicyReport.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(request, "CspReportRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -45953,13 +46427,14 @@ export class PayoutsApi {
      * @summary Get list of payout's chargebacks
      * @param appId 
      * @param payoutId 
+     * @param storeId 
      * @param startDate 
      * @param endDate 
      * @param page 
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutChargebacks (appId: string, payoutId: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutChargeback;  }> {
+    public getPayoutChargebacks (appId: string, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutChargeback;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts/{payoutId}/chargebacks'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
@@ -45975,6 +46450,10 @@ export class PayoutsApi {
         // verify required parameter 'payoutId' is not null or undefined
         if (payoutId === null || payoutId === undefined) {
             throw new Error('Required parameter payoutId was null or undefined when calling getPayoutChargebacks.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
         }
 
         if (startDate !== undefined) {
@@ -46037,13 +46516,14 @@ export class PayoutsApi {
      * @summary Get list of payout's orders
      * @param appId 
      * @param payoutId 
+     * @param storeId 
      * @param startDate 
      * @param endDate 
      * @param page 
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutOrders (appId: string, payoutId: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutOrder;  }> {
+    public getPayoutOrders (appId: string, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts/{payoutId}/orders'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
@@ -46059,6 +46539,10 @@ export class PayoutsApi {
         // verify required parameter 'payoutId' is not null or undefined
         if (payoutId === null || payoutId === undefined) {
             throw new Error('Required parameter payoutId was null or undefined when calling getPayoutOrders.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
         }
 
         if (startDate !== undefined) {
@@ -46118,16 +46602,106 @@ export class PayoutsApi {
     }
     /**
      * ALPHA - this endpoint returns fake data
-     * @summary Get list of payout's refunds
+     * @summary Get list of payout's other charges
      * @param appId 
      * @param payoutId 
+     * @param storeId 
      * @param startDate 
      * @param endDate 
      * @param page 
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutRefunds (appId: string, payoutId: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutRefund;  }> {
+    public getPayoutOtherCharges (appId: string, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutOtherCharge;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts/{payoutId}/othercharges'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getPayoutOtherCharges.');
+        }
+
+        // verify required parameter 'payoutId' is not null or undefined
+        if (payoutId === null || payoutId === undefined) {
+            throw new Error('Required parameter payoutId was null or undefined when calling getPayoutOtherCharges.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
+        }
+
+        if (startDate !== undefined) {
+            localVarQueryParameters['startDate'] = ObjectSerializer.serialize(startDate, "Date");
+        }
+
+        if (endDate !== undefined) {
+            localVarQueryParameters['endDate'] = ObjectSerializer.serialize(endDate, "Date");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutOtherCharge;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultPayoutOtherCharge");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * ALPHA - this endpoint returns fake data
+     * @summary Get list of payout's refunds
+     * @param appId 
+     * @param payoutId 
+     * @param storeId 
+     * @param startDate 
+     * @param endDate 
+     * @param page 
+     * @param limit 
+     * @param {*} [options] Override http request options.
+     */
+    public getPayoutRefunds (appId: string, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutRefund;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts/{payoutId}/refunds'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
@@ -46143,6 +46717,10 @@ export class PayoutsApi {
         // verify required parameter 'payoutId' is not null or undefined
         if (payoutId === null || payoutId === undefined) {
             throw new Error('Required parameter payoutId was null or undefined when calling getPayoutRefunds.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
         }
 
         if (startDate !== undefined) {
