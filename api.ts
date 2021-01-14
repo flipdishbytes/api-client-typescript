@@ -1523,6 +1523,29 @@ export class AssignedBankAccount {
     }
 }
 
+export class BalanceDetails {
+    'OpeningBalance'?: number;
+    'ClosingBalance'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OpeningBalance",
+            "baseName": "OpeningBalance",
+            "type": "number"
+        },
+        {
+            "name": "ClosingBalance",
+            "baseName": "ClosingBalance",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BalanceDetails.attributeTypeMap;
+    }
+}
+
 /**
 * BANK ACCOUNT
 */
@@ -7384,6 +7407,59 @@ export class FlipdishEventBase {
 
     static getAttributeTypeMap() {
         return FlipdishEventBase.attributeTypeMap;
+    }
+}
+
+export class FlipdishFeesDetails {
+    'OnlineSalesFees'?: number;
+    'CashSalesFees'?: number;
+    'TotalSalesFees'?: number;
+    'OnlineSalesRefundedFees'?: number;
+    'CashSalesRefundedFees'?: number;
+    'SalesFeesVat'?: number;
+    'TotalFees'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OnlineSalesFees",
+            "baseName": "OnlineSalesFees",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesFees",
+            "baseName": "CashSalesFees",
+            "type": "number"
+        },
+        {
+            "name": "TotalSalesFees",
+            "baseName": "TotalSalesFees",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesRefundedFees",
+            "baseName": "OnlineSalesRefundedFees",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesRefundedFees",
+            "baseName": "CashSalesRefundedFees",
+            "type": "number"
+        },
+        {
+            "name": "SalesFeesVat",
+            "baseName": "SalesFeesVat",
+            "type": "number"
+        },
+        {
+            "name": "TotalFees",
+            "baseName": "TotalFees",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FlipdishFeesDetails.attributeTypeMap;
     }
 }
 
@@ -15518,6 +15594,29 @@ export namespace OrderVoucherSummary {
         Custom = <any> 'Custom'
     }
 }
+export class OtherChargesDetails {
+    'TotalOtherCharges'?: number;
+    'ChargesCount'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "TotalOtherCharges",
+            "baseName": "TotalOtherCharges",
+            "type": "number"
+        },
+        {
+            "name": "ChargesCount",
+            "baseName": "ChargesCount",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OtherChargesDetails.attributeTypeMap;
+    }
+}
+
 /**
 * Password reset model
 */
@@ -16132,6 +16231,238 @@ export namespace PayoutChargeback {
     export enum OrderTypeEnum {
         Cash = <any> 'Cash',
         Online = <any> 'Online'
+    }
+}
+/**
+* Holds the information for a whitelabel payout with details broken down by Store
+*/
+export class PayoutDetail {
+    /**
+    * The id of the payout.
+    */
+    'PayoutId'?: number;
+    /**
+    * Account name of the payout destination
+    */
+    'AccountName'?: string;
+    /**
+    * Status of the payout
+    */
+    'PayoutStatus'?: PayoutDetail.PayoutStatusEnum;
+    /**
+    * Date payout was created
+    */
+    'CreatedDate'?: Date;
+    /**
+    * Destination bank name
+    */
+    'DestinationBank'?: string;
+    /**
+    * Last 4 digits of the destination bank IBAN
+    */
+    'DestinationAccount'?: string;
+    /**
+    * Type of payout source
+    */
+    'PayoutType'?: PayoutDetail.PayoutTypeEnum;
+    /**
+    * Payout currency
+    */
+    'Currency'?: PayoutDetail.CurrencyEnum;
+    /**
+    * Payout information broken down by Store
+    */
+    'PayoutStores'?: Array<PayoutStore>;
+    /**
+    * Payout amount
+    */
+    'Amount'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PayoutId",
+            "baseName": "PayoutId",
+            "type": "number"
+        },
+        {
+            "name": "AccountName",
+            "baseName": "AccountName",
+            "type": "string"
+        },
+        {
+            "name": "PayoutStatus",
+            "baseName": "PayoutStatus",
+            "type": "PayoutDetail.PayoutStatusEnum"
+        },
+        {
+            "name": "CreatedDate",
+            "baseName": "CreatedDate",
+            "type": "Date"
+        },
+        {
+            "name": "DestinationBank",
+            "baseName": "DestinationBank",
+            "type": "string"
+        },
+        {
+            "name": "DestinationAccount",
+            "baseName": "DestinationAccount",
+            "type": "string"
+        },
+        {
+            "name": "PayoutType",
+            "baseName": "PayoutType",
+            "type": "PayoutDetail.PayoutTypeEnum"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "PayoutDetail.CurrencyEnum"
+        },
+        {
+            "name": "PayoutStores",
+            "baseName": "PayoutStores",
+            "type": "Array<PayoutStore>"
+        },
+        {
+            "name": "Amount",
+            "baseName": "Amount",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutDetail.attributeTypeMap;
+    }
+}
+
+export namespace PayoutDetail {
+    export enum PayoutStatusEnum {
+        Pending = <any> 'Pending',
+        InTransit = <any> 'InTransit',
+        Paid = <any> 'Paid',
+        Failed = <any> 'Failed',
+        Cancelled = <any> 'Cancelled'
+    }
+    export enum PayoutTypeEnum {
+        Internal = <any> 'Internal',
+        Stripe = <any> 'Stripe'
+    }
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD',
+        BMD = <any> 'BMD'
     }
 }
 /**
@@ -16880,6 +17211,71 @@ export namespace PayoutRefund {
         Online = <any> 'Online'
     }
 }
+/**
+* Payout details for a single store
+*/
+export class PayoutStore {
+    /**
+    * The id of the Store.
+    */
+    'StoreId'?: number;
+    /**
+    * Amount of the payout for this Store
+    */
+    'Amount'?: number;
+    /**
+    * Revenue details
+    */
+    'OnlineRevenue'?: RevenueDetail;
+    'RevenueAdjustments'?: RevenueAdjustmentsDetails;
+    'FlipdishFees'?: FlipdishFeesDetails;
+    'OtherCharges'?: OtherChargesDetails;
+    'Balance'?: BalanceDetails;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Amount",
+            "baseName": "Amount",
+            "type": "number"
+        },
+        {
+            "name": "OnlineRevenue",
+            "baseName": "OnlineRevenue",
+            "type": "RevenueDetail"
+        },
+        {
+            "name": "RevenueAdjustments",
+            "baseName": "RevenueAdjustments",
+            "type": "RevenueAdjustmentsDetails"
+        },
+        {
+            "name": "FlipdishFees",
+            "baseName": "FlipdishFees",
+            "type": "FlipdishFeesDetails"
+        },
+        {
+            "name": "OtherCharges",
+            "baseName": "OtherCharges",
+            "type": "OtherChargesDetails"
+        },
+        {
+            "name": "Balance",
+            "baseName": "Balance",
+            "type": "BalanceDetails"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutStore.attributeTypeMap;
+    }
+}
+
 /**
 * Holds the information for a whitelabel payouts summary.
 */
@@ -22425,6 +22821,196 @@ export class RetentionCampaignUpdatedEvent {
 
     static getAttributeTypeMap() {
         return RetentionCampaignUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Revenue Adjustments details
+*/
+export class RevenueAdjustmentsDetails {
+    'OnlineSalesRefundedAmount'?: number;
+    'OnlineSalesRefundedTax'?: number;
+    'TotalOnlineSalesRefundedAmount'?: number;
+    'CashSalesRefundedAmount'?: number;
+    'CashSalesRefundedTax'?: number;
+    'TotalCashSalesRefundedAmount'?: number;
+    'OnlineSalesTipsRefundedAmount'?: number;
+    'OnlineSalesDeliveryChargesRefundedAmount'?: number;
+    'TotalSalesRefundedAmount'?: number;
+    'CustomerCashFees'?: number;
+    'RefundsCount'?: number;
+    'TotalOnlineRevenueAdjustments'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OnlineSalesRefundedAmount",
+            "baseName": "OnlineSalesRefundedAmount",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesRefundedTax",
+            "baseName": "OnlineSalesRefundedTax",
+            "type": "number"
+        },
+        {
+            "name": "TotalOnlineSalesRefundedAmount",
+            "baseName": "TotalOnlineSalesRefundedAmount",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesRefundedAmount",
+            "baseName": "CashSalesRefundedAmount",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesRefundedTax",
+            "baseName": "CashSalesRefundedTax",
+            "type": "number"
+        },
+        {
+            "name": "TotalCashSalesRefundedAmount",
+            "baseName": "TotalCashSalesRefundedAmount",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesTipsRefundedAmount",
+            "baseName": "OnlineSalesTipsRefundedAmount",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesDeliveryChargesRefundedAmount",
+            "baseName": "OnlineSalesDeliveryChargesRefundedAmount",
+            "type": "number"
+        },
+        {
+            "name": "TotalSalesRefundedAmount",
+            "baseName": "TotalSalesRefundedAmount",
+            "type": "number"
+        },
+        {
+            "name": "CustomerCashFees",
+            "baseName": "CustomerCashFees",
+            "type": "number"
+        },
+        {
+            "name": "RefundsCount",
+            "baseName": "RefundsCount",
+            "type": "number"
+        },
+        {
+            "name": "TotalOnlineRevenueAdjustments",
+            "baseName": "TotalOnlineRevenueAdjustments",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RevenueAdjustmentsDetails.attributeTypeMap;
+    }
+}
+
+/**
+* Sales information
+*/
+export class RevenueDetail {
+    /**
+    * Online sales amount
+    */
+    'OnlineSalesAmount'?: number;
+    /**
+    * Online sales tax
+    */
+    'OnlineSalesTax'?: number;
+    /**
+    * Online sales amount plus online sales tax
+    */
+    'OnlineSalesIncludingTax'?: number;
+    /**
+    * Cash sales amount
+    */
+    'CashSalesAmount'?: number;
+    /**
+    * Cash sales tax
+    */
+    'CashSalesTax'?: number;
+    /**
+    * Cash sales amount plus cash sales tax
+    */
+    'CashSalesIncludingTax'?: number;
+    /**
+    * Online sales plus cash sales including tax
+    */
+    'TotalSalesIncludingTax'?: number;
+    /**
+    * Delivery charges on online sales
+    */
+    'OnlineSalesDeliveryCharges'?: number;
+    /**
+    * Tips for online sales
+    */
+    'OnlineSalesTips'?: number;
+    /**
+    * Online sales plus online delivery charges and tips
+    */
+    'TotalOnlineRevenue'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OnlineSalesAmount",
+            "baseName": "OnlineSalesAmount",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesTax",
+            "baseName": "OnlineSalesTax",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesIncludingTax",
+            "baseName": "OnlineSalesIncludingTax",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesAmount",
+            "baseName": "CashSalesAmount",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesTax",
+            "baseName": "CashSalesTax",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesIncludingTax",
+            "baseName": "CashSalesIncludingTax",
+            "type": "number"
+        },
+        {
+            "name": "TotalSalesIncludingTax",
+            "baseName": "TotalSalesIncludingTax",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesDeliveryCharges",
+            "baseName": "OnlineSalesDeliveryCharges",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesTips",
+            "baseName": "OnlineSalesTips",
+            "type": "number"
+        },
+        {
+            "name": "TotalOnlineRevenue",
+            "baseName": "TotalOnlineRevenue",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RevenueDetail.attributeTypeMap;
     }
 }
 
@@ -31430,6 +32016,9 @@ let enumsMap: {[index: string]: any} = {
         "Payout.CurrencyEnum": Payout.CurrencyEnum,
         "PayoutChargeback.OrderCurrencyEnum": PayoutChargeback.OrderCurrencyEnum,
         "PayoutChargeback.OrderTypeEnum": PayoutChargeback.OrderTypeEnum,
+        "PayoutDetail.PayoutStatusEnum": PayoutDetail.PayoutStatusEnum,
+        "PayoutDetail.PayoutTypeEnum": PayoutDetail.PayoutTypeEnum,
+        "PayoutDetail.CurrencyEnum": PayoutDetail.CurrencyEnum,
         "PayoutOrder.OrderTypeEnum": PayoutOrder.OrderTypeEnum,
         "PayoutOrder.OrderCurrencyEnum": PayoutOrder.OrderCurrencyEnum,
         "PayoutOtherCharge.CurrencyEnum": PayoutOtherCharge.CurrencyEnum,
@@ -31506,6 +32095,7 @@ let typeMap: {[index: string]: any} = {
     "AppCreatedEvent": AppCreatedEvent,
     "AppUpdatedEvent": AppUpdatedEvent,
     "AssignedBankAccount": AssignedBankAccount,
+    "BalanceDetails": BalanceDetails,
     "BankAccount": BankAccount,
     "BankAccountCreate": BankAccountCreate,
     "BankAccountCreatedEvent": BankAccountCreatedEvent,
@@ -31566,6 +32156,7 @@ let typeMap: {[index: string]: any} = {
     "EventSearchResult": EventSearchResult,
     "FeeSummary": FeeSummary,
     "FlipdishEventBase": FlipdishEventBase,
+    "FlipdishFeesDetails": FlipdishFeesDetails,
     "GroupedCoordinates": GroupedCoordinates,
     "HomeAction": HomeAction,
     "HomeStatistics": HomeStatistics,
@@ -31660,14 +32251,17 @@ let typeMap: {[index: string]: any} = {
     "OrderSummary": OrderSummary,
     "OrderTipUpdatedEvent": OrderTipUpdatedEvent,
     "OrderVoucherSummary": OrderVoucherSummary,
+    "OtherChargesDetails": OtherChargesDetails,
     "PasswordResetModel": PasswordResetModel,
     "PaymentTerminalDetails": PaymentTerminalDetails,
     "PaymentTerminalTransactionDetails": PaymentTerminalTransactionDetails,
     "Payout": Payout,
     "PayoutChargeback": PayoutChargeback,
+    "PayoutDetail": PayoutDetail,
     "PayoutOrder": PayoutOrder,
     "PayoutOtherCharge": PayoutOtherCharge,
     "PayoutRefund": PayoutRefund,
+    "PayoutStore": PayoutStore,
     "PayoutSummary": PayoutSummary,
     "PercentDiscountDetails": PercentDiscountDetails,
     "PhoneCall": PhoneCall,
@@ -31815,6 +32409,8 @@ let typeMap: {[index: string]: any} = {
     "RetentionCampaignCreatedEvent": RetentionCampaignCreatedEvent,
     "RetentionCampaignDeletedEvent": RetentionCampaignDeletedEvent,
     "RetentionCampaignUpdatedEvent": RetentionCampaignUpdatedEvent,
+    "RevenueAdjustmentsDetails": RevenueAdjustmentsDetails,
+    "RevenueDetail": RevenueDetail,
     "SearchCriteria": SearchCriteria,
     "SetPasswordWithPinModel": SetPasswordWithPinModel,
     "SignupStep": SignupStep,
@@ -46421,6 +47017,70 @@ export class PayoutsApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * ALPHA - this endpoint returns fake data
+     * @summary Get Payout details broken down by Store
+     * @param appId 
+     * @param payoutId 
+     * @param {*} [options] Override http request options.
+     */
+    public getPayout (appId: string, payoutId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: PayoutDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts/{payoutId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getPayout.');
+        }
+
+        // verify required parameter 'payoutId' is not null or undefined
+        if (payoutId === null || payoutId === undefined) {
+            throw new Error('Required parameter payoutId was null or undefined when calling getPayout.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: PayoutDetail;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "PayoutDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
     }
     /**
      * ALPHA - this endpoint returns fake data
