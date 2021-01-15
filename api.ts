@@ -1523,6 +1523,9 @@ export class AssignedBankAccount {
     }
 }
 
+/**
+* Period opening and closing balance
+*/
 export class BalanceDetails {
     'OpeningBalance'?: number;
     'ClosingBalance'?: number;
@@ -3254,6 +3257,44 @@ export class ChangePasswordModel {
 
     static getAttributeTypeMap() {
         return ChangePasswordModel.attributeTypeMap;
+    }
+}
+
+/**
+* Chargebacks breakdown
+*/
+export class ChargebackDetails {
+    'ChargebackAmount'?: number;
+    'ChargebackRefundedFees'?: number;
+    'ChargebacksCount'?: number;
+    'TotalChargebackCost'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ChargebackAmount",
+            "baseName": "ChargebackAmount",
+            "type": "number"
+        },
+        {
+            "name": "ChargebackRefundedFees",
+            "baseName": "ChargebackRefundedFees",
+            "type": "number"
+        },
+        {
+            "name": "ChargebacksCount",
+            "baseName": "ChargebacksCount",
+            "type": "number"
+        },
+        {
+            "name": "TotalChargebackCost",
+            "baseName": "TotalChargebackCost",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ChargebackDetails.attributeTypeMap;
     }
 }
 
@@ -7410,6 +7451,9 @@ export class FlipdishEventBase {
     }
 }
 
+/**
+* Fees breakdown
+*/
 export class FlipdishFeesDetails {
     'OnlineSalesFees'?: number;
     'CashSalesFees'?: number;
@@ -15594,6 +15638,9 @@ export namespace OrderVoucherSummary {
         Custom = <any> 'Custom'
     }
 }
+/**
+* Breakdown of other charges
+*/
 export class OtherChargesDetails {
     'TotalOtherCharges'?: number;
     'ChargesCount'?: number;
@@ -15794,6 +15841,10 @@ export class Payout {
     */
     'PayoutId'?: number;
     /**
+    * Bank account identifier
+    */
+    'PayeeBankAccountId'?: number;
+    /**
     * Account name of the payout destination
     */
     'AccountName'?: string;
@@ -15832,6 +15883,11 @@ export class Payout {
         {
             "name": "PayoutId",
             "baseName": "PayoutId",
+            "type": "number"
+        },
+        {
+            "name": "PayeeBankAccountId",
+            "baseName": "PayeeBankAccountId",
             "type": "number"
         },
         {
@@ -16242,6 +16298,10 @@ export class PayoutDetail {
     */
     'PayoutId'?: number;
     /**
+    * Bank account identifier
+    */
+    'BankAccountId'?: number;
+    /**
     * Account name of the payout destination
     */
     'AccountName'?: string;
@@ -16284,6 +16344,11 @@ export class PayoutDetail {
         {
             "name": "PayoutId",
             "baseName": "PayoutId",
+            "type": "number"
+        },
+        {
+            "name": "BankAccountId",
+            "baseName": "BankAccountId",
             "type": "number"
         },
         {
@@ -16771,6 +16836,10 @@ export class PayoutOtherCharge {
     */
     'ChargeId'?: number;
     /**
+    * Charge amount
+    */
+    'Amount'?: number;
+    /**
     * Currency of the charge
     */
     'Currency'?: PayoutOtherCharge.CurrencyEnum;
@@ -16805,6 +16874,11 @@ export class PayoutOtherCharge {
         {
             "name": "ChargeId",
             "baseName": "ChargeId",
+            "type": "number"
+        },
+        {
+            "name": "Amount",
+            "baseName": "Amount",
             "type": "number"
         },
         {
@@ -17227,9 +17301,25 @@ export class PayoutStore {
     * Revenue details
     */
     'OnlineRevenue'?: RevenueDetail;
+    /**
+    * Revenue Adjustments breakdown
+    */
     'RevenueAdjustments'?: RevenueAdjustmentsDetails;
+    /**
+    * Fees breakdown
+    */
     'FlipdishFees'?: FlipdishFeesDetails;
+    /**
+    * Chargebacks breakdown
+    */
+    'Chargebacks'?: ChargebackDetails;
+    /**
+    * Breakdown of other charges
+    */
     'OtherCharges'?: OtherChargesDetails;
+    /**
+    * Period opening and closing balance
+    */
     'Balance'?: BalanceDetails;
 
     static discriminator: string | undefined = undefined;
@@ -17259,6 +17349,11 @@ export class PayoutStore {
             "name": "FlipdishFees",
             "baseName": "FlipdishFees",
             "type": "FlipdishFeesDetails"
+        },
+        {
+            "name": "Chargebacks",
+            "baseName": "Chargebacks",
+            "type": "ChargebackDetails"
         },
         {
             "name": "OtherCharges",
@@ -22825,7 +22920,7 @@ export class RetentionCampaignUpdatedEvent {
 }
 
 /**
-* Revenue Adjustments details
+* Revenue Adjustments breakdown
 */
 export class RevenueAdjustmentsDetails {
     'OnlineSalesRefundedAmount'?: number;
@@ -22838,7 +22933,13 @@ export class RevenueAdjustmentsDetails {
     'OnlineSalesDeliveryChargesRefundedAmount'?: number;
     'TotalSalesRefundedAmount'?: number;
     'CustomerCashFees'?: number;
+    /**
+    * Number of refunds
+    */
     'RefundsCount'?: number;
+    /**
+    * Total revenue adjustments
+    */
     'TotalOnlineRevenueAdjustments'?: number;
 
     static discriminator: string | undefined = undefined;
@@ -32112,6 +32213,7 @@ let typeMap: {[index: string]: any} = {
     "CertificateCreatedEvent": CertificateCreatedEvent,
     "CertificateRenewedEvent": CertificateRenewedEvent,
     "ChangePasswordModel": ChangePasswordModel,
+    "ChargebackDetails": ChargebackDetails,
     "Coordinates": Coordinates,
     "CountryWithAccountFieldsDefinitions": CountryWithAccountFieldsDefinitions,
     "CreateAccountModel": CreateAccountModel,
@@ -47022,12 +47124,14 @@ export class PayoutsApi {
      * ALPHA - this endpoint returns fake data
      * @summary Get Payout details broken down by Store
      * @param appId 
+     * @param bankAccountId 
      * @param payoutId 
      * @param {*} [options] Override http request options.
      */
-    public getPayout (appId: string, payoutId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: PayoutDetail;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts/{payoutId}'
+    public getPayout (appId: string, bankAccountId: number, payoutId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: PayoutDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
             .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -47036,6 +47140,11 @@ export class PayoutsApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getPayout.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling getPayout.');
         }
 
         // verify required parameter 'payoutId' is not null or undefined
@@ -47086,6 +47195,7 @@ export class PayoutsApi {
      * ALPHA - this endpoint returns fake data
      * @summary Get list of payout's chargebacks
      * @param appId 
+     * @param bankAccountId 
      * @param payoutId 
      * @param storeId 
      * @param startDate 
@@ -47094,9 +47204,10 @@ export class PayoutsApi {
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutChargebacks (appId: string, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutChargeback;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts/{payoutId}/chargebacks'
+    public getPayoutChargebacks (appId: string, bankAccountId: number, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutChargeback;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/chargebacks'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
             .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -47105,6 +47216,11 @@ export class PayoutsApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getPayoutChargebacks.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling getPayoutChargebacks.');
         }
 
         // verify required parameter 'payoutId' is not null or undefined
@@ -47175,6 +47291,7 @@ export class PayoutsApi {
      * ALPHA - this endpoint returns fake data
      * @summary Get list of payout's orders
      * @param appId 
+     * @param bankAccountId 
      * @param payoutId 
      * @param storeId 
      * @param startDate 
@@ -47183,9 +47300,10 @@ export class PayoutsApi {
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutOrders (appId: string, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutOrder;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts/{payoutId}/orders'
+    public getPayoutOrders (appId: string, bankAccountId: number, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutOrder;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/orders'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
             .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -47194,6 +47312,11 @@ export class PayoutsApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getPayoutOrders.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling getPayoutOrders.');
         }
 
         // verify required parameter 'payoutId' is not null or undefined
@@ -47264,6 +47387,7 @@ export class PayoutsApi {
      * ALPHA - this endpoint returns fake data
      * @summary Get list of payout's other charges
      * @param appId 
+     * @param bankAccountId 
      * @param payoutId 
      * @param storeId 
      * @param startDate 
@@ -47272,9 +47396,10 @@ export class PayoutsApi {
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutOtherCharges (appId: string, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutOtherCharge;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts/{payoutId}/othercharges'
+    public getPayoutOtherCharges (appId: string, bankAccountId: number, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutOtherCharge;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/othercharges'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
             .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -47283,6 +47408,11 @@ export class PayoutsApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getPayoutOtherCharges.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling getPayoutOtherCharges.');
         }
 
         // verify required parameter 'payoutId' is not null or undefined
@@ -47353,6 +47483,7 @@ export class PayoutsApi {
      * ALPHA - this endpoint returns fake data
      * @summary Get list of payout's refunds
      * @param appId 
+     * @param bankAccountId 
      * @param payoutId 
      * @param storeId 
      * @param startDate 
@@ -47361,9 +47492,10 @@ export class PayoutsApi {
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutRefunds (appId: string, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutRefund;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts/{payoutId}/refunds'
+    public getPayoutRefunds (appId: string, bankAccountId: number, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutRefund;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/refunds'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
             .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -47372,6 +47504,11 @@ export class PayoutsApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getPayoutRefunds.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling getPayoutRefunds.');
         }
 
         // verify required parameter 'payoutId' is not null or undefined
@@ -47442,13 +47579,14 @@ export class PayoutsApi {
      * BETA - this endpoint is under development, do not use it in your production system
      * @summary Get list of payout summaries
      * @param appId 
-     * @param payeeBankAccountDataId 
+     * @param bankAccountId 
+     * @param payeeBankAccountDataId Deprecated
      * @param startDate 
      * @param endDate 
      * @param status 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutSummaries (appId: string, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPayoutSummary;  }> {
+    public getPayoutSummaries (appId: string, bankAccountId?: number, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPayoutSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -47458,6 +47596,10 @@ export class PayoutsApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getPayoutSummaries.');
+        }
+
+        if (bankAccountId !== undefined) {
+            localVarQueryParameters['bankAccountId'] = ObjectSerializer.serialize(bankAccountId, "number");
         }
 
         if (payeeBankAccountDataId !== undefined) {
@@ -47519,7 +47661,8 @@ export class PayoutsApi {
      * BETA - this endpoint is under development, do not use it in your production system
      * @summary Get list of payouts
      * @param appId 
-     * @param payeeBankAccountDataId 
+     * @param bankAccountId 
+     * @param payeeBankAccountDataId Deprecated
      * @param startDate 
      * @param endDate 
      * @param status 
@@ -47527,7 +47670,7 @@ export class PayoutsApi {
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getPayouts (appId: string, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayout;  }> {
+    public getPayouts (appId: string, bankAccountId?: number, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayout;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -47537,6 +47680,10 @@ export class PayoutsApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getPayouts.');
+        }
+
+        if (bankAccountId !== undefined) {
+            localVarQueryParameters['bankAccountId'] = ObjectSerializer.serialize(bankAccountId, "number");
         }
 
         if (payeeBankAccountDataId !== undefined) {
