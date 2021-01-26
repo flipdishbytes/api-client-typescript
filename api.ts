@@ -15857,6 +15857,14 @@ export class Payout {
     */
     'CreatedDate'?: Date;
     /**
+    * This payout includes operations after at this date (inclusive)
+    */
+    'PeriodStartTime'?: Date;
+    /**
+    * This payout includes operations before at this date (exclusive)
+    */
+    'PeriodEndTime'?: Date;
+    /**
     * Destination bank name
     */
     'DestinationBank'?: string;
@@ -15903,6 +15911,16 @@ export class Payout {
         {
             "name": "CreatedDate",
             "baseName": "CreatedDate",
+            "type": "Date"
+        },
+        {
+            "name": "PeriodStartTime",
+            "baseName": "PeriodStartTime",
+            "type": "Date"
+        },
+        {
+            "name": "PeriodEndTime",
+            "baseName": "PeriodEndTime",
             "type": "Date"
         },
         {
@@ -16314,6 +16332,14 @@ export class PayoutDetail {
     */
     'CreatedDate'?: Date;
     /**
+    * This payout includes operations after at this date (inclusive)
+    */
+    'PeriodStartTime'?: Date;
+    /**
+    * This payout includes operations before at this date (exclusive)
+    */
+    'PeriodEndTime'?: Date;
+    /**
     * Destination bank name
     */
     'DestinationBank'?: string;
@@ -16364,6 +16390,16 @@ export class PayoutDetail {
         {
             "name": "CreatedDate",
             "baseName": "CreatedDate",
+            "type": "Date"
+        },
+        {
+            "name": "PeriodStartTime",
+            "baseName": "PeriodStartTime",
+            "type": "Date"
+        },
+        {
+            "name": "PeriodEndTime",
+            "baseName": "PeriodEndTime",
             "type": "Date"
         },
         {
@@ -47121,7 +47157,7 @@ export class PayoutsApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * ALPHA - this endpoint returns fake data
+     * ALPHA - this endpoint returns fake data when passing bankAccount=11111 and payoutId=123
      * @summary Get Payout details broken down by Store
      * @param appId 
      * @param bankAccountId 
