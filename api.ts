@@ -23064,22 +23064,6 @@ export class RevenueDetail {
     */
     'OnlineSalesIncludingTax'?: number;
     /**
-    * Cash sales amount
-    */
-    'CashSalesAmount'?: number;
-    /**
-    * Cash sales tax
-    */
-    'CashSalesTax'?: number;
-    /**
-    * Cash sales amount plus cash sales tax
-    */
-    'CashSalesIncludingTax'?: number;
-    /**
-    * Online sales plus cash sales including tax
-    */
-    'TotalSalesIncludingTax'?: number;
-    /**
     * Delivery charges on online sales
     */
     'OnlineSalesDeliveryCharges'?: number;
@@ -23108,26 +23092,6 @@ export class RevenueDetail {
         {
             "name": "OnlineSalesIncludingTax",
             "baseName": "OnlineSalesIncludingTax",
-            "type": "number"
-        },
-        {
-            "name": "CashSalesAmount",
-            "baseName": "CashSalesAmount",
-            "type": "number"
-        },
-        {
-            "name": "CashSalesTax",
-            "baseName": "CashSalesTax",
-            "type": "number"
-        },
-        {
-            "name": "CashSalesIncludingTax",
-            "baseName": "CashSalesIncludingTax",
-            "type": "number"
-        },
-        {
-            "name": "TotalSalesIncludingTax",
-            "baseName": "TotalSalesIncludingTax",
             "type": "number"
         },
         {
