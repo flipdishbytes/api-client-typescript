@@ -7455,12 +7455,33 @@ export class FlipdishEventBase {
 * Fees breakdown
 */
 export class FlipdishFeesDetails {
+    /**
+    * Fees on online sales
+    */
     'OnlineSalesFees'?: number;
+    /**
+    * Fees on cash sales
+    */
     'CashSalesFees'?: number;
+    /**
+    * Total online and cash sales
+    */
     'TotalSalesFees'?: number;
+    /**
+    * Fees on refunds for online sales
+    */
     'OnlineSalesRefundedFees'?: number;
+    /**
+    * Fees on refunds for cash sales
+    */
     'CashSalesRefundedFees'?: number;
+    /**
+    * VAT on sales fees
+    */
     'SalesFeesVat'?: number;
+    /**
+    * Total fees
+    */
     'TotalFees'?: number;
 
     static discriminator: string | undefined = undefined;
