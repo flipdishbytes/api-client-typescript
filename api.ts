@@ -7455,12 +7455,33 @@ export class FlipdishEventBase {
 * Fees breakdown
 */
 export class FlipdishFeesDetails {
+    /**
+    * Fees on online sales
+    */
     'OnlineSalesFees'?: number;
+    /**
+    * Fees on cash sales
+    */
     'CashSalesFees'?: number;
+    /**
+    * Total online and cash sales
+    */
     'TotalSalesFees'?: number;
+    /**
+    * Fees on refunds for online sales
+    */
     'OnlineSalesRefundedFees'?: number;
+    /**
+    * Fees on refunds for cash sales
+    */
     'CashSalesRefundedFees'?: number;
+    /**
+    * VAT on sales fees
+    */
     'SalesFeesVat'?: number;
+    /**
+    * Total fees
+    */
     'TotalFees'?: number;
 
     static discriminator: string | undefined = undefined;
@@ -23064,22 +23085,6 @@ export class RevenueDetail {
     */
     'OnlineSalesIncludingTax'?: number;
     /**
-    * Cash sales amount
-    */
-    'CashSalesAmount'?: number;
-    /**
-    * Cash sales tax
-    */
-    'CashSalesTax'?: number;
-    /**
-    * Cash sales amount plus cash sales tax
-    */
-    'CashSalesIncludingTax'?: number;
-    /**
-    * Online sales plus cash sales including tax
-    */
-    'TotalSalesIncludingTax'?: number;
-    /**
     * Delivery charges on online sales
     */
     'OnlineSalesDeliveryCharges'?: number;
@@ -23108,26 +23113,6 @@ export class RevenueDetail {
         {
             "name": "OnlineSalesIncludingTax",
             "baseName": "OnlineSalesIncludingTax",
-            "type": "number"
-        },
-        {
-            "name": "CashSalesAmount",
-            "baseName": "CashSalesAmount",
-            "type": "number"
-        },
-        {
-            "name": "CashSalesTax",
-            "baseName": "CashSalesTax",
-            "type": "number"
-        },
-        {
-            "name": "CashSalesIncludingTax",
-            "baseName": "CashSalesIncludingTax",
-            "type": "number"
-        },
-        {
-            "name": "TotalSalesIncludingTax",
-            "baseName": "TotalSalesIncludingTax",
             "type": "number"
         },
         {
