@@ -15663,7 +15663,13 @@ export namespace OrderVoucherSummary {
 * Breakdown of other charges
 */
 export class OtherChargesDetails {
+    /**
+    * Total amount of other charges
+    */
     'TotalOtherCharges'?: number;
+    /**
+    * Number of other charges
+    */
     'ChargesCount'?: number;
 
     static discriminator: string | undefined = undefined;
