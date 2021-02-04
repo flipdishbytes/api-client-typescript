@@ -15663,7 +15663,13 @@ export namespace OrderVoucherSummary {
 * Breakdown of other charges
 */
 export class OtherChargesDetails {
+    /**
+    * Total amount of other charges
+    */
     'TotalOtherCharges'?: number;
+    /**
+    * Number of other charges
+    */
     'ChargesCount'?: number;
 
     static discriminator: string | undefined = undefined;
@@ -22980,15 +22986,17 @@ export class RetentionCampaignUpdatedEvent {
 * Revenue Adjustments breakdown
 */
 export class RevenueAdjustmentsDetails {
+    /**
+    * Online sales refunds
+    */
     'OnlineSalesRefundedAmount'?: number;
-    'OnlineSalesRefundedTax'?: number;
-    'TotalOnlineSalesRefundedAmount'?: number;
+    /**
+    * Cash sales refunds
+    */
     'CashSalesRefundedAmount'?: number;
-    'CashSalesRefundedTax'?: number;
-    'TotalCashSalesRefundedAmount'?: number;
-    'OnlineSalesTipsRefundedAmount'?: number;
-    'OnlineSalesDeliveryChargesRefundedAmount'?: number;
-    'TotalSalesRefundedAmount'?: number;
+    /**
+    * Customer cash fees
+    */
     'CustomerCashFees'?: number;
     /**
     * Number of refunds
@@ -23008,43 +23016,8 @@ export class RevenueAdjustmentsDetails {
             "type": "number"
         },
         {
-            "name": "OnlineSalesRefundedTax",
-            "baseName": "OnlineSalesRefundedTax",
-            "type": "number"
-        },
-        {
-            "name": "TotalOnlineSalesRefundedAmount",
-            "baseName": "TotalOnlineSalesRefundedAmount",
-            "type": "number"
-        },
-        {
             "name": "CashSalesRefundedAmount",
             "baseName": "CashSalesRefundedAmount",
-            "type": "number"
-        },
-        {
-            "name": "CashSalesRefundedTax",
-            "baseName": "CashSalesRefundedTax",
-            "type": "number"
-        },
-        {
-            "name": "TotalCashSalesRefundedAmount",
-            "baseName": "TotalCashSalesRefundedAmount",
-            "type": "number"
-        },
-        {
-            "name": "OnlineSalesTipsRefundedAmount",
-            "baseName": "OnlineSalesTipsRefundedAmount",
-            "type": "number"
-        },
-        {
-            "name": "OnlineSalesDeliveryChargesRefundedAmount",
-            "baseName": "OnlineSalesDeliveryChargesRefundedAmount",
-            "type": "number"
-        },
-        {
-            "name": "TotalSalesRefundedAmount",
-            "baseName": "TotalSalesRefundedAmount",
             "type": "number"
         },
         {
