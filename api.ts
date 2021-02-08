@@ -3264,9 +3264,21 @@ export class ChangePasswordModel {
 * Chargebacks breakdown
 */
 export class ChargebackDetails {
+    /**
+    * Chargeback amount
+    */
     'ChargebackAmount'?: number;
+    /**
+    * Chargeback refunded feeds
+    */
     'ChargebackRefundedFees'?: number;
+    /**
+    * Number of chargebacks
+    */
     'ChargebacksCount'?: number;
+    /**
+    * Total amount
+    */
     'TotalChargebackCost'?: number;
 
     static discriminator: string | undefined = undefined;
@@ -15911,6 +15923,10 @@ export class Payout {
     * Payout currency
     */
     'Currency'?: Payout.CurrencyEnum;
+    /**
+    * Payouts before this date do not have a details breakdown
+    */
+    'CutoffDate'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -15974,6 +15990,11 @@ export class Payout {
             "name": "Currency",
             "baseName": "Currency",
             "type": "Payout.CurrencyEnum"
+        },
+        {
+            "name": "CutoffDate",
+            "baseName": "CutoffDate",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
@@ -16366,9 +16387,6 @@ export class PayoutDetail {
     * This payout includes operations before at this date (exclusive)
     */
     'PeriodEndTime'?: Date;
-    /**
-    * Destination bank name
-    */
     'DestinationBank'?: string;
     /**
     * Last 4 digits of the destination bank IBAN
@@ -23058,6 +23076,22 @@ export class RevenueDetail {
     */
     'OnlineSalesIncludingTax'?: number;
     /**
+    * Cash sales amount
+    */
+    'CashSalesAmount'?: number;
+    /**
+    * Cash sales tax
+    */
+    'CashSalesTax'?: number;
+    /**
+    * Cash sales amount plus online sales tax
+    */
+    'CashSalesIncludingTax'?: number;
+    /**
+    * Total Sales (online and cash) including tax
+    */
+    'TotalSalesIncludingTax'?: number;
+    /**
     * Delivery charges on online sales
     */
     'OnlineSalesDeliveryCharges'?: number;
@@ -23086,6 +23120,26 @@ export class RevenueDetail {
         {
             "name": "OnlineSalesIncludingTax",
             "baseName": "OnlineSalesIncludingTax",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesAmount",
+            "baseName": "CashSalesAmount",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesTax",
+            "baseName": "CashSalesTax",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesIncludingTax",
+            "baseName": "CashSalesIncludingTax",
+            "type": "number"
+        },
+        {
+            "name": "TotalSalesIncludingTax",
+            "baseName": "TotalSalesIncludingTax",
             "type": "number"
         },
         {
