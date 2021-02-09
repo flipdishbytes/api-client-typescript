@@ -17379,9 +17379,13 @@ export class PayoutStore {
     */
     'Amount'?: number;
     /**
-    * Revenue details
+    * Revenue details (DEPRECATED: Use Revenue)
     */
     'OnlineRevenue'?: RevenueDetail;
+    /**
+    * Revenue details
+    */
+    'Revenue'?: RevenueDetail;
     /**
     * Revenue Adjustments breakdown
     */
@@ -17419,6 +17423,11 @@ export class PayoutStore {
         {
             "name": "OnlineRevenue",
             "baseName": "OnlineRevenue",
+            "type": "RevenueDetail"
+        },
+        {
+            "name": "Revenue",
+            "baseName": "Revenue",
             "type": "RevenueDetail"
         },
         {
