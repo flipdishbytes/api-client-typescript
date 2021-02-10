@@ -47259,9 +47259,10 @@ export class PayoutsApi {
      * @param endDate 
      * @param page 
      * @param limit 
+     * @param storeIds 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutChargebacks (appId: string, bankAccountId: number, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutChargeback;  }> {
+    public getPayoutChargebacks (appId: string, bankAccountId: number, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutChargeback;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/chargebacks'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -47303,6 +47304,10 @@ export class PayoutsApi {
 
         if (limit !== undefined) {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (storeIds !== undefined) {
+            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -47355,9 +47360,10 @@ export class PayoutsApi {
      * @param endDate 
      * @param page 
      * @param limit 
+     * @param storeIds 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutOrders (appId: string, bankAccountId: number, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutOrder;  }> {
+    public getPayoutOrders (appId: string, bankAccountId: number, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/orders'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -47399,6 +47405,10 @@ export class PayoutsApi {
 
         if (limit !== undefined) {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (storeIds !== undefined) {
+            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -47451,9 +47461,10 @@ export class PayoutsApi {
      * @param endDate 
      * @param page 
      * @param limit 
+     * @param storeIds 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutOtherCharges (appId: string, bankAccountId: number, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutOtherCharge;  }> {
+    public getPayoutOtherCharges (appId: string, bankAccountId: number, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutOtherCharge;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/othercharges'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -47495,6 +47506,10 @@ export class PayoutsApi {
 
         if (limit !== undefined) {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (storeIds !== undefined) {
+            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -47547,9 +47562,10 @@ export class PayoutsApi {
      * @param endDate 
      * @param page 
      * @param limit 
+     * @param storeIds 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutRefunds (appId: string, bankAccountId: number, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutRefund;  }> {
+    public getPayoutRefunds (appId: string, bankAccountId: number, payoutId: number, storeId?: number, startDate?: Date, endDate?: Date, page?: number, limit?: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutRefund;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/refunds'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -47591,6 +47607,10 @@ export class PayoutsApi {
 
         if (limit !== undefined) {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (storeIds !== undefined) {
+            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
