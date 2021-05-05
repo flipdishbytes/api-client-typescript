@@ -6937,7 +6937,7 @@ export class EventSearchResult {
     /**
     * Order capacity config updated
     */
-    'StoreOrderCapacityUpdatedEvent'?: Array<StoreOrderCapacityUpdatedEvent>;
+    'OrderCapacityUpdatedEvent'?: Array<OrderCapacityUpdatedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -7473,9 +7473,9 @@ export class EventSearchResult {
             "type": "Array<WebsiteUpdatedEvent>"
         },
         {
-            "name": "StoreOrderCapacityUpdatedEvent",
-            "baseName": "StoreOrderCapacityUpdatedEvent",
-            "type": "Array<StoreOrderCapacityUpdatedEvent>"
+            "name": "OrderCapacityUpdatedEvent",
+            "baseName": "OrderCapacityUpdatedEvent",
+            "type": "Array<OrderCapacityUpdatedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -11550,6 +11550,95 @@ export class MenuCreatedEvent {
 }
 
 /**
+* Response with any menu elements that had issues being hidden/shown
+*/
+export class MenuElementEditResponse {
+    /**
+    * Holds the information for the A and CNAME Records of a domain.
+    */
+    'MenuElementId'?: number;
+    /**
+    * Type of menu element
+    */
+    'MenuElementType'?: MenuElementEditResponse.MenuElementTypeEnum;
+    /**
+    * Validation message for menu element issue
+    */
+    'ValidationCode'?: MenuElementEditResponse.ValidationCodeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuElementId",
+            "baseName": "MenuElementId",
+            "type": "number"
+        },
+        {
+            "name": "MenuElementType",
+            "baseName": "MenuElementType",
+            "type": "MenuElementEditResponse.MenuElementTypeEnum"
+        },
+        {
+            "name": "ValidationCode",
+            "baseName": "ValidationCode",
+            "type": "MenuElementEditResponse.ValidationCodeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuElementEditResponse.attributeTypeMap;
+    }
+}
+
+export namespace MenuElementEditResponse {
+    export enum MenuElementTypeEnum {
+        MenuItem = <any> 'MenuItem',
+        MenuOptionSetItem = <any> 'MenuOptionSetItem'
+    }
+    export enum ValidationCodeEnum {
+        Success = <any> 'Success',
+        MinimumCountViolation = <any> 'MinimumCountViolation'
+    }
+}
+/**
+* Menu element hide
+*/
+export class MenuElementHide {
+    /**
+    * id of the menu item or menu option set item
+    */
+    'MenuElementId'?: number;
+    /**
+    * Type of menu element
+    */
+    'MenuElementType'?: MenuElementHide.MenuElementTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuElementId",
+            "baseName": "MenuElementId",
+            "type": "number"
+        },
+        {
+            "name": "MenuElementType",
+            "baseName": "MenuElementType",
+            "type": "MenuElementHide.MenuElementTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuElementHide.attributeTypeMap;
+    }
+}
+
+export namespace MenuElementHide {
+    export enum MenuElementTypeEnum {
+        MenuItem = <any> 'MenuItem',
+        MenuOptionSetItem = <any> 'MenuOptionSetItem'
+    }
+}
+/**
 * Menu item option set
 */
 export class MenuItemOptionSet {
@@ -14786,6 +14875,101 @@ export class OrderAcceptedEvent {
 
     static getAttributeTypeMap() {
         return OrderAcceptedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Store's Order Capacity Configuration Updated
+*/
+export class OrderCapacityUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Id of the store whose order capacity configuration has been updated
+    */
+    'StoreId'?: number;
+    /**
+    * User which updated order capacity configuration for this store
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Updated order capacity configuration
+    */
+    'OrderCapacityConfig'?: StoreOrderCapacityConfigEditModel;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "OrderCapacityConfig",
+            "baseName": "OrderCapacityConfig",
+            "type": "StoreOrderCapacityConfigEditModel"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderCapacityUpdatedEvent.attributeTypeMap;
     }
 }
 
@@ -20107,6 +20291,29 @@ export class RestApiArrayResultMenuCheckpoint {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultMenuCheckpoint.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultMenuElementEditResponse {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<MenuElementEditResponse>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<MenuElementEditResponse>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultMenuElementEditResponse.attributeTypeMap;
     }
 }
 
@@ -28147,101 +28354,6 @@ export namespace StoreOrderCapacityPeriod {
     }
 }
 /**
-* Store's Order Capacity Configuration Updated
-*/
-export class StoreOrderCapacityUpdatedEvent {
-    /**
-    * The event name
-    */
-    'EventName'?: string;
-    /**
-    * Id of the store whose order capacity configuration has been updated
-    */
-    'StoreId'?: number;
-    /**
-    * User which updated order capacity configuration for this store
-    */
-    'User'?: UserEventInfo;
-    /**
-    * Description
-    */
-    'Description'?: string;
-    /**
-    * Updated order capacity configuration
-    */
-    'OrderCapacityConfig'?: StoreOrderCapacityConfigEditModel;
-    /**
-    * The identitfier of the event
-    */
-    'FlipdishEventId'?: string;
-    /**
-    * The time of creation of the event
-    */
-    'CreateTime'?: Date;
-    /**
-    * Position
-    */
-    'Position'?: number;
-    /**
-    * App id
-    */
-    'AppId'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "EventName",
-            "baseName": "EventName",
-            "type": "string"
-        },
-        {
-            "name": "StoreId",
-            "baseName": "StoreId",
-            "type": "number"
-        },
-        {
-            "name": "User",
-            "baseName": "User",
-            "type": "UserEventInfo"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "OrderCapacityConfig",
-            "baseName": "OrderCapacityConfig",
-            "type": "StoreOrderCapacityConfigEditModel"
-        },
-        {
-            "name": "FlipdishEventId",
-            "baseName": "FlipdishEventId",
-            "type": "string"
-        },
-        {
-            "name": "CreateTime",
-            "baseName": "CreateTime",
-            "type": "Date"
-        },
-        {
-            "name": "Position",
-            "baseName": "Position",
-            "type": "number"
-        },
-        {
-            "name": "AppId",
-            "baseName": "AppId",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return StoreOrderCapacityUpdatedEvent.attributeTypeMap;
-    }
-}
-
-/**
 * Store Pre order config updated
 */
 export class StorePreOrderConfigUpdatedEvent {
@@ -32818,6 +32930,9 @@ let enumsMap: {[index: string]: any} = {
         "Menu.TaxTypeEnum": Menu.TaxTypeEnum,
         "MenuBase.MenuSectionBehaviourEnum": MenuBase.MenuSectionBehaviourEnum,
         "MenuBase.TaxTypeEnum": MenuBase.TaxTypeEnum,
+        "MenuElementEditResponse.MenuElementTypeEnum": MenuElementEditResponse.MenuElementTypeEnum,
+        "MenuElementEditResponse.ValidationCodeEnum": MenuElementEditResponse.ValidationCodeEnum,
+        "MenuElementHide.MenuElementTypeEnum": MenuElementHide.MenuElementTypeEnum,
         "MenuItemOptionSet.CellLayoutTypeEnum": MenuItemOptionSet.CellLayoutTypeEnum,
         "MenuItemOptionSetBase.CellLayoutTypeEnum": MenuItemOptionSetBase.CellLayoutTypeEnum,
         "MenuItemOptionSetItem.CellLayoutTypeEnum": MenuItemOptionSetItem.CellLayoutTypeEnum,
@@ -33047,6 +33162,8 @@ let typeMap: {[index: string]: any} = {
     "MenuCheckpoint": MenuCheckpoint,
     "MenuCheckpointCreatedEvent": MenuCheckpointCreatedEvent,
     "MenuCreatedEvent": MenuCreatedEvent,
+    "MenuElementEditResponse": MenuElementEditResponse,
+    "MenuElementHide": MenuElementHide,
     "MenuItemOptionSet": MenuItemOptionSet,
     "MenuItemOptionSetBase": MenuItemOptionSetBase,
     "MenuItemOptionSetCreatedEvent": MenuItemOptionSetCreatedEvent,
@@ -33083,6 +33200,7 @@ let typeMap: {[index: string]: any} = {
     "ObjectDisplayOrder": ObjectDisplayOrder,
     "Order": Order,
     "OrderAcceptedEvent": OrderAcceptedEvent,
+    "OrderCapacityUpdatedEvent": OrderCapacityUpdatedEvent,
     "OrderCreatedEvent": OrderCreatedEvent,
     "OrderCustomerTrackingCreatedEvent": OrderCustomerTrackingCreatedEvent,
     "OrderDeliveryTrackingStatusUpdatedEvent": OrderDeliveryTrackingStatusUpdatedEvent,
@@ -33149,6 +33267,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultLocalisedTimeZone": RestApiArrayResultLocalisedTimeZone,
     "RestApiArrayResultLoyaltyCampaign": RestApiArrayResultLoyaltyCampaign,
     "RestApiArrayResultMenuCheckpoint": RestApiArrayResultMenuCheckpoint,
+    "RestApiArrayResultMenuElementEditResponse": RestApiArrayResultMenuElementEditResponse,
     "RestApiArrayResultMenuItemOptionSet": RestApiArrayResultMenuItemOptionSet,
     "RestApiArrayResultMenuItemOptionSetItem": RestApiArrayResultMenuItemOptionSetItem,
     "RestApiArrayResultMenuSection": RestApiArrayResultMenuSection,
@@ -33300,7 +33419,6 @@ let typeMap: {[index: string]: any} = {
     "StoreOrderCapacityConfig": StoreOrderCapacityConfig,
     "StoreOrderCapacityConfigEditModel": StoreOrderCapacityConfigEditModel,
     "StoreOrderCapacityPeriod": StoreOrderCapacityPeriod,
-    "StoreOrderCapacityUpdatedEvent": StoreOrderCapacityUpdatedEvent,
     "StorePreOrderConfigUpdatedEvent": StorePreOrderConfigUpdatedEvent,
     "StorePublishedEvent": StorePublishedEvent,
     "StoreStatistics": StoreStatistics,
@@ -46398,6 +46516,89 @@ export class MenusApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param menuId 
+     * @param menuElements 
+     * @param hide 
+     * @param undoAfter 
+     * @param {*} [options] Override http request options.
+     */
+    public menusShowHideBulkItems (menuId: number, menuElements: Array<MenuElementHide>, hide: boolean, undoAfter: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementEditResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/bulkshowhide'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menusShowHideBulkItems.');
+        }
+
+        // verify required parameter 'menuElements' is not null or undefined
+        if (menuElements === null || menuElements === undefined) {
+            throw new Error('Required parameter menuElements was null or undefined when calling menusShowHideBulkItems.');
+        }
+
+        // verify required parameter 'hide' is not null or undefined
+        if (hide === null || hide === undefined) {
+            throw new Error('Required parameter hide was null or undefined when calling menusShowHideBulkItems.');
+        }
+
+        // verify required parameter 'undoAfter' is not null or undefined
+        if (undoAfter === null || undoAfter === undefined) {
+            throw new Error('Required parameter undoAfter was null or undefined when calling menusShowHideBulkItems.');
+        }
+
+        if (hide !== undefined) {
+            localVarQueryParameters['hide'] = ObjectSerializer.serialize(hide, "boolean");
+        }
+
+        if (undoAfter !== undefined) {
+            localVarQueryParameters['undoAfter'] = ObjectSerializer.serialize(undoAfter, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(menuElements, "Array<MenuElementHide>")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementEditResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuElementEditResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
