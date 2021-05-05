@@ -6899,6 +6899,10 @@ export class EventSearchResult {
     */
     'KioskBluetoothTerminalUpdatedEvent'?: Array<KioskBluetoothTerminalUpdatedEvent>;
     /**
+    * Bluetooth Terminal Initiate Update
+    */
+    'KioskBluetoothInstallUpdateInitiateEvent'?: Array<KioskBluetoothInstallUpdateInitiateEvent>;
+    /**
     * Push notification scheduled event
     */
     'PushNotificationScheduledEvent'?: Array<PushNotificationScheduledEvent>;
@@ -7422,6 +7426,11 @@ export class EventSearchResult {
             "name": "KioskBluetoothTerminalUpdatedEvent",
             "baseName": "KioskBluetoothTerminalUpdatedEvent",
             "type": "Array<KioskBluetoothTerminalUpdatedEvent>"
+        },
+        {
+            "name": "KioskBluetoothInstallUpdateInitiateEvent",
+            "baseName": "KioskBluetoothInstallUpdateInitiateEvent",
+            "type": "Array<KioskBluetoothInstallUpdateInitiateEvent>"
         },
         {
             "name": "PushNotificationScheduledEvent",
@@ -9873,6 +9882,100 @@ export class JobResponse {
     }
 }
 
+/**
+* Kiosk bluetooth Initiate Install Update Event
+*/
+export class KioskBluetoothInstallUpdateInitiateEvent {
+    /**
+    * Device Id of the Kiosk
+    */
+    'DeviceId'?: string;
+    /**
+    * Terminal Type
+    */
+    'BluetoothTerminalType'?: KioskBluetoothInstallUpdateInitiateEvent.BluetoothTerminalTypeEnum;
+    /**
+    * User who made the change
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeviceId",
+            "baseName": "DeviceId",
+            "type": "string"
+        },
+        {
+            "name": "BluetoothTerminalType",
+            "baseName": "BluetoothTerminalType",
+            "type": "KioskBluetoothInstallUpdateInitiateEvent.BluetoothTerminalTypeEnum"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return KioskBluetoothInstallUpdateInitiateEvent.attributeTypeMap;
+    }
+}
+
+export namespace KioskBluetoothInstallUpdateInitiateEvent {
+    export enum BluetoothTerminalTypeEnum {
+        CHIPPER2X = <any> 'CHIPPER_2X',
+        COTSDEVICE = <any> 'COTS_DEVICE',
+        VERIFONEP400 = <any> 'VERIFONE_P400',
+        WISEPAD3 = <any> 'WISEPAD_3'
+    }
+}
 /**
 * Kiosk Bluetooth Pairing mode initiated
 */
@@ -32706,6 +32809,7 @@ let enumsMap: {[index: string]: any} = {
         "HydraDeviceDetails.DeviceTypeEnum": HydraDeviceDetails.DeviceTypeEnum,
         "HydraDeviceDetails.StatusEnum": HydraDeviceDetails.StatusEnum,
         "HydraStatus.UserTypeEnum": HydraStatus.UserTypeEnum,
+        "KioskBluetoothInstallUpdateInitiateEvent.BluetoothTerminalTypeEnum": KioskBluetoothInstallUpdateInitiateEvent.BluetoothTerminalTypeEnum,
         "KioskBluetoothPairingModeEvent.BluetoothTerminalTypeEnum": KioskBluetoothPairingModeEvent.BluetoothTerminalTypeEnum,
         "KioskBluetoothTerminalUpdatedEvent.BluetoothTerminalTypeEnum": KioskBluetoothTerminalUpdatedEvent.BluetoothTerminalTypeEnum,
         "KioskBluetoothUnpairingModeEvent.BluetoothTerminalTypeEnum": KioskBluetoothUnpairingModeEvent.BluetoothTerminalTypeEnum,
@@ -32922,6 +33026,7 @@ let typeMap: {[index: string]: any} = {
     "JobPricing": JobPricing,
     "JobProof": JobProof,
     "JobResponse": JobResponse,
+    "KioskBluetoothInstallUpdateInitiateEvent": KioskBluetoothInstallUpdateInitiateEvent,
     "KioskBluetoothPairingModeEvent": KioskBluetoothPairingModeEvent,
     "KioskBluetoothTerminalUpdatedEvent": KioskBluetoothTerminalUpdatedEvent,
     "KioskBluetoothUnpairingModeEvent": KioskBluetoothUnpairingModeEvent,
@@ -37182,6 +37287,76 @@ export class CardReadersApi {
         // verify required parameter 'terminalType' is not null or undefined
         if (terminalType === null || terminalType === undefined) {
             throw new Error('Required parameter terminalType was null or undefined when calling initiateKioskBluetoothPairingMode.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Initiate Kiosk Update Install for bluetooth terminal
+     * @param appId 
+     * @param deviceId 
+     * @param terminalType 
+     * @param {*} [options] Override http request options.
+     */
+    public initiateKioskUpdateInstallForBluetoothTerminal (appId: string, deviceId: string, terminalType: 'CHIPPER_2X' | 'COTS_DEVICE' | 'VERIFONE_P400' | 'WISEPAD_3', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/cardreaders/kiosk/{deviceId}/bluetooth/{terminalType}/installUpdate'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)))
+            .replace('{' + 'terminalType' + '}', encodeURIComponent(String(terminalType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling initiateKioskUpdateInstallForBluetoothTerminal.');
+        }
+
+        // verify required parameter 'deviceId' is not null or undefined
+        if (deviceId === null || deviceId === undefined) {
+            throw new Error('Required parameter deviceId was null or undefined when calling initiateKioskUpdateInstallForBluetoothTerminal.');
+        }
+
+        // verify required parameter 'terminalType' is not null or undefined
+        if (terminalType === null || terminalType === undefined) {
+            throw new Error('Required parameter terminalType was null or undefined when calling initiateKioskUpdateInstallForBluetoothTerminal.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
