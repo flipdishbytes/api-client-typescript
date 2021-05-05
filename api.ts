@@ -6899,6 +6899,10 @@ export class EventSearchResult {
     */
     'KioskBluetoothTerminalUpdatedEvent'?: Array<KioskBluetoothTerminalUpdatedEvent>;
     /**
+    * Trigger bluetooth payment terminal update checker
+    */
+    'KioskBluetoothTerminalInitiateUpdateCheckEvent'?: Array<KioskBluetoothTerminalInitiateUpdateCheckEvent>;
+    /**
     * Bluetooth Terminal Initiate Update
     */
     'KioskBluetoothInstallUpdateInitiateEvent'?: Array<KioskBluetoothInstallUpdateInitiateEvent>;
@@ -7426,6 +7430,11 @@ export class EventSearchResult {
             "name": "KioskBluetoothTerminalUpdatedEvent",
             "baseName": "KioskBluetoothTerminalUpdatedEvent",
             "type": "Array<KioskBluetoothTerminalUpdatedEvent>"
+        },
+        {
+            "name": "KioskBluetoothTerminalInitiateUpdateCheckEvent",
+            "baseName": "KioskBluetoothTerminalInitiateUpdateCheckEvent",
+            "type": "Array<KioskBluetoothTerminalInitiateUpdateCheckEvent>"
         },
         {
             "name": "KioskBluetoothInstallUpdateInitiateEvent",
@@ -10070,6 +10079,83 @@ export namespace KioskBluetoothPairingModeEvent {
         WISEPAD3 = <any> 'WISEPAD_3'
     }
 }
+/**
+* Kiosk bluetooth trigger update check event
+*/
+export class KioskBluetoothTerminalInitiateUpdateCheckEvent {
+    /**
+    * Device Id of the Kiosk
+    */
+    'DeviceId'?: string;
+    /**
+    * User who made the change
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeviceId",
+            "baseName": "DeviceId",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return KioskBluetoothTerminalInitiateUpdateCheckEvent.attributeTypeMap;
+    }
+}
+
 /**
 * Kiosk bluetooth terminal unpaired
 */
@@ -33143,6 +33229,7 @@ let typeMap: {[index: string]: any} = {
     "JobResponse": JobResponse,
     "KioskBluetoothInstallUpdateInitiateEvent": KioskBluetoothInstallUpdateInitiateEvent,
     "KioskBluetoothPairingModeEvent": KioskBluetoothPairingModeEvent,
+    "KioskBluetoothTerminalInitiateUpdateCheckEvent": KioskBluetoothTerminalInitiateUpdateCheckEvent,
     "KioskBluetoothTerminalUpdatedEvent": KioskBluetoothTerminalUpdatedEvent,
     "KioskBluetoothUnpairingModeEvent": KioskBluetoothUnpairingModeEvent,
     "Language": Language,
@@ -37377,6 +37464,76 @@ export class CardReadersApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Trigger check for Bluetooth device update on Kiosk
+     * @param appId 
+     * @param deviceId 
+     * @param terminalType 
+     * @param {*} [options] Override http request options.
+     */
+    public initiateBluetoothTerminalDeviceUpdateCheck (appId: string, deviceId: string, terminalType: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/cardreaders/kiosk/{deviceId}/bluetooth/{terminalType}/checkForUpdate'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)))
+            .replace('{' + 'terminalType' + '}', encodeURIComponent(String(terminalType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling initiateBluetoothTerminalDeviceUpdateCheck.');
+        }
+
+        // verify required parameter 'deviceId' is not null or undefined
+        if (deviceId === null || deviceId === undefined) {
+            throw new Error('Required parameter deviceId was null or undefined when calling initiateBluetoothTerminalDeviceUpdateCheck.');
+        }
+
+        // verify required parameter 'terminalType' is not null or undefined
+        if (terminalType === null || terminalType === undefined) {
+            throw new Error('Required parameter terminalType was null or undefined when calling initiateBluetoothTerminalDeviceUpdateCheck.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Initiate stripe terminal pairing mode
      * @param appId 
      * @param deviceId 
@@ -37446,8 +37603,7 @@ export class CardReadersApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Initiate Kiosk Update Install for bluetooth terminal
+     * 
      * @param appId 
      * @param deviceId 
      * @param terminalType 
