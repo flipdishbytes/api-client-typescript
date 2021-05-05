@@ -29462,10 +29462,7 @@ export class StuartSettings {
     * Determines if Flipdish order should be cancel when Stuart cancels delivery
     */
     'CancelOrderIfStuartCancelDelivery'?: boolean;
-    /**
-    * If the order exceeds are certain amount this configuration will determine a new vehicle type
-    */
-    'TransportPrices'?: any;
+    'TransportPrices'?: StuartSettingsTransportPrices;
 
     static discriminator: string | undefined = undefined;
 
@@ -29513,7 +29510,7 @@ export class StuartSettings {
         {
             "name": "TransportPrices",
             "baseName": "TransportPrices",
-            "type": "any"
+            "type": "StuartSettingsTransportPrices"
         }    ];
 
     static getAttributeTypeMap() {
@@ -29539,6 +29536,62 @@ export namespace StuartSettings {
         Van = <any> 'Van'
     }
 }
+/**
+* If the order exceeds are certain amount this configuration will determine a new vehicle type
+*/
+export class StuartSettingsTransportPrices {
+    'Bike'?: number;
+    'Cargobike'?: number;
+    'Cargobikexl'?: number;
+    'Motorbike'?: number;
+    'Motorbikexl'?: number;
+    'Car'?: number;
+    'Van'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Bike",
+            "baseName": "Bike",
+            "type": "number"
+        },
+        {
+            "name": "Cargobike",
+            "baseName": "Cargobike",
+            "type": "number"
+        },
+        {
+            "name": "Cargobikexl",
+            "baseName": "Cargobikexl",
+            "type": "number"
+        },
+        {
+            "name": "Motorbike",
+            "baseName": "Motorbike",
+            "type": "number"
+        },
+        {
+            "name": "Motorbikexl",
+            "baseName": "Motorbikexl",
+            "type": "number"
+        },
+        {
+            "name": "Car",
+            "baseName": "Car",
+            "type": "number"
+        },
+        {
+            "name": "Van",
+            "baseName": "Van",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StuartSettingsTransportPrices.attributeTypeMap;
+    }
+}
+
 /**
 * Describes a supported country
 */
@@ -33518,6 +33571,7 @@ let typeMap: {[index: string]: any} = {
     "StripeConnectedAccountInfo": StripeConnectedAccountInfo,
     "StripeTerminalPrivateKey": StripeTerminalPrivateKey,
     "StuartSettings": StuartSettings,
+    "StuartSettingsTransportPrices": StuartSettingsTransportPrices,
     "SupportedCountry": SupportedCountry,
     "Teammate": Teammate,
     "TeammateBase": TeammateBase,
