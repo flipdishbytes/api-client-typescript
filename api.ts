@@ -6941,7 +6941,7 @@ export class EventSearchResult {
     /**
     * Order capacity config updated
     */
-    'OrderCapacityUpdatedEvent'?: Array<OrderCapacityUpdatedEvent>;
+    'OrderCapacityUpdatedEvent'?: Array<OrderCapacityConfigUpdatedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -7484,7 +7484,7 @@ export class EventSearchResult {
         {
             "name": "OrderCapacityUpdatedEvent",
             "baseName": "OrderCapacityUpdatedEvent",
-            "type": "Array<OrderCapacityUpdatedEvent>"
+            "type": "Array<OrderCapacityConfigUpdatedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -14967,7 +14967,7 @@ export class OrderAcceptedEvent {
 /**
 * Store's Order Capacity Configuration Updated
 */
-export class OrderCapacityUpdatedEvent {
+export class OrderCapacityConfigUpdatedEvent {
     /**
     * The event name
     */
@@ -15055,7 +15055,7 @@ export class OrderCapacityUpdatedEvent {
         }    ];
 
     static getAttributeTypeMap() {
-        return OrderCapacityUpdatedEvent.attributeTypeMap;
+        return OrderCapacityConfigUpdatedEvent.attributeTypeMap;
     }
 }
 
@@ -29462,10 +29462,7 @@ export class StuartSettings {
     * Determines if Flipdish order should be cancel when Stuart cancels delivery
     */
     'CancelOrderIfStuartCancelDelivery'?: boolean;
-    /**
-    * If the order exceeds are certain amount this configuration will determine a new vehicle type
-    */
-    'TransportPrices'?: any;
+    'TransportPrices'?: StuartSettingsTransportPrices;
 
     static discriminator: string | undefined = undefined;
 
@@ -29513,7 +29510,7 @@ export class StuartSettings {
         {
             "name": "TransportPrices",
             "baseName": "TransportPrices",
-            "type": "any"
+            "type": "StuartSettingsTransportPrices"
         }    ];
 
     static getAttributeTypeMap() {
@@ -29539,6 +29536,62 @@ export namespace StuartSettings {
         Van = <any> 'Van'
     }
 }
+/**
+* If the order exceeds are certain amount this configuration will determine a new vehicle type
+*/
+export class StuartSettingsTransportPrices {
+    'Bike'?: number;
+    'Cargobike'?: number;
+    'Cargobikexl'?: number;
+    'Motorbike'?: number;
+    'Motorbikexl'?: number;
+    'Car'?: number;
+    'Van'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Bike",
+            "baseName": "Bike",
+            "type": "number"
+        },
+        {
+            "name": "Cargobike",
+            "baseName": "Cargobike",
+            "type": "number"
+        },
+        {
+            "name": "Cargobikexl",
+            "baseName": "Cargobikexl",
+            "type": "number"
+        },
+        {
+            "name": "Motorbike",
+            "baseName": "Motorbike",
+            "type": "number"
+        },
+        {
+            "name": "Motorbikexl",
+            "baseName": "Motorbikexl",
+            "type": "number"
+        },
+        {
+            "name": "Car",
+            "baseName": "Car",
+            "type": "number"
+        },
+        {
+            "name": "Van",
+            "baseName": "Van",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StuartSettingsTransportPrices.attributeTypeMap;
+    }
+}
+
 /**
 * Describes a supported country
 */
@@ -33287,7 +33340,7 @@ let typeMap: {[index: string]: any} = {
     "ObjectDisplayOrder": ObjectDisplayOrder,
     "Order": Order,
     "OrderAcceptedEvent": OrderAcceptedEvent,
-    "OrderCapacityUpdatedEvent": OrderCapacityUpdatedEvent,
+    "OrderCapacityConfigUpdatedEvent": OrderCapacityConfigUpdatedEvent,
     "OrderCreatedEvent": OrderCreatedEvent,
     "OrderCustomerTrackingCreatedEvent": OrderCustomerTrackingCreatedEvent,
     "OrderDeliveryTrackingStatusUpdatedEvent": OrderDeliveryTrackingStatusUpdatedEvent,
@@ -33518,6 +33571,7 @@ let typeMap: {[index: string]: any} = {
     "StripeConnectedAccountInfo": StripeConnectedAccountInfo,
     "StripeTerminalPrivateKey": StripeTerminalPrivateKey,
     "StuartSettings": StuartSettings,
+    "StuartSettingsTransportPrices": StuartSettingsTransportPrices,
     "SupportedCountry": SupportedCountry,
     "Teammate": Teammate,
     "TeammateBase": TeammateBase,
@@ -33665,7 +33719,7 @@ export class AccountsApi {
      * @param answerId Identifier of the answer
      * @param {*} [options] Override http request options.
      */
-    public answerSignUpQuestion (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription', answerId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public answerSignUpQuestion (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription', answerId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/answer'
             .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
         let localVarQueryParameters: any = {};
@@ -33707,7 +33761,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -33727,7 +33781,7 @@ export class AccountsApi {
      * @param changePasswordModel Change password model
      * @param {*} [options] Override http request options.
      */
-    public changePassword (changePasswordModel: ChangePasswordModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public changePassword (changePasswordModel: ChangePasswordModel, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/password';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -33763,7 +33817,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -33783,7 +33837,7 @@ export class AccountsApi {
      * @param changePasswordModel Change password model
      * @param {*} [options] Override http request options.
      */
-    public changePasswordWithPin (changePasswordModel: SetPasswordWithPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public changePasswordWithPin (changePasswordModel: SetPasswordWithPinModel, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/password/pin';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -33819,7 +33873,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -33839,7 +33893,7 @@ export class AccountsApi {
      * @param createAccountModel Create account model
      * @param {*} [options] Override http request options.
      */
-    public createAccount (createAccountModel: CreateAccountModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public createAccount (createAccountModel: CreateAccountModel, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -33875,7 +33929,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -33894,7 +33948,7 @@ export class AccountsApi {
      * @summary Gets the current account detail
      * @param {*} [options] Override http request options.
      */
-    public getAccountDetails (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAccountDetail;  }> {
+    public getAccountDetails (options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -33924,7 +33978,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAccountDetail;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultAccountDetail;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -33944,7 +33998,7 @@ export class AccountsApi {
      * @summary [PRIVATE API] Get timezones localised to users language
      * @param {*} [options] Override http request options.
      */
-    public getLocalisedTimeZones (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLocalisedTimeZone;  }> {
+    public getLocalisedTimeZones (options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultLocalisedTimeZone;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/timezones';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -33974,7 +34028,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLocalisedTimeZone;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultLocalisedTimeZone;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -33995,7 +34049,7 @@ export class AccountsApi {
      * @param loginModel Login model
      * @param {*} [options] Override http request options.
      */
-    public login (loginModel: LoginModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public login (loginModel: LoginModel, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/login';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -34031,7 +34085,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -34051,7 +34105,7 @@ export class AccountsApi {
      * @param loginModel Login model
      * @param {*} [options] Override http request options.
      */
-    public loginWithPin (loginModel: LoginWithPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public loginWithPin (loginModel: LoginWithPinModel, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/login/pin';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -34087,7 +34141,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -34106,7 +34160,7 @@ export class AccountsApi {
      * @summary Log out. It removes Flipdish authorization Cookie.
      * @param {*} [options] Override http request options.
      */
-    public logout (options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public logout (options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/logout';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -34136,7 +34190,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -34156,7 +34210,7 @@ export class AccountsApi {
      * @param passwordResetModel Password reset model
      * @param {*} [options] Override http request options.
      */
-    public passwordResetWithToken (passwordResetModel: PasswordResetModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public passwordResetWithToken (passwordResetModel: PasswordResetModel, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/password';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -34192,7 +34246,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -34212,7 +34266,7 @@ export class AccountsApi {
      * @param requestLoginPinRequest Request login PIN request
      * @param {*} [options] Override http request options.
      */
-    public requestLoginPin (requestLoginPinRequest: RequestLoginPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RequestLoginPinResposne;  }> {
+    public requestLoginPin (requestLoginPinRequest: RequestLoginPinModel, options: any = {}) : Promise<{ response: http.ClientResponse; body: RequestLoginPinResposne;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/pin';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -34248,7 +34302,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RequestLoginPinResposne;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RequestLoginPinResposne;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -34269,7 +34323,7 @@ export class AccountsApi {
      * @param requestPasswordResetModel Request password reset model
      * @param {*} [options] Override http request options.
      */
-    public requestPasswordReset (requestPasswordResetModel: RequestPasswordResetModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public requestPasswordReset (requestPasswordResetModel: RequestPasswordResetModel, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/passwordreset';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -34305,7 +34359,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -34325,7 +34379,7 @@ export class AccountsApi {
      * @param signupStepAction Signup step action
      * @param {*} [options] Override http request options.
      */
-    public skipSignupStep (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public skipSignupStep (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription', options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/skip'
             .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
         let localVarQueryParameters: any = {};
@@ -34361,7 +34415,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -34381,7 +34435,7 @@ export class AccountsApi {
      * @param updateAccountModel Update account model
      * @param {*} [options] Override http request options.
      */
-    public updateAccount (updateAccountModel: AccountDetailBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateAccount (updateAccountModel: AccountDetailBase, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -34417,7 +34471,7 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -34487,7 +34541,7 @@ export class ApmApi {
      * @param appId App Id
      * @param {*} [options] Override http request options.
      */
-    public getApmStatus (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApmStatus;  }> {
+    public getApmStatus (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultApmStatus;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/status'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -34523,7 +34577,7 @@ export class ApmApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultApmStatus;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultApmStatus;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -34545,7 +34599,7 @@ export class ApmApi {
      * @param storeId List of stores to search by
      * @param {*} [options] Override http request options.
      */
-    public getBasicStatistics (appId: string, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApmStatistics;  }> {
+    public getBasicStatistics (appId: string, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultApmStatistics;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/statistics'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -34585,7 +34639,7 @@ export class ApmApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultApmStatistics;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultApmStatistics;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -34607,7 +34661,7 @@ export class ApmApi {
      * @param storeId List of stores to search by
      * @param {*} [options] Override http request options.
      */
-    public getCalendarWeekStatistics (appId: string, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmHourlyDataPoint;  }> {
+    public getCalendarWeekStatistics (appId: string, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultApmHourlyDataPoint;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/statistics/calendar'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -34647,7 +34701,7 @@ export class ApmApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmHourlyDataPoint;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultApmHourlyDataPoint;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -34671,7 +34725,7 @@ export class ApmApi {
      * @param storeId List of stores to search by
      * @param {*} [options] Override http request options.
      */
-    public getCallsStatistics (appId: string, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }> {
+    public getCallsStatistics (appId: string, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultApmDataPoint;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/statistics/calls/{aggregateDataBy}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'aggregateDataBy' + '}', encodeURIComponent(String(aggregateDataBy)));
@@ -34721,7 +34775,7 @@ export class ApmApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultApmDataPoint;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -34745,7 +34799,7 @@ export class ApmApi {
      * @param storeId List of stores to search by
      * @param {*} [options] Override http request options.
      */
-    public getOrderStatistics (appId: string, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmCurrencyDataPoint;  }> {
+    public getOrderStatistics (appId: string, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultApmCurrencyDataPoint;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/statistics/orders/{aggregateDataBy}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'aggregateDataBy' + '}', encodeURIComponent(String(aggregateDataBy)));
@@ -34795,7 +34849,7 @@ export class ApmApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmCurrencyDataPoint;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultApmCurrencyDataPoint;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -34819,7 +34873,7 @@ export class ApmApi {
      * @param storeId List of stores to search by
      * @param {*} [options] Override http request options.
      */
-    public getPaginatedCallList (appId: string, page?: number, limit?: number, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPhoneCall;  }> {
+    public getPaginatedCallList (appId: string, page?: number, limit?: number, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultPhoneCall;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/apm/calls'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -34867,7 +34921,7 @@ export class ApmApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPhoneCall;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultPhoneCall;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -34938,7 +34992,7 @@ export class AppsApi {
      * @param appId Application identifier
      * @param {*} [options] Override http request options.
      */
-    public getApp (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }> {
+    public getApp (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultApp;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/{appId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -34974,7 +35028,7 @@ export class AppsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultApp;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -34995,7 +35049,7 @@ export class AppsApi {
      * @param appId Application identifier.
      * @param {*} [options] Override http request options.
      */
-    public getAppHostnameStatus (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDnsRecordInformation;  }> {
+    public getAppHostnameStatus (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultDnsRecordInformation;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/hostnamestatus'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -35031,7 +35085,7 @@ export class AppsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultDnsRecordInformation;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultDnsRecordInformation;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -35054,7 +35108,7 @@ export class AppsApi {
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getApps (nameFilter?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultApp;  }> {
+    public getApps (nameFilter?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultApp;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -35096,7 +35150,7 @@ export class AppsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultApp;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultApp;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -35117,7 +35171,7 @@ export class AppsApi {
      * @param appId Application identifier
      * @param {*} [options] Override http request options.
      */
-    public getCompliance (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppCompliance;  }> {
+    public getCompliance (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultAppCompliance;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/compliance'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -35153,7 +35207,7 @@ export class AppsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppCompliance;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultAppCompliance;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -35174,7 +35228,7 @@ export class AppsApi {
      * @param appId Application identifier.
      * @param {*} [options] Override http request options.
      */
-    public getPanaceaVanityUrl (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public getPanaceaVanityUrl (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/panacea/url'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -35210,7 +35264,7 @@ export class AppsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -35230,7 +35284,7 @@ export class AppsApi {
      * @summary Get all supported countries.
      * @param {*} [options] Override http request options.
      */
-    public getSupportedCountries (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSupportedCountry;  }> {
+    public getSupportedCountries (options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultSupportedCountry;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/supportedcountries';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -35260,7 +35314,7 @@ export class AppsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSupportedCountry;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultSupportedCountry;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -35282,7 +35336,7 @@ export class AppsApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public isPanaceaVanityUrlAvailable (vanityUrl: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public isPanaceaVanityUrlAvailable (vanityUrl: string, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/panacea/url/available'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -35327,7 +35381,7 @@ export class AppsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -35349,7 +35403,7 @@ export class AppsApi {
      * @param appConfigUpdate Changes to the configuration
      * @param {*} [options] Override http request options.
      */
-    public setAppConfig (appId: string, appConfigUpdate: AppConfigUpdateModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }> {
+    public setAppConfig (appId: string, appConfigUpdate: AppConfigUpdateModel, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultApp;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/config'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -35391,7 +35445,7 @@ export class AppsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultApp;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -35414,7 +35468,7 @@ export class AppsApi {
      * @param isEmbed Will the website be embedded
      * @param {*} [options] Override http request options.
      */
-    public setAppHostname (appId: string, hostname: string, isEmbed?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public setAppHostname (appId: string, hostname: string, isEmbed?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/hostname'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -35463,7 +35517,7 @@ export class AppsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -35485,7 +35539,7 @@ export class AppsApi {
      * @param languages New list of languages
      * @param {*} [options] Override http request options.
      */
-    public setAppLanguages (appId: string, languages: Array<Language>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }> {
+    public setAppLanguages (appId: string, languages: Array<Language>, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultApp;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/config/languages'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -35527,7 +35581,7 @@ export class AppsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultApp;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -35549,7 +35603,7 @@ export class AppsApi {
      * @param complianceType Compliance type
      * @param {*} [options] Override http request options.
      */
-    public setCompliance (appId: string, complianceType: 'Default' | 'GdprCompliance', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppCompliance;  }> {
+    public setCompliance (appId: string, complianceType: 'Default' | 'GdprCompliance', options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultAppCompliance;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/compliance'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -35594,7 +35648,7 @@ export class AppsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppCompliance;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultAppCompliance;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -35616,7 +35670,7 @@ export class AppsApi {
      * @param vanityUrl Vanity url
      * @param {*} [options] Override http request options.
      */
-    public setPanaceaVanityUrl (appId: string, vanityUrl: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public setPanaceaVanityUrl (appId: string, vanityUrl: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/panacea/url'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -35661,7 +35715,7 @@ export class AppsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -35683,7 +35737,7 @@ export class AppsApi {
      * @param Image App Logo
      * @param {*} [options] Override http request options.
      */
-    public uploadAppLogo (appId: string, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public uploadAppLogo (appId: string, Image: Buffer, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/logo'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -35729,7 +35783,7 @@ export class AppsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -35802,7 +35856,7 @@ export class AuthorizationTokensApi {
      * @param limit Requested page limit
      * @param {*} [options] Override http request options.
      */
-    public getAuthorizationTokens (oauthAppId: string, appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOAuthTokenModel;  }> {
+    public getAuthorizationTokens (oauthAppId: string, appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOAuthTokenModel;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/authorizationtokens/{oauthAppId}'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -35852,7 +35906,7 @@ export class AuthorizationTokensApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOAuthTokenModel;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOAuthTokenModel;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -35874,7 +35928,7 @@ export class AuthorizationTokensApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public revokeToken (key: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public revokeToken (key: string, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/authorizationtokens/{key}'
             .replace('{' + 'key' + '}', encodeURIComponent(String(key)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -35916,7 +35970,7 @@ export class AuthorizationTokensApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -35988,7 +36042,7 @@ export class BankAccountApi {
      * @param storeId Store to be attached to Bank account
      * @param {*} [options] Override http request options.
      */
-    public attachBankAccountToStore (appId: string, bankAccountId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public attachBankAccountToStore (appId: string, bankAccountId: number, storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/store/{storeId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -36036,7 +36090,7 @@ export class BankAccountApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -36057,7 +36111,7 @@ export class BankAccountApi {
      * @param account Account to be created
      * @param {*} [options] Override http request options.
      */
-    public createBankAccount (appId: string, account: BankAccountCreate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
+    public createBankAccount (appId: string, account: BankAccountCreate, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultBankAccountDetail;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -36099,7 +36153,7 @@ export class BankAccountApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultBankAccountDetail;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -36121,7 +36175,7 @@ export class BankAccountApi {
      * @param bankAccountId Id of account to be marked as deleted
      * @param {*} [options] Override http request options.
      */
-    public deleteBankAccount (appId: string, bankAccountId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteBankAccount (appId: string, bankAccountId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)));
@@ -36163,7 +36217,7 @@ export class BankAccountApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -36184,7 +36238,7 @@ export class BankAccountApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getBankAccountById (bankAccountId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
+    public getBankAccountById (bankAccountId: number, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultBankAccountDetail;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}'
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -36226,7 +36280,7 @@ export class BankAccountApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultBankAccountDetail;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -36247,7 +36301,7 @@ export class BankAccountApi {
      * @param appId App Name
      * @param {*} [options] Override http request options.
      */
-    public getBankAccounts (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultBankAccountSummary;  }> {
+    public getBankAccounts (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultBankAccountSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -36283,7 +36337,7 @@ export class BankAccountApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultBankAccountSummary;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultBankAccountSummary;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -36304,7 +36358,7 @@ export class BankAccountApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getCountriesWithFieldDefinitions (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultCountryWithAccountFieldsDefinitions;  }> {
+    public getCountriesWithFieldDefinitions (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultCountryWithAccountFieldsDefinitions;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/countries-field-definitions'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -36340,7 +36394,7 @@ export class BankAccountApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultCountryWithAccountFieldsDefinitions;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultCountryWithAccountFieldsDefinitions;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -36361,7 +36415,7 @@ export class BankAccountApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getFieldDefinitions (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAccountFieldsDefinitions;  }> {
+    public getFieldDefinitions (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultAccountFieldsDefinitions;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/field-definitions'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -36397,7 +36451,7 @@ export class BankAccountApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAccountFieldsDefinitions;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultAccountFieldsDefinitions;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -36420,7 +36474,7 @@ export class BankAccountApi {
      * @param account Details to update account with
      * @param {*} [options] Override http request options.
      */
-    public updateBankAccount (appId: string, bankAccountId: number, account: BankAccountCreate, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateBankAccount (appId: string, bankAccountId: number, account: BankAccountCreate, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)));
@@ -36468,7 +36522,7 @@ export class BankAccountApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -36491,7 +36545,7 @@ export class BankAccountApi {
      * @param reason Reason for state change, Mandatory for rejections
      * @param {*} [options] Override http request options.
      */
-    public updateBankAccountState (appId: string, bankAccountId: number, state: string, reason: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateBankAccountState (appId: string, bankAccountId: number, state: string, reason: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/state/{state}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -36545,7 +36599,7 @@ export class BankAccountApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -36616,7 +36670,7 @@ export class CampaignsApi {
      * @param campaign Loyalty campaign details
      * @param {*} [options] Override http request options.
      */
-    public createLoyaltyCampaign (appId: string, campaign: LoyaltyCampaignBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLoyaltyCampaign;  }> {
+    public createLoyaltyCampaign (appId: string, campaign: LoyaltyCampaignBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultLoyaltyCampaign;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/campaigns/loyalty'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -36658,7 +36712,7 @@ export class CampaignsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultLoyaltyCampaign;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultLoyaltyCampaign;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -36680,7 +36734,7 @@ export class CampaignsApi {
      * @param campaign Retention campaign details
      * @param {*} [options] Override http request options.
      */
-    public createRetentionCampaign (appId: string, campaign: RetentionCampaignBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRetentionCampaign;  }> {
+    public createRetentionCampaign (appId: string, campaign: RetentionCampaignBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultRetentionCampaign;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/campaigns/retention'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -36722,7 +36776,7 @@ export class CampaignsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRetentionCampaign;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultRetentionCampaign;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -36743,7 +36797,7 @@ export class CampaignsApi {
      * @param appId App Name Id
      * @param {*} [options] Override http request options.
      */
-    public getLoyaltyCampaignsForApp (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLoyaltyCampaign;  }> {
+    public getLoyaltyCampaignsForApp (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultLoyaltyCampaign;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/campaigns/loyalty'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -36779,7 +36833,7 @@ export class CampaignsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLoyaltyCampaign;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultLoyaltyCampaign;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -36801,7 +36855,7 @@ export class CampaignsApi {
      * @param storeId Store Id
      * @param {*} [options] Override http request options.
      */
-    public getLoyaltyCampaignsForStore (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLoyaltyCampaign;  }> {
+    public getLoyaltyCampaignsForStore (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultLoyaltyCampaign;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/campaigns/loyalty/{storeId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
@@ -36843,7 +36897,7 @@ export class CampaignsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLoyaltyCampaign;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultLoyaltyCampaign;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -36864,7 +36918,7 @@ export class CampaignsApi {
      * @param appId App Name Id
      * @param {*} [options] Override http request options.
      */
-    public getRetentionCampaignsForApp (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRetentionCampaign;  }> {
+    public getRetentionCampaignsForApp (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultRetentionCampaign;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/campaigns/retention'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -36900,7 +36954,7 @@ export class CampaignsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRetentionCampaign;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultRetentionCampaign;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -36922,7 +36976,7 @@ export class CampaignsApi {
      * @param storeId Store Id
      * @param {*} [options] Override http request options.
      */
-    public getRetentionCampaignsForStore (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRetentionCampaign;  }> {
+    public getRetentionCampaignsForStore (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultRetentionCampaign;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/campaigns/retention/{storeId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
@@ -36964,7 +37018,7 @@ export class CampaignsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRetentionCampaign;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultRetentionCampaign;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -36985,7 +37039,7 @@ export class CampaignsApi {
      * @param appId App Name Id
      * @param {*} [options] Override http request options.
      */
-    public getStoreList (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreListItem;  }> {
+    public getStoreList (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultStoreListItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/campaigns/stores'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -37021,7 +37075,7 @@ export class CampaignsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreListItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultStoreListItem;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -37043,7 +37097,7 @@ export class CampaignsApi {
      * @param campaignId Campaign Id
      * @param {*} [options] Override http request options.
      */
-    public removeCampaign (appId: string, campaignId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public removeCampaign (appId: string, campaignId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/campaigns/{campaignId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'campaignId' + '}', encodeURIComponent(String(campaignId)));
@@ -37085,7 +37139,7 @@ export class CampaignsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -37107,7 +37161,7 @@ export class CampaignsApi {
      * @param campaign Loyalty campaign details
      * @param {*} [options] Override http request options.
      */
-    public updateLoyaltyCampaign (appId: string, campaignId: number, campaign: LoyaltyCampaignBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLoyaltyCampaign;  }> {
+    public updateLoyaltyCampaign (appId: string, campaignId: number, campaign: LoyaltyCampaignBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultLoyaltyCampaign;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/campaigns/loyalty/{campaignId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'campaignId' + '}', encodeURIComponent(String(campaignId)));
@@ -37155,7 +37209,7 @@ export class CampaignsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultLoyaltyCampaign;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultLoyaltyCampaign;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -37178,7 +37232,7 @@ export class CampaignsApi {
      * @param campaign Retention campaign details
      * @param {*} [options] Override http request options.
      */
-    public updateRetentionCampaign (appId: string, campaignId: number, campaign: RetentionCampaignBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRetentionCampaign;  }> {
+    public updateRetentionCampaign (appId: string, campaignId: number, campaign: RetentionCampaignBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultRetentionCampaign;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/campaigns/retention/{campaignId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'campaignId' + '}', encodeURIComponent(String(campaignId)));
@@ -37226,7 +37280,7 @@ export class CampaignsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRetentionCampaign;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultRetentionCampaign;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -37296,7 +37350,7 @@ export class CardReadersApi {
      * @summary Get Authorization Key for Stripe Terminal
      * @param {*} [options] Override http request options.
      */
-    public authorizeStripeTerminal (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeTerminalPrivateKey;  }> {
+    public authorizeStripeTerminal (options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStripeTerminalPrivateKey;  }> {
         const localVarPath = this.basePath + '/api/v1.0/cardreaders/authorize/stripe';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -37326,7 +37380,7 @@ export class CardReadersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeTerminalPrivateKey;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStripeTerminalPrivateKey;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -37347,7 +37401,7 @@ export class CardReadersApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public authorizeStripeTerminal_1 (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeTerminalPrivateKey;  }> {
+    public authorizeStripeTerminal_1 (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStripeTerminalPrivateKey;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stripeterminal/authorize'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -37383,7 +37437,7 @@ export class CardReadersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeTerminalPrivateKey;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStripeTerminalPrivateKey;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -37405,7 +37459,7 @@ export class CardReadersApi {
      * @param deviceId 
      * @param {*} [options] Override http request options.
      */
-    public getBluetoothTerminalStatus (appId: string, deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBluetoothTerminalStatus;  }> {
+    public getBluetoothTerminalStatus (appId: string, deviceId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultBluetoothTerminalStatus;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/cardreaders/kiosk/{deviceId}/bluetooth/status'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
@@ -37447,7 +37501,7 @@ export class CardReadersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBluetoothTerminalStatus;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultBluetoothTerminalStatus;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -37470,7 +37524,7 @@ export class CardReadersApi {
      * @param terminalType 
      * @param {*} [options] Override http request options.
      */
-    public initiateBluetoothTerminalDeviceUpdateCheck (appId: string, deviceId: string, terminalType: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public initiateBluetoothTerminalDeviceUpdateCheck (appId: string, deviceId: string, terminalType: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/cardreaders/kiosk/{deviceId}/bluetooth/{terminalType}/checkForUpdate'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)))
@@ -37518,7 +37572,7 @@ export class CardReadersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -37540,7 +37594,7 @@ export class CardReadersApi {
      * @param terminalType 
      * @param {*} [options] Override http request options.
      */
-    public initiateKioskBluetoothPairingMode (appId: string, deviceId: string, terminalType: 'CHIPPER_2X' | 'COTS_DEVICE' | 'VERIFONE_P400' | 'WISEPAD_3', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public initiateKioskBluetoothPairingMode (appId: string, deviceId: string, terminalType: 'CHIPPER_2X' | 'COTS_DEVICE' | 'VERIFONE_P400' | 'WISEPAD_3', options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/cardreaders/kiosk/{deviceId}/bluetooth/{terminalType}/pair'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)))
@@ -37588,7 +37642,7 @@ export class CardReadersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -37609,7 +37663,7 @@ export class CardReadersApi {
      * @param terminalType 
      * @param {*} [options] Override http request options.
      */
-    public initiateKioskUpdateInstallForBluetoothTerminal (appId: string, deviceId: string, terminalType: 'CHIPPER_2X' | 'COTS_DEVICE' | 'VERIFONE_P400' | 'WISEPAD_3', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public initiateKioskUpdateInstallForBluetoothTerminal (appId: string, deviceId: string, terminalType: 'CHIPPER_2X' | 'COTS_DEVICE' | 'VERIFONE_P400' | 'WISEPAD_3', options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/cardreaders/kiosk/{deviceId}/bluetooth/{terminalType}/installUpdate'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)))
@@ -37657,7 +37711,7 @@ export class CardReadersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -37678,7 +37732,7 @@ export class CardReadersApi {
      * @param deviceId 
      * @param {*} [options] Override http request options.
      */
-    public unpairCurrentlyPairedBluetoothDevice (appId: string, deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public unpairCurrentlyPairedBluetoothDevice (appId: string, deviceId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/cardreaders/kiosk/{deviceId}/bluetooth/unpair'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
@@ -37720,7 +37774,7 @@ export class CardReadersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -37789,7 +37843,7 @@ export class ContentSecurityPolicyApi {
      * @param request 
      * @param {*} [options] Override http request options.
      */
-    public contentSecurityPolicyReport (request: CspReportRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public contentSecurityPolicyReport (request: CspReportRequest, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/csp/report';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -37825,7 +37879,7 @@ export class ContentSecurityPolicyApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -37897,7 +37951,7 @@ export class CustomersApi {
      * @param customerId Customer Id
      * @param {*} [options] Override http request options.
      */
-    public getCustomerById (appId: string, customerId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCustomer;  }> {
+    public getCustomerById (appId: string, customerId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultCustomer;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/customers/{customerId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'customerId' + '}', encodeURIComponent(String(customerId)));
@@ -37939,7 +37993,7 @@ export class CustomersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCustomer;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultCustomer;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -37962,7 +38016,7 @@ export class CustomersApi {
      * @param updateCustomer Updated customer information
      * @param {*} [options] Override http request options.
      */
-    public updateCustomerById (appId: string, customerId: number, updateCustomer: CustomerUpdateModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCustomer;  }> {
+    public updateCustomerById (appId: string, customerId: number, updateCustomer: CustomerUpdateModel, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultCustomer;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/customers/{customerId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'customerId' + '}', encodeURIComponent(String(customerId)));
@@ -38010,7 +38064,7 @@ export class CustomersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCustomer;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultCustomer;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -38083,7 +38137,7 @@ export class DeliveryTrackingApi {
      * @param driverId Driver Id
      * @param {*} [options] Override http request options.
      */
-    public assignDriverToOrder (appId: string, orderId: number, driverId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public assignDriverToOrder (appId: string, orderId: number, driverId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/drivers/{driverId}/orders/{orderId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)))
@@ -38131,7 +38185,7 @@ export class DeliveryTrackingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -38153,7 +38207,7 @@ export class DeliveryTrackingApi {
      * @param orderIdAndSequenceNumbers Array of object containing OrderId and Sequence
      * @param {*} [options] Override http request options.
      */
-    public assignDriverToOrders (appId: string, driverId: number, orderIdAndSequenceNumbers: Array<OrderIdAndSequenceNumber>, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public assignDriverToOrders (appId: string, driverId: number, orderIdAndSequenceNumbers: Array<OrderIdAndSequenceNumber>, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/drivers/{driverId}/orders'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'driverId' + '}', encodeURIComponent(String(driverId)));
@@ -38201,7 +38255,7 @@ export class DeliveryTrackingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -38225,7 +38279,7 @@ export class DeliveryTrackingApi {
      * @param presence Offline/Online
      * @param {*} [options] Override http request options.
      */
-    public getDrivers (appId: string, name?: string, phoneNumber?: string, storeId?: number, presence?: 'Offline' | 'Online', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDriver;  }> {
+    public getDrivers (appId: string, name?: string, phoneNumber?: string, storeId?: number, presence?: 'Offline' | 'Online', options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultDriver;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/drivers'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -38277,7 +38331,7 @@ export class DeliveryTrackingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDriver;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultDriver;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -38299,7 +38353,7 @@ export class DeliveryTrackingApi {
      * @param driverInvitation Driver invitation model
      * @param {*} [options] Override http request options.
      */
-    public inviteDriverToApp (appId: string, driverInvitation: DriverInvitation, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDriver;  }> {
+    public inviteDriverToApp (appId: string, driverInvitation: DriverInvitation, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultDriver;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/drivers'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -38341,7 +38395,7 @@ export class DeliveryTrackingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultDriver;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultDriver;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -38363,7 +38417,7 @@ export class DeliveryTrackingApi {
      * @param driverId Driver Id
      * @param {*} [options] Override http request options.
      */
-    public removeDriverFromApp (appId: string, driverId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public removeDriverFromApp (appId: string, driverId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/drivers/{driverId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'driverId' + '}', encodeURIComponent(String(driverId)));
@@ -38405,7 +38459,7 @@ export class DeliveryTrackingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -38426,7 +38480,7 @@ export class DeliveryTrackingApi {
      * @param orderId Order Id
      * @param {*} [options] Override http request options.
      */
-    public unassignDriverFromOrder (appId: string, orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public unassignDriverFromOrder (appId: string, orderId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/orders/{orderId}/driver'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
@@ -38468,7 +38522,7 @@ export class DeliveryTrackingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -38539,7 +38593,7 @@ export class DeliveryZoneApi {
      * @param deliveryZoneBase Optional delivery zone, if not supplied will create a default zone
      * @param {*} [options] Override http request options.
      */
-    public addDeliveryZone (storeId: number, deliveryZoneBase: DeliveryZoneBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDeliveryZone;  }> {
+    public addDeliveryZone (storeId: number, deliveryZoneBase: DeliveryZoneBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultDeliveryZone;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/deliveryzones'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -38581,7 +38635,7 @@ export class DeliveryZoneApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultDeliveryZone;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultDeliveryZone;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -38602,7 +38656,7 @@ export class DeliveryZoneApi {
      * @param storeId Store Id to which the delivery zones are associated
      * @param {*} [options] Override http request options.
      */
-    public getDeliveryZones (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDeliveryZone;  }> {
+    public getDeliveryZones (storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultDeliveryZone;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/deliveryzones'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -38638,7 +38692,7 @@ export class DeliveryZoneApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDeliveryZone;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultDeliveryZone;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -38660,7 +38714,7 @@ export class DeliveryZoneApi {
      * @param deliveryZoneId Delivery zone id to be removed
      * @param {*} [options] Override http request options.
      */
-    public removeDeliveryZone (storeId: number, deliveryZoneId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public removeDeliveryZone (storeId: number, deliveryZoneId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/deliveryzones/{deliveryZoneId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryZoneId' + '}', encodeURIComponent(String(deliveryZoneId)));
@@ -38702,7 +38756,7 @@ export class DeliveryZoneApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -38724,7 +38778,7 @@ export class DeliveryZoneApi {
      * @param deliveryZone Delta of delivery zone parameters that need to be changed
      * @param {*} [options] Override http request options.
      */
-    public updateDeliveryZone (storeId: number, deliveryZoneId: number, deliveryZone: DeliveryZoneBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDeliveryZone;  }> {
+    public updateDeliveryZone (storeId: number, deliveryZoneId: number, deliveryZone: DeliveryZoneBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultDeliveryZone;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/deliveryzones/{deliveryZoneId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryZoneId' + '}', encodeURIComponent(String(deliveryZoneId)));
@@ -38772,7 +38826,7 @@ export class DeliveryZoneApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultDeliveryZone;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultDeliveryZone;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -38843,7 +38897,7 @@ export class DriversApi {
      * @param updateDriverToken 
      * @param {*} [options] Override http request options.
      */
-    public addDriverNotificationToken (updateDriverToken: UpdateDriverNotificationToken, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public addDriverNotificationToken (updateDriverToken: UpdateDriverNotificationToken, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/token';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -38879,7 +38933,7 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -38898,7 +38952,7 @@ export class DriversApi {
      * @summary Delete driver profile image
      * @param {*} [options] Override http request options.
      */
-    public deleteDriverProfileImage (options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteDriverProfileImage (options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/profile/image';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -38928,7 +38982,7 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -38948,7 +39002,7 @@ export class DriversApi {
      * @param driverLoginModel Driver request login code model
      * @param {*} [options] Override http request options.
      */
-    public driverLogin (driverLoginModel: DriverLoginModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public driverLogin (driverLoginModel: DriverLoginModel, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/login';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -38984,7 +39038,7 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -39004,7 +39058,7 @@ export class DriversApi {
      * @param driverRequestLoginPinModel Driver request login code model
      * @param {*} [options] Override http request options.
      */
-    public driverRequestLoginCodeSms (driverRequestLoginPinModel: DriverRequestLoginPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public driverRequestLoginCodeSms (driverRequestLoginPinModel: DriverRequestLoginPinModel, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/pin';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -39040,7 +39094,7 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -39059,7 +39113,7 @@ export class DriversApi {
      * @summary Get driver profile
      * @param {*} [options] Override http request options.
      */
-    public getDriverProfile (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDriver;  }> {
+    public getDriverProfile (options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultDriver;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/profile';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -39089,7 +39143,7 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultDriver;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultDriver;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -39109,7 +39163,7 @@ export class DriversApi {
      * @summary Get stores for driver
      * @param {*} [options] Override http request options.
      */
-    public getStoresForDriver (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDriverStore;  }> {
+    public getStoresForDriver (options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultDriverStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/assignedstores';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -39139,7 +39193,7 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDriverStore;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultDriverStore;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -39160,7 +39214,7 @@ export class DriversApi {
      * @param removeDriverToken 
      * @param {*} [options] Override http request options.
      */
-    public removeDriverNotificationToken (removeDriverToken: UpdateDriverNotificationToken, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public removeDriverNotificationToken (removeDriverToken: UpdateDriverNotificationToken, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/token';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -39196,7 +39250,7 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -39216,7 +39270,7 @@ export class DriversApi {
      * @param presence 
      * @param {*} [options] Override http request options.
      */
-    public setDriverPresenceForStore (storeId: number, presence: 'Offline' | 'Online', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public setDriverPresenceForStore (storeId: number, presence: 'Offline' | 'Online', options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/stores/{storeId}/presence/{presence}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'presence' + '}', encodeURIComponent(String(presence)));
@@ -39258,7 +39312,7 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -39277,7 +39331,7 @@ export class DriversApi {
      * @summary Set driver profile image and returns it's url
      * @param {*} [options] Override http request options.
      */
-    public setDriverProfileImage (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public setDriverProfileImage (options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/profile/image';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -39307,7 +39361,7 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -39329,7 +39383,7 @@ export class DriversApi {
      * @param deliveryTrackingStatus 
      * @param {*} [options] Override http request options.
      */
-    public updateDeliveryTrackingStatus (orderId: number, deliveryTrackingStatus: 'Unassigned' | 'Unaccepted' | 'Accepted' | 'Carrying' | 'OnTheWay' | 'ArrivedAtLocation' | 'Delivered' | 'CannotDeliver', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public updateDeliveryTrackingStatus (orderId: number, deliveryTrackingStatus: 'Unassigned' | 'Unaccepted' | 'Accepted' | 'Carrying' | 'OnTheWay' | 'ArrivedAtLocation' | 'Delivered' | 'CannotDeliver', options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/tracking/{deliveryTrackingStatus}'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)))
             .replace('{' + 'deliveryTrackingStatus' + '}', encodeURIComponent(String(deliveryTrackingStatus)));
@@ -39371,7 +39425,7 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -39392,7 +39446,7 @@ export class DriversApi {
      * @param updateDriverProfile Update the driver profile (i.e Name)
      * @param {*} [options] Override http request options.
      */
-    public updateDriverProfile (updateDriverProfile: UpdateDriverProfileModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateDriverProfile (updateDriverProfile: UpdateDriverProfileModel, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/profile';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -39428,7 +39482,7 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -39511,7 +39565,7 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getCustomerEvents (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getCustomerEvents (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/customer/{customerId}'
             .replace('{' + 'customerId' + '}', encodeURIComponent(String(customerId)));
         let localVarQueryParameters: any = {};
@@ -39599,7 +39653,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -39634,7 +39688,7 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getEvents (whiteLabelId?: number, customerId?: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getEvents (whiteLabelId?: number, customerId?: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -39724,7 +39778,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -39745,7 +39799,7 @@ export class EventsApi {
      * @param eventId Event identifier (Guid)
      * @param {*} [options] Override http request options.
      */
-    public getEventsById (eventId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: EventSearchResult;  }> {
+    public getEventsById (eventId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: EventSearchResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/{eventId}'
             .replace('{' + 'eventId' + '}', encodeURIComponent(String(eventId)));
         let localVarQueryParameters: any = {};
@@ -39781,7 +39835,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: EventSearchResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: EventSearchResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -39815,7 +39869,7 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getMenuEvents (menuId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getMenuEvents (menuId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/menu/{menuId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -39903,7 +39957,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -39937,7 +39991,7 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getOrderEvents (orderId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId2?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getOrderEvents (orderId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId2?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/order/{orderId}'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
@@ -40025,7 +40079,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -40059,7 +40113,7 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getOrderEventsByCustomer (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getOrderEventsByCustomer (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/order';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -40150,7 +40204,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -40184,7 +40238,7 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getStoreEvents (storeId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId2?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getStoreEvents (storeId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId2?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/store/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -40272,7 +40326,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -40306,7 +40360,7 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getUserEvents (userId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId2?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getUserEvents (userId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId2?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/user/{userId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -40394,7 +40448,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -40428,7 +40482,7 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getWhiteLabelEvents (whitelabelId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+    public getWhiteLabelEvents (whitelabelId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeGroupId?: number, userId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/events/whitelabel/{whitelabelId}'
             .replace('{' + 'whitelabelId' + '}', encodeURIComponent(String(whitelabelId)));
         let localVarQueryParameters: any = {};
@@ -40516,7 +40570,7 @@ export class EventsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiEventSearchPaginationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -40588,7 +40642,7 @@ export class FilesApi {
      * @param fileId 
      * @param {*} [options] Override http request options.
      */
-    public downloadFile (appId: string, fileId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+    public downloadFile (appId: string, fileId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: string;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/files/download/{fileId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'fileId' + '}', encodeURIComponent(String(fileId)));
@@ -40630,7 +40684,7 @@ export class FilesApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: string;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -40699,7 +40753,7 @@ export class HeartbeatApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public headHostname (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public headHostname (options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/heartbeat/Hostname';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -40729,7 +40783,7 @@ export class HeartbeatApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -40748,7 +40802,7 @@ export class HeartbeatApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public headPing (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public headPing (options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/heartbeat';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -40778,7 +40832,7 @@ export class HeartbeatApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -40797,7 +40851,7 @@ export class HeartbeatApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public hostname (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public hostname (options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/heartbeat/Hostname';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -40827,7 +40881,7 @@ export class HeartbeatApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -40846,7 +40900,7 @@ export class HeartbeatApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public ping (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public ping (options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/heartbeat';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -40876,7 +40930,7 @@ export class HeartbeatApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -40949,7 +41003,7 @@ export class HomeApi {
      * @param isDismissed 
      * @param {*} [options] Override http request options.
      */
-    public completeHomeAction (appId: string, homeActionId: number, isDismissed: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public completeHomeAction (appId: string, homeActionId: number, isDismissed: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/home/{homeActionId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'homeActionId' + '}', encodeURIComponent(String(homeActionId)));
@@ -41000,7 +41054,7 @@ export class HomeApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -41020,7 +41074,7 @@ export class HomeApi {
      * @summary [PRIVATE API] Complete Home Action
      * @param {*} [options] Override http request options.
      */
-    public dismissOldPortalAction (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public dismissOldPortalAction (options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/home/dismissoldportalaction';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -41050,7 +41104,7 @@ export class HomeApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -41071,7 +41125,7 @@ export class HomeApi {
      * @param appId App Name Id
      * @param {*} [options] Override http request options.
      */
-    public getHomeActions (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultHomeAction;  }> {
+    public getHomeActions (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultHomeAction;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/home'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -41107,7 +41161,7 @@ export class HomeApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultHomeAction;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultHomeAction;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -41128,7 +41182,7 @@ export class HomeApi {
      * @param appId App Name Id
      * @param {*} [options] Override http request options.
      */
-    public getHomeStatistics (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHomeStatistics;  }> {
+    public getHomeStatistics (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultHomeStatistics;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/home/stats'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -41164,7 +41218,7 @@ export class HomeApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHomeStatistics;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultHomeStatistics;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -41241,7 +41295,7 @@ export class HttpRequestResponseLogsApi {
      * @param limit Page size
      * @param {*} [options] Override http request options.
      */
-    public getLogs (start: Date, end: Date, appId: string, filterByUserId?: number, guid?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultHttpRequestAndResponseLog;  }> {
+    public getLogs (start: Date, end: Date, appId: string, filterByUserId?: number, guid?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultHttpRequestAndResponseLog;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/interactions/logs'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -41311,7 +41365,7 @@ export class HttpRequestResponseLogsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultHttpRequestAndResponseLog;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultHttpRequestAndResponseLog;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -41384,7 +41438,7 @@ export class HydraApi {
      * @param emvTerminalId 
      * @param {*} [options] Override http request options.
      */
-    public assignEmv (appId: string, hydraConfigId: number, emvTerminalId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public assignEmv (appId: string, hydraConfigId: number, emvTerminalId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvterminal/assign/{hydraConfigId}/{emvTerminalId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'hydraConfigId' + '}', encodeURIComponent(String(hydraConfigId)))
@@ -41432,7 +41486,7 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -41454,7 +41508,7 @@ export class HydraApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
-    public attachStoreToTerminal (appId: string, deviceId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }> {
+    public attachStoreToTerminal (appId: string, deviceId: string, storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultHydraStatus;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/{deviceId}/attach/{storeId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)))
@@ -41502,7 +41556,7 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultHydraStatus;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -41523,7 +41577,7 @@ export class HydraApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public cancelEmvPayment (orderId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public cancelEmvPayment (orderId: number, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/cancelemvpayment/{orderId}'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -41565,7 +41619,7 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -41587,7 +41641,7 @@ export class HydraApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
-    public detachStoreFromTerminal (appId: string, deviceId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }> {
+    public detachStoreFromTerminal (appId: string, deviceId: string, storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultHydraStatus;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/{deviceId}/detach/{storeId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)))
@@ -41635,7 +41689,7 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultHydraStatus;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -41662,7 +41716,7 @@ export class HydraApi {
      * @param deviceSerial 
      * @param {*} [options] Override http request options.
      */
-    public getAttachedDevices (appId: string, deviceType: 'Kiosk' | 'Terminal' | 'LegacyPrinter', pageIndex?: number, pageSize?: number, storeId?: number, deviceName?: string, deviceSerial?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultHydraDeviceDetails;  }> {
+    public getAttachedDevices (appId: string, deviceType: 'Kiosk' | 'Terminal' | 'LegacyPrinter', pageIndex?: number, pageSize?: number, storeId?: number, deviceName?: string, deviceSerial?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultHydraDeviceDetails;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/{deviceType}/list'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'deviceType' + '}', encodeURIComponent(String(deviceType)));
@@ -41724,7 +41778,7 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultHydraDeviceDetails;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultHydraDeviceDetails;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -41745,7 +41799,7 @@ export class HydraApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getEMVTerminalDetails (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalDetails;  }> {
+    public getEMVTerminalDetails (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultPaymentTerminalDetails;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvterminal'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -41781,7 +41835,7 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalDetails;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultPaymentTerminalDetails;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -41803,7 +41857,7 @@ export class HydraApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getEmvOrderState (orderId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalTransactionDetails;  }> {
+    public getEmvOrderState (orderId: number, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultPaymentTerminalTransactionDetails;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvorderstate/{orderId}'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -41845,7 +41899,7 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentTerminalTransactionDetails;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultPaymentTerminalTransactionDetails;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -41864,7 +41918,7 @@ export class HydraApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public getRegistration (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }> {
+    public getRegistration (options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultHydraStatus;  }> {
         const localVarPath = this.basePath + '/api/v1.0/hydra/registration';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -41894,7 +41948,7 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultHydraStatus;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -41914,7 +41968,7 @@ export class HydraApi {
      * @summary [Private]
      * @param {*} [options] Override http request options.
      */
-    public getSettings (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraConfig;  }> {
+    public getSettings (options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultHydraConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/hydra/settings';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -41944,7 +41998,7 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHydraConfig;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultHydraConfig;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -41966,7 +42020,7 @@ export class HydraApi {
      * @param emv 
      * @param {*} [options] Override http request options.
      */
-    public hydraCreateEmv (appId: string, emv: EmvTerminal, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public hydraCreateEmv (appId: string, emv: EmvTerminal, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/emvterminals'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -42008,7 +42062,7 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -42030,7 +42084,7 @@ export class HydraApi {
      * @param id 
      * @param {*} [options] Override http request options.
      */
-    public hydraDeleteEmv (appId: string, id: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public hydraDeleteEmv (appId: string, id: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/emvterminals/{id}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -42072,7 +42126,7 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -42093,7 +42147,7 @@ export class HydraApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public hydraGetEmvsForAppId (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultEmvTerminalWithAssignments;  }> {
+    public hydraGetEmvsForAppId (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultEmvTerminalWithAssignments;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/emvterminals'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -42129,7 +42183,7 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultEmvTerminalWithAssignments;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultEmvTerminalWithAssignments;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -42152,7 +42206,7 @@ export class HydraApi {
      * @param serialNumber 
      * @param {*} [options] Override http request options.
      */
-    public loginWithDeviceId (deviceId: string, hydraUserType?: 'Kiosk' | 'Terminal' | 'LegacyPrinter', serialNumber?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public loginWithDeviceId (deviceId: string, hydraUserType?: 'Kiosk' | 'Terminal' | 'LegacyPrinter', serialNumber?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/hydra/{deviceId}/login'
             .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
         let localVarQueryParameters: any = {};
@@ -42196,7 +42250,7 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -42217,7 +42271,7 @@ export class HydraApi {
      * @param hydraRegistration 
      * @param {*} [options] Override http request options.
      */
-    public register (appId: string, hydraRegistration: HydraRegistrationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }> {
+    public register (appId: string, hydraRegistration: HydraRegistrationRequest, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultHydraStatus;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/registration'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -42259,7 +42313,7 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultHydraStatus;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -42281,7 +42335,7 @@ export class HydraApi {
      * @param deviceId 
      * @param {*} [options] Override http request options.
      */
-    public unAssign (appId: string, deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public unAssign (appId: string, deviceId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/{deviceId}/registration'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
@@ -42323,7 +42377,7 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -42344,7 +42398,7 @@ export class HydraApi {
      * @param hydraConfigId 
      * @param {*} [options] Override http request options.
      */
-    public unassignEmv (appId: string, hydraConfigId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public unassignEmv (appId: string, hydraConfigId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/emvterminal/unassign/{hydraConfigId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'hydraConfigId' + '}', encodeURIComponent(String(hydraConfigId)));
@@ -42386,7 +42440,7 @@ export class HydraApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -42455,7 +42509,7 @@ export class LightspeedApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
-    public lightspeedGenerateMenu (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public lightspeedGenerateMenu (storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/lightspeed/{storeId}/menu/generate'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -42491,7 +42545,7 @@ export class LightspeedApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -42511,7 +42565,7 @@ export class LightspeedApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
-    public lightspeedGetStoreSettings (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLightspeedSettings;  }> {
+    public lightspeedGetStoreSettings (storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultLightspeedSettings;  }> {
         const localVarPath = this.basePath + '/api/v1.0/lightspeed/{storeId}/settings'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -42547,7 +42601,7 @@ export class LightspeedApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultLightspeedSettings;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultLightspeedSettings;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -42568,7 +42622,7 @@ export class LightspeedApi {
      * @param lightspeedSettings 
      * @param {*} [options] Override http request options.
      */
-    public lightspeedSaveStoreSettings (storeId: number, lightspeedSettings: LightspeedSettings, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLightspeedSettings;  }> {
+    public lightspeedSaveStoreSettings (storeId: number, lightspeedSettings: LightspeedSettings, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultLightspeedSettings;  }> {
         const localVarPath = this.basePath + '/api/v1.0/lightspeed/{storeId}/settings'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -42610,7 +42664,7 @@ export class LightspeedApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultLightspeedSettings;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultLightspeedSettings;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -42685,7 +42739,7 @@ export class MenuOptionSetItemsApi {
      * @param menuItemOptionSetItem Option set item
      * @param {*} [options] Override http request options.
      */
-    public addMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public addMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -42745,7 +42799,7 @@ export class MenuOptionSetItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -42770,7 +42824,7 @@ export class MenuOptionSetItemsApi {
      * @param menuItemOptionSetItemId Option set item identifier
      * @param {*} [options] Override http request options.
      */
-    public deleteOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -42830,7 +42884,7 @@ export class MenuOptionSetItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -42854,7 +42908,7 @@ export class MenuOptionSetItemsApi {
      * @param menuItemOptionSetItemId Option set item identifier
      * @param {*} [options] Override http request options.
      */
-    public getMenuItemOptionSetItemById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuItemOptionSetItem;  }> {
+    public getMenuItemOptionSetItemById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSetItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -42914,7 +42968,7 @@ export class MenuOptionSetItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuItemOptionSetItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSetItem;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -42938,7 +42992,7 @@ export class MenuOptionSetItemsApi {
      * @param optionSetId Option set identifier
      * @param {*} [options] Override http request options.
      */
-    public getMenuItemOptionSetItems (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuItemOptionSetItem;  }> {
+    public getMenuItemOptionSetItems (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSetItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -42992,7 +43046,7 @@ export class MenuOptionSetItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuItemOptionSetItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSetItem;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -43017,7 +43071,7 @@ export class MenuOptionSetItemsApi {
      * @param menuItemOptionSetItemId Option set item identifier
      * @param {*} [options] Override http request options.
      */
-    public removeMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public removeMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -43077,7 +43131,7 @@ export class MenuOptionSetItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -43102,7 +43156,7 @@ export class MenuOptionSetItemsApi {
      * @param taxRateId Tax Rate to use
      * @param {*} [options] Override http request options.
      */
-    public setOptionSetItemTax (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, taxRateId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public setOptionSetItemTax (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, taxRateId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}/taxrate/{taxRateId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -43168,7 +43222,7 @@ export class MenuOptionSetItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -43194,7 +43248,7 @@ export class MenuOptionSetItemsApi {
      * @param undoAfter An optional time period, in hours, after which the hide-section operaton will be undone.
      * @param {*} [options] Override http request options.
      */
-    public updateMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase, undoAfter?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase, undoAfter?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -43264,7 +43318,7 @@ export class MenuOptionSetItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -43289,7 +43343,7 @@ export class MenuOptionSetItemsApi {
      * @param Image Option set item image
      * @param {*} [options] Override http request options.
      */
-    public uploadOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public uploadOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, Image: Buffer, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/optionsetitems/{menuItemOptionSetItemId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -43359,7 +43413,7 @@ export class MenuOptionSetItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -43433,7 +43487,7 @@ export class MenuOptionSetsApi {
      * @param menuItemOptionSet Menu item option set
      * @param {*} [options] Override http request options.
      */
-    public createMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, menuItemOptionSet: MenuItemOptionSetBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public createMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, menuItemOptionSet: MenuItemOptionSetBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -43487,7 +43541,7 @@ export class MenuOptionSetsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -43511,7 +43565,7 @@ export class MenuOptionSetsApi {
      * @param optionSetId Option set identifier
      * @param {*} [options] Override http request options.
      */
-    public deleteMenuItemOptionSet (menuId: number, menuSectionItemId: number, menuSectionId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenuItemOptionSet (menuId: number, menuSectionItemId: number, menuSectionId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionItemId' + '}', encodeURIComponent(String(menuSectionItemId)))
@@ -43565,7 +43619,7 @@ export class MenuOptionSetsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -43588,7 +43642,7 @@ export class MenuOptionSetsApi {
      * @param optionSetId Option set identifier
      * @param {*} [options] Override http request options.
      */
-    public deleteOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -43642,7 +43696,7 @@ export class MenuOptionSetsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -43665,7 +43719,7 @@ export class MenuOptionSetsApi {
      * @param optionSetId Menu item option set identifier
      * @param {*} [options] Override http request options.
      */
-    public getMenuItemOptionSetById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuItemOptionSet;  }> {
+    public getMenuItemOptionSetById (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSet;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -43719,7 +43773,7 @@ export class MenuOptionSetsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuItemOptionSet;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuItemOptionSet;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -43742,7 +43796,7 @@ export class MenuOptionSetsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param {*} [options] Override http request options.
      */
-    public getMenuItemOptionSets (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuItemOptionSet;  }> {
+    public getMenuItemOptionSets (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSet;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -43790,7 +43844,7 @@ export class MenuOptionSetsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuItemOptionSet;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuItemOptionSet;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -43815,7 +43869,7 @@ export class MenuOptionSetsApi {
      * @param menuItemOptionSet Menu item option set (delta)
      * @param {*} [options] Override http request options.
      */
-    public updateMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSet: MenuItemOptionSetBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSet: MenuItemOptionSetBase, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -43875,7 +43929,7 @@ export class MenuOptionSetsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -43899,7 +43953,7 @@ export class MenuOptionSetsApi {
      * @param Image Option set image
      * @param {*} [options] Override http request options.
      */
-    public uploadOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public uploadOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, Image: Buffer, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/optionsets/{optionSetId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -43963,7 +44017,7 @@ export class MenuOptionSetsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -44036,7 +44090,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param {*} [options] Override http request options.
      */
-    public cloneMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSectionItem;  }> {
+    public cloneMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuSectionItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/clone'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -44084,7 +44138,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSectionItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuSectionItem;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -44107,7 +44161,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionItem Menu section item
      * @param {*} [options] Override http request options.
      */
-    public createMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItem: MenuSectionItemBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public createMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItem: MenuSectionItemBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -44155,7 +44209,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -44178,7 +44232,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param {*} [options] Override http request options.
      */
-    public deleteMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -44226,7 +44280,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -44248,7 +44302,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionItemId Menu section item identifier
      * @param {*} [options] Override http request options.
      */
-    public deleteMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -44296,7 +44350,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -44318,7 +44372,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionItemId Menu item identifier
      * @param {*} [options] Override http request options.
      */
-    public getMenuItemById (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSectionItem;  }> {
+    public getMenuItemById (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuSectionItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -44366,7 +44420,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSectionItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuSectionItem;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -44388,7 +44442,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionId Menu section identifier
      * @param {*} [options] Override http request options.
      */
-    public getMenuItems (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuSectionItem;  }> {
+    public getMenuItems (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSectionItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -44430,7 +44484,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuSectionItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSectionItem;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -44454,7 +44508,7 @@ export class MenuSectionItemsApi {
      * @param destinationDisplayOrder New Display Order of item
      * @param {*} [options] Override http request options.
      */
-    public moveMenuItem (menuId: number, menuSectionId: number, menuSectionItemId: number, destinationDisplayOrder: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public moveMenuItem (menuId: number, menuSectionId: number, menuSectionItemId: number, destinationDisplayOrder: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/setorder/{destinationDisplayOrder}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -44508,7 +44562,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -44531,7 +44585,7 @@ export class MenuSectionItemsApi {
      * @param taxRateId tax rate to be set against item
      * @param {*} [options] Override http request options.
      */
-    public setSectionItemTax (menuId: number, menuSectionId: number, menuSectionItemId: number, taxRateId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public setSectionItemTax (menuId: number, menuSectionId: number, menuSectionItemId: number, taxRateId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/taxrate/{taxRateId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -44585,7 +44639,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -44609,7 +44663,7 @@ export class MenuSectionItemsApi {
      * @param undoAfter An optional time period, in hours, after which the hide-section operaton will be undone.
      * @param {*} [options] Override http request options.
      */
-    public updateMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, menuSectionItem: MenuSectionItemBase, undoAfter?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, menuSectionItem: MenuSectionItemBase, undoAfter?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -44667,7 +44721,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -44690,7 +44744,7 @@ export class MenuSectionItemsApi {
      * @param Image Menu section item image
      * @param {*} [options] Override http request options.
      */
-    public uploadMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public uploadMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, Image: Buffer, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/{menuSectionItemId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -44748,7 +44802,7 @@ export class MenuSectionItemsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -44820,7 +44874,7 @@ export class MenuSectionsApi {
      * @param menuSectionId Menu section identifier
      * @param {*} [options] Override http request options.
      */
-    public cloneMenuSection (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSection;  }> {
+    public cloneMenuSection (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuSection;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/clone'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -44862,7 +44916,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSection;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuSection;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -44886,7 +44940,7 @@ export class MenuSectionsApi {
      * @param businessHoursPeriod Menu section active hours, note: DayOfWeek property will be overriden by the path parameter.
      * @param {*} [options] Override http request options.
      */
-    public createMenuAvailabilityForDay (menuId: number, menuSectionId: number, dayOfWeek: 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday', businessHoursPeriod: BusinessHoursPeriodBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public createMenuAvailabilityForDay (menuId: number, menuSectionId: number, dayOfWeek: 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday', businessHoursPeriod: BusinessHoursPeriodBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/availability/times/{dayOfWeek}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
@@ -44940,7 +44994,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -44962,7 +45016,7 @@ export class MenuSectionsApi {
      * @param menuSection Menu section
      * @param {*} [options] Override http request options.
      */
-    public createMenuSection (menuId: number, menuSection: MenuSectionBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public createMenuSection (menuId: number, menuSection: MenuSectionBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -45004,7 +45058,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -45027,7 +45081,7 @@ export class MenuSectionsApi {
      * @param menuSectionAvailability DisplayAlways, DisplayBasedOnTimes, DisplayAlwaysStartCollapsed, DisplayAlwaysStartCollapsedBasedOnTimes
      * @param {*} [options] Override http request options.
      */
-    public createMenuSectionAvailability (menuId: number, menuSectionId: number, menuSectionAvailability: MenuSectionAvailabilityBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public createMenuSectionAvailability (menuId: number, menuSectionId: number, menuSectionAvailability: MenuSectionAvailabilityBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/availability'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -45075,7 +45129,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -45097,7 +45151,7 @@ export class MenuSectionsApi {
      * @param menuSectionId Menu section identifier
      * @param {*} [options] Override http request options.
      */
-    public deleteMenuSection (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenuSection (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -45139,7 +45193,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -45160,7 +45214,7 @@ export class MenuSectionsApi {
      * @param menuSectionId Menu section identifier
      * @param {*} [options] Override http request options.
      */
-    public deleteMenuSectionImage (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenuSectionImage (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -45202,7 +45256,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -45223,7 +45277,7 @@ export class MenuSectionsApi {
      * @param menuSectionId Menu section identifier
      * @param {*} [options] Override http request options.
      */
-    public getMenuSectionById (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSection;  }> {
+    public getMenuSectionById (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultMenuSection;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -45265,7 +45319,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSection;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenuSection;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -45286,7 +45340,7 @@ export class MenuSectionsApi {
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
-    public getMenuSections (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuSection;  }> {
+    public getMenuSections (menuId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSection;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -45322,7 +45376,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuSection;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSection;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -45345,7 +45399,7 @@ export class MenuSectionsApi {
      * @param displayOrders Item Ids and their new display order
      * @param {*} [options] Override http request options.
      */
-    public menuSectionsSetItemDisplayOrders (menuId: number, menuSectionId: number, displayOrders: MenuObjectDisplayOrders, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public menuSectionsSetItemDisplayOrders (menuId: number, menuSectionId: number, displayOrders: MenuObjectDisplayOrders, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitemdisplayorders'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -45393,7 +45447,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -45416,7 +45470,7 @@ export class MenuSectionsApi {
      * @param undoAfter An optional time period, in hours, after which the hide-section operation will be undone.
      * @param {*} [options] Override http request options.
      */
-    public updateMenuSection (menuId: number, menuSectionId: number, menuSection: MenuSectionBase, undoAfter?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateMenuSection (menuId: number, menuSectionId: number, menuSection: MenuSectionBase, undoAfter?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -45468,7 +45522,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -45490,7 +45544,7 @@ export class MenuSectionsApi {
      * @param Image Menu section image
      * @param {*} [options] Override http request options.
      */
-    public uploadMenuSectionImage (menuId: number, menuSectionId: number, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public uploadMenuSectionImage (menuId: number, menuSectionId: number, Image: Buffer, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -45542,7 +45596,7 @@ export class MenuSectionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -45614,7 +45668,7 @@ export class MenusApi {
      * @param newName Name of the new Menu
      * @param {*} [options] Override http request options.
      */
-    public createDraftMenuFromExistingMenu (menuId: number, newName: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenu;  }> {
+    public createDraftMenuFromExistingMenu (menuId: number, newName: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultMenu;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/clone/{newName}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'newName' + '}', encodeURIComponent(String(newName)));
@@ -45656,7 +45710,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenu;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenu;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -45678,7 +45732,7 @@ export class MenusApi {
      * @param menu Menu
      * @param {*} [options] Override http request options.
      */
-    public createNewMenuForApp (appId: string, menu: CreateFullMenu, options: any = {}) : Promise<{ response: http.IncomingMessage; body: number;  }> {
+    public createNewMenuForApp (appId: string, menu: CreateFullMenu, options: any = {}) : Promise<{ response: http.ClientResponse; body: number;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/menus'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -45720,7 +45774,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: number;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: number;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -45741,7 +45795,7 @@ export class MenusApi {
      * @param menuId Menu Identifier
      * @param {*} [options] Override http request options.
      */
-    public deleteMenu (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenu (menuId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -45777,7 +45831,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -45797,7 +45851,7 @@ export class MenusApi {
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
-    public deleteMenuImage (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenuImage (menuId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -45833,7 +45887,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -45856,7 +45910,7 @@ export class MenusApi {
      * @param key Metadata key
      * @param {*} [options] Override http request options.
      */
-    public deleteMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, key: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, key: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -45910,7 +45964,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -45931,7 +45985,7 @@ export class MenusApi {
      * @param storeId Store identifier
      * @param {*} [options] Override http request options.
      */
-    public getAllMenuMetadataByMenuIdAndStoreId (menuId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAllMetadataResult;  }> {
+    public getAllMenuMetadataByMenuIdAndStoreId (menuId: number, storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultAllMetadataResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
@@ -45973,7 +46027,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAllMetadataResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultAllMetadataResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -45994,7 +46048,7 @@ export class MenusApi {
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
-    public getMenuById (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenu;  }> {
+    public getMenuById (menuId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultMenu;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -46030,7 +46084,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenu;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMenu;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -46053,7 +46107,7 @@ export class MenusApi {
      * @param menuItemId Menu item identifier
      * @param {*} [options] Override http request options.
      */
-    public getMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMetadata;  }> {
+    public getMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -46101,7 +46155,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMetadata;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMetadata;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -46125,7 +46179,7 @@ export class MenusApi {
      * @param key Metadata key
      * @param {*} [options] Override http request options.
      */
-    public getMenuItemMetadataByKey (menuId: number, storeId: number, menuItemId: number, key: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public getMenuItemMetadataByKey (menuId: number, storeId: number, menuItemId: number, key: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -46179,7 +46233,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -46201,7 +46255,7 @@ export class MenusApi {
      * @param optionSetItemId Menu item option set item identifier
      * @param {*} [options] Override http request options.
      */
-    public getMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMetadata;  }> {
+    public getMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/optionsetitem/{optionSetItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -46249,7 +46303,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMetadata;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultMetadata;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -46270,7 +46324,7 @@ export class MenusApi {
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
-    public getMenuStoreNames (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuStoreNames;  }> {
+    public getMenuStoreNames (menuId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuStoreNames;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/stores'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -46306,7 +46360,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuStoreNames;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuStoreNames;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -46327,7 +46381,7 @@ export class MenusApi {
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
-    public getMenuTaxDetails (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuTaxDetails;  }> {
+    public getMenuTaxDetails (menuId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuTaxDetails;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/tax'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -46363,7 +46417,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuTaxDetails;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuTaxDetails;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -46384,7 +46438,7 @@ export class MenusApi {
      * @param appId Get Menus for this appId
      * @param {*} [options] Override http request options.
      */
-    public getMenusByAppId (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuSummary;  }> {
+    public getMenusByAppId (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/menus'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -46420,7 +46474,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuSummary;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuSummary;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -46441,7 +46495,7 @@ export class MenusApi {
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
-    public getMenusCheckpoints (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuCheckpoint;  }> {
+    public getMenusCheckpoints (menuId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuCheckpoint;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/checkpoints'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -46477,7 +46531,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuCheckpoint;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuCheckpoint;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -46499,7 +46553,7 @@ export class MenusApi {
      * @param taxId Id of Menu Tax to be removed
      * @param {*} [options] Override http request options.
      */
-    public menusDeleteTaxRate (menuId: number, taxId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public menusDeleteTaxRate (menuId: number, taxId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/tax/{taxId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'taxId' + '}', encodeURIComponent(String(taxId)));
@@ -46541,7 +46595,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -46562,7 +46616,7 @@ export class MenusApi {
      * @param show Boolean show or dont show tax (Exclusive tax type can only ever be TRUE)
      * @param {*} [options] Override http request options.
      */
-    public menusSetDisplayOnMenuTax (menuId: number, show: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public menusSetDisplayOnMenuTax (menuId: number, show: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/tax/show/{show}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'show' + '}', encodeURIComponent(String(show)));
@@ -46604,7 +46658,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -46625,7 +46679,7 @@ export class MenusApi {
      * @param displayOrders Section Ids and their new display order
      * @param {*} [options] Override http request options.
      */
-    public menusSetItemDisplayOrders (menuId: number, displayOrders: MenuObjectDisplayOrders, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public menusSetItemDisplayOrders (menuId: number, displayOrders: MenuObjectDisplayOrders, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sectiondisplayorders'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -46667,7 +46721,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -46689,7 +46743,7 @@ export class MenusApi {
      * @param undoAfter 
      * @param {*} [options] Override http request options.
      */
-    public menusShowHideBulkItems (menuId: number, menuElements: Array<MenuElementHide>, hide: boolean, undoAfter: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementEditResponse;  }> {
+    public menusShowHideBulkItems (menuId: number, menuElements: Array<MenuElementHide>, hide: boolean, undoAfter: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuElementEditResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/bulkshowhide'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -46749,7 +46803,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementEditResponse;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultMenuElementEditResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -46771,7 +46825,7 @@ export class MenusApi {
      * @param type Type of Tax
      * @param {*} [options] Override http request options.
      */
-    public menusUpdateTaxType (menuId: number, type: 'IncludedInBasePrice' | 'ExcludedFromBasePrice', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public menusUpdateTaxType (menuId: number, type: 'IncludedInBasePrice' | 'ExcludedFromBasePrice', options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/tax/type/{type}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'type' + '}', encodeURIComponent(String(type)));
@@ -46813,7 +46867,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -46834,7 +46888,7 @@ export class MenusApi {
      * @param taxRate Tax Rate to Add/Update
      * @param {*} [options] Override http request options.
      */
-    public menusUpsertTaxRate (menuId: number, taxRate: MenuTaxRate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: MenuTaxRate;  }> {
+    public menusUpsertTaxRate (menuId: number, taxRate: MenuTaxRate, options: any = {}) : Promise<{ response: http.ClientResponse; body: MenuTaxRate;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/taxrate'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -46876,7 +46930,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: MenuTaxRate;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: MenuTaxRate;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -46898,7 +46952,7 @@ export class MenusApi {
      * @param checkpointId Checkpoint to restore menu to
      * @param {*} [options] Override http request options.
      */
-    public restoreAMenuCheckpoint (menuId: number, checkpointId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public restoreAMenuCheckpoint (menuId: number, checkpointId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/checkpoints/{checkpointId}/restore'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'checkpointId' + '}', encodeURIComponent(String(checkpointId)));
@@ -46940,7 +46994,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -46963,7 +47017,7 @@ export class MenusApi {
      * @param metadata Metadata object
      * @param {*} [options] Override http request options.
      */
-    public setMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, metadata: Metadata, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public setMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, metadata: Metadata, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -47017,7 +47071,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -47040,7 +47094,7 @@ export class MenusApi {
      * @param metadata Metadata object
      * @param {*} [options] Override http request options.
      */
-    public setMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number, metadata: Metadata, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public setMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number, metadata: Metadata, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/optionsetitem/{optionSetItemId}/metadata/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -47094,7 +47148,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -47115,7 +47169,7 @@ export class MenusApi {
      * @param locked True: Locks menu for editing, False: Unlocks for editing
      * @param {*} [options] Override http request options.
      */
-    public setMenuLock (menuId: number, locked: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public setMenuLock (menuId: number, locked: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/lock'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -47157,7 +47211,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -47178,7 +47232,7 @@ export class MenusApi {
      * @param name Name to set for this Menu
      * @param {*} [options] Override http request options.
      */
-    public setMenuName (menuId: number, name: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public setMenuName (menuId: number, name: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/name'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -47220,7 +47274,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -47241,7 +47295,7 @@ export class MenusApi {
      * @param menu Menu (delta)
      * @param {*} [options] Override http request options.
      */
-    public updateMenu (menuId: number, menu: MenuBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateMenu (menuId: number, menu: MenuBase, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -47283,7 +47337,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -47304,7 +47358,7 @@ export class MenusApi {
      * @param Image Menu image
      * @param {*} [options] Override http request options.
      */
-    public uploadMenuImage (menuId: number, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public uploadMenuImage (menuId: number, Image: Buffer, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/image'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -47350,7 +47404,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -47372,7 +47426,7 @@ export class MenusApi {
      * @param Menu Uploaded xlsx menu
      * @param {*} [options] Override http request options.
      */
-    public uploadNewMenuForApp (appId: string, Menu: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: number;  }> {
+    public uploadNewMenuForApp (appId: string, Menu: Buffer, options: any = {}) : Promise<{ response: http.ClientResponse; body: number;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/menus/xlsx'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -47418,7 +47472,7 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: number;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: number;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -47491,7 +47545,7 @@ export class OAuthClientsApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public addRedirectUri (oauthAppId: string, uri: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOauthClientRedirectUri;  }> {
+    public addRedirectUri (oauthAppId: string, uri: string, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultOauthClientRedirectUri;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/{oauthAppId}/redirecturis'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -47539,7 +47593,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOauthClientRedirectUri;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultOauthClientRedirectUri;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -47561,7 +47615,7 @@ export class OAuthClientsApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public createOAuthApp (oAuthApp: OAuthApp, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public createOAuthApp (oAuthApp: OAuthApp, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -47603,7 +47657,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -47624,7 +47678,7 @@ export class OAuthClientsApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public deleteOAuthApp (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteOAuthApp (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/{oauthAppId}'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -47666,7 +47720,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -47687,7 +47741,7 @@ export class OAuthClientsApi {
      * @param oauthAppName 
      * @param {*} [options] Override http request options.
      */
-    public getOAuthApps (appId: string, oauthAppName?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOAuthApp;  }> {
+    public getOAuthApps (appId: string, oauthAppName?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultOAuthApp;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -47727,7 +47781,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOAuthApp;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultOAuthApp;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -47749,7 +47803,7 @@ export class OAuthClientsApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getOAuthClientByClientId (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOAuthApp;  }> {
+    public getOAuthClientByClientId (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultOAuthApp;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/{oauthAppId}'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -47791,7 +47845,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOAuthApp;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultOAuthApp;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -47813,7 +47867,7 @@ export class OAuthClientsApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getOAuthClientSecret (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public getOAuthClientSecret (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/{oauthAppId}/secret'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -47855,7 +47909,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -47877,7 +47931,7 @@ export class OAuthClientsApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getOauthAccessToken (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public getOauthAccessToken (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/{oauthAppId}/accesstoken'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -47919,7 +47973,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -47941,7 +47995,7 @@ export class OAuthClientsApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getRedirectUris (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOauthClientRedirectUri;  }> {
+    public getRedirectUris (oauthAppId: string, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultOauthClientRedirectUri;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/{oauthAppId}/redirecturis'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -47983,7 +48037,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOauthClientRedirectUri;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultOauthClientRedirectUri;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -48003,7 +48057,7 @@ export class OAuthClientsApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public oAuthClientsGetApplications (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public oAuthClientsGetApplications (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/appnames'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -48039,7 +48093,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -48062,7 +48116,7 @@ export class OAuthClientsApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public removeRedirectUri (oauthAppId: string, uriId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public removeRedirectUri (oauthAppId: string, uriId: number, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/{oauthAppId}/redirecturis/{uriId}'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'uriId' + '}', encodeURIComponent(String(uriId)))
@@ -48110,7 +48164,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -48132,7 +48186,7 @@ export class OAuthClientsApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public updateOAuthApp (oauthAppId: string, oAuthApp: OAuthApp, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateOAuthApp (oauthAppId: string, oAuthApp: OAuthApp, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/{oauthAppId}'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -48180,7 +48234,7 @@ export class OAuthClientsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -48251,7 +48305,7 @@ export class OrdersApi {
      * @param acceptObject Order accept parameters (eg: EstimatedMinutesForDelivery)
      * @param {*} [options] Override http request options.
      */
-    public acceptOrder (id: number, acceptObject: Accept, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public acceptOrder (id: number, acceptObject: Accept, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}/accept'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -48293,7 +48347,7 @@ export class OrdersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -48313,7 +48367,7 @@ export class OrdersApi {
      * @param id Order identifier
      * @param {*} [options] Override http request options.
      */
-    public dispatchOrder (id: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public dispatchOrder (id: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}/dispatch'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -48349,7 +48403,7 @@ export class OrdersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -48369,7 +48423,7 @@ export class OrdersApi {
      * @param id Order identifier
      * @param {*} [options] Override http request options.
      */
-    public getOrderById (id: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrder;  }> {
+    public getOrderById (id: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -48405,7 +48459,7 @@ export class OrdersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOrder;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultOrder;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -48431,7 +48485,7 @@ export class OrdersApi {
      * @param limit Requested page limit
      * @param {*} [options] Override http request options.
      */
-    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, from?: Date, to?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
+    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, from?: Date, to?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -48485,7 +48539,7 @@ export class OrdersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOrder;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -48512,7 +48566,7 @@ export class OrdersApi {
      * @param orderByRequestedForTime 
      * @param {*} [options] Override http request options.
      */
-    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, orderByRequestedForTime?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
+    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, orderByRequestedForTime?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOrderSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/orders/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -48572,7 +48626,7 @@ export class OrdersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultOrderSummary;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -48594,7 +48648,7 @@ export class OrdersApi {
      * @param refundObject 
      * @param {*} [options] Override http request options.
      */
-    public refundOrder (id: number, refundObject: Refund, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public refundOrder (id: number, refundObject: Refund, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}/refund'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -48636,7 +48690,7 @@ export class OrdersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -48657,7 +48711,7 @@ export class OrdersApi {
      * @param rejectObject 
      * @param {*} [options] Override http request options.
      */
-    public rejectOrder (id: number, rejectObject: Reject, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public rejectOrder (id: number, rejectObject: Reject, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{id}/reject'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -48699,7 +48753,7 @@ export class OrdersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -48769,7 +48823,7 @@ export class PaymentsApi {
      * @param orderId Order identifier
      * @param {*} [options] Override http request options.
      */
-    public getOrderPaymentInformation (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderPaymentInformation;  }> {
+    public getOrderPaymentInformation (orderId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultOrderPaymentInformation;  }> {
         const localVarPath = this.basePath + '/api/v1.0/payments/payment/{orderId}/refundable'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
@@ -48805,7 +48859,7 @@ export class PaymentsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOrderPaymentInformation;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultOrderPaymentInformation;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -48879,7 +48933,7 @@ export class PayoutsApi {
      * @param storeIds 
      * @param {*} [options] Override http request options.
      */
-    public exportPayoutChargebacks (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+    public exportPayoutChargebacks (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: string;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/chargebacks/export'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -48931,7 +48985,7 @@ export class PayoutsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: string;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -48955,7 +49009,7 @@ export class PayoutsApi {
      * @param storeIds 
      * @param {*} [options] Override http request options.
      */
-    public exportPayoutOrders (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+    public exportPayoutOrders (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: string;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/orders/export'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -49007,7 +49061,7 @@ export class PayoutsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: string;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -49031,7 +49085,7 @@ export class PayoutsApi {
      * @param storeIds 
      * @param {*} [options] Override http request options.
      */
-    public exportPayoutOtherCharges (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+    public exportPayoutOtherCharges (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: string;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/othercharges/export'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -49083,7 +49137,7 @@ export class PayoutsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: string;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -49107,7 +49161,7 @@ export class PayoutsApi {
      * @param storeIds 
      * @param {*} [options] Override http request options.
      */
-    public exportPayoutRefunds (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+    public exportPayoutRefunds (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: string;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/refunds/export'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -49159,7 +49213,7 @@ export class PayoutsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: string;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -49183,7 +49237,7 @@ export class PayoutsApi {
      * @param storeIds 
      * @param {*} [options] Override http request options.
      */
-    public exportPayoutStores (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+    public exportPayoutStores (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: string;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/export'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -49235,7 +49289,7 @@ export class PayoutsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: string;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -49258,7 +49312,7 @@ export class PayoutsApi {
      * @param payoutId 
      * @param {*} [options] Override http request options.
      */
-    public getPayout (appId: string, bankAccountId: number, payoutId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: PayoutDetail;  }> {
+    public getPayout (appId: string, bankAccountId: number, payoutId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: PayoutDetail;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -49306,7 +49360,7 @@ export class PayoutsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: PayoutDetail;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: PayoutDetail;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -49332,7 +49386,7 @@ export class PayoutsApi {
      * @param storeIds 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutChargebacks (appId: string, bankAccountId: number, payoutId: number, page?: number, limit?: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutChargeback;  }> {
+    public getPayoutChargebacks (appId: string, bankAccountId: number, payoutId: number, page?: number, limit?: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultPayoutChargeback;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/chargebacks'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -49392,7 +49446,7 @@ export class PayoutsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutChargeback;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultPayoutChargeback;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -49418,7 +49472,7 @@ export class PayoutsApi {
      * @param storeIds 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutOrders (appId: string, bankAccountId: number, payoutId: number, page?: number, limit?: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutOrder;  }> {
+    public getPayoutOrders (appId: string, bankAccountId: number, payoutId: number, page?: number, limit?: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultPayoutOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/orders'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -49478,7 +49532,7 @@ export class PayoutsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutOrder;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultPayoutOrder;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -49504,7 +49558,7 @@ export class PayoutsApi {
      * @param storeIds 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutOtherCharges (appId: string, bankAccountId: number, payoutId: number, page?: number, limit?: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutOtherCharge;  }> {
+    public getPayoutOtherCharges (appId: string, bankAccountId: number, payoutId: number, page?: number, limit?: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultPayoutOtherCharge;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/othercharges'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -49564,7 +49618,7 @@ export class PayoutsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutOtherCharge;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultPayoutOtherCharge;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -49590,7 +49644,7 @@ export class PayoutsApi {
      * @param storeIds 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutRefunds (appId: string, bankAccountId: number, payoutId: number, page?: number, limit?: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutRefund;  }> {
+    public getPayoutRefunds (appId: string, bankAccountId: number, payoutId: number, page?: number, limit?: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultPayoutRefund;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/refunds'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -49650,7 +49704,7 @@ export class PayoutsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutRefund;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultPayoutRefund;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -49676,7 +49730,7 @@ export class PayoutsApi {
      * @param status 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutSummaries (appId: string, bankAccountId?: number, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPayoutSummary;  }> {
+    public getPayoutSummaries (appId: string, bankAccountId?: number, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultPayoutSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -49732,7 +49786,7 @@ export class PayoutsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPayoutSummary;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultPayoutSummary;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -49760,7 +49814,7 @@ export class PayoutsApi {
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getPayouts (appId: string, bankAccountId?: number, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayout;  }> {
+    public getPayouts (appId: string, bankAccountId?: number, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', page?: number, limit?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultPayout;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -49824,7 +49878,7 @@ export class PayoutsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayout;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultPayout;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -49895,7 +49949,7 @@ export class ProcessingFeeConfigsApi {
      * @param storeIds Store identifiers
      * @param {*} [options] Override http request options.
      */
-    public getProcessingFeeConfigsByStoreIds (storeIds: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }> {
+    public getProcessingFeeConfigsByStoreIds (storeIds: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultProcessingFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/processingfeeconfigs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -49934,7 +49988,7 @@ export class ProcessingFeeConfigsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultProcessingFeeConfig;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -50006,7 +50060,7 @@ export class PushNotificationsApi {
      * @param scheduledPushNotificationId ID of Scheduled push notifiaction to delete
      * @param {*} [options] Override http request options.
      */
-    public deletePushNotification (appId: string, scheduledPushNotificationId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deletePushNotification (appId: string, scheduledPushNotificationId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/pushnotifications/{scheduledPushNotificationId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'scheduledPushNotificationId' + '}', encodeURIComponent(String(scheduledPushNotificationId)));
@@ -50048,7 +50102,7 @@ export class PushNotificationsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -50070,7 +50124,7 @@ export class PushNotificationsApi {
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getPushNotifications (appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPushNotificationResponse;  }> {
+    public getPushNotifications (appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultPushNotificationResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/pushnotifications'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -50114,7 +50168,7 @@ export class PushNotificationsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPushNotificationResponse;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultPushNotificationResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -50136,7 +50190,7 @@ export class PushNotificationsApi {
      * @param notification Notification to send
      * @param {*} [options] Override http request options.
      */
-    public schedulePushNotification (appId: string, notification: PushNotificationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPushNotificationResponse;  }> {
+    public schedulePushNotification (appId: string, notification: PushNotificationRequest, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultPushNotificationResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/pushnotifications'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -50178,7 +50232,7 @@ export class PushNotificationsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPushNotificationResponse;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultPushNotificationResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -50201,7 +50255,7 @@ export class PushNotificationsApi {
      * @param notification Notification to send
      * @param {*} [options] Override http request options.
      */
-    public updatePushNotification (appId: string, scheduledPushNotificationId: number, notification: PushNotificationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPushNotificationResponse;  }> {
+    public updatePushNotification (appId: string, scheduledPushNotificationId: number, notification: PushNotificationRequest, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultPushNotificationResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/pushnotifications/{scheduledPushNotificationId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'scheduledPushNotificationId' + '}', encodeURIComponent(String(scheduledPushNotificationId)));
@@ -50249,7 +50303,7 @@ export class PushNotificationsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPushNotificationResponse;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultPushNotificationResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -50321,7 +50375,7 @@ export class StoreGroupsApi {
      * @param storeGroup Store group definition
      * @param {*} [options] Override http request options.
      */
-    public createStoreGroup (appNameId: string, storeGroup: StoreGroupBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroup;  }> {
+    public createStoreGroup (appNameId: string, storeGroup: StoreGroupBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroup;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appNameId}/storegroups'
             .replace('{' + 'appNameId' + '}', encodeURIComponent(String(appNameId)));
         let localVarQueryParameters: any = {};
@@ -50363,7 +50417,7 @@ export class StoreGroupsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroup;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroup;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -50384,7 +50438,7 @@ export class StoreGroupsApi {
      * @param storeGroupId Store Group Id
      * @param {*} [options] Override http request options.
      */
-    public getStoreGroup (storeGroupId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroup;  }> {
+    public getStoreGroup (storeGroupId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroup;  }> {
         const localVarPath = this.basePath + '/api/v1.0/storegroups/{storeGroupId}'
             .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)));
         let localVarQueryParameters: any = {};
@@ -50420,7 +50474,7 @@ export class StoreGroupsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroup;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroup;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -50444,7 +50498,7 @@ export class StoreGroupsApi {
      * @param limit Requested page limit
      * @param {*} [options] Override http request options.
      */
-    public getStoreGroups (appNameId: string, searchQuery?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreGroup;  }> {
+    public getStoreGroups (appNameId: string, searchQuery?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStoreGroup;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appNameId}/storegroups'
             .replace('{' + 'appNameId' + '}', encodeURIComponent(String(appNameId)));
         let localVarQueryParameters: any = {};
@@ -50492,7 +50546,7 @@ export class StoreGroupsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreGroup;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStoreGroup;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -50517,7 +50571,7 @@ export class StoreGroupsApi {
      * @param groupingRadius 
      * @param {*} [options] Override http request options.
      */
-    public getStoreGroupsExtended (appNameId: string, searchQuery?: string, page?: number, limit?: number, groupingRadius?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreGroupExtended;  }> {
+    public getStoreGroupsExtended (appNameId: string, searchQuery?: string, page?: number, limit?: number, groupingRadius?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStoreGroupExtended;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appNameId}/storegroups/extended'
             .replace('{' + 'appNameId' + '}', encodeURIComponent(String(appNameId)));
         let localVarQueryParameters: any = {};
@@ -50569,7 +50623,7 @@ export class StoreGroupsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreGroupExtended;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStoreGroupExtended;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -50590,7 +50644,7 @@ export class StoreGroupsApi {
      * @param storeGroupId Store Group Id
      * @param {*} [options] Override http request options.
      */
-    public removeStoreGroup (storeGroupId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public removeStoreGroup (storeGroupId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/storegroups/{storeGroupId}'
             .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)));
         let localVarQueryParameters: any = {};
@@ -50626,7 +50680,7 @@ export class StoreGroupsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -50647,7 +50701,7 @@ export class StoreGroupsApi {
      * @param storeGroup Store Group Delta
      * @param {*} [options] Override http request options.
      */
-    public updateStoreGroup (storeGroupId: number, storeGroup: StoreGroupBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroupBase;  }> {
+    public updateStoreGroup (storeGroupId: number, storeGroup: StoreGroupBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroupBase;  }> {
         const localVarPath = this.basePath + '/api/v1.0/storegroups/{storeGroupId}'
             .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)));
         let localVarQueryParameters: any = {};
@@ -50689,7 +50743,7 @@ export class StoreGroupsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroupBase;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStoreGroupBase;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -50762,7 +50816,7 @@ export class StoreOrderCapacityApi {
      * @param deliveryType Delivery / Pickup
      * @param {*} [options] Override http request options.
      */
-    public getStoreOrderCapacity (appId: string, storeId: number, deliveryType: 'Delivery' | 'Pickup', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreOrderCapacityConfig;  }> {
+    public getStoreOrderCapacity (appId: string, storeId: number, deliveryType: 'Delivery' | 'Pickup', options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStoreOrderCapacityConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/storeordercapacity/{storeId}/{deliveryType}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -50810,7 +50864,7 @@ export class StoreOrderCapacityApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStoreOrderCapacityConfig;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStoreOrderCapacityConfig;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -50834,7 +50888,7 @@ export class StoreOrderCapacityApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public updateStoreOrderCapacityConfig (storeId: number, deliveryType: 'Delivery' | 'Pickup', newOrderCapacityConfig: StoreOrderCapacityConfigEditModel, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateStoreOrderCapacityConfig (storeId: number, deliveryType: 'Delivery' | 'Pickup', newOrderCapacityConfig: StoreOrderCapacityConfigEditModel, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/storeordercapacity/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -50891,7 +50945,7 @@ export class StoreOrderCapacityApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -50961,7 +51015,7 @@ export class StoresApi {
      * @param storeId Store identifier
      * @param {*} [options] Override http request options.
      */
-    public archiveStore (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public archiveStore (storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/archive'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -50997,7 +51051,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -51018,7 +51072,7 @@ export class StoresApi {
      * @param menuId Id of Menu to assign to store
      * @param {*} [options] Override http request options.
      */
-    public assignMenu (storeId: number, menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
+    public assignMenu (storeId: number, menuId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultRestApiDefaultResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/menu/{menuId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
@@ -51060,7 +51114,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -51082,7 +51136,7 @@ export class StoresApi {
      * @param settings Settings for cloning the store
      * @param {*} [options] Override http request options.
      */
-    public cloneStore (storeId: number, settings: StoreCloneSettings, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
+    public cloneStore (storeId: number, settings: StoreCloneSettings, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/clone'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -51124,7 +51178,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStore;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -51146,7 +51200,7 @@ export class StoresApi {
      * @param businessHoursOverride Business Hours Override
      * @param {*} [options] Override http request options.
      */
-    public createBusinessHoursOverrideByStoreId (storeId: number, businessHoursOverride: BusinessHoursOverrideBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursOverride;  }> {
+    public createBusinessHoursOverrideByStoreId (storeId: number, businessHoursOverride: BusinessHoursOverrideBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultBusinessHoursOverride;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/businesshoursoverrides'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -51188,7 +51242,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursOverride;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultBusinessHoursOverride;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -51210,7 +51264,7 @@ export class StoresApi {
      * @param store Store
      * @param {*} [options] Override http request options.
      */
-    public createStore (storeGroupId: number, store: StoreCreateBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
+    public createStore (storeGroupId: number, store: StoreCreateBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -51255,7 +51309,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStore;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -51277,7 +51331,7 @@ export class StoresApi {
      * @param businessHoursOverrideId 
      * @param {*} [options] Override http request options.
      */
-    public deleteBusinessHoursOverride (storeId: number, businessHoursOverrideId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
+    public deleteBusinessHoursOverride (storeId: number, businessHoursOverrideId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultRestApiDefaultResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/businesshoursoverrides/{businessHoursOverrideId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'businessHoursOverrideId' + '}', encodeURIComponent(String(businessHoursOverrideId)));
@@ -51319,7 +51373,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -51340,7 +51394,7 @@ export class StoresApi {
      * @param storeId Store identifier
      * @param {*} [options] Override http request options.
      */
-    public getBankAccountForStore (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAssignedBankAccount;  }> {
+    public getBankAccountForStore (storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultAssignedBankAccount;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/bankaccount'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -51376,7 +51430,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAssignedBankAccount;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultAssignedBankAccount;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -51398,7 +51452,7 @@ export class StoresApi {
      * @param deliveryType Delivery type
      * @param {*} [options] Override http request options.
      */
-    public getBusinessHours (storeId: number, deliveryType: 'Delivery' | 'Pickup', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultBusinessHoursPeriod;  }> {
+    public getBusinessHours (storeId: number, deliveryType: 'Delivery' | 'Pickup', options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultBusinessHoursPeriod;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/availability/{deliveryType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
@@ -51440,7 +51494,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultBusinessHoursPeriod;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultBusinessHoursPeriod;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -51464,7 +51518,7 @@ export class StoresApi {
      * @param limit Requested page limit
      * @param {*} [options] Override http request options.
      */
-    public getBusinessHoursOverrideByStoreId (storeId: number, after?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultBusinessHoursOverride;  }> {
+    public getBusinessHoursOverrideByStoreId (storeId: number, after?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultBusinessHoursOverride;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/businesshoursoverrides'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -51512,7 +51566,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultBusinessHoursOverride;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultBusinessHoursOverride;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -51534,7 +51588,7 @@ export class StoresApi {
      * @param date Store identifier
      * @param {*} [options] Override http request options.
      */
-    public getEndOfDayReport (storeId: number, date?: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreEndOfDayReport;  }> {
+    public getEndOfDayReport (storeId: number, date?: Date, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStoreEndOfDayReport;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/endofdayreport'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -51574,7 +51628,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStoreEndOfDayReport;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStoreEndOfDayReport;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -51596,7 +51650,7 @@ export class StoresApi {
      * @param deliveryType \&quot;delivery\&quot; or \&quot;pickup\&quot;
      * @param {*} [options] Override http request options.
      */
-    public getPreOrderConfig (storeId: number, deliveryType: 'Delivery' | 'Pickup', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPreOrderConfig;  }> {
+    public getPreOrderConfig (storeId: number, deliveryType: 'Delivery' | 'Pickup', options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultPreOrderConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/preorderconfig/{deliveryType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
@@ -51638,7 +51692,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPreOrderConfig;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultPreOrderConfig;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -51670,7 +51724,7 @@ export class StoresApi {
      * @param preOrderConfig_requireExplicitSelectAlways Force customer to select collection time.
      * @param {*} [options] Override http request options.
      */
-    public getPreOrderPreview (storeId: number, deliveryType: 'Delivery' | 'Pickup', preOrderConfig_leadTimeMinutes?: number, preOrderConfig_intervalMinutes?: number, preOrderConfig_maxOrderAheadDays?: number, preOrderConfig_includeAsap?: boolean, preOrderConfig_includeMoreGranularInitialTime?: boolean, preOrderConfig_cutOffTimePreviousDayBasic?: string, preOrderConfig_cutOffTimeCurrentDayBasic?: string, preOrderConfig_preOrderTimeDisplayType?: 'SingleTime' | 'StartAndEndTime' | 'DayOnly', preOrderConfig_alwaysAppearOpen?: boolean, preOrderConfig_requireExplicitSelectAlways?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPreOrderTime;  }> {
+    public getPreOrderPreview (storeId: number, deliveryType: 'Delivery' | 'Pickup', preOrderConfig_leadTimeMinutes?: number, preOrderConfig_intervalMinutes?: number, preOrderConfig_maxOrderAheadDays?: number, preOrderConfig_includeAsap?: boolean, preOrderConfig_includeMoreGranularInitialTime?: boolean, preOrderConfig_cutOffTimePreviousDayBasic?: string, preOrderConfig_cutOffTimeCurrentDayBasic?: string, preOrderConfig_preOrderTimeDisplayType?: 'SingleTime' | 'StartAndEndTime' | 'DayOnly', preOrderConfig_alwaysAppearOpen?: boolean, preOrderConfig_requireExplicitSelectAlways?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultPreOrderTime;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/preorderconfig/{deliveryType}/preview'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
@@ -51752,7 +51806,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPreOrderTime;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultPreOrderTime;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -51774,7 +51828,7 @@ export class StoresApi {
      * @param appNameId App Name Id(Not used, still here for compatability reasons)
      * @param {*} [options] Override http request options.
      */
-    public getProcessingFeeConfigsByStoreId (storeId: number, appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }> {
+    public getProcessingFeeConfigsByStoreId (storeId: number, appNameId?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultProcessingFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -51814,7 +51868,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultProcessingFeeConfig;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -51837,7 +51891,7 @@ export class StoresApi {
      * @param appNameId App Name Id(Not used, still here for compatability reasons)
      * @param {*} [options] Override http request options.
      */
-    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: 'Card' | 'Cash' | 'Ideal' | 'Bancontact' | 'Giropay' | 'Eps' | 'Emv' | 'PayPal', appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }> {
+    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: 'Card' | 'Cash' | 'Ideal' | 'Bancontact' | 'Giropay' | 'Eps' | 'Emv' | 'PayPal', appNameId?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultProcessingFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs/{paymentAccountType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'paymentAccountType' + '}', encodeURIComponent(String(paymentAccountType)));
@@ -51883,7 +51937,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultProcessingFeeConfig;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -51904,7 +51958,7 @@ export class StoresApi {
      * @param storeId Store identifier
      * @param {*} [options] Override http request options.
      */
-    public getStoreById (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
+    public getStoreById (storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -51940,7 +51994,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStore;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -51964,7 +52018,7 @@ export class StoresApi {
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getStoreHeadersByAppId (appId: string, storeNameQuery?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreHeader;  }> {
+    public getStoreHeadersByAppId (appId: string, storeNameQuery?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStoreHeader;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/header'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -52012,7 +52066,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreHeader;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStoreHeader;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -52034,7 +52088,7 @@ export class StoresApi {
      * @param storeId Store Ids
      * @param {*} [options] Override http request options.
      */
-    public getStoreNetSales (appId: string, storeId: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreStatistics;  }> {
+    public getStoreNetSales (appId: string, storeId: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultStoreStatistics;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/stats'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -52079,7 +52133,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreStatistics;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultStoreStatistics;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -52103,7 +52157,7 @@ export class StoresApi {
      * @param storeGroupId Store Group Id
      * @param {*} [options] Override http request options.
      */
-    public getStores (searchQuery?: string, page?: number, limit?: number, storeGroupId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }> {
+    public getStores (searchQuery?: string, page?: number, limit?: number, storeGroupId?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -52149,7 +52203,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStore;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -52173,7 +52227,7 @@ export class StoresApi {
      * @param limit Requested page limit
      * @param {*} [options] Override http request options.
      */
-    public getStoresByAppId (appId: string, searchQuery?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }> {
+    public getStoresByAppId (appId: string, searchQuery?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -52221,7 +52275,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultStore;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -52242,7 +52296,7 @@ export class StoresApi {
      * @param storeId Store identifier
      * @param {*} [options] Override http request options.
      */
-    public publishStore (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public publishStore (storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/publish'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -52278,7 +52332,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -52300,7 +52354,7 @@ export class StoresApi {
      * @param businessHoursPeriod Business Hours Period
      * @param {*} [options] Override http request options.
      */
-    public setBusinessHours (storeId: number, deliveryType: 'Delivery' | 'Pickup', businessHoursPeriod: BusinessHoursPeriodBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursPeriod;  }> {
+    public setBusinessHours (storeId: number, deliveryType: 'Delivery' | 'Pickup', businessHoursPeriod: BusinessHoursPeriodBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultBusinessHoursPeriod;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/availability/{deliveryType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
@@ -52348,7 +52402,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursPeriod;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultBusinessHoursPeriod;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -52371,7 +52425,7 @@ export class StoresApi {
      * @param enabled Update pre order config values
      * @param {*} [options] Override http request options.
      */
-    public setPreOrdeEnabled (storeId: number, deliveryType: 'Delivery' | 'Pickup', enabled: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
+    public setPreOrdeEnabled (storeId: number, deliveryType: 'Delivery' | 'Pickup', enabled: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultRestApiDefaultResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/preorderconfig/{deliveryType}/enabled'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
@@ -52422,7 +52476,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -52443,7 +52497,7 @@ export class StoresApi {
      * @param storeId Store identifier
      * @param {*} [options] Override http request options.
      */
-    public unpublishStore (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public unpublishStore (storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/unpublish'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -52479,7 +52533,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -52501,7 +52555,7 @@ export class StoresApi {
      * @param preOrderConfig Update pre order config values
      * @param {*} [options] Override http request options.
      */
-    public updatePreOrderConfig (storeId: number, deliveryType: 'Delivery' | 'Pickup', preOrderConfig: PreOrderConfig, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
+    public updatePreOrderConfig (storeId: number, deliveryType: 'Delivery' | 'Pickup', preOrderConfig: PreOrderConfig, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultRestApiDefaultResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/preorderconfig/{deliveryType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
@@ -52549,7 +52603,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultRestApiDefaultResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -52571,7 +52625,7 @@ export class StoresApi {
      * @param store Store
      * @param {*} [options] Override http request options.
      */
-    public updateStore (storeId: number, store: StoreBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
+    public updateStore (storeId: number, store: StoreBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -52613,7 +52667,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStore;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -52635,7 +52689,7 @@ export class StoresApi {
      * @param storeAddress Store address
      * @param {*} [options] Override http request options.
      */
-    public updateStoreAddress (storeId: number, storeAddress: StoreAddressBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreAddress;  }> {
+    public updateStoreAddress (storeId: number, storeAddress: StoreAddressBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStoreAddress;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/address'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -52677,7 +52731,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStoreAddress;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStoreAddress;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -52700,7 +52754,7 @@ export class StoresApi {
      * @param appNameId App Name Id(Not used, still here for compatability reasons)
      * @param {*} [options] Override http request options.
      */
-    public updateStoreAddressCoordinates (storeId: number, coordinates: Coordinates, appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCoordinates;  }> {
+    public updateStoreAddressCoordinates (storeId: number, coordinates: Coordinates, appNameId?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultCoordinates;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/address/coordinates'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -52746,7 +52800,7 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCoordinates;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultCoordinates;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -52818,7 +52872,7 @@ export class StripeCustomConnectApi {
      * @param account Account to be created
      * @param {*} [options] Override http request options.
      */
-    public createBankAccountAndConnectedAccount (appId: string, account: BankAccountCreate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
+    public createBankAccountAndConnectedAccount (appId: string, account: BankAccountCreate, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultBankAccountDetail;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/bank-account'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -52860,7 +52914,7 @@ export class StripeCustomConnectApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultBankAccountDetail;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -52882,7 +52936,7 @@ export class StripeCustomConnectApi {
      * @param bankAccountId Bank Account Id
      * @param {*} [options] Override http request options.
      */
-    public createStripeConnectedAccount (appId: string, bankAccountId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
+    public createStripeConnectedAccount (appId: string, bankAccountId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStripeConnectedAccount;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/{bankAccountId}/create-update-account'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)));
@@ -52924,7 +52978,7 @@ export class StripeCustomConnectApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -52947,7 +53001,7 @@ export class StripeCustomConnectApi {
      * @param stripeAccountLinkRequest 
      * @param {*} [options] Override http request options.
      */
-    public createStripeConnectedAccountLink (appId: string, stripeConnectedAccountId: string, stripeAccountLinkRequest: StripeAccountLinkRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
+    public createStripeConnectedAccountLink (appId: string, stripeConnectedAccountId: string, stripeAccountLinkRequest: StripeAccountLinkRequest, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStripeConnectedAccount;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/{stripeConnectedAccountId}/create-account-link'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'stripeConnectedAccountId' + '}', encodeURIComponent(String(stripeConnectedAccountId)));
@@ -52995,7 +53049,7 @@ export class StripeCustomConnectApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -53017,7 +53071,7 @@ export class StripeCustomConnectApi {
      * @param stripeConnectedAccountId 
      * @param {*} [options] Override http request options.
      */
-    public getVerificationStatus (appId: string, stripeConnectedAccountId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
+    public getVerificationStatus (appId: string, stripeConnectedAccountId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStripeConnectedAccount;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/verification-status'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -53062,7 +53116,7 @@ export class StripeCustomConnectApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -53085,7 +53139,7 @@ export class StripeCustomConnectApi {
      * @param businessType Bank Account business type
      * @param {*} [options] Override http request options.
      */
-    public setBankAccountBusinessType (appId: string, bankAccountId: number, businessType: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
+    public setBankAccountBusinessType (appId: string, bankAccountId: number, businessType: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultBankAccountDetail;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/bank-account/{bankAccountId}/businesstype'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)));
@@ -53133,7 +53187,7 @@ export class StripeCustomConnectApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultBankAccountDetail;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -53154,7 +53208,7 @@ export class StripeCustomConnectApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public stripeCustomConnectRefresh (linkRequestId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public stripeCustomConnectRefresh (linkRequestId: number, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/refresh-link'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -53199,7 +53253,7 @@ export class StripeCustomConnectApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -53222,7 +53276,7 @@ export class StripeCustomConnectApi {
      * @param updateRequest fields to be updated
      * @param {*} [options] Override http request options.
      */
-    public updateBankAccountDetails (appId: string, bankAccountId: number, updateRequest: BankAccountDetailsUpdateRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
+    public updateBankAccountDetails (appId: string, bankAccountId: number, updateRequest: BankAccountDetailsUpdateRequest, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStripeConnectedAccount;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/{bankAccountId}/update-bank-account-details'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)));
@@ -53270,7 +53324,7 @@ export class StripeCustomConnectApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStripeConnectedAccount;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -53342,7 +53396,7 @@ export class StuartApi {
      * @param storeId Store identifier
      * @param {*} [options] Override http request options.
      */
-    public stuartCancelJob (jobId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public stuartCancelJob (jobId: number, storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stuart/jobs/{jobId}'
             .replace('{' + 'jobId' + '}', encodeURIComponent(String(jobId)));
         let localVarQueryParameters: any = {};
@@ -53387,7 +53441,7 @@ export class StuartApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -53409,7 +53463,7 @@ export class StuartApi {
      * @param storeId Store identifier
      * @param {*} [options] Override http request options.
      */
-    public stuartGetJob (jobId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultJobResponse;  }> {
+    public stuartGetJob (jobId: number, storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultJobResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stuart/jobs/{jobId}'
             .replace('{' + 'jobId' + '}', encodeURIComponent(String(jobId)));
         let localVarQueryParameters: any = {};
@@ -53454,7 +53508,7 @@ export class StuartApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultJobResponse;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultJobResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -53475,7 +53529,7 @@ export class StuartApi {
      * @param storeId Store Identifier
      * @param {*} [options] Override http request options.
      */
-    public stuartGetStuartSettings (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStuartSettings;  }> {
+    public stuartGetStuartSettings (storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultStuartSettings;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stuart/settings/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -53511,7 +53565,7 @@ export class StuartApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStuartSettings;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultStuartSettings;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -53533,7 +53587,7 @@ export class StuartApi {
      * @param stuartSettings Stuart settings model
      * @param {*} [options] Override http request options.
      */
-    public stuartPostStuartSettings (storeId: number, stuartSettings: StuartSettings, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public stuartPostStuartSettings (storeId: number, stuartSettings: StuartSettings, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stuart/settings/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -53575,7 +53629,7 @@ export class StuartApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -53647,7 +53701,7 @@ export class TeammatesApi {
      * @param teammate teammate model
      * @param {*} [options] Override http request options.
      */
-    public createTeammate (appId: string, teammate: CreateTeammate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
+    public createTeammate (appId: string, teammate: CreateTeammate, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultTeammate;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -53689,7 +53743,7 @@ export class TeammatesApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultTeammate;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -53711,7 +53765,7 @@ export class TeammatesApi {
      * @param id 
      * @param {*} [options] Override http request options.
      */
-    public deleteTeammate (appId: string, id: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteTeammate (appId: string, id: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{id}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -53753,7 +53807,7 @@ export class TeammatesApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -53774,7 +53828,7 @@ export class TeammatesApi {
      * @param id 
      * @param {*} [options] Override http request options.
      */
-    public getTeammateByAppIdAndTeammateId (appId: string, id: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
+    public getTeammateByAppIdAndTeammateId (appId: string, id: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultTeammate;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{id}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -53816,7 +53870,7 @@ export class TeammatesApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultTeammate;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -53837,7 +53891,7 @@ export class TeammatesApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getTeammatesByAppId (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultTeammate;  }> {
+    public getTeammatesByAppId (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultTeammate;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -53873,7 +53927,7 @@ export class TeammatesApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultTeammate;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultTeammate;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -53895,7 +53949,7 @@ export class TeammatesApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public redeemInvitation (otc: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRedeemInvitationResult;  }> {
+    public redeemInvitation (otc: string, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultRedeemInvitationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/redeem/{otc}'
             .replace('{' + 'otc' + '}', encodeURIComponent(String(otc)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -53937,7 +53991,7 @@ export class TeammatesApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRedeemInvitationResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultRedeemInvitationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -53960,7 +54014,7 @@ export class TeammatesApi {
      * @param teammate teammate model
      * @param {*} [options] Override http request options.
      */
-    public updateTeammate (appId: string, id: string, teammate: TeammateBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
+    public updateTeammate (appId: string, id: string, teammate: TeammateBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultTeammate;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/{id}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -54008,7 +54062,7 @@ export class TeammatesApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultTeammate;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -54079,7 +54133,7 @@ export class UsersApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
-    public getPreviousOrderCountForStore (userId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public getPreviousOrderCountForStore (userId: number, storeId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/users/{userId}/previousordercount/{storeId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
@@ -54121,7 +54175,7 @@ export class UsersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -54141,7 +54195,7 @@ export class UsersApi {
      * @summary Get role names
      * @param {*} [options] Override http request options.
      */
-    public getRoles (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
+    public getRoles (options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/users/roles';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -54171,7 +54225,7 @@ export class UsersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -54243,7 +54297,7 @@ export class VouchersApi {
      * @param voucher Voucher Details
      * @param {*} [options] Override http request options.
      */
-    public createVoucher (appId: string, voucher: CreateVoucher, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
+    public createVoucher (appId: string, voucher: CreateVoucher, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultVoucherWithStats;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{appId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -54285,7 +54339,7 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultVoucherWithStats;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -54306,7 +54360,7 @@ export class VouchersApi {
      * @param voucherId Id of the voucher
      * @param {*} [options] Override http request options.
      */
-    public getVoucherById (voucherId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
+    public getVoucherById (voucherId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultVoucherWithStats;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
         let localVarQueryParameters: any = {};
@@ -54342,7 +54396,7 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultVoucherWithStats;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -54365,7 +54419,7 @@ export class VouchersApi {
      * @param dataPointLimit Amount of data points per request
      * @param {*} [options] Override http request options.
      */
-    public getVoucherStatsById (voucherId: number, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultVoucherDataPoint;  }> {
+    public getVoucherStatsById (voucherId: number, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiArrayResultVoucherDataPoint;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/stats/{voucherId}'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
         let localVarQueryParameters: any = {};
@@ -54414,7 +54468,7 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultVoucherDataPoint;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiArrayResultVoucherDataPoint;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -54442,7 +54496,7 @@ export class VouchersApi {
      * @param storeIds Search by Store Ids
      * @param {*} [options] Override http request options.
      */
-    public getVouchers (appId: string, pageIndex?: number, pageSize?: number, searchCodes?: Array<string>, statusSearch?: Array<'Valid' | 'NotYetValid' | 'Expired' | 'Used' | 'Disabled'>, typeSearch?: Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote'>, subTypeSearch?: Array<'None' | 'SignUp' | 'Loyalty' | 'Loyalty25' | 'Retention' | 'SecondaryRetention' | 'Custom'>, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherSummary;  }> {
+    public getVouchers (appId: string, pageIndex?: number, pageSize?: number, searchCodes?: Array<string>, statusSearch?: Array<'Valid' | 'NotYetValid' | 'Expired' | 'Used' | 'Disabled'>, typeSearch?: Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote'>, subTypeSearch?: Array<'None' | 'SignUp' | 'Loyalty' | 'Loyalty25' | 'Retention' | 'SecondaryRetention' | 'Custom'>, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultVoucherSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/vouchers/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -54506,7 +54560,7 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherSummary;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultVoucherSummary;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -54532,7 +54586,7 @@ export class VouchersApi {
      * @param freeItemId Free Item Id (can have 1 of 3)
      * @param {*} [options] Override http request options.
      */
-    public updateVoucher (voucherId: number, voucher: VoucherBase, storeId?: Array<number>, percentValue?: number, lumpValue?: number, freeItemId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
+    public updateVoucher (voucherId: number, voucher: VoucherBase, storeId?: Array<number>, percentValue?: number, lumpValue?: number, freeItemId?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultVoucherWithStats;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
         let localVarQueryParameters: any = {};
@@ -54590,7 +54644,7 @@ export class VouchersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultVoucherWithStats;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -54663,7 +54717,7 @@ export class WebhooksApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public craeteWebhookSubscription (oauthAppId: string, webhookSubscription: WebhookSubscription, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }> {
+    public craeteWebhookSubscription (oauthAppId: string, webhookSubscription: WebhookSubscription, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiIntegerResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -54711,7 +54765,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiIntegerResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -54735,7 +54789,7 @@ export class WebhooksApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public createWebhookSubscriptionEventNames (oauthAppId: string, webhookSubscriptionId: number, eventName: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public createWebhookSubscriptionEventNames (oauthAppId: string, webhookSubscriptionId: number, eventName: string, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions/{webhookSubscriptionId}/events/{eventName}'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
@@ -54789,7 +54843,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -54811,7 +54865,7 @@ export class WebhooksApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public deleteWebhookSubscription (oauthAppId: string, webhookSubscriptionId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteWebhookSubscription (oauthAppId: string, webhookSubscriptionId: number, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions/{webhookSubscriptionId}'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
@@ -54859,7 +54913,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -54882,7 +54936,7 @@ export class WebhooksApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public deleteWebhookSubscriptionEventName (oauthAppId: string, webhookSubscriptionId: number, eventName: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteWebhookSubscriptionEventName (oauthAppId: string, webhookSubscriptionId: number, eventName: string, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions/{webhookSubscriptionId}/events/{eventName}'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
@@ -54936,7 +54990,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -54956,7 +55010,7 @@ export class WebhooksApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getWebhookEventNames (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
+    public getWebhookEventNames (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/events'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -54992,7 +55046,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -55015,7 +55069,7 @@ export class WebhooksApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getWebhookEventNamesBySubscriptionId (oauthAppId: string, webhookSubscriptionId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
+    public getWebhookEventNamesBySubscriptionId (oauthAppId: string, webhookSubscriptionId: number, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions/{webhookSubscriptionId}/events'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
@@ -55063,7 +55117,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiStringArrayResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -55088,7 +55142,7 @@ export class WebhooksApi {
      * @param version 
      * @param {*} [options] Override http request options.
      */
-    public getWebhookEventSample (eventName: string, appId: string, oauthAppId: string, webhookSubscriptionId: string, version?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: WebhookEventSample;  }> {
+    public getWebhookEventSample (eventName: string, appId: string, oauthAppId: string, webhookSubscriptionId: string, version?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: WebhookEventSample;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions/{webhookSubscriptionId}/events/{eventName}/test'
             .replace('{' + 'eventName' + '}', encodeURIComponent(String(eventName)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
@@ -55146,7 +55200,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: WebhookEventSample;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: WebhookEventSample;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -55173,7 +55227,7 @@ export class WebhooksApi {
      * @param limit Page size
      * @param {*} [options] Override http request options.
      */
-    public getWebhookLogs (oauthAppId: string, webhookSubscriptionId: number, start: Date, end: Date, appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultWebhookLog;  }> {
+    public getWebhookLogs (oauthAppId: string, webhookSubscriptionId: number, start: Date, end: Date, appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultWebhookLog;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions/{webhookSubscriptionId}/logs'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
@@ -55247,7 +55301,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultWebhookLog;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultWebhookLog;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -55271,7 +55325,7 @@ export class WebhooksApi {
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getWebhookSubscriptions (oauthAppId: string, appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultWebhookSubscription;  }> {
+    public getWebhookSubscriptions (oauthAppId: string, appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiPaginationResultWebhookSubscription;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -55321,7 +55375,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultWebhookSubscription;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiPaginationResultWebhookSubscription;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -55345,7 +55399,7 @@ export class WebhooksApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public updateWebhookSubscription (oauthAppId: string, webhookSubscriptionId: number, webhookSubscription: WebhookSubscription, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateWebhookSubscription (oauthAppId: string, webhookSubscriptionId: number, webhookSubscription: WebhookSubscription, appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions/{webhookSubscriptionId}'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'webhookSubscriptionId' + '}', encodeURIComponent(String(webhookSubscriptionId)))
@@ -55399,7 +55453,7 @@ export class WebhooksApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -55470,7 +55524,7 @@ export class WebsiteApi {
      * @param testimonial Testimonial to be added
      * @param {*} [options] Override http request options.
      */
-    public addTestimonial (appId: string, testimonial: WebsiteTestimonialBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteTestimonial;  }> {
+    public addTestimonial (appId: string, testimonial: WebsiteTestimonialBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultWebsiteTestimonial;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/website/testimonial'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -55512,7 +55566,7 @@ export class WebsiteApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteTestimonial;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultWebsiteTestimonial;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -55534,7 +55588,7 @@ export class WebsiteApi {
      * @param testimonialId Id of the testimonial to delete
      * @param {*} [options] Override http request options.
      */
-    public deleteTestimonial (appId: string, testimonialId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteTestimonial (appId: string, testimonialId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/website/testimonial/{testimonialId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'testimonialId' + '}', encodeURIComponent(String(testimonialId)));
@@ -55576,7 +55630,7 @@ export class WebsiteApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -55597,7 +55651,7 @@ export class WebsiteApi {
      * @param imageId Id of the image
      * @param {*} [options] Override http request options.
      */
-    public deleteWebsiteImage (appId: string, imageId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteWebsiteImage (appId: string, imageId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/website/image/{imageId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
@@ -55639,7 +55693,7 @@ export class WebsiteApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -55661,7 +55715,7 @@ export class WebsiteApi {
      * @param testimonial New values of the testimonial
      * @param {*} [options] Override http request options.
      */
-    public editTestimonial (appId: string, testimonialId: number, testimonial: WebsiteTestimonialBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteTestimonial;  }> {
+    public editTestimonial (appId: string, testimonialId: number, testimonial: WebsiteTestimonialBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultWebsiteTestimonial;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/website/testimonial/{testimonialId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'testimonialId' + '}', encodeURIComponent(String(testimonialId)));
@@ -55709,7 +55763,7 @@ export class WebsiteApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteTestimonial;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultWebsiteTestimonial;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -55730,7 +55784,7 @@ export class WebsiteApi {
      * @param appId Application identifier
      * @param {*} [options] Override http request options.
      */
-    public getIndexConfiguration (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultIndexPage;  }> {
+    public getIndexConfiguration (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultIndexPage;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/website/index'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -55766,7 +55820,7 @@ export class WebsiteApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultIndexPage;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultIndexPage;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -55788,7 +55842,7 @@ export class WebsiteApi {
      * @param indexPage New index page definition
      * @param {*} [options] Override http request options.
      */
-    public setIndexConfiguration (appId: string, indexPage: IndexPageBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultIndexPageBase;  }> {
+    public setIndexConfiguration (appId: string, indexPage: IndexPageBase, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultIndexPageBase;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/website/index'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -55830,7 +55884,7 @@ export class WebsiteApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultIndexPageBase;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultIndexPageBase;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -55853,7 +55907,7 @@ export class WebsiteApi {
      * @param Image App Logo
      * @param {*} [options] Override http request options.
      */
-    public uploadWebsiteImage (appId: string, imageLocation: 'IndexHeader' | 'IndexAboutSectionLeft' | 'IndexAboutSectionRight' | 'IndexGallery' | 'IndexOpeningHoursHeader' | 'IndexTestimonialsHeader', Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteImage;  }> {
+    public uploadWebsiteImage (appId: string, imageLocation: 'IndexHeader' | 'IndexAboutSectionLeft' | 'IndexAboutSectionRight' | 'IndexGallery' | 'IndexOpeningHoursHeader' | 'IndexTestimonialsHeader', Image: Buffer, options: any = {}) : Promise<{ response: http.ClientResponse; body: RestApiResultWebsiteImage;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/website/image/{imageLocation}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'imageLocation' + '}', encodeURIComponent(String(imageLocation)));
@@ -55905,7 +55959,7 @@ export class WebsiteApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteImage;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: RestApiResultWebsiteImage;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -55926,7 +55980,7 @@ export class WebsiteApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public websiteCheckNow (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public websiteCheckNow (appId: string, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/website/dnscheck'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -55962,7 +56016,7 @@ export class WebsiteApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
