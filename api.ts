@@ -14810,7 +14810,8 @@ export namespace Order {
         Area = <any> 'Area',
         Table = <any> 'Table',
         ParkingBay = <any> 'ParkingBay',
-        Gate = <any> 'Gate'
+        Gate = <any> 'Gate',
+        DriveThrough = <any> 'DriveThrough'
     }
     export enum PaymentAccountTypeEnum {
         Card = <any> 'Card',
@@ -16154,7 +16155,8 @@ export namespace OrderSummary {
         Area = <any> 'Area',
         Table = <any> 'Table',
         ParkingBay = <any> 'ParkingBay',
-        Gate = <any> 'Gate'
+        Gate = <any> 'Gate',
+        DriveThrough = <any> 'DriveThrough'
     }
     export enum OrderStateEnum {
         Created = <any> 'Created',
