@@ -6655,6 +6655,10 @@ export class EventSearchResult {
     */
     'MenuUploadedEvent'?: Array<MenuUploadedEvent>;
     /**
+    * Menu bulk events
+    */
+    'MenuBulkEditEvent'?: Array<MenuBulkEditEvent>;
+    /**
     * Menu section created events
     */
     'MenuSectionCreatedEvent'?: Array<MenuSectionCreatedEvent>;
@@ -7133,6 +7137,11 @@ export class EventSearchResult {
             "name": "MenuUploadedEvent",
             "baseName": "MenuUploadedEvent",
             "type": "Array<MenuUploadedEvent>"
+        },
+        {
+            "name": "MenuBulkEditEvent",
+            "baseName": "MenuBulkEditEvent",
+            "type": "Array<MenuBulkEditEvent>"
         },
         {
             "name": "MenuSectionCreatedEvent",
@@ -11629,6 +11638,119 @@ export namespace MenuBase {
     }
 }
 /**
+* 
+*/
+export class MenuBulkEditEvent {
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Product
+    */
+    'Product'?: string;
+    /**
+    * Quantity of product
+    */
+    'InstanceCount'?: number;
+    /**
+    * Visibility of the item
+    */
+    'IsAvailable'?: boolean;
+    /**
+    * User who has uploaded the menu
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The menu
+    */
+    'Menu'?: Menu;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Product",
+            "baseName": "Product",
+            "type": "string"
+        },
+        {
+            "name": "InstanceCount",
+            "baseName": "InstanceCount",
+            "type": "number"
+        },
+        {
+            "name": "IsAvailable",
+            "baseName": "IsAvailable",
+            "type": "boolean"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Menu",
+            "baseName": "Menu",
+            "type": "Menu"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuBulkEditEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Menu Checkpoint
 */
 export class MenuCheckpoint {
@@ -11893,12 +12015,15 @@ export class MenuElementEditResponse {
 
 export namespace MenuElementEditResponse {
     export enum MenuElementTypeEnum {
-        MenuItem = <any> 'MenuItem',
-        MenuOptionSetItem = <any> 'MenuOptionSetItem'
+        Item = <any> 'Item',
+        OptionSetItem = <any> 'OptionSetItem'
     }
     export enum ValidationCodeEnum {
         Success = <any> 'Success',
-        MinimumCountViolation = <any> 'MinimumCountViolation'
+        MinimumCountViolation = <any> 'MinimumCountViolation',
+        MasterOptionSetViolation = <any> 'MasterOptionSetViolation',
+        IncorrectElementTypeInMenu = <any> 'IncorrectElementTypeInMenu',
+        DBFailed = <any> 'DBFailed'
     }
 }
 /**
@@ -11935,8 +12060,8 @@ export class MenuElementHide {
 
 export namespace MenuElementHide {
     export enum MenuElementTypeEnum {
-        MenuItem = <any> 'MenuItem',
-        MenuOptionSetItem = <any> 'MenuOptionSetItem'
+        Item = <any> 'Item',
+        OptionSetItem = <any> 'OptionSetItem'
     }
 }
 /**
@@ -33520,6 +33645,7 @@ let typeMap: {[index: string]: any} = {
     "MaskedPhoneNumber": MaskedPhoneNumber,
     "Menu": Menu,
     "MenuBase": MenuBase,
+    "MenuBulkEditEvent": MenuBulkEditEvent,
     "MenuCheckpoint": MenuCheckpoint,
     "MenuCheckpointCreatedEvent": MenuCheckpointCreatedEvent,
     "MenuCreatedEvent": MenuCreatedEvent,
@@ -41045,6 +41171,55 @@ export class HeartbeatApi {
      * 
      * @param {*} [options] Override http request options.
      */
+    public database (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/heartbeat/Database';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param {*} [options] Override http request options.
+     */
     public headHostname (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/heartbeat/Hostname';
         let localVarQueryParameters: any = {};
@@ -47031,11 +47206,11 @@ export class MenusApi {
      * 
      * @param menuId 
      * @param menuElements 
-     * @param hide 
+     * @param isAvailable 
      * @param undoAfter 
      * @param {*} [options] Override http request options.
      */
-    public menusShowHideBulkItems (menuId: number, menuElements: Array<MenuElementHide>, hide: boolean, undoAfter: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementEditResponse;  }> {
+    public menusShowHideBulkItems (menuId: number, menuElements: Array<MenuElementHide>, isAvailable: boolean, undoAfter: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementEditResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/bulkshowhide'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -47052,9 +47227,9 @@ export class MenusApi {
             throw new Error('Required parameter menuElements was null or undefined when calling menusShowHideBulkItems.');
         }
 
-        // verify required parameter 'hide' is not null or undefined
-        if (hide === null || hide === undefined) {
-            throw new Error('Required parameter hide was null or undefined when calling menusShowHideBulkItems.');
+        // verify required parameter 'isAvailable' is not null or undefined
+        if (isAvailable === null || isAvailable === undefined) {
+            throw new Error('Required parameter isAvailable was null or undefined when calling menusShowHideBulkItems.');
         }
 
         // verify required parameter 'undoAfter' is not null or undefined
@@ -47062,8 +47237,8 @@ export class MenusApi {
             throw new Error('Required parameter undoAfter was null or undefined when calling menusShowHideBulkItems.');
         }
 
-        if (hide !== undefined) {
-            localVarQueryParameters['hide'] = ObjectSerializer.serialize(hide, "boolean");
+        if (isAvailable !== undefined) {
+            localVarQueryParameters['isAvailable'] = ObjectSerializer.serialize(isAvailable, "boolean");
         }
 
         if (undoAfter !== undefined) {
