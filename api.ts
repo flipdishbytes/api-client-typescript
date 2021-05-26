@@ -11638,9 +11638,13 @@ export namespace MenuBase {
     }
 }
 /**
-* 
+* Menu bulk event
 */
 export class MenuBulkEditEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
     /**
     * Description
     */
@@ -11648,7 +11652,7 @@ export class MenuBulkEditEvent {
     /**
     * Product
     */
-    'Product'?: string;
+    'Item'?: string;
     /**
     * Quantity of product
     */
@@ -11662,13 +11666,9 @@ export class MenuBulkEditEvent {
     */
     'User'?: UserEventInfo;
     /**
-    * The menu
+    * The menu Id
     */
-    'Menu'?: Menu;
-    /**
-    * The event name
-    */
-    'EventName'?: string;
+    'MenuId'?: number;
     /**
     * The identitfier of the event
     */
@@ -11690,13 +11690,18 @@ export class MenuBulkEditEvent {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
         },
         {
-            "name": "Product",
-            "baseName": "Product",
+            "name": "Item",
+            "baseName": "Item",
             "type": "string"
         },
         {
@@ -11715,14 +11720,9 @@ export class MenuBulkEditEvent {
             "type": "UserEventInfo"
         },
         {
-            "name": "Menu",
-            "baseName": "Menu",
-            "type": "Menu"
-        },
-        {
-            "name": "EventName",
-            "baseName": "EventName",
-            "type": "string"
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
         },
         {
             "name": "FlipdishEventId",
