@@ -10587,6 +10587,38 @@ export namespace KioskBluetoothUnpairingModeEvent {
     }
 }
 /**
+* Get Cash Payment Settings for a UserId
+*/
+export class KioskCashPaymentSettings {
+    /**
+    * false :disable cash on kiosk  true :enable cash on kiosk
+    */
+    'IsCashVisibleToCustomer'?: boolean;
+    /**
+    * HydraUser ID of the Device
+    */
+    'UserId'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "IsCashVisibleToCustomer",
+            "baseName": "IsCashVisibleToCustomer",
+            "type": "boolean"
+        },
+        {
+            "name": "UserId",
+            "baseName": "UserId",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return KioskCashPaymentSettings.attributeTypeMap;
+    }
+}
+
+/**
 * Sorted Language
 */
 export class Language {
@@ -20650,6 +20682,29 @@ export class RestApiArrayResultHomeAction {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultHomeAction.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultKioskCashPaymentSettings {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<KioskCashPaymentSettings>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<KioskCashPaymentSettings>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultKioskCashPaymentSettings.attributeTypeMap;
     }
 }
 
@@ -33631,6 +33686,7 @@ let typeMap: {[index: string]: any} = {
     "KioskBluetoothTerminalInstallationStatusEvent": KioskBluetoothTerminalInstallationStatusEvent,
     "KioskBluetoothTerminalUpdatedEvent": KioskBluetoothTerminalUpdatedEvent,
     "KioskBluetoothUnpairingModeEvent": KioskBluetoothUnpairingModeEvent,
+    "KioskCashPaymentSettings": KioskCashPaymentSettings,
     "Language": Language,
     "LightspeedSettings": LightspeedSettings,
     "LocalisedTimeZone": LocalisedTimeZone,
@@ -33751,6 +33807,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultDriverStore": RestApiArrayResultDriverStore,
     "RestApiArrayResultEmvTerminalWithAssignments": RestApiArrayResultEmvTerminalWithAssignments,
     "RestApiArrayResultHomeAction": RestApiArrayResultHomeAction,
+    "RestApiArrayResultKioskCashPaymentSettings": RestApiArrayResultKioskCashPaymentSettings,
     "RestApiArrayResultLocalisedTimeZone": RestApiArrayResultLocalisedTimeZone,
     "RestApiArrayResultLoyaltyCampaign": RestApiArrayResultLoyaltyCampaign,
     "RestApiArrayResultMenuCheckpoint": RestApiArrayResultMenuCheckpoint,
@@ -42382,6 +42439,70 @@ export class HydraApi {
         });
     }
     /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get the status of Cash Payment Methon on Kisok
+     * @param appId 
+     * @param deviceId 
+     * @param {*} [options] Override http request options.
+     */
+    public getKioskCashPaymentSettings (appId: string, deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultKioskCashPaymentSettings;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/kioskcashsettings/{deviceId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getKioskCashPaymentSettings.');
+        }
+
+        // verify required parameter 'deviceId' is not null or undefined
+        if (deviceId === null || deviceId === undefined) {
+            throw new Error('Required parameter deviceId was null or undefined when calling getKioskCashPaymentSettings.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultKioskCashPaymentSettings;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultKioskCashPaymentSettings");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * 
      * @param {*} [options] Override http request options.
      */
@@ -42881,6 +43002,82 @@ export class HydraApi {
         // verify required parameter 'hydraConfigId' is not null or undefined
         if (hydraConfigId === null || hydraConfigId === undefined) {
             throw new Error('Required parameter hydraConfigId was null or undefined when calling unassignEmv.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Update the Cash Payment Methon Visiability on Kisok
+     * @param appId 
+     * @param deviceId 
+     * @param isCashEnabled 
+     * @param {*} [options] Override http request options.
+     */
+    public updateKioskCashVisibilitySettings (appId: string, deviceId: string, isCashEnabled: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/kioskupdatecashsettings'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateKioskCashVisibilitySettings.');
+        }
+
+        // verify required parameter 'deviceId' is not null or undefined
+        if (deviceId === null || deviceId === undefined) {
+            throw new Error('Required parameter deviceId was null or undefined when calling updateKioskCashVisibilitySettings.');
+        }
+
+        // verify required parameter 'isCashEnabled' is not null or undefined
+        if (isCashEnabled === null || isCashEnabled === undefined) {
+            throw new Error('Required parameter isCashEnabled was null or undefined when calling updateKioskCashVisibilitySettings.');
+        }
+
+        if (deviceId !== undefined) {
+            localVarQueryParameters['deviceId'] = ObjectSerializer.serialize(deviceId, "string");
+        }
+
+        if (isCashEnabled !== undefined) {
+            localVarQueryParameters['isCashEnabled'] = ObjectSerializer.serialize(isCashEnabled, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -54102,6 +54299,105 @@ export class StuartApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum SystemCheckApiApiKeys {
+}
+
+export class SystemCheckApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: SystemCheckApiApiKeys, value: string) {
+        (this.authentications as any)[SystemCheckApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param {*} [options] Override http request options.
+     */
+    public ping (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/systemcheck';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
