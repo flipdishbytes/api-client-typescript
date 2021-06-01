@@ -6915,6 +6915,10 @@ export class EventSearchResult {
     */
     'KioskBluetoothTerminalCancelUpdateEvent'?: Array<KioskBluetoothTerminalCancelUpdateEvent>;
     /**
+    * Bluetooth Payment Terminal Firmware Version Status Info
+    */
+    'KioskBluetoothTerminalFirmwareUpdateStatusInfoReceivedEvent'?: Array<KioskBluetoothTerminalFirmwareUpdateStatusInfoReceivedEvent>;
+    /**
     * Bluetooth Terminal Update Installation Status
     */
     'KioskBluetoothTerminalInstallationStatusEvent'?: Array<KioskBluetoothTerminalInstallationStatusEvent>;
@@ -7462,6 +7466,11 @@ export class EventSearchResult {
             "name": "KioskBluetoothTerminalCancelUpdateEvent",
             "baseName": "KioskBluetoothTerminalCancelUpdateEvent",
             "type": "Array<KioskBluetoothTerminalCancelUpdateEvent>"
+        },
+        {
+            "name": "KioskBluetoothTerminalFirmwareUpdateStatusInfoReceivedEvent",
+            "baseName": "KioskBluetoothTerminalFirmwareUpdateStatusInfoReceivedEvent",
+            "type": "Array<KioskBluetoothTerminalFirmwareUpdateStatusInfoReceivedEvent>"
         },
         {
             "name": "KioskBluetoothTerminalInstallationStatusEvent",
@@ -10201,6 +10210,136 @@ export namespace KioskBluetoothTerminalCancelUpdateEvent {
     }
 }
 /**
+* Kiosk Stripe Terminal Update info received event
+*/
+export class KioskBluetoothTerminalFirmwareUpdateStatusInfoReceivedEvent {
+    /**
+    * Device Id of the Kiosk
+    */
+    'DeviceId'?: string;
+    /**
+    * Serial Number of the device
+    */
+    'SerialNumber'?: string;
+    /**
+    * Indicates if Payment Terminal has Firmware Update
+    */
+    'HasFirmwareUpdate'?: boolean;
+    /**
+    * Indicates if Payment Terminal has Config Update
+    */
+    'HasConfigUpdate'?: boolean;
+    /**
+    * Indicates if Payment Terminal has Key Update
+    */
+    'HasKeyUpdate'?: boolean;
+    /**
+    * ETA to install the update
+    */
+    'UpdateTimeEstimate'?: KioskBluetoothTerminalFirmwareUpdateStatusInfoReceivedEvent.UpdateTimeEstimateEnum;
+    /**
+    * User who made the changes
+    */
+    'UserEventInfo'?: UserEventInfo;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeviceId",
+            "baseName": "DeviceId",
+            "type": "string"
+        },
+        {
+            "name": "SerialNumber",
+            "baseName": "SerialNumber",
+            "type": "string"
+        },
+        {
+            "name": "HasFirmwareUpdate",
+            "baseName": "HasFirmwareUpdate",
+            "type": "boolean"
+        },
+        {
+            "name": "HasConfigUpdate",
+            "baseName": "HasConfigUpdate",
+            "type": "boolean"
+        },
+        {
+            "name": "HasKeyUpdate",
+            "baseName": "HasKeyUpdate",
+            "type": "boolean"
+        },
+        {
+            "name": "UpdateTimeEstimate",
+            "baseName": "UpdateTimeEstimate",
+            "type": "KioskBluetoothTerminalFirmwareUpdateStatusInfoReceivedEvent.UpdateTimeEstimateEnum"
+        },
+        {
+            "name": "UserEventInfo",
+            "baseName": "UserEventInfo",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return KioskBluetoothTerminalFirmwareUpdateStatusInfoReceivedEvent.attributeTypeMap;
+    }
+}
+
+export namespace KioskBluetoothTerminalFirmwareUpdateStatusInfoReceivedEvent {
+    export enum UpdateTimeEstimateEnum {
+        LessThanOneMinute = <any> 'LessThanOneMinute',
+        OneToTwoMinutes = <any> 'OneToTwoMinutes',
+        TwoToFiveMinutes = <any> 'TwoToFiveMinutes',
+        FiveToFifteenMinutes = <any> 'FiveToFifteenMinutes'
+    }
+}
+/**
 * Kiosk bluetooth trigger update check event
 */
 export class KioskBluetoothTerminalInitiateUpdateCheckEvent {
@@ -10294,6 +10433,10 @@ export class KioskBluetoothTerminalInstallationStatusEvent {
     */
     'BluetoothTerminalSerialNumber'?: string;
     /**
+    * User who made the change
+    */
+    'User'?: UserEventInfo;
+    /**
     * Update Install Progress for Card Reader
     */
     'Progress'?: number;
@@ -10335,6 +10478,11 @@ export class KioskBluetoothTerminalInstallationStatusEvent {
             "name": "BluetoothTerminalSerialNumber",
             "baseName": "BluetoothTerminalSerialNumber",
             "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "Progress",
@@ -33460,6 +33608,7 @@ let enumsMap: {[index: string]: any} = {
         "KioskBluetoothInstallUpdateInitiateEvent.BluetoothTerminalTypeEnum": KioskBluetoothInstallUpdateInitiateEvent.BluetoothTerminalTypeEnum,
         "KioskBluetoothPairingModeEvent.BluetoothTerminalTypeEnum": KioskBluetoothPairingModeEvent.BluetoothTerminalTypeEnum,
         "KioskBluetoothTerminalCancelUpdateEvent.BluetoothTerminalTypeEnum": KioskBluetoothTerminalCancelUpdateEvent.BluetoothTerminalTypeEnum,
+        "KioskBluetoothTerminalFirmwareUpdateStatusInfoReceivedEvent.UpdateTimeEstimateEnum": KioskBluetoothTerminalFirmwareUpdateStatusInfoReceivedEvent.UpdateTimeEstimateEnum,
         "KioskBluetoothTerminalInstallationStatusEvent.BluetoothTerminalTypeEnum": KioskBluetoothTerminalInstallationStatusEvent.BluetoothTerminalTypeEnum,
         "KioskBluetoothTerminalUpdatedEvent.BluetoothTerminalTypeEnum": KioskBluetoothTerminalUpdatedEvent.BluetoothTerminalTypeEnum,
         "KioskBluetoothUnpairingModeEvent.BluetoothTerminalTypeEnum": KioskBluetoothUnpairingModeEvent.BluetoothTerminalTypeEnum,
@@ -33682,6 +33831,7 @@ let typeMap: {[index: string]: any} = {
     "KioskBluetoothInstallUpdateInitiateEvent": KioskBluetoothInstallUpdateInitiateEvent,
     "KioskBluetoothPairingModeEvent": KioskBluetoothPairingModeEvent,
     "KioskBluetoothTerminalCancelUpdateEvent": KioskBluetoothTerminalCancelUpdateEvent,
+    "KioskBluetoothTerminalFirmwareUpdateStatusInfoReceivedEvent": KioskBluetoothTerminalFirmwareUpdateStatusInfoReceivedEvent,
     "KioskBluetoothTerminalInitiateUpdateCheckEvent": KioskBluetoothTerminalInitiateUpdateCheckEvent,
     "KioskBluetoothTerminalInstallationStatusEvent": KioskBluetoothTerminalInstallationStatusEvent,
     "KioskBluetoothTerminalUpdatedEvent": KioskBluetoothTerminalUpdatedEvent,
