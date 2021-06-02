@@ -12245,6 +12245,88 @@ export namespace MenuElementHide {
     }
 }
 /**
+* Response with any menu elements that had issues being hidden/shown
+*/
+export class MenuElementListItemResponse {
+    /**
+    * Holds the information for the A and CNAME Records of a domain.
+    */
+    'MenuElementId'?: number;
+    /**
+    * Type of menu element
+    */
+    'MenuElementType'?: MenuElementListItemResponse.MenuElementTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuElementId",
+            "baseName": "MenuElementId",
+            "type": "number"
+        },
+        {
+            "name": "MenuElementType",
+            "baseName": "MenuElementType",
+            "type": "MenuElementListItemResponse.MenuElementTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuElementListItemResponse.attributeTypeMap;
+    }
+}
+
+export namespace MenuElementListItemResponse {
+    export enum MenuElementTypeEnum {
+        Item = <any> 'Item',
+        OptionSetItem = <any> 'OptionSetItem'
+    }
+}
+/**
+* Response with any menu elements that had issues being hidden/shown
+*/
+export class MenuElementListResponse {
+    /**
+    * Menu Item Name
+    */
+    'MenuElementName'?: string;
+    'InstanceCount'?: number;
+    /**
+    * Menu Item is hide or unhide
+    */
+    'IsAvailable'?: boolean;
+    'Items'?: Array<MenuElementListItemResponse>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuElementName",
+            "baseName": "MenuElementName",
+            "type": "string"
+        },
+        {
+            "name": "InstanceCount",
+            "baseName": "InstanceCount",
+            "type": "number"
+        },
+        {
+            "name": "IsAvailable",
+            "baseName": "IsAvailable",
+            "type": "boolean"
+        },
+        {
+            "name": "Items",
+            "baseName": "Items",
+            "type": "Array<MenuElementListItemResponse>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuElementListResponse.attributeTypeMap;
+    }
+}
+
+/**
 * Menu item option set
 */
 export class MenuItemOptionSet {
@@ -20945,6 +21027,29 @@ export class RestApiArrayResultMenuElementEditResponse {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultMenuElementEditResponse.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultMenuElementListResponse {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<MenuElementListResponse>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<MenuElementListResponse>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultMenuElementListResponse.attributeTypeMap;
     }
 }
 
@@ -33620,6 +33725,7 @@ let enumsMap: {[index: string]: any} = {
         "MenuElementEditResponse.MenuElementTypeEnum": MenuElementEditResponse.MenuElementTypeEnum,
         "MenuElementEditResponse.ValidationCodeEnum": MenuElementEditResponse.ValidationCodeEnum,
         "MenuElementHide.MenuElementTypeEnum": MenuElementHide.MenuElementTypeEnum,
+        "MenuElementListItemResponse.MenuElementTypeEnum": MenuElementListItemResponse.MenuElementTypeEnum,
         "MenuItemOptionSet.CellLayoutTypeEnum": MenuItemOptionSet.CellLayoutTypeEnum,
         "MenuItemOptionSetBase.CellLayoutTypeEnum": MenuItemOptionSetBase.CellLayoutTypeEnum,
         "MenuItemOptionSetItem.CellLayoutTypeEnum": MenuItemOptionSetItem.CellLayoutTypeEnum,
@@ -33857,6 +33963,8 @@ let typeMap: {[index: string]: any} = {
     "MenuCreatedEvent": MenuCreatedEvent,
     "MenuElementEditResponse": MenuElementEditResponse,
     "MenuElementHide": MenuElementHide,
+    "MenuElementListItemResponse": MenuElementListItemResponse,
+    "MenuElementListResponse": MenuElementListResponse,
     "MenuItemOptionSet": MenuItemOptionSet,
     "MenuItemOptionSetBase": MenuItemOptionSetBase,
     "MenuItemOptionSetCreatedEvent": MenuItemOptionSetCreatedEvent,
@@ -33962,6 +34070,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultLoyaltyCampaign": RestApiArrayResultLoyaltyCampaign,
     "RestApiArrayResultMenuCheckpoint": RestApiArrayResultMenuCheckpoint,
     "RestApiArrayResultMenuElementEditResponse": RestApiArrayResultMenuElementEditResponse,
+    "RestApiArrayResultMenuElementListResponse": RestApiArrayResultMenuElementListResponse,
     "RestApiArrayResultMenuItemOptionSet": RestApiArrayResultMenuItemOptionSet,
     "RestApiArrayResultMenuItemOptionSetItem": RestApiArrayResultMenuItemOptionSetItem,
     "RestApiArrayResultMenuSection": RestApiArrayResultMenuSection,
@@ -47414,6 +47523,82 @@ export class MenusApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param menuId 
+     * @param isAvailable 
+     * @param page 
+     * @param limit 
+     * @param {*} [options] Override http request options.
+     */
+    public menusGetMenuBulkShowHide (menuId: number, isAvailable: boolean, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementListResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/bulkshowhide/list'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menusGetMenuBulkShowHide.');
+        }
+
+        // verify required parameter 'isAvailable' is not null or undefined
+        if (isAvailable === null || isAvailable === undefined) {
+            throw new Error('Required parameter isAvailable was null or undefined when calling menusGetMenuBulkShowHide.');
+        }
+
+        if (isAvailable !== undefined) {
+            localVarQueryParameters['isAvailable'] = ObjectSerializer.serialize(isAvailable, "boolean");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementListResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuElementListResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
