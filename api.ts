@@ -38038,60 +38038,10 @@ export class CardReadersApi {
     /**
      * Can only be called by Kiosk  [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get Authorization Key for Stripe Terminal
-     * @param {*} [options] Override http request options.
-     */
-    public authorizeStripeTerminal (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeTerminalPrivateKey;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/cardreaders/authorize/stripe';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeTerminalPrivateKey;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultStripeTerminalPrivateKey");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * Can only be called by Kiosk  [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get Authorization Key for Stripe Terminal
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public authorizeStripeTerminal_1 (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeTerminalPrivateKey;  }> {
+    public authorizeStripeTerminal (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeTerminalPrivateKey;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stripeterminal/authorize'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -38100,7 +38050,7 @@ export class CardReadersApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling authorizeStripeTerminal_1.');
+            throw new Error('Required parameter appId was null or undefined when calling authorizeStripeTerminal.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
