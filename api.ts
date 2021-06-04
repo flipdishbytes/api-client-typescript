@@ -12157,6 +12157,18 @@ export class MenuCreatedEvent {
 */
 export class MenuElementEditResponse {
     /**
+    * Section name
+    */
+    'SectionName'?: string;
+    /**
+    * Item name
+    */
+    'ItemName'?: string;
+    /**
+    * Element name
+    */
+    'OptionSetItemName'?: string;
+    /**
     * Holds the information for the A and CNAME Records of a domain.
     */
     'MenuElementId'?: number;
@@ -12172,6 +12184,21 @@ export class MenuElementEditResponse {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "SectionName",
+            "baseName": "SectionName",
+            "type": "string"
+        },
+        {
+            "name": "ItemName",
+            "baseName": "ItemName",
+            "type": "string"
+        },
+        {
+            "name": "OptionSetItemName",
+            "baseName": "OptionSetItemName",
+            "type": "string"
+        },
         {
             "name": "MenuElementId",
             "baseName": "MenuElementId",
