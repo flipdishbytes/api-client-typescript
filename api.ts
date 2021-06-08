@@ -1167,6 +1167,8 @@ export namespace App {
         ViewPushNotificationAuditLogs = <any> 'ViewPushNotificationAuditLogs',
         ViewStripeCustomConnectedAccountAuditLogs = <any> 'ViewStripeCustomConnectedAccountAuditLogs',
         ViewKioskBluetoothDeviceAuditLogs = <any> 'ViewKioskBluetoothDeviceAuditLogs',
+        ViewExternalAuditLogs = <any> 'ViewExternalAuditLogs',
+        CreateExternalAuditLogEvents = <any> 'CreateExternalAuditLogEvents',
         SendPushNotificationToCustomer = <any> 'SendPushNotificationToCustomer',
         InviteDriverToApp = <any> 'InviteDriverToApp',
         GetDriverForApp = <any> 'GetDriverForApp',
@@ -6958,6 +6960,10 @@ export class EventSearchResult {
     * Order capacity config updated
     */
     'OrderCapacityUpdatedEvent'?: Array<OrderCapacityConfigUpdatedEvent>;
+    /**
+    * External event
+    */
+    'ExternalStoreEvent'?: Array<ExternalStoreEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -7521,10 +7527,191 @@ export class EventSearchResult {
             "name": "OrderCapacityUpdatedEvent",
             "baseName": "OrderCapacityUpdatedEvent",
             "type": "Array<OrderCapacityConfigUpdatedEvent>"
+        },
+        {
+            "name": "ExternalStoreEvent",
+            "baseName": "ExternalStoreEvent",
+            "type": "Array<ExternalStoreEvent>"
         }    ];
 
     static getAttributeTypeMap() {
         return EventSearchResult.attributeTypeMap;
+    }
+}
+
+/**
+* External event
+*/
+export class ExternalStoreEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * User which did the action
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Description with format placeholders
+    */
+    'DescriptionFormat'?: string;
+    /**
+    * Description with format placeholders
+    */
+    'DescriptionFields'?: string;
+    /**
+    * Description
+    */
+    'DescriptionId'?: string;
+    /**
+    * Ref (reference field)
+    */
+    'Ref1'?: string;
+    /**
+    * Ref2 (reference field)
+    */
+    'Ref2'?: string;
+    /**
+    * Ref3 (reference field)
+    */
+    'Ref3'?: string;
+    /**
+    * Ref4 (reference field)
+    */
+    'Ref4'?: string;
+    /**
+    * Order Id
+    */
+    'OrderId'?: number;
+    /**
+    * Tags
+    */
+    'Tags'?: Array<string>;
+    /**
+    * Field changes list
+    */
+    'FieldChanges'?: Array<FieldChangeInformation>;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "DescriptionFormat",
+            "baseName": "DescriptionFormat",
+            "type": "string"
+        },
+        {
+            "name": "DescriptionFields",
+            "baseName": "DescriptionFields",
+            "type": "string"
+        },
+        {
+            "name": "DescriptionId",
+            "baseName": "DescriptionId",
+            "type": "string"
+        },
+        {
+            "name": "Ref1",
+            "baseName": "Ref1",
+            "type": "string"
+        },
+        {
+            "name": "Ref2",
+            "baseName": "Ref2",
+            "type": "string"
+        },
+        {
+            "name": "Ref3",
+            "baseName": "Ref3",
+            "type": "string"
+        },
+        {
+            "name": "Ref4",
+            "baseName": "Ref4",
+            "type": "string"
+        },
+        {
+            "name": "OrderId",
+            "baseName": "OrderId",
+            "type": "number"
+        },
+        {
+            "name": "Tags",
+            "baseName": "Tags",
+            "type": "Array<string>"
+        },
+        {
+            "name": "FieldChanges",
+            "baseName": "FieldChanges",
+            "type": "Array<FieldChangeInformation>"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ExternalStoreEvent.attributeTypeMap;
     }
 }
 
@@ -7566,6 +7753,65 @@ export class FeeSummary {
 
     static getAttributeTypeMap() {
         return FeeSummary.attributeTypeMap;
+    }
+}
+
+/**
+* Change information for a field
+*/
+export class FieldChangeInformation {
+    /**
+    * Path (hierarchy)
+    */
+    'Path'?: string;
+    /**
+    * Name of field
+    */
+    'Name'?: string;
+    /**
+    * Key (code) of field
+    */
+    'Key'?: string;
+    /**
+    * Old value
+    */
+    'OldValue'?: string;
+    /**
+    * New value
+    */
+    'NewValue'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Path",
+            "baseName": "Path",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Key",
+            "baseName": "Key",
+            "type": "string"
+        },
+        {
+            "name": "OldValue",
+            "baseName": "OldValue",
+            "type": "string"
+        },
+        {
+            "name": "NewValue",
+            "baseName": "NewValue",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FieldChangeInformation.attributeTypeMap;
     }
 }
 
@@ -33930,7 +34176,9 @@ let typeMap: {[index: string]: any} = {
     "EmvTerminal": EmvTerminal,
     "EmvTerminalWithAssignments": EmvTerminalWithAssignments,
     "EventSearchResult": EventSearchResult,
+    "ExternalStoreEvent": ExternalStoreEvent,
     "FeeSummary": FeeSummary,
+    "FieldChangeInformation": FieldChangeInformation,
     "FlipdishEventBase": FlipdishEventBase,
     "FlipdishFeesDetails": FlipdishFeesDetails,
     "GroupedCoordinates": GroupedCoordinates,
@@ -47513,11 +47761,9 @@ export class MenusApi {
      * 
      * @param menuId 
      * @param isAvailable 
-     * @param page 
-     * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public menusGetMenuBulkShowHide (menuId: number, isAvailable: boolean, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementListResponse;  }> {
+    public menusGetMenuBulkShowHide (menuId: number, isAvailable: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementListResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/bulkshowhide/list'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -47536,14 +47782,6 @@ export class MenusApi {
 
         if (isAvailable !== undefined) {
             localVarQueryParameters['isAvailable'] = ObjectSerializer.serialize(isAvailable, "boolean");
-        }
-
-        if (page !== undefined) {
-            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
-        }
-
-        if (limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -47716,10 +47954,9 @@ export class MenusApi {
      * @param menuId 
      * @param menuElements 
      * @param isAvailable 
-     * @param undoAfter 
      * @param {*} [options] Override http request options.
      */
-    public menusShowHideBulkItems (menuId: number, menuElements: Array<MenuElementHide>, isAvailable: boolean, undoAfter: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementEditResponse;  }> {
+    public menusShowHideBulkItems (menuId: number, menuElements: Array<MenuElementHide>, isAvailable: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementEditResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/bulkshowhide'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -47741,17 +47978,8 @@ export class MenusApi {
             throw new Error('Required parameter isAvailable was null or undefined when calling menusShowHideBulkItems.');
         }
 
-        // verify required parameter 'undoAfter' is not null or undefined
-        if (undoAfter === null || undoAfter === undefined) {
-            throw new Error('Required parameter undoAfter was null or undefined when calling menusShowHideBulkItems.');
-        }
-
         if (isAvailable !== undefined) {
             localVarQueryParameters['isAvailable'] = ObjectSerializer.serialize(isAvailable, "boolean");
-        }
-
-        if (undoAfter !== undefined) {
-            localVarQueryParameters['undoAfter'] = ObjectSerializer.serialize(undoAfter, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -54674,7 +54902,7 @@ export class SystemCheckApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public ping (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public pingSystem (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/systemcheck';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
