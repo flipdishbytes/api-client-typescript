@@ -28459,6 +28459,10 @@ export class StoreKioskSetting {
     */
     'RequireCustomerName'?: boolean;
     /**
+    * Require customer phone number flag
+    */
+    'RequireCustomerPhoneNumber'?: boolean;
+    /**
     * Request table number flag
     */
     'RequestTableNumber'?: boolean;
@@ -28491,6 +28495,11 @@ export class StoreKioskSetting {
         {
             "name": "RequireCustomerName",
             "baseName": "RequireCustomerName",
+            "type": "boolean"
+        },
+        {
+            "name": "RequireCustomerPhoneNumber",
+            "baseName": "RequireCustomerPhoneNumber",
             "type": "boolean"
         },
         {
