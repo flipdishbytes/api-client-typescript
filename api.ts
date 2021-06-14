@@ -12411,6 +12411,10 @@ export class MenuElementEditResponse {
     */
     'ItemName'?: string;
     /**
+    * Option Set name
+    */
+    'OptionSetName'?: string;
+    /**
     * Element name
     */
     'OptionSetItemName'?: string;
@@ -12438,6 +12442,11 @@ export class MenuElementEditResponse {
         {
             "name": "ItemName",
             "baseName": "ItemName",
+            "type": "string"
+        },
+        {
+            "name": "OptionSetName",
+            "baseName": "OptionSetName",
             "type": "string"
         },
         {
@@ -19049,6 +19058,47 @@ export namespace PayoutRefund {
     export enum OrderTypeEnum {
         Cash = <any> 'Cash',
         Online = <any> 'Online'
+    }
+}
+/**
+* Payout Request ids for filtering on Payouts
+*/
+export class PayoutRequestIds {
+    /**
+    * List of bank account ids to search for
+    */
+    'BankAccountIds'?: Array<number>;
+    /**
+    * List of {Flipdish.PublicModels.V1.Payouts.PayoutStatus} so search for
+    */
+    'States'?: Array<PayoutRequestIds.StatesEnum>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "BankAccountIds",
+            "baseName": "BankAccountIds",
+            "type": "Array<number>"
+        },
+        {
+            "name": "States",
+            "baseName": "States",
+            "type": "Array<PayoutRequestIds.StatesEnum>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutRequestIds.attributeTypeMap;
+    }
+}
+
+export namespace PayoutRequestIds {
+    export enum StatesEnum {
+        Pending = <any> 'Pending',
+        InTransit = <any> 'InTransit',
+        Paid = <any> 'Paid',
+        Failed = <any> 'Failed',
+        Cancelled = <any> 'Cancelled'
     }
 }
 /**
@@ -34054,6 +34104,7 @@ let enumsMap: {[index: string]: any} = {
         "PayoutOtherCharge.ChargeTypeEnum": PayoutOtherCharge.ChargeTypeEnum,
         "PayoutRefund.OrderCurrencyEnum": PayoutRefund.OrderCurrencyEnum,
         "PayoutRefund.OrderTypeEnum": PayoutRefund.OrderTypeEnum,
+        "PayoutRequestIds.StatesEnum": PayoutRequestIds.StatesEnum,
         "PayoutSummary.PayoutStatusEnum": PayoutSummary.PayoutStatusEnum,
         "PayoutSummary.CurrencyEnum": PayoutSummary.CurrencyEnum,
         "PhoneCall.CallStatusEnum": PhoneCall.CallStatusEnum,
@@ -34310,6 +34361,7 @@ let typeMap: {[index: string]: any} = {
     "PayoutOrder": PayoutOrder,
     "PayoutOtherCharge": PayoutOtherCharge,
     "PayoutRefund": PayoutRefund,
+    "PayoutRequestIds": PayoutRequestIds,
     "PayoutStore": PayoutStore,
     "PayoutSummary": PayoutSummary,
     "PercentDiscountDetails": PercentDiscountDetails,
@@ -51025,9 +51077,11 @@ export class PayoutsApi {
      * @param status 
      * @param page 
      * @param limit 
+     * @param payoutRequestIds_bankAccountIds List of bank account ids to search for
+     * @param payoutRequestIds_states List of {Flipdish.PublicModels.V1.Payouts.PayoutStatus} so search for
      * @param {*} [options] Override http request options.
      */
-    public getPayouts (appId: string, bankAccountId?: number, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayout;  }> {
+    public getPayouts (appId: string, bankAccountId?: number, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', page?: number, limit?: number, payoutRequestIds_bankAccountIds?: Array<number>, payoutRequestIds_states?: Array<'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayout;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -51065,6 +51119,14 @@ export class PayoutsApi {
 
         if (limit !== undefined) {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (payoutRequestIds_bankAccountIds !== undefined) {
+            localVarQueryParameters['payoutRequestIds.bankAccountIds'] = ObjectSerializer.serialize(payoutRequestIds_bankAccountIds, "Array<number>");
+        }
+
+        if (payoutRequestIds_states !== undefined) {
+            localVarQueryParameters['payoutRequestIds.states'] = ObjectSerializer.serialize(payoutRequestIds_states, "Array<'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'>");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
