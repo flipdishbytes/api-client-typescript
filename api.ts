@@ -12569,6 +12569,10 @@ export namespace MenuElementListItemResponse {
 */
 export class MenuElementListResponse {
     /**
+    * Menu Name
+    */
+    'MenuName'?: string;
+    /**
     * Menu Item Name
     */
     'MenuElementName'?: string;
@@ -12582,6 +12586,11 @@ export class MenuElementListResponse {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuName",
+            "baseName": "MenuName",
+            "type": "string"
+        },
         {
             "name": "MenuElementName",
             "baseName": "MenuElementName",
