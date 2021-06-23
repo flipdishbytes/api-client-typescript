@@ -51101,9 +51101,11 @@ export class PayoutsApi {
      * @param startDate 
      * @param endDate 
      * @param status 
+     * @param payoutRequestIds_bankAccountIds List of bank account ids to search for
+     * @param payoutRequestIds_states List of {Flipdish.PublicModels.V1.Payouts.PayoutStatus} so search for
      * @param {*} [options] Override http request options.
      */
-    public getPayoutSummaries (appId: string, bankAccountId?: number, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPayoutSummary;  }> {
+    public getPayoutSummaries (appId: string, bankAccountId?: number, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', payoutRequestIds_bankAccountIds?: Array<number>, payoutRequestIds_states?: Array<'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPayoutSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -51133,6 +51135,14 @@ export class PayoutsApi {
 
         if (status !== undefined) {
             localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'");
+        }
+
+        if (payoutRequestIds_bankAccountIds !== undefined) {
+            localVarQueryParameters['payoutRequestIds.bankAccountIds'] = ObjectSerializer.serialize(payoutRequestIds_bankAccountIds, "Array<number>");
+        }
+
+        if (payoutRequestIds_states !== undefined) {
+            localVarQueryParameters['payoutRequestIds.states'] = ObjectSerializer.serialize(payoutRequestIds_states, "Array<'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'>");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
