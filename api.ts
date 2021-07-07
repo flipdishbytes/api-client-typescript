@@ -12175,6 +12175,10 @@ export class MenuBulkEditEvent {
     */
     'EventName'?: string;
     /**
+    * Menu Name
+    */
+    'MenuName'?: string;
+    /**
     * Description
     */
     'Description'?: string;
@@ -12221,6 +12225,11 @@ export class MenuBulkEditEvent {
         {
             "name": "EventName",
             "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "MenuName",
+            "baseName": "MenuName",
             "type": "string"
         },
         {
