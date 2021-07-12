@@ -28593,6 +28593,10 @@ export class StoreHeader {
     * Name
     */
     'Name'?: string;
+    /**
+    * Name
+    */
+    'Category'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -28605,6 +28609,11 @@ export class StoreHeader {
         {
             "name": "Name",
             "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Category",
+            "baseName": "Category",
             "type": "string"
         }    ];
 
