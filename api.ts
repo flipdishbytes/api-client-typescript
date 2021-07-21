@@ -16229,6 +16229,92 @@ export class OrderCustomerTrackingCreatedEvent {
 }
 
 /**
+* Portal Driver Tracking Order
+*/
+export class OrderDeliveryInformation {
+    /**
+    * 
+    */
+    'OrderId'?: number;
+    /**
+    * 
+    */
+    'ExternalReferenceId'?: string;
+    /**
+    * 
+    */
+    'TrackUrl'?: string;
+    /**
+    * Status as string, value one of: Unassigned,Unaccepted,Accepted,Carrying,OnTheWay,ArrivedAtLocation,Delivered,CannotDeliver
+    */
+    'Status'?: string;
+    /**
+    * 
+    */
+    'DeliveryStatusNotes'?: string;
+    /**
+    * 
+    */
+    'ErrorMessage'?: string;
+    /**
+    * 
+    */
+    'IntegrationCode'?: string;
+    /**
+    * 
+    */
+    'IntegrationName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrderId",
+            "baseName": "OrderId",
+            "type": "number"
+        },
+        {
+            "name": "ExternalReferenceId",
+            "baseName": "ExternalReferenceId",
+            "type": "string"
+        },
+        {
+            "name": "TrackUrl",
+            "baseName": "TrackUrl",
+            "type": "string"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "string"
+        },
+        {
+            "name": "DeliveryStatusNotes",
+            "baseName": "DeliveryStatusNotes",
+            "type": "string"
+        },
+        {
+            "name": "ErrorMessage",
+            "baseName": "ErrorMessage",
+            "type": "string"
+        },
+        {
+            "name": "IntegrationCode",
+            "baseName": "IntegrationCode",
+            "type": "string"
+        },
+        {
+            "name": "IntegrationName",
+            "baseName": "IntegrationName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderDeliveryInformation.attributeTypeMap;
+    }
+}
+
+/**
 * 
 */
 export class OrderDeliveryTrackingStatusUpdatedEvent {
@@ -34471,6 +34557,7 @@ let typeMap: {[index: string]: any} = {
     "OrderCapacityConfigUpdatedEvent": OrderCapacityConfigUpdatedEvent,
     "OrderCreatedEvent": OrderCreatedEvent,
     "OrderCustomerTrackingCreatedEvent": OrderCustomerTrackingCreatedEvent,
+    "OrderDeliveryInformation": OrderDeliveryInformation,
     "OrderDeliveryTrackingStatusUpdatedEvent": OrderDeliveryTrackingStatusUpdatedEvent,
     "OrderDispatchedEvent": OrderDispatchedEvent,
     "OrderIdAndSequenceNumber": OrderIdAndSequenceNumber,
@@ -49914,6 +50001,62 @@ export class OrdersApi {
         });
     }
     /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get order delivery information
+     * @param orderId OrderId
+     * @param {*} [options] Override http request options.
+     */
+    public getDeliveryInformation (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/deliveryinfo'
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orderId' is not null or undefined
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling getDeliveryInformation.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * 
      * @summary Get order by ID
      * @param id Order identifier
@@ -50236,6 +50379,69 @@ export class OrdersApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(rejectObject, "Reject")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Add/update delivery-related information to an order
+     * @param orderId 
+     * @param deliveryInformation 
+     * @param {*} [options] Override http request options.
+     */
+    public updateDeliveryInformation (orderId: number, deliveryInformation: OrderDeliveryInformation, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/deliveryinfo'
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orderId' is not null or undefined
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling updateDeliveryInformation.');
+        }
+
+        // verify required parameter 'deliveryInformation' is not null or undefined
+        if (deliveryInformation === null || deliveryInformation === undefined) {
+            throw new Error('Required parameter deliveryInformation was null or undefined when calling updateDeliveryInformation.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(deliveryInformation, "OrderDeliveryInformation")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
