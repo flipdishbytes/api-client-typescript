@@ -3629,6 +3629,10 @@ export namespace CreateFullMenu {
 */
 export class CreateFullMenuItemOptionSet {
     /**
+    * Menu item option set identifier
+    */
+    'MenuItemOptionSetId'?: number;
+    /**
     * Option set items
     */
     'MenuItemOptionSetItems'?: Array<CreateFullMenuItemOptionSetItem>;
@@ -3660,6 +3664,11 @@ export class CreateFullMenuItemOptionSet {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuItemOptionSetId",
+            "baseName": "MenuItemOptionSetId",
+            "type": "number"
+        },
         {
             "name": "MenuItemOptionSetItems",
             "baseName": "MenuItemOptionSetItems",
@@ -3714,6 +3723,10 @@ export namespace CreateFullMenuItemOptionSet {
 */
 export class CreateFullMenuItemOptionSetItem {
     /**
+    * Menu item option set item identifier
+    */
+    'MenuItemOptionSetItemId'?: number;
+    /**
     * List of metadata
     */
     'Metadata'?: Array<CreateMetadata>;
@@ -3721,6 +3734,10 @@ export class CreateFullMenuItemOptionSetItem {
     * Tax rate name
     */
     'TaxRateName'?: string;
+    /**
+    * if null, next option set is next. if -1, this is the final option set
+    */
+    'NextMenuItemOptionSetId'?: number;
     /**
     * Name
     */
@@ -3750,6 +3767,11 @@ export class CreateFullMenuItemOptionSetItem {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "MenuItemOptionSetItemId",
+            "baseName": "MenuItemOptionSetItemId",
+            "type": "number"
+        },
+        {
             "name": "Metadata",
             "baseName": "Metadata",
             "type": "Array<CreateMetadata>"
@@ -3758,6 +3780,11 @@ export class CreateFullMenuItemOptionSetItem {
             "name": "TaxRateName",
             "baseName": "TaxRateName",
             "type": "string"
+        },
+        {
+            "name": "NextMenuItemOptionSetId",
+            "baseName": "NextMenuItemOptionSetId",
+            "type": "number"
         },
         {
             "name": "Name",
