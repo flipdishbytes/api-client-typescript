@@ -16259,13 +16259,9 @@ export class OrderCustomerTrackingCreatedEvent {
 }
 
 /**
-* Portal Driver Tracking Order
+* Order Delivery Status Information
 */
-export class OrderDeliveryInformation {
-    /**
-    * 
-    */
-    'OrderId'?: number;
+export class OrderDeliveryInformationBase {
     /**
     * 
     */
@@ -16275,9 +16271,9 @@ export class OrderDeliveryInformation {
     */
     'TrackUrl'?: string;
     /**
-    * Status as string, value one of: Unassigned,Unaccepted,Accepted,Carrying,OnTheWay,ArrivedAtLocation,Delivered,CannotDeliver
+    * 
     */
-    'Status'?: string;
+    'Status'?: OrderDeliveryInformationBase.StatusEnum;
     /**
     * 
     */
@@ -16299,11 +16295,6 @@ export class OrderDeliveryInformation {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "OrderId",
-            "baseName": "OrderId",
-            "type": "number"
-        },
-        {
             "name": "ExternalReferenceId",
             "baseName": "ExternalReferenceId",
             "type": "string"
@@ -16316,7 +16307,7 @@ export class OrderDeliveryInformation {
         {
             "name": "Status",
             "baseName": "Status",
-            "type": "string"
+            "type": "OrderDeliveryInformationBase.StatusEnum"
         },
         {
             "name": "DeliveryStatusNotes",
@@ -16340,10 +16331,23 @@ export class OrderDeliveryInformation {
         }    ];
 
     static getAttributeTypeMap() {
-        return OrderDeliveryInformation.attributeTypeMap;
+        return OrderDeliveryInformationBase.attributeTypeMap;
     }
 }
 
+export namespace OrderDeliveryInformationBase {
+    export enum StatusEnum {
+        None = <any> 'None',
+        Unassigned = <any> 'Unassigned',
+        Unaccepted = <any> 'Unaccepted',
+        Accepted = <any> 'Accepted',
+        Carrying = <any> 'Carrying',
+        OnTheWay = <any> 'OnTheWay',
+        ArrivedAtLocation = <any> 'ArrivedAtLocation',
+        Delivered = <any> 'Delivered',
+        CannotDeliver = <any> 'CannotDeliver'
+    }
+}
 /**
 * 
 */
@@ -34329,6 +34333,7 @@ let enumsMap: {[index: string]: any} = {
         "Order.PaymentStatusEnum": Order.PaymentStatusEnum,
         "Order.RejectionReasonEnum": Order.RejectionReasonEnum,
         "Order.DeliveryTrackingStatusEnum": Order.DeliveryTrackingStatusEnum,
+        "OrderDeliveryInformationBase.StatusEnum": OrderDeliveryInformationBase.StatusEnum,
         "OrderSummary.DeliveryTypeEnum": OrderSummary.DeliveryTypeEnum,
         "OrderSummary.PickupLocationTypeEnum": OrderSummary.PickupLocationTypeEnum,
         "OrderSummary.TableServiceCatagoryEnum": OrderSummary.TableServiceCatagoryEnum,
@@ -34589,7 +34594,7 @@ let typeMap: {[index: string]: any} = {
     "OrderCapacityConfigUpdatedEvent": OrderCapacityConfigUpdatedEvent,
     "OrderCreatedEvent": OrderCreatedEvent,
     "OrderCustomerTrackingCreatedEvent": OrderCustomerTrackingCreatedEvent,
-    "OrderDeliveryInformation": OrderDeliveryInformation,
+    "OrderDeliveryInformationBase": OrderDeliveryInformationBase,
     "OrderDeliveryTrackingStatusUpdatedEvent": OrderDeliveryTrackingStatusUpdatedEvent,
     "OrderDispatchedEvent": OrderDispatchedEvent,
     "OrderIdAndSequenceNumber": OrderIdAndSequenceNumber,
@@ -50396,7 +50401,7 @@ export class OrdersApi {
      * @param deliveryInformation 
      * @param {*} [options] Override http request options.
      */
-    public updateDeliveryInformation (orderId: number, deliveryInformation: OrderDeliveryInformation, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateDeliveryInformation (orderId: number, deliveryInformation: OrderDeliveryInformationBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/deliveryinfo'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
@@ -50424,7 +50429,7 @@ export class OrdersApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(deliveryInformation, "OrderDeliveryInformation")
+            body: ObjectSerializer.serialize(deliveryInformation, "OrderDeliveryInformationBase")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
