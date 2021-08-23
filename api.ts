@@ -50616,386 +50616,6 @@ export class PayoutsApi {
     }
     /**
      * 
-     * @summary Export a list of payout's chargebacks as CSV
-     * @param appId 
-     * @param bankAccountId 
-     * @param payoutId 
-     * @param storeIds 
-     * @param {*} [options] Override http request options.
-     */
-    public exportPayoutChargebacks (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/chargebacks/export'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
-            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling exportPayoutChargebacks.');
-        }
-
-        // verify required parameter 'bankAccountId' is not null or undefined
-        if (bankAccountId === null || bankAccountId === undefined) {
-            throw new Error('Required parameter bankAccountId was null or undefined when calling exportPayoutChargebacks.');
-        }
-
-        // verify required parameter 'payoutId' is not null or undefined
-        if (payoutId === null || payoutId === undefined) {
-            throw new Error('Required parameter payoutId was null or undefined when calling exportPayoutChargebacks.');
-        }
-
-        if (storeIds !== undefined) {
-            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "string");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Export a list of payout's orders as CSV
-     * @param appId 
-     * @param bankAccountId 
-     * @param payoutId 
-     * @param storeIds 
-     * @param {*} [options] Override http request options.
-     */
-    public exportPayoutOrders (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/orders/export'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
-            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling exportPayoutOrders.');
-        }
-
-        // verify required parameter 'bankAccountId' is not null or undefined
-        if (bankAccountId === null || bankAccountId === undefined) {
-            throw new Error('Required parameter bankAccountId was null or undefined when calling exportPayoutOrders.');
-        }
-
-        // verify required parameter 'payoutId' is not null or undefined
-        if (payoutId === null || payoutId === undefined) {
-            throw new Error('Required parameter payoutId was null or undefined when calling exportPayoutOrders.');
-        }
-
-        if (storeIds !== undefined) {
-            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "string");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Export a list of payout's other charges as CSV
-     * @param appId 
-     * @param bankAccountId 
-     * @param payoutId 
-     * @param storeIds 
-     * @param {*} [options] Override http request options.
-     */
-    public exportPayoutOtherCharges (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/othercharges/export'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
-            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling exportPayoutOtherCharges.');
-        }
-
-        // verify required parameter 'bankAccountId' is not null or undefined
-        if (bankAccountId === null || bankAccountId === undefined) {
-            throw new Error('Required parameter bankAccountId was null or undefined when calling exportPayoutOtherCharges.');
-        }
-
-        // verify required parameter 'payoutId' is not null or undefined
-        if (payoutId === null || payoutId === undefined) {
-            throw new Error('Required parameter payoutId was null or undefined when calling exportPayoutOtherCharges.');
-        }
-
-        if (storeIds !== undefined) {
-            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "string");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Export a list of payout's refunds as CSV
-     * @param appId 
-     * @param bankAccountId 
-     * @param payoutId 
-     * @param storeIds 
-     * @param {*} [options] Override http request options.
-     */
-    public exportPayoutRefunds (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/refunds/export'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
-            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling exportPayoutRefunds.');
-        }
-
-        // verify required parameter 'bankAccountId' is not null or undefined
-        if (bankAccountId === null || bankAccountId === undefined) {
-            throw new Error('Required parameter bankAccountId was null or undefined when calling exportPayoutRefunds.');
-        }
-
-        // verify required parameter 'payoutId' is not null or undefined
-        if (payoutId === null || payoutId === undefined) {
-            throw new Error('Required parameter payoutId was null or undefined when calling exportPayoutRefunds.');
-        }
-
-        if (storeIds !== undefined) {
-            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "string");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Export payout's details as CSV
-     * @param appId 
-     * @param bankAccountId 
-     * @param payoutId 
-     * @param storeIds 
-     * @param {*} [options] Override http request options.
-     */
-    public exportPayoutStores (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/export'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
-            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling exportPayoutStores.');
-        }
-
-        // verify required parameter 'bankAccountId' is not null or undefined
-        if (bankAccountId === null || bankAccountId === undefined) {
-            throw new Error('Required parameter bankAccountId was null or undefined when calling exportPayoutStores.');
-        }
-
-        // verify required parameter 'payoutId' is not null or undefined
-        if (payoutId === null || payoutId === undefined) {
-            throw new Error('Required parameter payoutId was null or undefined when calling exportPayoutStores.');
-        }
-
-        if (storeIds !== undefined) {
-            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "string");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @summary Get Payout details broken down by Store
      * @param appId 
      * @param bankAccountId 
@@ -51594,6 +51214,530 @@ export class PayoutsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultPayout");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum PayoutsExportApiApiKeys {
+}
+
+export class PayoutsExportApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: PayoutsExportApiApiKeys, value: string) {
+        (this.authentications as any)[PayoutsExportApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Export a list of payout's chargebacks as CSV
+     * @param appId 
+     * @param bankAccountId 
+     * @param payoutId 
+     * @param storeIds 
+     * @param {*} [options] Override http request options.
+     */
+    public exportPayoutChargebacks (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/chargebacks/export'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
+            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling exportPayoutChargebacks.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling exportPayoutChargebacks.');
+        }
+
+        // verify required parameter 'payoutId' is not null or undefined
+        if (payoutId === null || payoutId === undefined) {
+            throw new Error('Required parameter payoutId was null or undefined when calling exportPayoutChargebacks.');
+        }
+
+        if (storeIds !== undefined) {
+            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "string");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Export a list of payout's orders as CSV
+     * @param appId 
+     * @param bankAccountId 
+     * @param payoutId 
+     * @param storeIds 
+     * @param {*} [options] Override http request options.
+     */
+    public exportPayoutOrders (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/orders/export'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
+            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling exportPayoutOrders.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling exportPayoutOrders.');
+        }
+
+        // verify required parameter 'payoutId' is not null or undefined
+        if (payoutId === null || payoutId === undefined) {
+            throw new Error('Required parameter payoutId was null or undefined when calling exportPayoutOrders.');
+        }
+
+        if (storeIds !== undefined) {
+            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "string");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Export a list of payout's other charges as CSV
+     * @param appId 
+     * @param bankAccountId 
+     * @param payoutId 
+     * @param storeIds 
+     * @param {*} [options] Override http request options.
+     */
+    public exportPayoutOtherCharges (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/othercharges/export'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
+            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling exportPayoutOtherCharges.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling exportPayoutOtherCharges.');
+        }
+
+        // verify required parameter 'payoutId' is not null or undefined
+        if (payoutId === null || payoutId === undefined) {
+            throw new Error('Required parameter payoutId was null or undefined when calling exportPayoutOtherCharges.');
+        }
+
+        if (storeIds !== undefined) {
+            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "string");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Export a list of payout's refunds as CSV
+     * @param appId 
+     * @param bankAccountId 
+     * @param payoutId 
+     * @param storeIds 
+     * @param {*} [options] Override http request options.
+     */
+    public exportPayoutRefunds (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/refunds/export'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
+            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling exportPayoutRefunds.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling exportPayoutRefunds.');
+        }
+
+        // verify required parameter 'payoutId' is not null or undefined
+        if (payoutId === null || payoutId === undefined) {
+            throw new Error('Required parameter payoutId was null or undefined when calling exportPayoutRefunds.');
+        }
+
+        if (storeIds !== undefined) {
+            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "string");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Export payout's details as CSV
+     * @param appId 
+     * @param bankAccountId 
+     * @param payoutId 
+     * @param storeIds 
+     * @param {*} [options] Override http request options.
+     */
+    public exportPayoutStores (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/{payoutId}/export'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
+            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling exportPayoutStores.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling exportPayoutStores.');
+        }
+
+        // verify required parameter 'payoutId' is not null or undefined
+        if (payoutId === null || payoutId === undefined) {
+            throw new Error('Required parameter payoutId was null or undefined when calling exportPayoutStores.');
+        }
+
+        if (storeIds !== undefined) {
+            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "string");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Export payout summaries as CSV
+     * @param appId 
+     * @param bankAccountId 
+     * @param payeeBankAccountDataId Deprecated
+     * @param startDate 
+     * @param endDate 
+     * @param status 
+     * @param payoutRequestIds_bankAccountIds List of bank account ids to search for
+     * @param payoutRequestIds_states List of {Flipdish.PublicModels.V1.Payouts.PayoutStatus} so search for
+     * @param {*} [options] Override http request options.
+     */
+    public exportPayoutSummaries (appId: string, bankAccountId: number, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', payoutRequestIds_bankAccountIds?: Array<number>, payoutRequestIds_states?: Array<'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/payouts/summaries/export'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling exportPayoutSummaries.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling exportPayoutSummaries.');
+        }
+
+        if (payeeBankAccountDataId !== undefined) {
+            localVarQueryParameters['payeeBankAccountDataId'] = ObjectSerializer.serialize(payeeBankAccountDataId, "number");
+        }
+
+        if (startDate !== undefined) {
+            localVarQueryParameters['startDate'] = ObjectSerializer.serialize(startDate, "Date");
+        }
+
+        if (endDate !== undefined) {
+            localVarQueryParameters['endDate'] = ObjectSerializer.serialize(endDate, "Date");
+        }
+
+        if (status !== undefined) {
+            localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'");
+        }
+
+        if (payoutRequestIds_bankAccountIds !== undefined) {
+            localVarQueryParameters['payoutRequestIds.bankAccountIds'] = ObjectSerializer.serialize(payoutRequestIds_bankAccountIds, "Array<number>");
+        }
+
+        if (payoutRequestIds_states !== undefined) {
+            localVarQueryParameters['payoutRequestIds.states'] = ObjectSerializer.serialize(payoutRequestIds_states, "Array<'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "string");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
