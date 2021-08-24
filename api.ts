@@ -1142,6 +1142,7 @@ export namespace App {
         InitiateBluetoothPairingMode = <any> 'InitiateBluetoothPairingMode',
         ViewCustomers = <any> 'ViewCustomers',
         EditCustomers = <any> 'EditCustomers',
+        CreateProduct = <any> 'CreateProduct',
         ViewAppStatistics = <any> 'ViewAppStatistics',
         ViewApmStatistics = <any> 'ViewApmStatistics',
         ViewCampaignsStatistics = <any> 'ViewCampaignsStatistics',
@@ -4133,6 +4134,56 @@ export class CreateMetadata {
 
     static getAttributeTypeMap() {
         return CreateMetadata.attributeTypeMap;
+    }
+}
+
+/**
+* Create Product
+*/
+export class CreateProduct {
+    /**
+    * Stock Keeping Unit (SKU)
+    */
+    'Sku'?: string;
+    /**
+    * Product name
+    */
+    'Name'?: string;
+    /**
+    * Product description
+    */
+    'Description'?: string;
+    /**
+    * Product price
+    */
+    'Price'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Sku",
+            "baseName": "Sku",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Price",
+            "baseName": "Price",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateProduct.attributeTypeMap;
     }
 }
 
@@ -34458,6 +34509,7 @@ let typeMap: {[index: string]: any} = {
     "CreateFullMenuSectionItem": CreateFullMenuSectionItem,
     "CreateMenuTaxRate": CreateMenuTaxRate,
     "CreateMetadata": CreateMetadata,
+    "CreateProduct": CreateProduct,
     "CreateTeammate": CreateTeammate,
     "CreateVoucher": CreateVoucher,
     "CreditNoteDetails": CreditNoteDetails,
@@ -47835,6 +47887,62 @@ export class MenusApi {
     }
     /**
      * 
+     * @summary [PRIVATE API]Get Menus Name
+     * @param menuId Menu identifier
+     * @param {*} [options] Override http request options.
+     */
+    public getMenuName (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/name'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling getMenuName.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary [PRIVATE API]Get menus store names
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
@@ -51848,6 +51956,120 @@ export class ProcessingFeeConfigsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultProcessingFeeConfig");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum ProductsApiApiKeys {
+}
+
+export class ProductsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: ProductsApiApiKeys, value: string) {
+        (this.authentications as any)[ProductsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Create a new product
+     * @param appId 
+     * @param product 
+     * @param {*} [options] Override http request options.
+     */
+    public createProduct (appId: string, product: CreateProduct, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createProduct.');
+        }
+
+        // verify required parameter 'product' is not null or undefined
+        if (product === null || product === undefined) {
+            throw new Error('Required parameter product was null or undefined when calling createProduct.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(product, "CreateProduct")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "string");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
