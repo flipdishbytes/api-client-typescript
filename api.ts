@@ -23767,6 +23767,29 @@ export class RestApiResultHydraConfig {
 /**
 * Rest api result
 */
+export class RestApiResultHydraDeviceDetails {
+    /**
+    * Generic data object.
+    */
+    'Data': HydraDeviceDetails;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "HydraDeviceDetails"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultHydraDeviceDetails.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultHydraStatus {
     /**
     * Generic data object.
@@ -34782,6 +34805,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultDriver": RestApiResultDriver,
     "RestApiResultHomeStatistics": RestApiResultHomeStatistics,
     "RestApiResultHydraConfig": RestApiResultHydraConfig,
+    "RestApiResultHydraDeviceDetails": RestApiResultHydraDeviceDetails,
     "RestApiResultHydraStatus": RestApiResultHydraStatus,
     "RestApiResultIndexPage": RestApiResultIndexPage,
     "RestApiResultIndexPageBase": RestApiResultIndexPageBase,
@@ -43125,6 +43149,77 @@ export class HydraApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultHydraStatus");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [Private]
+     * @param appId 
+     * @param deviceType 
+     * @param deviceId 
+     * @param {*} [options] Override http request options.
+     */
+    public getAttachedDevice (appId: string, deviceType: 'Kiosk' | 'Terminal' | 'LegacyPrinter', deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraDeviceDetails;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/{deviceType}/{deviceId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'deviceType' + '}', encodeURIComponent(String(deviceType)))
+            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAttachedDevice.');
+        }
+
+        // verify required parameter 'deviceType' is not null or undefined
+        if (deviceType === null || deviceType === undefined) {
+            throw new Error('Required parameter deviceType was null or undefined when calling getAttachedDevice.');
+        }
+
+        // verify required parameter 'deviceId' is not null or undefined
+        if (deviceId === null || deviceId === undefined) {
+            throw new Error('Required parameter deviceId was null or undefined when calling getAttachedDevice.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHydraDeviceDetails;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultHydraDeviceDetails");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
