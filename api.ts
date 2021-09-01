@@ -20672,6 +20672,65 @@ export namespace ProcessingFeeConfig {
     }
 }
 /**
+* Product Information
+*/
+export class Product {
+    /**
+    * Unique product id
+    */
+    'ProductId'?: string;
+    /**
+    * Stock Keeping Unit (SKU)
+    */
+    'Sku'?: string;
+    /**
+    * Product name
+    */
+    'Name'?: string;
+    /**
+    * Product description
+    */
+    'Description'?: string;
+    /**
+    * Product price
+    */
+    'Price'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ProductId",
+            "baseName": "ProductId",
+            "type": "string"
+        },
+        {
+            "name": "Sku",
+            "baseName": "Sku",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Price",
+            "baseName": "Price",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Product.attributeTypeMap;
+    }
+}
+
+/**
 * 
 */
 export class PushNotificationDeletedEvent {
@@ -22947,6 +23006,56 @@ export class RestApiPaginationResultPhoneCall {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultPhoneCall.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
+export class RestApiPaginationResultProduct {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<Product>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<Product>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultProduct.attributeTypeMap;
     }
 }
 
@@ -34711,6 +34820,7 @@ let typeMap: {[index: string]: any} = {
     "PrinterTurnedOnEvent": PrinterTurnedOnEvent,
     "PrinterUnassignedFromStoreEvent": PrinterUnassignedFromStoreEvent,
     "ProcessingFeeConfig": ProcessingFeeConfig,
+    "Product": Product,
     "PushNotificationDeletedEvent": PushNotificationDeletedEvent,
     "PushNotificationRequest": PushNotificationRequest,
     "PushNotificationResponse": PushNotificationResponse,
@@ -34779,6 +34889,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultPayoutOtherCharge": RestApiPaginationResultPayoutOtherCharge,
     "RestApiPaginationResultPayoutRefund": RestApiPaginationResultPayoutRefund,
     "RestApiPaginationResultPhoneCall": RestApiPaginationResultPhoneCall,
+    "RestApiPaginationResultProduct": RestApiPaginationResultProduct,
     "RestApiPaginationResultPushNotificationResponse": RestApiPaginationResultPushNotificationResponse,
     "RestApiPaginationResultStore": RestApiPaginationResultStore,
     "RestApiPaginationResultStoreGroup": RestApiPaginationResultStoreGroup,
@@ -52168,6 +52279,78 @@ export class ProductsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "string");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get products by app name id
+     * @param appId 
+     * @param SearchTerm 
+     * @param page 
+     * @param limit 
+     * @param {*} [options] Override http request options.
+     */
+    public getProducts (appId: string, SearchTerm?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultProduct;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getProducts.');
+        }
+
+        if (SearchTerm !== undefined) {
+            localVarQueryParameters['SearchTerm'] = ObjectSerializer.serialize(SearchTerm, "string");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultProduct;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultProduct");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
