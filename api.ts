@@ -17924,6 +17924,34 @@ export class Payout {
     * Payouts before this date do not have a details breakdown
     */
     'CutoffDate'?: Date;
+    'OnlineSalesAmount'?: number;
+    'OnlineSalesTax'?: number;
+    'OnlineSalesIncludingTax'?: number;
+    'OnlineSalesFeesBaseAmount'?: number;
+    'CashSalesAmount'?: number;
+    'CashSalesTax'?: number;
+    'CashSalesIncludingTax'?: number;
+    'CashSalesFeesBaseAmount'?: number;
+    'TotalSalesIncludingTax'?: number;
+    'OnlineSalesDeliveryCharges'?: number;
+    'OnlineSalesTips'?: number;
+    'TotalOnlineRevenue'?: number;
+    'OpeningBalance'?: number;
+    'ClosingBalance'?: number;
+    'CashSalesFees'?: number;
+    'OnlineSalesFees'?: number;
+    'TotalSalesFees'?: number;
+    'CashSalesRefundedFees'?: number;
+    'OnlineSalesRefundedFees'?: number;
+    'SalesFeesVat'?: number;
+    'TotalFees'?: number;
+    'ChargesCount'?: number;
+    'TotalOtherCharges'?: number;
+    'CashSalesRefundedAmount'?: number;
+    'OnlineSalesRefundedAmount'?: number;
+    'CustomerCashFees'?: number;
+    'RefundsCount'?: number;
+    'TotalOnlineRevenueAdjustments'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -17992,6 +18020,146 @@ export class Payout {
             "name": "CutoffDate",
             "baseName": "CutoffDate",
             "type": "Date"
+        },
+        {
+            "name": "OnlineSalesAmount",
+            "baseName": "OnlineSalesAmount",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesTax",
+            "baseName": "OnlineSalesTax",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesIncludingTax",
+            "baseName": "OnlineSalesIncludingTax",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesFeesBaseAmount",
+            "baseName": "OnlineSalesFeesBaseAmount",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesAmount",
+            "baseName": "CashSalesAmount",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesTax",
+            "baseName": "CashSalesTax",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesIncludingTax",
+            "baseName": "CashSalesIncludingTax",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesFeesBaseAmount",
+            "baseName": "CashSalesFeesBaseAmount",
+            "type": "number"
+        },
+        {
+            "name": "TotalSalesIncludingTax",
+            "baseName": "TotalSalesIncludingTax",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesDeliveryCharges",
+            "baseName": "OnlineSalesDeliveryCharges",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesTips",
+            "baseName": "OnlineSalesTips",
+            "type": "number"
+        },
+        {
+            "name": "TotalOnlineRevenue",
+            "baseName": "TotalOnlineRevenue",
+            "type": "number"
+        },
+        {
+            "name": "OpeningBalance",
+            "baseName": "OpeningBalance",
+            "type": "number"
+        },
+        {
+            "name": "ClosingBalance",
+            "baseName": "ClosingBalance",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesFees",
+            "baseName": "CashSalesFees",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesFees",
+            "baseName": "OnlineSalesFees",
+            "type": "number"
+        },
+        {
+            "name": "TotalSalesFees",
+            "baseName": "TotalSalesFees",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesRefundedFees",
+            "baseName": "CashSalesRefundedFees",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesRefundedFees",
+            "baseName": "OnlineSalesRefundedFees",
+            "type": "number"
+        },
+        {
+            "name": "SalesFeesVat",
+            "baseName": "SalesFeesVat",
+            "type": "number"
+        },
+        {
+            "name": "TotalFees",
+            "baseName": "TotalFees",
+            "type": "number"
+        },
+        {
+            "name": "ChargesCount",
+            "baseName": "ChargesCount",
+            "type": "number"
+        },
+        {
+            "name": "TotalOtherCharges",
+            "baseName": "TotalOtherCharges",
+            "type": "number"
+        },
+        {
+            "name": "CashSalesRefundedAmount",
+            "baseName": "CashSalesRefundedAmount",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesRefundedAmount",
+            "baseName": "OnlineSalesRefundedAmount",
+            "type": "number"
+        },
+        {
+            "name": "CustomerCashFees",
+            "baseName": "CustomerCashFees",
+            "type": "number"
+        },
+        {
+            "name": "RefundsCount",
+            "baseName": "RefundsCount",
+            "type": "number"
+        },
+        {
+            "name": "TotalOnlineRevenueAdjustments",
+            "baseName": "TotalOnlineRevenueAdjustments",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
