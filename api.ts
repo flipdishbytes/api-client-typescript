@@ -4068,6 +4068,29 @@ export namespace CreateFullMenuSectionItem {
     }
 }
 /**
+* Add Product to a Menu
+*/
+export class CreateMenuSectionItemFromProducts {
+    /**
+    * List of Products to add to the section
+    */
+    'ProductItems'?: Array<ProductItem>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ProductItems",
+            "baseName": "ProductItems",
+            "type": "Array<ProductItem>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateMenuSectionItemFromProducts.attributeTypeMap;
+    }
+}
+
+/**
 * Tax Rates Associated with a Menu
 */
 export class CreateMenuTaxRate {
@@ -4473,6 +4496,29 @@ export namespace CreateVoucher {
         CreditNote = <any> 'CreditNote'
     }
 }
+/**
+* Response for the creation of multiple Menu Section Items
+*/
+export class CreatedMenuSectionItems {
+    /**
+    * Created Menu Section Items
+    */
+    'MenuSectionItems'?: Array<MenuSectionItem>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuSectionItems",
+            "baseName": "MenuSectionItems",
+            "type": "Array<MenuSectionItem>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreatedMenuSectionItems.attributeTypeMap;
+    }
+}
+
 /**
 * Credit note details
 */
@@ -14217,7 +14263,7 @@ export class MenuSectionDeletedEvent {
 */
 export class MenuSectionItem {
     /**
-    * Menu item identifier. This ID may change at any time. Use `PublicId` if you need a perminant reference to the item.
+    * Menu item identifier. This ID may change at any time. Use `PublicId` if you need a permanent reference to the item.
     */
     'MenuItemId'?: number;
     /**
@@ -14240,6 +14286,10 @@ export class MenuSectionItem {
     * List of metadata
     */
     'Metadata'?: Array<CreateMetadata>;
+    /**
+    * Product Id when the Item is associated to a Product
+    */
+    'ProductId'?: string;
     /**
     * Menu item name (like \"Korma\")
     */
@@ -14313,6 +14363,11 @@ export class MenuSectionItem {
             "name": "Metadata",
             "baseName": "Metadata",
             "type": "Array<CreateMetadata>"
+        },
+        {
+            "name": "ProductId",
+            "baseName": "ProductId",
+            "type": "string"
         },
         {
             "name": "Name",
@@ -20905,6 +20960,46 @@ export class Product {
 }
 
 /**
+* Item
+*/
+export class ProductItem {
+    /**
+    * Product Id to the product to add as Menu Item
+    */
+    'ProductId'?: string;
+    /**
+    * Small | Medium | Large  Affects the layout of the menu.
+    */
+    'CellLayoutType'?: ProductItem.CellLayoutTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ProductId",
+            "baseName": "ProductId",
+            "type": "string"
+        },
+        {
+            "name": "CellLayoutType",
+            "baseName": "CellLayoutType",
+            "type": "ProductItem.CellLayoutTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ProductItem.attributeTypeMap;
+    }
+}
+
+export namespace ProductItem {
+    export enum CellLayoutTypeEnum {
+        Small = <any> 'Small',
+        Medium = <any> 'Medium',
+        Large = <any> 'Large',
+        HiddenImage = <any> 'HiddenImage'
+    }
+}
+/**
 * 
 */
 export class PushNotificationDeletedEvent {
@@ -23906,6 +24001,29 @@ export class RestApiResultCoordinates {
 
     static getAttributeTypeMap() {
         return RestApiResultCoordinates.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultCreatedMenuSectionItems {
+    /**
+    * Generic data object.
+    */
+    'Data': CreatedMenuSectionItems;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "CreatedMenuSectionItems"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultCreatedMenuSectionItems.attributeTypeMap;
     }
 }
 
@@ -34724,6 +34842,7 @@ let enumsMap: {[index: string]: any} = {
         "PhoneCall.CallStatusEnum": PhoneCall.CallStatusEnum,
         "PreOrderConfig.PreOrderTimeDisplayTypeEnum": PreOrderConfig.PreOrderTimeDisplayTypeEnum,
         "ProcessingFeeConfig.PaymentAccountTypeEnum": ProcessingFeeConfig.PaymentAccountTypeEnum,
+        "ProductItem.CellLayoutTypeEnum": ProductItem.CellLayoutTypeEnum,
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
         "RedeemInvitationResult.InvitationStatusEnum": RedeemInvitationResult.InvitationStatusEnum,
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
@@ -34816,11 +34935,13 @@ let typeMap: {[index: string]: any} = {
     "CreateFullMenuItemOptionSetItem": CreateFullMenuItemOptionSetItem,
     "CreateFullMenuSection": CreateFullMenuSection,
     "CreateFullMenuSectionItem": CreateFullMenuSectionItem,
+    "CreateMenuSectionItemFromProducts": CreateMenuSectionItemFromProducts,
     "CreateMenuTaxRate": CreateMenuTaxRate,
     "CreateMetadata": CreateMetadata,
     "CreateProduct": CreateProduct,
     "CreateTeammate": CreateTeammate,
     "CreateVoucher": CreateVoucher,
+    "CreatedMenuSectionItems": CreatedMenuSectionItems,
     "CreditNoteDetails": CreditNoteDetails,
     "CspReport": CspReport,
     "CspReportRequest": CspReportRequest,
@@ -34995,6 +35116,7 @@ let typeMap: {[index: string]: any} = {
     "PrinterUnassignedFromStoreEvent": PrinterUnassignedFromStoreEvent,
     "ProcessingFeeConfig": ProcessingFeeConfig,
     "Product": Product,
+    "ProductItem": ProductItem,
     "PushNotificationDeletedEvent": PushNotificationDeletedEvent,
     "PushNotificationRequest": PushNotificationRequest,
     "PushNotificationResponse": PushNotificationResponse,
@@ -35084,6 +35206,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultBusinessHoursOverride": RestApiResultBusinessHoursOverride,
     "RestApiResultBusinessHoursPeriod": RestApiResultBusinessHoursPeriod,
     "RestApiResultCoordinates": RestApiResultCoordinates,
+    "RestApiResultCreatedMenuSectionItems": RestApiResultCreatedMenuSectionItems,
     "RestApiResultCustomer": RestApiResultCustomer,
     "RestApiResultDeliveryZone": RestApiResultDeliveryZone,
     "RestApiResultDnsRecordInformation": RestApiResultDnsRecordInformation,
@@ -46146,6 +46269,77 @@ export class MenuSectionItemsApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(menuSectionItem, "MenuSectionItemBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Create menu section items from a list of Products
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param createFromProducts Menu section item
+     * @param {*} [options] Override http request options.
+     */
+    public createMenuSectionItemFromProducts (menuId: number, menuSectionId: number, createFromProducts: CreateMenuSectionItemFromProducts, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/add-products'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling createMenuSectionItemFromProducts.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling createMenuSectionItemFromProducts.');
+        }
+
+        // verify required parameter 'createFromProducts' is not null or undefined
+        if (createFromProducts === null || createFromProducts === undefined) {
+            throw new Error('Required parameter createFromProducts was null or undefined when calling createMenuSectionItemFromProducts.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(createFromProducts, "CreateMenuSectionItemFromProducts")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
