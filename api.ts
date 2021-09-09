@@ -11599,6 +11599,10 @@ export class LoyaltyCampaign {
     */
     'PercentDiscountAmount'?: number;
     /**
+    * Controls how the loyalty voucher's amount is rounded
+    */
+    'RoundingStrategy'?: number;
+    /**
     * Number of days for which the voucher will be valid.
     */
     'VoucherValidPeriodDays'?: number;
@@ -11652,6 +11656,11 @@ export class LoyaltyCampaign {
             "type": "number"
         },
         {
+            "name": "RoundingStrategy",
+            "baseName": "RoundingStrategy",
+            "type": "number"
+        },
+        {
             "name": "VoucherValidPeriodDays",
             "baseName": "VoucherValidPeriodDays",
             "type": "number"
@@ -11700,6 +11709,10 @@ export class LoyaltyCampaignBase {
     */
     'PercentDiscountAmount'?: number;
     /**
+    * Controls how the loyalty voucher's amount is rounded
+    */
+    'RoundingStrategy'?: number;
+    /**
     * Number of days for which the voucher will be valid.
     */
     'VoucherValidPeriodDays'?: number;
@@ -11735,6 +11748,11 @@ export class LoyaltyCampaignBase {
         {
             "name": "PercentDiscountAmount",
             "baseName": "PercentDiscountAmount",
+            "type": "number"
+        },
+        {
+            "name": "RoundingStrategy",
+            "baseName": "RoundingStrategy",
             "type": "number"
         },
         {
