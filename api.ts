@@ -4074,7 +4074,7 @@ export class CreateMenuSectionItemFromProducts {
     /**
     * List of Products to add to the section
     */
-    'ProductItems'?: Array<ProductItem>;
+    'ProductItems': Array<ProductItem>;
 
     static discriminator: string | undefined = undefined;
 
@@ -20984,9 +20984,9 @@ export class ProductItem {
     /**
     * Product Id to the product to add as Menu Item
     */
-    'ProductId'?: string;
+    'ProductId': string;
     /**
-    * Small | Medium | Large  Affects the layout of the menu.
+    * Small | Medium | Large | HiddenImage  Affects the layout of the menu.
     */
     'CellLayoutType'?: ProductItem.CellLayoutTypeEnum;
 
@@ -52825,12 +52825,12 @@ export class ProductsApi {
      * 
      * @summary Get products by app name id
      * @param appId 
-     * @param SearchTerm 
+     * @param searchTerm 
      * @param page 
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getProducts (appId: string, SearchTerm?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultProduct;  }> {
+    public getProducts (appId: string, searchTerm?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultProduct;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -52842,8 +52842,8 @@ export class ProductsApi {
             throw new Error('Required parameter appId was null or undefined when calling getProducts.');
         }
 
-        if (SearchTerm !== undefined) {
-            localVarQueryParameters['SearchTerm'] = ObjectSerializer.serialize(SearchTerm, "string");
+        if (searchTerm !== undefined) {
+            localVarQueryParameters['searchTerm'] = ObjectSerializer.serialize(searchTerm, "string");
         }
 
         if (page !== undefined) {
