@@ -11603,6 +11603,10 @@ export class LoyaltyCampaign {
     */
     'RoundingStrategy'?: number;
     /**
+    * Controls whether we should include orders with loyalty vouchers in the campaign calculation
+    */
+    'ShouldIncludeOrdersWithLoyaltyVoucher'?: boolean;
+    /**
     * Number of days for which the voucher will be valid.
     */
     'VoucherValidPeriodDays'?: number;
@@ -11661,6 +11665,11 @@ export class LoyaltyCampaign {
             "type": "number"
         },
         {
+            "name": "ShouldIncludeOrdersWithLoyaltyVoucher",
+            "baseName": "ShouldIncludeOrdersWithLoyaltyVoucher",
+            "type": "boolean"
+        },
+        {
             "name": "VoucherValidPeriodDays",
             "baseName": "VoucherValidPeriodDays",
             "type": "number"
@@ -11713,6 +11722,10 @@ export class LoyaltyCampaignBase {
     */
     'RoundingStrategy'?: number;
     /**
+    * Controls whether we should include orders with loyalty vouchers in the campaign calculation
+    */
+    'ShouldIncludeOrdersWithLoyaltyVoucher'?: boolean;
+    /**
     * Number of days for which the voucher will be valid.
     */
     'VoucherValidPeriodDays'?: number;
@@ -11754,6 +11767,11 @@ export class LoyaltyCampaignBase {
             "name": "RoundingStrategy",
             "baseName": "RoundingStrategy",
             "type": "number"
+        },
+        {
+            "name": "ShouldIncludeOrdersWithLoyaltyVoucher",
+            "baseName": "ShouldIncludeOrdersWithLoyaltyVoucher",
+            "type": "boolean"
         },
         {
             "name": "VoucherValidPeriodDays",
