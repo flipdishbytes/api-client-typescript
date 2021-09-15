@@ -18022,32 +18022,15 @@ export class Payout {
     */
     'CutoffDate'?: Date;
     'OnlineSalesAmount'?: number;
-    'OnlineSalesTax'?: number;
-    'OnlineSalesIncludingTax'?: number;
-    'OnlineSalesFeesBaseAmount'?: number;
-    'CashSalesAmount'?: number;
-    'CashSalesTax'?: number;
-    'CashSalesIncludingTax'?: number;
-    'CashSalesFeesBaseAmount'?: number;
-    'TotalSalesIncludingTax'?: number;
     'OnlineSalesDeliveryCharges'?: number;
     'OnlineSalesTips'?: number;
     'TotalOnlineRevenue'?: number;
-    'OpeningBalance'?: number;
-    'ClosingBalance'?: number;
-    'CashSalesFees'?: number;
     'OnlineSalesFees'?: number;
-    'TotalSalesFees'?: number;
     'CashSalesRefundedFees'?: number;
     'OnlineSalesRefundedFees'?: number;
     'SalesFeesVat'?: number;
     'TotalFees'?: number;
-    'ChargesCount'?: number;
-    'TotalOtherCharges'?: number;
-    'CashSalesRefundedAmount'?: number;
     'OnlineSalesRefundedAmount'?: number;
-    'CustomerCashFees'?: number;
-    'RefundsCount'?: number;
     'TotalOnlineRevenueAdjustments'?: number;
 
     static discriminator: string | undefined = undefined;
@@ -18124,46 +18107,6 @@ export class Payout {
             "type": "number"
         },
         {
-            "name": "OnlineSalesTax",
-            "baseName": "OnlineSalesTax",
-            "type": "number"
-        },
-        {
-            "name": "OnlineSalesIncludingTax",
-            "baseName": "OnlineSalesIncludingTax",
-            "type": "number"
-        },
-        {
-            "name": "OnlineSalesFeesBaseAmount",
-            "baseName": "OnlineSalesFeesBaseAmount",
-            "type": "number"
-        },
-        {
-            "name": "CashSalesAmount",
-            "baseName": "CashSalesAmount",
-            "type": "number"
-        },
-        {
-            "name": "CashSalesTax",
-            "baseName": "CashSalesTax",
-            "type": "number"
-        },
-        {
-            "name": "CashSalesIncludingTax",
-            "baseName": "CashSalesIncludingTax",
-            "type": "number"
-        },
-        {
-            "name": "CashSalesFeesBaseAmount",
-            "baseName": "CashSalesFeesBaseAmount",
-            "type": "number"
-        },
-        {
-            "name": "TotalSalesIncludingTax",
-            "baseName": "TotalSalesIncludingTax",
-            "type": "number"
-        },
-        {
             "name": "OnlineSalesDeliveryCharges",
             "baseName": "OnlineSalesDeliveryCharges",
             "type": "number"
@@ -18179,28 +18122,8 @@ export class Payout {
             "type": "number"
         },
         {
-            "name": "OpeningBalance",
-            "baseName": "OpeningBalance",
-            "type": "number"
-        },
-        {
-            "name": "ClosingBalance",
-            "baseName": "ClosingBalance",
-            "type": "number"
-        },
-        {
-            "name": "CashSalesFees",
-            "baseName": "CashSalesFees",
-            "type": "number"
-        },
-        {
             "name": "OnlineSalesFees",
             "baseName": "OnlineSalesFees",
-            "type": "number"
-        },
-        {
-            "name": "TotalSalesFees",
-            "baseName": "TotalSalesFees",
             "type": "number"
         },
         {
@@ -18224,33 +18147,8 @@ export class Payout {
             "type": "number"
         },
         {
-            "name": "ChargesCount",
-            "baseName": "ChargesCount",
-            "type": "number"
-        },
-        {
-            "name": "TotalOtherCharges",
-            "baseName": "TotalOtherCharges",
-            "type": "number"
-        },
-        {
-            "name": "CashSalesRefundedAmount",
-            "baseName": "CashSalesRefundedAmount",
-            "type": "number"
-        },
-        {
             "name": "OnlineSalesRefundedAmount",
             "baseName": "OnlineSalesRefundedAmount",
-            "type": "number"
-        },
-        {
-            "name": "CustomerCashFees",
-            "baseName": "CustomerCashFees",
-            "type": "number"
-        },
-        {
-            "name": "RefundsCount",
-            "baseName": "RefundsCount",
             "type": "number"
         },
         {
@@ -51829,16 +51727,13 @@ export class PayoutsApi {
      * BETA - this endpoint is under development, do not use it in your production system
      * @summary Get list of payout summaries
      * @param appId 
-     * @param bankAccountId 
-     * @param payeeBankAccountDataId Deprecated
      * @param startDate 
      * @param endDate 
-     * @param status 
      * @param payoutRequestIds_bankAccountIds List of bank account ids to search for
      * @param payoutRequestIds_states List of {Flipdish.PublicModels.V1.Payouts.PayoutStatus} so search for
      * @param {*} [options] Override http request options.
      */
-    public getPayoutSummaries (appId: string, bankAccountId?: number, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', payoutRequestIds_bankAccountIds?: Array<number>, payoutRequestIds_states?: Array<'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPayoutSummary;  }> {
+    public getPayoutSummaries (appId: string, startDate?: Date, endDate?: Date, payoutRequestIds_bankAccountIds?: Array<number>, payoutRequestIds_states?: Array<'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPayoutSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -51850,24 +51745,12 @@ export class PayoutsApi {
             throw new Error('Required parameter appId was null or undefined when calling getPayoutSummaries.');
         }
 
-        if (bankAccountId !== undefined) {
-            localVarQueryParameters['bankAccountId'] = ObjectSerializer.serialize(bankAccountId, "number");
-        }
-
-        if (payeeBankAccountDataId !== undefined) {
-            localVarQueryParameters['payeeBankAccountDataId'] = ObjectSerializer.serialize(payeeBankAccountDataId, "number");
-        }
-
         if (startDate !== undefined) {
             localVarQueryParameters['startDate'] = ObjectSerializer.serialize(startDate, "Date");
         }
 
         if (endDate !== undefined) {
             localVarQueryParameters['endDate'] = ObjectSerializer.serialize(endDate, "Date");
-        }
-
-        if (status !== undefined) {
-            localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'");
         }
 
         if (payoutRequestIds_bankAccountIds !== undefined) {
@@ -51921,18 +51804,15 @@ export class PayoutsApi {
      * BETA - this endpoint is under development, do not use it in your production system
      * @summary Get list of payouts
      * @param appId 
-     * @param bankAccountId 
-     * @param payeeBankAccountDataId Deprecated
      * @param startDate 
      * @param endDate 
-     * @param status 
      * @param page 
      * @param limit 
      * @param payoutRequestIds_bankAccountIds List of bank account ids to search for
      * @param payoutRequestIds_states List of {Flipdish.PublicModels.V1.Payouts.PayoutStatus} so search for
      * @param {*} [options] Override http request options.
      */
-    public getPayouts (appId: string, bankAccountId?: number, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', page?: number, limit?: number, payoutRequestIds_bankAccountIds?: Array<number>, payoutRequestIds_states?: Array<'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayout;  }> {
+    public getPayouts (appId: string, startDate?: Date, endDate?: Date, page?: number, limit?: number, payoutRequestIds_bankAccountIds?: Array<number>, payoutRequestIds_states?: Array<'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayout;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -51944,24 +51824,12 @@ export class PayoutsApi {
             throw new Error('Required parameter appId was null or undefined when calling getPayouts.');
         }
 
-        if (bankAccountId !== undefined) {
-            localVarQueryParameters['bankAccountId'] = ObjectSerializer.serialize(bankAccountId, "number");
-        }
-
-        if (payeeBankAccountDataId !== undefined) {
-            localVarQueryParameters['payeeBankAccountDataId'] = ObjectSerializer.serialize(payeeBankAccountDataId, "number");
-        }
-
         if (startDate !== undefined) {
             localVarQueryParameters['startDate'] = ObjectSerializer.serialize(startDate, "Date");
         }
 
         if (endDate !== undefined) {
             localVarQueryParameters['endDate'] = ObjectSerializer.serialize(endDate, "Date");
-        }
-
-        if (status !== undefined) {
-            localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'");
         }
 
         if (page !== undefined) {
@@ -52453,18 +52321,13 @@ export class PayoutsExportApi {
      * 
      * @summary Export payouts as CSV
      * @param appId 
-     * @param bankAccountId 
-     * @param payeeBankAccountDataId Deprecated
      * @param startDate 
      * @param endDate 
-     * @param status 
-     * @param page 
-     * @param limit 
      * @param payoutRequestIds_bankAccountIds List of bank account ids to search for
      * @param payoutRequestIds_states List of {Flipdish.PublicModels.V1.Payouts.PayoutStatus} so search for
      * @param {*} [options] Override http request options.
      */
-    public exportPayouts (appId: string, bankAccountId?: number, payeeBankAccountDataId?: number, startDate?: Date, endDate?: Date, status?: 'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled', page?: number, limit?: number, payoutRequestIds_bankAccountIds?: Array<number>, payoutRequestIds_states?: Array<'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+    public exportPayouts (appId: string, startDate?: Date, endDate?: Date, payoutRequestIds_bankAccountIds?: Array<number>, payoutRequestIds_states?: Array<'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/payouts/export'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -52476,32 +52339,12 @@ export class PayoutsExportApi {
             throw new Error('Required parameter appId was null or undefined when calling exportPayouts.');
         }
 
-        if (bankAccountId !== undefined) {
-            localVarQueryParameters['bankAccountId'] = ObjectSerializer.serialize(bankAccountId, "number");
-        }
-
-        if (payeeBankAccountDataId !== undefined) {
-            localVarQueryParameters['payeeBankAccountDataId'] = ObjectSerializer.serialize(payeeBankAccountDataId, "number");
-        }
-
         if (startDate !== undefined) {
             localVarQueryParameters['startDate'] = ObjectSerializer.serialize(startDate, "Date");
         }
 
         if (endDate !== undefined) {
             localVarQueryParameters['endDate'] = ObjectSerializer.serialize(endDate, "Date");
-        }
-
-        if (status !== undefined) {
-            localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'");
-        }
-
-        if (page !== undefined) {
-            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
-        }
-
-        if (limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
         if (payoutRequestIds_bankAccountIds !== undefined) {
