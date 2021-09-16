@@ -11246,6 +11246,70 @@ export class KioskCashPaymentSettings {
 }
 
 /**
+* Model containing result of Kiosk cash setting
+*/
+export class KioskCashSetting {
+    /**
+    * Indicated whether cash payment is enabled or not eg: true
+    */
+    'CashPaymentEnabled'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CashPaymentEnabled",
+            "baseName": "CashPaymentEnabled",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return KioskCashSetting.attributeTypeMap;
+    }
+}
+
+/**
+* Details of a kiosks store settings
+*/
+export class KioskStoreSettings {
+    /**
+    * Kiosks store settings
+    */
+    'StoreKioskSettings'?: Array<StoreKioskSetting>;
+    /**
+    * Kiosks timezone
+    */
+    'Timezone'?: string;
+    /**
+    * Servers current Utc time
+    */
+    'CurrentUtcTime'?: Date;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreKioskSettings",
+            "baseName": "StoreKioskSettings",
+            "type": "Array<StoreKioskSetting>"
+        },
+        {
+            "name": "Timezone",
+            "baseName": "Timezone",
+            "type": "string"
+        },
+        {
+            "name": "CurrentUtcTime",
+            "baseName": "CurrentUtcTime",
+            "type": "Date"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return KioskStoreSettings.attributeTypeMap;
+    }
+}
+
+/**
 * Sorted Language
 */
 export class Language {
@@ -24217,6 +24281,52 @@ export class RestApiResultJobResponse {
 /**
 * Rest api result
 */
+export class RestApiResultKioskCashSetting {
+    /**
+    * Generic data object.
+    */
+    'Data': KioskCashSetting;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "KioskCashSetting"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultKioskCashSetting.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultKioskStoreSettings {
+    /**
+    * Generic data object.
+    */
+    'Data': KioskStoreSettings;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "KioskStoreSettings"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultKioskStoreSettings.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultLightspeedSettings {
     /**
     * Generic data object.
@@ -24809,6 +24919,29 @@ export class RestApiResultStoreGroupBase {
 
     static getAttributeTypeMap() {
         return RestApiResultStoreGroupBase.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultStoreKioskSettings {
+    /**
+    * Generic data object.
+    */
+    'Data': StoreKioskSettings;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "StoreKioskSettings"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultStoreKioskSettings.attributeTypeMap;
     }
 }
 
@@ -29264,6 +29397,92 @@ export class StoreKioskSetting {
 }
 
 /**
+* Store Kiosk Settings
+*/
+export class StoreKioskSettingModel {
+    /**
+    * Name of the Kiosk
+    */
+    'KioskName'?: string;
+    /**
+    * Require customer name flag
+    */
+    'RequireCustomerName'?: boolean;
+    /**
+    * Require customer phone number flag
+    */
+    'RequireCustomerPhoneNumber'?: boolean;
+    /**
+    * Request table number flag
+    */
+    'RequestTableNumber'?: boolean;
+    /**
+    * Offer Dine-In/Takeaway option flag
+    */
+    'OfferDineInOrTakeawayOptions'?: boolean;
+    /**
+    * Order in which the Kiosks should be listed
+    */
+    'SortOrder'?: number;
+    /**
+    * Kiosk (Hydra) config id
+    */
+    'ConfigId'?: number;
+    /**
+    * Id of the store (Physical Restaurant)
+    */
+    'StoreId'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "KioskName",
+            "baseName": "KioskName",
+            "type": "string"
+        },
+        {
+            "name": "RequireCustomerName",
+            "baseName": "RequireCustomerName",
+            "type": "boolean"
+        },
+        {
+            "name": "RequireCustomerPhoneNumber",
+            "baseName": "RequireCustomerPhoneNumber",
+            "type": "boolean"
+        },
+        {
+            "name": "RequestTableNumber",
+            "baseName": "RequestTableNumber",
+            "type": "boolean"
+        },
+        {
+            "name": "OfferDineInOrTakeawayOptions",
+            "baseName": "OfferDineInOrTakeawayOptions",
+            "type": "boolean"
+        },
+        {
+            "name": "SortOrder",
+            "baseName": "SortOrder",
+            "type": "number"
+        },
+        {
+            "name": "ConfigId",
+            "baseName": "ConfigId",
+            "type": "number"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreKioskSettingModel.attributeTypeMap;
+    }
+}
+
+/**
 * Store kiosk setting updated
 */
 export class StoreKioskSettingUpdatedEvent {
@@ -29355,6 +29574,38 @@ export class StoreKioskSettingUpdatedEvent {
 
     static getAttributeTypeMap() {
         return StoreKioskSettingUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Store Kiosk Settings
+*/
+export class StoreKioskSettings {
+    /**
+    * List of Store Kiosk Settings
+    */
+    'KioskStoreSettings'?: Array<StoreKioskSettingModel>;
+    /**
+    * Store Logo Url
+    */
+    'StoreLogoUrl'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "KioskStoreSettings",
+            "baseName": "KioskStoreSettings",
+            "type": "Array<StoreKioskSettingModel>"
+        },
+        {
+            "name": "StoreLogoUrl",
+            "baseName": "StoreLogoUrl",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreKioskSettings.attributeTypeMap;
     }
 }
 
@@ -35022,6 +35273,8 @@ let typeMap: {[index: string]: any} = {
     "KioskBluetoothTerminalUpdatedEvent": KioskBluetoothTerminalUpdatedEvent,
     "KioskBluetoothUnpairingModeEvent": KioskBluetoothUnpairingModeEvent,
     "KioskCashPaymentSettings": KioskCashPaymentSettings,
+    "KioskCashSetting": KioskCashSetting,
+    "KioskStoreSettings": KioskStoreSettings,
     "Language": Language,
     "LightspeedSettings": LightspeedSettings,
     "LocalisedTimeZone": LocalisedTimeZone,
@@ -35225,6 +35478,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultIndexPage": RestApiResultIndexPage,
     "RestApiResultIndexPageBase": RestApiResultIndexPageBase,
     "RestApiResultJobResponse": RestApiResultJobResponse,
+    "RestApiResultKioskCashSetting": RestApiResultKioskCashSetting,
+    "RestApiResultKioskStoreSettings": RestApiResultKioskStoreSettings,
     "RestApiResultLightspeedSettings": RestApiResultLightspeedSettings,
     "RestApiResultLoyaltyCampaign": RestApiResultLoyaltyCampaign,
     "RestApiResultMenu": RestApiResultMenu,
@@ -35251,6 +35506,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultStoreEndOfDayReport": RestApiResultStoreEndOfDayReport,
     "RestApiResultStoreGroup": RestApiResultStoreGroup,
     "RestApiResultStoreGroupBase": RestApiResultStoreGroupBase,
+    "RestApiResultStoreKioskSettings": RestApiResultStoreKioskSettings,
     "RestApiResultStoreOrderCapacityConfig": RestApiResultStoreOrderCapacityConfig,
     "RestApiResultStripeConnectedAccount": RestApiResultStripeConnectedAccount,
     "RestApiResultStripeTerminalPrivateKey": RestApiResultStripeTerminalPrivateKey,
@@ -35298,7 +35554,9 @@ let typeMap: {[index: string]: any} = {
     "StoreGroupUpdatedEvent": StoreGroupUpdatedEvent,
     "StoreHeader": StoreHeader,
     "StoreKioskSetting": StoreKioskSetting,
+    "StoreKioskSettingModel": StoreKioskSettingModel,
     "StoreKioskSettingUpdatedEvent": StoreKioskSettingUpdatedEvent,
+    "StoreKioskSettings": StoreKioskSettings,
     "StoreListItem": StoreListItem,
     "StoreLogoCreatedEvent": StoreLogoCreatedEvent,
     "StoreLogoDeletedEvent": StoreLogoDeletedEvent,
@@ -44527,6 +44785,250 @@ export class HydraApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum KioskStoreSettingsApiApiKeys {
+}
+
+export class KioskStoreSettingsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: KioskStoreSettingsApiApiKeys, value: string) {
+        (this.authentications as any)[KioskStoreSettingsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Get all kiosk settings associated with a store
+     * @param storeId Store identifier
+     * @param appId App Name Id
+     * @param {*} [options] Override http request options.
+     */
+    public getAllKioskSettingsForStore (storeId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreKioskSettings;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/kiosksettings/store/{storeId}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getAllKioskSettingsForStore.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAllKioskSettingsForStore.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStoreKioskSettings;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStoreKioskSettings");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [For Kiosk use only] Get all stores connected to a Kiosk
+     * @param {*} [options] Override http request options.
+     */
+    public getAllStoreSettingsForKioskHydra (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultKioskStoreSettings;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/kioskstoresettings';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultKioskStoreSettings;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultKioskStoreSettings");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param deviceId 
+     * @param enableCash 
+     * @param enable 
+     * @param {*} [options] Override http request options.
+     */
+    public updateCashSettingForKiosk (appId: string, deviceId: string, enableCash: boolean, enable: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultKioskCashSetting;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/kiosksettings/cash/{deviceId}/{enable}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)))
+            .replace('{' + 'enable' + '}', encodeURIComponent(String(enable)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateCashSettingForKiosk.');
+        }
+
+        // verify required parameter 'deviceId' is not null or undefined
+        if (deviceId === null || deviceId === undefined) {
+            throw new Error('Required parameter deviceId was null or undefined when calling updateCashSettingForKiosk.');
+        }
+
+        // verify required parameter 'enableCash' is not null or undefined
+        if (enableCash === null || enableCash === undefined) {
+            throw new Error('Required parameter enableCash was null or undefined when calling updateCashSettingForKiosk.');
+        }
+
+        // verify required parameter 'enable' is not null or undefined
+        if (enable === null || enable === undefined) {
+            throw new Error('Required parameter enable was null or undefined when calling updateCashSettingForKiosk.');
+        }
+
+        if (enableCash !== undefined) {
+            localVarQueryParameters['enableCash'] = ObjectSerializer.serialize(enableCash, "boolean");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultKioskCashSetting;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultKioskCashSetting");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
