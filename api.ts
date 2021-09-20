@@ -44971,15 +44971,12 @@ export class KioskStoreSettingsApi {
      * 
      * @param appId 
      * @param deviceId 
-     * @param enableCash 
-     * @param enable 
+     * @param isCashEnabled 
      * @param {*} [options] Override http request options.
      */
-    public updateCashSettingForKiosk (appId: string, deviceId: string, enableCash: boolean, enable: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultKioskCashSetting;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/kiosksettings/cash/{deviceId}/{enable}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)))
-            .replace('{' + 'enable' + '}', encodeURIComponent(String(enable)));
+    public updateCashSettingForKiosk (appId: string, deviceId: string, isCashEnabled: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultKioskCashSetting;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/kiosksettings/cash'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -44994,18 +44991,17 @@ export class KioskStoreSettingsApi {
             throw new Error('Required parameter deviceId was null or undefined when calling updateCashSettingForKiosk.');
         }
 
-        // verify required parameter 'enableCash' is not null or undefined
-        if (enableCash === null || enableCash === undefined) {
-            throw new Error('Required parameter enableCash was null or undefined when calling updateCashSettingForKiosk.');
+        // verify required parameter 'isCashEnabled' is not null or undefined
+        if (isCashEnabled === null || isCashEnabled === undefined) {
+            throw new Error('Required parameter isCashEnabled was null or undefined when calling updateCashSettingForKiosk.');
         }
 
-        // verify required parameter 'enable' is not null or undefined
-        if (enable === null || enable === undefined) {
-            throw new Error('Required parameter enable was null or undefined when calling updateCashSettingForKiosk.');
+        if (deviceId !== undefined) {
+            localVarQueryParameters['deviceId'] = ObjectSerializer.serialize(deviceId, "string");
         }
 
-        if (enableCash !== undefined) {
-            localVarQueryParameters['enableCash'] = ObjectSerializer.serialize(enableCash, "boolean");
+        if (isCashEnabled !== undefined) {
+            localVarQueryParameters['isCashEnabled'] = ObjectSerializer.serialize(isCashEnabled, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
