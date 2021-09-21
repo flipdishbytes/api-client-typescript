@@ -1304,6 +1304,266 @@ export namespace AppConfigUpdateModel {
     }
 }
 /**
+* Application Configuration Base
+*/
+export class AppConfigurationBase {
+    /**
+    * Application Configuration Public Id
+    */
+    'Id': string;
+    /**
+    * Is Enabled
+    */
+    'IsEnabled': boolean;
+    /**
+    * Physical Restaurant Id's
+    */
+    'PhysicalRestaurants'?: Array<number>;
+    /**
+    * Settings
+    */
+    'Settings'?: Array<Setting>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "PhysicalRestaurants",
+            "baseName": "PhysicalRestaurants",
+            "type": "Array<number>"
+        },
+        {
+            "name": "Settings",
+            "baseName": "Settings",
+            "type": "Array<Setting>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppConfigurationBase.attributeTypeMap;
+    }
+}
+
+/**
+* Application configuration detail
+*/
+export class AppConfigurationDetail {
+    /**
+    * Application Configuration Public Id
+    */
+    'Id': string;
+    /**
+    * Whitelabel App Id
+    */
+    'AppId': string;
+    /**
+    * App Store App Id
+    */
+    'AppStoreAppId': string;
+    /**
+    * Is Enabled
+    */
+    'IsEnabled': boolean;
+    /**
+    * Physical Restaurant Id's
+    */
+    'PhysicalRestaurants'?: Array<number>;
+    /**
+    * Settings
+    */
+    'Settings'?: Array<Setting>;
+    /**
+    * Configuration Type  <example>ExternalLink</example><example>FlipdishHosted</example>
+    */
+    'ConfigurationType': AppConfigurationDetail.ConfigurationTypeEnum;
+    /**
+    * Store Selector Type
+    */
+    'StoreSelectorType': AppConfigurationDetail.StoreSelectorTypeEnum;
+    /**
+    * Field Groups
+    */
+    'FieldGroups'?: Array<FieldGroup>;
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Is application verified for use in the App Store
+    */
+    'IsVerified'?: boolean;
+    /**
+    * Tags
+    */
+    'Tags': Array<string>;
+    /**
+    * Regions
+    */
+    'Regions': Array<string>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "string"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreAppId",
+            "baseName": "AppStoreAppId",
+            "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "PhysicalRestaurants",
+            "baseName": "PhysicalRestaurants",
+            "type": "Array<number>"
+        },
+        {
+            "name": "Settings",
+            "baseName": "Settings",
+            "type": "Array<Setting>"
+        },
+        {
+            "name": "ConfigurationType",
+            "baseName": "ConfigurationType",
+            "type": "AppConfigurationDetail.ConfigurationTypeEnum"
+        },
+        {
+            "name": "StoreSelectorType",
+            "baseName": "StoreSelectorType",
+            "type": "AppConfigurationDetail.StoreSelectorTypeEnum"
+        },
+        {
+            "name": "FieldGroups",
+            "baseName": "FieldGroups",
+            "type": "Array<FieldGroup>"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "IsVerified",
+            "baseName": "IsVerified",
+            "type": "boolean"
+        },
+        {
+            "name": "Tags",
+            "baseName": "Tags",
+            "type": "Array<string>"
+        },
+        {
+            "name": "Regions",
+            "baseName": "Regions",
+            "type": "Array<string>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppConfigurationDetail.attributeTypeMap;
+    }
+}
+
+export namespace AppConfigurationDetail {
+    export enum ConfigurationTypeEnum {
+        ExternalLink = <any> 'ExternalLink',
+        FlipdishHosted = <any> 'FlipdishHosted'
+    }
+    export enum StoreSelectorTypeEnum {
+        None = <any> 'None',
+        Single = <any> 'Single',
+        Multiple = <any> 'Multiple'
+    }
+}
+/**
+* Application Configuration Summary  <remarks>Header information for display in lists, like list of apps</remarks>
+*/
+export class AppConfigurationSummary {
+    /**
+    * Application Configuration Public Id
+    */
+    'Id': string;
+    /**
+    * Whitelabel App Id
+    */
+    'AppId': string;
+    /**
+    * App Store App Id
+    */
+    'AppStoreAppId': string;
+    /**
+    * Is Enabled
+    */
+    'IsEnabled': boolean;
+    /**
+    * List of restaurants
+    */
+    'PhysicalRestaurants': Array<ConfiguredPhysicalRestaurant>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "string"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreAppId",
+            "baseName": "AppStoreAppId",
+            "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "PhysicalRestaurants",
+            "baseName": "PhysicalRestaurants",
+            "type": "Array<ConfiguredPhysicalRestaurant>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppConfigurationSummary.attributeTypeMap;
+    }
+}
+
+/**
 * Application created event
 */
 export class AppCreatedEvent {
@@ -1395,6 +1655,304 @@ export class AppCreatedEvent {
 
     static getAttributeTypeMap() {
         return AppCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Application
+*/
+export class AppDetail {
+    /**
+    * Integration Public Id
+    */
+    'Id': string;
+    /**
+    * Configuration Type  <example>ExternalLink</example><example>FlipdishHosted</example>
+    */
+    'ConfigurationType': AppDetail.ConfigurationTypeEnum;
+    /**
+    * Store Selector Type
+    */
+    'StoreSelectorType': AppDetail.StoreSelectorTypeEnum;
+    /**
+    * Field Groups
+    */
+    'FieldGroups'?: Array<FieldGroup>;
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Is application enabled
+    */
+    'IsEnabled'?: boolean;
+    /**
+    * Is application verified for use in the App Store
+    */
+    'IsVerified'?: boolean;
+    /**
+    * Tags
+    */
+    'Tags': Array<string>;
+    /**
+    * Regions
+    */
+    'Regions': Array<string>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "string"
+        },
+        {
+            "name": "ConfigurationType",
+            "baseName": "ConfigurationType",
+            "type": "AppDetail.ConfigurationTypeEnum"
+        },
+        {
+            "name": "StoreSelectorType",
+            "baseName": "StoreSelectorType",
+            "type": "AppDetail.StoreSelectorTypeEnum"
+        },
+        {
+            "name": "FieldGroups",
+            "baseName": "FieldGroups",
+            "type": "Array<FieldGroup>"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "IsVerified",
+            "baseName": "IsVerified",
+            "type": "boolean"
+        },
+        {
+            "name": "Tags",
+            "baseName": "Tags",
+            "type": "Array<string>"
+        },
+        {
+            "name": "Regions",
+            "baseName": "Regions",
+            "type": "Array<string>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppDetail.attributeTypeMap;
+    }
+}
+
+export namespace AppDetail {
+    export enum ConfigurationTypeEnum {
+        ExternalLink = <any> 'ExternalLink',
+        FlipdishHosted = <any> 'FlipdishHosted'
+    }
+    export enum StoreSelectorTypeEnum {
+        None = <any> 'None',
+        Single = <any> 'Single',
+        Multiple = <any> 'Multiple'
+    }
+}
+/**
+* Application Detail Base  <remarks>Used for creating new apps</remarks>
+*/
+export class AppDetailBase {
+    /**
+    * Configuration Type  <example>ExternalLink</example><example>FlipdishHosted</example>
+    */
+    'ConfigurationType': AppDetailBase.ConfigurationTypeEnum;
+    /**
+    * Store Selector Type
+    */
+    'StoreSelectorType': AppDetailBase.StoreSelectorTypeEnum;
+    /**
+    * Field Groups
+    */
+    'FieldGroups'?: Array<FieldGroup>;
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Is application enabled
+    */
+    'IsEnabled'?: boolean;
+    /**
+    * Is application verified for use in the App Store
+    */
+    'IsVerified'?: boolean;
+    /**
+    * Tags
+    */
+    'Tags': Array<string>;
+    /**
+    * Regions
+    */
+    'Regions': Array<string>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ConfigurationType",
+            "baseName": "ConfigurationType",
+            "type": "AppDetailBase.ConfigurationTypeEnum"
+        },
+        {
+            "name": "StoreSelectorType",
+            "baseName": "StoreSelectorType",
+            "type": "AppDetailBase.StoreSelectorTypeEnum"
+        },
+        {
+            "name": "FieldGroups",
+            "baseName": "FieldGroups",
+            "type": "Array<FieldGroup>"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "IsVerified",
+            "baseName": "IsVerified",
+            "type": "boolean"
+        },
+        {
+            "name": "Tags",
+            "baseName": "Tags",
+            "type": "Array<string>"
+        },
+        {
+            "name": "Regions",
+            "baseName": "Regions",
+            "type": "Array<string>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppDetailBase.attributeTypeMap;
+    }
+}
+
+export namespace AppDetailBase {
+    export enum ConfigurationTypeEnum {
+        ExternalLink = <any> 'ExternalLink',
+        FlipdishHosted = <any> 'FlipdishHosted'
+    }
+    export enum StoreSelectorTypeEnum {
+        None = <any> 'None',
+        Single = <any> 'Single',
+        Multiple = <any> 'Multiple'
+    }
+}
+/**
+* Application Summary  <remarks>Header information for display in lists, like list of apps</remarks>
+*/
+export class AppSummary {
+    /**
+    * Integration Public Id
+    */
+    'Id'?: string;
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Is application enabled
+    */
+    'IsEnabled'?: boolean;
+    /**
+    * Is application verified for use in the App Store
+    */
+    'IsVerified'?: boolean;
+    /**
+    * Tags
+    */
+    'Tags': Array<string>;
+    /**
+    * Regions
+    */
+    'Regions': Array<string>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "IsVerified",
+            "baseName": "IsVerified",
+            "type": "boolean"
+        },
+        {
+            "name": "Tags",
+            "baseName": "Tags",
+            "type": "Array<string>"
+        },
+        {
+            "name": "Regions",
+            "baseName": "Regions",
+            "type": "Array<string>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppSummary.attributeTypeMap;
     }
 }
 
@@ -3399,6 +3957,70 @@ export class ChargebackDetails {
 
     static getAttributeTypeMap() {
         return ChargebackDetails.attributeTypeMap;
+    }
+}
+
+/**
+* Configured app item for list
+*/
+export class ConfiguredAppHeader {
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * AppStore App Id
+    */
+    'AppStoreAppId': string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreAppId",
+            "baseName": "AppStoreAppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ConfiguredAppHeader.attributeTypeMap;
+    }
+}
+
+/**
+* Configured physical restaurants
+*/
+export class ConfiguredPhysicalRestaurant {
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * Name of store
+    */
+    'Name'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ConfiguredPhysicalRestaurant.attributeTypeMap;
     }
 }
 
@@ -7896,6 +8518,114 @@ export class FeeSummary {
 }
 
 /**
+* Field
+*/
+export class Field {
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Key
+    */
+    'Key': string;
+    /**
+    * Tooltip
+    */
+    'Tooltip'?: string;
+    /**
+    * Position  <remarks>Position order in the fields list to display</remarks>
+    */
+    'Position': number;
+    /**
+    * Default Value  <example>10</example><example>true</example>
+    */
+    'DefaultValue'?: string;
+    /**
+    * Valid Values  <remarks>Used typically for dropdown/select</remarks>
+    */
+    'ValidValues'?: Array<ValidValue>;
+    /**
+    * Validation Regex
+    */
+    'ValidationRegex'?: string;
+    /**
+    * Field Type
+    */
+    'FieldType': Field.FieldTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Key",
+            "baseName": "Key",
+            "type": "string"
+        },
+        {
+            "name": "Tooltip",
+            "baseName": "Tooltip",
+            "type": "string"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "DefaultValue",
+            "baseName": "DefaultValue",
+            "type": "string"
+        },
+        {
+            "name": "ValidValues",
+            "baseName": "ValidValues",
+            "type": "Array<ValidValue>"
+        },
+        {
+            "name": "ValidationRegex",
+            "baseName": "ValidationRegex",
+            "type": "string"
+        },
+        {
+            "name": "FieldType",
+            "baseName": "FieldType",
+            "type": "Field.FieldTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Field.attributeTypeMap;
+    }
+}
+
+export namespace Field {
+    export enum FieldTypeEnum {
+        Text = <any> 'Text',
+        TextArea = <any> 'TextArea',
+        Integer = <any> 'Integer',
+        Decimal = <any> 'Decimal',
+        Date = <any> 'Date',
+        DateTime = <any> 'DateTime',
+        Time = <any> 'Time',
+        Select = <any> 'Select',
+        Boolean = <any> 'Boolean'
+    }
+}
+/**
 * Change information for a field
 */
 export class FieldChangeInformation {
@@ -7951,6 +8681,65 @@ export class FieldChangeInformation {
 
     static getAttributeTypeMap() {
         return FieldChangeInformation.attributeTypeMap;
+    }
+}
+
+/**
+* Field Group
+*/
+export class FieldGroup {
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Tooltip  <remarks>Displays on text hover</remarks>
+    */
+    'Tooltip'?: string;
+    /**
+    * Position  <remarks>Position order in the field groups to display</remarks>
+    */
+    'Position': number;
+    /**
+    * Fields
+    */
+    'Fields'?: Array<Field>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Tooltip",
+            "baseName": "Tooltip",
+            "type": "string"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "Fields",
+            "baseName": "Fields",
+            "type": "Array<Field>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FieldGroup.attributeTypeMap;
     }
 }
 
@@ -21687,6 +22476,29 @@ export class RestApiArrayResultApmHourlyDataPoint {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultAppConfigurationSummary {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<AppConfigurationSummary>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<AppConfigurationSummary>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultAppConfigurationSummary.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultBankAccountSummary {
     /**
     * Generic data object.
@@ -21727,6 +22539,29 @@ export class RestApiArrayResultBusinessHoursPeriod {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultBusinessHoursPeriod.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultConfiguredAppHeader {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<ConfiguredAppHeader>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<ConfiguredAppHeader>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultConfiguredAppHeader.attributeTypeMap;
     }
 }
 
@@ -22682,6 +23517,56 @@ export class RestApiPaginationResultApp {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultApp.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
+export class RestApiPaginationResultAppSummary {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<AppSummary>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<AppSummary>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultAppSummary.attributeTypeMap;
     }
 }
 
@@ -23870,6 +24755,52 @@ export class RestApiResultAppCompliance {
 
     static getAttributeTypeMap() {
         return RestApiResultAppCompliance.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultAppConfigurationSummary {
+    /**
+    * Generic data object.
+    */
+    'Data': AppConfigurationSummary;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "AppConfigurationSummary"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultAppConfigurationSummary.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultAppDetail {
+    /**
+    * Generic data object.
+    */
+    'Data': AppDetail;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "AppDetail"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultAppDetail.attributeTypeMap;
     }
 }
 
@@ -26050,6 +26981,38 @@ export class SetPasswordWithPinModel {
 
     static getAttributeTypeMap() {
         return SetPasswordWithPinModel.attributeTypeMap;
+    }
+}
+
+/**
+* Setting
+*/
+export class Setting {
+    /**
+    * Key
+    */
+    'Key'?: string;
+    /**
+    * Value
+    */
+    'Value'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Key",
+            "baseName": "Key",
+            "type": "string"
+        },
+        {
+            "name": "Value",
+            "baseName": "Value",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Setting.attributeTypeMap;
     }
 }
 
@@ -32724,6 +33687,38 @@ export class UserUpdatedEvent {
 }
 
 /**
+* Valid Value
+*/
+export class ValidValue {
+    /**
+    * Code
+    */
+    'Code': string;
+    /**
+    * Name
+    */
+    'Name': string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Code",
+            "baseName": "Code",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ValidValue.attributeTypeMap;
+    }
+}
+
+/**
 * Validation error result
 */
 export class ValidationErrorResult {
@@ -35005,6 +36000,12 @@ let enumsMap: {[index: string]: any} = {
         "App.ApplicationCategoryEnum": App.ApplicationCategoryEnum,
         "AppCompliance.ComplianceTypeEnum": AppCompliance.ComplianceTypeEnum,
         "AppConfigUpdateModel.ApplicationCategoryEnum": AppConfigUpdateModel.ApplicationCategoryEnum,
+        "AppConfigurationDetail.ConfigurationTypeEnum": AppConfigurationDetail.ConfigurationTypeEnum,
+        "AppConfigurationDetail.StoreSelectorTypeEnum": AppConfigurationDetail.StoreSelectorTypeEnum,
+        "AppDetail.ConfigurationTypeEnum": AppDetail.ConfigurationTypeEnum,
+        "AppDetail.StoreSelectorTypeEnum": AppDetail.StoreSelectorTypeEnum,
+        "AppDetailBase.ConfigurationTypeEnum": AppDetailBase.ConfigurationTypeEnum,
+        "AppDetailBase.StoreSelectorTypeEnum": AppDetailBase.StoreSelectorTypeEnum,
         "BankAccount.AccountStateEnum": BankAccount.AccountStateEnum,
         "BankAccountCreate.CurrencyCodeEnum": BankAccountCreate.CurrencyCodeEnum,
         "BankAccountCreate.BusinessTypeEnum": BankAccountCreate.BusinessTypeEnum,
@@ -35033,6 +36034,7 @@ let enumsMap: {[index: string]: any} = {
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
         "CustomerDeliveryTrackingOrder.CurrencyEnum": CustomerDeliveryTrackingOrder.CurrencyEnum,
         "DriverStore.PresenceEnum": DriverStore.PresenceEnum,
+        "Field.FieldTypeEnum": Field.FieldTypeEnum,
         "HomeAction.HomeActionTypeEnum": HomeAction.HomeActionTypeEnum,
         "HydraConfig.PaymentOptionsEnum": HydraConfig.PaymentOptionsEnum,
         "HydraConnectionStatusChangedEvent.HydraDeviceStatusEnum": HydraConnectionStatusChangedEvent.HydraDeviceStatusEnum,
@@ -35172,7 +36174,13 @@ let typeMap: {[index: string]: any} = {
     "App": App,
     "AppCompliance": AppCompliance,
     "AppConfigUpdateModel": AppConfigUpdateModel,
+    "AppConfigurationBase": AppConfigurationBase,
+    "AppConfigurationDetail": AppConfigurationDetail,
+    "AppConfigurationSummary": AppConfigurationSummary,
     "AppCreatedEvent": AppCreatedEvent,
+    "AppDetail": AppDetail,
+    "AppDetailBase": AppDetailBase,
+    "AppSummary": AppSummary,
     "AppUpdatedEvent": AppUpdatedEvent,
     "AssignedBankAccount": AssignedBankAccount,
     "BalanceDetails": BalanceDetails,
@@ -35194,6 +36202,8 @@ let typeMap: {[index: string]: any} = {
     "CertificateRenewedEvent": CertificateRenewedEvent,
     "ChangePasswordModel": ChangePasswordModel,
     "ChargebackDetails": ChargebackDetails,
+    "ConfiguredAppHeader": ConfiguredAppHeader,
+    "ConfiguredPhysicalRestaurant": ConfiguredPhysicalRestaurant,
     "Coordinates": Coordinates,
     "CountryWithAccountFieldsDefinitions": CountryWithAccountFieldsDefinitions,
     "CreateAccountModel": CreateAccountModel,
@@ -35241,7 +36251,9 @@ let typeMap: {[index: string]: any} = {
     "EventSearchResult": EventSearchResult,
     "ExternalStoreEvent": ExternalStoreEvent,
     "FeeSummary": FeeSummary,
+    "Field": Field,
     "FieldChangeInformation": FieldChangeInformation,
+    "FieldGroup": FieldGroup,
     "FlipdishEventBase": FlipdishEventBase,
     "FlipdishFeesDetails": FlipdishFeesDetails,
     "GroupedCoordinates": GroupedCoordinates,
@@ -35402,8 +36414,10 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultApmCurrencyDataPoint": RestApiArrayResultApmCurrencyDataPoint,
     "RestApiArrayResultApmDataPoint": RestApiArrayResultApmDataPoint,
     "RestApiArrayResultApmHourlyDataPoint": RestApiArrayResultApmHourlyDataPoint,
+    "RestApiArrayResultAppConfigurationSummary": RestApiArrayResultAppConfigurationSummary,
     "RestApiArrayResultBankAccountSummary": RestApiArrayResultBankAccountSummary,
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
+    "RestApiArrayResultConfiguredAppHeader": RestApiArrayResultConfiguredAppHeader,
     "RestApiArrayResultCountryWithAccountFieldsDefinitions": RestApiArrayResultCountryWithAccountFieldsDefinitions,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
     "RestApiArrayResultDriver": RestApiArrayResultDriver,
@@ -35442,6 +36456,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiForbiddenResult": RestApiForbiddenResult,
     "RestApiIntegerResult": RestApiIntegerResult,
     "RestApiPaginationResultApp": RestApiPaginationResultApp,
+    "RestApiPaginationResultAppSummary": RestApiPaginationResultAppSummary,
     "RestApiPaginationResultBusinessHoursOverride": RestApiPaginationResultBusinessHoursOverride,
     "RestApiPaginationResultHttpRequestAndResponseLog": RestApiPaginationResultHttpRequestAndResponseLog,
     "RestApiPaginationResultHydraDeviceDetails": RestApiPaginationResultHydraDeviceDetails,
@@ -35469,6 +36484,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultApmStatus": RestApiResultApmStatus,
     "RestApiResultApp": RestApiResultApp,
     "RestApiResultAppCompliance": RestApiResultAppCompliance,
+    "RestApiResultAppConfigurationSummary": RestApiResultAppConfigurationSummary,
+    "RestApiResultAppDetail": RestApiResultAppDetail,
     "RestApiResultAssignedBankAccount": RestApiResultAssignedBankAccount,
     "RestApiResultBankAccountDetail": RestApiResultBankAccountDetail,
     "RestApiResultBluetoothTerminalStatus": RestApiResultBluetoothTerminalStatus,
@@ -35536,6 +36553,7 @@ let typeMap: {[index: string]: any} = {
     "RevenueDetail": RevenueDetail,
     "SearchCriteria": SearchCriteria,
     "SetPasswordWithPinModel": SetPasswordWithPinModel,
+    "Setting": Setting,
     "SignupStep": SignupStep,
     "SmsInfo": SmsInfo,
     "SmsReceivedEvent": SmsReceivedEvent,
@@ -35606,6 +36624,7 @@ let typeMap: {[index: string]: any} = {
     "UserLoginEvent": UserLoginEvent,
     "UserPasswordCreatedEvent": UserPasswordCreatedEvent,
     "UserUpdatedEvent": UserUpdatedEvent,
+    "ValidValue": ValidValue,
     "ValidationErrorResult": ValidationErrorResult,
     "Voucher": Voucher,
     "VoucherBase": VoucherBase,
@@ -36945,6 +37964,815 @@ export class ApmApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultPhoneCall");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum AppStoreApiApiKeys {
+}
+
+export class AppStoreApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: AppStoreApiApiKeys, value: string) {
+        (this.authentications as any)[AppStoreApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Create app store app
+     * @param appDetailBase App Store App Detail Base
+     * @param {*} [options] Override http request options.
+     */
+    public createAppStoreApp (appDetailBase: AppDetailBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/appstore/apps';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appDetailBase' is not null or undefined
+        if (appDetailBase === null || appDetailBase === undefined) {
+            throw new Error('Required parameter appDetailBase was null or undefined when calling createAppStoreApp.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(appDetailBase, "AppDetailBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppDetail;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Delete app store app
+     * @param appStoreAppId App Store App Id
+     * @param {*} [options] Override http request options.
+     */
+    public deleteAppStoreApp (appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/appstore/apps/{appStoreAppId}'
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling deleteAppStoreApp.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get app store app details
+     * @param appStoreAppId App Store App Id
+     * @param {*} [options] Override http request options.
+     */
+    public getAppStoreApp (appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: AppDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/appstore/apps/{appStoreAppId}'
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling getAppStoreApp.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: AppDetail;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "AppDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Only returns verified applications [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get list of app store app summaries
+     * @param search Query app store app name
+     * @param page Requested page index
+     * @param limit Requested page limit
+     * @param {*} [options] Override http request options.
+     */
+    public getAppStoreApps (search: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultAppSummary;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/appstore/apps';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'search' is not null or undefined
+        if (search === null || search === undefined) {
+            throw new Error('Required parameter search was null or undefined when calling getAppStoreApps.');
+        }
+
+        if (search !== undefined) {
+            localVarQueryParameters['search'] = ObjectSerializer.serialize(search, "string");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultAppSummary;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultAppSummary");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Update app store app
+     * @param appStoreAppId App Store App Id
+     * @param appDetail App Store App Detail
+     * @param {*} [options] Override http request options.
+     */
+    public updateAppStoreApp (appStoreAppId: string, appDetail: AppDetail, options: any = {}) : Promise<{ response: http.IncomingMessage; body: AppDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/appstore/apps/{appStoreAppId}'
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling updateAppStoreApp.');
+        }
+
+        // verify required parameter 'appDetail' is not null or undefined
+        if (appDetail === null || appDetail === undefined) {
+            throw new Error('Required parameter appDetail was null or undefined when calling updateAppStoreApp.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(appDetail, "AppDetail")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: AppDetail;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "AppDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum AppStoreConfigurationsApiApiKeys {
+}
+
+export class AppStoreConfigurationsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: AppStoreConfigurationsApiApiKeys, value: string) {
+        (this.authentications as any)[AppStoreConfigurationsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system] This adds an Application to a Whitelabel that can later be configured to specific stores
+     * @summary Create app store app configuration
+     * @param appId App Id
+     * @param appStoreAppId App Store App Id
+     * @param {*} [options] Override http request options.
+     */
+    public createAppStoreConfig (appId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppConfigurationSummary;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/config'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createAppStoreConfig.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling createAppStoreConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppConfigurationSummary;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppConfigurationSummary");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Delete app store app configuration
+     * @param appId App Id
+     * @param appStoreAppId App Store App Id
+     * @param configId App Store Configuration Id
+     * @param {*} [options] Override http request options.
+     */
+    public deleteAppStoreConfig (appId: string, appStoreAppId: string, configId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/config/{configId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)))
+            .replace('{' + 'configId' + '}', encodeURIComponent(String(configId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling deleteAppStoreConfig.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling deleteAppStoreConfig.');
+        }
+
+        // verify required parameter 'configId' is not null or undefined
+        if (configId === null || configId === undefined) {
+            throw new Error('Required parameter configId was null or undefined when calling deleteAppStoreConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get app store app configuration
+     * @param appId App Id
+     * @param appStoreAppId App Store App Id
+     * @param configId App Store Configuration Id
+     * @param {*} [options] Override http request options.
+     */
+    public getAppStoreConfig (appId: string, appStoreAppId: string, configId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: AppConfigurationDetail;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/config/{configId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)))
+            .replace('{' + 'configId' + '}', encodeURIComponent(String(configId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAppStoreConfig.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling getAppStoreConfig.');
+        }
+
+        // verify required parameter 'configId' is not null or undefined
+        if (configId === null || configId === undefined) {
+            throw new Error('Required parameter configId was null or undefined when calling getAppStoreConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: AppConfigurationDetail;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "AppConfigurationDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [ALPHA - this endpoint is not ready to be consumed]
+     * @summary Get list of app store app configurations for one app store app
+     * @param appId App Id
+     * @param appStoreAppId App Store App Id
+     * @param {*} [options] Override http request options.
+     */
+    public getConfiguredAppSingleApp (appId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppConfigurationSummary;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getConfiguredAppSingleApp.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling getConfiguredAppSingleApp.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppConfigurationSummary;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultAppConfigurationSummary");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [ALPHA - this endpoint is not ready to be consumed]
+     * @summary Get list of app store apps which have been configured
+     * @param appId App Id
+     * @param {*} [options] Override http request options.
+     */
+    public getConfiguredApps (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultConfiguredAppHeader;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getConfiguredApps.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultConfiguredAppHeader;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultConfiguredAppHeader");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Update app store app configuration
+     * @param appId App Id
+     * @param appStoreAppId App Store App Id
+     * @param configId App Store Configuration Id
+     * @param appConfigurationBase App Store Configuration Base
+     * @param {*} [options] Override http request options.
+     */
+    public updateAppStoreConfig (appId: string, appStoreAppId: string, configId: string, appConfigurationBase: AppConfigurationBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/config/{configId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)))
+            .replace('{' + 'configId' + '}', encodeURIComponent(String(configId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateAppStoreConfig.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling updateAppStoreConfig.');
+        }
+
+        // verify required parameter 'configId' is not null or undefined
+        if (configId === null || configId === undefined) {
+            throw new Error('Required parameter configId was null or undefined when calling updateAppStoreConfig.');
+        }
+
+        // verify required parameter 'appConfigurationBase' is not null or undefined
+        if (appConfigurationBase === null || appConfigurationBase === undefined) {
+            throw new Error('Required parameter appConfigurationBase was null or undefined when calling updateAppStoreConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(appConfigurationBase, "AppConfigurationBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
