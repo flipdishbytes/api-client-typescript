@@ -1402,6 +1402,10 @@ export class AppConfigurationDetail {
     */
     'Description': string;
     /**
+    * Logo
+    */
+    'Logo'?: string;
+    /**
     * Is application verified for use in the App Store
     */
     'IsVerified'?: boolean;
@@ -1470,6 +1474,11 @@ export class AppConfigurationDetail {
         {
             "name": "Description",
             "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Logo",
+            "baseName": "Logo",
             "type": "string"
         },
         {
@@ -1687,6 +1696,10 @@ export class AppDetail {
     */
     'Description': string;
     /**
+    * Logo
+    */
+    'Logo'?: string;
+    /**
     * Is application enabled
     */
     'IsEnabled'?: boolean;
@@ -1734,6 +1747,11 @@ export class AppDetail {
         {
             "name": "Description",
             "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Logo",
+            "baseName": "Logo",
             "type": "string"
         },
         {
@@ -1798,6 +1816,10 @@ export class AppDetailBase {
     */
     'Description': string;
     /**
+    * Logo
+    */
+    'Logo'?: string;
+    /**
     * Is application enabled
     */
     'IsEnabled'?: boolean;
@@ -1840,6 +1862,11 @@ export class AppDetailBase {
         {
             "name": "Description",
             "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Logo",
+            "baseName": "Logo",
             "type": "string"
         },
         {
@@ -1896,6 +1923,10 @@ export class AppSummary {
     */
     'Description': string;
     /**
+    * Logo
+    */
+    'Logo'?: string;
+    /**
     * Is application enabled
     */
     'IsEnabled'?: boolean;
@@ -1928,6 +1959,11 @@ export class AppSummary {
         {
             "name": "Description",
             "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Logo",
+            "baseName": "Logo",
             "type": "string"
         },
         {
@@ -38328,6 +38364,73 @@ export class AppStoreApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "AppDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Upload the app store app logo \\ icon
+     * @param appStoreAppId App Store App Id
+     * @param Image App Store App Logo
+     * @param {*} [options] Override http request options.
+     */
+    public uploadAppStoreAppLogo (appStoreAppId: string, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/appstore/apps/{appStoreAppId}/logo'
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling uploadAppStoreAppLogo.');
+        }
+
+        // verify required parameter 'Image' is not null or undefined
+        if (Image === null || Image === undefined) {
+            throw new Error('Required parameter Image was null or undefined when calling uploadAppStoreAppLogo.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (Image !== undefined) {
+            localVarFormParams['Image'] = Image;
+        }
+        localVarUseFormData = true;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
