@@ -1394,6 +1394,14 @@ export class AppConfigurationDetail {
     */
     'FieldGroups'?: Array<FieldGroup>;
     /**
+    * Setup Instructions
+    */
+    'SetupInstructions'?: string;
+    /**
+    * External Setup Link
+    */
+    'ExternalSetupLink'?: string;
+    /**
     * Name
     */
     'Name': string;
@@ -1417,6 +1425,10 @@ export class AppConfigurationDetail {
     * Regions
     */
     'Regions': Array<string>;
+    /**
+    * Developer Name
+    */
+    'DeveloperName'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1467,6 +1479,16 @@ export class AppConfigurationDetail {
             "type": "Array<FieldGroup>"
         },
         {
+            "name": "SetupInstructions",
+            "baseName": "SetupInstructions",
+            "type": "string"
+        },
+        {
+            "name": "ExternalSetupLink",
+            "baseName": "ExternalSetupLink",
+            "type": "string"
+        },
+        {
             "name": "Name",
             "baseName": "Name",
             "type": "string"
@@ -1495,6 +1517,11 @@ export class AppConfigurationDetail {
             "name": "Regions",
             "baseName": "Regions",
             "type": "Array<string>"
+        },
+        {
+            "name": "DeveloperName",
+            "baseName": "DeveloperName",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1688,6 +1715,14 @@ export class AppDetail {
     */
     'FieldGroups'?: Array<FieldGroup>;
     /**
+    * Setup Instructions
+    */
+    'SetupInstructions'?: string;
+    /**
+    * External Setup Link
+    */
+    'ExternalSetupLink'?: string;
+    /**
     * Name
     */
     'Name': string;
@@ -1715,6 +1750,10 @@ export class AppDetail {
     * Regions
     */
     'Regions': Array<string>;
+    /**
+    * Developer Name
+    */
+    'DeveloperName'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1738,6 +1777,16 @@ export class AppDetail {
             "name": "FieldGroups",
             "baseName": "FieldGroups",
             "type": "Array<FieldGroup>"
+        },
+        {
+            "name": "SetupInstructions",
+            "baseName": "SetupInstructions",
+            "type": "string"
+        },
+        {
+            "name": "ExternalSetupLink",
+            "baseName": "ExternalSetupLink",
+            "type": "string"
         },
         {
             "name": "Name",
@@ -1773,6 +1822,11 @@ export class AppDetail {
             "name": "Regions",
             "baseName": "Regions",
             "type": "Array<string>"
+        },
+        {
+            "name": "DeveloperName",
+            "baseName": "DeveloperName",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1808,6 +1862,14 @@ export class AppDetailBase {
     */
     'FieldGroups'?: Array<FieldGroup>;
     /**
+    * Setup Instructions
+    */
+    'SetupInstructions'?: string;
+    /**
+    * External Setup Link
+    */
+    'ExternalSetupLink'?: string;
+    /**
     * Name
     */
     'Name': string;
@@ -1835,6 +1897,10 @@ export class AppDetailBase {
     * Regions
     */
     'Regions': Array<string>;
+    /**
+    * Developer Name
+    */
+    'DeveloperName'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1853,6 +1919,16 @@ export class AppDetailBase {
             "name": "FieldGroups",
             "baseName": "FieldGroups",
             "type": "Array<FieldGroup>"
+        },
+        {
+            "name": "SetupInstructions",
+            "baseName": "SetupInstructions",
+            "type": "string"
+        },
+        {
+            "name": "ExternalSetupLink",
+            "baseName": "ExternalSetupLink",
+            "type": "string"
         },
         {
             "name": "Name",
@@ -1888,6 +1964,11 @@ export class AppDetailBase {
             "name": "Regions",
             "baseName": "Regions",
             "type": "Array<string>"
+        },
+        {
+            "name": "DeveloperName",
+            "baseName": "DeveloperName",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1942,6 +2023,10 @@ export class AppSummary {
     * Regions
     */
     'Regions': Array<string>;
+    /**
+    * Developer Name
+    */
+    'DeveloperName'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1985,6 +2070,11 @@ export class AppSummary {
             "name": "Regions",
             "baseName": "Regions",
             "type": "Array<string>"
+        },
+        {
+            "name": "DeveloperName",
+            "baseName": "DeveloperName",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
