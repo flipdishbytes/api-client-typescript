@@ -1541,6 +1541,65 @@ export namespace AppConfigurationDetail {
     }
 }
 /**
+* Configured app item for list
+*/
+export class AppConfigurationHeader {
+    /**
+    * AppStore App Id
+    */
+    'AppStoreAppId': string;
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Logo
+    */
+    'Logo'?: string;
+    /**
+    * Developer Name
+    */
+    'DeveloperName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AppStoreAppId",
+            "baseName": "AppStoreAppId",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Logo",
+            "baseName": "Logo",
+            "type": "string"
+        },
+        {
+            "name": "DeveloperName",
+            "baseName": "DeveloperName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppConfigurationHeader.attributeTypeMap;
+    }
+}
+
+/**
 * Application Configuration Summary  <remarks>Header information for display in lists, like list of apps</remarks>
 */
 export class AppConfigurationSummary {
@@ -1553,10 +1612,6 @@ export class AppConfigurationSummary {
     */
     'AppId': string;
     /**
-    * App Store App Id
-    */
-    'AppStoreAppId': string;
-    /**
     * Is Enabled
     */
     'IsEnabled': boolean;
@@ -1564,6 +1619,34 @@ export class AppConfigurationSummary {
     * List of restaurants
     */
     'PhysicalRestaurants': Array<ConfiguredPhysicalRestaurant>;
+    /**
+    * Configuration Type
+    */
+    'ConfigurationType'?: AppConfigurationSummary.ConfigurationTypeEnum;
+    /**
+    * Store Selector Type
+    */
+    'StoreSelectorType'?: AppConfigurationSummary.StoreSelectorTypeEnum;
+    /**
+    * AppStore App Id
+    */
+    'AppStoreAppId': string;
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Logo
+    */
+    'Logo'?: string;
+    /**
+    * Developer Name
+    */
+    'DeveloperName'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1579,11 +1662,6 @@ export class AppConfigurationSummary {
             "type": "string"
         },
         {
-            "name": "AppStoreAppId",
-            "baseName": "AppStoreAppId",
-            "type": "string"
-        },
-        {
             "name": "IsEnabled",
             "baseName": "IsEnabled",
             "type": "boolean"
@@ -1592,6 +1670,41 @@ export class AppConfigurationSummary {
             "name": "PhysicalRestaurants",
             "baseName": "PhysicalRestaurants",
             "type": "Array<ConfiguredPhysicalRestaurant>"
+        },
+        {
+            "name": "ConfigurationType",
+            "baseName": "ConfigurationType",
+            "type": "AppConfigurationSummary.ConfigurationTypeEnum"
+        },
+        {
+            "name": "StoreSelectorType",
+            "baseName": "StoreSelectorType",
+            "type": "AppConfigurationSummary.StoreSelectorTypeEnum"
+        },
+        {
+            "name": "AppStoreAppId",
+            "baseName": "AppStoreAppId",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Logo",
+            "baseName": "Logo",
+            "type": "string"
+        },
+        {
+            "name": "DeveloperName",
+            "baseName": "DeveloperName",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1599,6 +1712,17 @@ export class AppConfigurationSummary {
     }
 }
 
+export namespace AppConfigurationSummary {
+    export enum ConfigurationTypeEnum {
+        ExternalLink = <any> 'ExternalLink',
+        FlipdishHosted = <any> 'FlipdishHosted'
+    }
+    export enum StoreSelectorTypeEnum {
+        None = <any> 'None',
+        Single = <any> 'Single',
+        Multiple = <any> 'Multiple'
+    }
+}
 /**
 * Application created event
 */
@@ -4083,38 +4207,6 @@ export class ChargebackDetails {
 
     static getAttributeTypeMap() {
         return ChargebackDetails.attributeTypeMap;
-    }
-}
-
-/**
-* Configured app item for list
-*/
-export class ConfiguredAppHeader {
-    /**
-    * Name
-    */
-    'Name': string;
-    /**
-    * AppStore App Id
-    */
-    'AppStoreAppId': string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "AppStoreAppId",
-            "baseName": "AppStoreAppId",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return ConfiguredAppHeader.attributeTypeMap;
     }
 }
 
@@ -17391,6 +17483,105 @@ export class OrderCustomerTrackingCreatedEvent {
 /**
 * Order Delivery Status Information
 */
+export class OrderDeliveryInformation {
+    /**
+    * 
+    */
+    'OrderId'?: number;
+    /**
+    * 
+    */
+    'ExternalReferenceId'?: string;
+    /**
+    * 
+    */
+    'TrackUrl'?: string;
+    /**
+    * 
+    */
+    'Status'?: OrderDeliveryInformation.StatusEnum;
+    /**
+    * 
+    */
+    'DeliveryStatusNotes'?: string;
+    /**
+    * 
+    */
+    'ErrorMessage'?: string;
+    /**
+    * 
+    */
+    'IntegrationCode'?: string;
+    /**
+    * 
+    */
+    'IntegrationName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrderId",
+            "baseName": "OrderId",
+            "type": "number"
+        },
+        {
+            "name": "ExternalReferenceId",
+            "baseName": "ExternalReferenceId",
+            "type": "string"
+        },
+        {
+            "name": "TrackUrl",
+            "baseName": "TrackUrl",
+            "type": "string"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "OrderDeliveryInformation.StatusEnum"
+        },
+        {
+            "name": "DeliveryStatusNotes",
+            "baseName": "DeliveryStatusNotes",
+            "type": "string"
+        },
+        {
+            "name": "ErrorMessage",
+            "baseName": "ErrorMessage",
+            "type": "string"
+        },
+        {
+            "name": "IntegrationCode",
+            "baseName": "IntegrationCode",
+            "type": "string"
+        },
+        {
+            "name": "IntegrationName",
+            "baseName": "IntegrationName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderDeliveryInformation.attributeTypeMap;
+    }
+}
+
+export namespace OrderDeliveryInformation {
+    export enum StatusEnum {
+        None = <any> 'None',
+        Unassigned = <any> 'Unassigned',
+        Unaccepted = <any> 'Unaccepted',
+        Accepted = <any> 'Accepted',
+        Carrying = <any> 'Carrying',
+        OnTheWay = <any> 'OnTheWay',
+        ArrivedAtLocation = <any> 'ArrivedAtLocation',
+        Delivered = <any> 'Delivered',
+        CannotDeliver = <any> 'CannotDeliver'
+    }
+}
+/**
+* Order Delivery Status Information
+*/
 export class OrderDeliveryInformationBase {
     /**
     * 
@@ -22611,6 +22802,29 @@ export class RestApiArrayResultApmHourlyDataPoint {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultAppConfigurationHeader {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<AppConfigurationHeader>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<AppConfigurationHeader>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultAppConfigurationHeader.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultAppConfigurationSummary {
     /**
     * Generic data object.
@@ -22674,29 +22888,6 @@ export class RestApiArrayResultBusinessHoursPeriod {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultBusinessHoursPeriod.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api array result
-*/
-export class RestApiArrayResultConfiguredAppHeader {
-    /**
-    * Generic data object.
-    */
-    'Data': Array<ConfiguredAppHeader>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Array<ConfiguredAppHeader>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiArrayResultConfiguredAppHeader.attributeTypeMap;
     }
 }
 
@@ -25672,6 +25863,29 @@ export class RestApiResultOrder {
 
     static getAttributeTypeMap() {
         return RestApiResultOrder.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultOrderDeliveryInformation {
+    /**
+    * Generic data object.
+    */
+    'Data': OrderDeliveryInformation;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "OrderDeliveryInformation"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultOrderDeliveryInformation.attributeTypeMap;
     }
 }
 
@@ -36137,6 +36351,8 @@ let enumsMap: {[index: string]: any} = {
         "AppConfigUpdateModel.ApplicationCategoryEnum": AppConfigUpdateModel.ApplicationCategoryEnum,
         "AppConfigurationDetail.ConfigurationTypeEnum": AppConfigurationDetail.ConfigurationTypeEnum,
         "AppConfigurationDetail.StoreSelectorTypeEnum": AppConfigurationDetail.StoreSelectorTypeEnum,
+        "AppConfigurationSummary.ConfigurationTypeEnum": AppConfigurationSummary.ConfigurationTypeEnum,
+        "AppConfigurationSummary.StoreSelectorTypeEnum": AppConfigurationSummary.StoreSelectorTypeEnum,
         "AppDetail.ConfigurationTypeEnum": AppDetail.ConfigurationTypeEnum,
         "AppDetail.StoreSelectorTypeEnum": AppDetail.StoreSelectorTypeEnum,
         "AppDetailBase.ConfigurationTypeEnum": AppDetailBase.ConfigurationTypeEnum,
@@ -36215,6 +36431,7 @@ let enumsMap: {[index: string]: any} = {
         "Order.PaymentStatusEnum": Order.PaymentStatusEnum,
         "Order.RejectionReasonEnum": Order.RejectionReasonEnum,
         "Order.DeliveryTrackingStatusEnum": Order.DeliveryTrackingStatusEnum,
+        "OrderDeliveryInformation.StatusEnum": OrderDeliveryInformation.StatusEnum,
         "OrderDeliveryInformationBase.StatusEnum": OrderDeliveryInformationBase.StatusEnum,
         "OrderSummary.DeliveryTypeEnum": OrderSummary.DeliveryTypeEnum,
         "OrderSummary.PickupLocationTypeEnum": OrderSummary.PickupLocationTypeEnum,
@@ -36311,6 +36528,7 @@ let typeMap: {[index: string]: any} = {
     "AppConfigUpdateModel": AppConfigUpdateModel,
     "AppConfigurationBase": AppConfigurationBase,
     "AppConfigurationDetail": AppConfigurationDetail,
+    "AppConfigurationHeader": AppConfigurationHeader,
     "AppConfigurationSummary": AppConfigurationSummary,
     "AppCreatedEvent": AppCreatedEvent,
     "AppDetail": AppDetail,
@@ -36337,7 +36555,6 @@ let typeMap: {[index: string]: any} = {
     "CertificateRenewedEvent": CertificateRenewedEvent,
     "ChangePasswordModel": ChangePasswordModel,
     "ChargebackDetails": ChargebackDetails,
-    "ConfiguredAppHeader": ConfiguredAppHeader,
     "ConfiguredPhysicalRestaurant": ConfiguredPhysicalRestaurant,
     "Coordinates": Coordinates,
     "CountryWithAccountFieldsDefinitions": CountryWithAccountFieldsDefinitions,
@@ -36492,6 +36709,7 @@ let typeMap: {[index: string]: any} = {
     "OrderCapacityConfigUpdatedEvent": OrderCapacityConfigUpdatedEvent,
     "OrderCreatedEvent": OrderCreatedEvent,
     "OrderCustomerTrackingCreatedEvent": OrderCustomerTrackingCreatedEvent,
+    "OrderDeliveryInformation": OrderDeliveryInformation,
     "OrderDeliveryInformationBase": OrderDeliveryInformationBase,
     "OrderDeliveryTrackingStatusUpdatedEvent": OrderDeliveryTrackingStatusUpdatedEvent,
     "OrderDispatchedEvent": OrderDispatchedEvent,
@@ -36549,10 +36767,10 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultApmCurrencyDataPoint": RestApiArrayResultApmCurrencyDataPoint,
     "RestApiArrayResultApmDataPoint": RestApiArrayResultApmDataPoint,
     "RestApiArrayResultApmHourlyDataPoint": RestApiArrayResultApmHourlyDataPoint,
+    "RestApiArrayResultAppConfigurationHeader": RestApiArrayResultAppConfigurationHeader,
     "RestApiArrayResultAppConfigurationSummary": RestApiArrayResultAppConfigurationSummary,
     "RestApiArrayResultBankAccountSummary": RestApiArrayResultBankAccountSummary,
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
-    "RestApiArrayResultConfiguredAppHeader": RestApiArrayResultConfiguredAppHeader,
     "RestApiArrayResultCountryWithAccountFieldsDefinitions": RestApiArrayResultCountryWithAccountFieldsDefinitions,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
     "RestApiArrayResultDriver": RestApiArrayResultDriver,
@@ -36653,6 +36871,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultOAuthApp": RestApiResultOAuthApp,
     "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
     "RestApiResultOrder": RestApiResultOrder,
+    "RestApiResultOrderDeliveryInformation": RestApiResultOrderDeliveryInformation,
     "RestApiResultOrderPaymentInformation": RestApiResultOrderPaymentInformation,
     "RestApiResultPaymentTerminalDetails": RestApiResultPaymentTerminalDetails,
     "RestApiResultPaymentTerminalTransactionDetails": RestApiResultPaymentTerminalTransactionDetails,
@@ -38856,7 +39075,7 @@ export class AppStoreConfigurationsApi {
      * @param appId App Id
      * @param {*} [options] Override http request options.
      */
-    public getConfiguredApps (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultConfiguredAppHeader;  }> {
+    public getConfiguredApps (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppConfigurationHeader;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -38892,12 +39111,12 @@ export class AppStoreConfigurationsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultConfiguredAppHeader;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppConfigurationHeader;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultConfiguredAppHeader");
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultAppConfigurationHeader");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -53268,7 +53487,7 @@ export class OrdersApi {
      * @param orderId OrderId
      * @param {*} [options] Override http request options.
      */
-    public getDeliveryInformation (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public getDeliveryInformation (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderDeliveryInformation;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/deliveryinfo'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
@@ -53304,11 +53523,12 @@ export class OrdersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOrderDeliveryInformation;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultOrderDeliveryInformation");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
