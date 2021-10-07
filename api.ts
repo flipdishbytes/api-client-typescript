@@ -22021,6 +22021,10 @@ export class Product {
     */
     'IsArchived'?: boolean;
     /**
+    * Product contains alcohol
+    */
+    'Alcohol'?: boolean;
+    /**
     * Stock Keeping Unit (SKU)
     */
     'Sku'?: string;
@@ -22053,6 +22057,11 @@ export class Product {
         {
             "name": "IsArchived",
             "baseName": "IsArchived",
+            "type": "boolean"
+        },
+        {
+            "name": "Alcohol",
+            "baseName": "Alcohol",
             "type": "boolean"
         },
         {
@@ -33493,6 +33502,10 @@ export class UpdateProduct {
     * Product price
     */
     'Price'?: number;
+    /**
+    * Product contains alcohol
+    */
+    'Alcohol'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -33516,6 +33529,11 @@ export class UpdateProduct {
             "name": "Price",
             "baseName": "Price",
             "type": "number"
+        },
+        {
+            "name": "Alcohol",
+            "baseName": "Alcohol",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
