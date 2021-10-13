@@ -5031,6 +5031,10 @@ export class CreateProduct {
     * Product price
     */
     'Price'?: number;
+    /**
+    * Product Type (SimpleProduct, Modifier, ModifierGroup, etc)
+    */
+    'ProductType'?: CreateProduct.ProductTypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -5054,6 +5058,11 @@ export class CreateProduct {
             "name": "Price",
             "baseName": "Price",
             "type": "number"
+        },
+        {
+            "name": "ProductType",
+            "baseName": "ProductType",
+            "type": "CreateProduct.ProductTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -5061,6 +5070,14 @@ export class CreateProduct {
     }
 }
 
+export namespace CreateProduct {
+    export enum ProductTypeEnum {
+        Unknown = <any> 'Unknown',
+        SimpleProduct = <any> 'SimpleProduct',
+        Modifier = <any> 'Modifier',
+        ModifierGroup = <any> 'ModifierGroup'
+    }
+}
 /**
 * 
 */
@@ -22162,6 +22179,10 @@ export class Product {
     * Product price
     */
     'Price'?: number;
+    /**
+    * Product Type (SimpleProduct, Modifier, ModifierGroup, etc)
+    */
+    'ProductType'?: Product.ProductTypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -22205,6 +22226,11 @@ export class Product {
             "name": "Price",
             "baseName": "Price",
             "type": "number"
+        },
+        {
+            "name": "ProductType",
+            "baseName": "ProductType",
+            "type": "Product.ProductTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -22212,6 +22238,14 @@ export class Product {
     }
 }
 
+export namespace Product {
+    export enum ProductTypeEnum {
+        Unknown = <any> 'Unknown',
+        SimpleProduct = <any> 'SimpleProduct',
+        Modifier = <any> 'Modifier',
+        ModifierGroup = <any> 'ModifierGroup'
+    }
+}
 /**
 * Item
 */
@@ -36520,6 +36554,7 @@ let enumsMap: {[index: string]: any} = {
         "CreateFullMenuItemOptionSetItem.CellLayoutTypeEnum": CreateFullMenuItemOptionSetItem.CellLayoutTypeEnum,
         "CreateFullMenuSectionItem.SpicinessRatingEnum": CreateFullMenuSectionItem.SpicinessRatingEnum,
         "CreateFullMenuSectionItem.CellLayoutTypeEnum": CreateFullMenuSectionItem.CellLayoutTypeEnum,
+        "CreateProduct.ProductTypeEnum": CreateProduct.ProductTypeEnum,
         "CreateTeammate.AppAccessLevelEnum": CreateTeammate.AppAccessLevelEnum,
         "CreateVoucher.VoucherTypeEnum": CreateVoucher.VoucherTypeEnum,
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
@@ -36603,6 +36638,7 @@ let enumsMap: {[index: string]: any} = {
         "PhoneCall.CallStatusEnum": PhoneCall.CallStatusEnum,
         "PreOrderConfig.PreOrderTimeDisplayTypeEnum": PreOrderConfig.PreOrderTimeDisplayTypeEnum,
         "ProcessingFeeConfig.PaymentAccountTypeEnum": ProcessingFeeConfig.PaymentAccountTypeEnum,
+        "Product.ProductTypeEnum": Product.ProductTypeEnum,
         "ProductItem.CellLayoutTypeEnum": ProductItem.CellLayoutTypeEnum,
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
         "RedeemInvitationResult.InvitationStatusEnum": RedeemInvitationResult.InvitationStatusEnum,
