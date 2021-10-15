@@ -27940,6 +27940,10 @@ export class Store {
     */
     'LogoUrl'?: string;
     /**
+    * Fraud Prevention Strategy
+    */
+    'FraudPreventionStrategy'?: string;
+    /**
     * Phone number
     */
     'PhoneNumber'?: string;
@@ -28147,6 +28151,11 @@ export class Store {
         {
             "name": "LogoUrl",
             "baseName": "LogoUrl",
+            "type": "string"
+        },
+        {
+            "name": "FraudPreventionStrategy",
+            "baseName": "FraudPreventionStrategy",
             "type": "string"
         },
         {
