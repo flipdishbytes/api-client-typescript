@@ -22152,18 +22152,6 @@ export class Product {
     */
     'ProductId'?: string;
     /**
-    * Image File Name
-    */
-    'ImageFileName'?: string;
-    /**
-    * Returns true if the product is archived
-    */
-    'IsArchived'?: boolean;
-    /**
-    * Product contains alcohol
-    */
-    'Alcohol'?: boolean;
-    /**
     * Stock Keeping Unit (SKU)
     */
     'Sku'?: string;
@@ -22183,6 +22171,18 @@ export class Product {
     * Product Type (SimpleProduct, Modifier, ModifierGroup, etc)
     */
     'ProductType'?: Product.ProductTypeEnum;
+    /**
+    * Image File Name
+    */
+    'ImageFileName'?: string;
+    /**
+    * Returns true if the product is archived
+    */
+    'IsArchived'?: boolean;
+    /**
+    * Product contains alcohol
+    */
+    'Alcohol'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -22191,21 +22191,6 @@ export class Product {
             "name": "ProductId",
             "baseName": "ProductId",
             "type": "string"
-        },
-        {
-            "name": "ImageFileName",
-            "baseName": "ImageFileName",
-            "type": "string"
-        },
-        {
-            "name": "IsArchived",
-            "baseName": "IsArchived",
-            "type": "boolean"
-        },
-        {
-            "name": "Alcohol",
-            "baseName": "Alcohol",
-            "type": "boolean"
         },
         {
             "name": "Sku",
@@ -22231,6 +22216,21 @@ export class Product {
             "name": "ProductType",
             "baseName": "ProductType",
             "type": "Product.ProductTypeEnum"
+        },
+        {
+            "name": "ImageFileName",
+            "baseName": "ImageFileName",
+            "type": "string"
+        },
+        {
+            "name": "IsArchived",
+            "baseName": "IsArchived",
+            "type": "boolean"
+        },
+        {
+            "name": "Alcohol",
+            "baseName": "Alcohol",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -55858,14 +55858,15 @@ export class ProductsApi {
     }
     /**
      * 
-     * @summary Get products by app name id
+     * @summary Get paginated products by app name id filtered by product types
      * @param appId 
+     * @param productTypes 
      * @param searchTerm 
      * @param page 
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getProducts (appId: string, searchTerm?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultProduct;  }> {
+    public getProducts (appId: string, productTypes: Array<'Unknown' | 'SimpleProduct' | 'Modifier' | 'ModifierGroup'>, searchTerm?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultProduct;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -55875,6 +55876,15 @@ export class ProductsApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getProducts.');
+        }
+
+        // verify required parameter 'productTypes' is not null or undefined
+        if (productTypes === null || productTypes === undefined) {
+            throw new Error('Required parameter productTypes was null or undefined when calling getProducts.');
+        }
+
+        if (productTypes !== undefined) {
+            localVarQueryParameters['productTypes'] = ObjectSerializer.serialize(productTypes, "Array<'Unknown' | 'SimpleProduct' | 'Modifier' | 'ModifierGroup'>");
         }
 
         if (searchTerm !== undefined) {
