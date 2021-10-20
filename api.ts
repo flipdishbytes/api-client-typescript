@@ -33693,6 +33693,10 @@ export class UpdateProduct {
     * Product contains alcohol
     */
     'Alcohol'?: boolean;
+    /**
+    * Product Type (SimpleProduct, Modifier, ModifierGroup, etc)
+    */
+    'ProductType'?: UpdateProduct.ProductTypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -33721,6 +33725,11 @@ export class UpdateProduct {
             "name": "Alcohol",
             "baseName": "Alcohol",
             "type": "boolean"
+        },
+        {
+            "name": "ProductType",
+            "baseName": "ProductType",
+            "type": "UpdateProduct.ProductTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -33728,6 +33737,14 @@ export class UpdateProduct {
     }
 }
 
+export namespace UpdateProduct {
+    export enum ProductTypeEnum {
+        Unknown = <any> 'Unknown',
+        SimpleProduct = <any> 'SimpleProduct',
+        Modifier = <any> 'Modifier',
+        ModifierGroup = <any> 'ModifierGroup'
+    }
+}
 /**
 * User answered signup questions event
 */
@@ -36705,6 +36722,7 @@ let enumsMap: {[index: string]: any} = {
         "Teammate.InvitationStatusEnum": Teammate.InvitationStatusEnum,
         "Teammate.AppAccessLevelEnum": Teammate.AppAccessLevelEnum,
         "TeammateBase.AppAccessLevelEnum": TeammateBase.AppAccessLevelEnum,
+        "UpdateProduct.ProductTypeEnum": UpdateProduct.ProductTypeEnum,
         "Voucher.StatusEnum": Voucher.StatusEnum,
         "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
         "Voucher.VoucherSubTypeEnum": Voucher.VoucherSubTypeEnum,
