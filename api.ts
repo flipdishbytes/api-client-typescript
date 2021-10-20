@@ -1422,9 +1422,9 @@ export class AppConfigurationDetail {
     */
     'Logo'?: string;
     /**
-    * Is application verified for use in the App Store
+    * Application verification status
     */
-    'IsVerified'?: boolean;
+    'VerificationStatus': AppConfigurationDetail.VerificationStatusEnum;
     /**
     * Tags
     */
@@ -1512,9 +1512,9 @@ export class AppConfigurationDetail {
             "type": "string"
         },
         {
-            "name": "IsVerified",
-            "baseName": "IsVerified",
-            "type": "boolean"
+            "name": "VerificationStatus",
+            "baseName": "VerificationStatus",
+            "type": "AppConfigurationDetail.VerificationStatusEnum"
         },
         {
             "name": "Tags",
@@ -1546,6 +1546,11 @@ export namespace AppConfigurationDetail {
         None = <any> 'None',
         Single = <any> 'Single',
         Multiple = <any> 'Multiple'
+    }
+    export enum VerificationStatusEnum {
+        Draft = <any> 'Draft',
+        Submitted = <any> 'Submitted',
+        Verified = <any> 'Verified'
     }
 }
 /**
@@ -1871,9 +1876,9 @@ export class AppDetail {
     */
     'IsEnabled'?: boolean;
     /**
-    * Is application verified for use in the App Store
+    * Application verification status
     */
-    'IsVerified'?: boolean;
+    'VerificationStatus': AppDetail.VerificationStatusEnum;
     /**
     * Tags
     */
@@ -1941,9 +1946,9 @@ export class AppDetail {
             "type": "boolean"
         },
         {
-            "name": "IsVerified",
-            "baseName": "IsVerified",
-            "type": "boolean"
+            "name": "VerificationStatus",
+            "baseName": "VerificationStatus",
+            "type": "AppDetail.VerificationStatusEnum"
         },
         {
             "name": "Tags",
@@ -1975,6 +1980,11 @@ export namespace AppDetail {
         None = <any> 'None',
         Single = <any> 'Single',
         Multiple = <any> 'Multiple'
+    }
+    export enum VerificationStatusEnum {
+        Draft = <any> 'Draft',
+        Submitted = <any> 'Submitted',
+        Verified = <any> 'Verified'
     }
 }
 /**
@@ -2018,9 +2028,9 @@ export class AppDetailBase {
     */
     'IsEnabled'?: boolean;
     /**
-    * Is application verified for use in the App Store
+    * Application verification status
     */
-    'IsVerified'?: boolean;
+    'VerificationStatus': AppDetailBase.VerificationStatusEnum;
     /**
     * Tags
     */
@@ -2083,9 +2093,9 @@ export class AppDetailBase {
             "type": "boolean"
         },
         {
-            "name": "IsVerified",
-            "baseName": "IsVerified",
-            "type": "boolean"
+            "name": "VerificationStatus",
+            "baseName": "VerificationStatus",
+            "type": "AppDetailBase.VerificationStatusEnum"
         },
         {
             "name": "Tags",
@@ -2118,6 +2128,11 @@ export namespace AppDetailBase {
         Single = <any> 'Single',
         Multiple = <any> 'Multiple'
     }
+    export enum VerificationStatusEnum {
+        Draft = <any> 'Draft',
+        Submitted = <any> 'Submitted',
+        Verified = <any> 'Verified'
+    }
 }
 /**
 * Application Summary  <remarks>Header information for display in lists, like list of apps</remarks>
@@ -2144,9 +2159,9 @@ export class AppSummary {
     */
     'IsEnabled'?: boolean;
     /**
-    * Is application verified for use in the App Store
+    * Application verification status
     */
-    'IsVerified'?: boolean;
+    'VerificationStatus': AppSummary.VerificationStatusEnum;
     /**
     * Tags
     */
@@ -2189,9 +2204,9 @@ export class AppSummary {
             "type": "boolean"
         },
         {
-            "name": "IsVerified",
-            "baseName": "IsVerified",
-            "type": "boolean"
+            "name": "VerificationStatus",
+            "baseName": "VerificationStatus",
+            "type": "AppSummary.VerificationStatusEnum"
         },
         {
             "name": "Tags",
@@ -2214,6 +2229,13 @@ export class AppSummary {
     }
 }
 
+export namespace AppSummary {
+    export enum VerificationStatusEnum {
+        Draft = <any> 'Draft',
+        Submitted = <any> 'Submitted',
+        Verified = <any> 'Verified'
+    }
+}
 /**
 * Application updated event
 */
@@ -36534,12 +36556,16 @@ let enumsMap: {[index: string]: any} = {
         "AppConfigUpdateModel.ApplicationCategoryEnum": AppConfigUpdateModel.ApplicationCategoryEnum,
         "AppConfigurationDetail.ConfigurationTypeEnum": AppConfigurationDetail.ConfigurationTypeEnum,
         "AppConfigurationDetail.StoreSelectorTypeEnum": AppConfigurationDetail.StoreSelectorTypeEnum,
+        "AppConfigurationDetail.VerificationStatusEnum": AppConfigurationDetail.VerificationStatusEnum,
         "AppConfigurationSummary.ConfigurationTypeEnum": AppConfigurationSummary.ConfigurationTypeEnum,
         "AppConfigurationSummary.StoreSelectorTypeEnum": AppConfigurationSummary.StoreSelectorTypeEnum,
         "AppDetail.ConfigurationTypeEnum": AppDetail.ConfigurationTypeEnum,
         "AppDetail.StoreSelectorTypeEnum": AppDetail.StoreSelectorTypeEnum,
+        "AppDetail.VerificationStatusEnum": AppDetail.VerificationStatusEnum,
         "AppDetailBase.ConfigurationTypeEnum": AppDetailBase.ConfigurationTypeEnum,
         "AppDetailBase.StoreSelectorTypeEnum": AppDetailBase.StoreSelectorTypeEnum,
+        "AppDetailBase.VerificationStatusEnum": AppDetailBase.VerificationStatusEnum,
+        "AppSummary.VerificationStatusEnum": AppSummary.VerificationStatusEnum,
         "BankAccount.AccountStateEnum": BankAccount.AccountStateEnum,
         "BankAccountCreate.CurrencyCodeEnum": BankAccountCreate.CurrencyCodeEnum,
         "BankAccountCreate.BusinessTypeEnum": BankAccountCreate.BusinessTypeEnum,
@@ -38561,6 +38587,69 @@ export class AppStoreApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system][Flipdish Admin access required]
+     * @summary Update app store app verification
+     * @param appStoreAppId App Store App Id
+     * @param verificationStatus New Verification Status
+     * @param {*} [options] Override http request options.
+     */
+    public appVerificationUpdate (appStoreAppId: string, verificationStatus: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/appstore/apps/{appStoreAppId}/verification'
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling appVerificationUpdate.');
+        }
+
+        // verify required parameter 'verificationStatus' is not null or undefined
+        if (verificationStatus === null || verificationStatus === undefined) {
+            throw new Error('Required parameter verificationStatus was null or undefined when calling appVerificationUpdate.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(verificationStatus, "string")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
