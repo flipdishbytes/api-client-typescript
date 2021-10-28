@@ -1410,6 +1410,10 @@ export class AppConfigurationDetail {
     */
     'ExternalSetupLink'?: string;
     /**
+    * OAuth App Id
+    */
+    'OAuthAppId': string;
+    /**
     * Name
     */
     'Name': string;
@@ -1494,6 +1498,11 @@ export class AppConfigurationDetail {
         {
             "name": "ExternalSetupLink",
             "baseName": "ExternalSetupLink",
+            "type": "string"
+        },
+        {
+            "name": "OAuthAppId",
+            "baseName": "OAuthAppId",
             "type": "string"
         },
         {
@@ -1860,6 +1869,10 @@ export class AppDetail {
     */
     'ExternalSetupLink'?: string;
     /**
+    * OAuth App Id
+    */
+    'OAuthAppId': string;
+    /**
     * Name
     */
     'Name': string;
@@ -1923,6 +1936,11 @@ export class AppDetail {
         {
             "name": "ExternalSetupLink",
             "baseName": "ExternalSetupLink",
+            "type": "string"
+        },
+        {
+            "name": "OAuthAppId",
+            "baseName": "OAuthAppId",
             "type": "string"
         },
         {
@@ -2012,6 +2030,10 @@ export class AppDetailBase {
     */
     'ExternalSetupLink'?: string;
     /**
+    * OAuth App Id
+    */
+    'OAuthAppId': string;
+    /**
     * Name
     */
     'Name': string;
@@ -2070,6 +2092,11 @@ export class AppDetailBase {
         {
             "name": "ExternalSetupLink",
             "baseName": "ExternalSetupLink",
+            "type": "string"
+        },
+        {
+            "name": "OAuthAppId",
+            "baseName": "OAuthAppId",
             "type": "string"
         },
         {
@@ -38873,9 +38900,10 @@ export class AppStoreApi {
      * @param search Query app store app name
      * @param page Requested page index
      * @param limit Requested page limit
+     * @param excludeNotOwned Exclude app store apps that user is not the owner off
      * @param {*} [options] Override http request options.
      */
-    public getAppStoreApps (search: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultAppSummary;  }> {
+    public getAppStoreApps (search: string, page?: number, limit?: number, excludeNotOwned?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultAppSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/appstore/apps';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -38896,6 +38924,10 @@ export class AppStoreApi {
 
         if (limit !== undefined) {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (excludeNotOwned !== undefined) {
+            localVarQueryParameters['excludeNotOwned'] = ObjectSerializer.serialize(excludeNotOwned, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -38944,7 +38976,7 @@ export class AppStoreApi {
      * @param appDetail App Store App Detail
      * @param {*} [options] Override http request options.
      */
-    public updateAppStoreApp (appStoreAppId: string, appDetail: AppDetail, options: any = {}) : Promise<{ response: http.IncomingMessage; body: AppDetail;  }> {
+    public updateAppStoreApp (appStoreAppId: string, appDetail: AppDetail, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/appstore/apps/{appStoreAppId}'
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
         let localVarQueryParameters: any = {};
@@ -38986,12 +39018,11 @@ export class AppStoreApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: AppDetail;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "AppDetail");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
