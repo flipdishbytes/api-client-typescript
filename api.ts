@@ -5061,6 +5061,44 @@ export class CreateMetadata {
 }
 
 /**
+* Create a modifier
+*/
+export class CreateModifier extends CreateProduct {
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(CreateModifier.attributeTypeMap);
+    }
+}
+
+/**
+* Information to create a Modifier Group
+*/
+export class CreateModifierGroup extends CreateProduct {
+    /**
+    * Collection of products associated with this product
+    */
+    'subProducts'?: Array<ModifierGroupSubProduct>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "subProducts",
+            "baseName": "subProducts",
+            "type": "Array<ModifierGroupSubProduct>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(CreateModifierGroup.attributeTypeMap);
+    }
+}
+
+/**
 * Create Product
 */
 export class CreateProduct {
@@ -5080,12 +5118,9 @@ export class CreateProduct {
     * Product price
     */
     'Price'?: number;
-    /**
-    * Product Type (SimpleProduct, Modifier, ModifierGroup, etc)
-    */
-    'ProductType'?: CreateProduct.ProductTypeEnum;
+    'Discriminator': string;
 
-    static discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = "Discriminator";
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -5109,9 +5144,9 @@ export class CreateProduct {
             "type": "number"
         },
         {
-            "name": "ProductType",
-            "baseName": "ProductType",
-            "type": "CreateProduct.ProductTypeEnum"
+            "name": "Discriminator",
+            "baseName": "Discriminator",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -5119,14 +5154,29 @@ export class CreateProduct {
     }
 }
 
-export namespace CreateProduct {
-    export enum ProductTypeEnum {
-        Unknown = <any> 'Unknown',
-        SimpleProduct = <any> 'SimpleProduct',
-        Modifier = <any> 'Modifier',
-        ModifierGroup = <any> 'ModifierGroup'
+/**
+* Information to create a Simple Product
+*/
+export class CreateSimpleProduct extends CreateProduct {
+    /**
+    * Collection of products associated with this product
+    */
+    'subProducts'?: Array<SimpleProductSubProduct>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "subProducts",
+            "baseName": "subProducts",
+            "type": "Array<SimpleProductSubProduct>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(CreateSimpleProduct.attributeTypeMap);
     }
 }
+
 /**
 * 
 */
@@ -16552,6 +16602,97 @@ export class Metadata {
 }
 
 /**
+* Modifier
+*/
+export class Modifier extends Product {
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(Modifier.attributeTypeMap);
+    }
+}
+
+export namespace Modifier {
+}
+/**
+* Modifier Group
+*/
+export class ModifierGroup extends Product {
+    /**
+    * Collection of products associated with this product
+    */
+    'subProducts'?: Array<ModifierGroupSubProduct>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "subProducts",
+            "baseName": "subProducts",
+            "type": "Array<ModifierGroupSubProduct>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(ModifierGroup.attributeTypeMap);
+    }
+}
+
+export namespace ModifierGroup {
+}
+/**
+* Product associated to a SimpleProduct
+*/
+export class ModifierGroupSubProduct {
+    /**
+    * Quantity of the modifier that will be set when the parent product is placed in the basket
+    */
+    'preselectedQuantity'?: number;
+    /**
+    * Identifier of the ProductId to use as SubProduct
+    */
+    'productId': string;
+    /**
+    * Type of the SupProduct
+    */
+    'productType': ModifierGroupSubProduct.ProductTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "preselectedQuantity",
+            "baseName": "preselectedQuantity",
+            "type": "number"
+        },
+        {
+            "name": "productId",
+            "baseName": "productId",
+            "type": "string"
+        },
+        {
+            "name": "productType",
+            "baseName": "productType",
+            "type": "ModifierGroupSubProduct.ProductTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ModifierGroupSubProduct.attributeTypeMap;
+    }
+}
+
+export namespace ModifierGroupSubProduct {
+    export enum ProductTypeEnum {
+        Unknown = <any> 'Unknown',
+        SimpleProduct = <any> 'SimpleProduct',
+        Modifier = <any> 'Modifier',
+        ModifierGroup = <any> 'ModifierGroup'
+    }
+}
+/**
 * Oauth client (also knowns as 'app')
 */
 export class OAuthApp {
@@ -22258,8 +22399,9 @@ export class Product {
     * Product contains alcohol
     */
     'Alcohol'?: boolean;
+    'Discriminator': string;
 
-    static discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = "Discriminator";
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -22306,6 +22448,11 @@ export class Product {
             "name": "Alcohol",
             "baseName": "Alcohol",
             "type": "boolean"
+        },
+        {
+            "name": "Discriminator",
+            "baseName": "Discriminator",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -27651,6 +27798,71 @@ export namespace SignupStep {
         Question = <any> 'Question',
         StoreLocation = <any> 'StoreLocation',
         PaymentSubscription = <any> 'PaymentSubscription'
+    }
+}
+/**
+* Simple Product
+*/
+export class SimpleProduct extends Product {
+    /**
+    * Collection of products associated with this product
+    */
+    'subProducts'?: Array<SimpleProductSubProduct>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "subProducts",
+            "baseName": "subProducts",
+            "type": "Array<SimpleProductSubProduct>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(SimpleProduct.attributeTypeMap);
+    }
+}
+
+export namespace SimpleProduct {
+}
+/**
+* Product associated to a SimpleProduct
+*/
+export class SimpleProductSubProduct {
+    /**
+    * Identifier of the ProductId to use as SubProduct
+    */
+    'productId': string;
+    /**
+    * Type of the SupProduct
+    */
+    'productType': SimpleProductSubProduct.ProductTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "productId",
+            "baseName": "productId",
+            "type": "string"
+        },
+        {
+            "name": "productType",
+            "baseName": "productType",
+            "type": "SimpleProductSubProduct.ProductTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SimpleProductSubProduct.attributeTypeMap;
+    }
+}
+
+export namespace SimpleProductSubProduct {
+    export enum ProductTypeEnum {
+        Unknown = <any> 'Unknown',
+        SimpleProduct = <any> 'SimpleProduct',
+        Modifier = <any> 'Modifier',
+        ModifierGroup = <any> 'ModifierGroup'
     }
 }
 /**
@@ -33723,6 +33935,36 @@ export class UpdateDriverProfileModel {
 }
 
 /**
+* Update Modifier
+*/
+export class UpdateModifier extends UpdateProduct {
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(UpdateModifier.attributeTypeMap);
+    }
+}
+
+/**
+* Update Modifier Group
+*/
+export class UpdateModifierGroup extends UpdateProduct {
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(UpdateModifierGroup.attributeTypeMap);
+    }
+}
+
+/**
 * Update Product
 */
 export class UpdateProduct {
@@ -33746,12 +33988,9 @@ export class UpdateProduct {
     * Product contains alcohol
     */
     'Alcohol'?: boolean;
-    /**
-    * Product Type (SimpleProduct, Modifier, ModifierGroup, etc)
-    */
-    'ProductType'?: UpdateProduct.ProductTypeEnum;
+    'Discriminator': string;
 
-    static discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = "Discriminator";
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -33780,9 +34019,9 @@ export class UpdateProduct {
             "type": "boolean"
         },
         {
-            "name": "ProductType",
-            "baseName": "ProductType",
-            "type": "UpdateProduct.ProductTypeEnum"
+            "name": "Discriminator",
+            "baseName": "Discriminator",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -33790,14 +34029,21 @@ export class UpdateProduct {
     }
 }
 
-export namespace UpdateProduct {
-    export enum ProductTypeEnum {
-        Unknown = <any> 'Unknown',
-        SimpleProduct = <any> 'SimpleProduct',
-        Modifier = <any> 'Modifier',
-        ModifierGroup = <any> 'ModifierGroup'
+/**
+* Update Simple Product
+*/
+export class UpdateSimpleProduct extends UpdateProduct {
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(UpdateSimpleProduct.attributeTypeMap);
     }
 }
+
 /**
 * User answered signup questions event
 */
@@ -36659,7 +36905,6 @@ let enumsMap: {[index: string]: any} = {
         "CreateFullMenuItemOptionSetItem.CellLayoutTypeEnum": CreateFullMenuItemOptionSetItem.CellLayoutTypeEnum,
         "CreateFullMenuSectionItem.SpicinessRatingEnum": CreateFullMenuSectionItem.SpicinessRatingEnum,
         "CreateFullMenuSectionItem.CellLayoutTypeEnum": CreateFullMenuSectionItem.CellLayoutTypeEnum,
-        "CreateProduct.ProductTypeEnum": CreateProduct.ProductTypeEnum,
         "CreateTeammate.AppAccessLevelEnum": CreateTeammate.AppAccessLevelEnum,
         "CreateVoucher.VoucherTypeEnum": CreateVoucher.VoucherTypeEnum,
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
@@ -36700,6 +36945,7 @@ let enumsMap: {[index: string]: any} = {
         "MenuSectionItemBase.SpicinessRatingEnum": MenuSectionItemBase.SpicinessRatingEnum,
         "MenuSectionItemBase.CellLayoutTypeEnum": MenuSectionItemBase.CellLayoutTypeEnum,
         "MenuTaxDetails.TaxTypeEnum": MenuTaxDetails.TaxTypeEnum,
+        "ModifierGroupSubProduct.ProductTypeEnum": ModifierGroupSubProduct.ProductTypeEnum,
         "OAuthApp.FlowEnum": OAuthApp.FlowEnum,
         "OAuthApp.RefreshTokenUsageEnum": OAuthApp.RefreshTokenUsageEnum,
         "Order.DeliveryTypeEnum": Order.DeliveryTypeEnum,
@@ -36749,6 +36995,7 @@ let enumsMap: {[index: string]: any} = {
         "RedeemInvitationResult.InvitationStatusEnum": RedeemInvitationResult.InvitationStatusEnum,
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
         "SignupStep.ActionEnum": SignupStep.ActionEnum,
+        "SimpleProductSubProduct.ProductTypeEnum": SimpleProductSubProduct.ProductTypeEnum,
         "StatisticsCurrencyDataPoint.CurrencyEnum": StatisticsCurrencyDataPoint.CurrencyEnum,
         "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
         "Store.CurrencyEnum": Store.CurrencyEnum,
@@ -36775,7 +37022,6 @@ let enumsMap: {[index: string]: any} = {
         "Teammate.InvitationStatusEnum": Teammate.InvitationStatusEnum,
         "Teammate.AppAccessLevelEnum": Teammate.AppAccessLevelEnum,
         "TeammateBase.AppAccessLevelEnum": TeammateBase.AppAccessLevelEnum,
-        "UpdateProduct.ProductTypeEnum": UpdateProduct.ProductTypeEnum,
         "Voucher.StatusEnum": Voucher.StatusEnum,
         "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
         "Voucher.VoucherSubTypeEnum": Voucher.VoucherSubTypeEnum,
@@ -36849,7 +37095,10 @@ let typeMap: {[index: string]: any} = {
     "CreateMenuSectionItemFromProducts": CreateMenuSectionItemFromProducts,
     "CreateMenuTaxRate": CreateMenuTaxRate,
     "CreateMetadata": CreateMetadata,
+    "CreateModifier": CreateModifier,
+    "CreateModifierGroup": CreateModifierGroup,
     "CreateProduct": CreateProduct,
+    "CreateSimpleProduct": CreateSimpleProduct,
     "CreateTeammate": CreateTeammate,
     "CreateVoucher": CreateVoucher,
     "CreatedMenuSectionItems": CreatedMenuSectionItems,
@@ -36983,6 +37232,9 @@ let typeMap: {[index: string]: any} = {
     "MenuUpdatedEvent": MenuUpdatedEvent,
     "MenuUploadedEvent": MenuUploadedEvent,
     "Metadata": Metadata,
+    "Modifier": Modifier,
+    "ModifierGroup": ModifierGroup,
+    "ModifierGroupSubProduct": ModifierGroupSubProduct,
     "OAuthApp": OAuthApp,
     "OAuthTokenModel": OAuthTokenModel,
     "OauthClientRedirectUri": OauthClientRedirectUri,
@@ -37192,6 +37444,8 @@ let typeMap: {[index: string]: any} = {
     "SetPasswordWithPinModel": SetPasswordWithPinModel,
     "Setting": Setting,
     "SignupStep": SignupStep,
+    "SimpleProduct": SimpleProduct,
+    "SimpleProductSubProduct": SimpleProductSubProduct,
     "SmsInfo": SmsInfo,
     "SmsReceivedEvent": SmsReceivedEvent,
     "StatisticsCurrencyDataPoint": StatisticsCurrencyDataPoint,
@@ -37253,7 +37507,10 @@ let typeMap: {[index: string]: any} = {
     "TeammateUpdatedEvent": TeammateUpdatedEvent,
     "UpdateDriverNotificationToken": UpdateDriverNotificationToken,
     "UpdateDriverProfileModel": UpdateDriverProfileModel,
+    "UpdateModifier": UpdateModifier,
+    "UpdateModifierGroup": UpdateModifierGroup,
     "UpdateProduct": UpdateProduct,
+    "UpdateSimpleProduct": UpdateSimpleProduct,
     "UserAnsweredSignupQuestionsEvent": UserAnsweredSignupQuestionsEvent,
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
