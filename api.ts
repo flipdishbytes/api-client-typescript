@@ -1190,7 +1190,8 @@ export namespace App {
         AssignDriverToOrder = <any> 'AssignDriverToOrder',
         UnassignDriverFromOrder = <any> 'UnassignDriverFromOrder',
         UpdateOrdersDeliveryTrackingStatus = <any> 'UpdateOrdersDeliveryTrackingStatus',
-        ViewPayouts = <any> 'ViewPayouts'
+        ViewPayouts = <any> 'ViewPayouts',
+        Channels = <any> 'Channels'
     }
     export enum ApplicationCategoryEnum {
         Restaurant = <any> 'Restaurant',
@@ -4214,6 +4215,71 @@ export class ChangePasswordModel {
 
     static getAttributeTypeMap() {
         return ChangePasswordModel.attributeTypeMap;
+    }
+}
+
+export class Channel {
+    /**
+    * Channel Id
+    */
+    'ChannelId'?: number;
+    /**
+    * Channel TranslationKey
+    */
+    'TranslationKey'?: string;
+    /**
+    * Channel Source
+    */
+    'Source'?: string;
+    /**
+    * Channel Logo URl
+    */
+    'LogoUri'?: string;
+    /**
+    * Channel is Available or not
+    */
+    'Available'?: boolean;
+    /**
+    * Channel is Maintained Externally or not
+    */
+    'MaintainedExternally'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ChannelId",
+            "baseName": "ChannelId",
+            "type": "number"
+        },
+        {
+            "name": "TranslationKey",
+            "baseName": "TranslationKey",
+            "type": "string"
+        },
+        {
+            "name": "Source",
+            "baseName": "Source",
+            "type": "string"
+        },
+        {
+            "name": "LogoUri",
+            "baseName": "LogoUri",
+            "type": "string"
+        },
+        {
+            "name": "Available",
+            "baseName": "Available",
+            "type": "boolean"
+        },
+        {
+            "name": "MaintainedExternally",
+            "baseName": "MaintainedExternally",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Channel.attributeTypeMap;
     }
 }
 
@@ -24339,6 +24405,56 @@ export class RestApiPaginationResultBusinessHoursOverride {
 /**
 * Rest api pagination result
 */
+export class RestApiPaginationResultChannel {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<Channel>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<Channel>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultChannel.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultHttpRequestAndResponseLog {
     /**
     * Current page index
@@ -37009,6 +37125,7 @@ let typeMap: {[index: string]: any} = {
     "CertificateCreatedEvent": CertificateCreatedEvent,
     "CertificateRenewedEvent": CertificateRenewedEvent,
     "ChangePasswordModel": ChangePasswordModel,
+    "Channel": Channel,
     "ChargebackDetails": ChargebackDetails,
     "ConfiguredPhysicalRestaurant": ConfiguredPhysicalRestaurant,
     "Coordinates": Coordinates,
@@ -37270,6 +37387,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultApp": RestApiPaginationResultApp,
     "RestApiPaginationResultAppSummary": RestApiPaginationResultAppSummary,
     "RestApiPaginationResultBusinessHoursOverride": RestApiPaginationResultBusinessHoursOverride,
+    "RestApiPaginationResultChannel": RestApiPaginationResultChannel,
     "RestApiPaginationResultHttpRequestAndResponseLog": RestApiPaginationResultHttpRequestAndResponseLog,
     "RestApiPaginationResultHydraDeviceDetails": RestApiPaginationResultHydraDeviceDetails,
     "RestApiPaginationResultOAuthTokenModel": RestApiPaginationResultOAuthTokenModel,
@@ -42594,6 +42712,175 @@ export class CardReadersApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum ChannelsApiApiKeys {
+}
+
+export class ChannelsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: ChannelsApiApiKeys, value: string) {
+        (this.authentications as any)[ChannelsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param id 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getChannel (id: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultChannel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getChannel.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getChannel.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultChannel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultChannel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getChannels (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultChannel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/channels'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getChannels.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultChannel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultChannel");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
