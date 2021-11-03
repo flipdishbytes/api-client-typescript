@@ -5061,9 +5061,9 @@ export class CreateMetadata {
 }
 
 /**
-* Create Product
+* Create a modifier
 */
-export class CreateProduct {
+export class CreateModifier {
     /**
     * Stock Keeping Unit (SKU)
     */
@@ -5106,7 +5106,125 @@ export class CreateProduct {
         }    ];
 
     static getAttributeTypeMap() {
-        return CreateProduct.attributeTypeMap;
+        return CreateModifier.attributeTypeMap;
+    }
+}
+
+/**
+* Information to create a Modifier Group
+*/
+export class CreateModifierGroup {
+    /**
+    * Collection of products associated with this product
+    */
+    'SubProducts'?: Array<ModifierGroupSubProduct>;
+    /**
+    * Stock Keeping Unit (SKU)
+    */
+    'Sku'?: string;
+    /**
+    * Product name
+    */
+    'Name'?: string;
+    /**
+    * Product description
+    */
+    'Description'?: string;
+    /**
+    * Product price
+    */
+    'Price'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "SubProducts",
+            "baseName": "SubProducts",
+            "type": "Array<ModifierGroupSubProduct>"
+        },
+        {
+            "name": "Sku",
+            "baseName": "Sku",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Price",
+            "baseName": "Price",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateModifierGroup.attributeTypeMap;
+    }
+}
+
+/**
+* Information to create a Simple Product
+*/
+export class CreateSimpleProduct {
+    /**
+    * Collection of products associated with this product
+    */
+    'SubProducts'?: Array<SimpleProductSubProduct>;
+    /**
+    * Stock Keeping Unit (SKU)
+    */
+    'Sku'?: string;
+    /**
+    * Product name
+    */
+    'Name'?: string;
+    /**
+    * Product description
+    */
+    'Description'?: string;
+    /**
+    * Product price
+    */
+    'Price'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "SubProducts",
+            "baseName": "SubProducts",
+            "type": "Array<SimpleProductSubProduct>"
+        },
+        {
+            "name": "Sku",
+            "baseName": "Sku",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Price",
+            "baseName": "Price",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateSimpleProduct.attributeTypeMap;
     }
 }
 
@@ -16535,6 +16653,55 @@ export class Metadata {
 }
 
 /**
+* Product associated to a SimpleProduct
+*/
+export class ModifierGroupSubProduct {
+    /**
+    * Quantity of the modifier that will be set when the parent product is placed in the basket
+    */
+    'PreselectedQuantity'?: number;
+    /**
+    * Identifier of the ProductId to use as SubProduct
+    */
+    'ProductId': string;
+    /**
+    * Type of the SupProduct
+    */
+    'ProductType': ModifierGroupSubProduct.ProductTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PreselectedQuantity",
+            "baseName": "PreselectedQuantity",
+            "type": "number"
+        },
+        {
+            "name": "ProductId",
+            "baseName": "ProductId",
+            "type": "string"
+        },
+        {
+            "name": "ProductType",
+            "baseName": "ProductType",
+            "type": "ModifierGroupSubProduct.ProductTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ModifierGroupSubProduct.attributeTypeMap;
+    }
+}
+
+export namespace ModifierGroupSubProduct {
+    export enum ProductTypeEnum {
+        Unknown = <any> 'Unknown',
+        SimpleProduct = <any> 'SimpleProduct',
+        Modifier = <any> 'Modifier',
+        ModifierGroup = <any> 'ModifierGroup'
+    }
+}
+/**
 * Oauth client (also knowns as 'app')
 */
 export class OAuthApp {
@@ -27637,6 +27804,46 @@ export namespace SignupStep {
     }
 }
 /**
+* Product associated to a SimpleProduct
+*/
+export class SimpleProductSubProduct {
+    /**
+    * Identifier of the ProductId to use as SubProduct
+    */
+    'ProductId': string;
+    /**
+    * Type of the SupProduct
+    */
+    'ProductType': SimpleProductSubProduct.ProductTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ProductId",
+            "baseName": "ProductId",
+            "type": "string"
+        },
+        {
+            "name": "ProductType",
+            "baseName": "ProductType",
+            "type": "SimpleProductSubProduct.ProductTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SimpleProductSubProduct.attributeTypeMap;
+    }
+}
+
+export namespace SimpleProductSubProduct {
+    export enum ProductTypeEnum {
+        Unknown = <any> 'Unknown',
+        SimpleProduct = <any> 'SimpleProduct',
+        Modifier = <any> 'Modifier',
+        ModifierGroup = <any> 'ModifierGroup'
+    }
+}
+/**
 * Sms Info
 */
 export class SmsInfo {
@@ -36665,6 +36872,7 @@ let enumsMap: {[index: string]: any} = {
         "MenuSectionItemBase.SpicinessRatingEnum": MenuSectionItemBase.SpicinessRatingEnum,
         "MenuSectionItemBase.CellLayoutTypeEnum": MenuSectionItemBase.CellLayoutTypeEnum,
         "MenuTaxDetails.TaxTypeEnum": MenuTaxDetails.TaxTypeEnum,
+        "ModifierGroupSubProduct.ProductTypeEnum": ModifierGroupSubProduct.ProductTypeEnum,
         "OAuthApp.FlowEnum": OAuthApp.FlowEnum,
         "OAuthApp.RefreshTokenUsageEnum": OAuthApp.RefreshTokenUsageEnum,
         "Order.DeliveryTypeEnum": Order.DeliveryTypeEnum,
@@ -36714,6 +36922,7 @@ let enumsMap: {[index: string]: any} = {
         "RedeemInvitationResult.InvitationStatusEnum": RedeemInvitationResult.InvitationStatusEnum,
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
         "SignupStep.ActionEnum": SignupStep.ActionEnum,
+        "SimpleProductSubProduct.ProductTypeEnum": SimpleProductSubProduct.ProductTypeEnum,
         "StatisticsCurrencyDataPoint.CurrencyEnum": StatisticsCurrencyDataPoint.CurrencyEnum,
         "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
         "Store.CurrencyEnum": Store.CurrencyEnum,
@@ -36813,7 +37022,9 @@ let typeMap: {[index: string]: any} = {
     "CreateMenuSectionItemFromProducts": CreateMenuSectionItemFromProducts,
     "CreateMenuTaxRate": CreateMenuTaxRate,
     "CreateMetadata": CreateMetadata,
-    "CreateProduct": CreateProduct,
+    "CreateModifier": CreateModifier,
+    "CreateModifierGroup": CreateModifierGroup,
+    "CreateSimpleProduct": CreateSimpleProduct,
     "CreateTeammate": CreateTeammate,
     "CreateVoucher": CreateVoucher,
     "CreatedMenuSectionItems": CreatedMenuSectionItems,
@@ -36947,6 +37158,7 @@ let typeMap: {[index: string]: any} = {
     "MenuUpdatedEvent": MenuUpdatedEvent,
     "MenuUploadedEvent": MenuUploadedEvent,
     "Metadata": Metadata,
+    "ModifierGroupSubProduct": ModifierGroupSubProduct,
     "OAuthApp": OAuthApp,
     "OAuthTokenModel": OAuthTokenModel,
     "OauthClientRedirectUri": OauthClientRedirectUri,
@@ -37156,6 +37368,7 @@ let typeMap: {[index: string]: any} = {
     "SetPasswordWithPinModel": SetPasswordWithPinModel,
     "Setting": Setting,
     "SignupStep": SignupStep,
+    "SimpleProductSubProduct": SimpleProductSubProduct,
     "SmsInfo": SmsInfo,
     "SmsReceivedEvent": SmsReceivedEvent,
     "StatisticsCurrencyDataPoint": StatisticsCurrencyDataPoint,
@@ -55849,12 +56062,140 @@ export class ProductsApi {
     }
     /**
      * 
-     * @summary Create a new product
+     * @summary Create a new modifier
+     * @param appId 
+     * @param modifier 
+     * @param {*} [options] Override http request options.
+     */
+    public createModifier (appId: string, modifier: CreateModifier, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProduct;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/Modifier'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createModifier.');
+        }
+
+        // verify required parameter 'modifier' is not null or undefined
+        if (modifier === null || modifier === undefined) {
+            throw new Error('Required parameter modifier was null or undefined when calling createModifier.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(modifier, "CreateModifier")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultProduct;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultProduct");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Create a new modifier group
+     * @param appId 
+     * @param modifierGroup 
+     * @param {*} [options] Override http request options.
+     */
+    public createModifierGroup (appId: string, modifierGroup: CreateModifierGroup, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProduct;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/ModifierGroup'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createModifierGroup.');
+        }
+
+        // verify required parameter 'modifierGroup' is not null or undefined
+        if (modifierGroup === null || modifierGroup === undefined) {
+            throw new Error('Required parameter modifierGroup was null or undefined when calling createModifierGroup.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(modifierGroup, "CreateModifierGroup")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultProduct;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultProduct");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Create a simple product
      * @param appId 
      * @param product 
      * @param {*} [options] Override http request options.
      */
-    public createProduct (appId: string, product: CreateProduct, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProduct;  }> {
+    public createProduct (appId: string, product: CreateSimpleProduct, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProduct;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -55882,7 +56223,7 @@ export class ProductsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(product, "CreateProduct")
+            body: ObjectSerializer.serialize(product, "CreateSimpleProduct")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
