@@ -5181,6 +5181,14 @@ export class CreateModifier {
 */
 export class CreateModifierGroup {
     /**
+    * Minimum number of items that the user has to select
+    */
+    'MinSelection'?: number;
+    /**
+    * Maximum number of items that the user has to select
+    */
+    'MaxSelection'?: number;
+    /**
     * Collection of products associated with this product
     */
     'SubProducts'?: Array<ModifierGroupSubProduct>;
@@ -5204,6 +5212,16 @@ export class CreateModifierGroup {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MinSelection",
+            "baseName": "MinSelection",
+            "type": "number"
+        },
+        {
+            "name": "MaxSelection",
+            "baseName": "MaxSelection",
+            "type": "number"
+        },
         {
             "name": "SubProducts",
             "baseName": "SubProducts",
@@ -56488,10 +56506,10 @@ export class ProductsApi {
      * 
      * @summary Create a simple product
      * @param appId 
-     * @param product 
+     * @param simpleProduct 
      * @param {*} [options] Override http request options.
      */
-    public createProduct (appId: string, product: CreateSimpleProduct, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProduct;  }> {
+    public createProduct (appId: string, simpleProduct: CreateSimpleProduct, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProduct;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -56503,9 +56521,9 @@ export class ProductsApi {
             throw new Error('Required parameter appId was null or undefined when calling createProduct.');
         }
 
-        // verify required parameter 'product' is not null or undefined
-        if (product === null || product === undefined) {
-            throw new Error('Required parameter product was null or undefined when calling createProduct.');
+        // verify required parameter 'simpleProduct' is not null or undefined
+        if (simpleProduct === null || simpleProduct === undefined) {
+            throw new Error('Required parameter simpleProduct was null or undefined when calling createProduct.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -56519,7 +56537,7 @@ export class ProductsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(product, "CreateSimpleProduct")
+            body: ObjectSerializer.serialize(simpleProduct, "CreateSimpleProduct")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
