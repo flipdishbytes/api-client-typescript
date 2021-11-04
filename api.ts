@@ -14631,6 +14631,10 @@ export class MenuItemOptionSetItem {
     */
     'Metadata'?: Array<CreateMetadata>;
     /**
+    * if null, next option set is next. if -1, this is the final option set
+    */
+    'NextMenuItemOptionSetId'?: number;
+    /**
     * Name
     */
     'Name'?: string;
@@ -14672,6 +14676,11 @@ export class MenuItemOptionSetItem {
             "name": "Metadata",
             "baseName": "Metadata",
             "type": "Array<CreateMetadata>"
+        },
+        {
+            "name": "NextMenuItemOptionSetId",
+            "baseName": "NextMenuItemOptionSetId",
+            "type": "number"
         },
         {
             "name": "Name",
