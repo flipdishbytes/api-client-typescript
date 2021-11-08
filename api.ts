@@ -16761,6 +16761,10 @@ export class ModifierGroupSubProduct {
     * Type of the SupProduct
     */
     'ProductType': ModifierGroupSubProduct.ProductTypeEnum;
+    /**
+    * Details of the sub product
+    */
+    'Product'?: Product;
 
     static discriminator: string | undefined = undefined;
 
@@ -16779,6 +16783,11 @@ export class ModifierGroupSubProduct {
             "name": "ProductType",
             "baseName": "ProductType",
             "type": "ModifierGroupSubProduct.ProductTypeEnum"
+        },
+        {
+            "name": "Product",
+            "baseName": "Product",
+            "type": "Product"
         }    ];
 
     static getAttributeTypeMap() {
@@ -27951,6 +27960,14 @@ export namespace SignupStep {
 */
 export class SimpleProductSubProduct {
     /**
+    * Minimum number of items that must be selected
+    */
+    'MinSelection'?: number;
+    /**
+    * Maximum number of items that can be selected
+    */
+    'MaxSelection'?: number;
+    /**
     * Identifier of the ProductId to use as SubProduct
     */
     'ProductId': string;
@@ -27958,10 +27975,24 @@ export class SimpleProductSubProduct {
     * Type of the SupProduct
     */
     'ProductType': SimpleProductSubProduct.ProductTypeEnum;
+    /**
+    * Details of the sub product
+    */
+    'Product'?: Product;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MinSelection",
+            "baseName": "MinSelection",
+            "type": "number"
+        },
+        {
+            "name": "MaxSelection",
+            "baseName": "MaxSelection",
+            "type": "number"
+        },
         {
             "name": "ProductId",
             "baseName": "ProductId",
@@ -27971,6 +28002,11 @@ export class SimpleProductSubProduct {
             "name": "ProductType",
             "baseName": "ProductType",
             "type": "SimpleProductSubProduct.ProductTypeEnum"
+        },
+        {
+            "name": "Product",
+            "baseName": "Product",
+            "type": "Product"
         }    ];
 
     static getAttributeTypeMap() {
