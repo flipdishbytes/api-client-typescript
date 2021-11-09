@@ -17834,35 +17834,35 @@ export class OrderCustomerTrackingCreatedEvent {
 */
 export class OrderDeliveryInformation {
     /**
-    * 
+    * Order Id
     */
     'OrderId'?: number;
     /**
-    * 
+    * External Reference Id
     */
     'ExternalReferenceId'?: string;
     /**
-    * 
+    * Tracking Url
     */
     'TrackUrl'?: string;
     /**
-    * 
+    * Delivery Status
     */
     'Status'?: OrderDeliveryInformation.StatusEnum;
     /**
-    * 
+    * Delivery Status Notes
     */
     'DeliveryStatusNotes'?: string;
     /**
-    * 
+    * Error Message
     */
     'ErrorMessage'?: string;
     /**
-    * 
+    * Integration Code
     */
     'IntegrationCode'?: string;
     /**
-    * 
+    * Integration Name
     */
     'IntegrationName'?: string;
 
@@ -17933,31 +17933,31 @@ export namespace OrderDeliveryInformation {
 */
 export class OrderDeliveryInformationBase {
     /**
-    * 
+    * External Reference Id
     */
     'ExternalReferenceId'?: string;
     /**
-    * 
+    * Tracking Url
     */
     'TrackUrl'?: string;
     /**
-    * 
+    * Delivery Status
     */
     'Status'?: OrderDeliveryInformationBase.StatusEnum;
     /**
-    * 
+    * Delivery Status Notes
     */
     'DeliveryStatusNotes'?: string;
     /**
-    * 
+    * Error Message
     */
     'ErrorMessage'?: string;
     /**
-    * 
+    * Integration Code
     */
     'IntegrationCode'?: string;
     /**
-    * 
+    * Integration Name
     */
     'IntegrationName'?: string;
 
@@ -54475,9 +54475,9 @@ export class OrdersApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
+     * Returns an orders delivery information. This would be used to display the latest known delivery information on a screen.
      * @summary Get order delivery information
-     * @param orderId OrderId
+     * @param orderId Flipdish Order Id
      * @param {*} [options] Override http request options.
      */
     public getDeliveryInformation (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderDeliveryInformation;  }> {
@@ -54882,10 +54882,10 @@ export class OrdersApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
+     * Returns an order's delivery information. This would be used to display the latest known delivery information on a screen.
      * @summary Add/update delivery-related information to an order
-     * @param orderId 
-     * @param deliveryInformation 
+     * @param orderId Flipdish Order Id
+     * @param deliveryInformation Delivery Information
      * @param {*} [options] Override http request options.
      */
     public updateDeliveryInformation (orderId: number, deliveryInformation: OrderDeliveryInformationBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
