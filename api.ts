@@ -14275,6 +14275,10 @@ export class MenuItemOptionSet {
     */
     'PublicId'?: string;
     /**
+    * Product Id when the OptionSet is associated to a Product
+    */
+    'ProductId'?: string;
+    /**
     * Menu item option set name
     */
     'Name'?: string;
@@ -14320,6 +14324,11 @@ export class MenuItemOptionSet {
         {
             "name": "PublicId",
             "baseName": "PublicId",
+            "type": "string"
+        },
+        {
+            "name": "ProductId",
+            "baseName": "ProductId",
             "type": "string"
         },
         {
@@ -14653,6 +14662,10 @@ export class MenuItemOptionSetItem {
     */
     'NextMenuItemOptionSetId'?: number;
     /**
+    * Product Id when the OptionSet is associated to a Product
+    */
+    'ProductId'?: string;
+    /**
     * Name
     */
     'Name'?: string;
@@ -14699,6 +14712,11 @@ export class MenuItemOptionSetItem {
             "name": "NextMenuItemOptionSetId",
             "baseName": "NextMenuItemOptionSetId",
             "type": "number"
+        },
+        {
+            "name": "ProductId",
+            "baseName": "ProductId",
+            "type": "string"
         },
         {
             "name": "Name",
