@@ -56622,6 +56622,7 @@ export class ProductsApi {
     }
     /**
      * 
+     * @summary Delete a Product Image
      * @param appId 
      * @param productId 
      * @param {*} [options] Override http request options.
