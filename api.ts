@@ -34110,9 +34110,9 @@ export class UpdateDriverProfileModel {
 }
 
 /**
-* Update Product
+* Update Modifier
 */
-export class UpdateProduct {
+export class UpdateModifier {
     /**
     * Stock Keeping Unit (SKU)
     */
@@ -34164,7 +34164,161 @@ export class UpdateProduct {
         }    ];
 
     static getAttributeTypeMap() {
-        return UpdateProduct.attributeTypeMap;
+        return UpdateModifier.attributeTypeMap;
+    }
+}
+
+/**
+* Update Modifier Group
+*/
+export class UpdateModifierGroup {
+    /**
+    * Minimum number of items that the user has to select
+    */
+    'MinSelection'?: number;
+    /**
+    * Maximum number of items that the user has to select
+    */
+    'MaxSelection'?: number;
+    /**
+    * Collection of products associated with this product
+    */
+    'SubProducts'?: Array<ModifierGroupSubProduct>;
+    /**
+    * Stock Keeping Unit (SKU)
+    */
+    'Sku'?: string;
+    /**
+    * Product name
+    */
+    'Name'?: string;
+    /**
+    * Product description
+    */
+    'Description'?: string;
+    /**
+    * Product price
+    */
+    'Price'?: number;
+    /**
+    * Product contains alcohol
+    */
+    'Alcohol'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MinSelection",
+            "baseName": "MinSelection",
+            "type": "number"
+        },
+        {
+            "name": "MaxSelection",
+            "baseName": "MaxSelection",
+            "type": "number"
+        },
+        {
+            "name": "SubProducts",
+            "baseName": "SubProducts",
+            "type": "Array<ModifierGroupSubProduct>"
+        },
+        {
+            "name": "Sku",
+            "baseName": "Sku",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Price",
+            "baseName": "Price",
+            "type": "number"
+        },
+        {
+            "name": "Alcohol",
+            "baseName": "Alcohol",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateModifierGroup.attributeTypeMap;
+    }
+}
+
+/**
+* Update Simple Product
+*/
+export class UpdateSimpleProduct {
+    /**
+    * Collection of products associated with this product
+    */
+    'SubProducts'?: Array<SimpleProductSubProduct>;
+    /**
+    * Stock Keeping Unit (SKU)
+    */
+    'Sku'?: string;
+    /**
+    * Product name
+    */
+    'Name'?: string;
+    /**
+    * Product description
+    */
+    'Description'?: string;
+    /**
+    * Product price
+    */
+    'Price'?: number;
+    /**
+    * Product contains alcohol
+    */
+    'Alcohol'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "SubProducts",
+            "baseName": "SubProducts",
+            "type": "Array<SimpleProductSubProduct>"
+        },
+        {
+            "name": "Sku",
+            "baseName": "Sku",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Price",
+            "baseName": "Price",
+            "type": "number"
+        },
+        {
+            "name": "Alcohol",
+            "baseName": "Alcohol",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateSimpleProduct.attributeTypeMap;
     }
 }
 
@@ -37629,7 +37783,9 @@ let typeMap: {[index: string]: any} = {
     "TeammateUpdatedEvent": TeammateUpdatedEvent,
     "UpdateDriverNotificationToken": UpdateDriverNotificationToken,
     "UpdateDriverProfileModel": UpdateDriverProfileModel,
-    "UpdateProduct": UpdateProduct,
+    "UpdateModifier": UpdateModifier,
+    "UpdateModifierGroup": UpdateModifierGroup,
+    "UpdateSimpleProduct": UpdateSimpleProduct,
     "UserAnsweredSignupQuestionsEvent": UserAnsweredSignupQuestionsEvent,
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
@@ -56430,7 +56586,7 @@ export class ProductsApi {
     }
     /**
      * 
-     * @summary Create a new modifier
+     * @summary Create a modifier
      * @param appId 
      * @param modifier 
      * @param {*} [options] Override http request options.
@@ -56494,7 +56650,7 @@ export class ProductsApi {
     }
     /**
      * 
-     * @summary Create a new modifier group
+     * @summary Create a modifier group
      * @param appId 
      * @param modifierGroup 
      * @param {*} [options] Override http request options.
@@ -56895,13 +57051,153 @@ export class ProductsApi {
     }
     /**
      * 
-     * @summary Update a product
+     * @summary Update modifier
+     * @param appId 
+     * @param productId 
+     * @param modifier 
+     * @param {*} [options] Override http request options.
+     */
+    public updateModifier (appId: string, productId: string, modifier: UpdateModifier, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/modifier/{productId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'productId' + '}', encodeURIComponent(String(productId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateModifier.');
+        }
+
+        // verify required parameter 'productId' is not null or undefined
+        if (productId === null || productId === undefined) {
+            throw new Error('Required parameter productId was null or undefined when calling updateModifier.');
+        }
+
+        // verify required parameter 'modifier' is not null or undefined
+        if (modifier === null || modifier === undefined) {
+            throw new Error('Required parameter modifier was null or undefined when calling updateModifier.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(modifier, "UpdateModifier")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update modifier Group
+     * @param appId 
+     * @param productId 
+     * @param modifierGroup 
+     * @param {*} [options] Override http request options.
+     */
+    public updateModifierGroup (appId: string, productId: string, modifierGroup: UpdateModifierGroup, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/modifierGroup/{productId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'productId' + '}', encodeURIComponent(String(productId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateModifierGroup.');
+        }
+
+        // verify required parameter 'productId' is not null or undefined
+        if (productId === null || productId === undefined) {
+            throw new Error('Required parameter productId was null or undefined when calling updateModifierGroup.');
+        }
+
+        // verify required parameter 'modifierGroup' is not null or undefined
+        if (modifierGroup === null || modifierGroup === undefined) {
+            throw new Error('Required parameter modifierGroup was null or undefined when calling updateModifierGroup.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(modifierGroup, "UpdateModifierGroup")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update a simple product
      * @param appId 
      * @param productId 
      * @param product 
      * @param {*} [options] Override http request options.
      */
-    public updateProduct (appId: string, productId: string, product: UpdateProduct, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateProduct (appId: string, productId: string, product: UpdateSimpleProduct, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/{productId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'productId' + '}', encodeURIComponent(String(productId)));
@@ -56935,7 +57231,7 @@ export class ProductsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(product, "UpdateProduct")
+            body: ObjectSerializer.serialize(product, "UpdateSimpleProduct")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
