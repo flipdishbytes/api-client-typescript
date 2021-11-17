@@ -2163,6 +2163,237 @@ export namespace AppDetailBase {
     }
 }
 /**
+* AppStore Config Created event
+*/
+export class AppStoreConfigCreatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * App Store App Id
+    */
+    'AppStoreAppId'?: string;
+    /**
+    * App Store Configuration Id
+    */
+    'AppStoreAppConfigurationId'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreAppId",
+            "baseName": "AppStoreAppId",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreAppConfigurationId",
+            "baseName": "AppStoreAppConfigurationId",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppStoreConfigCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* AppStore Config Deleted event
+*/
+export class AppStoreConfigDeletedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * App Store Id
+    */
+    'AppStoreAppId'?: string;
+    /**
+    * App Store Configuration Id
+    */
+    'AppStoreAppConfigurationId'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreAppId",
+            "baseName": "AppStoreAppId",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreAppConfigurationId",
+            "baseName": "AppStoreAppConfigurationId",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppStoreConfigDeletedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* AppStore Config Updated event
+*/
+export class AppStoreConfigUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * App Store Id
+    */
+    'AppStoreAppId'?: string;
+    /**
+    * App Configuration
+    */
+    'AppStoreAppConfiguration'?: AppConfigurationBase;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreAppId",
+            "baseName": "AppStoreAppId",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreAppConfiguration",
+            "baseName": "AppStoreAppConfiguration",
+            "type": "AppConfigurationBase"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppStoreConfigUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Application Summary  <remarks>Header information for display in lists, like list of apps</remarks>
 */
 export class AppSummary {
@@ -8220,6 +8451,18 @@ export class EventSearchResult {
     * External event
     */
     'ExternalStoreEvent'?: Array<ExternalStoreEvent>;
+    /**
+    * App Store Config Created
+    */
+    'AppStoreConfigCreatedEvent'?: Array<AppStoreConfigCreatedEvent>;
+    /**
+    * App Store Config Updated
+    */
+    'AppStoreConfigUpdatedEvent'?: Array<AppStoreConfigUpdatedEvent>;
+    /**
+    * App Store Config Deleted
+    */
+    'AppStoreConfigDeletedEvent'?: Array<AppStoreConfigDeletedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -8793,6 +9036,21 @@ export class EventSearchResult {
             "name": "ExternalStoreEvent",
             "baseName": "ExternalStoreEvent",
             "type": "Array<ExternalStoreEvent>"
+        },
+        {
+            "name": "AppStoreConfigCreatedEvent",
+            "baseName": "AppStoreConfigCreatedEvent",
+            "type": "Array<AppStoreConfigCreatedEvent>"
+        },
+        {
+            "name": "AppStoreConfigUpdatedEvent",
+            "baseName": "AppStoreConfigUpdatedEvent",
+            "type": "Array<AppStoreConfigUpdatedEvent>"
+        },
+        {
+            "name": "AppStoreConfigDeletedEvent",
+            "baseName": "AppStoreConfigDeletedEvent",
+            "type": "Array<AppStoreConfigDeletedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -37348,6 +37606,9 @@ let typeMap: {[index: string]: any} = {
     "AppCreatedEvent": AppCreatedEvent,
     "AppDetail": AppDetail,
     "AppDetailBase": AppDetailBase,
+    "AppStoreConfigCreatedEvent": AppStoreConfigCreatedEvent,
+    "AppStoreConfigDeletedEvent": AppStoreConfigDeletedEvent,
+    "AppStoreConfigUpdatedEvent": AppStoreConfigUpdatedEvent,
     "AppSummary": AppSummary,
     "AppUpdatedEvent": AppUpdatedEvent,
     "AssignedBankAccount": AssignedBankAccount,
