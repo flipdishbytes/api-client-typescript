@@ -31288,6 +31288,10 @@ export class StoreKioskSetting {
     */
     'RequireCustomerPhoneNumber'?: boolean;
     /**
+    * Request customer phone number flag (Option to Skip)
+    */
+    'RequestCustomerPhoneNumber'?: boolean;
+    /**
     * Request table number flag
     */
     'RequestTableNumber'?: boolean;
@@ -31325,6 +31329,11 @@ export class StoreKioskSetting {
         {
             "name": "RequireCustomerPhoneNumber",
             "baseName": "RequireCustomerPhoneNumber",
+            "type": "boolean"
+        },
+        {
+            "name": "RequestCustomerPhoneNumber",
+            "baseName": "RequestCustomerPhoneNumber",
             "type": "boolean"
         },
         {
