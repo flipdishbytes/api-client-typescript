@@ -5377,6 +5377,10 @@ export class CreateModifier {
     * Product price
     */
     'Price'?: number;
+    /**
+    * Image File Name
+    */
+    'ImageFileName'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -5400,6 +5404,11 @@ export class CreateModifier {
             "name": "Price",
             "baseName": "Price",
             "type": "number"
+        },
+        {
+            "name": "ImageFileName",
+            "baseName": "ImageFileName",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -5439,6 +5448,10 @@ export class CreateModifierGroup {
     * Product price
     */
     'Price'?: number;
+    /**
+    * Image File Name
+    */
+    'ImageFileName'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -5477,6 +5490,11 @@ export class CreateModifierGroup {
             "name": "Price",
             "baseName": "Price",
             "type": "number"
+        },
+        {
+            "name": "ImageFileName",
+            "baseName": "ImageFileName",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -5508,6 +5526,10 @@ export class CreateSimpleProduct {
     * Product price
     */
     'Price'?: number;
+    /**
+    * Image File Name
+    */
+    'ImageFileName'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -5536,6 +5558,11 @@ export class CreateSimpleProduct {
             "name": "Price",
             "baseName": "Price",
             "type": "number"
+        },
+        {
+            "name": "ImageFileName",
+            "baseName": "ImageFileName",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
