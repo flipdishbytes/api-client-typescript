@@ -4282,6 +4282,117 @@ export class CampaignStatistics {
 }
 
 /**
+* CatalogItem
+*/
+export class CatalogItem {
+    /**
+    * Unique catalog Item id
+    */
+    'CatalogItemId'?: string;
+    /**
+    * Stock Keeping Unit (SKU)
+    */
+    'Sku'?: string;
+    /**
+    * Item name
+    */
+    'Name'?: string;
+    /**
+    * Item description
+    */
+    'Description'?: string;
+    /**
+    * Item price
+    */
+    'Price'?: number;
+    /**
+    * Image File Name
+    */
+    'ImageFileName'?: string;
+    /**
+    * Returns true if the item is archived
+    */
+    'IsArchived'?: boolean;
+    /**
+    * item contains alcohol
+    */
+    'Alcohol'?: boolean;
+    /**
+    * Sellable types - Product, Modifier, etc
+    */
+    'Type'?: CatalogItem.TypeEnum;
+    /**
+    * Collection of groups associated with this item
+    */
+    'Groups'?: Array<SimpleProductSubProduct>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CatalogItemId",
+            "baseName": "CatalogItemId",
+            "type": "string"
+        },
+        {
+            "name": "Sku",
+            "baseName": "Sku",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Price",
+            "baseName": "Price",
+            "type": "number"
+        },
+        {
+            "name": "ImageFileName",
+            "baseName": "ImageFileName",
+            "type": "string"
+        },
+        {
+            "name": "IsArchived",
+            "baseName": "IsArchived",
+            "type": "boolean"
+        },
+        {
+            "name": "Alcohol",
+            "baseName": "Alcohol",
+            "type": "boolean"
+        },
+        {
+            "name": "Type",
+            "baseName": "Type",
+            "type": "CatalogItem.TypeEnum"
+        },
+        {
+            "name": "Groups",
+            "baseName": "Groups",
+            "type": "Array<SimpleProductSubProduct>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CatalogItem.attributeTypeMap;
+    }
+}
+
+export namespace CatalogItem {
+    export enum TypeEnum {
+        Unknown = <any> 'Unknown',
+        Product = <any> 'Product',
+        Modifier = <any> 'Modifier'
+    }
+}
+/**
 * The DNS for the Hostname verified
 */
 export class CertificateCreatedEvent {
@@ -24744,6 +24855,56 @@ export class RestApiPaginationResultBusinessHoursOverride {
 /**
 * Rest api pagination result
 */
+export class RestApiPaginationResultCatalogItem {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<CatalogItem>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<CatalogItem>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultCatalogItem.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultChannel {
     /**
     * Current page index
@@ -37471,6 +37632,7 @@ let enumsMap: {[index: string]: any} = {
         "BusinessHoursOverrideBase.TypeEnum": BusinessHoursOverrideBase.TypeEnum,
         "BusinessHoursPeriod.DayOfWeekEnum": BusinessHoursPeriod.DayOfWeekEnum,
         "BusinessHoursPeriodBase.DayOfWeekEnum": BusinessHoursPeriodBase.DayOfWeekEnum,
+        "CatalogItem.TypeEnum": CatalogItem.TypeEnum,
         "CreateFullMenu.MenuSectionBehaviourEnum": CreateFullMenu.MenuSectionBehaviourEnum,
         "CreateFullMenu.TaxTypeEnum": CreateFullMenu.TaxTypeEnum,
         "CreateFullMenuItemOptionSet.CellLayoutTypeEnum": CreateFullMenuItemOptionSet.CellLayoutTypeEnum,
@@ -37654,6 +37816,7 @@ let typeMap: {[index: string]: any} = {
     "BusinessHoursPeriod": BusinessHoursPeriod,
     "BusinessHoursPeriodBase": BusinessHoursPeriodBase,
     "CampaignStatistics": CampaignStatistics,
+    "CatalogItem": CatalogItem,
     "CertificateCreatedEvent": CertificateCreatedEvent,
     "CertificateRenewedEvent": CertificateRenewedEvent,
     "ChangePasswordModel": ChangePasswordModel,
@@ -37919,6 +38082,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultApp": RestApiPaginationResultApp,
     "RestApiPaginationResultAppSummary": RestApiPaginationResultAppSummary,
     "RestApiPaginationResultBusinessHoursOverride": RestApiPaginationResultBusinessHoursOverride,
+    "RestApiPaginationResultCatalogItem": RestApiPaginationResultCatalogItem,
     "RestApiPaginationResultChannel": RestApiPaginationResultChannel,
     "RestApiPaginationResultHttpRequestAndResponseLog": RestApiPaginationResultHttpRequestAndResponseLog,
     "RestApiPaginationResultHydraDeviceDetails": RestApiPaginationResultHydraDeviceDetails,
@@ -43246,6 +43410,202 @@ export class CardReadersApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum CatalogItemsApiApiKeys {
+}
+
+export class CatalogItemsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: CatalogItemsApiApiKeys, value: string) {
+        (this.authentications as any)[CatalogItemsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Get item by Id
+     * @param appId 
+     * @param catalogItemId 
+     * @param {*} [options] Override http request options.
+     */
+    public getById (appId: string, catalogItemId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: CatalogItem;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/items/{catalogItemId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'catalogItemId' + '}', encodeURIComponent(String(catalogItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getById.');
+        }
+
+        // verify required parameter 'catalogItemId' is not null or undefined
+        if (catalogItemId === null || catalogItemId === undefined) {
+            throw new Error('Required parameter catalogItemId was null or undefined when calling getById.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: CatalogItem;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "CatalogItem");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get paginated items by app name id filtered by types
+     * @param appId 
+     * @param itemTypes 
+     * @param searchTerm 
+     * @param page 
+     * @param limit 
+     * @param {*} [options] Override http request options.
+     */
+    public getItems (appId: string, itemTypes: Array<'Product' | 'Modifier'>, searchTerm?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultCatalogItem;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/items'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getItems.');
+        }
+
+        // verify required parameter 'itemTypes' is not null or undefined
+        if (itemTypes === null || itemTypes === undefined) {
+            throw new Error('Required parameter itemTypes was null or undefined when calling getItems.');
+        }
+
+        if (itemTypes !== undefined) {
+            localVarQueryParameters['itemTypes'] = ObjectSerializer.serialize(itemTypes, "Array<'Product' | 'Modifier'>");
+        }
+
+        if (searchTerm !== undefined) {
+            localVarQueryParameters['searchTerm'] = ObjectSerializer.serialize(searchTerm, "string");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultCatalogItem;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultCatalogItem");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
