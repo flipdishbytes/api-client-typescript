@@ -43886,7 +43886,7 @@ export class CatalogGroupsApi {
      * @param catalogGroupId 
      * @param {*} [options] Override http request options.
      */
-    public getById (appId: string, catalogGroupId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: CatalogGroup;  }> {
+    public getCatalogGroupById (appId: string, catalogGroupId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: CatalogGroup;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/groups/{catalogGroupId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'catalogGroupId' + '}', encodeURIComponent(String(catalogGroupId)));
@@ -43896,12 +43896,12 @@ export class CatalogGroupsApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getById.');
+            throw new Error('Required parameter appId was null or undefined when calling getCatalogGroupById.');
         }
 
         // verify required parameter 'catalogGroupId' is not null or undefined
         if (catalogGroupId === null || catalogGroupId === undefined) {
-            throw new Error('Required parameter catalogGroupId was null or undefined when calling getById.');
+            throw new Error('Required parameter catalogGroupId was null or undefined when calling getCatalogGroupById.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -44146,7 +44146,7 @@ export class CatalogItemsApi {
      * @param catalogItemId 
      * @param {*} [options] Override http request options.
      */
-    public getById (appId: string, catalogItemId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: CatalogItem;  }> {
+    public getCatalogItemById (appId: string, catalogItemId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: CatalogItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/items/{catalogItemId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'catalogItemId' + '}', encodeURIComponent(String(catalogItemId)));
@@ -44156,12 +44156,12 @@ export class CatalogItemsApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getById.');
+            throw new Error('Required parameter appId was null or undefined when calling getCatalogItemById.');
         }
 
         // verify required parameter 'catalogItemId' is not null or undefined
         if (catalogItemId === null || catalogItemId === undefined) {
-            throw new Error('Required parameter catalogItemId was null or undefined when calling getById.');
+            throw new Error('Required parameter catalogItemId was null or undefined when calling getCatalogItemById.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
