@@ -1179,6 +1179,7 @@ export namespace App {
         ViewKioskBluetoothDeviceAuditLogs = <any> 'ViewKioskBluetoothDeviceAuditLogs',
         ViewExternalAuditLogs = <any> 'ViewExternalAuditLogs',
         CreateExternalAuditLogEvents = <any> 'CreateExternalAuditLogEvents',
+        ViewCatalogAuditLogs = <any> 'ViewCatalogAuditLogs',
         CreateAppStoreApp = <any> 'CreateAppStoreApp',
         ViewAppStoreApp = <any> 'ViewAppStoreApp',
         UpdateAppStoreApp = <any> 'UpdateAppStoreApp',
@@ -4378,6 +4379,124 @@ export namespace CatalogGroup {
     }
 }
 /**
+* 
+*/
+export class CatalogGroupArchivedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CatalogGroupArchivedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class CatalogGroupCreatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CatalogGroupCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Reference to an existing {Flipdish.PublicModels.V1.Catalog.Group.CatalogGroup}
 */
 export class CatalogGroupReference {
@@ -4424,6 +4543,65 @@ export namespace CatalogGroupReference {
         ModifierGroup = <any> 'ModifierGroup'
     }
 }
+/**
+* 
+*/
+export class CatalogGroupUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CatalogGroupUpdatedEvent.attributeTypeMap;
+    }
+}
+
 /**
 * CatalogItem
 */
@@ -4535,6 +4713,151 @@ export namespace CatalogItem {
     }
 }
 /**
+* 
+*/
+export class CatalogItemArchivedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CatalogItemArchivedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
+export class CatalogItemCreatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * User who has created the item
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Catalog item created
+    */
+    'CatalogItem'?: CatalogItem;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "CatalogItem",
+            "baseName": "CatalogItem",
+            "type": "CatalogItem"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CatalogItemCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Catalog Item associated
 */
 export class CatalogItemReference {
@@ -4590,6 +4913,65 @@ export namespace CatalogItemReference {
         Modifier = <any> 'Modifier'
     }
 }
+/**
+* 
+*/
+export class CatalogItemUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CatalogItemUpdatedEvent.attributeTypeMap;
+    }
+}
+
 /**
 * The DNS for the Hostname verified
 */
@@ -8929,6 +9311,30 @@ export class EventSearchResult {
     * App Store Config Deleted
     */
     'AppStoreConfigDeletedEvent'?: Array<AppStoreConfigDeletedEvent>;
+    /**
+    * Catalog Item Created
+    */
+    'CatalogItemCreatedEvent'?: Array<CatalogItemCreatedEvent>;
+    /**
+    * Catalog Item Updated
+    */
+    'CatalogItemUpdatedEvent'?: Array<CatalogItemUpdatedEvent>;
+    /**
+    * Catalog Item Archived
+    */
+    'CatalogItemArchivedEvent'?: Array<CatalogItemArchivedEvent>;
+    /**
+    * Catalog Group Created
+    */
+    'CatalogGroupCreatedEvent'?: Array<CatalogGroupCreatedEvent>;
+    /**
+    * Catalog Group Updated
+    */
+    'CatalogGroupUpdatedEvent'?: Array<CatalogGroupUpdatedEvent>;
+    /**
+    * Catalog Group Archived
+    */
+    'CatalogGroupArchivedEvent'?: Array<CatalogGroupArchivedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -9517,6 +9923,36 @@ export class EventSearchResult {
             "name": "AppStoreConfigDeletedEvent",
             "baseName": "AppStoreConfigDeletedEvent",
             "type": "Array<AppStoreConfigDeletedEvent>"
+        },
+        {
+            "name": "CatalogItemCreatedEvent",
+            "baseName": "CatalogItemCreatedEvent",
+            "type": "Array<CatalogItemCreatedEvent>"
+        },
+        {
+            "name": "CatalogItemUpdatedEvent",
+            "baseName": "CatalogItemUpdatedEvent",
+            "type": "Array<CatalogItemUpdatedEvent>"
+        },
+        {
+            "name": "CatalogItemArchivedEvent",
+            "baseName": "CatalogItemArchivedEvent",
+            "type": "Array<CatalogItemArchivedEvent>"
+        },
+        {
+            "name": "CatalogGroupCreatedEvent",
+            "baseName": "CatalogGroupCreatedEvent",
+            "type": "Array<CatalogGroupCreatedEvent>"
+        },
+        {
+            "name": "CatalogGroupUpdatedEvent",
+            "baseName": "CatalogGroupUpdatedEvent",
+            "type": "Array<CatalogGroupUpdatedEvent>"
+        },
+        {
+            "name": "CatalogGroupArchivedEvent",
+            "baseName": "CatalogGroupArchivedEvent",
+            "type": "Array<CatalogGroupArchivedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -34917,6 +35353,121 @@ export class TeammateUpdatedEvent {
 }
 
 /**
+* Data to update a {Flipdish.PublicModels.V1.Catalog.Item.CatalogGroupReference}
+*/
+export class UpdateCatalogGroupReference {
+    /**
+    * Identifier of the ProductId to use as SubProduct
+    */
+    'CatalogGroupId': string;
+    /**
+    * Type of the SupProduct
+    */
+    'GroupType': UpdateCatalogGroupReference.GroupTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CatalogGroupId",
+            "baseName": "CatalogGroupId",
+            "type": "string"
+        },
+        {
+            "name": "GroupType",
+            "baseName": "GroupType",
+            "type": "UpdateCatalogGroupReference.GroupTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateCatalogGroupReference.attributeTypeMap;
+    }
+}
+
+export namespace UpdateCatalogGroupReference {
+    export enum GroupTypeEnum {
+        Unknown = <any> 'Unknown',
+        ModifierGroup = <any> 'ModifierGroup'
+    }
+}
+/**
+* Update Catalog Item
+*/
+export class UpdateCatalogItem {
+    /**
+    * Stock Keeping Unit (SKU)
+    */
+    'Sku'?: string;
+    /**
+    * Product name
+    */
+    'Name'?: string;
+    /**
+    * Product description
+    */
+    'Description'?: string;
+    /**
+    * Product price
+    */
+    'Price'?: number;
+    /**
+    * Image File Name
+    */
+    'ImageFileName'?: string;
+    /**
+    * Product contains alcohol
+    */
+    'Alcohol'?: boolean;
+    /**
+    * Collection of products associated with this product
+    */
+    'Groups'?: Array<UpdateCatalogGroupReference>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Sku",
+            "baseName": "Sku",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Price",
+            "baseName": "Price",
+            "type": "number"
+        },
+        {
+            "name": "ImageFileName",
+            "baseName": "ImageFileName",
+            "type": "string"
+        },
+        {
+            "name": "Alcohol",
+            "baseName": "Alcohol",
+            "type": "boolean"
+        },
+        {
+            "name": "Groups",
+            "baseName": "Groups",
+            "type": "Array<UpdateCatalogGroupReference>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateCatalogItem.attributeTypeMap;
+    }
+}
+
+/**
 * UpdateDriver Push Notification Token
 */
 export class UpdateDriverNotificationToken {
@@ -38159,6 +38710,7 @@ let enumsMap: {[index: string]: any} = {
         "Teammate.InvitationStatusEnum": Teammate.InvitationStatusEnum,
         "Teammate.AppAccessLevelEnum": Teammate.AppAccessLevelEnum,
         "TeammateBase.AppAccessLevelEnum": TeammateBase.AppAccessLevelEnum,
+        "UpdateCatalogGroupReference.GroupTypeEnum": UpdateCatalogGroupReference.GroupTypeEnum,
         "Voucher.StatusEnum": Voucher.StatusEnum,
         "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
         "Voucher.VoucherSubTypeEnum": Voucher.VoucherSubTypeEnum,
@@ -38220,9 +38772,15 @@ let typeMap: {[index: string]: any} = {
     "BusinessHoursPeriodBase": BusinessHoursPeriodBase,
     "CampaignStatistics": CampaignStatistics,
     "CatalogGroup": CatalogGroup,
+    "CatalogGroupArchivedEvent": CatalogGroupArchivedEvent,
+    "CatalogGroupCreatedEvent": CatalogGroupCreatedEvent,
     "CatalogGroupReference": CatalogGroupReference,
+    "CatalogGroupUpdatedEvent": CatalogGroupUpdatedEvent,
     "CatalogItem": CatalogItem,
+    "CatalogItemArchivedEvent": CatalogItemArchivedEvent,
+    "CatalogItemCreatedEvent": CatalogItemCreatedEvent,
     "CatalogItemReference": CatalogItemReference,
+    "CatalogItemUpdatedEvent": CatalogItemUpdatedEvent,
     "CertificateCreatedEvent": CertificateCreatedEvent,
     "CertificateRenewedEvent": CertificateRenewedEvent,
     "ChangePasswordModel": ChangePasswordModel,
@@ -38652,6 +39210,8 @@ let typeMap: {[index: string]: any} = {
     "TeammateInviteAcceptedEvent": TeammateInviteAcceptedEvent,
     "TeammateInviteSentEvent": TeammateInviteSentEvent,
     "TeammateUpdatedEvent": TeammateUpdatedEvent,
+    "UpdateCatalogGroupReference": UpdateCatalogGroupReference,
+    "UpdateCatalogItem": UpdateCatalogItem,
     "UpdateDriverNotificationToken": UpdateDriverNotificationToken,
     "UpdateDriverProfileModel": UpdateDriverProfileModel,
     "UpdateModifier": UpdateModifier,
@@ -44276,6 +44836,76 @@ export class CatalogItemsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultCatalogItem");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update Catalog Item
+     * @param appId 
+     * @param catalogItemId 
+     * @param updateCatalogItem 
+     * @param {*} [options] Override http request options.
+     */
+    public updateCatalogItem (appId: string, catalogItemId: string, updateCatalogItem: UpdateCatalogItem, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/items/{catalogItemId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'catalogItemId' + '}', encodeURIComponent(String(catalogItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateCatalogItem.');
+        }
+
+        // verify required parameter 'catalogItemId' is not null or undefined
+        if (catalogItemId === null || catalogItemId === undefined) {
+            throw new Error('Required parameter catalogItemId was null or undefined when calling updateCatalogItem.');
+        }
+
+        // verify required parameter 'updateCatalogItem' is not null or undefined
+        if (updateCatalogItem === null || updateCatalogItem === undefined) {
+            throw new Error('Required parameter updateCatalogItem was null or undefined when calling updateCatalogItem.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(updateCatalogItem, "UpdateCatalogItem")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
