@@ -17731,6 +17731,10 @@ export class MenuUpdatedEvent {
     */
     'Menu'?: Menu;
     /**
+    * Menu Id
+    */
+    'MenuId'?: number;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -17769,6 +17773,11 @@ export class MenuUpdatedEvent {
             "name": "Menu",
             "baseName": "Menu",
             "type": "Menu"
+        },
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
         },
         {
             "name": "FlipdishEventId",
