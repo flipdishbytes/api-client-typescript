@@ -4295,6 +4295,10 @@ export class CatalogGroup {
     */
     'CatalogGroupId'?: string;
     /**
+    * ModifierGroup, etc
+    */
+    'GroupType'?: CatalogGroup.GroupTypeEnum;
+    /**
     * Stock Keeping Unit (SKU)
     */
     'Sku'?: string;
@@ -4309,15 +4313,11 @@ export class CatalogGroup {
     /**
     * Minimum number of items that the user has to select
     */
-    'MinSelection'?: number;
+    'MinSelectCount'?: number;
     /**
     * Maximum number of items that the user has to select
     */
-    'MaxSelection'?: number;
-    /**
-    * ModifierGroup, etc
-    */
-    'Type'?: CatalogGroup.TypeEnum;
+    'MaxSelectCount'?: number;
     /**
     * Collection of items associated with this product
     */
@@ -4330,6 +4330,11 @@ export class CatalogGroup {
             "name": "CatalogGroupId",
             "baseName": "CatalogGroupId",
             "type": "string"
+        },
+        {
+            "name": "GroupType",
+            "baseName": "GroupType",
+            "type": "CatalogGroup.GroupTypeEnum"
         },
         {
             "name": "Sku",
@@ -4347,19 +4352,14 @@ export class CatalogGroup {
             "type": "boolean"
         },
         {
-            "name": "MinSelection",
-            "baseName": "MinSelection",
+            "name": "MinSelectCount",
+            "baseName": "MinSelectCount",
             "type": "number"
         },
         {
-            "name": "MaxSelection",
-            "baseName": "MaxSelection",
+            "name": "MaxSelectCount",
+            "baseName": "MaxSelectCount",
             "type": "number"
-        },
-        {
-            "name": "Type",
-            "baseName": "Type",
-            "type": "CatalogGroup.TypeEnum"
         },
         {
             "name": "Items",
@@ -4373,8 +4373,7 @@ export class CatalogGroup {
 }
 
 export namespace CatalogGroup {
-    export enum TypeEnum {
-        Unknown = <any> 'Unknown',
+    export enum GroupTypeEnum {
         ModifierGroup = <any> 'ModifierGroup'
     }
 }
@@ -4497,11 +4496,11 @@ export class CatalogGroupCreatedEvent {
 }
 
 /**
-* Reference to an existing {Flipdish.PublicModels.V1.Catalog.Group.CatalogGroup}
+* Reference to an existing {Flipdish.PublicModels.V1.Catalog.Groups.CatalogGroup}
 */
 export class CatalogGroupReference {
     /**
-    * Details of the referenced {Flipdish.PublicModels.V1.Catalog.Item.CatalogItem}
+    * Details of the referenced {Flipdish.PublicModels.V1.Catalog.Items.CatalogItem}
     */
     'Group'?: CatalogGroup;
     /**
@@ -4539,7 +4538,6 @@ export class CatalogGroupReference {
 
 export namespace CatalogGroupReference {
     export enum GroupTypeEnum {
-        Unknown = <any> 'Unknown',
         ModifierGroup = <any> 'ModifierGroup'
     }
 }
@@ -4862,7 +4860,7 @@ export class CatalogItemCreatedEvent {
 */
 export class CatalogItemReference {
     /**
-    * Details of the referenced {Flipdish.PublicModels.V1.Catalog.Item.CatalogItem}
+    * Details of the referenced {Flipdish.PublicModels.V1.Catalog.Items.CatalogItem}
     */
     'Item'?: CatalogItem;
     /**
@@ -4872,7 +4870,7 @@ export class CatalogItemReference {
     /**
     * Type of the SupProduct
     */
-    'Type': CatalogItemReference.TypeEnum;
+    'ItemType': CatalogItemReference.ItemTypeEnum;
     /**
     * Quantity of the modifier that will be set when the parent product is placed in the basket
     */
@@ -4892,9 +4890,9 @@ export class CatalogItemReference {
             "type": "string"
         },
         {
-            "name": "Type",
-            "baseName": "Type",
-            "type": "CatalogItemReference.TypeEnum"
+            "name": "ItemType",
+            "baseName": "ItemType",
+            "type": "CatalogItemReference.ItemTypeEnum"
         },
         {
             "name": "PreselectedQuantity",
@@ -4908,7 +4906,7 @@ export class CatalogItemReference {
 }
 
 export namespace CatalogItemReference {
-    export enum TypeEnum {
+    export enum ItemTypeEnum {
         Product = <any> 'Product',
         Modifier = <any> 'Modifier'
     }
@@ -5429,7 +5427,80 @@ export class CreateAccountModel {
 }
 
 /**
-* Information to create a reference to a {Flipdish.PublicModels.V1.Catalog.Group.CatalogGroup}
+* Create a Catalog Group
+*/
+export class CreateCatalogGroup {
+    /**
+    * Minimum number of items that the user has to select
+    */
+    'MinSelectCount'?: number;
+    /**
+    * Maximum number of items that the user has to select
+    */
+    'MaxSelectCount'?: number;
+    /**
+    * Collection of items associated with this group
+    */
+    'Items'?: Array<CreateCatalogItemReference>;
+    /**
+    * Type of group (ModifierGroup, etc)
+    */
+    'GroupType': CreateCatalogGroup.GroupTypeEnum;
+    /**
+    * Stock Keeping Unit (SKU)
+    */
+    'Sku': string;
+    /**
+    * Group name
+    */
+    'Name': string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MinSelectCount",
+            "baseName": "MinSelectCount",
+            "type": "number"
+        },
+        {
+            "name": "MaxSelectCount",
+            "baseName": "MaxSelectCount",
+            "type": "number"
+        },
+        {
+            "name": "Items",
+            "baseName": "Items",
+            "type": "Array<CreateCatalogItemReference>"
+        },
+        {
+            "name": "GroupType",
+            "baseName": "GroupType",
+            "type": "CreateCatalogGroup.GroupTypeEnum"
+        },
+        {
+            "name": "Sku",
+            "baseName": "Sku",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateCatalogGroup.attributeTypeMap;
+    }
+}
+
+export namespace CreateCatalogGroup {
+    export enum GroupTypeEnum {
+        ModifierGroup = <any> 'ModifierGroup'
+    }
+}
+/**
+* Information to create a reference to a {Flipdish.PublicModels.V1.Catalog.Groups.CatalogGroup}
 */
 export class CreateCatalogGroupReference {
     /**
@@ -5462,7 +5533,6 @@ export class CreateCatalogGroupReference {
 
 export namespace CreateCatalogGroupReference {
     export enum GroupTypeEnum {
-        Unknown = <any> 'Unknown',
         ModifierGroup = <any> 'ModifierGroup'
     }
 }
@@ -5553,6 +5623,53 @@ export class CreateCatalogItem {
 }
 
 export namespace CreateCatalogItem {
+    export enum ItemTypeEnum {
+        Product = <any> 'Product',
+        Modifier = <any> 'Modifier'
+    }
+}
+/**
+* Information to create a reference to a {Flipdish.PublicModels.V1.Catalog.Items.CatalogItem}
+*/
+export class CreateCatalogItemReference {
+    /**
+    * Identifier of the CatalogItemId to use as SubProduct
+    */
+    'CatalogItemId': string;
+    /**
+    * Type of the SupProduct
+    */
+    'ItemType': CreateCatalogItemReference.ItemTypeEnum;
+    /**
+    * Quantity of the modifier that will be set when the parent product is placed in the basket
+    */
+    'PreselectedQuantity'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CatalogItemId",
+            "baseName": "CatalogItemId",
+            "type": "string"
+        },
+        {
+            "name": "ItemType",
+            "baseName": "ItemType",
+            "type": "CreateCatalogItemReference.ItemTypeEnum"
+        },
+        {
+            "name": "PreselectedQuantity",
+            "baseName": "PreselectedQuantity",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateCatalogItemReference.attributeTypeMap;
+    }
+}
+
+export namespace CreateCatalogItemReference {
     export enum ItemTypeEnum {
         Product = <any> 'Product',
         Modifier = <any> 'Modifier'
@@ -17826,6 +17943,14 @@ export class MenuUploadedEvent {
     */
     'Menu'?: Menu;
     /**
+    * Quantity of events
+    */
+    'InstanceEventCount'?: string;
+    /**
+    * The menu Id
+    */
+    'MenuId'?: number;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -17864,6 +17989,16 @@ export class MenuUploadedEvent {
             "name": "Menu",
             "baseName": "Menu",
             "type": "Menu"
+        },
+        {
+            "name": "InstanceEventCount",
+            "baseName": "InstanceEventCount",
+            "type": "string"
+        },
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
         },
         {
             "name": "FlipdishEventId",
@@ -27075,6 +27210,29 @@ export class RestApiResultBusinessHoursPeriod {
 /**
 * Rest api result
 */
+export class RestApiResultCatalogGroup {
+    /**
+    * Generic data object.
+    */
+    'Data': CatalogGroup;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "CatalogGroup"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultCatalogGroup.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultCatalogItem {
     /**
     * Generic data object.
@@ -35362,7 +35520,66 @@ export class TeammateUpdatedEvent {
 }
 
 /**
-* Data to update a {Flipdish.PublicModels.V1.Catalog.Item.CatalogGroupReference}
+* Update Catalog Group
+*/
+export class UpdateCatalogGroup {
+    /**
+    * Stock Keeping Unit (SKU)
+    */
+    'Sku'?: string;
+    /**
+    * Group name
+    */
+    'Name'?: string;
+    /**
+    * Minimum number of items that the user has to select
+    */
+    'MinSelectCount'?: number;
+    /**
+    * Maximum number of items that the user has to select
+    */
+    'MaxSelectCount'?: number;
+    /**
+    * Collection of items associated with this group
+    */
+    'Items'?: Array<UpdateCatalogItemReference>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Sku",
+            "baseName": "Sku",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "MinSelectCount",
+            "baseName": "MinSelectCount",
+            "type": "number"
+        },
+        {
+            "name": "MaxSelectCount",
+            "baseName": "MaxSelectCount",
+            "type": "number"
+        },
+        {
+            "name": "Items",
+            "baseName": "Items",
+            "type": "Array<UpdateCatalogItemReference>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateCatalogGroup.attributeTypeMap;
+    }
+}
+
+/**
+* Data to update a {Flipdish.PublicModels.V1.Catalog.Items.CatalogGroupReference}
 */
 export class UpdateCatalogGroupReference {
     /**
@@ -35395,7 +35612,6 @@ export class UpdateCatalogGroupReference {
 
 export namespace UpdateCatalogGroupReference {
     export enum GroupTypeEnum {
-        Unknown = <any> 'Unknown',
         ModifierGroup = <any> 'ModifierGroup'
     }
 }
@@ -35428,7 +35644,7 @@ export class UpdateCatalogItem {
     */
     'Alcohol'?: boolean;
     /**
-    * Collection of products associated with this product
+    * Collection of groups associated with this item
     */
     'Groups'?: Array<UpdateCatalogGroupReference>;
 
@@ -35476,6 +35692,53 @@ export class UpdateCatalogItem {
     }
 }
 
+/**
+* Data to update a {!:CatalogGroupReference}
+*/
+export class UpdateCatalogItemReference {
+    /**
+    * Identifier of the CatalogItemId to use as SubProduct
+    */
+    'CatalogItemId': string;
+    /**
+    * Type of the SupProduct
+    */
+    'ItemType': UpdateCatalogItemReference.ItemTypeEnum;
+    /**
+    * Quantity of the modifier that will be set when the parent product is placed in the basket
+    */
+    'PreselectedQuantity'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CatalogItemId",
+            "baseName": "CatalogItemId",
+            "type": "string"
+        },
+        {
+            "name": "ItemType",
+            "baseName": "ItemType",
+            "type": "UpdateCatalogItemReference.ItemTypeEnum"
+        },
+        {
+            "name": "PreselectedQuantity",
+            "baseName": "PreselectedQuantity",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateCatalogItemReference.attributeTypeMap;
+    }
+}
+
+export namespace UpdateCatalogItemReference {
+    export enum ItemTypeEnum {
+        Product = <any> 'Product',
+        Modifier = <any> 'Modifier'
+    }
+}
 /**
 * UpdateDriver Push Notification Token
 */
@@ -38590,12 +38853,14 @@ let enumsMap: {[index: string]: any} = {
         "BusinessHoursOverrideBase.TypeEnum": BusinessHoursOverrideBase.TypeEnum,
         "BusinessHoursPeriod.DayOfWeekEnum": BusinessHoursPeriod.DayOfWeekEnum,
         "BusinessHoursPeriodBase.DayOfWeekEnum": BusinessHoursPeriodBase.DayOfWeekEnum,
-        "CatalogGroup.TypeEnum": CatalogGroup.TypeEnum,
+        "CatalogGroup.GroupTypeEnum": CatalogGroup.GroupTypeEnum,
         "CatalogGroupReference.GroupTypeEnum": CatalogGroupReference.GroupTypeEnum,
         "CatalogItem.ItemTypeEnum": CatalogItem.ItemTypeEnum,
-        "CatalogItemReference.TypeEnum": CatalogItemReference.TypeEnum,
+        "CatalogItemReference.ItemTypeEnum": CatalogItemReference.ItemTypeEnum,
+        "CreateCatalogGroup.GroupTypeEnum": CreateCatalogGroup.GroupTypeEnum,
         "CreateCatalogGroupReference.GroupTypeEnum": CreateCatalogGroupReference.GroupTypeEnum,
         "CreateCatalogItem.ItemTypeEnum": CreateCatalogItem.ItemTypeEnum,
+        "CreateCatalogItemReference.ItemTypeEnum": CreateCatalogItemReference.ItemTypeEnum,
         "CreateFullMenu.MenuSectionBehaviourEnum": CreateFullMenu.MenuSectionBehaviourEnum,
         "CreateFullMenu.TaxTypeEnum": CreateFullMenu.TaxTypeEnum,
         "CreateFullMenuItemOptionSet.CellLayoutTypeEnum": CreateFullMenuItemOptionSet.CellLayoutTypeEnum,
@@ -38720,6 +38985,7 @@ let enumsMap: {[index: string]: any} = {
         "Teammate.AppAccessLevelEnum": Teammate.AppAccessLevelEnum,
         "TeammateBase.AppAccessLevelEnum": TeammateBase.AppAccessLevelEnum,
         "UpdateCatalogGroupReference.GroupTypeEnum": UpdateCatalogGroupReference.GroupTypeEnum,
+        "UpdateCatalogItemReference.ItemTypeEnum": UpdateCatalogItemReference.ItemTypeEnum,
         "Voucher.StatusEnum": Voucher.StatusEnum,
         "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
         "Voucher.VoucherSubTypeEnum": Voucher.VoucherSubTypeEnum,
@@ -38799,8 +39065,10 @@ let typeMap: {[index: string]: any} = {
     "Coordinates": Coordinates,
     "CountryWithAccountFieldsDefinitions": CountryWithAccountFieldsDefinitions,
     "CreateAccountModel": CreateAccountModel,
+    "CreateCatalogGroup": CreateCatalogGroup,
     "CreateCatalogGroupReference": CreateCatalogGroupReference,
     "CreateCatalogItem": CreateCatalogItem,
+    "CreateCatalogItemReference": CreateCatalogItemReference,
     "CreateFullMenu": CreateFullMenu,
     "CreateFullMenuItemOptionSet": CreateFullMenuItemOptionSet,
     "CreateFullMenuItemOptionSetItem": CreateFullMenuItemOptionSetItem,
@@ -39093,6 +39361,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultBluetoothTerminalStatus": RestApiResultBluetoothTerminalStatus,
     "RestApiResultBusinessHoursOverride": RestApiResultBusinessHoursOverride,
     "RestApiResultBusinessHoursPeriod": RestApiResultBusinessHoursPeriod,
+    "RestApiResultCatalogGroup": RestApiResultCatalogGroup,
     "RestApiResultCatalogItem": RestApiResultCatalogItem,
     "RestApiResultCoordinates": RestApiResultCoordinates,
     "RestApiResultCreatedMenuSectionItems": RestApiResultCreatedMenuSectionItems,
@@ -39219,8 +39488,10 @@ let typeMap: {[index: string]: any} = {
     "TeammateInviteAcceptedEvent": TeammateInviteAcceptedEvent,
     "TeammateInviteSentEvent": TeammateInviteSentEvent,
     "TeammateUpdatedEvent": TeammateUpdatedEvent,
+    "UpdateCatalogGroup": UpdateCatalogGroup,
     "UpdateCatalogGroupReference": UpdateCatalogGroupReference,
     "UpdateCatalogItem": UpdateCatalogItem,
+    "UpdateCatalogItemReference": UpdateCatalogItemReference,
     "UpdateDriverNotificationToken": UpdateDriverNotificationToken,
     "UpdateDriverProfileModel": UpdateDriverProfileModel,
     "UpdateModifier": UpdateModifier,
@@ -44450,6 +44721,70 @@ export class CatalogGroupsApi {
     }
     /**
      * 
+     * @summary Create a Catalog Group
+     * @param appId 
+     * @param createCatalogGroup 
+     * @param {*} [options] Override http request options.
+     */
+    public createCatalogGroup (appId: string, createCatalogGroup: CreateCatalogGroup, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCatalogGroup;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/groups'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createCatalogGroup.');
+        }
+
+        // verify required parameter 'createCatalogGroup' is not null or undefined
+        if (createCatalogGroup === null || createCatalogGroup === undefined) {
+            throw new Error('Required parameter createCatalogGroup was null or undefined when calling createCatalogGroup.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(createCatalogGroup, "CreateCatalogGroup")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCatalogGroup;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultCatalogGroup");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Get group by Id
      * @param appId 
      * @param catalogGroupId 
@@ -44594,6 +44929,76 @@ export class CatalogGroupsApi {
             });
         });
     }
+    /**
+     * 
+     * @summary Update Catalog Group
+     * @param appId 
+     * @param catalogGroupId 
+     * @param updateCatalogGroup 
+     * @param {*} [options] Override http request options.
+     */
+    public updateCatalogGroup (appId: string, catalogGroupId: string, updateCatalogGroup: UpdateCatalogGroup, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/groups/{catalogGroupId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'catalogGroupId' + '}', encodeURIComponent(String(catalogGroupId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateCatalogGroup.');
+        }
+
+        // verify required parameter 'catalogGroupId' is not null or undefined
+        if (catalogGroupId === null || catalogGroupId === undefined) {
+            throw new Error('Required parameter catalogGroupId was null or undefined when calling updateCatalogGroup.');
+        }
+
+        // verify required parameter 'updateCatalogGroup' is not null or undefined
+        if (updateCatalogGroup === null || updateCatalogGroup === undefined) {
+            throw new Error('Required parameter updateCatalogGroup was null or undefined when calling updateCatalogGroup.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(updateCatalogGroup, "UpdateCatalogGroup")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
 }
 export enum CatalogItemsApiApiKeys {
 }
@@ -44646,7 +45051,7 @@ export class CatalogItemsApi {
     }
     /**
      * 
-     * @summary Create an item product
+     * @summary Create a Catalog Item
      * @param appId 
      * @param createCatalogItem 
      * @param {*} [options] Override http request options.
