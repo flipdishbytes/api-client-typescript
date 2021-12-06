@@ -6004,6 +6004,10 @@ export class CreateFullMenuSection {
     * Image url
     */
     'ImageUrl'?: string;
+    /**
+    * Menu Section Id
+    */
+    'MenuSectionId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -6047,6 +6051,11 @@ export class CreateFullMenuSection {
             "name": "ImageUrl",
             "baseName": "ImageUrl",
             "type": "string"
+        },
+        {
+            "name": "MenuSectionId",
+            "baseName": "MenuSectionId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -6110,6 +6119,10 @@ export class CreateFullMenuSectionItem {
     * Image url
     */
     'ImageUrl'?: string;
+    /**
+    * Menu Item Id
+    */
+    'MenuItemId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -6178,6 +6191,11 @@ export class CreateFullMenuSectionItem {
             "name": "ImageUrl",
             "baseName": "ImageUrl",
             "type": "string"
+        },
+        {
+            "name": "MenuItemId",
+            "baseName": "MenuItemId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -16721,6 +16739,10 @@ export class MenuSectionBase {
     * Image url
     */
     'ImageUrl'?: string;
+    /**
+    * Menu Section Id
+    */
+    'MenuSectionId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -16754,6 +16776,11 @@ export class MenuSectionBase {
             "name": "ImageUrl",
             "baseName": "ImageUrl",
             "type": "string"
+        },
+        {
+            "name": "MenuSectionId",
+            "baseName": "MenuSectionId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -17176,6 +17203,10 @@ export class MenuSectionItemBase {
     * Image url
     */
     'ImageUrl'?: string;
+    /**
+    * Menu Item Id
+    */
+    'MenuItemId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -17229,6 +17260,11 @@ export class MenuSectionItemBase {
             "name": "ImageUrl",
             "baseName": "ImageUrl",
             "type": "string"
+        },
+        {
+            "name": "MenuItemId",
+            "baseName": "MenuItemId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
