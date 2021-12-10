@@ -1317,6 +1317,41 @@ export namespace AppConfigUpdateModel {
         Convenience = <any> 'Convenience'
     }
 }
+export class AppConfiguration {
+    'Id'?: string;
+    'PhysicalRestaurants'?: Array<number>;
+    'IsEnabled'?: boolean;
+    'Settings'?: Array<AppConfigurationSetting>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "string"
+        },
+        {
+            "name": "PhysicalRestaurants",
+            "baseName": "PhysicalRestaurants",
+            "type": "Array<number>"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "Settings",
+            "baseName": "Settings",
+            "type": "Array<AppConfigurationSetting>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppConfiguration.attributeTypeMap;
+    }
+}
+
 /**
 * Application Configuration Base
 */
@@ -1624,6 +1659,29 @@ export class AppConfigurationHeader {
 
     static getAttributeTypeMap() {
         return AppConfigurationHeader.attributeTypeMap;
+    }
+}
+
+export class AppConfigurationSetting {
+    'Key'?: string;
+    'Value'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Key",
+            "baseName": "Key",
+            "type": "string"
+        },
+        {
+            "name": "Value",
+            "baseName": "Value",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppConfigurationSetting.attributeTypeMap;
     }
 }
 
@@ -18844,6 +18902,10 @@ export class Order {
     */
     'Channel'?: Channel;
     /**
+    * Generated receipt code for an order
+    */
+    'ReceiptCode'?: string;
+    /**
     * Order identifier
     */
     'OrderId'?: number;
@@ -19035,6 +19097,11 @@ export class Order {
             "name": "Channel",
             "baseName": "Channel",
             "type": "Channel"
+        },
+        {
+            "name": "ReceiptCode",
+            "baseName": "ReceiptCode",
+            "type": "string"
         },
         {
             "name": "OrderId",
@@ -40005,9 +40072,11 @@ let typeMap: {[index: string]: any} = {
     "App": App,
     "AppCompliance": AppCompliance,
     "AppConfigUpdateModel": AppConfigUpdateModel,
+    "AppConfiguration": AppConfiguration,
     "AppConfigurationBase": AppConfigurationBase,
     "AppConfigurationDetail": AppConfigurationDetail,
     "AppConfigurationHeader": AppConfigurationHeader,
+    "AppConfigurationSetting": AppConfigurationSetting,
     "AppConfigurationSummary": AppConfigurationSummary,
     "AppCreatedEvent": AppCreatedEvent,
     "AppDetail": AppDetail,
@@ -41902,7 +41971,7 @@ export class AppStoreApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system][Flipdish Admin access required]
+     * [BETA - this endpoint is under development, do not use it in your production system][Note: Only Flipdish staff can verify apps]
      * @summary Update app store app verification
      * @param appStoreAppId App Store App Id
      * @param verificationStatus New Verification Status
@@ -42726,7 +42795,7 @@ export class AppStoreConfigurationsApi {
      * @param appConfigurationBase App Store Configuration Base
      * @param {*} [options] Override http request options.
      */
-    public updateAppStoreConfig (appId: string, appStoreAppId: string, configId: string, appConfigurationBase: AppConfigurationBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateAppStoreConfig (appId: string, appStoreAppId: string, configId: string, appConfigurationBase: AppConfiguration, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/config/{configId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)))
@@ -42766,7 +42835,7 @@ export class AppStoreConfigurationsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(appConfigurationBase, "AppConfigurationBase")
+            body: ObjectSerializer.serialize(appConfigurationBase, "AppConfiguration")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
