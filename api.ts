@@ -4485,6 +4485,18 @@ export class CatalogGroupArchivedEvent {
     */
     'EventName'?: string;
     /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * User who has created the group
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Catalog group created
+    */
+    'CatalogGroup'?: CatalogGroup;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -4508,6 +4520,21 @@ export class CatalogGroupArchivedEvent {
             "name": "EventName",
             "baseName": "EventName",
             "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "CatalogGroup",
+            "baseName": "CatalogGroup",
+            "type": "CatalogGroup"
         },
         {
             "name": "FlipdishEventId",
@@ -4544,6 +4571,18 @@ export class CatalogGroupCreatedEvent {
     */
     'EventName'?: string;
     /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * User who has created the group
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Catalog group created
+    */
+    'CatalogGroup'?: CatalogGroup;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -4567,6 +4606,21 @@ export class CatalogGroupCreatedEvent {
             "name": "EventName",
             "baseName": "EventName",
             "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "CatalogGroup",
+            "baseName": "CatalogGroup",
+            "type": "CatalogGroup"
         },
         {
             "name": "FlipdishEventId",
@@ -4649,6 +4703,18 @@ export class CatalogGroupUpdatedEvent {
     */
     'EventName'?: string;
     /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * User who has created the group
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Catalog group created
+    */
+    'CatalogGroup'?: CatalogGroup;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -4672,6 +4738,21 @@ export class CatalogGroupUpdatedEvent {
             "name": "EventName",
             "baseName": "EventName",
             "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "CatalogGroup",
+            "baseName": "CatalogGroup",
+            "type": "CatalogGroup"
         },
         {
             "name": "FlipdishEventId",
@@ -4818,6 +4899,18 @@ export class CatalogItemArchivedEvent {
     */
     'EventName'?: string;
     /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * User who has created the item
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Catalog item created
+    */
+    'CatalogItem'?: CatalogItem;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -4841,6 +4934,21 @@ export class CatalogItemArchivedEvent {
             "name": "EventName",
             "baseName": "EventName",
             "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "CatalogItem",
+            "baseName": "CatalogItem",
+            "type": "CatalogItem"
         },
         {
             "name": "FlipdishEventId",
@@ -5019,6 +5127,18 @@ export class CatalogItemUpdatedEvent {
     */
     'EventName'?: string;
     /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * User who has created the item
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Catalog item created
+    */
+    'CatalogItem'?: CatalogItem;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -5042,6 +5162,21 @@ export class CatalogItemUpdatedEvent {
             "name": "EventName",
             "baseName": "EventName",
             "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "CatalogItem",
+            "baseName": "CatalogItem",
+            "type": "CatalogItem"
         },
         {
             "name": "FlipdishEventId",
@@ -6465,219 +6600,6 @@ export class CreateMetadata {
 
     static getAttributeTypeMap() {
         return CreateMetadata.attributeTypeMap;
-    }
-}
-
-/**
-* Create a modifier
-*/
-export class CreateModifier {
-    /**
-    * Stock Keeping Unit (SKU)
-    */
-    'Sku'?: string;
-    /**
-    * Product name
-    */
-    'Name'?: string;
-    /**
-    * Product description
-    */
-    'Description'?: string;
-    /**
-    * Product price
-    */
-    'Price'?: number;
-    /**
-    * Image File Name
-    */
-    'ImageFileName'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Sku",
-            "baseName": "Sku",
-            "type": "string"
-        },
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "Price",
-            "baseName": "Price",
-            "type": "number"
-        },
-        {
-            "name": "ImageFileName",
-            "baseName": "ImageFileName",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return CreateModifier.attributeTypeMap;
-    }
-}
-
-/**
-* Information to create a Modifier Group
-*/
-export class CreateModifierGroup {
-    /**
-    * Minimum number of items that the user has to select
-    */
-    'MinSelection'?: number;
-    /**
-    * Maximum number of items that the user has to select
-    */
-    'MaxSelection'?: number;
-    /**
-    * Collection of products associated with this product
-    */
-    'SubProducts'?: Array<ModifierGroupSubProduct>;
-    /**
-    * Stock Keeping Unit (SKU)
-    */
-    'Sku'?: string;
-    /**
-    * Product name
-    */
-    'Name'?: string;
-    /**
-    * Product description
-    */
-    'Description'?: string;
-    /**
-    * Product price
-    */
-    'Price'?: number;
-    /**
-    * Image File Name
-    */
-    'ImageFileName'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "MinSelection",
-            "baseName": "MinSelection",
-            "type": "number"
-        },
-        {
-            "name": "MaxSelection",
-            "baseName": "MaxSelection",
-            "type": "number"
-        },
-        {
-            "name": "SubProducts",
-            "baseName": "SubProducts",
-            "type": "Array<ModifierGroupSubProduct>"
-        },
-        {
-            "name": "Sku",
-            "baseName": "Sku",
-            "type": "string"
-        },
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "Price",
-            "baseName": "Price",
-            "type": "number"
-        },
-        {
-            "name": "ImageFileName",
-            "baseName": "ImageFileName",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return CreateModifierGroup.attributeTypeMap;
-    }
-}
-
-/**
-* Information to create a Simple Product
-*/
-export class CreateSimpleProduct {
-    /**
-    * Collection of products associated with this product
-    */
-    'SubProducts'?: Array<SimpleProductSubProduct>;
-    /**
-    * Stock Keeping Unit (SKU)
-    */
-    'Sku'?: string;
-    /**
-    * Product name
-    */
-    'Name'?: string;
-    /**
-    * Product description
-    */
-    'Description'?: string;
-    /**
-    * Product price
-    */
-    'Price'?: number;
-    /**
-    * Image File Name
-    */
-    'ImageFileName'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "SubProducts",
-            "baseName": "SubProducts",
-            "type": "Array<SimpleProductSubProduct>"
-        },
-        {
-            "name": "Sku",
-            "baseName": "Sku",
-            "type": "string"
-        },
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "Price",
-            "baseName": "Price",
-            "type": "number"
-        },
-        {
-            "name": "ImageFileName",
-            "baseName": "ImageFileName",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return CreateSimpleProduct.attributeTypeMap;
     }
 }
 
@@ -15617,6 +15539,18 @@ export class MenuCheckpointCreatedEvent {
     */
     'Menu'?: Menu;
     /**
+    * Menu Id
+    */
+    'MenuId'?: number;
+    /**
+    * Checkpoint Name
+    */
+    'CheckpointName'?: string;
+    /**
+    * Checkpoint Set Id
+    */
+    'MenuCheckpointSetId'?: number;
+    /**
     * The event name
     */
     'EventName'?: string;
@@ -15654,6 +15588,21 @@ export class MenuCheckpointCreatedEvent {
             "name": "Menu",
             "baseName": "Menu",
             "type": "Menu"
+        },
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "CheckpointName",
+            "baseName": "CheckpointName",
+            "type": "string"
+        },
+        {
+            "name": "MenuCheckpointSetId",
+            "baseName": "MenuCheckpointSetId",
+            "type": "number"
         },
         {
             "name": "EventName",
@@ -18552,63 +18501,6 @@ export class Metadata {
 }
 
 /**
-* Product associated to a SimpleProduct
-*/
-export class ModifierGroupSubProduct {
-    /**
-    * Quantity of the modifier that will be set when the parent product is placed in the basket
-    */
-    'PreselectedQuantity'?: number;
-    /**
-    * Identifier of the ProductId to use as SubProduct
-    */
-    'ProductId': string;
-    /**
-    * Type of the SupProduct
-    */
-    'ProductType': ModifierGroupSubProduct.ProductTypeEnum;
-    /**
-    * Details of the sub product
-    */
-    'Product'?: Product;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "PreselectedQuantity",
-            "baseName": "PreselectedQuantity",
-            "type": "number"
-        },
-        {
-            "name": "ProductId",
-            "baseName": "ProductId",
-            "type": "string"
-        },
-        {
-            "name": "ProductType",
-            "baseName": "ProductType",
-            "type": "ModifierGroupSubProduct.ProductTypeEnum"
-        },
-        {
-            "name": "Product",
-            "baseName": "Product",
-            "type": "Product"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return ModifierGroupSubProduct.attributeTypeMap;
-    }
-}
-
-export namespace ModifierGroupSubProduct {
-    export enum ProductTypeEnum {
-        SimpleProduct = <any> 'SimpleProduct',
-        Modifier = <any> 'Modifier',
-        ModifierGroup = <any> 'ModifierGroup'
-    }
-}
-/**
 * Oauth client (also knowns as 'app')
 */
 export class OAuthApp {
@@ -19272,13 +19164,13 @@ export namespace Order {
     }
     export enum OrderStateEnum {
         Created = <any> 'Created',
+        PlacedCanBeCancelled = <any> 'PlacedCanBeCancelled',
         ReadyToProcess = <any> 'ReadyToProcess',
         AcceptedByRestaurant = <any> 'AcceptedByRestaurant',
         Dispatched = <any> 'Dispatched',
         Delivered = <any> 'Delivered',
         Cancelled = <any> 'Cancelled',
         ManualReview = <any> 'ManualReview',
-        PlacedCanBeCancelled = <any> 'PlacedCanBeCancelled',
         RejectedByStore = <any> 'RejectedByStore',
         RejectedByFlipdish = <any> 'RejectedByFlipdish',
         RejectedAutomatically = <any> 'RejectedAutomatically',
@@ -21237,13 +21129,13 @@ export namespace OrderSummary {
     }
     export enum OrderStateEnum {
         Created = <any> 'Created',
+        PlacedCanBeCancelled = <any> 'PlacedCanBeCancelled',
         ReadyToProcess = <any> 'ReadyToProcess',
         AcceptedByRestaurant = <any> 'AcceptedByRestaurant',
         Dispatched = <any> 'Dispatched',
         Delivered = <any> 'Delivered',
         Cancelled = <any> 'Cancelled',
         ManualReview = <any> 'ManualReview',
-        PlacedCanBeCancelled = <any> 'PlacedCanBeCancelled',
         RejectedByStore = <any> 'RejectedByStore',
         RejectedByFlipdish = <any> 'RejectedByFlipdish',
         RejectedAutomatically = <any> 'RejectedAutomatically',
@@ -25542,6 +25434,23 @@ export class RequestPasswordResetModel {
 
     static getAttributeTypeMap() {
         return RequestPasswordResetModel.attributeTypeMap;
+    }
+}
+
+export class Response {
+    'Stores'?: Array<StoreItemHeader>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Stores",
+            "baseName": "Stores",
+            "type": "Array<StoreItemHeader>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Response.attributeTypeMap;
     }
 }
 
@@ -30471,72 +30380,6 @@ export namespace SignupStep {
     }
 }
 /**
-* Product associated to a SimpleProduct
-*/
-export class SimpleProductSubProduct {
-    /**
-    * Minimum number of items that must be selected
-    */
-    'MinSelection'?: number;
-    /**
-    * Maximum number of items that can be selected
-    */
-    'MaxSelection'?: number;
-    /**
-    * Identifier of the ProductId to use as SubProduct
-    */
-    'ProductId': string;
-    /**
-    * Type of the SupProduct
-    */
-    'ProductType': SimpleProductSubProduct.ProductTypeEnum;
-    /**
-    * Details of the sub product
-    */
-    'Product'?: Product;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "MinSelection",
-            "baseName": "MinSelection",
-            "type": "number"
-        },
-        {
-            "name": "MaxSelection",
-            "baseName": "MaxSelection",
-            "type": "number"
-        },
-        {
-            "name": "ProductId",
-            "baseName": "ProductId",
-            "type": "string"
-        },
-        {
-            "name": "ProductType",
-            "baseName": "ProductType",
-            "type": "SimpleProductSubProduct.ProductTypeEnum"
-        },
-        {
-            "name": "Product",
-            "baseName": "Product",
-            "type": "Product"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return SimpleProductSubProduct.attributeTypeMap;
-    }
-}
-
-export namespace SimpleProductSubProduct {
-    export enum ProductTypeEnum {
-        SimpleProduct = <any> 'SimpleProduct',
-        Modifier = <any> 'Modifier',
-        ModifierGroup = <any> 'ModifierGroup'
-    }
-}
-/**
 * Sms Info
 */
 export class SmsInfo {
@@ -33763,6 +33606,29 @@ export class StoreHeader {
     }
 }
 
+export class StoreItemHeader {
+    'StoreId'?: number;
+    'Name'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreItemHeader.attributeTypeMap;
+    }
+}
+
 /**
 * Store Kiosk Settings
 */
@@ -36835,219 +36701,6 @@ export class UpdateDriverProfileModel {
 }
 
 /**
-* Update Modifier
-*/
-export class UpdateModifier {
-    /**
-    * Stock Keeping Unit (SKU)
-    */
-    'Sku'?: string;
-    /**
-    * Product name
-    */
-    'Name'?: string;
-    /**
-    * Product description
-    */
-    'Description'?: string;
-    /**
-    * Product price
-    */
-    'Price'?: number;
-    /**
-    * Product contains alcohol
-    */
-    'Alcohol'?: boolean;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Sku",
-            "baseName": "Sku",
-            "type": "string"
-        },
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "Price",
-            "baseName": "Price",
-            "type": "number"
-        },
-        {
-            "name": "Alcohol",
-            "baseName": "Alcohol",
-            "type": "boolean"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return UpdateModifier.attributeTypeMap;
-    }
-}
-
-/**
-* Update Modifier Group
-*/
-export class UpdateModifierGroup {
-    /**
-    * Minimum number of items that the user has to select
-    */
-    'MinSelection'?: number;
-    /**
-    * Maximum number of items that the user has to select
-    */
-    'MaxSelection'?: number;
-    /**
-    * Collection of products associated with this product
-    */
-    'SubProducts'?: Array<ModifierGroupSubProduct>;
-    /**
-    * Stock Keeping Unit (SKU)
-    */
-    'Sku'?: string;
-    /**
-    * Product name
-    */
-    'Name'?: string;
-    /**
-    * Product description
-    */
-    'Description'?: string;
-    /**
-    * Product price
-    */
-    'Price'?: number;
-    /**
-    * Product contains alcohol
-    */
-    'Alcohol'?: boolean;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "MinSelection",
-            "baseName": "MinSelection",
-            "type": "number"
-        },
-        {
-            "name": "MaxSelection",
-            "baseName": "MaxSelection",
-            "type": "number"
-        },
-        {
-            "name": "SubProducts",
-            "baseName": "SubProducts",
-            "type": "Array<ModifierGroupSubProduct>"
-        },
-        {
-            "name": "Sku",
-            "baseName": "Sku",
-            "type": "string"
-        },
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "Price",
-            "baseName": "Price",
-            "type": "number"
-        },
-        {
-            "name": "Alcohol",
-            "baseName": "Alcohol",
-            "type": "boolean"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return UpdateModifierGroup.attributeTypeMap;
-    }
-}
-
-/**
-* Update Simple Product
-*/
-export class UpdateSimpleProduct {
-    /**
-    * Collection of products associated with this product
-    */
-    'SubProducts'?: Array<SimpleProductSubProduct>;
-    /**
-    * Stock Keeping Unit (SKU)
-    */
-    'Sku'?: string;
-    /**
-    * Product name
-    */
-    'Name'?: string;
-    /**
-    * Product description
-    */
-    'Description'?: string;
-    /**
-    * Product price
-    */
-    'Price'?: number;
-    /**
-    * Product contains alcohol
-    */
-    'Alcohol'?: boolean;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "SubProducts",
-            "baseName": "SubProducts",
-            "type": "Array<SimpleProductSubProduct>"
-        },
-        {
-            "name": "Sku",
-            "baseName": "Sku",
-            "type": "string"
-        },
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "Price",
-            "baseName": "Price",
-            "type": "number"
-        },
-        {
-            "name": "Alcohol",
-            "baseName": "Alcohol",
-            "type": "boolean"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return UpdateSimpleProduct.attributeTypeMap;
-    }
-}
-
-/**
 * User answered signup questions event
 */
 export class UserAnsweredSignupQuestionsEvent {
@@ -39958,7 +39611,6 @@ let enumsMap: {[index: string]: any} = {
         "MenuSectionItemBase.SpicinessRatingEnum": MenuSectionItemBase.SpicinessRatingEnum,
         "MenuSectionItemBase.CellLayoutTypeEnum": MenuSectionItemBase.CellLayoutTypeEnum,
         "MenuTaxDetails.TaxTypeEnum": MenuTaxDetails.TaxTypeEnum,
-        "ModifierGroupSubProduct.ProductTypeEnum": ModifierGroupSubProduct.ProductTypeEnum,
         "OAuthApp.FlowEnum": OAuthApp.FlowEnum,
         "OAuthApp.RefreshTokenUsageEnum": OAuthApp.RefreshTokenUsageEnum,
         "Order.DeliveryTypeEnum": Order.DeliveryTypeEnum,
@@ -40011,7 +39663,6 @@ let enumsMap: {[index: string]: any} = {
         "RedeemInvitationResult.InvitationStatusEnum": RedeemInvitationResult.InvitationStatusEnum,
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
         "SignupStep.ActionEnum": SignupStep.ActionEnum,
-        "SimpleProductSubProduct.ProductTypeEnum": SimpleProductSubProduct.ProductTypeEnum,
         "StatisticsCurrencyDataPoint.CurrencyEnum": StatisticsCurrencyDataPoint.CurrencyEnum,
         "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
         "Store.CurrencyEnum": Store.CurrencyEnum,
@@ -40135,9 +39786,6 @@ let typeMap: {[index: string]: any} = {
     "CreateMenuSectionItemFromProducts": CreateMenuSectionItemFromProducts,
     "CreateMenuTaxRate": CreateMenuTaxRate,
     "CreateMetadata": CreateMetadata,
-    "CreateModifier": CreateModifier,
-    "CreateModifierGroup": CreateModifierGroup,
-    "CreateSimpleProduct": CreateSimpleProduct,
     "CreateTeammate": CreateTeammate,
     "CreateVoucher": CreateVoucher,
     "CreatedMenuSectionItems": CreatedMenuSectionItems,
@@ -40275,7 +39923,6 @@ let typeMap: {[index: string]: any} = {
     "MenuUpdatedEvent": MenuUpdatedEvent,
     "MenuUploadedEvent": MenuUploadedEvent,
     "Metadata": Metadata,
-    "ModifierGroupSubProduct": ModifierGroupSubProduct,
     "OAuthApp": OAuthApp,
     "OAuthTokenModel": OAuthTokenModel,
     "OauthClientRedirectUri": OauthClientRedirectUri,
@@ -40343,6 +39990,7 @@ let typeMap: {[index: string]: any} = {
     "RequestLoginPinModel": RequestLoginPinModel,
     "RequestLoginPinResposne": RequestLoginPinResposne,
     "RequestPasswordResetModel": RequestPasswordResetModel,
+    "Response": Response,
     "RestApiArrayResultAllMetadataResult": RestApiArrayResultAllMetadataResult,
     "RestApiArrayResultApmCurrencyDataPoint": RestApiArrayResultApmCurrencyDataPoint,
     "RestApiArrayResultApmDataPoint": RestApiArrayResultApmDataPoint,
@@ -40495,7 +40143,6 @@ let typeMap: {[index: string]: any} = {
     "SetPasswordWithPinModel": SetPasswordWithPinModel,
     "Setting": Setting,
     "SignupStep": SignupStep,
-    "SimpleProductSubProduct": SimpleProductSubProduct,
     "SmsInfo": SmsInfo,
     "SmsReceivedEvent": SmsReceivedEvent,
     "StatisticsCurrencyDataPoint": StatisticsCurrencyDataPoint,
@@ -40521,6 +40168,7 @@ let typeMap: {[index: string]: any} = {
     "StoreGroupExtended": StoreGroupExtended,
     "StoreGroupUpdatedEvent": StoreGroupUpdatedEvent,
     "StoreHeader": StoreHeader,
+    "StoreItemHeader": StoreItemHeader,
     "StoreKioskSetting": StoreKioskSetting,
     "StoreKioskSettingModel": StoreKioskSettingModel,
     "StoreKioskSettingUpdatedEvent": StoreKioskSettingUpdatedEvent,
@@ -40561,9 +40209,6 @@ let typeMap: {[index: string]: any} = {
     "UpdateCatalogItemReference": UpdateCatalogItemReference,
     "UpdateDriverNotificationToken": UpdateDriverNotificationToken,
     "UpdateDriverProfileModel": UpdateDriverProfileModel,
-    "UpdateModifier": UpdateModifier,
-    "UpdateModifierGroup": UpdateModifierGroup,
-    "UpdateSimpleProduct": UpdateSimpleProduct,
     "UserAnsweredSignupQuestionsEvent": UserAnsweredSignupQuestionsEvent,
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
@@ -45788,6 +45433,69 @@ export class CatalogGroupsApi {
     }
     /**
      * 
+     * @summary Archive Catalog Group
+     * @param appId 
+     * @param catalogGroupId 
+     * @param {*} [options] Override http request options.
+     */
+    public archiveCatalogGroup (appId: string, catalogGroupId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/groups/{catalogGroupId}/archive'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'catalogGroupId' + '}', encodeURIComponent(String(catalogGroupId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling archiveCatalogGroup.');
+        }
+
+        // verify required parameter 'catalogGroupId' is not null or undefined
+        if (catalogGroupId === null || catalogGroupId === undefined) {
+            throw new Error('Required parameter catalogGroupId was null or undefined when calling archiveCatalogGroup.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Create a Catalog Group
      * @param appId 
      * @param createCatalogGroup 
@@ -46178,6 +45886,69 @@ export class CatalogItemsApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Archive Catalog Item
+     * @param appId 
+     * @param catalogItemId 
+     * @param {*} [options] Override http request options.
+     */
+    public archiveCatalogItem (appId: string, catalogItemId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/items/{catalogItemId}/archive'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'catalogItemId' + '}', encodeURIComponent(String(catalogItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling archiveCatalogItem.');
+        }
+
+        // verify required parameter 'catalogItemId' is not null or undefined
+        if (catalogItemId === null || catalogItemId === undefined) {
+            throw new Error('Required parameter catalogItemId was null or undefined when calling archiveCatalogItem.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
     }
     /**
      * 
@@ -46712,6 +46483,212 @@ export class ChannelsApi {
     }
     /**
      * 
+     * @summary Attachs the specified store to the given sales channel.
+     * @param appId Application Id (AppNameId)
+     * @param channelId Type of sales channel (Android, IOS, Web, etc.)
+     * @param storeId Store Id (Phyisical Restaurant) to attach.
+     * @param {*} [options] Override http request options.
+     */
+    public attachStoreToSalesChannel (appId: string, channelId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/{channelId}/stores/{storeId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'channelId' + '}', encodeURIComponent(String(channelId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling attachStoreToSalesChannel.');
+        }
+
+        // verify required parameter 'channelId' is not null or undefined
+        if (channelId === null || channelId === undefined) {
+            throw new Error('Required parameter channelId was null or undefined when calling attachStoreToSalesChannel.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling attachStoreToSalesChannel.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Detaches all the stores from the given sales channel.
+     * @param appId Application Id (AppNameId)
+     * @param channelId Type of sales channel (Android, IOS, Web, etc.)
+     * @param {*} [options] Override http request options.
+     */
+    public detachAllStoresFromSalesChannel (appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/{channelId}/stores'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'channelId' + '}', encodeURIComponent(String(channelId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling detachAllStoresFromSalesChannel.');
+        }
+
+        // verify required parameter 'channelId' is not null or undefined
+        if (channelId === null || channelId === undefined) {
+            throw new Error('Required parameter channelId was null or undefined when calling detachAllStoresFromSalesChannel.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Detaches the specified store from the given sales channel.
+     * @param appId Application Id (AppNameId)
+     * @param channelId Type of sales channel (Android, IOS, Web, etc.)
+     * @param storeId Store Id (Phyisical Restaurant) to detach.
+     * @param {*} [options] Override http request options.
+     */
+    public detachStoreFromSalesChannel (appId: string, channelId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/{channelId}/stores/{storeId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'channelId' + '}', encodeURIComponent(String(channelId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling detachStoreFromSalesChannel.');
+        }
+
+        // verify required parameter 'channelId' is not null or undefined
+        if (channelId === null || channelId === undefined) {
+            throw new Error('Required parameter channelId was null or undefined when calling detachStoreFromSalesChannel.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling detachStoreFromSalesChannel.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @param id 
      * @param appId 
      * @param {*} [options] Override http request options.
@@ -46820,6 +46797,70 @@ export class ChannelsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultChannel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Returns a list of store ids attached to the given channel type for the specified app.
+     * @param appId Application Id (AppNameId)
+     * @param channelId Type of sales channel (Android, IOS, Web, etc.)
+     * @param {*} [options] Override http request options.
+     */
+    public getStoresBySalesChannel (appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: Response;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/{channelId}/stores'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'channelId' + '}', encodeURIComponent(String(channelId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getStoresBySalesChannel.');
+        }
+
+        // verify required parameter 'channelId' is not null or undefined
+        if (channelId === null || channelId === undefined) {
+            throw new Error('Required parameter channelId was null or undefined when calling getStoresBySalesChannel.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: Response;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Response");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -58589,7 +58630,7 @@ export class OrdersApi {
      * @param limit Requested page limit
      * @param {*} [options] Override http request options.
      */
-    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'PlacedCanBeCancelled' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, from?: Date, to?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
+    public getOrders (physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, from?: Date, to?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -58600,7 +58641,7 @@ export class OrdersApi {
         }
 
         if (state !== undefined) {
-            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<'Created' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'PlacedCanBeCancelled' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>");
+            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>");
         }
 
         if (from !== undefined) {
@@ -58671,7 +58712,7 @@ export class OrdersApi {
      * @param channels 
      * @param {*} [options] Override http request options.
      */
-    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'PlacedCanBeCancelled' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, orderByRequestedForTime?: boolean, channels?: Array<'Unknown' | 'Ios' | 'Android' | 'Web' | 'Kiosk' | 'Pos' | 'TelephoneCall' | 'Sms' | 'PwaAndroid' | 'PwaIos' | 'Google'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
+    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, orderByRequestedForTime?: boolean, channels?: Array<'Unknown' | 'Ios' | 'Android' | 'Web' | 'Kiosk' | 'Pos' | 'TelephoneCall' | 'Sms' | 'PwaAndroid' | 'PwaIos' | 'Google'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/orders/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -58692,7 +58733,7 @@ export class OrdersApi {
         }
 
         if (state !== undefined) {
-            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<'Created' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'PlacedCanBeCancelled' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>");
+            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>");
         }
 
         if (page !== undefined) {
@@ -60407,261 +60448,6 @@ export class ProductsApi {
     }
     /**
      * 
-     * @summary Create a modifier
-     * @param appId 
-     * @param modifier 
-     * @param {*} [options] Override http request options.
-     */
-    public createModifier (appId: string, modifier: CreateModifier, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProduct;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/Modifier'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling createModifier.');
-        }
-
-        // verify required parameter 'modifier' is not null or undefined
-        if (modifier === null || modifier === undefined) {
-            throw new Error('Required parameter modifier was null or undefined when calling createModifier.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(modifier, "CreateModifier")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultProduct;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultProduct");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Create a modifier group
-     * @param appId 
-     * @param modifierGroup 
-     * @param {*} [options] Override http request options.
-     */
-    public createModifierGroup (appId: string, modifierGroup: CreateModifierGroup, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProduct;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/ModifierGroup'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling createModifierGroup.');
-        }
-
-        // verify required parameter 'modifierGroup' is not null or undefined
-        if (modifierGroup === null || modifierGroup === undefined) {
-            throw new Error('Required parameter modifierGroup was null or undefined when calling createModifierGroup.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(modifierGroup, "CreateModifierGroup")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultProduct;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultProduct");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Create a simple product
-     * @param appId 
-     * @param simpleProduct 
-     * @param {*} [options] Override http request options.
-     */
-    public createProduct (appId: string, simpleProduct: CreateSimpleProduct, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProduct;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling createProduct.');
-        }
-
-        // verify required parameter 'simpleProduct' is not null or undefined
-        if (simpleProduct === null || simpleProduct === undefined) {
-            throw new Error('Required parameter simpleProduct was null or undefined when calling createProduct.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(simpleProduct, "CreateSimpleProduct")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultProduct;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultProduct");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Delete a Product Image
-     * @param appId 
-     * @param productId 
-     * @param {*} [options] Override http request options.
-     */
-    public deleteProductImage (appId: string, productId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/{productId}/image'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'productId' + '}', encodeURIComponent(String(productId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling deleteProductImage.');
-        }
-
-        // verify required parameter 'productId' is not null or undefined
-        if (productId === null || productId === undefined) {
-            throw new Error('Required parameter productId was null or undefined when calling deleteProductImage.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @summary Duplicate a product
      * @param appId 
      * @param productId 
@@ -60715,70 +60501,6 @@ export class ProductsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultProduct");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Get products by productId
-     * @param appId 
-     * @param productId 
-     * @param {*} [options] Override http request options.
-     */
-    public getProductById (appId: string, productId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: Product;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/{productId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'productId' + '}', encodeURIComponent(String(productId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getProductById.');
-        }
-
-        // verify required parameter 'productId' is not null or undefined
-        if (productId === null || productId === undefined) {
-            throw new Error('Required parameter productId was null or undefined when calling getProductById.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: Product;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "Product");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -60861,291 +60583,6 @@ export class ProductsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultProduct");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Update modifier
-     * @param appId 
-     * @param productId 
-     * @param modifier 
-     * @param {*} [options] Override http request options.
-     */
-    public updateModifier (appId: string, productId: string, modifier: UpdateModifier, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/modifier/{productId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'productId' + '}', encodeURIComponent(String(productId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling updateModifier.');
-        }
-
-        // verify required parameter 'productId' is not null or undefined
-        if (productId === null || productId === undefined) {
-            throw new Error('Required parameter productId was null or undefined when calling updateModifier.');
-        }
-
-        // verify required parameter 'modifier' is not null or undefined
-        if (modifier === null || modifier === undefined) {
-            throw new Error('Required parameter modifier was null or undefined when calling updateModifier.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(modifier, "UpdateModifier")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Update modifier Group
-     * @param appId 
-     * @param productId 
-     * @param modifierGroup 
-     * @param {*} [options] Override http request options.
-     */
-    public updateModifierGroup (appId: string, productId: string, modifierGroup: UpdateModifierGroup, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/modifierGroup/{productId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'productId' + '}', encodeURIComponent(String(productId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling updateModifierGroup.');
-        }
-
-        // verify required parameter 'productId' is not null or undefined
-        if (productId === null || productId === undefined) {
-            throw new Error('Required parameter productId was null or undefined when calling updateModifierGroup.');
-        }
-
-        // verify required parameter 'modifierGroup' is not null or undefined
-        if (modifierGroup === null || modifierGroup === undefined) {
-            throw new Error('Required parameter modifierGroup was null or undefined when calling updateModifierGroup.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(modifierGroup, "UpdateModifierGroup")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Update a simple product
-     * @param appId 
-     * @param productId 
-     * @param product 
-     * @param {*} [options] Override http request options.
-     */
-    public updateProduct (appId: string, productId: string, product: UpdateSimpleProduct, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/{productId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'productId' + '}', encodeURIComponent(String(productId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling updateProduct.');
-        }
-
-        // verify required parameter 'productId' is not null or undefined
-        if (productId === null || productId === undefined) {
-            throw new Error('Required parameter productId was null or undefined when calling updateProduct.');
-        }
-
-        // verify required parameter 'product' is not null or undefined
-        if (product === null || product === undefined) {
-            throw new Error('Required parameter product was null or undefined when calling updateProduct.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(product, "UpdateSimpleProduct")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Upload a Product Image
-     * @param appId 
-     * @param productId 
-     * @param Image Product image
-     * @param {*} [options] Override http request options.
-     */
-    public uploadProductImage (appId: string, productId: string, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/{productId}/image'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'productId' + '}', encodeURIComponent(String(productId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling uploadProductImage.');
-        }
-
-        // verify required parameter 'productId' is not null or undefined
-        if (productId === null || productId === undefined) {
-            throw new Error('Required parameter productId was null or undefined when calling uploadProductImage.');
-        }
-
-        // verify required parameter 'Image' is not null or undefined
-        if (Image === null || Image === undefined) {
-            throw new Error('Required parameter Image was null or undefined when calling uploadProductImage.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        if (Image !== undefined) {
-            localVarFormParams['Image'] = Image;
-        }
-        localVarUseFormData = true;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
