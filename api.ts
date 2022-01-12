@@ -15606,14 +15606,6 @@ export class MenuCheckpointCreatedEvent {
     */
     'MenuId'?: number;
     /**
-    * Checkpoint Name
-    */
-    'CheckpointName'?: string;
-    /**
-    * Checkpoint Set Id
-    */
-    'MenuCheckpointSetId'?: number;
-    /**
     * The event name
     */
     'EventName'?: string;
@@ -15655,16 +15647,6 @@ export class MenuCheckpointCreatedEvent {
         {
             "name": "MenuId",
             "baseName": "MenuId",
-            "type": "number"
-        },
-        {
-            "name": "CheckpointName",
-            "baseName": "CheckpointName",
-            "type": "string"
-        },
-        {
-            "name": "MenuCheckpointSetId",
-            "baseName": "MenuCheckpointSetId",
             "type": "number"
         },
         {
