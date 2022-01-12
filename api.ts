@@ -6508,6 +6508,29 @@ export namespace CreateFullMenuSectionItem {
     }
 }
 /**
+* Add CatalogItems to a Menu
+*/
+export class CreateMenuSectionItemFromCatalogItems {
+    /**
+    * List of CatalogItems to add to the section
+    */
+    'MenuCatalogItems': Array<MenuCatalogItem>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuCatalogItems",
+            "baseName": "MenuCatalogItems",
+            "type": "Array<MenuCatalogItem>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateMenuSectionItemFromCatalogItems.attributeTypeMap;
+    }
+}
+
+/**
 * Add Product to a Menu
 */
 export class CreateMenuSectionItemFromProducts {
@@ -15472,6 +15495,46 @@ export class MenuBulkEditEvent {
     }
 }
 
+/**
+* Information to add a CatalogItem to a Menu
+*/
+export class MenuCatalogItem {
+    /**
+    * Product Id to the product to add as Menu Item
+    */
+    'CatalogItemId': string;
+    /**
+    * Small | Medium | Large | HiddenImage  Affects the layout of the menu.
+    */
+    'CellLayoutType'?: MenuCatalogItem.CellLayoutTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CatalogItemId",
+            "baseName": "CatalogItemId",
+            "type": "string"
+        },
+        {
+            "name": "CellLayoutType",
+            "baseName": "CellLayoutType",
+            "type": "MenuCatalogItem.CellLayoutTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuCatalogItem.attributeTypeMap;
+    }
+}
+
+export namespace MenuCatalogItem {
+    export enum CellLayoutTypeEnum {
+        Small = <any> 'Small',
+        Medium = <any> 'Medium',
+        Large = <any> 'Large',
+        HiddenImage = <any> 'HiddenImage'
+    }
+}
 /**
 * Menu Checkpoint
 */
@@ -39596,6 +39659,7 @@ let enumsMap: {[index: string]: any} = {
         "Menu.TaxTypeEnum": Menu.TaxTypeEnum,
         "MenuBase.MenuSectionBehaviourEnum": MenuBase.MenuSectionBehaviourEnum,
         "MenuBase.TaxTypeEnum": MenuBase.TaxTypeEnum,
+        "MenuCatalogItem.CellLayoutTypeEnum": MenuCatalogItem.CellLayoutTypeEnum,
         "MenuElementEditResponse.MenuElementTypeEnum": MenuElementEditResponse.MenuElementTypeEnum,
         "MenuElementEditResponse.ValidationCodeEnum": MenuElementEditResponse.ValidationCodeEnum,
         "MenuElementHide.MenuElementTypeEnum": MenuElementHide.MenuElementTypeEnum,
@@ -39783,6 +39847,7 @@ let typeMap: {[index: string]: any} = {
     "CreateFullMenuItemOptionSetItem": CreateFullMenuItemOptionSetItem,
     "CreateFullMenuSection": CreateFullMenuSection,
     "CreateFullMenuSectionItem": CreateFullMenuSectionItem,
+    "CreateMenuSectionItemFromCatalogItems": CreateMenuSectionItemFromCatalogItems,
     "CreateMenuSectionItemFromProducts": CreateMenuSectionItemFromProducts,
     "CreateMenuTaxRate": CreateMenuTaxRate,
     "CreateMetadata": CreateMetadata,
@@ -39886,6 +39951,7 @@ let typeMap: {[index: string]: any} = {
     "Menu": Menu,
     "MenuBase": MenuBase,
     "MenuBulkEditEvent": MenuBulkEditEvent,
+    "MenuCatalogItem": MenuCatalogItem,
     "MenuCheckpoint": MenuCheckpoint,
     "MenuCheckpointCreatedEvent": MenuCheckpointCreatedEvent,
     "MenuCreatedEvent": MenuCreatedEvent,
@@ -54016,7 +54082,78 @@ export class MenuSectionItemsApi {
         });
     }
     /**
-     * 
+     * BETA - this endpoint is under development, do not use it in your production system
+     * @summary Create menu section items from a list of Catalog Items
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param createFromCatalogItems Information to create the new MenuSectionItems
+     * @param {*} [options] Override http request options.
+     */
+    public createMenuSectionItemFromCatalogItems (menuId: number, menuSectionId: number, createFromCatalogItems: CreateMenuSectionItemFromCatalogItems, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/add-catalogitems'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling createMenuSectionItemFromCatalogItems.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling createMenuSectionItemFromCatalogItems.');
+        }
+
+        // verify required parameter 'createFromCatalogItems' is not null or undefined
+        if (createFromCatalogItems === null || createFromCatalogItems === undefined) {
+            throw new Error('Required parameter createFromCatalogItems was null or undefined when calling createMenuSectionItemFromCatalogItems.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(createFromCatalogItems, "CreateMenuSectionItemFromCatalogItems")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * BETA - this endpoint is under development, do not use it in your production system
      * @summary Create menu section items from a list of Products
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
