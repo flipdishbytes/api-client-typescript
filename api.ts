@@ -4394,18 +4394,6 @@ export class CatalogGroup {
     */
     'CatalogGroupId'?: string;
     /**
-    * ModifierGroup, etc
-    */
-    'GroupType'?: CatalogGroup.GroupTypeEnum;
-    /**
-    * Stock Keeping Unit (SKU)
-    */
-    'Sku'?: string;
-    /**
-    * Group name
-    */
-    'Name'?: string;
-    /**
     * Returns true if the group is archived
     */
     'IsArchived'?: boolean;
@@ -4421,6 +4409,22 @@ export class CatalogGroup {
     * Collection of items associated with this product
     */
     'Items'?: Array<CatalogItemReference>;
+    /**
+    * Type of group (ModifierGroup, etc)
+    */
+    'GroupType': CatalogGroup.GroupTypeEnum;
+    /**
+    * Stock Keeping Unit (SKU)
+    */
+    'Sku': string;
+    /**
+    * Group name
+    */
+    'Name': string;
+    /**
+    * Image File Name
+    */
+    'ImageFileName'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -4428,21 +4432,6 @@ export class CatalogGroup {
         {
             "name": "CatalogGroupId",
             "baseName": "CatalogGroupId",
-            "type": "string"
-        },
-        {
-            "name": "GroupType",
-            "baseName": "GroupType",
-            "type": "CatalogGroup.GroupTypeEnum"
-        },
-        {
-            "name": "Sku",
-            "baseName": "Sku",
-            "type": "string"
-        },
-        {
-            "name": "Name",
-            "baseName": "Name",
             "type": "string"
         },
         {
@@ -4464,6 +4453,26 @@ export class CatalogGroup {
             "name": "Items",
             "baseName": "Items",
             "type": "Array<CatalogItemReference>"
+        },
+        {
+            "name": "GroupType",
+            "baseName": "GroupType",
+            "type": "CatalogGroup.GroupTypeEnum"
+        },
+        {
+            "name": "Sku",
+            "baseName": "Sku",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "ImageFileName",
+            "baseName": "ImageFileName",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4777,6 +4786,29 @@ export class CatalogGroupUpdatedEvent {
 
     static getAttributeTypeMap() {
         return CatalogGroupUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Catalog Image
+*/
+export class CatalogImage {
+    /**
+    * Unique catalog Item id
+    */
+    'ImageUri'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ImageUri",
+            "baseName": "ImageUri",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CatalogImage.attributeTypeMap;
     }
 }
 
@@ -5744,6 +5776,10 @@ export class CreateCatalogGroup {
     * Group name
     */
     'Name': string;
+    /**
+    * Image File Name
+    */
+    'ImageFileName'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -5776,6 +5812,11 @@ export class CreateCatalogGroup {
         {
             "name": "Name",
             "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "ImageFileName",
+            "baseName": "ImageFileName",
             "type": "string"
         }    ];
 
@@ -36492,6 +36533,10 @@ export class UpdateCatalogGroup {
     */
     'Name'?: string;
     /**
+    * Image File Name
+    */
+    'ImageFileName'?: string;
+    /**
     * Minimum number of items that the user has to select
     */
     'MinSelectCount'?: number;
@@ -36515,6 +36560,11 @@ export class UpdateCatalogGroup {
         {
             "name": "Name",
             "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "ImageFileName",
+            "baseName": "ImageFileName",
             "type": "string"
         },
         {
@@ -39805,6 +39855,7 @@ let typeMap: {[index: string]: any} = {
     "CatalogGroupCreatedEvent": CatalogGroupCreatedEvent,
     "CatalogGroupReference": CatalogGroupReference,
     "CatalogGroupUpdatedEvent": CatalogGroupUpdatedEvent,
+    "CatalogImage": CatalogImage,
     "CatalogItem": CatalogItem,
     "CatalogItemArchivedEvent": CatalogItemArchivedEvent,
     "CatalogItemCreatedEvent": CatalogItemCreatedEvent,
@@ -45876,6 +45927,124 @@ export class CatalogGroupsApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum CatalogImagesApiApiKeys {
+}
+
+export class CatalogImagesApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: CatalogImagesApiApiKeys, value: string) {
+        (this.authentications as any)[CatalogImagesApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Upload a Catalog Image
+     * @param appId 
+     * @param Image Catalog image
+     * @param {*} [options] Override http request options.
+     */
+    public uploadCatalogImage (appId: string, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: CatalogImage;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/images'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling uploadCatalogImage.');
+        }
+
+        // verify required parameter 'Image' is not null or undefined
+        if (Image === null || Image === undefined) {
+            throw new Error('Required parameter Image was null or undefined when calling uploadCatalogImage.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (Image !== undefined) {
+            localVarFormParams['Image'] = Image;
+        }
+        localVarUseFormData = true;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: CatalogImage;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "CatalogImage");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
