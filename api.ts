@@ -45531,7 +45531,7 @@ export class CatalogGroupsApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Archive Catalog Group
      * @param appId 
      * @param catalogGroupId 
@@ -45594,7 +45594,7 @@ export class CatalogGroupsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Create a Catalog Group
      * @param appId 
      * @param createCatalogGroup 
@@ -45658,7 +45658,7 @@ export class CatalogGroupsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Duplicate Catalog Group
      * @param appId 
      * @param catalogGroupId 
@@ -45721,7 +45721,7 @@ export class CatalogGroupsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get group by Id
      * @param appId 
      * @param catalogGroupId 
@@ -45785,7 +45785,7 @@ export class CatalogGroupsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get paginated groups by app name id filtered by types
      * @param appId 
      * @param groupTypes 
@@ -45867,7 +45867,7 @@ export class CatalogGroupsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Update Catalog Group
      * @param appId 
      * @param catalogGroupId 
@@ -46105,7 +46105,7 @@ export class CatalogItemsApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Archive Catalog Item
      * @param appId 
      * @param catalogItemId 
@@ -46168,7 +46168,7 @@ export class CatalogItemsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Create a Catalog Item
      * @param appId 
      * @param createCatalogItem 
@@ -46232,7 +46232,7 @@ export class CatalogItemsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Delete a CatalogItem Image
      * @param appId 
      * @param catalogItemId 
@@ -46295,7 +46295,7 @@ export class CatalogItemsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Duplicate Catalog Item
      * @param appId 
      * @param catalogItemId 
@@ -46422,7 +46422,7 @@ export class CatalogItemsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get paginated items by app name id filtered by types
      * @param appId 
      * @param itemTypes 
@@ -46504,7 +46504,7 @@ export class CatalogItemsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Update Catalog Item
      * @param appId 
      * @param catalogItemId 
@@ -46574,7 +46574,7 @@ export class CatalogItemsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Upload a Catalog Item Image
      * @param appId 
      * @param catalogItemId 
@@ -60672,7 +60672,7 @@ export class ProductsApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Archive a product. If the product is used in Menus, the related MenuItems will be marked as deleted
      * @param appId 
      * @param productId 
@@ -60735,7 +60735,7 @@ export class ProductsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Duplicate a product
      * @param appId 
      * @param productId 
@@ -60799,7 +60799,7 @@ export class ProductsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get paginated products by app name id filtered by product types
      * @param appId 
      * @param productTypes 
