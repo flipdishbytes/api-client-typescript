@@ -1135,8 +1135,8 @@ export namespace App {
         UpdateBankAccountsAssign = <any> 'UpdateBankAccountsAssign',
         ViewAssignedBankAccount = <any> 'ViewAssignedBankAccount',
         VerifyBankAccounts = <any> 'VerifyBankAccounts',
-        ViewFeesConfigurations = <any> 'ViewFeesConfigurations',
-        EditFeesConfigurations = <any> 'EditFeesConfigurations',
+        ViewServiceChargeConfigurations = <any> 'ViewServiceChargeConfigurations',
+        EditServiceChargeConfigurations = <any> 'EditServiceChargeConfigurations',
         ViewHydraConfig = <any> 'ViewHydraConfig',
         UpdateHydraConfigManage = <any> 'UpdateHydraConfigManage',
         InitiateBluetoothPairingMode = <any> 'InitiateBluetoothPairingMode',
@@ -6449,11 +6449,17 @@ export class CreateFullMenuSectionItem {
     /**
     * Image url
     */
+    'ImageName'?: string;
+    /**
+    * Image url
+    */
     'ImageUrl'?: string;
     /**
     * Menu Item Id
     */
     'MenuItemId'?: number;
+    'TaxRateId'?: number;
+    'TaxValue'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -6519,6 +6525,11 @@ export class CreateFullMenuSectionItem {
             "type": "boolean"
         },
         {
+            "name": "ImageName",
+            "baseName": "ImageName",
+            "type": "string"
+        },
+        {
             "name": "ImageUrl",
             "baseName": "ImageUrl",
             "type": "string"
@@ -6526,6 +6537,16 @@ export class CreateFullMenuSectionItem {
         {
             "name": "MenuItemId",
             "baseName": "MenuItemId",
+            "type": "number"
+        },
+        {
+            "name": "TaxRateId",
+            "baseName": "TaxRateId",
+            "type": "number"
+        },
+        {
+            "name": "TaxValue",
+            "baseName": "TaxValue",
             "type": "number"
         }    ];
 
@@ -14207,6 +14228,10 @@ export class LightspeedSettings {
     * WARNING: only use this option if the Liteserver is not synchronizing within max 5 minutes with Lightspeed cloud!
     */
     'SkipStatusCheckAndAcceptOrderAfterSending'?: boolean;
+    /**
+    * Send Table Number to Table Id
+    */
+    'SendTableNumberToTableId'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -14299,6 +14324,11 @@ export class LightspeedSettings {
         {
             "name": "SkipStatusCheckAndAcceptOrderAfterSending",
             "baseName": "SkipStatusCheckAndAcceptOrderAfterSending",
+            "type": "boolean"
+        },
+        {
+            "name": "SendTableNumberToTableId",
+            "baseName": "SendTableNumberToTableId",
             "type": "boolean"
         }    ];
 
@@ -15257,6 +15287,10 @@ export class Menu {
     */
     'VersionNumber'?: number;
     /**
+    * Image Name
+    */
+    'ImageName'?: string;
+    /**
     * Image url
     */
     'ImageUrl'?: string;
@@ -15306,6 +15340,11 @@ export class Menu {
             "name": "VersionNumber",
             "baseName": "VersionNumber",
             "type": "number"
+        },
+        {
+            "name": "ImageName",
+            "baseName": "ImageName",
+            "type": "string"
         },
         {
             "name": "ImageUrl",
@@ -16041,6 +16080,10 @@ export class MenuItemOptionSet {
     */
     'MenuItemOptionSetId'?: number;
     /**
+    * Image Name
+    */
+    'ImageName'?: string;
+    /**
     * Image url
     */
     'ImageUrl'?: string;
@@ -16088,6 +16131,11 @@ export class MenuItemOptionSet {
             "name": "MenuItemOptionSetId",
             "baseName": "MenuItemOptionSetId",
             "type": "number"
+        },
+        {
+            "name": "ImageName",
+            "baseName": "ImageName",
+            "type": "string"
         },
         {
             "name": "ImageUrl",
@@ -17532,7 +17580,17 @@ export class MenuSectionItem {
     /**
     * Image url
     */
+    'ImageName'?: string;
+    /**
+    * Image url
+    */
     'ImageUrl'?: string;
+    /**
+    * Tax rate name
+    */
+    'TaxRateName'?: string;
+    'TaxRateId'?: number;
+    'TaxValue'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -17618,9 +17676,29 @@ export class MenuSectionItem {
             "type": "boolean"
         },
         {
+            "name": "ImageName",
+            "baseName": "ImageName",
+            "type": "string"
+        },
+        {
             "name": "ImageUrl",
             "baseName": "ImageUrl",
             "type": "string"
+        },
+        {
+            "name": "TaxRateName",
+            "baseName": "TaxRateName",
+            "type": "string"
+        },
+        {
+            "name": "TaxRateId",
+            "baseName": "TaxRateId",
+            "type": "number"
+        },
+        {
+            "name": "TaxValue",
+            "baseName": "TaxValue",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -17685,11 +17763,21 @@ export class MenuSectionItemBase {
     /**
     * Image url
     */
+    'ImageName'?: string;
+    /**
+    * Image url
+    */
     'ImageUrl'?: string;
     /**
     * Menu Item Id
     */
     'MenuItemId'?: number;
+    /**
+    * Tax rate name
+    */
+    'TaxRateName'?: string;
+    'TaxRateId'?: number;
+    'TaxValue'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -17740,6 +17828,11 @@ export class MenuSectionItemBase {
             "type": "boolean"
         },
         {
+            "name": "ImageName",
+            "baseName": "ImageName",
+            "type": "string"
+        },
+        {
             "name": "ImageUrl",
             "baseName": "ImageUrl",
             "type": "string"
@@ -17747,6 +17840,21 @@ export class MenuSectionItemBase {
         {
             "name": "MenuItemId",
             "baseName": "MenuItemId",
+            "type": "number"
+        },
+        {
+            "name": "TaxRateName",
+            "baseName": "TaxRateName",
+            "type": "string"
+        },
+        {
+            "name": "TaxRateId",
+            "baseName": "TaxRateId",
+            "type": "number"
+        },
+        {
+            "name": "TaxValue",
+            "baseName": "TaxValue",
             "type": "number"
         }    ];
 
@@ -30354,6 +30462,47 @@ export class SearchCriteria {
 }
 
 /**
+* Store Service Charge
+*/
+export class ServiceCharge {
+    /**
+    * Store identifier
+    */
+    'StoreId'?: number;
+    /**
+    * The Default Service Charge Value
+    */
+    'PercentageValue'?: number;
+    /**
+    * Enable Service Charge for store true(on) / false(off)
+    */
+    'Enabled'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "PercentageValue",
+            "baseName": "PercentageValue",
+            "type": "number"
+        },
+        {
+            "name": "Enabled",
+            "baseName": "Enabled",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ServiceCharge.attributeTypeMap;
+    }
+}
+
+/**
 * Set password with PIN model
 */
 export class SetPasswordWithPinModel {
@@ -40239,6 +40388,7 @@ let typeMap: {[index: string]: any} = {
     "RevenueAdjustmentsDetails": RevenueAdjustmentsDetails,
     "RevenueDetail": RevenueDetail,
     "SearchCriteria": SearchCriteria,
+    "ServiceCharge": ServiceCharge,
     "SetPasswordWithPinModel": SetPasswordWithPinModel,
     "Setting": Setting,
     "SignupStep": SignupStep,
@@ -62072,6 +62222,70 @@ export class StoresApi {
     }
     /**
      * 
+     * @summary Configure Store Service Charge; Idempotent Operation
+     * @param storeId Store identifier
+     * @param serviceCharge Service charge
+     * @param {*} [options] Override http request options.
+     */
+    public configureStoreServiceCharge (storeId: number, serviceCharge: ServiceCharge, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/servicecharge'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling configureStoreServiceCharge.');
+        }
+
+        // verify required parameter 'serviceCharge' is not null or undefined
+        if (serviceCharge === null || serviceCharge === undefined) {
+            throw new Error('Required parameter serviceCharge was null or undefined when calling configureStoreServiceCharge.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(serviceCharge, "ServiceCharge")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Create Business Hours Override for a store
      * @param storeId Store identifier
      * @param businessHoursOverride Business Hours Override
@@ -63016,6 +63230,63 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultStoreStatistics");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Retrieve Store Service Charge
+     * @param storeId Store identifier
+     * @param {*} [options] Override http request options.
+     */
+    public getStoreServiceCharge (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: ServiceCharge;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/servicecharge'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getStoreServiceCharge.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: ServiceCharge;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "ServiceCharge");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
