@@ -6458,8 +6458,6 @@ export class CreateFullMenuSectionItem {
     * Menu Item Id
     */
     'MenuItemId'?: number;
-    'TaxRateId'?: number;
-    'TaxValue'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -6537,16 +6535,6 @@ export class CreateFullMenuSectionItem {
         {
             "name": "MenuItemId",
             "baseName": "MenuItemId",
-            "type": "number"
-        },
-        {
-            "name": "TaxRateId",
-            "baseName": "TaxRateId",
-            "type": "number"
-        },
-        {
-            "name": "TaxValue",
-            "baseName": "TaxValue",
             "type": "number"
         }    ];
 
@@ -17525,6 +17513,12 @@ export class MenuSectionItem {
     */
     'PublicId'?: string;
     /**
+    * Tax rate name
+    */
+    'TaxRateName'?: string;
+    'TaxRateId'?: number;
+    'TaxValue'?: number;
+    /**
     * List of metadata
     */
     'Metadata'?: Array<CreateMetadata>;
@@ -17576,12 +17570,6 @@ export class MenuSectionItem {
     * Image url
     */
     'ImageUrl'?: string;
-    /**
-    * Tax rate name
-    */
-    'TaxRateName'?: string;
-    'TaxRateId'?: number;
-    'TaxValue'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -17610,6 +17598,21 @@ export class MenuSectionItem {
             "name": "PublicId",
             "baseName": "PublicId",
             "type": "string"
+        },
+        {
+            "name": "TaxRateName",
+            "baseName": "TaxRateName",
+            "type": "string"
+        },
+        {
+            "name": "TaxRateId",
+            "baseName": "TaxRateId",
+            "type": "number"
+        },
+        {
+            "name": "TaxValue",
+            "baseName": "TaxValue",
+            "type": "number"
         },
         {
             "name": "Metadata",
@@ -17675,21 +17678,6 @@ export class MenuSectionItem {
             "name": "ImageUrl",
             "baseName": "ImageUrl",
             "type": "string"
-        },
-        {
-            "name": "TaxRateName",
-            "baseName": "TaxRateName",
-            "type": "string"
-        },
-        {
-            "name": "TaxRateId",
-            "baseName": "TaxRateId",
-            "type": "number"
-        },
-        {
-            "name": "TaxValue",
-            "baseName": "TaxValue",
-            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -17763,12 +17751,6 @@ export class MenuSectionItemBase {
     * Menu Item Id
     */
     'MenuItemId'?: number;
-    /**
-    * Tax rate name
-    */
-    'TaxRateName'?: string;
-    'TaxRateId'?: number;
-    'TaxValue'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -17831,21 +17813,6 @@ export class MenuSectionItemBase {
         {
             "name": "MenuItemId",
             "baseName": "MenuItemId",
-            "type": "number"
-        },
-        {
-            "name": "TaxRateName",
-            "baseName": "TaxRateName",
-            "type": "string"
-        },
-        {
-            "name": "TaxRateId",
-            "baseName": "TaxRateId",
-            "type": "number"
-        },
-        {
-            "name": "TaxValue",
-            "baseName": "TaxValue",
             "type": "number"
         }    ];
 
