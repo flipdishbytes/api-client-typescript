@@ -17067,6 +17067,10 @@ export class MenuSection {
     */
     'PublicId'?: string;
     /**
+    * Image Name
+    */
+    'ImageName'?: string;
+    /**
     * Name
     */
     'Name'?: string;
@@ -17112,6 +17116,11 @@ export class MenuSection {
         {
             "name": "PublicId",
             "baseName": "PublicId",
+            "type": "string"
+        },
+        {
+            "name": "ImageName",
+            "baseName": "ImageName",
             "type": "string"
         },
         {
