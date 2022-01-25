@@ -18662,6 +18662,90 @@ export class Metadata {
 }
 
 /**
+* Metafield Definition
+*/
+export class MetafieldDefinition {
+    /**
+    * The Metafield will extend the specified {Flipdish.PublicModels.V1.Metafields.MetafieldDefinition.OwnerEntity}
+    */
+    'OwnerEntity'?: MetafieldDefinition.OwnerEntityEnum;
+    /**
+    * Key of the metafield.  Allowed characters: lowercase letters, numbers, hyphen, underscore and dot
+    */
+    'Key': string;
+    /**
+    * The excepted type for the Value field
+    */
+    'ValueType'?: MetafieldDefinition.ValueTypeEnum;
+    /**
+    * Field Name
+    */
+    'Name': string;
+    /**
+    * Field Description
+    */
+    'Description'?: string;
+    /**
+    * Enable Metafield Behaviors
+    */
+    'Behaviors'?: Array<MetafieldDefinition.BehaviorsEnum>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OwnerEntity",
+            "baseName": "OwnerEntity",
+            "type": "MetafieldDefinition.OwnerEntityEnum"
+        },
+        {
+            "name": "Key",
+            "baseName": "Key",
+            "type": "string"
+        },
+        {
+            "name": "ValueType",
+            "baseName": "ValueType",
+            "type": "MetafieldDefinition.ValueTypeEnum"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Behaviors",
+            "baseName": "Behaviors",
+            "type": "Array<MetafieldDefinition.BehaviorsEnum>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MetafieldDefinition.attributeTypeMap;
+    }
+}
+
+export namespace MetafieldDefinition {
+    export enum OwnerEntityEnum {
+        CatalogItem = <any> 'CatalogItem',
+        CatalogGroup = <any> 'CatalogGroup',
+        Menu = <any> 'Menu'
+    }
+    export enum ValueTypeEnum {
+        Json = <any> 'Json',
+        SingleLineString = <any> 'SingleLineString',
+        MultiLineString = <any> 'MultiLineString'
+    }
+    export enum BehaviorsEnum {
+        SendToOrder = <any> 'SendToOrder',
+        SendToMenu = <any> 'SendToMenu'
+    }
+}
+/**
 * Oauth client (also knowns as 'app')
 */
 export class OAuthApp {
@@ -27101,6 +27185,56 @@ export class RestApiPaginationResultHydraDeviceDetails {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultHydraDeviceDetails.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
+export class RestApiPaginationResultMetafieldDefinition {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<MetafieldDefinition>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<MetafieldDefinition>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultMetafieldDefinition.attributeTypeMap;
     }
 }
 
@@ -39823,6 +39957,9 @@ let enumsMap: {[index: string]: any} = {
         "MenuSectionItemBase.SpicinessRatingEnum": MenuSectionItemBase.SpicinessRatingEnum,
         "MenuSectionItemBase.CellLayoutTypeEnum": MenuSectionItemBase.CellLayoutTypeEnum,
         "MenuTaxDetails.TaxTypeEnum": MenuTaxDetails.TaxTypeEnum,
+        "MetafieldDefinition.OwnerEntityEnum": MetafieldDefinition.OwnerEntityEnum,
+        "MetafieldDefinition.ValueTypeEnum": MetafieldDefinition.ValueTypeEnum,
+        "MetafieldDefinition.BehaviorsEnum": MetafieldDefinition.BehaviorsEnum,
         "OAuthApp.FlowEnum": OAuthApp.FlowEnum,
         "OAuthApp.RefreshTokenUsageEnum": OAuthApp.RefreshTokenUsageEnum,
         "Order.DeliveryTypeEnum": Order.DeliveryTypeEnum,
@@ -40138,6 +40275,7 @@ let typeMap: {[index: string]: any} = {
     "MenuUpdatedEvent": MenuUpdatedEvent,
     "MenuUploadedEvent": MenuUploadedEvent,
     "Metadata": Metadata,
+    "MetafieldDefinition": MetafieldDefinition,
     "OAuthApp": OAuthApp,
     "OAuthTokenModel": OAuthTokenModel,
     "OauthClientRedirectUri": OauthClientRedirectUri,
@@ -40259,6 +40397,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultChannel": RestApiPaginationResultChannel,
     "RestApiPaginationResultHttpRequestAndResponseLog": RestApiPaginationResultHttpRequestAndResponseLog,
     "RestApiPaginationResultHydraDeviceDetails": RestApiPaginationResultHydraDeviceDetails,
+    "RestApiPaginationResultMetafieldDefinition": RestApiPaginationResultMetafieldDefinition,
     "RestApiPaginationResultOAuthTokenModel": RestApiPaginationResultOAuthTokenModel,
     "RestApiPaginationResultOrder": RestApiPaginationResultOrder,
     "RestApiPaginationResultOrderSummary": RestApiPaginationResultOrderSummary,
@@ -57857,6 +57996,135 @@ export class MenusApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "number");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum MetafieldDefinitionsApiApiKeys {
+}
+
+export class MetafieldDefinitionsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: MetafieldDefinitionsApiApiKeys, value: string) {
+        (this.authentications as any)[MetafieldDefinitionsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get paginated groups by app name id filtered by types
+     * @param appId 
+     * @param ownerEntity 
+     * @param searchTerm 
+     * @param page 
+     * @param limit 
+     * @param {*} [options] Override http request options.
+     */
+    public getMetafieldDefinitions (appId: string, ownerEntity: 'CatalogItem' | 'CatalogGroup' | 'Menu', searchTerm?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultMetafieldDefinition;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/metafields/definitions/{ownerEntity}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'ownerEntity' + '}', encodeURIComponent(String(ownerEntity)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getMetafieldDefinitions.');
+        }
+
+        // verify required parameter 'ownerEntity' is not null or undefined
+        if (ownerEntity === null || ownerEntity === undefined) {
+            throw new Error('Required parameter ownerEntity was null or undefined when calling getMetafieldDefinitions.');
+        }
+
+        if (searchTerm !== undefined) {
+            localVarQueryParameters['searchTerm'] = ObjectSerializer.serialize(searchTerm, "string");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultMetafieldDefinition;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultMetafieldDefinition");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
