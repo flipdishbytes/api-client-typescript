@@ -14216,6 +14216,10 @@ export class LightspeedSettings {
     * WARNING: only use this option if the Liteserver is not synchronizing within max 5 minutes with Lightspeed cloud!
     */
     'SkipStatusCheckAndAcceptOrderAfterSending'?: boolean;
+    /**
+    * Send Table Number to Table Id
+    */
+    'SendTableNumberToTableId'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -14308,6 +14312,11 @@ export class LightspeedSettings {
         {
             "name": "SkipStatusCheckAndAcceptOrderAfterSending",
             "baseName": "SkipStatusCheckAndAcceptOrderAfterSending",
+            "type": "boolean"
+        },
+        {
+            "name": "SendTableNumberToTableId",
+            "baseName": "SendTableNumberToTableId",
             "type": "boolean"
         }    ];
 
