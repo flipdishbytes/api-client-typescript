@@ -4829,6 +4829,10 @@ export class CatalogItem {
     */
     'Groups'?: Array<CatalogGroupReference>;
     /**
+    * Collection of metafields
+    */
+    'Metafields'?: Array<Metafield>;
+    /**
     * Type of item (Product, Modifier, etc)
     */
     'ItemType': CatalogItem.ItemTypeEnum;
@@ -4874,6 +4878,11 @@ export class CatalogItem {
             "name": "Groups",
             "baseName": "Groups",
             "type": "Array<CatalogGroupReference>"
+        },
+        {
+            "name": "Metafields",
+            "baseName": "Metafields",
+            "type": "Array<Metafield>"
         },
         {
             "name": "ItemType",
@@ -18671,6 +18680,38 @@ export class Metadata {
 }
 
 /**
+* Metafield
+*/
+export class Metafield {
+    /**
+    * Key of the metafield.  Allowed characters: lowercase letters, numbers, hyphen, underscore and dot
+    */
+    'Key'?: string;
+    /**
+    * Value of the metafield.
+    */
+    'Value'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Key",
+            "baseName": "Key",
+            "type": "string"
+        },
+        {
+            "name": "Value",
+            "baseName": "Value",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Metafield.attributeTypeMap;
+    }
+}
+
+/**
 * Metafield Definition
 */
 export class MetafieldDefinition {
@@ -18682,6 +18723,10 @@ export class MetafieldDefinition {
     * Key of the metafield.  Allowed characters: lowercase letters, numbers, hyphen, underscore and dot
     */
     'Key': string;
+    /**
+    * Indicates if a definition can be edited or not
+    */
+    'IsReadOnly'?: boolean;
     /**
     * The excepted type for the Value field
     */
@@ -18711,6 +18756,11 @@ export class MetafieldDefinition {
             "name": "Key",
             "baseName": "Key",
             "type": "string"
+        },
+        {
+            "name": "IsReadOnly",
+            "baseName": "IsReadOnly",
+            "type": "boolean"
         },
         {
             "name": "ValueType",
@@ -40284,6 +40334,7 @@ let typeMap: {[index: string]: any} = {
     "MenuUpdatedEvent": MenuUpdatedEvent,
     "MenuUploadedEvent": MenuUploadedEvent,
     "Metadata": Metadata,
+    "Metafield": Metafield,
     "MetafieldDefinition": MetafieldDefinition,
     "OAuthApp": OAuthApp,
     "OAuthTokenModel": OAuthTokenModel,
