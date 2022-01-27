@@ -14377,7 +14377,6 @@ export class LineItem {
     * Item Option
     */
     'Options'?: Array<LineItemOption>;
-    'IsAlchohol'?: boolean;
     /**
     * Other Item Metadata
     */
@@ -14425,11 +14424,6 @@ export class LineItem {
             "name": "Options",
             "baseName": "Options",
             "type": "Array<LineItemOption>"
-        },
-        {
-            "name": "IsAlchohol",
-            "baseName": "IsAlchohol",
-            "type": "boolean"
         },
         {
             "name": "Metadata",
@@ -19086,6 +19080,14 @@ export class Order {
     */
     'RejectedByUserId'?: number;
     /**
+    * ChannelOrderId from external channel
+    */
+    'ChannelOrderId'?: string;
+    /**
+    * ChannelOrderDisplayId from external channel
+    */
+    'ChannelOrderDisplayId'?: string;
+    /**
     * ExternalOrderId from external channel
     */
     'ExternalOrderId'?: string;
@@ -19278,6 +19280,16 @@ export class Order {
             "name": "RejectedByUserId",
             "baseName": "RejectedByUserId",
             "type": "number"
+        },
+        {
+            "name": "ChannelOrderId",
+            "baseName": "ChannelOrderId",
+            "type": "string"
+        },
+        {
+            "name": "ChannelOrderDisplayId",
+            "baseName": "ChannelOrderDisplayId",
+            "type": "string"
         },
         {
             "name": "ExternalOrderId",
@@ -20278,11 +20290,11 @@ export class OrderIngestSubmitOrderRequest {
     /**
     * [Required] Order ID in the external System
     */
-    'ExternalOrderId'?: string;
+    'ChannelOrderId'?: string;
     /**
     * [Optional] Public Order ID in the external System
     */
-    'ExternalPublicOrderId'?: string;
+    'ChannelPublicOrderId'?: string;
     /**
     * Date the order was placed at in UTC  [Required]
     */
@@ -20329,13 +20341,13 @@ export class OrderIngestSubmitOrderRequest {
             "type": "FulfillmentInfo"
         },
         {
-            "name": "ExternalOrderId",
-            "baseName": "ExternalOrderId",
+            "name": "ChannelOrderId",
+            "baseName": "ChannelOrderId",
             "type": "string"
         },
         {
-            "name": "ExternalPublicOrderId",
-            "baseName": "ExternalPublicOrderId",
+            "name": "ChannelPublicOrderId",
+            "baseName": "ChannelPublicOrderId",
             "type": "string"
         },
         {
@@ -20501,6 +20513,7 @@ export class OrderIngestSubmitOrderResponse {
     'TotalPrice'?: Price;
     'DeliveryFee'?: Price;
     'EstimatedDeliveryTime'?: Date;
+    'ChannelOrderId'?: string;
     'ExternalOrderId'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -20535,6 +20548,11 @@ export class OrderIngestSubmitOrderResponse {
             "name": "EstimatedDeliveryTime",
             "baseName": "EstimatedDeliveryTime",
             "type": "Date"
+        },
+        {
+            "name": "ChannelOrderId",
+            "baseName": "ChannelOrderId",
+            "type": "string"
         },
         {
             "name": "ExternalOrderId",
@@ -21268,6 +21286,14 @@ export class OrderSummary {
     */
     'UnusualHighValueOrder'?: boolean;
     /**
+    * ChannelOrderId from external channel
+    */
+    'ChannelOrderId'?: string;
+    /**
+    * ChannelOrderDisplayId from external channel
+    */
+    'ChannelOrderDisplayId'?: string;
+    /**
     * ExternalOrderId from external channel
     */
     'ExternalOrderId'?: string;
@@ -21393,6 +21419,16 @@ export class OrderSummary {
             "name": "UnusualHighValueOrder",
             "baseName": "UnusualHighValueOrder",
             "type": "boolean"
+        },
+        {
+            "name": "ChannelOrderId",
+            "baseName": "ChannelOrderId",
+            "type": "string"
+        },
+        {
+            "name": "ChannelOrderDisplayId",
+            "baseName": "ChannelOrderDisplayId",
+            "type": "string"
         },
         {
             "name": "ExternalOrderId",
