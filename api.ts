@@ -19097,14 +19097,6 @@ export class Order {
     */
     'ChannelOrderDisplayId'?: string;
     /**
-    * ExternalOrderId from external channel
-    */
-    'ExternalOrderId'?: string;
-    /**
-    * ExternalOrderDisplayId from external channel
-    */
-    'ExternalOrderDisplayId'?: string;
-    /**
     * Channel where the Order comes from
     */
     'Channel'?: Channel;
@@ -19298,16 +19290,6 @@ export class Order {
         {
             "name": "ChannelOrderDisplayId",
             "baseName": "ChannelOrderDisplayId",
-            "type": "string"
-        },
-        {
-            "name": "ExternalOrderId",
-            "baseName": "ExternalOrderId",
-            "type": "string"
-        },
-        {
-            "name": "ExternalOrderDisplayId",
-            "baseName": "ExternalOrderDisplayId",
             "type": "string"
         },
         {
@@ -20523,7 +20505,6 @@ export class OrderIngestSubmitOrderResponse {
     'DeliveryFee'?: Price;
     'EstimatedDeliveryTime'?: Date;
     'ChannelOrderId'?: string;
-    'ExternalOrderId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -20561,11 +20542,6 @@ export class OrderIngestSubmitOrderResponse {
         {
             "name": "ChannelOrderId",
             "baseName": "ChannelOrderId",
-            "type": "string"
-        },
-        {
-            "name": "ExternalOrderId",
-            "baseName": "ExternalOrderId",
             "type": "string"
         }    ];
 
@@ -21302,14 +21278,6 @@ export class OrderSummary {
     * ChannelOrderDisplayId from external channel
     */
     'ChannelOrderDisplayId'?: string;
-    /**
-    * ExternalOrderId from external channel
-    */
-    'ExternalOrderId'?: string;
-    /**
-    * ExternalOrderDisplayId from external channel
-    */
-    'ExternalOrderDisplayId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -21437,16 +21405,6 @@ export class OrderSummary {
         {
             "name": "ChannelOrderDisplayId",
             "baseName": "ChannelOrderDisplayId",
-            "type": "string"
-        },
-        {
-            "name": "ExternalOrderId",
-            "baseName": "ExternalOrderId",
-            "type": "string"
-        },
-        {
-            "name": "ExternalOrderDisplayId",
-            "baseName": "ExternalOrderDisplayId",
             "type": "string"
         }    ];
 
