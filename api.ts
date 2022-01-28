@@ -5885,6 +5885,10 @@ export class CreateCatalogItem {
     */
     'Groups'?: Array<CreateCatalogGroupReference>;
     /**
+    * Collection of metafields
+    */
+    'Metafields'?: Array<Metafield>;
+    /**
     * Type of item (Product, Modifier, etc)
     */
     'ItemType': CreateCatalogItem.ItemTypeEnum;
@@ -5920,6 +5924,11 @@ export class CreateCatalogItem {
             "name": "Groups",
             "baseName": "Groups",
             "type": "Array<CreateCatalogGroupReference>"
+        },
+        {
+            "name": "Metafields",
+            "baseName": "Metafields",
+            "type": "Array<Metafield>"
         },
         {
             "name": "ItemType",
@@ -37002,6 +37011,10 @@ export class UpdateCatalogItem {
     * Collection of groups associated with this item
     */
     'Groups'?: Array<UpdateCatalogGroupReference>;
+    /**
+    * Collection of metafields
+    */
+    'Metafields'?: Array<Metafield>;
 
     static discriminator: string | undefined = undefined;
 
@@ -37040,6 +37053,11 @@ export class UpdateCatalogItem {
             "name": "Groups",
             "baseName": "Groups",
             "type": "Array<UpdateCatalogGroupReference>"
+        },
+        {
+            "name": "Metafields",
+            "baseName": "Metafields",
+            "type": "Array<Metafield>"
         }    ];
 
     static getAttributeTypeMap() {
