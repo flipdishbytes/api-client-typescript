@@ -4410,6 +4410,10 @@ export class CatalogGroup {
     */
     'Items'?: Array<CatalogItemReference>;
     /**
+    * Collection of metafields
+    */
+    'Metafields'?: Array<Metafield>;
+    /**
     * Type of group (ModifierGroup, etc)
     */
     'GroupType': CatalogGroup.GroupTypeEnum;
@@ -4453,6 +4457,11 @@ export class CatalogGroup {
             "name": "Items",
             "baseName": "Items",
             "type": "Array<CatalogItemReference>"
+        },
+        {
+            "name": "Metafields",
+            "baseName": "Metafields",
+            "type": "Array<Metafield>"
         },
         {
             "name": "GroupType",
@@ -5774,6 +5783,10 @@ export class CreateCatalogGroup {
     */
     'Items'?: Array<CreateCatalogItemReference>;
     /**
+    * Collection of metafields
+    */
+    'Metafields'?: Array<Metafield>;
+    /**
     * Type of group (ModifierGroup, etc)
     */
     'GroupType': CreateCatalogGroup.GroupTypeEnum;
@@ -5807,6 +5820,11 @@ export class CreateCatalogGroup {
             "name": "Items",
             "baseName": "Items",
             "type": "Array<CreateCatalogItemReference>"
+        },
+        {
+            "name": "Metafields",
+            "baseName": "Metafields",
+            "type": "Array<Metafield>"
         },
         {
             "name": "GroupType",
@@ -36860,6 +36878,10 @@ export class UpdateCatalogGroup {
     * Collection of items associated with this group
     */
     'Items'?: Array<UpdateCatalogItemReference>;
+    /**
+    * Collection of metafields
+    */
+    'Metafields'?: Array<Metafield>;
 
     static discriminator: string | undefined = undefined;
 
@@ -36893,6 +36915,11 @@ export class UpdateCatalogGroup {
             "name": "Items",
             "baseName": "Items",
             "type": "Array<UpdateCatalogItemReference>"
+        },
+        {
+            "name": "Metafields",
+            "baseName": "Metafields",
+            "type": "Array<Metafield>"
         }    ];
 
     static getAttributeTypeMap() {
