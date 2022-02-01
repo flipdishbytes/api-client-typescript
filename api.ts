@@ -14256,6 +14256,18 @@ export class LightspeedSettings {
     * Send Table Number to Table Id
     */
     'SendTableNumberToTableId'?: boolean;
+    /**
+    * Add ChefNote To Product
+    */
+    'AddChefNoteToProduct'?: boolean;
+    /**
+    * The Lightspeed Chef Note Item Id to map
+    */
+    'ChefNoteItemId'?: string;
+    /**
+    * The Lightspeed Chef Note Modifier Id to map
+    */
+    'ChefNoteModifierId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -14354,6 +14366,21 @@ export class LightspeedSettings {
             "name": "SendTableNumberToTableId",
             "baseName": "SendTableNumberToTableId",
             "type": "boolean"
+        },
+        {
+            "name": "AddChefNoteToProduct",
+            "baseName": "AddChefNoteToProduct",
+            "type": "boolean"
+        },
+        {
+            "name": "ChefNoteItemId",
+            "baseName": "ChefNoteItemId",
+            "type": "string"
+        },
+        {
+            "name": "ChefNoteModifierId",
+            "baseName": "ChefNoteModifierId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
