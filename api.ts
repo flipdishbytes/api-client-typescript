@@ -27662,56 +27662,6 @@ export class RestApiPaginationResultOrderSummary {
 /**
 * Rest api pagination result
 */
-export class RestApiPaginationResultOwnerEntityConfigurations {
-    /**
-    * Current page index
-    */
-    'Page': number;
-    /**
-    * Current page size
-    */
-    'Limit': number;
-    /**
-    * Total record count
-    */
-    'TotalRecordCount': number;
-    /**
-    * Generic data object.
-    */
-    'Data': Array<OwnerEntityConfigurations>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Page",
-            "baseName": "Page",
-            "type": "number"
-        },
-        {
-            "name": "Limit",
-            "baseName": "Limit",
-            "type": "number"
-        },
-        {
-            "name": "TotalRecordCount",
-            "baseName": "TotalRecordCount",
-            "type": "number"
-        },
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Array<OwnerEntityConfigurations>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiPaginationResultOwnerEntityConfigurations.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api pagination result
-*/
 export class RestApiPaginationResultPayout {
     /**
     * Current page index
@@ -40820,7 +40770,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultOAuthTokenModel": RestApiPaginationResultOAuthTokenModel,
     "RestApiPaginationResultOrder": RestApiPaginationResultOrder,
     "RestApiPaginationResultOrderSummary": RestApiPaginationResultOrderSummary,
-    "RestApiPaginationResultOwnerEntityConfigurations": RestApiPaginationResultOwnerEntityConfigurations,
     "RestApiPaginationResultPayout": RestApiPaginationResultPayout,
     "RestApiPaginationResultPayoutChargeback": RestApiPaginationResultPayoutChargeback,
     "RestApiPaginationResultPayoutOrder": RestApiPaginationResultPayoutOrder,
@@ -58633,7 +58582,7 @@ export class MetafieldDefinitionsApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getOwnerEntityConfigurations (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOwnerEntityConfigurations;  }> {
+    public getOwnerEntityConfigurations (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: OwnerEntityConfigurations;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/metafields/definitions'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -58669,12 +58618,12 @@ export class MetafieldDefinitionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOwnerEntityConfigurations;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: OwnerEntityConfigurations;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultOwnerEntityConfigurations");
+                    body = ObjectSerializer.deserialize(body, "OwnerEntityConfigurations");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
