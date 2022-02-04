@@ -6722,17 +6722,17 @@ export class CreateMetadata {
 */
 export class CreateMetafieldDefinition {
     /**
-    * The Metafield will extend the specified {Flipdish.PublicModels.V1.Metafields.MetafieldDefinition.OwnerEntity}
+    * Indicates if a definition can be edited or not
+    */
+    'IsReadOnly'?: boolean;
+    /**
+    * The Metafield will extend the specified {Flipdish.PublicModels.V1.Metafields.MetafieldDefinitionBase.OwnerEntity}
     */
     'OwnerEntity'?: CreateMetafieldDefinition.OwnerEntityEnum;
     /**
     * Key of the metafield.  Allowed characters: lowercase letters, numbers, hyphen, underscore and dot
     */
     'Key': string;
-    /**
-    * Indicates if a definition can be edited or not
-    */
-    'IsReadOnly'?: boolean;
     /**
     * The excepted type for the Value field
     */
@@ -6754,6 +6754,11 @@ export class CreateMetafieldDefinition {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "IsReadOnly",
+            "baseName": "IsReadOnly",
+            "type": "boolean"
+        },
+        {
             "name": "OwnerEntity",
             "baseName": "OwnerEntity",
             "type": "CreateMetafieldDefinition.OwnerEntityEnum"
@@ -6762,11 +6767,6 @@ export class CreateMetafieldDefinition {
             "name": "Key",
             "baseName": "Key",
             "type": "string"
-        },
-        {
-            "name": "IsReadOnly",
-            "baseName": "IsReadOnly",
-            "type": "boolean"
         },
         {
             "name": "ValueType",
@@ -18862,17 +18862,17 @@ export class Metafield {
 */
 export class MetafieldDefinition {
     /**
-    * The Metafield will extend the specified {Flipdish.PublicModels.V1.Metafields.MetafieldDefinition.OwnerEntity}
+    * Indicates if a definition can be edited or not
+    */
+    'IsReadOnly'?: boolean;
+    /**
+    * The Metafield will extend the specified {Flipdish.PublicModels.V1.Metafields.MetafieldDefinitionBase.OwnerEntity}
     */
     'OwnerEntity'?: MetafieldDefinition.OwnerEntityEnum;
     /**
     * Key of the metafield.  Allowed characters: lowercase letters, numbers, hyphen, underscore and dot
     */
     'Key': string;
-    /**
-    * Indicates if a definition can be edited or not
-    */
-    'IsReadOnly'?: boolean;
     /**
     * The excepted type for the Value field
     */
@@ -18894,6 +18894,11 @@ export class MetafieldDefinition {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "IsReadOnly",
+            "baseName": "IsReadOnly",
+            "type": "boolean"
+        },
+        {
             "name": "OwnerEntity",
             "baseName": "OwnerEntity",
             "type": "MetafieldDefinition.OwnerEntityEnum"
@@ -18902,11 +18907,6 @@ export class MetafieldDefinition {
             "name": "Key",
             "baseName": "Key",
             "type": "string"
-        },
-        {
-            "name": "IsReadOnly",
-            "baseName": "IsReadOnly",
-            "type": "boolean"
         },
         {
             "name": "ValueType",
@@ -18935,6 +18935,90 @@ export class MetafieldDefinition {
 }
 
 export namespace MetafieldDefinition {
+    export enum OwnerEntityEnum {
+        CatalogItem = <any> 'CatalogItem',
+        CatalogGroup = <any> 'CatalogGroup',
+        Menu = <any> 'Menu'
+    }
+    export enum ValueTypeEnum {
+        Json = <any> 'Json',
+        SingleLineString = <any> 'SingleLineString',
+        MultiLineString = <any> 'MultiLineString'
+    }
+    export enum BehaviorsEnum {
+        SendToOrder = <any> 'SendToOrder',
+        SendToMenu = <any> 'SendToMenu'
+    }
+}
+/**
+* OwnerEntity Metafield Definition Recommendation
+*/
+export class MetafieldDefinitionRecommendation {
+    /**
+    * The Metafield will extend the specified {Flipdish.PublicModels.V1.Metafields.MetafieldDefinitionBase.OwnerEntity}
+    */
+    'OwnerEntity'?: MetafieldDefinitionRecommendation.OwnerEntityEnum;
+    /**
+    * Key of the metafield.  Allowed characters: lowercase letters, numbers, hyphen, underscore and dot
+    */
+    'Key': string;
+    /**
+    * The excepted type for the Value field
+    */
+    'ValueType'?: MetafieldDefinitionRecommendation.ValueTypeEnum;
+    /**
+    * Field Name
+    */
+    'Name': string;
+    /**
+    * Field Description
+    */
+    'Description'?: string;
+    /**
+    * Enable Metafield Behaviors
+    */
+    'Behaviors'?: Array<MetafieldDefinitionRecommendation.BehaviorsEnum>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OwnerEntity",
+            "baseName": "OwnerEntity",
+            "type": "MetafieldDefinitionRecommendation.OwnerEntityEnum"
+        },
+        {
+            "name": "Key",
+            "baseName": "Key",
+            "type": "string"
+        },
+        {
+            "name": "ValueType",
+            "baseName": "ValueType",
+            "type": "MetafieldDefinitionRecommendation.ValueTypeEnum"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Behaviors",
+            "baseName": "Behaviors",
+            "type": "Array<MetafieldDefinitionRecommendation.BehaviorsEnum>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MetafieldDefinitionRecommendation.attributeTypeMap;
+    }
+}
+
+export namespace MetafieldDefinitionRecommendation {
     export enum OwnerEntityEnum {
         CatalogItem = <any> 'CatalogItem',
         CatalogGroup = <any> 'CatalogGroup',
@@ -27506,6 +27590,56 @@ export class RestApiPaginationResultMetafieldDefinition {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultMetafieldDefinition.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
+export class RestApiPaginationResultMetafieldDefinitionRecommendation {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<MetafieldDefinitionRecommendation>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<MetafieldDefinitionRecommendation>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultMetafieldDefinitionRecommendation.attributeTypeMap;
     }
 }
 
@@ -40322,6 +40456,9 @@ let enumsMap: {[index: string]: any} = {
         "MetafieldDefinition.OwnerEntityEnum": MetafieldDefinition.OwnerEntityEnum,
         "MetafieldDefinition.ValueTypeEnum": MetafieldDefinition.ValueTypeEnum,
         "MetafieldDefinition.BehaviorsEnum": MetafieldDefinition.BehaviorsEnum,
+        "MetafieldDefinitionRecommendation.OwnerEntityEnum": MetafieldDefinitionRecommendation.OwnerEntityEnum,
+        "MetafieldDefinitionRecommendation.ValueTypeEnum": MetafieldDefinitionRecommendation.ValueTypeEnum,
+        "MetafieldDefinitionRecommendation.BehaviorsEnum": MetafieldDefinitionRecommendation.BehaviorsEnum,
         "OAuthApp.FlowEnum": OAuthApp.FlowEnum,
         "OAuthApp.RefreshTokenUsageEnum": OAuthApp.RefreshTokenUsageEnum,
         "Order.DeliveryTypeEnum": Order.DeliveryTypeEnum,
@@ -40643,6 +40780,7 @@ let typeMap: {[index: string]: any} = {
     "Metadata": Metadata,
     "Metafield": Metafield,
     "MetafieldDefinition": MetafieldDefinition,
+    "MetafieldDefinitionRecommendation": MetafieldDefinitionRecommendation,
     "OAuthApp": OAuthApp,
     "OAuthTokenModel": OAuthTokenModel,
     "OauthClientRedirectUri": OauthClientRedirectUri,
@@ -40767,6 +40905,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultHttpRequestAndResponseLog": RestApiPaginationResultHttpRequestAndResponseLog,
     "RestApiPaginationResultHydraDeviceDetails": RestApiPaginationResultHydraDeviceDetails,
     "RestApiPaginationResultMetafieldDefinition": RestApiPaginationResultMetafieldDefinition,
+    "RestApiPaginationResultMetafieldDefinitionRecommendation": RestApiPaginationResultMetafieldDefinitionRecommendation,
     "RestApiPaginationResultOAuthTokenModel": RestApiPaginationResultOAuthTokenModel,
     "RestApiPaginationResultOrder": RestApiPaginationResultOrder,
     "RestApiPaginationResultOrderSummary": RestApiPaginationResultOrderSummary,
@@ -58499,7 +58638,78 @@ export class MetafieldDefinitionsApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get {Flipdish.PublicModels.V1.Metafields.MetafieldDefinition}s for the specified {Flipdish.PublicModels.V1.Metafields.OwnerEntity}
+     * @summary Get a Metafield Definition for the specified owner entity and key.
+     * @param appId 
+     * @param ownerEntity 
+     * @param key 
+     * @param {*} [options] Override http request options.
+     */
+    public getMetafieldDefinitionByKey (appId: string, ownerEntity: 'CatalogItem' | 'CatalogGroup' | 'Menu', key: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMetafieldDefinition;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/metafields/definitions/{ownerEntity}/{key}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'ownerEntity' + '}', encodeURIComponent(String(ownerEntity)))
+            .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getMetafieldDefinitionByKey.');
+        }
+
+        // verify required parameter 'ownerEntity' is not null or undefined
+        if (ownerEntity === null || ownerEntity === undefined) {
+            throw new Error('Required parameter ownerEntity was null or undefined when calling getMetafieldDefinitionByKey.');
+        }
+
+        // verify required parameter 'key' is not null or undefined
+        if (key === null || key === undefined) {
+            throw new Error('Required parameter key was null or undefined when calling getMetafieldDefinitionByKey.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMetafieldDefinition;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMetafieldDefinition");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get Metafield Definitions for the specified owner entity.
      * @param appId 
      * @param ownerEntity 
      * @param searchTerm 
@@ -58635,7 +58845,86 @@ export class MetafieldDefinitionsApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Create a Metafield Definition
+     * @summary Get OwnerEntity Definition Recommendations
+     * @param appId 
+     * @param ownerEntity 
+     * @param searchTerm 
+     * @param page 
+     * @param limit 
+     * @param {*} [options] Override http request options.
+     */
+    public getOwnerEntityRecommendations (appId: string, ownerEntity: 'CatalogItem' | 'CatalogGroup' | 'Menu', searchTerm?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultMetafieldDefinitionRecommendation;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/metafields/definitions/recommendations/{ownerEntity}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'ownerEntity' + '}', encodeURIComponent(String(ownerEntity)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getOwnerEntityRecommendations.');
+        }
+
+        // verify required parameter 'ownerEntity' is not null or undefined
+        if (ownerEntity === null || ownerEntity === undefined) {
+            throw new Error('Required parameter ownerEntity was null or undefined when calling getOwnerEntityRecommendations.');
+        }
+
+        if (searchTerm !== undefined) {
+            localVarQueryParameters['searchTerm'] = ObjectSerializer.serialize(searchTerm, "string");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultMetafieldDefinitionRecommendation;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultMetafieldDefinitionRecommendation");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Update a Metafield Definition
      * @param appId 
      * @param ownerEntity 
      * @param key 
