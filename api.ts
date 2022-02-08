@@ -16635,6 +16635,12 @@ export class MenuItemOptionSetItem {
     */
     'ProductId'?: string;
     /**
+    * Tax rate name
+    */
+    'TaxRateName'?: string;
+    'TaxRateId'?: number;
+    'TaxValue'?: number;
+    /**
     * Name
     */
     'Name'?: string;
@@ -16686,6 +16692,21 @@ export class MenuItemOptionSetItem {
             "name": "ProductId",
             "baseName": "ProductId",
             "type": "string"
+        },
+        {
+            "name": "TaxRateName",
+            "baseName": "TaxRateName",
+            "type": "string"
+        },
+        {
+            "name": "TaxRateId",
+            "baseName": "TaxRateId",
+            "type": "number"
+        },
+        {
+            "name": "TaxValue",
+            "baseName": "TaxValue",
+            "type": "number"
         },
         {
             "name": "Name",
