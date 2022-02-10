@@ -6730,7 +6730,7 @@ export class CreateMetafieldDefinition {
     */
     'OwnerEntity'?: CreateMetafieldDefinition.OwnerEntityEnum;
     /**
-    * Key of the metafield.  Allowed characters: lowercase letters, numbers, hyphen, underscore and dot
+    * Key of the metafield.  The key must have two parts, separated by a dot. The first part acts as a category, for organizational purposes.  The parts can be composed of lowercase letters, numbers, hyphen and underscore
     */
     'Key': string;
     /**
@@ -6749,6 +6749,10 @@ export class CreateMetafieldDefinition {
     * Enable Metafield Behaviors
     */
     'Behaviors'?: Array<CreateMetafieldDefinition.BehaviorsEnum>;
+    /**
+    * Metafield Recommendation Id
+    */
+    'MetafieldDefinitionRecommendationId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -6787,6 +6791,11 @@ export class CreateMetafieldDefinition {
             "name": "Behaviors",
             "baseName": "Behaviors",
             "type": "Array<CreateMetafieldDefinition.BehaviorsEnum>"
+        },
+        {
+            "name": "MetafieldDefinitionRecommendationId",
+            "baseName": "MetafieldDefinitionRecommendationId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -18853,11 +18862,11 @@ export class Metafield {
     /**
     * Key of the metafield.  Allowed characters: lowercase letters, numbers, hyphen, underscore and dot
     */
-    'Key'?: string;
+    'Key': string;
     /**
     * Value of the metafield.
     */
-    'Value'?: string;
+    'Value': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -18891,7 +18900,7 @@ export class MetafieldDefinition {
     */
     'OwnerEntity'?: MetafieldDefinition.OwnerEntityEnum;
     /**
-    * Key of the metafield.  Allowed characters: lowercase letters, numbers, hyphen, underscore and dot
+    * Key of the metafield.  The key must have two parts, separated by a dot. The first part acts as a category, for organizational purposes.  The parts can be composed of lowercase letters, numbers, hyphen and underscore
     */
     'Key': string;
     /**
@@ -18910,6 +18919,10 @@ export class MetafieldDefinition {
     * Enable Metafield Behaviors
     */
     'Behaviors'?: Array<MetafieldDefinition.BehaviorsEnum>;
+    /**
+    * Metafield Recommendation Id
+    */
+    'MetafieldDefinitionRecommendationId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -18948,6 +18961,11 @@ export class MetafieldDefinition {
             "name": "Behaviors",
             "baseName": "Behaviors",
             "type": "Array<MetafieldDefinition.BehaviorsEnum>"
+        },
+        {
+            "name": "MetafieldDefinitionRecommendationId",
+            "baseName": "MetafieldDefinitionRecommendationId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -18980,7 +18998,7 @@ export class MetafieldDefinitionRecommendation {
     */
     'OwnerEntity'?: MetafieldDefinitionRecommendation.OwnerEntityEnum;
     /**
-    * Key of the metafield.  Allowed characters: lowercase letters, numbers, hyphen, underscore and dot
+    * Key of the metafield.  The key must have two parts, separated by a dot. The first part acts as a category, for organizational purposes.  The parts can be composed of lowercase letters, numbers, hyphen and underscore
     */
     'Key': string;
     /**
@@ -18999,6 +19017,10 @@ export class MetafieldDefinitionRecommendation {
     * Enable Metafield Behaviors
     */
     'Behaviors'?: Array<MetafieldDefinitionRecommendation.BehaviorsEnum>;
+    /**
+    * Metafield Recommendation Id
+    */
+    'MetafieldDefinitionRecommendationId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -19032,6 +19054,11 @@ export class MetafieldDefinitionRecommendation {
             "name": "Behaviors",
             "baseName": "Behaviors",
             "type": "Array<MetafieldDefinitionRecommendation.BehaviorsEnum>"
+        },
+        {
+            "name": "MetafieldDefinitionRecommendationId",
+            "baseName": "MetafieldDefinitionRecommendationId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
