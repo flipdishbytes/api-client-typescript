@@ -1062,7 +1062,8 @@ export namespace App {
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
-        FinanceManger = <any> 'FinanceManger'
+        FinanceManger = <any> 'FinanceManger',
+        Support = <any> 'Support'
     }
     export enum AppResourceSetEnum {
         ViewApp = <any> 'ViewApp',
@@ -6879,7 +6880,8 @@ export namespace CreateTeammate {
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
-        FinanceManger = <any> 'FinanceManger'
+        FinanceManger = <any> 'FinanceManger',
+        Support = <any> 'Support'
     }
 }
 /**
@@ -36881,7 +36883,8 @@ export namespace Teammate {
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
-        FinanceManger = <any> 'FinanceManger'
+        FinanceManger = <any> 'FinanceManger',
+        Support = <any> 'Support'
     }
 }
 /**
@@ -36935,7 +36938,8 @@ export namespace TeammateBase {
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
-        FinanceManger = <any> 'FinanceManger'
+        FinanceManger = <any> 'FinanceManger',
+        Support = <any> 'Support'
     }
 }
 /**
