@@ -30022,6 +30022,52 @@ export class RestApiResultStripeConnectedAccount {
 /**
 * Rest api result
 */
+export class RestApiResultStripeTerminalConnectionToken {
+    /**
+    * Generic data object.
+    */
+    'Data': StripeTerminalConnectionToken;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "StripeTerminalConnectionToken"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultStripeTerminalConnectionToken.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultStripeTerminalLocation {
+    /**
+    * Generic data object.
+    */
+    'Data': StripeTerminalLocation;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "StripeTerminalLocation"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultStripeTerminalLocation.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultStripeTerminalPrivateKey {
     /**
     * Generic data object.
@@ -36455,6 +36501,52 @@ export namespace StripeConnectedAccountInfo {
     }
 }
 /**
+* Stripe Terminal Connection Token
+*/
+export class StripeTerminalConnectionToken {
+    /**
+    * Connection Token
+    */
+    'Token'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Token",
+            "baseName": "Token",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StripeTerminalConnectionToken.attributeTypeMap;
+    }
+}
+
+/**
+* Stripe Terminal Private Key
+*/
+export class StripeTerminalLocation {
+    /**
+    * Registered location of the terminal
+    */
+    'Location'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Location",
+            "baseName": "Location",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StripeTerminalLocation.attributeTypeMap;
+    }
+}
+
+/**
 * Stripe Terminal Private Key
 */
 export class StripeTerminalPrivateKey {
@@ -41038,6 +41130,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultStoreKioskSettings": RestApiResultStoreKioskSettings,
     "RestApiResultStoreOrderCapacityConfig": RestApiResultStoreOrderCapacityConfig,
     "RestApiResultStripeConnectedAccount": RestApiResultStripeConnectedAccount,
+    "RestApiResultStripeTerminalConnectionToken": RestApiResultStripeTerminalConnectionToken,
+    "RestApiResultStripeTerminalLocation": RestApiResultStripeTerminalLocation,
     "RestApiResultStripeTerminalPrivateKey": RestApiResultStripeTerminalPrivateKey,
     "RestApiResultStuartSettings": RestApiResultStuartSettings,
     "RestApiResultTeammate": RestApiResultTeammate,
@@ -41109,6 +41203,8 @@ let typeMap: {[index: string]: any} = {
     "StripeAccountLinkRequest": StripeAccountLinkRequest,
     "StripeConnectedAccount": StripeConnectedAccount,
     "StripeConnectedAccountInfo": StripeConnectedAccountInfo,
+    "StripeTerminalConnectionToken": StripeTerminalConnectionToken,
+    "StripeTerminalLocation": StripeTerminalLocation,
     "StripeTerminalPrivateKey": StripeTerminalPrivateKey,
     "StuartSettings": StuartSettings,
     "StuartSettingsTransportPrices": StuartSettingsTransportPrices,
@@ -45962,6 +46058,63 @@ export class CardReadersApi {
         });
     }
     /**
+     * Can only be called by Kiosk  [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get Location ID for Stripe Terminal
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public generateStripeTerminalLocation (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeTerminalLocation;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stripeterminal/location'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling generateStripeTerminalLocation.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeTerminalLocation;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStripeTerminalLocation");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get the status of the bluetooth terminal
      * @param appId 
@@ -46016,6 +46169,63 @@ export class CardReadersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultBluetoothTerminalStatus");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Can only be called by Kiosk
+     * @summary Get Connection Token For a Stripe Terminal
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getStripeConnectionToken (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeTerminalConnectionToken;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stripeterminal/connectiontoken'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getStripeConnectionToken.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeTerminalConnectionToken;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStripeTerminalConnectionToken");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
