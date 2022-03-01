@@ -1202,7 +1202,7 @@ export namespace App {
         UnassignDriverFromOrder = <any> 'UnassignDriverFromOrder',
         UpdateOrdersDeliveryTrackingStatus = <any> 'UpdateOrdersDeliveryTrackingStatus',
         ViewPayouts = <any> 'ViewPayouts',
-        Channels = <any> 'Channels'
+        ViewChannels = <any> 'ViewChannels'
     }
     export enum ApplicationCategoryEnum {
         Restaurant = <any> 'Restaurant',
