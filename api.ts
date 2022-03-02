@@ -1323,41 +1323,6 @@ export namespace AppConfigUpdateModel {
         Convenience = <any> 'Convenience'
     }
 }
-export class AppConfiguration {
-    'Id'?: string;
-    'PhysicalRestaurants'?: Array<number>;
-    'IsEnabled'?: boolean;
-    'Settings'?: Array<AppConfigurationSetting>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Id",
-            "baseName": "Id",
-            "type": "string"
-        },
-        {
-            "name": "PhysicalRestaurants",
-            "baseName": "PhysicalRestaurants",
-            "type": "Array<number>"
-        },
-        {
-            "name": "IsEnabled",
-            "baseName": "IsEnabled",
-            "type": "boolean"
-        },
-        {
-            "name": "Settings",
-            "baseName": "Settings",
-            "type": "Array<AppConfigurationSetting>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AppConfiguration.attributeTypeMap;
-    }
-}
-
 /**
 * Application Configuration Base
 */
@@ -1461,6 +1426,14 @@ export class AppConfigurationDetail {
     */
     'OAuthAppId': string;
     /**
+    * Teammate App Access Level
+    */
+    'TeammateAppAccessLevel'?: AppConfigurationDetail.TeammateAppAccessLevelEnum;
+    /**
+    * Permissions Type
+    */
+    'PermissionsType': AppConfigurationDetail.PermissionsTypeEnum;
+    /**
     * Name
     */
     'Name': string;
@@ -1553,6 +1526,16 @@ export class AppConfigurationDetail {
             "type": "string"
         },
         {
+            "name": "TeammateAppAccessLevel",
+            "baseName": "TeammateAppAccessLevel",
+            "type": "AppConfigurationDetail.TeammateAppAccessLevelEnum"
+        },
+        {
+            "name": "PermissionsType",
+            "baseName": "PermissionsType",
+            "type": "AppConfigurationDetail.PermissionsTypeEnum"
+        },
+        {
             "name": "Name",
             "baseName": "Name",
             "type": "string"
@@ -1602,6 +1585,19 @@ export namespace AppConfigurationDetail {
         None = <any> 'None',
         Single = <any> 'Single',
         Multiple = <any> 'Multiple'
+    }
+    export enum TeammateAppAccessLevelEnum {
+        Owner = <any> 'Owner',
+        StoreOwner = <any> 'StoreOwner',
+        ManagedOwner = <any> 'ManagedOwner',
+        Integrator = <any> 'Integrator',
+        StoreManager = <any> 'StoreManager',
+        StoreStaff = <any> 'StoreStaff',
+        StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
+        FinanceManger = <any> 'FinanceManger'
+    }
+    export enum PermissionsTypeEnum {
+        Teammate = <any> 'Teammate'
     }
     export enum VerificationStatusEnum {
         Draft = <any> 'Draft',
@@ -1943,6 +1939,14 @@ export class AppDetail {
     */
     'OAuthAppId': string;
     /**
+    * Teammate App Access Level
+    */
+    'TeammateAppAccessLevel'?: AppDetail.TeammateAppAccessLevelEnum;
+    /**
+    * Permissions Type
+    */
+    'PermissionsType': AppDetail.PermissionsTypeEnum;
+    /**
     * Name
     */
     'Name': string;
@@ -2014,6 +2018,16 @@ export class AppDetail {
             "type": "string"
         },
         {
+            "name": "TeammateAppAccessLevel",
+            "baseName": "TeammateAppAccessLevel",
+            "type": "AppDetail.TeammateAppAccessLevelEnum"
+        },
+        {
+            "name": "PermissionsType",
+            "baseName": "PermissionsType",
+            "type": "AppDetail.PermissionsTypeEnum"
+        },
+        {
             "name": "Name",
             "baseName": "Name",
             "type": "string"
@@ -2069,6 +2083,19 @@ export namespace AppDetail {
         Single = <any> 'Single',
         Multiple = <any> 'Multiple'
     }
+    export enum TeammateAppAccessLevelEnum {
+        Owner = <any> 'Owner',
+        StoreOwner = <any> 'StoreOwner',
+        ManagedOwner = <any> 'ManagedOwner',
+        Integrator = <any> 'Integrator',
+        StoreManager = <any> 'StoreManager',
+        StoreStaff = <any> 'StoreStaff',
+        StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
+        FinanceManger = <any> 'FinanceManger'
+    }
+    export enum PermissionsTypeEnum {
+        Teammate = <any> 'Teammate'
+    }
     export enum VerificationStatusEnum {
         Draft = <any> 'Draft',
         Submitted = <any> 'Submitted',
@@ -2103,6 +2130,14 @@ export class AppDetailBase {
     * OAuth App Id
     */
     'OAuthAppId': string;
+    /**
+    * Teammate App Access Level
+    */
+    'TeammateAppAccessLevel'?: AppDetailBase.TeammateAppAccessLevelEnum;
+    /**
+    * Permissions Type
+    */
+    'PermissionsType': AppDetailBase.PermissionsTypeEnum;
     /**
     * Name
     */
@@ -2170,6 +2205,16 @@ export class AppDetailBase {
             "type": "string"
         },
         {
+            "name": "TeammateAppAccessLevel",
+            "baseName": "TeammateAppAccessLevel",
+            "type": "AppDetailBase.TeammateAppAccessLevelEnum"
+        },
+        {
+            "name": "PermissionsType",
+            "baseName": "PermissionsType",
+            "type": "AppDetailBase.PermissionsTypeEnum"
+        },
+        {
             "name": "Name",
             "baseName": "Name",
             "type": "string"
@@ -2224,6 +2269,19 @@ export namespace AppDetailBase {
         None = <any> 'None',
         Single = <any> 'Single',
         Multiple = <any> 'Multiple'
+    }
+    export enum TeammateAppAccessLevelEnum {
+        Owner = <any> 'Owner',
+        StoreOwner = <any> 'StoreOwner',
+        ManagedOwner = <any> 'ManagedOwner',
+        Integrator = <any> 'Integrator',
+        StoreManager = <any> 'StoreManager',
+        StoreStaff = <any> 'StoreStaff',
+        StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
+        FinanceManger = <any> 'FinanceManger'
+    }
+    export enum PermissionsTypeEnum {
+        Teammate = <any> 'Teammate'
     }
     export enum VerificationStatusEnum {
         Draft = <any> 'Draft',
@@ -37432,6 +37490,41 @@ export class TeammateUpdatedEvent {
     }
 }
 
+export class UpdateAppConfiguration {
+    'Id'?: string;
+    'PhysicalRestaurants'?: Array<number>;
+    'IsEnabled'?: boolean;
+    'Settings'?: Array<AppConfigurationSetting>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "string"
+        },
+        {
+            "name": "PhysicalRestaurants",
+            "baseName": "PhysicalRestaurants",
+            "type": "Array<number>"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "Settings",
+            "baseName": "Settings",
+            "type": "Array<AppConfigurationSetting>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateAppConfiguration.attributeTypeMap;
+    }
+}
+
 /**
 * Update Catalog Group
 */
@@ -40600,14 +40693,20 @@ let enumsMap: {[index: string]: any} = {
         "AppConfigUpdateModel.ApplicationCategoryEnum": AppConfigUpdateModel.ApplicationCategoryEnum,
         "AppConfigurationDetail.ConfigurationTypeEnum": AppConfigurationDetail.ConfigurationTypeEnum,
         "AppConfigurationDetail.StoreSelectorTypeEnum": AppConfigurationDetail.StoreSelectorTypeEnum,
+        "AppConfigurationDetail.TeammateAppAccessLevelEnum": AppConfigurationDetail.TeammateAppAccessLevelEnum,
+        "AppConfigurationDetail.PermissionsTypeEnum": AppConfigurationDetail.PermissionsTypeEnum,
         "AppConfigurationDetail.VerificationStatusEnum": AppConfigurationDetail.VerificationStatusEnum,
         "AppConfigurationSummary.ConfigurationTypeEnum": AppConfigurationSummary.ConfigurationTypeEnum,
         "AppConfigurationSummary.StoreSelectorTypeEnum": AppConfigurationSummary.StoreSelectorTypeEnum,
         "AppDetail.ConfigurationTypeEnum": AppDetail.ConfigurationTypeEnum,
         "AppDetail.StoreSelectorTypeEnum": AppDetail.StoreSelectorTypeEnum,
+        "AppDetail.TeammateAppAccessLevelEnum": AppDetail.TeammateAppAccessLevelEnum,
+        "AppDetail.PermissionsTypeEnum": AppDetail.PermissionsTypeEnum,
         "AppDetail.VerificationStatusEnum": AppDetail.VerificationStatusEnum,
         "AppDetailBase.ConfigurationTypeEnum": AppDetailBase.ConfigurationTypeEnum,
         "AppDetailBase.StoreSelectorTypeEnum": AppDetailBase.StoreSelectorTypeEnum,
+        "AppDetailBase.TeammateAppAccessLevelEnum": AppDetailBase.TeammateAppAccessLevelEnum,
+        "AppDetailBase.PermissionsTypeEnum": AppDetailBase.PermissionsTypeEnum,
         "AppDetailBase.VerificationStatusEnum": AppDetailBase.VerificationStatusEnum,
         "AppSummary.VerificationStatusEnum": AppSummary.VerificationStatusEnum,
         "BankAccount.AccountStateEnum": BankAccount.AccountStateEnum,
@@ -40808,7 +40907,6 @@ let typeMap: {[index: string]: any} = {
     "App": App,
     "AppCompliance": AppCompliance,
     "AppConfigUpdateModel": AppConfigUpdateModel,
-    "AppConfiguration": AppConfiguration,
     "AppConfigurationBase": AppConfigurationBase,
     "AppConfigurationDetail": AppConfigurationDetail,
     "AppConfigurationHeader": AppConfigurationHeader,
@@ -41308,6 +41406,7 @@ let typeMap: {[index: string]: any} = {
     "TeammateInviteAcceptedEvent": TeammateInviteAcceptedEvent,
     "TeammateInviteSentEvent": TeammateInviteSentEvent,
     "TeammateUpdatedEvent": TeammateUpdatedEvent,
+    "UpdateAppConfiguration": UpdateAppConfiguration,
     "UpdateCatalogGroup": UpdateCatalogGroup,
     "UpdateCatalogGroupReference": UpdateCatalogGroupReference,
     "UpdateCatalogItem": UpdateCatalogItem,
@@ -43543,10 +43642,10 @@ export class AppStoreConfigurationsApi {
      * @param appId App Id
      * @param appStoreAppId App Store App Id
      * @param configId App Store Configuration Id
-     * @param appConfigurationBase App Store Configuration Base
+     * @param updateAppConfigurationBase App Store Configuration Base
      * @param {*} [options] Override http request options.
      */
-    public updateAppStoreConfig (appId: string, appStoreAppId: string, configId: string, appConfigurationBase: AppConfiguration, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateAppStoreConfig (appId: string, appStoreAppId: string, configId: string, updateAppConfigurationBase: UpdateAppConfiguration, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/config/{configId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)))
@@ -43570,9 +43669,9 @@ export class AppStoreConfigurationsApi {
             throw new Error('Required parameter configId was null or undefined when calling updateAppStoreConfig.');
         }
 
-        // verify required parameter 'appConfigurationBase' is not null or undefined
-        if (appConfigurationBase === null || appConfigurationBase === undefined) {
-            throw new Error('Required parameter appConfigurationBase was null or undefined when calling updateAppStoreConfig.');
+        // verify required parameter 'updateAppConfigurationBase' is not null or undefined
+        if (updateAppConfigurationBase === null || updateAppConfigurationBase === undefined) {
+            throw new Error('Required parameter updateAppConfigurationBase was null or undefined when calling updateAppStoreConfig.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -43586,7 +43685,7 @@ export class AppStoreConfigurationsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(appConfigurationBase, "AppConfiguration")
+            body: ObjectSerializer.serialize(updateAppConfigurationBase, "UpdateAppConfiguration")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
