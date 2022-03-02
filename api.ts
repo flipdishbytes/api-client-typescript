@@ -5500,6 +5500,32 @@ export namespace Channel {
     }
 }
 /**
+* Describes a channel store mapping
+*/
+export class ChannelStoreMapping {
+    'StoreId'?: number;
+    'ChannelStoreId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "ChannelStoreId",
+            "baseName": "ChannelStoreId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ChannelStoreMapping.attributeTypeMap;
+    }
+}
+
+/**
 * Chargebacks breakdown
 */
 export class ChargebackDetails {
@@ -26912,6 +26938,29 @@ export class RestApiArrayResultRetentionCampaign {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultStoreChannelStoreMapping {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<StoreChannelStoreMapping>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<StoreChannelStoreMapping>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultStoreChannelStoreMapping.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultStoreListItem {
     /**
     * Generic data object.
@@ -32949,6 +32998,47 @@ export class StoreCampaignStartTime {
 
     static getAttributeTypeMap() {
         return StoreCampaignStartTime.attributeTypeMap;
+    }
+}
+
+/**
+* Describes an ID mapping between Flipdish Store and Channel Store
+*/
+export class StoreChannelStoreMapping {
+    /**
+    * Channel Id
+    */
+    'ChannelId'?: number;
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * Channel Store Id
+    */
+    'ChannelStoreId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ChannelId",
+            "baseName": "ChannelId",
+            "type": "number"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "ChannelStoreId",
+            "baseName": "ChannelStoreId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreChannelStoreMapping.attributeTypeMap;
     }
 }
 
@@ -40764,6 +40854,7 @@ let typeMap: {[index: string]: any} = {
     "CertificateRenewedEvent": CertificateRenewedEvent,
     "ChangePasswordModel": ChangePasswordModel,
     "Channel": Channel,
+    "ChannelStoreMapping": ChannelStoreMapping,
     "ChargebackDetails": ChargebackDetails,
     "ConfiguredPhysicalRestaurant": ConfiguredPhysicalRestaurant,
     "Contact": Contact,
@@ -41030,6 +41121,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultProcessingFeeConfig": RestApiArrayResultProcessingFeeConfig,
     "RestApiArrayResultRestApiDefaultResponse": RestApiArrayResultRestApiDefaultResponse,
     "RestApiArrayResultRetentionCampaign": RestApiArrayResultRetentionCampaign,
+    "RestApiArrayResultStoreChannelStoreMapping": RestApiArrayResultStoreChannelStoreMapping,
     "RestApiArrayResultStoreListItem": RestApiArrayResultStoreListItem,
     "RestApiArrayResultStoreStatistics": RestApiArrayResultStoreStatistics,
     "RestApiArrayResultSupportedCountry": RestApiArrayResultSupportedCountry,
@@ -41165,6 +41257,7 @@ let typeMap: {[index: string]: any} = {
     "StoreBusinessHoursOverrideCreatedEvent": StoreBusinessHoursOverrideCreatedEvent,
     "StoreBusinessHoursOverrideDeletedEvent": StoreBusinessHoursOverrideDeletedEvent,
     "StoreCampaignStartTime": StoreCampaignStartTime,
+    "StoreChannelStoreMapping": StoreChannelStoreMapping,
     "StoreCloneSettings": StoreCloneSettings,
     "StoreCreateBase": StoreCreateBase,
     "StoreCreatedEvent": StoreCreatedEvent,
@@ -47869,6 +47962,83 @@ export class ChannelsApi {
     }
     /**
      * 
+     * @summary Unassign a Store from a Sales Channel
+     * @param storeId Store Id (123, 456)
+     * @param appId AppId (AppNameIdxxx)
+     * @param channelId Channel Id (123, 456)
+     * @param {*} [options] Override http request options.
+     */
+    public assignStoreToChannel_1 (storeId: number, appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/unassign-store'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling assignStoreToChannel_1.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling assignStoreToChannel_1.');
+        }
+
+        // verify required parameter 'channelId' is not null or undefined
+        if (channelId === null || channelId === undefined) {
+            throw new Error('Required parameter channelId was null or undefined when calling assignStoreToChannel_1.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
+        }
+
+        if (channelId !== undefined) {
+            localVarQueryParameters['channelId'] = ObjectSerializer.serialize(channelId, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Attachs the specified store to the given sales channel.
      * @param appId Application Id (AppNameId)
      * @param channelId Type of sales channel (Android, IOS, Web, etc.)
@@ -47929,6 +48099,145 @@ export class ChannelsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param channelId 
+     * @param {*} [options] Override http request options.
+     */
+    public channelsGetStoreChannelStoreMapping (appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreChannelStoreMapping;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/channelstores'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling channelsGetStoreChannelStoreMapping.');
+        }
+
+        // verify required parameter 'channelId' is not null or undefined
+        if (channelId === null || channelId === undefined) {
+            throw new Error('Required parameter channelId was null or undefined when calling channelsGetStoreChannelStoreMapping.');
+        }
+
+        if (channelId !== undefined) {
+            localVarQueryParameters['channelId'] = ObjectSerializer.serialize(channelId, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreChannelStoreMapping;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultStoreChannelStoreMapping");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param channelId 
+     * @param stores 
+     * @param {*} [options] Override http request options.
+     */
+    public channelsSetStoreChannelStoreMapping (appId: string, channelId: number, stores: Array<ChannelStoreMapping>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreChannelStoreMapping;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/channelstores'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling channelsSetStoreChannelStoreMapping.');
+        }
+
+        // verify required parameter 'channelId' is not null or undefined
+        if (channelId === null || channelId === undefined) {
+            throw new Error('Required parameter channelId was null or undefined when calling channelsSetStoreChannelStoreMapping.');
+        }
+
+        // verify required parameter 'stores' is not null or undefined
+        if (stores === null || stores === undefined) {
+            throw new Error('Required parameter stores was null or undefined when calling channelsSetStoreChannelStoreMapping.');
+        }
+
+        if (channelId !== undefined) {
+            localVarQueryParameters['channelId'] = ObjectSerializer.serialize(channelId, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(stores, "Array<ChannelStoreMapping>")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreChannelStoreMapping;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultStoreChannelStoreMapping");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
