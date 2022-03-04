@@ -1202,7 +1202,9 @@ export namespace App {
         UnassignDriverFromOrder = <any> 'UnassignDriverFromOrder',
         UpdateOrdersDeliveryTrackingStatus = <any> 'UpdateOrdersDeliveryTrackingStatus',
         ViewPayouts = <any> 'ViewPayouts',
-        ViewChannels = <any> 'ViewChannels'
+        ViewChannels = <any> 'ViewChannels',
+        ViewOnboarding = <any> 'ViewOnboarding',
+        UpdateOnboarding = <any> 'UpdateOnboarding'
     }
     export enum ApplicationCategoryEnum {
         Restaurant = <any> 'Restaurant',
@@ -19389,6 +19391,30 @@ export class ObjectDisplayOrder {
     }
 }
 
+export class OnboardingItemUpdate {
+    'Status'?: OnboardingItemUpdate.StatusEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "OnboardingItemUpdate.StatusEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OnboardingItemUpdate.attributeTypeMap;
+    }
+}
+
+export namespace OnboardingItemUpdate {
+    export enum StatusEnum {
+        Pending = <any> 'Pending',
+        InProgress = <any> 'InProgress',
+        Completed = <any> 'Completed'
+    }
+}
 /**
 * Order
 */
@@ -40794,6 +40820,7 @@ let enumsMap: {[index: string]: any} = {
         "MetafieldDefinitionRecommendation.BehaviorsEnum": MetafieldDefinitionRecommendation.BehaviorsEnum,
         "OAuthApp.FlowEnum": OAuthApp.FlowEnum,
         "OAuthApp.RefreshTokenUsageEnum": OAuthApp.RefreshTokenUsageEnum,
+        "OnboardingItemUpdate.StatusEnum": OnboardingItemUpdate.StatusEnum,
         "Order.DeliveryTypeEnum": Order.DeliveryTypeEnum,
         "Order.PickupLocationTypeEnum": Order.PickupLocationTypeEnum,
         "Order.TableServiceCatagoryEnum": Order.TableServiceCatagoryEnum,
@@ -41118,6 +41145,7 @@ let typeMap: {[index: string]: any} = {
     "OAuthTokenModel": OAuthTokenModel,
     "OauthClientRedirectUri": OauthClientRedirectUri,
     "ObjectDisplayOrder": ObjectDisplayOrder,
+    "OnboardingItemUpdate": OnboardingItemUpdate,
     "Order": Order,
     "OrderAcceptedEvent": OrderAcceptedEvent,
     "OrderCapacityConfigUpdatedEvent": OrderCapacityConfigUpdatedEvent,
@@ -60741,6 +60769,196 @@ export class OAuthClientsApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum OnboardingApiApiKeys {
+}
+
+export class OnboardingApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: OnboardingApiApiKeys, value: string) {
+        (this.authentications as any)[OnboardingApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param appId 
+     * @param storeId 
+     * @param {*} [options] Override http request options.
+     */
+    public onboardingGetOnboardingItems (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/clients/{appId}/onboarding/stores/{storeId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling onboardingGetOnboardingItems.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling onboardingGetOnboardingItems.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param storeId 
+     * @param onboardingItemId 
+     * @param itemUpdate 
+     * @param {*} [options] Override http request options.
+     */
+    public onboardingUpdateOnboardingItem (appId: string, storeId: number, onboardingItemId: number, itemUpdate: OnboardingItemUpdate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/clients/{appId}/onboarding/stores/{storeId}/items/{onboardingItemId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'onboardingItemId' + '}', encodeURIComponent(String(onboardingItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling onboardingUpdateOnboardingItem.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling onboardingUpdateOnboardingItem.');
+        }
+
+        // verify required parameter 'onboardingItemId' is not null or undefined
+        if (onboardingItemId === null || onboardingItemId === undefined) {
+            throw new Error('Required parameter onboardingItemId was null or undefined when calling onboardingUpdateOnboardingItem.');
+        }
+
+        // verify required parameter 'itemUpdate' is not null or undefined
+        if (itemUpdate === null || itemUpdate === undefined) {
+            throw new Error('Required parameter itemUpdate was null or undefined when calling onboardingUpdateOnboardingItem.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(itemUpdate, "OnboardingItemUpdate")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
