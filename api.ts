@@ -14290,6 +14290,29 @@ export class KioskCashSetting {
 }
 
 /**
+* Connection parameters to IoT
+*/
+export class KioskIotConnectionParameters {
+    /**
+    * The device connection string to the IoT server
+    */
+    'ConnectionString'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ConnectionString",
+            "baseName": "ConnectionString",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return KioskIotConnectionParameters.attributeTypeMap;
+    }
+}
+
+/**
 * Details of a kiosks store settings
 */
 export class KioskStoreSettings {
@@ -29396,6 +29419,29 @@ export class RestApiResultKioskCashSetting {
 /**
 * Rest api result
 */
+export class RestApiResultKioskIotConnectionParameters {
+    /**
+    * Generic data object.
+    */
+    'Data': KioskIotConnectionParameters;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "KioskIotConnectionParameters"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultKioskIotConnectionParameters.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultKioskStoreSettings {
     /**
     * Generic data object.
@@ -41081,6 +41127,7 @@ let typeMap: {[index: string]: any} = {
     "KioskBluetoothUnpairingModeEvent": KioskBluetoothUnpairingModeEvent,
     "KioskCashPaymentSettings": KioskCashPaymentSettings,
     "KioskCashSetting": KioskCashSetting,
+    "KioskIotConnectionParameters": KioskIotConnectionParameters,
     "KioskStoreSettings": KioskStoreSettings,
     "Language": Language,
     "LightspeedSettings": LightspeedSettings,
@@ -41315,6 +41362,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultIndexPageBase": RestApiResultIndexPageBase,
     "RestApiResultJobResponse": RestApiResultJobResponse,
     "RestApiResultKioskCashSetting": RestApiResultKioskCashSetting,
+    "RestApiResultKioskIotConnectionParameters": RestApiResultKioskIotConnectionParameters,
     "RestApiResultKioskStoreSettings": RestApiResultKioskStoreSettings,
     "RestApiResultLightspeedSettings": RestApiResultLightspeedSettings,
     "RestApiResultLoyaltyCampaign": RestApiResultLoyaltyCampaign,
@@ -53880,6 +53928,106 @@ export class HydraApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum KioskIotApiApiKeys {
+}
+
+export class KioskIotApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: KioskIotApiApiKeys, value: string) {
+        (this.authentications as any)[KioskIotApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get the IoT connection parameters for telemetry and commands  No input parameters since authenticated hydra user defines context
+     * @param {*} [options] Override http request options.
+     */
+    public getKioskIotConnection (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultKioskIotConnectionParameters;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/kioskiot/connect';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultKioskIotConnectionParameters;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultKioskIotConnectionParameters");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
