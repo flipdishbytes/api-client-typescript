@@ -4411,6 +4411,106 @@ export class CampaignStatistics {
 }
 
 /**
+* Card reader
+*/
+export class CardReader {
+    /**
+    * Stripe reader id
+    */
+    'Id'?: string;
+    /**
+    * Software version
+    */
+    'DeviceSoftwareVersion'?: string;
+    /**
+    * Device serial number
+    */
+    'SerialNumber'?: string;
+    /**
+    * Device status online or offline
+    */
+    'Status'?: string;
+    /**
+    * Registration code
+    */
+    'RegistrationCode'?: string;
+    /**
+    * Device type
+    */
+    'DeviceType'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "string"
+        },
+        {
+            "name": "DeviceSoftwareVersion",
+            "baseName": "DeviceSoftwareVersion",
+            "type": "string"
+        },
+        {
+            "name": "SerialNumber",
+            "baseName": "SerialNumber",
+            "type": "string"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "string"
+        },
+        {
+            "name": "RegistrationCode",
+            "baseName": "RegistrationCode",
+            "type": "string"
+        },
+        {
+            "name": "DeviceType",
+            "baseName": "DeviceType",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CardReader.attributeTypeMap;
+    }
+}
+
+/**
+* Card reader registration request
+*/
+export class CardReaderRegistrationRequest {
+    /**
+    * The reader registration code
+    */
+    'RegistrationCode': string;
+    /**
+    * The kiosk device id
+    */
+    'KioskDeviceId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "RegistrationCode",
+            "baseName": "RegistrationCode",
+            "type": "string"
+        },
+        {
+            "name": "KioskDeviceId",
+            "baseName": "KioskDeviceId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CardReaderRegistrationRequest.attributeTypeMap;
+    }
+}
+
+/**
 * Defines the cart
 */
 export class Cart {
@@ -29051,6 +29151,29 @@ export class RestApiResultBusinessHoursPeriod {
 /**
 * Rest api result
 */
+export class RestApiResultCardReader {
+    /**
+    * Generic data object.
+    */
+    'Data': CardReader;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "CardReader"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultCardReader.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultCatalogGroup {
     /**
     * Generic data object.
@@ -41009,6 +41132,8 @@ let typeMap: {[index: string]: any} = {
     "BusinessHoursPeriod": BusinessHoursPeriod,
     "BusinessHoursPeriodBase": BusinessHoursPeriodBase,
     "CampaignStatistics": CampaignStatistics,
+    "CardReader": CardReader,
+    "CardReaderRegistrationRequest": CardReaderRegistrationRequest,
     "Cart": Cart,
     "CatalogGroup": CatalogGroup,
     "CatalogGroupArchivedEvent": CatalogGroupArchivedEvent,
@@ -41346,6 +41471,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultBluetoothTerminalStatus": RestApiResultBluetoothTerminalStatus,
     "RestApiResultBusinessHoursOverride": RestApiResultBusinessHoursOverride,
     "RestApiResultBusinessHoursPeriod": RestApiResultBusinessHoursPeriod,
+    "RestApiResultCardReader": RestApiResultCardReader,
     "RestApiResultCatalogGroup": RestApiResultCatalogGroup,
     "RestApiResultCatalogItem": RestApiResultCatalogItem,
     "RestApiResultCoordinates": RestApiResultCoordinates,
@@ -46704,6 +46830,69 @@ export class CardReadersApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param request 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public registerStripeTerminal (request: CardReaderRegistrationRequest, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCardReader;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/payments/terminals/stripe/register'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'request' is not null or undefined
+        if (request === null || request === undefined) {
+            throw new Error('Required parameter request was null or undefined when calling registerStripeTerminal.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling registerStripeTerminal.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(request, "CardReaderRegistrationRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCardReader;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultCardReader");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
