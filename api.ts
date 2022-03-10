@@ -1326,494 +1326,6 @@ export namespace AppConfigUpdateModel {
     }
 }
 /**
-* Application Configuration Base
-*/
-export class AppConfigurationBase {
-    /**
-    * Application Configuration Public Id
-    */
-    'Id': string;
-    /**
-    * Is Enabled
-    */
-    'IsEnabled': boolean;
-    /**
-    * Physical Restaurant Id's
-    */
-    'PhysicalRestaurants'?: Array<number>;
-    /**
-    * Settings
-    */
-    'Settings'?: Array<Setting>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Id",
-            "baseName": "Id",
-            "type": "string"
-        },
-        {
-            "name": "IsEnabled",
-            "baseName": "IsEnabled",
-            "type": "boolean"
-        },
-        {
-            "name": "PhysicalRestaurants",
-            "baseName": "PhysicalRestaurants",
-            "type": "Array<number>"
-        },
-        {
-            "name": "Settings",
-            "baseName": "Settings",
-            "type": "Array<Setting>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AppConfigurationBase.attributeTypeMap;
-    }
-}
-
-/**
-* Application configuration detail
-*/
-export class AppConfigurationDetail {
-    /**
-    * Application Configuration Public Id
-    */
-    'Id': string;
-    /**
-    * Whitelabel App Id
-    */
-    'AppId': string;
-    /**
-    * App Store App Id
-    */
-    'AppStoreAppId': string;
-    /**
-    * Is Enabled
-    */
-    'IsEnabled': boolean;
-    /**
-    * Physical Restaurant Id's
-    */
-    'PhysicalRestaurants'?: Array<number>;
-    /**
-    * Settings
-    */
-    'Settings'?: Array<Setting>;
-    /**
-    * Configuration Type  <example>ExternalLink</example><example>FlipdishHosted</example>
-    */
-    'ConfigurationType': AppConfigurationDetail.ConfigurationTypeEnum;
-    /**
-    * Store Selector Type
-    */
-    'StoreSelectorType': AppConfigurationDetail.StoreSelectorTypeEnum;
-    /**
-    * Field Groups
-    */
-    'FieldGroups'?: Array<FieldGroup>;
-    /**
-    * Setup Instructions
-    */
-    'SetupInstructions'?: string;
-    /**
-    * External Setup Link
-    */
-    'ExternalSetupLink'?: string;
-    /**
-    * OAuth App Id
-    */
-    'OAuthAppId': string;
-    /**
-    * Teammate App Access Level
-    */
-    'TeammateAppAccessLevel'?: AppConfigurationDetail.TeammateAppAccessLevelEnum;
-    /**
-    * Permissions Type
-    */
-    'PermissionsType': AppConfigurationDetail.PermissionsTypeEnum;
-    /**
-    * Name
-    */
-    'Name': string;
-    /**
-    * Description
-    */
-    'Description': string;
-    /**
-    * Logo
-    */
-    'Logo'?: string;
-    /**
-    * Application verification status
-    */
-    'VerificationStatus': AppConfigurationDetail.VerificationStatusEnum;
-    /**
-    * Tags
-    */
-    'Tags': Array<string>;
-    /**
-    * Regions
-    */
-    'Regions': Array<string>;
-    /**
-    * Developer Name
-    */
-    'DeveloperName'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Id",
-            "baseName": "Id",
-            "type": "string"
-        },
-        {
-            "name": "AppId",
-            "baseName": "AppId",
-            "type": "string"
-        },
-        {
-            "name": "AppStoreAppId",
-            "baseName": "AppStoreAppId",
-            "type": "string"
-        },
-        {
-            "name": "IsEnabled",
-            "baseName": "IsEnabled",
-            "type": "boolean"
-        },
-        {
-            "name": "PhysicalRestaurants",
-            "baseName": "PhysicalRestaurants",
-            "type": "Array<number>"
-        },
-        {
-            "name": "Settings",
-            "baseName": "Settings",
-            "type": "Array<Setting>"
-        },
-        {
-            "name": "ConfigurationType",
-            "baseName": "ConfigurationType",
-            "type": "AppConfigurationDetail.ConfigurationTypeEnum"
-        },
-        {
-            "name": "StoreSelectorType",
-            "baseName": "StoreSelectorType",
-            "type": "AppConfigurationDetail.StoreSelectorTypeEnum"
-        },
-        {
-            "name": "FieldGroups",
-            "baseName": "FieldGroups",
-            "type": "Array<FieldGroup>"
-        },
-        {
-            "name": "SetupInstructions",
-            "baseName": "SetupInstructions",
-            "type": "string"
-        },
-        {
-            "name": "ExternalSetupLink",
-            "baseName": "ExternalSetupLink",
-            "type": "string"
-        },
-        {
-            "name": "OAuthAppId",
-            "baseName": "OAuthAppId",
-            "type": "string"
-        },
-        {
-            "name": "TeammateAppAccessLevel",
-            "baseName": "TeammateAppAccessLevel",
-            "type": "AppConfigurationDetail.TeammateAppAccessLevelEnum"
-        },
-        {
-            "name": "PermissionsType",
-            "baseName": "PermissionsType",
-            "type": "AppConfigurationDetail.PermissionsTypeEnum"
-        },
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "Logo",
-            "baseName": "Logo",
-            "type": "string"
-        },
-        {
-            "name": "VerificationStatus",
-            "baseName": "VerificationStatus",
-            "type": "AppConfigurationDetail.VerificationStatusEnum"
-        },
-        {
-            "name": "Tags",
-            "baseName": "Tags",
-            "type": "Array<string>"
-        },
-        {
-            "name": "Regions",
-            "baseName": "Regions",
-            "type": "Array<string>"
-        },
-        {
-            "name": "DeveloperName",
-            "baseName": "DeveloperName",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AppConfigurationDetail.attributeTypeMap;
-    }
-}
-
-export namespace AppConfigurationDetail {
-    export enum ConfigurationTypeEnum {
-        ExternalLink = <any> 'ExternalLink',
-        FlipdishHosted = <any> 'FlipdishHosted'
-    }
-    export enum StoreSelectorTypeEnum {
-        None = <any> 'None',
-        Single = <any> 'Single',
-        Multiple = <any> 'Multiple'
-    }
-    export enum TeammateAppAccessLevelEnum {
-        Owner = <any> 'Owner',
-        StoreOwner = <any> 'StoreOwner',
-        ManagedOwner = <any> 'ManagedOwner',
-        Integrator = <any> 'Integrator',
-        StoreManager = <any> 'StoreManager',
-        StoreStaff = <any> 'StoreStaff',
-        StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
-        FinanceManger = <any> 'FinanceManger'
-    }
-    export enum PermissionsTypeEnum {
-        Teammate = <any> 'Teammate'
-    }
-    export enum VerificationStatusEnum {
-        Draft = <any> 'Draft',
-        Submitted = <any> 'Submitted',
-        Verified = <any> 'Verified'
-    }
-}
-/**
-* Configured app item for list
-*/
-export class AppConfigurationHeader {
-    /**
-    * AppStore App Id
-    */
-    'AppStoreAppId': string;
-    /**
-    * Name
-    */
-    'Name': string;
-    /**
-    * Description
-    */
-    'Description': string;
-    /**
-    * Logo
-    */
-    'Logo'?: string;
-    /**
-    * Developer Name
-    */
-    'DeveloperName'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "AppStoreAppId",
-            "baseName": "AppStoreAppId",
-            "type": "string"
-        },
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "Logo",
-            "baseName": "Logo",
-            "type": "string"
-        },
-        {
-            "name": "DeveloperName",
-            "baseName": "DeveloperName",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AppConfigurationHeader.attributeTypeMap;
-    }
-}
-
-export class AppConfigurationSetting {
-    'Key'?: string;
-    'Value'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Key",
-            "baseName": "Key",
-            "type": "string"
-        },
-        {
-            "name": "Value",
-            "baseName": "Value",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AppConfigurationSetting.attributeTypeMap;
-    }
-}
-
-/**
-* Application Configuration Summary  <remarks>Header information for display in lists, like list of apps</remarks>
-*/
-export class AppConfigurationSummary {
-    /**
-    * Application Configuration Public Id
-    */
-    'Id': string;
-    /**
-    * Whitelabel App Id
-    */
-    'AppId': string;
-    /**
-    * Is Enabled
-    */
-    'IsEnabled': boolean;
-    /**
-    * List of restaurants
-    */
-    'PhysicalRestaurants': Array<ConfiguredPhysicalRestaurant>;
-    /**
-    * Configuration Type
-    */
-    'ConfigurationType'?: AppConfigurationSummary.ConfigurationTypeEnum;
-    /**
-    * Store Selector Type
-    */
-    'StoreSelectorType'?: AppConfigurationSummary.StoreSelectorTypeEnum;
-    /**
-    * AppStore App Id
-    */
-    'AppStoreAppId': string;
-    /**
-    * Name
-    */
-    'Name': string;
-    /**
-    * Description
-    */
-    'Description': string;
-    /**
-    * Logo
-    */
-    'Logo'?: string;
-    /**
-    * Developer Name
-    */
-    'DeveloperName'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Id",
-            "baseName": "Id",
-            "type": "string"
-        },
-        {
-            "name": "AppId",
-            "baseName": "AppId",
-            "type": "string"
-        },
-        {
-            "name": "IsEnabled",
-            "baseName": "IsEnabled",
-            "type": "boolean"
-        },
-        {
-            "name": "PhysicalRestaurants",
-            "baseName": "PhysicalRestaurants",
-            "type": "Array<ConfiguredPhysicalRestaurant>"
-        },
-        {
-            "name": "ConfigurationType",
-            "baseName": "ConfigurationType",
-            "type": "AppConfigurationSummary.ConfigurationTypeEnum"
-        },
-        {
-            "name": "StoreSelectorType",
-            "baseName": "StoreSelectorType",
-            "type": "AppConfigurationSummary.StoreSelectorTypeEnum"
-        },
-        {
-            "name": "AppStoreAppId",
-            "baseName": "AppStoreAppId",
-            "type": "string"
-        },
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "Logo",
-            "baseName": "Logo",
-            "type": "string"
-        },
-        {
-            "name": "DeveloperName",
-            "baseName": "DeveloperName",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AppConfigurationSummary.attributeTypeMap;
-    }
-}
-
-export namespace AppConfigurationSummary {
-    export enum ConfigurationTypeEnum {
-        ExternalLink = <any> 'ExternalLink',
-        FlipdishHosted = <any> 'FlipdishHosted'
-    }
-    export enum StoreSelectorTypeEnum {
-        None = <any> 'None',
-        Single = <any> 'Single',
-        Multiple = <any> 'Multiple'
-    }
-}
-/**
 * Application created event
 */
 export class AppCreatedEvent {
@@ -1909,45 +1421,53 @@ export class AppCreatedEvent {
 }
 
 /**
-* Application
+* App store app
 */
-export class AppDetail {
+export class AppStoreApp {
     /**
-    * Integration Public Id
+    * Unique App store app id
     */
     'Id': string;
     /**
-    * Configuration Type  <example>ExternalLink</example><example>FlipdishHosted</example>
+    * Application verification status
     */
-    'ConfigurationType': AppDetail.ConfigurationTypeEnum;
+    'VerificationStatus': AppStoreApp.VerificationStatusEnum;
     /**
-    * Store Selector Type
+    * Logo
     */
-    'StoreSelectorType': AppDetail.StoreSelectorTypeEnum;
+    'Logo'?: string;
     /**
-    * Field Groups
+    * Configuration type  <example>External link</example><example>Flipdish hosted</example>
+    */
+    'ConfigurationType': AppStoreApp.ConfigurationTypeEnum;
+    /**
+    * Store selector type
+    */
+    'StoreSelectorType': AppStoreApp.StoreSelectorTypeEnum;
+    /**
+    * Field groups
     */
     'FieldGroups'?: Array<FieldGroup>;
     /**
-    * Setup Instructions
+    * Setup instructions
     */
     'SetupInstructions'?: string;
     /**
-    * External Setup Link
+    * External setup link
     */
     'ExternalSetupLink'?: string;
     /**
-    * OAuth App Id
+    * OAuth app id
     */
     'OAuthAppId': string;
     /**
-    * Teammate App Access Level
+    * Teammate app access level
     */
-    'TeammateAppAccessLevel'?: AppDetail.TeammateAppAccessLevelEnum;
+    'TeammateAppAccessLevel'?: AppStoreApp.TeammateAppAccessLevelEnum;
     /**
-    * Permissions Type
+    * Permissions type
     */
-    'PermissionsType': AppDetail.PermissionsTypeEnum;
+    'PermissionsType': AppStoreApp.PermissionsTypeEnum;
     /**
     * Name
     */
@@ -1957,17 +1477,9 @@ export class AppDetail {
     */
     'Description': string;
     /**
-    * Logo
-    */
-    'Logo'?: string;
-    /**
     * Is application enabled
     */
     'IsEnabled'?: boolean;
-    /**
-    * Application verification status
-    */
-    'VerificationStatus': AppDetail.VerificationStatusEnum;
     /**
     * Tags
     */
@@ -1990,14 +1502,24 @@ export class AppDetail {
             "type": "string"
         },
         {
+            "name": "VerificationStatus",
+            "baseName": "VerificationStatus",
+            "type": "AppStoreApp.VerificationStatusEnum"
+        },
+        {
+            "name": "Logo",
+            "baseName": "Logo",
+            "type": "string"
+        },
+        {
             "name": "ConfigurationType",
             "baseName": "ConfigurationType",
-            "type": "AppDetail.ConfigurationTypeEnum"
+            "type": "AppStoreApp.ConfigurationTypeEnum"
         },
         {
             "name": "StoreSelectorType",
             "baseName": "StoreSelectorType",
-            "type": "AppDetail.StoreSelectorTypeEnum"
+            "type": "AppStoreApp.StoreSelectorTypeEnum"
         },
         {
             "name": "FieldGroups",
@@ -2022,12 +1544,12 @@ export class AppDetail {
         {
             "name": "TeammateAppAccessLevel",
             "baseName": "TeammateAppAccessLevel",
-            "type": "AppDetail.TeammateAppAccessLevelEnum"
+            "type": "AppStoreApp.TeammateAppAccessLevelEnum"
         },
         {
             "name": "PermissionsType",
             "baseName": "PermissionsType",
-            "type": "AppDetail.PermissionsTypeEnum"
+            "type": "AppStoreApp.PermissionsTypeEnum"
         },
         {
             "name": "Name",
@@ -2040,19 +1562,9 @@ export class AppDetail {
             "type": "string"
         },
         {
-            "name": "Logo",
-            "baseName": "Logo",
-            "type": "string"
-        },
-        {
             "name": "IsEnabled",
             "baseName": "IsEnabled",
             "type": "boolean"
-        },
-        {
-            "name": "VerificationStatus",
-            "baseName": "VerificationStatus",
-            "type": "AppDetail.VerificationStatusEnum"
         },
         {
             "name": "Tags",
@@ -2071,11 +1583,16 @@ export class AppDetail {
         }    ];
 
     static getAttributeTypeMap() {
-        return AppDetail.attributeTypeMap;
+        return AppStoreApp.attributeTypeMap;
     }
 }
 
-export namespace AppDetail {
+export namespace AppStoreApp {
+    export enum VerificationStatusEnum {
+        Draft = <any> 'Draft',
+        Submitted = <any> 'Submitted',
+        Verified = <any> 'Verified'
+    }
     export enum ConfigurationTypeEnum {
         ExternalLink = <any> 'ExternalLink',
         FlipdishHosted = <any> 'FlipdishHosted'
@@ -2098,48 +1615,75 @@ export namespace AppDetail {
     export enum PermissionsTypeEnum {
         Teammate = <any> 'Teammate'
     }
-    export enum VerificationStatusEnum {
-        Draft = <any> 'Draft',
-        Submitted = <any> 'Submitted',
-        Verified = <any> 'Verified'
-    }
 }
 /**
-* Application Detail Base  <remarks>Used for creating new apps</remarks>
+* App store app configurations
 */
-export class AppDetailBase {
+export class AppStoreAppConfiguration {
     /**
-    * Configuration Type  <example>ExternalLink</example><example>FlipdishHosted</example>
+    * Unique App store app configuration id
     */
-    'ConfigurationType': AppDetailBase.ConfigurationTypeEnum;
+    'Id': string;
     /**
-    * Store Selector Type
+    * App id
     */
-    'StoreSelectorType': AppDetailBase.StoreSelectorTypeEnum;
+    'AppId': string;
     /**
-    * Field Groups
+    * App store app id
+    */
+    'AppStoreAppId': string;
+    /**
+    * Is enabled
+    */
+    'IsEnabled': boolean;
+    /**
+    * Stores id's
+    */
+    'PhysicalRestaurants'?: Array<number>;
+    /**
+    * Settings
+    */
+    'Settings'?: Array<Setting>;
+    /**
+    * Application verification status
+    */
+    'VerificationStatus': AppStoreAppConfiguration.VerificationStatusEnum;
+    /**
+    * Logo
+    */
+    'Logo'?: string;
+    /**
+    * Configuration type  <example>External link</example><example>Flipdish hosted</example>
+    */
+    'ConfigurationType': AppStoreAppConfiguration.ConfigurationTypeEnum;
+    /**
+    * Store selector type
+    */
+    'StoreSelectorType': AppStoreAppConfiguration.StoreSelectorTypeEnum;
+    /**
+    * Field groups
     */
     'FieldGroups'?: Array<FieldGroup>;
     /**
-    * Setup Instructions
+    * Setup instructions
     */
     'SetupInstructions'?: string;
     /**
-    * External Setup Link
+    * External setup link
     */
     'ExternalSetupLink'?: string;
     /**
-    * OAuth App Id
+    * OAuth app id
     */
     'OAuthAppId': string;
     /**
-    * Teammate App Access Level
+    * Teammate app access level
     */
-    'TeammateAppAccessLevel'?: AppDetailBase.TeammateAppAccessLevelEnum;
+    'TeammateAppAccessLevel'?: AppStoreAppConfiguration.TeammateAppAccessLevelEnum;
     /**
-    * Permissions Type
+    * Permissions type
     */
-    'PermissionsType': AppDetailBase.PermissionsTypeEnum;
+    'PermissionsType': AppStoreAppConfiguration.PermissionsTypeEnum;
     /**
     * Name
     */
@@ -2148,18 +1692,6 @@ export class AppDetailBase {
     * Description
     */
     'Description': string;
-    /**
-    * Logo
-    */
-    'Logo'?: string;
-    /**
-    * Is application enabled
-    */
-    'IsEnabled'?: boolean;
-    /**
-    * Application verification status
-    */
-    'VerificationStatus': AppDetailBase.VerificationStatusEnum;
     /**
     * Tags
     */
@@ -2177,14 +1709,54 @@ export class AppDetailBase {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "string"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreAppId",
+            "baseName": "AppStoreAppId",
+            "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "PhysicalRestaurants",
+            "baseName": "PhysicalRestaurants",
+            "type": "Array<number>"
+        },
+        {
+            "name": "Settings",
+            "baseName": "Settings",
+            "type": "Array<Setting>"
+        },
+        {
+            "name": "VerificationStatus",
+            "baseName": "VerificationStatus",
+            "type": "AppStoreAppConfiguration.VerificationStatusEnum"
+        },
+        {
+            "name": "Logo",
+            "baseName": "Logo",
+            "type": "string"
+        },
+        {
             "name": "ConfigurationType",
             "baseName": "ConfigurationType",
-            "type": "AppDetailBase.ConfigurationTypeEnum"
+            "type": "AppStoreAppConfiguration.ConfigurationTypeEnum"
         },
         {
             "name": "StoreSelectorType",
             "baseName": "StoreSelectorType",
-            "type": "AppDetailBase.StoreSelectorTypeEnum"
+            "type": "AppStoreAppConfiguration.StoreSelectorTypeEnum"
         },
         {
             "name": "FieldGroups",
@@ -2209,12 +1781,12 @@ export class AppDetailBase {
         {
             "name": "TeammateAppAccessLevel",
             "baseName": "TeammateAppAccessLevel",
-            "type": "AppDetailBase.TeammateAppAccessLevelEnum"
+            "type": "AppStoreAppConfiguration.TeammateAppAccessLevelEnum"
         },
         {
             "name": "PermissionsType",
             "baseName": "PermissionsType",
-            "type": "AppDetailBase.PermissionsTypeEnum"
+            "type": "AppStoreAppConfiguration.PermissionsTypeEnum"
         },
         {
             "name": "Name",
@@ -2225,21 +1797,6 @@ export class AppDetailBase {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
-        },
-        {
-            "name": "Logo",
-            "baseName": "Logo",
-            "type": "string"
-        },
-        {
-            "name": "IsEnabled",
-            "baseName": "IsEnabled",
-            "type": "boolean"
-        },
-        {
-            "name": "VerificationStatus",
-            "baseName": "VerificationStatus",
-            "type": "AppDetailBase.VerificationStatusEnum"
         },
         {
             "name": "Tags",
@@ -2258,11 +1815,16 @@ export class AppDetailBase {
         }    ];
 
     static getAttributeTypeMap() {
-        return AppDetailBase.attributeTypeMap;
+        return AppStoreAppConfiguration.attributeTypeMap;
     }
 }
 
-export namespace AppDetailBase {
+export namespace AppStoreAppConfiguration {
+    export enum VerificationStatusEnum {
+        Draft = <any> 'Draft',
+        Submitted = <any> 'Submitted',
+        Verified = <any> 'Verified'
+    }
     export enum ConfigurationTypeEnum {
         ExternalLink = <any> 'ExternalLink',
         FlipdishHosted = <any> 'FlipdishHosted'
@@ -2285,6 +1847,286 @@ export namespace AppDetailBase {
     export enum PermissionsTypeEnum {
         Teammate = <any> 'Teammate'
     }
+}
+/**
+* App store app configuration header information
+*/
+export class AppStoreAppConfigurationHeader {
+    /**
+    * Unique App store app id
+    */
+    'AppStoreAppId': string;
+    /**
+    * Name of Appstore app
+    */
+    'Name': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Logo
+    */
+    'Logo'?: string;
+    /**
+    * Developer name
+    */
+    'DeveloperName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AppStoreAppId",
+            "baseName": "AppStoreAppId",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Logo",
+            "baseName": "Logo",
+            "type": "string"
+        },
+        {
+            "name": "DeveloperName",
+            "baseName": "DeveloperName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppStoreAppConfigurationHeader.attributeTypeMap;
+    }
+}
+
+/**
+* App store app configuration summary information
+*/
+export class AppStoreAppConfigurationSummary {
+    /**
+    * Unique App store app configuration id
+    */
+    'Id': string;
+    /**
+    * App Id
+    */
+    'AppId': string;
+    /**
+    * Is enabled
+    */
+    'IsEnabled': boolean;
+    /**
+    * List of stores
+    */
+    'PhysicalRestaurants': Array<ConfiguredPhysicalRestaurant>;
+    /**
+    * Configuration type
+    */
+    'ConfigurationType'?: AppStoreAppConfigurationSummary.ConfigurationTypeEnum;
+    /**
+    * Store selector type
+    */
+    'StoreSelectorType'?: AppStoreAppConfigurationSummary.StoreSelectorTypeEnum;
+    /**
+    * Unique App store app id
+    */
+    'AppStoreAppId': string;
+    /**
+    * Name of Appstore app
+    */
+    'Name': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Logo
+    */
+    'Logo'?: string;
+    /**
+    * Developer name
+    */
+    'DeveloperName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "string"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "PhysicalRestaurants",
+            "baseName": "PhysicalRestaurants",
+            "type": "Array<ConfiguredPhysicalRestaurant>"
+        },
+        {
+            "name": "ConfigurationType",
+            "baseName": "ConfigurationType",
+            "type": "AppStoreAppConfigurationSummary.ConfigurationTypeEnum"
+        },
+        {
+            "name": "StoreSelectorType",
+            "baseName": "StoreSelectorType",
+            "type": "AppStoreAppConfigurationSummary.StoreSelectorTypeEnum"
+        },
+        {
+            "name": "AppStoreAppId",
+            "baseName": "AppStoreAppId",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Logo",
+            "baseName": "Logo",
+            "type": "string"
+        },
+        {
+            "name": "DeveloperName",
+            "baseName": "DeveloperName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppStoreAppConfigurationSummary.attributeTypeMap;
+    }
+}
+
+export namespace AppStoreAppConfigurationSummary {
+    export enum ConfigurationTypeEnum {
+        ExternalLink = <any> 'ExternalLink',
+        FlipdishHosted = <any> 'FlipdishHosted'
+    }
+    export enum StoreSelectorTypeEnum {
+        None = <any> 'None',
+        Single = <any> 'Single',
+        Multiple = <any> 'Multiple'
+    }
+}
+/**
+* App store app summary information
+*/
+export class AppStoreAppSummary {
+    /**
+    * Unique App store app id
+    */
+    'Id'?: string;
+    /**
+    * Application verification status
+    */
+    'VerificationStatus': AppStoreAppSummary.VerificationStatusEnum;
+    /**
+    * Logo
+    */
+    'Logo'?: string;
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Is application enabled
+    */
+    'IsEnabled'?: boolean;
+    /**
+    * Tags
+    */
+    'Tags': Array<string>;
+    /**
+    * Regions
+    */
+    'Regions': Array<string>;
+    /**
+    * Developer Name
+    */
+    'DeveloperName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "string"
+        },
+        {
+            "name": "VerificationStatus",
+            "baseName": "VerificationStatus",
+            "type": "AppStoreAppSummary.VerificationStatusEnum"
+        },
+        {
+            "name": "Logo",
+            "baseName": "Logo",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "Tags",
+            "baseName": "Tags",
+            "type": "Array<string>"
+        },
+        {
+            "name": "Regions",
+            "baseName": "Regions",
+            "type": "Array<string>"
+        },
+        {
+            "name": "DeveloperName",
+            "baseName": "DeveloperName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppStoreAppSummary.attributeTypeMap;
+    }
+}
+
+export namespace AppStoreAppSummary {
     export enum VerificationStatusEnum {
         Draft = <any> 'Draft',
         Submitted = <any> 'Submitted',
@@ -2460,7 +2302,7 @@ export class AppStoreConfigUpdatedEvent {
     /**
     * App Configuration
     */
-    'AppStoreAppConfiguration'?: AppConfigurationBase;
+    'UpdateAppStoreAppStoreAppStoreAppConfiguration'?: UpdateAppStoreAppConfigurationWebhookDTO;
     /**
     * The identitfier of the event
     */
@@ -2492,9 +2334,9 @@ export class AppStoreConfigUpdatedEvent {
             "type": "string"
         },
         {
-            "name": "AppStoreAppConfiguration",
-            "baseName": "AppStoreAppConfiguration",
-            "type": "AppConfigurationBase"
+            "name": "UpdateAppStoreAppStoreAppStoreAppConfiguration",
+            "baseName": "UpdateAppStoreAppStoreAppStoreAppConfiguration",
+            "type": "UpdateAppStoreAppConfigurationWebhookDTO"
         },
         {
             "name": "FlipdishEventId",
@@ -2522,108 +2364,6 @@ export class AppStoreConfigUpdatedEvent {
     }
 }
 
-/**
-* Application Summary  <remarks>Header information for display in lists, like list of apps</remarks>
-*/
-export class AppSummary {
-    /**
-    * Integration Public Id
-    */
-    'Id'?: string;
-    /**
-    * Name
-    */
-    'Name': string;
-    /**
-    * Description
-    */
-    'Description': string;
-    /**
-    * Logo
-    */
-    'Logo'?: string;
-    /**
-    * Is application enabled
-    */
-    'IsEnabled'?: boolean;
-    /**
-    * Application verification status
-    */
-    'VerificationStatus': AppSummary.VerificationStatusEnum;
-    /**
-    * Tags
-    */
-    'Tags': Array<string>;
-    /**
-    * Regions
-    */
-    'Regions': Array<string>;
-    /**
-    * Developer Name
-    */
-    'DeveloperName'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Id",
-            "baseName": "Id",
-            "type": "string"
-        },
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "Logo",
-            "baseName": "Logo",
-            "type": "string"
-        },
-        {
-            "name": "IsEnabled",
-            "baseName": "IsEnabled",
-            "type": "boolean"
-        },
-        {
-            "name": "VerificationStatus",
-            "baseName": "VerificationStatus",
-            "type": "AppSummary.VerificationStatusEnum"
-        },
-        {
-            "name": "Tags",
-            "baseName": "Tags",
-            "type": "Array<string>"
-        },
-        {
-            "name": "Regions",
-            "baseName": "Regions",
-            "type": "Array<string>"
-        },
-        {
-            "name": "DeveloperName",
-            "baseName": "DeveloperName",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AppSummary.attributeTypeMap;
-    }
-}
-
-export namespace AppSummary {
-    export enum VerificationStatusEnum {
-        Draft = <any> 'Draft',
-        Submitted = <any> 'Submitted',
-        Verified = <any> 'Verified'
-    }
-}
 /**
 * Application updated event
 */
@@ -5736,11 +5476,11 @@ export class ChargebackDetails {
 }
 
 /**
-* Configured physical restaurants
+* Configured stores
 */
 export class ConfiguredPhysicalRestaurant {
     /**
-    * Store Id
+    * Store id
     */
     'StoreId'?: number;
     /**
@@ -5958,6 +5698,170 @@ export class CreateAccountModel {
     }
 }
 
+/**
+* Create App store app
+*/
+export class CreateAppStoreApp {
+    /**
+    * Configuration type  <example>External link</example><example>Flipdish hosted</example>
+    */
+    'ConfigurationType': CreateAppStoreApp.ConfigurationTypeEnum;
+    /**
+    * Store selector type
+    */
+    'StoreSelectorType': CreateAppStoreApp.StoreSelectorTypeEnum;
+    /**
+    * Field groups
+    */
+    'FieldGroups'?: Array<FieldGroup>;
+    /**
+    * Setup instructions
+    */
+    'SetupInstructions'?: string;
+    /**
+    * External setup link
+    */
+    'ExternalSetupLink'?: string;
+    /**
+    * OAuth app id
+    */
+    'OAuthAppId': string;
+    /**
+    * Teammate app access level
+    */
+    'TeammateAppAccessLevel'?: CreateAppStoreApp.TeammateAppAccessLevelEnum;
+    /**
+    * Permissions type
+    */
+    'PermissionsType': CreateAppStoreApp.PermissionsTypeEnum;
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Is application enabled
+    */
+    'IsEnabled'?: boolean;
+    /**
+    * Tags
+    */
+    'Tags': Array<string>;
+    /**
+    * Regions
+    */
+    'Regions': Array<string>;
+    /**
+    * Developer Name
+    */
+    'DeveloperName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ConfigurationType",
+            "baseName": "ConfigurationType",
+            "type": "CreateAppStoreApp.ConfigurationTypeEnum"
+        },
+        {
+            "name": "StoreSelectorType",
+            "baseName": "StoreSelectorType",
+            "type": "CreateAppStoreApp.StoreSelectorTypeEnum"
+        },
+        {
+            "name": "FieldGroups",
+            "baseName": "FieldGroups",
+            "type": "Array<FieldGroup>"
+        },
+        {
+            "name": "SetupInstructions",
+            "baseName": "SetupInstructions",
+            "type": "string"
+        },
+        {
+            "name": "ExternalSetupLink",
+            "baseName": "ExternalSetupLink",
+            "type": "string"
+        },
+        {
+            "name": "OAuthAppId",
+            "baseName": "OAuthAppId",
+            "type": "string"
+        },
+        {
+            "name": "TeammateAppAccessLevel",
+            "baseName": "TeammateAppAccessLevel",
+            "type": "CreateAppStoreApp.TeammateAppAccessLevelEnum"
+        },
+        {
+            "name": "PermissionsType",
+            "baseName": "PermissionsType",
+            "type": "CreateAppStoreApp.PermissionsTypeEnum"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "Tags",
+            "baseName": "Tags",
+            "type": "Array<string>"
+        },
+        {
+            "name": "Regions",
+            "baseName": "Regions",
+            "type": "Array<string>"
+        },
+        {
+            "name": "DeveloperName",
+            "baseName": "DeveloperName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateAppStoreApp.attributeTypeMap;
+    }
+}
+
+export namespace CreateAppStoreApp {
+    export enum ConfigurationTypeEnum {
+        ExternalLink = <any> 'ExternalLink',
+        FlipdishHosted = <any> 'FlipdishHosted'
+    }
+    export enum StoreSelectorTypeEnum {
+        None = <any> 'None',
+        Single = <any> 'Single',
+        Multiple = <any> 'Multiple'
+    }
+    export enum TeammateAppAccessLevelEnum {
+        Owner = <any> 'Owner',
+        StoreOwner = <any> 'StoreOwner',
+        ManagedOwner = <any> 'ManagedOwner',
+        Integrator = <any> 'Integrator',
+        StoreManager = <any> 'StoreManager',
+        StoreStaff = <any> 'StoreStaff',
+        StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
+        FinanceManger = <any> 'FinanceManger'
+    }
+    export enum PermissionsTypeEnum {
+        Teammate = <any> 'Teammate'
+    }
+}
 /**
 * Create a Catalog Group
 */
@@ -10814,11 +10718,11 @@ export class Field {
     */
     'Tooltip'?: string;
     /**
-    * Position  <remarks>Position order in the fields list to display</remarks>
+    * Position
     */
     'Position': number;
     /**
-    * Default Value  <example>10</example><example>true</example>
+    * Default Value
     */
     'DefaultValue'?: string;
     /**
@@ -10961,7 +10865,7 @@ export class FieldChangeInformation {
 }
 
 /**
-* Field Group
+* Field group
 */
 export class FieldGroup {
     /**
@@ -26432,11 +26336,11 @@ export class RestApiArrayResultApmHourlyDataPoint {
 /**
 * Rest api array result
 */
-export class RestApiArrayResultAppConfigurationHeader {
+export class RestApiArrayResultAppStoreAppConfigurationHeader {
     /**
     * Generic data object.
     */
-    'Data': Array<AppConfigurationHeader>;
+    'Data': Array<AppStoreAppConfigurationHeader>;
 
     static discriminator: string | undefined = undefined;
 
@@ -26444,22 +26348,22 @@ export class RestApiArrayResultAppConfigurationHeader {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "Array<AppConfigurationHeader>"
+            "type": "Array<AppStoreAppConfigurationHeader>"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiArrayResultAppConfigurationHeader.attributeTypeMap;
+        return RestApiArrayResultAppStoreAppConfigurationHeader.attributeTypeMap;
     }
 }
 
 /**
 * Rest api array result
 */
-export class RestApiArrayResultAppConfigurationSummary {
+export class RestApiArrayResultAppStoreAppConfigurationSummary {
     /**
     * Generic data object.
     */
-    'Data': Array<AppConfigurationSummary>;
+    'Data': Array<AppStoreAppConfigurationSummary>;
 
     static discriminator: string | undefined = undefined;
 
@@ -26467,11 +26371,11 @@ export class RestApiArrayResultAppConfigurationSummary {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "Array<AppConfigurationSummary>"
+            "type": "Array<AppStoreAppConfigurationSummary>"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiArrayResultAppConfigurationSummary.attributeTypeMap;
+        return RestApiArrayResultAppStoreAppConfigurationSummary.attributeTypeMap;
     }
 }
 
@@ -27502,7 +27406,7 @@ export class RestApiPaginationResultApp {
 /**
 * Rest api pagination result
 */
-export class RestApiPaginationResultAppSummary {
+export class RestApiPaginationResultAppStoreAppSummary {
     /**
     * Current page index
     */
@@ -27518,7 +27422,7 @@ export class RestApiPaginationResultAppSummary {
     /**
     * Generic data object.
     */
-    'Data': Array<AppSummary>;
+    'Data': Array<AppStoreAppSummary>;
 
     static discriminator: string | undefined = undefined;
 
@@ -27541,11 +27445,11 @@ export class RestApiPaginationResultAppSummary {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "Array<AppSummary>"
+            "type": "Array<AppStoreAppSummary>"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiPaginationResultAppSummary.attributeTypeMap;
+        return RestApiPaginationResultAppStoreAppSummary.attributeTypeMap;
     }
 }
 
@@ -28990,11 +28894,11 @@ export class RestApiResultAppCompliance {
 /**
 * Rest api result
 */
-export class RestApiResultAppConfigurationSummary {
+export class RestApiResultAppStoreApp {
     /**
     * Generic data object.
     */
-    'Data': AppConfigurationSummary;
+    'Data': AppStoreApp;
 
     static discriminator: string | undefined = undefined;
 
@@ -29002,22 +28906,22 @@ export class RestApiResultAppConfigurationSummary {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "AppConfigurationSummary"
+            "type": "AppStoreApp"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiResultAppConfigurationSummary.attributeTypeMap;
+        return RestApiResultAppStoreApp.attributeTypeMap;
     }
 }
 
 /**
 * Rest api result
 */
-export class RestApiResultAppDetail {
+export class RestApiResultAppStoreAppConfiguration {
     /**
     * Generic data object.
     */
-    'Data': AppDetail;
+    'Data': AppStoreAppConfiguration;
 
     static discriminator: string | undefined = undefined;
 
@@ -29025,11 +28929,11 @@ export class RestApiResultAppDetail {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "AppDetail"
+            "type": "AppStoreAppConfiguration"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiResultAppDetail.attributeTypeMap;
+        return RestApiResultAppStoreAppConfiguration.attributeTypeMap;
     }
 }
 
@@ -37685,11 +37589,231 @@ export class TeammateUpdatedEvent {
     }
 }
 
-export class UpdateAppConfiguration {
-    'Id'?: string;
-    'PhysicalRestaurants'?: Array<number>;
+/**
+* Update App store app
+*/
+export class UpdateAppStoreApp {
+    /**
+    * Configuration type  <example>External link</example><example>Flipdish hosted</example>
+    */
+    'ConfigurationType': UpdateAppStoreApp.ConfigurationTypeEnum;
+    /**
+    * Store selector type
+    */
+    'StoreSelectorType': UpdateAppStoreApp.StoreSelectorTypeEnum;
+    /**
+    * Field groups
+    */
+    'FieldGroups'?: Array<FieldGroup>;
+    /**
+    * Setup instructions
+    */
+    'SetupInstructions'?: string;
+    /**
+    * External setup link
+    */
+    'ExternalSetupLink'?: string;
+    /**
+    * OAuth app id
+    */
+    'OAuthAppId': string;
+    /**
+    * Teammate app access level
+    */
+    'TeammateAppAccessLevel'?: UpdateAppStoreApp.TeammateAppAccessLevelEnum;
+    /**
+    * Permissions type
+    */
+    'PermissionsType': UpdateAppStoreApp.PermissionsTypeEnum;
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Is application enabled
+    */
     'IsEnabled'?: boolean;
-    'Settings'?: Array<AppConfigurationSetting>;
+    /**
+    * Tags
+    */
+    'Tags': Array<string>;
+    /**
+    * Regions
+    */
+    'Regions': Array<string>;
+    /**
+    * Developer Name
+    */
+    'DeveloperName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ConfigurationType",
+            "baseName": "ConfigurationType",
+            "type": "UpdateAppStoreApp.ConfigurationTypeEnum"
+        },
+        {
+            "name": "StoreSelectorType",
+            "baseName": "StoreSelectorType",
+            "type": "UpdateAppStoreApp.StoreSelectorTypeEnum"
+        },
+        {
+            "name": "FieldGroups",
+            "baseName": "FieldGroups",
+            "type": "Array<FieldGroup>"
+        },
+        {
+            "name": "SetupInstructions",
+            "baseName": "SetupInstructions",
+            "type": "string"
+        },
+        {
+            "name": "ExternalSetupLink",
+            "baseName": "ExternalSetupLink",
+            "type": "string"
+        },
+        {
+            "name": "OAuthAppId",
+            "baseName": "OAuthAppId",
+            "type": "string"
+        },
+        {
+            "name": "TeammateAppAccessLevel",
+            "baseName": "TeammateAppAccessLevel",
+            "type": "UpdateAppStoreApp.TeammateAppAccessLevelEnum"
+        },
+        {
+            "name": "PermissionsType",
+            "baseName": "PermissionsType",
+            "type": "UpdateAppStoreApp.PermissionsTypeEnum"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "Tags",
+            "baseName": "Tags",
+            "type": "Array<string>"
+        },
+        {
+            "name": "Regions",
+            "baseName": "Regions",
+            "type": "Array<string>"
+        },
+        {
+            "name": "DeveloperName",
+            "baseName": "DeveloperName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateAppStoreApp.attributeTypeMap;
+    }
+}
+
+export namespace UpdateAppStoreApp {
+    export enum ConfigurationTypeEnum {
+        ExternalLink = <any> 'ExternalLink',
+        FlipdishHosted = <any> 'FlipdishHosted'
+    }
+    export enum StoreSelectorTypeEnum {
+        None = <any> 'None',
+        Single = <any> 'Single',
+        Multiple = <any> 'Multiple'
+    }
+    export enum TeammateAppAccessLevelEnum {
+        Owner = <any> 'Owner',
+        StoreOwner = <any> 'StoreOwner',
+        ManagedOwner = <any> 'ManagedOwner',
+        Integrator = <any> 'Integrator',
+        StoreManager = <any> 'StoreManager',
+        StoreStaff = <any> 'StoreStaff',
+        StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
+        FinanceManger = <any> 'FinanceManger'
+    }
+    export enum PermissionsTypeEnum {
+        Teammate = <any> 'Teammate'
+    }
+}
+/**
+* Update App store app configuration
+*/
+export class UpdateAppStoreAppConfiguration {
+    /**
+    * Is enabled
+    */
+    'IsEnabled': boolean;
+    /**
+    * Stores id's
+    */
+    'PhysicalRestaurants'?: Array<number>;
+    /**
+    * Settings
+    */
+    'Settings'?: Array<Setting>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "PhysicalRestaurants",
+            "baseName": "PhysicalRestaurants",
+            "type": "Array<number>"
+        },
+        {
+            "name": "Settings",
+            "baseName": "Settings",
+            "type": "Array<Setting>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateAppStoreAppConfiguration.attributeTypeMap;
+    }
+}
+
+/**
+* App store app configuration webhook event
+*/
+export class UpdateAppStoreAppConfigurationWebhookDTO {
+    /**
+    * Unique App store app configuration id
+    */
+    'Id': string;
+    /**
+    * Is enabled
+    */
+    'IsEnabled': boolean;
+    /**
+    * Store id's
+    */
+    'PhysicalRestaurants'?: Array<number>;
+    /**
+    * Settings
+    */
+    'Settings'?: Array<Setting>;
 
     static discriminator: string | undefined = undefined;
 
@@ -37700,23 +37824,23 @@ export class UpdateAppConfiguration {
             "type": "string"
         },
         {
-            "name": "PhysicalRestaurants",
-            "baseName": "PhysicalRestaurants",
-            "type": "Array<number>"
-        },
-        {
             "name": "IsEnabled",
             "baseName": "IsEnabled",
             "type": "boolean"
         },
         {
+            "name": "PhysicalRestaurants",
+            "baseName": "PhysicalRestaurants",
+            "type": "Array<number>"
+        },
+        {
             "name": "Settings",
             "baseName": "Settings",
-            "type": "Array<AppConfigurationSetting>"
+            "type": "Array<Setting>"
         }    ];
 
     static getAttributeTypeMap() {
-        return UpdateAppConfiguration.attributeTypeMap;
+        return UpdateAppStoreAppConfigurationWebhookDTO.attributeTypeMap;
     }
 }
 
@@ -40886,24 +41010,19 @@ let enumsMap: {[index: string]: any} = {
         "App.ApplicationCategoryEnum": App.ApplicationCategoryEnum,
         "AppCompliance.ComplianceTypeEnum": AppCompliance.ComplianceTypeEnum,
         "AppConfigUpdateModel.ApplicationCategoryEnum": AppConfigUpdateModel.ApplicationCategoryEnum,
-        "AppConfigurationDetail.ConfigurationTypeEnum": AppConfigurationDetail.ConfigurationTypeEnum,
-        "AppConfigurationDetail.StoreSelectorTypeEnum": AppConfigurationDetail.StoreSelectorTypeEnum,
-        "AppConfigurationDetail.TeammateAppAccessLevelEnum": AppConfigurationDetail.TeammateAppAccessLevelEnum,
-        "AppConfigurationDetail.PermissionsTypeEnum": AppConfigurationDetail.PermissionsTypeEnum,
-        "AppConfigurationDetail.VerificationStatusEnum": AppConfigurationDetail.VerificationStatusEnum,
-        "AppConfigurationSummary.ConfigurationTypeEnum": AppConfigurationSummary.ConfigurationTypeEnum,
-        "AppConfigurationSummary.StoreSelectorTypeEnum": AppConfigurationSummary.StoreSelectorTypeEnum,
-        "AppDetail.ConfigurationTypeEnum": AppDetail.ConfigurationTypeEnum,
-        "AppDetail.StoreSelectorTypeEnum": AppDetail.StoreSelectorTypeEnum,
-        "AppDetail.TeammateAppAccessLevelEnum": AppDetail.TeammateAppAccessLevelEnum,
-        "AppDetail.PermissionsTypeEnum": AppDetail.PermissionsTypeEnum,
-        "AppDetail.VerificationStatusEnum": AppDetail.VerificationStatusEnum,
-        "AppDetailBase.ConfigurationTypeEnum": AppDetailBase.ConfigurationTypeEnum,
-        "AppDetailBase.StoreSelectorTypeEnum": AppDetailBase.StoreSelectorTypeEnum,
-        "AppDetailBase.TeammateAppAccessLevelEnum": AppDetailBase.TeammateAppAccessLevelEnum,
-        "AppDetailBase.PermissionsTypeEnum": AppDetailBase.PermissionsTypeEnum,
-        "AppDetailBase.VerificationStatusEnum": AppDetailBase.VerificationStatusEnum,
-        "AppSummary.VerificationStatusEnum": AppSummary.VerificationStatusEnum,
+        "AppStoreApp.VerificationStatusEnum": AppStoreApp.VerificationStatusEnum,
+        "AppStoreApp.ConfigurationTypeEnum": AppStoreApp.ConfigurationTypeEnum,
+        "AppStoreApp.StoreSelectorTypeEnum": AppStoreApp.StoreSelectorTypeEnum,
+        "AppStoreApp.TeammateAppAccessLevelEnum": AppStoreApp.TeammateAppAccessLevelEnum,
+        "AppStoreApp.PermissionsTypeEnum": AppStoreApp.PermissionsTypeEnum,
+        "AppStoreAppConfiguration.VerificationStatusEnum": AppStoreAppConfiguration.VerificationStatusEnum,
+        "AppStoreAppConfiguration.ConfigurationTypeEnum": AppStoreAppConfiguration.ConfigurationTypeEnum,
+        "AppStoreAppConfiguration.StoreSelectorTypeEnum": AppStoreAppConfiguration.StoreSelectorTypeEnum,
+        "AppStoreAppConfiguration.TeammateAppAccessLevelEnum": AppStoreAppConfiguration.TeammateAppAccessLevelEnum,
+        "AppStoreAppConfiguration.PermissionsTypeEnum": AppStoreAppConfiguration.PermissionsTypeEnum,
+        "AppStoreAppConfigurationSummary.ConfigurationTypeEnum": AppStoreAppConfigurationSummary.ConfigurationTypeEnum,
+        "AppStoreAppConfigurationSummary.StoreSelectorTypeEnum": AppStoreAppConfigurationSummary.StoreSelectorTypeEnum,
+        "AppStoreAppSummary.VerificationStatusEnum": AppStoreAppSummary.VerificationStatusEnum,
         "BankAccount.AccountStateEnum": BankAccount.AccountStateEnum,
         "BankAccountCreate.CurrencyCodeEnum": BankAccountCreate.CurrencyCodeEnum,
         "BankAccountCreate.BusinessTypeEnum": BankAccountCreate.BusinessTypeEnum,
@@ -40926,6 +41045,10 @@ let enumsMap: {[index: string]: any} = {
         "CatalogItem.ItemTypeEnum": CatalogItem.ItemTypeEnum,
         "CatalogItemReference.ItemTypeEnum": CatalogItemReference.ItemTypeEnum,
         "Channel.SourceEnum": Channel.SourceEnum,
+        "CreateAppStoreApp.ConfigurationTypeEnum": CreateAppStoreApp.ConfigurationTypeEnum,
+        "CreateAppStoreApp.StoreSelectorTypeEnum": CreateAppStoreApp.StoreSelectorTypeEnum,
+        "CreateAppStoreApp.TeammateAppAccessLevelEnum": CreateAppStoreApp.TeammateAppAccessLevelEnum,
+        "CreateAppStoreApp.PermissionsTypeEnum": CreateAppStoreApp.PermissionsTypeEnum,
         "CreateCatalogGroup.GroupTypeEnum": CreateCatalogGroup.GroupTypeEnum,
         "CreateCatalogGroupReference.GroupTypeEnum": CreateCatalogGroupReference.GroupTypeEnum,
         "CreateCatalogItem.ItemTypeEnum": CreateCatalogItem.ItemTypeEnum,
@@ -41068,6 +41191,10 @@ let enumsMap: {[index: string]: any} = {
         "Teammate.InvitationStatusEnum": Teammate.InvitationStatusEnum,
         "Teammate.AppAccessLevelEnum": Teammate.AppAccessLevelEnum,
         "TeammateBase.AppAccessLevelEnum": TeammateBase.AppAccessLevelEnum,
+        "UpdateAppStoreApp.ConfigurationTypeEnum": UpdateAppStoreApp.ConfigurationTypeEnum,
+        "UpdateAppStoreApp.StoreSelectorTypeEnum": UpdateAppStoreApp.StoreSelectorTypeEnum,
+        "UpdateAppStoreApp.TeammateAppAccessLevelEnum": UpdateAppStoreApp.TeammateAppAccessLevelEnum,
+        "UpdateAppStoreApp.PermissionsTypeEnum": UpdateAppStoreApp.PermissionsTypeEnum,
         "UpdateCatalogGroupReference.GroupTypeEnum": UpdateCatalogGroupReference.GroupTypeEnum,
         "UpdateCatalogItemReference.ItemTypeEnum": UpdateCatalogItemReference.ItemTypeEnum,
         "UpdateMetafieldDefinition.BehaviorsEnum": UpdateMetafieldDefinition.BehaviorsEnum,
@@ -41103,18 +41230,15 @@ let typeMap: {[index: string]: any} = {
     "App": App,
     "AppCompliance": AppCompliance,
     "AppConfigUpdateModel": AppConfigUpdateModel,
-    "AppConfigurationBase": AppConfigurationBase,
-    "AppConfigurationDetail": AppConfigurationDetail,
-    "AppConfigurationHeader": AppConfigurationHeader,
-    "AppConfigurationSetting": AppConfigurationSetting,
-    "AppConfigurationSummary": AppConfigurationSummary,
     "AppCreatedEvent": AppCreatedEvent,
-    "AppDetail": AppDetail,
-    "AppDetailBase": AppDetailBase,
+    "AppStoreApp": AppStoreApp,
+    "AppStoreAppConfiguration": AppStoreAppConfiguration,
+    "AppStoreAppConfigurationHeader": AppStoreAppConfigurationHeader,
+    "AppStoreAppConfigurationSummary": AppStoreAppConfigurationSummary,
+    "AppStoreAppSummary": AppStoreAppSummary,
     "AppStoreConfigCreatedEvent": AppStoreConfigCreatedEvent,
     "AppStoreConfigDeletedEvent": AppStoreConfigDeletedEvent,
     "AppStoreConfigUpdatedEvent": AppStoreConfigUpdatedEvent,
-    "AppSummary": AppSummary,
     "AppUpdatedEvent": AppUpdatedEvent,
     "AssignedBankAccount": AssignedBankAccount,
     "BalanceDetails": BalanceDetails,
@@ -41157,6 +41281,7 @@ let typeMap: {[index: string]: any} = {
     "Coordinates": Coordinates,
     "CountryWithAccountFieldsDefinitions": CountryWithAccountFieldsDefinitions,
     "CreateAccountModel": CreateAccountModel,
+    "CreateAppStoreApp": CreateAppStoreApp,
     "CreateCatalogGroup": CreateCatalogGroup,
     "CreateCatalogGroupReference": CreateCatalogGroupReference,
     "CreateCatalogItem": CreateCatalogItem,
@@ -41388,8 +41513,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultApmCurrencyDataPoint": RestApiArrayResultApmCurrencyDataPoint,
     "RestApiArrayResultApmDataPoint": RestApiArrayResultApmDataPoint,
     "RestApiArrayResultApmHourlyDataPoint": RestApiArrayResultApmHourlyDataPoint,
-    "RestApiArrayResultAppConfigurationHeader": RestApiArrayResultAppConfigurationHeader,
-    "RestApiArrayResultAppConfigurationSummary": RestApiArrayResultAppConfigurationSummary,
+    "RestApiArrayResultAppStoreAppConfigurationHeader": RestApiArrayResultAppStoreAppConfigurationHeader,
+    "RestApiArrayResultAppStoreAppConfigurationSummary": RestApiArrayResultAppStoreAppConfigurationSummary,
     "RestApiArrayResultBankAccountSummary": RestApiArrayResultBankAccountSummary,
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
     "RestApiArrayResultCountryWithAccountFieldsDefinitions": RestApiArrayResultCountryWithAccountFieldsDefinitions,
@@ -41431,7 +41556,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiForbiddenResult": RestApiForbiddenResult,
     "RestApiIntegerResult": RestApiIntegerResult,
     "RestApiPaginationResultApp": RestApiPaginationResultApp,
-    "RestApiPaginationResultAppSummary": RestApiPaginationResultAppSummary,
+    "RestApiPaginationResultAppStoreAppSummary": RestApiPaginationResultAppStoreAppSummary,
     "RestApiPaginationResultBusinessHoursOverride": RestApiPaginationResultBusinessHoursOverride,
     "RestApiPaginationResultCatalogGroup": RestApiPaginationResultCatalogGroup,
     "RestApiPaginationResultCatalogItem": RestApiPaginationResultCatalogItem,
@@ -41464,8 +41589,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultApmStatus": RestApiResultApmStatus,
     "RestApiResultApp": RestApiResultApp,
     "RestApiResultAppCompliance": RestApiResultAppCompliance,
-    "RestApiResultAppConfigurationSummary": RestApiResultAppConfigurationSummary,
-    "RestApiResultAppDetail": RestApiResultAppDetail,
+    "RestApiResultAppStoreApp": RestApiResultAppStoreApp,
+    "RestApiResultAppStoreAppConfiguration": RestApiResultAppStoreAppConfiguration,
     "RestApiResultAssignedBankAccount": RestApiResultAssignedBankAccount,
     "RestApiResultBankAccountDetail": RestApiResultBankAccountDetail,
     "RestApiResultBluetoothTerminalStatus": RestApiResultBluetoothTerminalStatus,
@@ -41608,7 +41733,9 @@ let typeMap: {[index: string]: any} = {
     "TeammateInviteAcceptedEvent": TeammateInviteAcceptedEvent,
     "TeammateInviteSentEvent": TeammateInviteSentEvent,
     "TeammateUpdatedEvent": TeammateUpdatedEvent,
-    "UpdateAppConfiguration": UpdateAppConfiguration,
+    "UpdateAppStoreApp": UpdateAppStoreApp,
+    "UpdateAppStoreAppConfiguration": UpdateAppStoreAppConfiguration,
+    "UpdateAppStoreAppConfigurationWebhookDTO": UpdateAppStoreAppConfigurationWebhookDTO,
     "UpdateCatalogGroup": UpdateCatalogGroup,
     "UpdateCatalogGroupReference": UpdateCatalogGroupReference,
     "UpdateCatalogItem": UpdateCatalogItem,
@@ -43024,9 +43151,9 @@ export class AppStoreApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system][Note: Only Flipdish staff can verify apps]
-     * @summary Update app store app verification
-     * @param appStoreAppId App Store App Id
-     * @param verificationStatus New Verification Status
+     * @summary Update App store app verification
+     * @param appStoreAppId App store app id
+     * @param verificationStatus New verification status
      * @param {*} [options] Override http request options.
      */
     public appVerificationUpdate (appStoreAppId: string, verificationStatus: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -43087,19 +43214,19 @@ export class AppStoreApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Create app store app
-     * @param appDetailBase App Store App Detail Base
+     * @summary Create App store app
+     * @param createAppStoreApp App store app
      * @param {*} [options] Override http request options.
      */
-    public createAppStoreApp (appDetailBase: AppDetailBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppDetail;  }> {
+    public createAppStoreApp (createAppStoreApp: CreateAppStoreApp, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreApp;  }> {
         const localVarPath = this.basePath + '/api/v1.0/appstore/apps';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'appDetailBase' is not null or undefined
-        if (appDetailBase === null || appDetailBase === undefined) {
-            throw new Error('Required parameter appDetailBase was null or undefined when calling createAppStoreApp.');
+        // verify required parameter 'createAppStoreApp' is not null or undefined
+        if (createAppStoreApp === null || createAppStoreApp === undefined) {
+            throw new Error('Required parameter createAppStoreApp was null or undefined when calling createAppStoreApp.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -43113,7 +43240,7 @@ export class AppStoreApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(appDetailBase, "AppDetailBase")
+            body: ObjectSerializer.serialize(createAppStoreApp, "CreateAppStoreApp")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -43127,12 +43254,12 @@ export class AppStoreApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppDetail;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreApp;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultAppDetail");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreApp");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -43144,8 +43271,8 @@ export class AppStoreApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Delete app store app
-     * @param appStoreAppId App Store App Id
+     * @summary Delete App store app
+     * @param appStoreAppId App store app id
      * @param {*} [options] Override http request options.
      */
     public deleteAppStoreApp (appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
@@ -43201,11 +43328,11 @@ export class AppStoreApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get app store app details
-     * @param appStoreAppId App Store App Id
+     * @summary Get App store app
+     * @param appStoreAppId App store app id
      * @param {*} [options] Override http request options.
      */
-    public getAppStoreApp (appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: AppDetail;  }> {
+    public getAppStoreApp (appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: AppStoreApp;  }> {
         const localVarPath = this.basePath + '/api/v1.0/appstore/apps/{appStoreAppId}'
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
         let localVarQueryParameters: any = {};
@@ -43241,12 +43368,12 @@ export class AppStoreApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: AppDetail;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: AppStoreApp;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "AppDetail");
+                    body = ObjectSerializer.deserialize(body, "AppStoreApp");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -43258,14 +43385,14 @@ export class AppStoreApi {
     }
     /**
      * Only returns verified applications [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get list of app store app summaries
-     * @param search Query app store app name
+     * @summary Get list of App store app summaries
+     * @param search Query App store app name
      * @param page Requested page index
      * @param limit Requested page limit
-     * @param excludeNotOwned Exclude app store apps that user is not the owner off
+     * @param excludeNotOwned Exclude App store apps that user is not the owner off
      * @param {*} [options] Override http request options.
      */
-    public getAppStoreApps (search: string, page?: number, limit?: number, excludeNotOwned?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultAppSummary;  }> {
+    public getAppStoreApps (search: string, page?: number, limit?: number, excludeNotOwned?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultAppStoreAppSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/appstore/apps';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -43316,12 +43443,12 @@ export class AppStoreApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultAppSummary;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultAppStoreAppSummary;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultAppSummary");
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultAppStoreAppSummary");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -43333,12 +43460,12 @@ export class AppStoreApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Update app store app
-     * @param appStoreAppId App Store App Id
-     * @param appDetail App Store App Detail
+     * @summary Update App store app
+     * @param appStoreAppId App store app id
+     * @param appStoreApp Update App store app
      * @param {*} [options] Override http request options.
      */
-    public updateAppStoreApp (appStoreAppId: string, appDetail: AppDetail, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateAppStoreApp (appStoreAppId: string, appStoreApp: UpdateAppStoreApp, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/appstore/apps/{appStoreAppId}'
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
         let localVarQueryParameters: any = {};
@@ -43350,9 +43477,9 @@ export class AppStoreApi {
             throw new Error('Required parameter appStoreAppId was null or undefined when calling updateAppStoreApp.');
         }
 
-        // verify required parameter 'appDetail' is not null or undefined
-        if (appDetail === null || appDetail === undefined) {
-            throw new Error('Required parameter appDetail was null or undefined when calling updateAppStoreApp.');
+        // verify required parameter 'appStoreApp' is not null or undefined
+        if (appStoreApp === null || appStoreApp === undefined) {
+            throw new Error('Required parameter appStoreApp was null or undefined when calling updateAppStoreApp.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -43366,7 +43493,7 @@ export class AppStoreApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(appDetail, "AppDetail")
+            body: ObjectSerializer.serialize(appStoreApp, "UpdateAppStoreApp")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -43396,8 +43523,8 @@ export class AppStoreApi {
     }
     /**
      * 
-     * @summary Upload the app store app logo \\ icon
-     * @param appStoreAppId App Store App Id
+     * @summary Upload the App store app logo \\ icon
+     * @param appStoreAppId App store app id
      * @param Image App Store App Logo
      * @param {*} [options] Override http request options.
      */
@@ -43513,12 +43640,12 @@ export class AppStoreConfigurationsApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system] This adds an Application to a Whitelabel that can later be configured to specific stores
-     * @summary Create app store app configuration
-     * @param appId App Id
-     * @param appStoreAppId App Store App Id
+     * @summary Create App store app configuration
+     * @param appId App id
+     * @param appStoreAppId App store app id
      * @param {*} [options] Override http request options.
      */
-    public createAppStoreConfig (appId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppConfigurationSummary;  }> {
+    public createAppStoreConfig (appId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreAppConfiguration;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/config'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
@@ -43560,12 +43687,12 @@ export class AppStoreConfigurationsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppConfigurationSummary;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreAppConfiguration;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultAppConfigurationSummary");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreAppConfiguration");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -43577,10 +43704,10 @@ export class AppStoreConfigurationsApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Delete app store app configuration
-     * @param appId App Id
-     * @param appStoreAppId App Store App Id
-     * @param configId App Store Configuration Id
+     * @summary Delete App store app configuration
+     * @param appId App id
+     * @param appStoreAppId App store app id
+     * @param configId App store app configuration id
      * @param {*} [options] Override http request options.
      */
     public deleteAppStoreConfig (appId: string, appStoreAppId: string, configId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
@@ -43648,13 +43775,13 @@ export class AppStoreConfigurationsApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get app store app configuration
-     * @param appId App Id
-     * @param appStoreAppId App Store App Id
-     * @param configId App Store Configuration Id
+     * @summary Get App store app configuration
+     * @param appId App id
+     * @param appStoreAppId App store app id
+     * @param configId App store app configuration id
      * @param {*} [options] Override http request options.
      */
-    public getAppStoreConfig (appId: string, appStoreAppId: string, configId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: AppConfigurationDetail;  }> {
+    public getAppStoreConfig (appId: string, appStoreAppId: string, configId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: AppStoreAppConfiguration;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/config/{configId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)))
@@ -43702,12 +43829,12 @@ export class AppStoreConfigurationsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: AppConfigurationDetail;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: AppStoreAppConfiguration;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "AppConfigurationDetail");
+                    body = ObjectSerializer.deserialize(body, "AppStoreAppConfiguration");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -43719,12 +43846,12 @@ export class AppStoreConfigurationsApi {
     }
     /**
      * [ALPHA - this endpoint is not ready to be consumed]
-     * @summary Get list of app store app configurations for one app store app
-     * @param appId App Id
-     * @param appStoreAppId App Store App Id
+     * @summary Get list of App store app configurations for one App store app
+     * @param appId App id
+     * @param appStoreAppId App store app id
      * @param {*} [options] Override http request options.
      */
-    public getConfiguredAppSingleApp (appId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppConfigurationSummary;  }> {
+    public getConfiguredAppSingleApp (appId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppStoreAppConfigurationSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
@@ -43766,12 +43893,12 @@ export class AppStoreConfigurationsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppConfigurationSummary;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppStoreAppConfigurationSummary;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultAppConfigurationSummary");
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultAppStoreAppConfigurationSummary");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -43783,11 +43910,11 @@ export class AppStoreConfigurationsApi {
     }
     /**
      * [ALPHA - this endpoint is not ready to be consumed]
-     * @summary Get list of app store apps which have been configured
-     * @param appId App Id
+     * @summary Get list of App store apps which have been configured
+     * @param appId App id
      * @param {*} [options] Override http request options.
      */
-    public getConfiguredApps (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppConfigurationHeader;  }> {
+    public getConfiguredApps (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppStoreAppConfigurationHeader;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -43823,12 +43950,12 @@ export class AppStoreConfigurationsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppConfigurationHeader;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppStoreAppConfigurationHeader;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultAppConfigurationHeader");
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultAppStoreAppConfigurationHeader");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -43840,14 +43967,14 @@ export class AppStoreConfigurationsApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Update app store app configuration
-     * @param appId App Id
-     * @param appStoreAppId App Store App Id
-     * @param configId App Store Configuration Id
-     * @param updateAppConfigurationBase App Store Configuration Base
+     * @summary Update App store app configuration
+     * @param appId App id
+     * @param appStoreAppId App store app id
+     * @param configId App store app configuration id
+     * @param updateAppStoreAppConfiguration Update App store app configuration
      * @param {*} [options] Override http request options.
      */
-    public updateAppStoreConfig (appId: string, appStoreAppId: string, configId: string, updateAppConfigurationBase: UpdateAppConfiguration, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateAppStoreConfig (appId: string, appStoreAppId: string, configId: string, updateAppStoreAppConfiguration: UpdateAppStoreAppConfiguration, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/config/{configId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)))
@@ -43871,9 +43998,9 @@ export class AppStoreConfigurationsApi {
             throw new Error('Required parameter configId was null or undefined when calling updateAppStoreConfig.');
         }
 
-        // verify required parameter 'updateAppConfigurationBase' is not null or undefined
-        if (updateAppConfigurationBase === null || updateAppConfigurationBase === undefined) {
-            throw new Error('Required parameter updateAppConfigurationBase was null or undefined when calling updateAppStoreConfig.');
+        // verify required parameter 'updateAppStoreAppConfiguration' is not null or undefined
+        if (updateAppStoreAppConfiguration === null || updateAppStoreAppConfiguration === undefined) {
+            throw new Error('Required parameter updateAppStoreAppConfiguration was null or undefined when calling updateAppStoreConfig.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -43887,7 +44014,7 @@ export class AppStoreConfigurationsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(updateAppConfigurationBase, "UpdateAppConfiguration")
+            body: ObjectSerializer.serialize(updateAppStoreAppConfiguration, "UpdateAppStoreAppConfiguration")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
