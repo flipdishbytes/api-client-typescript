@@ -1213,6 +1213,38 @@ export namespace App {
     }
 }
 /**
+* Describes a ChannelAssignment which is   when a AppId is assigned to a Sales Channel
+*/
+export class AppChannelAssignment {
+    /**
+    * Id of the channel on the assignment
+    */
+    'ChannelId'?: number;
+    /**
+    * AppId of the assignment
+    */
+    'AppId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ChannelId",
+            "baseName": "ChannelId",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppChannelAssignment.attributeTypeMap;
+    }
+}
+
+/**
 * Application compliance model
 */
 export class AppCompliance {
@@ -26428,6 +26460,29 @@ export class RestApiArrayResultBusinessHoursPeriod {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultChannel {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<Channel>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<Channel>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultChannel.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultCountryWithAccountFieldsDefinitions {
     /**
     * Generic data object.
@@ -27049,6 +27104,29 @@ export class RestApiArrayResultRetentionCampaign {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultStoreChannelAssignment {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<StoreChannelAssignment>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<StoreChannelAssignment>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultStoreChannelAssignment.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultStoreChannelStoreMapping {
     /**
     * Generic data object.
@@ -27600,56 +27678,6 @@ export class RestApiPaginationResultCatalogItem {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultCatalogItem.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api pagination result
-*/
-export class RestApiPaginationResultChannel {
-    /**
-    * Current page index
-    */
-    'Page': number;
-    /**
-    * Current page size
-    */
-    'Limit': number;
-    /**
-    * Total record count
-    */
-    'TotalRecordCount': number;
-    /**
-    * Generic data object.
-    */
-    'Data': Array<Channel>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Page",
-            "baseName": "Page",
-            "type": "number"
-        },
-        {
-            "name": "Limit",
-            "baseName": "Limit",
-            "type": "number"
-        },
-        {
-            "name": "TotalRecordCount",
-            "baseName": "TotalRecordCount",
-            "type": "number"
-        },
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Array<Channel>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiPaginationResultChannel.attributeTypeMap;
     }
 }
 
@@ -28871,6 +28899,29 @@ export class RestApiResultApp {
 /**
 * Rest api result
 */
+export class RestApiResultAppChannelAssignment {
+    /**
+    * Generic data object.
+    */
+    'Data': AppChannelAssignment;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "AppChannelAssignment"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultAppChannelAssignment.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultAppCompliance {
     /**
     * Generic data object.
@@ -30084,6 +30135,29 @@ export class RestApiResultStoreAddress {
 
     static getAttributeTypeMap() {
         return RestApiResultStoreAddress.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultStoreChannelAssignment {
+    /**
+    * Generic data object.
+    */
+    'Data': StoreChannelAssignment;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "StoreChannelAssignment"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultStoreChannelAssignment.attributeTypeMap;
     }
 }
 
@@ -33155,6 +33229,47 @@ export class StoreCampaignStartTime {
 
     static getAttributeTypeMap() {
         return StoreCampaignStartTime.attributeTypeMap;
+    }
+}
+
+/**
+* Represents a store that is assigned to a Sales Channel
+*/
+export class StoreChannelAssignment {
+    /**
+    * Channel ID
+    */
+    'ChannelId'?: number;
+    /**
+    * Store ID
+    */
+    'StoreId'?: number;
+    /**
+    * Store Name
+    */
+    'StoreName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ChannelId",
+            "baseName": "ChannelId",
+            "type": "number"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreName",
+            "baseName": "StoreName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreChannelAssignment.attributeTypeMap;
     }
 }
 
@@ -41228,6 +41343,7 @@ let typeMap: {[index: string]: any} = {
     "ApmStatistics": ApmStatistics,
     "ApmStatus": ApmStatus,
     "App": App,
+    "AppChannelAssignment": AppChannelAssignment,
     "AppCompliance": AppCompliance,
     "AppConfigUpdateModel": AppConfigUpdateModel,
     "AppCreatedEvent": AppCreatedEvent,
@@ -41517,6 +41633,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultAppStoreAppConfigurationSummary": RestApiArrayResultAppStoreAppConfigurationSummary,
     "RestApiArrayResultBankAccountSummary": RestApiArrayResultBankAccountSummary,
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
+    "RestApiArrayResultChannel": RestApiArrayResultChannel,
     "RestApiArrayResultCountryWithAccountFieldsDefinitions": RestApiArrayResultCountryWithAccountFieldsDefinitions,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
     "RestApiArrayResultDriver": RestApiArrayResultDriver,
@@ -41544,6 +41661,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultProcessingFeeConfig": RestApiArrayResultProcessingFeeConfig,
     "RestApiArrayResultRestApiDefaultResponse": RestApiArrayResultRestApiDefaultResponse,
     "RestApiArrayResultRetentionCampaign": RestApiArrayResultRetentionCampaign,
+    "RestApiArrayResultStoreChannelAssignment": RestApiArrayResultStoreChannelAssignment,
     "RestApiArrayResultStoreChannelStoreMapping": RestApiArrayResultStoreChannelStoreMapping,
     "RestApiArrayResultStoreListItem": RestApiArrayResultStoreListItem,
     "RestApiArrayResultStoreStatistics": RestApiArrayResultStoreStatistics,
@@ -41560,7 +41678,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultBusinessHoursOverride": RestApiPaginationResultBusinessHoursOverride,
     "RestApiPaginationResultCatalogGroup": RestApiPaginationResultCatalogGroup,
     "RestApiPaginationResultCatalogItem": RestApiPaginationResultCatalogItem,
-    "RestApiPaginationResultChannel": RestApiPaginationResultChannel,
     "RestApiPaginationResultHttpRequestAndResponseLog": RestApiPaginationResultHttpRequestAndResponseLog,
     "RestApiPaginationResultHydraDeviceDetails": RestApiPaginationResultHydraDeviceDetails,
     "RestApiPaginationResultMetafieldDefinition": RestApiPaginationResultMetafieldDefinition,
@@ -41588,6 +41705,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultApmStatistics": RestApiResultApmStatistics,
     "RestApiResultApmStatus": RestApiResultApmStatus,
     "RestApiResultApp": RestApiResultApp,
+    "RestApiResultAppChannelAssignment": RestApiResultAppChannelAssignment,
     "RestApiResultAppCompliance": RestApiResultAppCompliance,
     "RestApiResultAppStoreApp": RestApiResultAppStoreApp,
     "RestApiResultAppStoreAppConfiguration": RestApiResultAppStoreAppConfiguration,
@@ -41641,6 +41759,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultRetentionCampaign": RestApiResultRetentionCampaign,
     "RestApiResultStore": RestApiResultStore,
     "RestApiResultStoreAddress": RestApiResultStoreAddress,
+    "RestApiResultStoreChannelAssignment": RestApiResultStoreChannelAssignment,
     "RestApiResultStoreEndOfDayReport": RestApiResultStoreEndOfDayReport,
     "RestApiResultStoreGroup": RestApiResultStoreGroup,
     "RestApiResultStoreGroupBase": RestApiResultStoreGroupBase,
@@ -41682,6 +41801,7 @@ let typeMap: {[index: string]: any} = {
     "StoreBusinessHoursOverrideCreatedEvent": StoreBusinessHoursOverrideCreatedEvent,
     "StoreBusinessHoursOverrideDeletedEvent": StoreBusinessHoursOverrideDeletedEvent,
     "StoreCampaignStartTime": StoreCampaignStartTime,
+    "StoreChannelAssignment": StoreChannelAssignment,
     "StoreChannelStoreMapping": StoreChannelStoreMapping,
     "StoreCloneSettings": StoreCloneSettings,
     "StoreCreateBase": StoreCreateBase,
@@ -48798,11 +48918,11 @@ export class ChannelsApi {
     }
     /**
      * 
-     * @summary Returns a list of sales channels that are assigned to a given whitelabel
+     * @summary Returns a list of sales channels that are assigned to a given AppId
      * @param appId Application Id (AppNameIdxxx)
      * @param {*} [options] Override http request options.
      */
-    public getAssignedChannels (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public getAssignedChannels (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultChannel;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/assigned-channels'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -48838,12 +48958,12 @@ export class ChannelsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultChannel;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultChannel");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -48855,11 +48975,68 @@ export class ChannelsApi {
     }
     /**
      * 
-     * @param id 
-     * @param appId 
+     * @summary Returns a list of sales channels that are not yet assigned to a given AppId
+     * @param appId Application Id (AppNameIdxxx)
      * @param {*} [options] Override http request options.
      */
-    public getChannel (id: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultChannel;  }> {
+    public getAvailableChannels (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultChannel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/available-channels'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAvailableChannels.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultChannel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultChannel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param id ChannelId
+     * @param appId AppId
+     * @param {*} [options] Override http request options.
+     */
+    public getChannel (id: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: Channel;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -48901,12 +49078,12 @@ export class ChannelsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultChannel;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: Channel;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultChannel");
+                    body = ObjectSerializer.deserialize(body, "Channel");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -48921,7 +49098,7 @@ export class ChannelsApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getChannels (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultChannel;  }> {
+    public getChannels (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultChannel;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/channels'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -48957,12 +49134,12 @@ export class ChannelsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultChannel;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultChannel;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultChannel");
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultChannel");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -48974,69 +49151,12 @@ export class ChannelsApi {
     }
     /**
      * 
-     * @summary Returns a list of sales channels that are not yet assigned to a given whitelabel
-     * @param appId Application Id (AppNameIdxxx)
-     * @param {*} [options] Override http request options.
-     */
-    public getNotAssignedChannels (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/available-channels'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getNotAssignedChannels.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "any");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Returns a list of store that are assigned to the given sales channel.
+     * @summary Returns a list of stores of an AppId that are assigned to a given Sales Channel
      * @param appId Application Id (AppNameId)
      * @param channelId Sales channel (Android, IOS, Web, etc.)
      * @param {*} [options] Override http request options.
      */
-    public getStoresAssignedToChannel (appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public getStoresAssignedToChannel (appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreChannelAssignment;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/{channelId}/assigned-stores'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'channelId' + '}', encodeURIComponent(String(channelId)));
@@ -49078,12 +49198,12 @@ export class ChannelsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreChannelAssignment;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultStoreChannelAssignment");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -49200,7 +49320,7 @@ export class ChannelsApi {
         let localVarUseFormData = false;
 
         let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
+            method: 'DELETE',
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
