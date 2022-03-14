@@ -1515,11 +1515,11 @@ export class AppStoreApp {
     /**
     * Tags
     */
-    'Tags': Array<string>;
+    'Tags': Array<AppStoreApp.TagsEnum>;
     /**
     * Regions
     */
-    'Regions': Array<string>;
+    'Regions': Array<AppStoreApp.RegionsEnum>;
     /**
     * Developer Name
     */
@@ -1601,12 +1601,12 @@ export class AppStoreApp {
         {
             "name": "Tags",
             "baseName": "Tags",
-            "type": "Array<string>"
+            "type": "Array<AppStoreApp.TagsEnum>"
         },
         {
             "name": "Regions",
             "baseName": "Regions",
-            "type": "Array<string>"
+            "type": "Array<AppStoreApp.RegionsEnum>"
         },
         {
             "name": "DeveloperName",
@@ -1646,6 +1646,34 @@ export namespace AppStoreApp {
     }
     export enum PermissionsTypeEnum {
         Teammate = <any> 'Teammate'
+    }
+    export enum TagsEnum {
+        PointOfSale = <any> 'PointOfSale',
+        DeliveryAndLogistics = <any> 'DeliveryAndLogistics',
+        CRM = <any> 'CRM',
+        GiftCard = <any> 'GiftCard',
+        Accounting = <any> 'Accounting',
+        LoyaltyAndMarketing = <any> 'LoyaltyAndMarketing',
+        Other = <any> 'Other'
+    }
+    export enum RegionsEnum {
+        GB = <any> 'GB',
+        IE = <any> 'IE',
+        FR = <any> 'FR',
+        ES = <any> 'ES',
+        PT = <any> 'PT',
+        IT = <any> 'IT',
+        DE = <any> 'DE',
+        PL = <any> 'PL',
+        BE = <any> 'BE',
+        LU = <any> 'LU',
+        NL = <any> 'NL',
+        US = <any> 'US',
+        CA = <any> 'CA',
+        BG = <any> 'BG',
+        MX = <any> 'MX',
+        AU = <any> 'AU',
+        NZ = <any> 'NZ'
     }
 }
 /**
@@ -1727,11 +1755,11 @@ export class AppStoreAppConfiguration {
     /**
     * Tags
     */
-    'Tags': Array<string>;
+    'Tags': Array<AppStoreAppConfiguration.TagsEnum>;
     /**
     * Regions
     */
-    'Regions': Array<string>;
+    'Regions': Array<AppStoreAppConfiguration.RegionsEnum>;
     /**
     * Developer Name
     */
@@ -1833,12 +1861,12 @@ export class AppStoreAppConfiguration {
         {
             "name": "Tags",
             "baseName": "Tags",
-            "type": "Array<string>"
+            "type": "Array<AppStoreAppConfiguration.TagsEnum>"
         },
         {
             "name": "Regions",
             "baseName": "Regions",
-            "type": "Array<string>"
+            "type": "Array<AppStoreAppConfiguration.RegionsEnum>"
         },
         {
             "name": "DeveloperName",
@@ -1878,6 +1906,34 @@ export namespace AppStoreAppConfiguration {
     }
     export enum PermissionsTypeEnum {
         Teammate = <any> 'Teammate'
+    }
+    export enum TagsEnum {
+        PointOfSale = <any> 'PointOfSale',
+        DeliveryAndLogistics = <any> 'DeliveryAndLogistics',
+        CRM = <any> 'CRM',
+        GiftCard = <any> 'GiftCard',
+        Accounting = <any> 'Accounting',
+        LoyaltyAndMarketing = <any> 'LoyaltyAndMarketing',
+        Other = <any> 'Other'
+    }
+    export enum RegionsEnum {
+        GB = <any> 'GB',
+        IE = <any> 'IE',
+        FR = <any> 'FR',
+        ES = <any> 'ES',
+        PT = <any> 'PT',
+        IT = <any> 'IT',
+        DE = <any> 'DE',
+        PL = <any> 'PL',
+        BE = <any> 'BE',
+        LU = <any> 'LU',
+        NL = <any> 'NL',
+        US = <any> 'US',
+        CA = <any> 'CA',
+        BG = <any> 'BG',
+        MX = <any> 'MX',
+        AU = <any> 'AU',
+        NZ = <any> 'NZ'
     }
 }
 /**
@@ -2094,11 +2150,11 @@ export class AppStoreAppSummary {
     /**
     * Tags
     */
-    'Tags': Array<string>;
+    'Tags': Array<AppStoreAppSummary.TagsEnum>;
     /**
     * Regions
     */
-    'Regions': Array<string>;
+    'Regions': Array<AppStoreAppSummary.RegionsEnum>;
     /**
     * Developer Name
     */
@@ -2140,12 +2196,12 @@ export class AppStoreAppSummary {
         {
             "name": "Tags",
             "baseName": "Tags",
-            "type": "Array<string>"
+            "type": "Array<AppStoreAppSummary.TagsEnum>"
         },
         {
             "name": "Regions",
             "baseName": "Regions",
-            "type": "Array<string>"
+            "type": "Array<AppStoreAppSummary.RegionsEnum>"
         },
         {
             "name": "DeveloperName",
@@ -2163,6 +2219,34 @@ export namespace AppStoreAppSummary {
         Draft = <any> 'Draft',
         Submitted = <any> 'Submitted',
         Verified = <any> 'Verified'
+    }
+    export enum TagsEnum {
+        PointOfSale = <any> 'PointOfSale',
+        DeliveryAndLogistics = <any> 'DeliveryAndLogistics',
+        CRM = <any> 'CRM',
+        GiftCard = <any> 'GiftCard',
+        Accounting = <any> 'Accounting',
+        LoyaltyAndMarketing = <any> 'LoyaltyAndMarketing',
+        Other = <any> 'Other'
+    }
+    export enum RegionsEnum {
+        GB = <any> 'GB',
+        IE = <any> 'IE',
+        FR = <any> 'FR',
+        ES = <any> 'ES',
+        PT = <any> 'PT',
+        IT = <any> 'IT',
+        DE = <any> 'DE',
+        PL = <any> 'PL',
+        BE = <any> 'BE',
+        LU = <any> 'LU',
+        NL = <any> 'NL',
+        US = <any> 'US',
+        CA = <any> 'CA',
+        BG = <any> 'BG',
+        MX = <any> 'MX',
+        AU = <any> 'AU',
+        NZ = <any> 'NZ'
     }
 }
 /**
@@ -5781,11 +5865,11 @@ export class CreateAppStoreApp {
     /**
     * Tags
     */
-    'Tags': Array<string>;
+    'Tags': Array<CreateAppStoreApp.TagsEnum>;
     /**
     * Regions
     */
-    'Regions': Array<string>;
+    'Regions': Array<CreateAppStoreApp.RegionsEnum>;
     /**
     * Developer Name
     */
@@ -5852,12 +5936,12 @@ export class CreateAppStoreApp {
         {
             "name": "Tags",
             "baseName": "Tags",
-            "type": "Array<string>"
+            "type": "Array<CreateAppStoreApp.TagsEnum>"
         },
         {
             "name": "Regions",
             "baseName": "Regions",
-            "type": "Array<string>"
+            "type": "Array<CreateAppStoreApp.RegionsEnum>"
         },
         {
             "name": "DeveloperName",
@@ -5892,6 +5976,34 @@ export namespace CreateAppStoreApp {
     }
     export enum PermissionsTypeEnum {
         Teammate = <any> 'Teammate'
+    }
+    export enum TagsEnum {
+        PointOfSale = <any> 'PointOfSale',
+        DeliveryAndLogistics = <any> 'DeliveryAndLogistics',
+        CRM = <any> 'CRM',
+        GiftCard = <any> 'GiftCard',
+        Accounting = <any> 'Accounting',
+        LoyaltyAndMarketing = <any> 'LoyaltyAndMarketing',
+        Other = <any> 'Other'
+    }
+    export enum RegionsEnum {
+        GB = <any> 'GB',
+        IE = <any> 'IE',
+        FR = <any> 'FR',
+        ES = <any> 'ES',
+        PT = <any> 'PT',
+        IT = <any> 'IT',
+        DE = <any> 'DE',
+        PL = <any> 'PL',
+        BE = <any> 'BE',
+        LU = <any> 'LU',
+        NL = <any> 'NL',
+        US = <any> 'US',
+        CA = <any> 'CA',
+        BG = <any> 'BG',
+        MX = <any> 'MX',
+        AU = <any> 'AU',
+        NZ = <any> 'NZ'
     }
 }
 /**
@@ -37755,11 +37867,11 @@ export class UpdateAppStoreApp {
     /**
     * Tags
     */
-    'Tags': Array<string>;
+    'Tags': Array<UpdateAppStoreApp.TagsEnum>;
     /**
     * Regions
     */
-    'Regions': Array<string>;
+    'Regions': Array<UpdateAppStoreApp.RegionsEnum>;
     /**
     * Developer Name
     */
@@ -37826,12 +37938,12 @@ export class UpdateAppStoreApp {
         {
             "name": "Tags",
             "baseName": "Tags",
-            "type": "Array<string>"
+            "type": "Array<UpdateAppStoreApp.TagsEnum>"
         },
         {
             "name": "Regions",
             "baseName": "Regions",
-            "type": "Array<string>"
+            "type": "Array<UpdateAppStoreApp.RegionsEnum>"
         },
         {
             "name": "DeveloperName",
@@ -37866,6 +37978,34 @@ export namespace UpdateAppStoreApp {
     }
     export enum PermissionsTypeEnum {
         Teammate = <any> 'Teammate'
+    }
+    export enum TagsEnum {
+        PointOfSale = <any> 'PointOfSale',
+        DeliveryAndLogistics = <any> 'DeliveryAndLogistics',
+        CRM = <any> 'CRM',
+        GiftCard = <any> 'GiftCard',
+        Accounting = <any> 'Accounting',
+        LoyaltyAndMarketing = <any> 'LoyaltyAndMarketing',
+        Other = <any> 'Other'
+    }
+    export enum RegionsEnum {
+        GB = <any> 'GB',
+        IE = <any> 'IE',
+        FR = <any> 'FR',
+        ES = <any> 'ES',
+        PT = <any> 'PT',
+        IT = <any> 'IT',
+        DE = <any> 'DE',
+        PL = <any> 'PL',
+        BE = <any> 'BE',
+        LU = <any> 'LU',
+        NL = <any> 'NL',
+        US = <any> 'US',
+        CA = <any> 'CA',
+        BG = <any> 'BG',
+        MX = <any> 'MX',
+        AU = <any> 'AU',
+        NZ = <any> 'NZ'
     }
 }
 /**
@@ -41130,14 +41270,20 @@ let enumsMap: {[index: string]: any} = {
         "AppStoreApp.StoreSelectorTypeEnum": AppStoreApp.StoreSelectorTypeEnum,
         "AppStoreApp.TeammateAppAccessLevelEnum": AppStoreApp.TeammateAppAccessLevelEnum,
         "AppStoreApp.PermissionsTypeEnum": AppStoreApp.PermissionsTypeEnum,
+        "AppStoreApp.TagsEnum": AppStoreApp.TagsEnum,
+        "AppStoreApp.RegionsEnum": AppStoreApp.RegionsEnum,
         "AppStoreAppConfiguration.VerificationStatusEnum": AppStoreAppConfiguration.VerificationStatusEnum,
         "AppStoreAppConfiguration.ConfigurationTypeEnum": AppStoreAppConfiguration.ConfigurationTypeEnum,
         "AppStoreAppConfiguration.StoreSelectorTypeEnum": AppStoreAppConfiguration.StoreSelectorTypeEnum,
         "AppStoreAppConfiguration.TeammateAppAccessLevelEnum": AppStoreAppConfiguration.TeammateAppAccessLevelEnum,
         "AppStoreAppConfiguration.PermissionsTypeEnum": AppStoreAppConfiguration.PermissionsTypeEnum,
+        "AppStoreAppConfiguration.TagsEnum": AppStoreAppConfiguration.TagsEnum,
+        "AppStoreAppConfiguration.RegionsEnum": AppStoreAppConfiguration.RegionsEnum,
         "AppStoreAppConfigurationSummary.ConfigurationTypeEnum": AppStoreAppConfigurationSummary.ConfigurationTypeEnum,
         "AppStoreAppConfigurationSummary.StoreSelectorTypeEnum": AppStoreAppConfigurationSummary.StoreSelectorTypeEnum,
         "AppStoreAppSummary.VerificationStatusEnum": AppStoreAppSummary.VerificationStatusEnum,
+        "AppStoreAppSummary.TagsEnum": AppStoreAppSummary.TagsEnum,
+        "AppStoreAppSummary.RegionsEnum": AppStoreAppSummary.RegionsEnum,
         "BankAccount.AccountStateEnum": BankAccount.AccountStateEnum,
         "BankAccountCreate.CurrencyCodeEnum": BankAccountCreate.CurrencyCodeEnum,
         "BankAccountCreate.BusinessTypeEnum": BankAccountCreate.BusinessTypeEnum,
@@ -41164,6 +41310,8 @@ let enumsMap: {[index: string]: any} = {
         "CreateAppStoreApp.StoreSelectorTypeEnum": CreateAppStoreApp.StoreSelectorTypeEnum,
         "CreateAppStoreApp.TeammateAppAccessLevelEnum": CreateAppStoreApp.TeammateAppAccessLevelEnum,
         "CreateAppStoreApp.PermissionsTypeEnum": CreateAppStoreApp.PermissionsTypeEnum,
+        "CreateAppStoreApp.TagsEnum": CreateAppStoreApp.TagsEnum,
+        "CreateAppStoreApp.RegionsEnum": CreateAppStoreApp.RegionsEnum,
         "CreateCatalogGroup.GroupTypeEnum": CreateCatalogGroup.GroupTypeEnum,
         "CreateCatalogGroupReference.GroupTypeEnum": CreateCatalogGroupReference.GroupTypeEnum,
         "CreateCatalogItem.ItemTypeEnum": CreateCatalogItem.ItemTypeEnum,
@@ -41310,6 +41458,8 @@ let enumsMap: {[index: string]: any} = {
         "UpdateAppStoreApp.StoreSelectorTypeEnum": UpdateAppStoreApp.StoreSelectorTypeEnum,
         "UpdateAppStoreApp.TeammateAppAccessLevelEnum": UpdateAppStoreApp.TeammateAppAccessLevelEnum,
         "UpdateAppStoreApp.PermissionsTypeEnum": UpdateAppStoreApp.PermissionsTypeEnum,
+        "UpdateAppStoreApp.TagsEnum": UpdateAppStoreApp.TagsEnum,
+        "UpdateAppStoreApp.RegionsEnum": UpdateAppStoreApp.RegionsEnum,
         "UpdateCatalogGroupReference.GroupTypeEnum": UpdateCatalogGroupReference.GroupTypeEnum,
         "UpdateCatalogItemReference.ItemTypeEnum": UpdateCatalogItemReference.ItemTypeEnum,
         "UpdateMetafieldDefinition.BehaviorsEnum": UpdateMetafieldDefinition.BehaviorsEnum,
