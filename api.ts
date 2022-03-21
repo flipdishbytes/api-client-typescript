@@ -6875,29 +6875,6 @@ export class CreateMenuSectionItemFromCatalogItems {
 }
 
 /**
-* Add Product to a Menu
-*/
-export class CreateMenuSectionItemFromProducts {
-    /**
-    * List of Products to add to the section
-    */
-    'ProductItems': Array<ProductItem>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "ProductItems",
-            "baseName": "ProductItems",
-            "type": "Array<ProductItem>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return CreateMenuSectionItemFromProducts.attributeTypeMap;
-    }
-}
-
-/**
 * Tax Rates Associated with a Menu
 */
 export class CreateMenuTaxRate {
@@ -17996,7 +17973,13 @@ export class MenuSectionItem {
     * Tax rate name
     */
     'TaxRateName'?: string;
+    /**
+    * TaxRate
+    */
     'TaxRateId'?: number;
+    /**
+    * TaxValue - the tax associated with this item, based on TaxRate / TaxType and Currency (currency determines decimal point precision)
+    */
     'TaxValue'?: number;
     /**
     * List of metadata
@@ -25656,46 +25639,6 @@ export namespace ProcessingFeeConfig {
         Eps = <any> 'Eps',
         Emv = <any> 'Emv',
         PayPal = <any> 'PayPal'
-    }
-}
-/**
-* Item
-*/
-export class ProductItem {
-    /**
-    * Product Id to the product to add as Menu Item
-    */
-    'ProductId': string;
-    /**
-    * Small | Medium | Large | HiddenImage  Affects the layout of the menu.
-    */
-    'CellLayoutType'?: ProductItem.CellLayoutTypeEnum;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "ProductId",
-            "baseName": "ProductId",
-            "type": "string"
-        },
-        {
-            "name": "CellLayoutType",
-            "baseName": "CellLayoutType",
-            "type": "ProductItem.CellLayoutTypeEnum"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return ProductItem.attributeTypeMap;
-    }
-}
-
-export namespace ProductItem {
-    export enum CellLayoutTypeEnum {
-        Small = <any> 'Small',
-        Medium = <any> 'Medium',
-        Large = <any> 'Large',
-        HiddenImage = <any> 'HiddenImage'
     }
 }
 /**
@@ -41406,7 +41349,6 @@ let enumsMap: {[index: string]: any} = {
         "PhoneCall.CallStatusEnum": PhoneCall.CallStatusEnum,
         "PreOrderConfig.PreOrderTimeDisplayTypeEnum": PreOrderConfig.PreOrderTimeDisplayTypeEnum,
         "ProcessingFeeConfig.PaymentAccountTypeEnum": ProcessingFeeConfig.PaymentAccountTypeEnum,
-        "ProductItem.CellLayoutTypeEnum": ProductItem.CellLayoutTypeEnum,
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
         "RedeemInvitationResult.InvitationStatusEnum": RedeemInvitationResult.InvitationStatusEnum,
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
@@ -41541,7 +41483,6 @@ let typeMap: {[index: string]: any} = {
     "CreateFullMenuSection": CreateFullMenuSection,
     "CreateFullMenuSectionItem": CreateFullMenuSectionItem,
     "CreateMenuSectionItemFromCatalogItems": CreateMenuSectionItemFromCatalogItems,
-    "CreateMenuSectionItemFromProducts": CreateMenuSectionItemFromProducts,
     "CreateMenuTaxRate": CreateMenuTaxRate,
     "CreateMetadata": CreateMetadata,
     "CreateMetafieldDefinition": CreateMetafieldDefinition,
@@ -41743,7 +41684,6 @@ let typeMap: {[index: string]: any} = {
     "PrinterTurnedOnEvent": PrinterTurnedOnEvent,
     "PrinterUnassignedFromStoreEvent": PrinterUnassignedFromStoreEvent,
     "ProcessingFeeConfig": ProcessingFeeConfig,
-    "ProductItem": ProductItem,
     "PushNotificationDeletedEvent": PushNotificationDeletedEvent,
     "PushNotificationRequest": PushNotificationRequest,
     "PushNotificationResponse": PushNotificationResponse,
@@ -48098,69 +48038,6 @@ export class CatalogItemsApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Delete a CatalogItem Image
-     * @param appId 
-     * @param catalogItemId 
-     * @param {*} [options] Override http request options.
-     */
-    public deleteCatalogItemImage (appId: string, catalogItemId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/items/{catalogItemId}/image'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'catalogItemId' + '}', encodeURIComponent(String(catalogItemId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling deleteCatalogItemImage.');
-        }
-
-        // verify required parameter 'catalogItemId' is not null or undefined
-        if (catalogItemId === null || catalogItemId === undefined) {
-            throw new Error('Required parameter catalogItemId was null or undefined when calling deleteCatalogItemImage.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Duplicate Catalog Item
      * @param appId 
      * @param catalogItemId 
@@ -48429,81 +48306,6 @@ export class CatalogItemsApi {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Upload a Catalog Item Image
-     * @param appId 
-     * @param catalogItemId 
-     * @param Image Catalog Item image
-     * @param {*} [options] Override http request options.
-     */
-    public uploadCatalogItemImage (appId: string, catalogItemId: string, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/items/{catalogItemId}/image'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'catalogItemId' + '}', encodeURIComponent(String(catalogItemId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling uploadCatalogItemImage.');
-        }
-
-        // verify required parameter 'catalogItemId' is not null or undefined
-        if (catalogItemId === null || catalogItemId === undefined) {
-            throw new Error('Required parameter catalogItemId was null or undefined when calling uploadCatalogItemImage.');
-        }
-
-        // verify required parameter 'Image' is not null or undefined
-        if (Image === null || Image === undefined) {
-            throw new Error('Required parameter Image was null or undefined when calling uploadCatalogItemImage.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        if (Image !== undefined) {
-            localVarFormParams['Image'] = Image;
-        }
-        localVarUseFormData = true;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -56827,77 +56629,6 @@ export class MenuSectionItemsApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(createFromCatalogItems, "CreateMenuSectionItemFromCatalogItems")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "any");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * BETA - this endpoint is under development, do not use it in your production system
-     * @summary Create menu section items from a list of Products
-     * @param menuId Menu identifier
-     * @param menuSectionId Menu section identifier
-     * @param createFromProducts Menu section item
-     * @param {*} [options] Override http request options.
-     */
-    public createMenuSectionItemFromProducts (menuId: number, menuSectionId: number, createFromProducts: CreateMenuSectionItemFromProducts, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitems/add-products'
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
-            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling createMenuSectionItemFromProducts.');
-        }
-
-        // verify required parameter 'menuSectionId' is not null or undefined
-        if (menuSectionId === null || menuSectionId === undefined) {
-            throw new Error('Required parameter menuSectionId was null or undefined when calling createMenuSectionItemFromProducts.');
-        }
-
-        // verify required parameter 'createFromProducts' is not null or undefined
-        if (createFromProducts === null || createFromProducts === undefined) {
-            throw new Error('Required parameter createFromProducts was null or undefined when calling createMenuSectionItemFromProducts.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(createFromProducts, "CreateMenuSectionItemFromProducts")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
