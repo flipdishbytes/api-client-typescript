@@ -6852,6 +6852,29 @@ export namespace CreateFullMenuSectionItem {
     }
 }
 /**
+* Input model for creating a LocationArea
+*/
+export class CreateLocationArea {
+    /**
+    * Descriptive LocationArea name
+    */
+    'LocationAreaName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LocationAreaName",
+            "baseName": "LocationAreaName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateLocationArea.attributeTypeMap;
+    }
+}
+
+/**
 * Add CatalogItems to a Menu
 */
 export class CreateMenuSectionItemFromCatalogItems {
@@ -15025,6 +15048,138 @@ export class Location {
 
     static getAttributeTypeMap() {
         return Location.attributeTypeMap;
+    }
+}
+
+/**
+* Represents a LocationArea
+*/
+export class LocationArea {
+    /**
+    * Id of the LocationArea
+    */
+    'LocationAreaId'?: number;
+    /**
+    * Id of the Store that this LocationArea belongs to
+    */
+    'StoreId'?: number;
+    /**
+    * Descriptive LocationArea name
+    */
+    'LocationAreaName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LocationAreaId",
+            "baseName": "LocationAreaId",
+            "type": "number"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "LocationAreaName",
+            "baseName": "LocationAreaName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LocationArea.attributeTypeMap;
+    }
+}
+
+/**
+* Representation of a Location i.e: (Table, Hotel Room, Car Park, etc )
+*/
+export class LocationAreaLocation {
+    /**
+    * Id of the Location
+    */
+    'LocationId'?: number;
+    /**
+    * Name of the Location
+    */
+    'LocationName'?: string;
+    /**
+    * Id of the Location on an external system
+    */
+    'ExternalLocationId'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LocationId",
+            "baseName": "LocationId",
+            "type": "number"
+        },
+        {
+            "name": "LocationName",
+            "baseName": "LocationName",
+            "type": "string"
+        },
+        {
+            "name": "ExternalLocationId",
+            "baseName": "ExternalLocationId",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LocationAreaLocation.attributeTypeMap;
+    }
+}
+
+/**
+* Represents a LocationArea and its Location list
+*/
+export class LocationAreaWithLocations {
+    /**
+    * Id of the LocationArea
+    */
+    'LocationAreaId'?: number;
+    /**
+    * Id of the Store that this LocationArea belongs to
+    */
+    'StoreId'?: number;
+    /**
+    * Descriptive LocationArea name
+    */
+    'LocationAreaName'?: string;
+    /**
+    * List of Locations that belongs to this Location Area
+    */
+    'Locations'?: Array<LocationAreaLocation>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LocationAreaId",
+            "baseName": "LocationAreaId",
+            "type": "number"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "LocationAreaName",
+            "baseName": "LocationAreaName",
+            "type": "string"
+        },
+        {
+            "name": "Locations",
+            "baseName": "Locations",
+            "type": "Array<LocationAreaLocation>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LocationAreaWithLocations.attributeTypeMap;
     }
 }
 
@@ -26632,6 +26787,29 @@ export class RestApiArrayResultLocalisedTimeZone {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultLocalisedTimeZone.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultLocationAreaWithLocations {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<LocationAreaWithLocations>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<LocationAreaWithLocations>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultLocationAreaWithLocations.attributeTypeMap;
     }
 }
 
@@ -38270,6 +38448,47 @@ export class UpdateDriverProfileModel {
 }
 
 /**
+* Input model for updating a LocationArea
+*/
+export class UpdateLocationArea {
+    /**
+    * Location Area Id
+    */
+    'LocationAreaId'?: number;
+    /**
+    * Descriptive LocationArea name
+    */
+    'LocationAreaName'?: string;
+    /**
+    * Sets if the Location Area should be soft deleted or not
+    */
+    'IsDeleted'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LocationAreaId",
+            "baseName": "LocationAreaId",
+            "type": "number"
+        },
+        {
+            "name": "LocationAreaName",
+            "baseName": "LocationAreaName",
+            "type": "string"
+        },
+        {
+            "name": "IsDeleted",
+            "baseName": "IsDeleted",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateLocationArea.attributeTypeMap;
+    }
+}
+
+/**
 * Information to update a {Flipdish.PublicModels.V1.Metafields.MetafieldDefinition}
 */
 export class UpdateMetafieldDefinition {
@@ -41482,6 +41701,7 @@ let typeMap: {[index: string]: any} = {
     "CreateFullMenuItemOptionSetItem": CreateFullMenuItemOptionSetItem,
     "CreateFullMenuSection": CreateFullMenuSection,
     "CreateFullMenuSectionItem": CreateFullMenuSectionItem,
+    "CreateLocationArea": CreateLocationArea,
     "CreateMenuSectionItemFromCatalogItems": CreateMenuSectionItemFromCatalogItems,
     "CreateMenuTaxRate": CreateMenuTaxRate,
     "CreateMetadata": CreateMetadata,
@@ -41575,6 +41795,9 @@ let typeMap: {[index: string]: any} = {
     "LineItemOption": LineItemOption,
     "LocalisedTimeZone": LocalisedTimeZone,
     "Location": Location,
+    "LocationArea": LocationArea,
+    "LocationAreaLocation": LocationAreaLocation,
+    "LocationAreaWithLocations": LocationAreaWithLocations,
     "LoginModel": LoginModel,
     "LoginWithPinModel": LoginWithPinModel,
     "LoyaltyCampaign": LoyaltyCampaign,
@@ -41714,6 +41937,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultHomeAction": RestApiArrayResultHomeAction,
     "RestApiArrayResultKioskCashPaymentSettings": RestApiArrayResultKioskCashPaymentSettings,
     "RestApiArrayResultLocalisedTimeZone": RestApiArrayResultLocalisedTimeZone,
+    "RestApiArrayResultLocationAreaWithLocations": RestApiArrayResultLocationAreaWithLocations,
     "RestApiArrayResultLoyaltyCampaign": RestApiArrayResultLoyaltyCampaign,
     "RestApiArrayResultMenuCheckpoint": RestApiArrayResultMenuCheckpoint,
     "RestApiArrayResultMenuElementEditResponse": RestApiArrayResultMenuElementEditResponse,
@@ -41934,6 +42158,7 @@ let typeMap: {[index: string]: any} = {
     "UpdateCatalogItemReference": UpdateCatalogItemReference,
     "UpdateDriverNotificationToken": UpdateDriverNotificationToken,
     "UpdateDriverProfileModel": UpdateDriverProfileModel,
+    "UpdateLocationArea": UpdateLocationArea,
     "UpdateMetafieldDefinition": UpdateMetafieldDefinition,
     "UpdateTipConfiguration": UpdateTipConfiguration,
     "UserAnsweredSignupQuestionsEvent": UserAnsweredSignupQuestionsEvent,
@@ -54916,6 +55141,340 @@ export class LightspeedApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultLightspeedSettings");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum LocationAreasApiApiKeys {
+}
+
+export class LocationAreasApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: LocationAreasApiApiKeys, value: string) {
+        (this.authentications as any)[LocationAreasApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Create a Location Area, i.e: Room, Floor, Parking lot
+     * @param locationAreaInput Input data for creating the Location Area
+     * @param appId AppId i.e: (fd1234)
+     * @param storeId Id of the Store
+     * @param {*} [options] Override http request options.
+     */
+    public createLocationArea (locationAreaInput: CreateLocationArea, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/location-areas'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'locationAreaInput' is not null or undefined
+        if (locationAreaInput === null || locationAreaInput === undefined) {
+            throw new Error('Required parameter locationAreaInput was null or undefined when calling createLocationArea.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createLocationArea.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling createLocationArea.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(locationAreaInput, "CreateLocationArea")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Retrieve a Location Area
+     * @param locationAreaId Id of the Location Area
+     * @param appId AppId i.e: (fd1234)
+     * @param storeId Id of the Store
+     * @param {*} [options] Override http request options.
+     */
+    public getLocationArea (locationAreaId: number, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: LocationAreaWithLocations;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/location-areas/{locationAreaId}'
+            .replace('{' + 'locationAreaId' + '}', encodeURIComponent(String(locationAreaId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'locationAreaId' is not null or undefined
+        if (locationAreaId === null || locationAreaId === undefined) {
+            throw new Error('Required parameter locationAreaId was null or undefined when calling getLocationArea.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getLocationArea.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getLocationArea.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: LocationAreaWithLocations;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "LocationAreaWithLocations");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Retrieve all Location Areas for a Store
+     * @param appId AppId i.e: (fd1234)
+     * @param storeId Id of the Store
+     * @param {*} [options] Override http request options.
+     */
+    public getLocationsForStore (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLocationAreaWithLocations;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/location-areas'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getLocationsForStore.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getLocationsForStore.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLocationAreaWithLocations;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultLocationAreaWithLocations");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update a Location Area, i.e: Room, Floor, Car park space
+     * @param locationAreaInput Input data for updating the Location Area
+     * @param appId AppId i.e: (fd1234)
+     * @param storeId Id of the Store
+     * @param locationAreaId 
+     * @param {*} [options] Override http request options.
+     */
+    public updateLocationArea (locationAreaInput: UpdateLocationArea, appId: string, storeId: number, locationAreaId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: LocationArea;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/location-areas/{locationAreaId}/update'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'locationAreaId' + '}', encodeURIComponent(String(locationAreaId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'locationAreaInput' is not null or undefined
+        if (locationAreaInput === null || locationAreaInput === undefined) {
+            throw new Error('Required parameter locationAreaInput was null or undefined when calling updateLocationArea.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateLocationArea.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling updateLocationArea.');
+        }
+
+        // verify required parameter 'locationAreaId' is not null or undefined
+        if (locationAreaId === null || locationAreaId === undefined) {
+            throw new Error('Required parameter locationAreaId was null or undefined when calling updateLocationArea.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(locationAreaInput, "UpdateLocationArea")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: LocationArea;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "LocationArea");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
