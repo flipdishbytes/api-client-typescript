@@ -24768,6 +24768,47 @@ export namespace PayoutSummary {
     }
 }
 /**
+* Pending Menu Changes
+*/
+export class PendingMenuChanges {
+    /**
+    * Unique product id
+    */
+    'ProductId'?: string;
+    /**
+    * Unique menu id
+    */
+    'MenuId'?: number;
+    /**
+    * Update date and time
+    */
+    'LastUpdatedAt'?: Date;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ProductId",
+            "baseName": "ProductId",
+            "type": "string"
+        },
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "LastUpdatedAt",
+            "baseName": "LastUpdatedAt",
+            "type": "Date"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PendingMenuChanges.attributeTypeMap;
+    }
+}
+
+/**
 * Percent discount details
 */
 export class PercentDiscountDetails {
@@ -28427,6 +28468,56 @@ export class RestApiPaginationResultPayoutRefund {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultPayoutRefund.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
+export class RestApiPaginationResultPendingMenuChanges {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<PendingMenuChanges>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<PendingMenuChanges>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultPendingMenuChanges.attributeTypeMap;
     }
 }
 
@@ -41893,6 +41984,7 @@ let typeMap: {[index: string]: any} = {
     "PayoutRequestIds": PayoutRequestIds,
     "PayoutStore": PayoutStore,
     "PayoutSummary": PayoutSummary,
+    "PendingMenuChanges": PendingMenuChanges,
     "PercentDiscountDetails": PercentDiscountDetails,
     "PhoneCall": PhoneCall,
     "PhoneCallEndedEvent": PhoneCallEndedEvent,
@@ -41986,6 +42078,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultPayoutOrder": RestApiPaginationResultPayoutOrder,
     "RestApiPaginationResultPayoutOtherCharge": RestApiPaginationResultPayoutOtherCharge,
     "RestApiPaginationResultPayoutRefund": RestApiPaginationResultPayoutRefund,
+    "RestApiPaginationResultPendingMenuChanges": RestApiPaginationResultPendingMenuChanges,
     "RestApiPaginationResultPhoneCall": RestApiPaginationResultPhoneCall,
     "RestApiPaginationResultPushNotificationResponse": RestApiPaginationResultPushNotificationResponse,
     "RestApiPaginationResultStore": RestApiPaginationResultStore,
@@ -64019,6 +64112,133 @@ export class PayoutsExportApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "string");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum PendingMenuChangesApiApiKeys {
+}
+
+export class PendingMenuChangesApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: PendingMenuChangesApiApiKeys, value: string) {
+        (this.authentications as any)[PendingMenuChangesApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get menu pending changes from Catalog groups and items
+     * @param appId 
+     * @param menuId 
+     * @param catalogElementId 
+     * @param page 
+     * @param limit 
+     * @param {*} [options] Override http request options.
+     */
+    public getPendingMenuChanges (appId: string, menuId?: number, catalogElementId?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPendingMenuChanges;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/menus/pendingmenuchanges'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getPendingMenuChanges.');
+        }
+
+        if (menuId !== undefined) {
+            localVarQueryParameters['menuId'] = ObjectSerializer.serialize(menuId, "number");
+        }
+
+        if (catalogElementId !== undefined) {
+            localVarQueryParameters['catalogElementId'] = ObjectSerializer.serialize(catalogElementId, "string");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPendingMenuChanges;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultPendingMenuChanges");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
