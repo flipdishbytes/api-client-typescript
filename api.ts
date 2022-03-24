@@ -1469,6 +1469,10 @@ export class AppStoreApp {
     */
     'Logo'?: string;
     /**
+    * Details
+    */
+    'Details': string;
+    /**
     * Configuration type  <example>External link</example><example>Flipdish hosted</example>
     */
     'ConfigurationType': AppStoreApp.ConfigurationTypeEnum;
@@ -1541,6 +1545,11 @@ export class AppStoreApp {
         {
             "name": "Logo",
             "baseName": "Logo",
+            "type": "string"
+        },
+        {
+            "name": "Details",
+            "baseName": "Details",
             "type": "string"
         },
         {
@@ -1713,6 +1722,10 @@ export class AppStoreAppConfiguration {
     */
     'Logo'?: string;
     /**
+    * Details
+    */
+    'Details': string;
+    /**
     * Configuration type  <example>External link</example><example>Flipdish hosted</example>
     */
     'ConfigurationType': AppStoreAppConfiguration.ConfigurationTypeEnum;
@@ -1806,6 +1819,11 @@ export class AppStoreAppConfiguration {
         {
             "name": "Logo",
             "baseName": "Logo",
+            "type": "string"
+        },
+        {
+            "name": "Details",
+            "baseName": "Details",
             "type": "string"
         },
         {
@@ -5828,6 +5846,10 @@ export class CreateAccountModel {
 */
 export class CreateAppStoreApp {
     /**
+    * Details
+    */
+    'Details': string;
+    /**
     * Configuration type  <example>External link</example><example>Flipdish hosted</example>
     */
     'ConfigurationType': CreateAppStoreApp.ConfigurationTypeEnum;
@@ -5887,6 +5909,11 @@ export class CreateAppStoreApp {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Details",
+            "baseName": "Details",
+            "type": "string"
+        },
         {
             "name": "ConfigurationType",
             "baseName": "ConfigurationType",
@@ -6851,6 +6878,47 @@ export namespace CreateFullMenuSectionItem {
         HiddenImage = <any> 'HiddenImage'
     }
 }
+/**
+* Input model for creating a Location
+*/
+export class CreateLocation {
+    /**
+    * Descriptive LocationArea name
+    */
+    'LocationName'?: string;
+    /**
+    * The order that the Location should be displayed on the screen
+    */
+    'DisplayOrder'?: number;
+    /**
+    * Id of the Location on an external system
+    */
+    'ExternalLocationId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LocationName",
+            "baseName": "LocationName",
+            "type": "string"
+        },
+        {
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
+            "type": "number"
+        },
+        {
+            "name": "ExternalLocationId",
+            "baseName": "ExternalLocationId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateLocation.attributeTypeMap;
+    }
+}
+
 /**
 * Input model for creating a LocationArea
 */
@@ -15105,9 +15173,13 @@ export class LocationAreaLocation {
     */
     'LocationName'?: string;
     /**
+    * The order that the Location should be displayed on the screen
+    */
+    'DisplayOrder'?: number;
+    /**
     * Id of the Location on an external system
     */
-    'ExternalLocationId'?: number;
+    'ExternalLocationId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -15123,9 +15195,14 @@ export class LocationAreaLocation {
             "type": "string"
         },
         {
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
+            "type": "number"
+        },
+        {
             "name": "ExternalLocationId",
             "baseName": "ExternalLocationId",
-            "type": "number"
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -37958,6 +38035,10 @@ export class TipConfiguration {
 */
 export class UpdateAppStoreApp {
     /**
+    * Details
+    */
+    'Details': string;
+    /**
     * Configuration type  <example>External link</example><example>Flipdish hosted</example>
     */
     'ConfigurationType': UpdateAppStoreApp.ConfigurationTypeEnum;
@@ -38017,6 +38098,11 @@ export class UpdateAppStoreApp {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Details",
+            "baseName": "Details",
+            "type": "string"
+        },
         {
             "name": "ConfigurationType",
             "baseName": "ConfigurationType",
@@ -41792,6 +41878,7 @@ let typeMap: {[index: string]: any} = {
     "CreateFullMenuItemOptionSetItem": CreateFullMenuItemOptionSetItem,
     "CreateFullMenuSection": CreateFullMenuSection,
     "CreateFullMenuSectionItem": CreateFullMenuSectionItem,
+    "CreateLocation": CreateLocation,
     "CreateLocationArea": CreateLocationArea,
     "CreateMenuSectionItemFromCatalogItems": CreateMenuSectionItemFromCatalogItems,
     "CreateMenuTaxRate": CreateMenuTaxRate,
@@ -55234,6 +55321,134 @@ export class LightspeedApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultLightspeedSettings");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum LocationApiApiKeys {
+}
+
+export class LocationApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: LocationApiApiKeys, value: string) {
+        (this.authentications as any)[LocationApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Create a Location i.e: Table, Hotel Room, Car park space
+     * @param createLocationInput Input data for creating the Location
+     * @param locationAreaId Id of the Location area where the Location belongs
+     * @param appId AppId i.e: (fd1234)
+     * @param storeId Id of the Store
+     * @param {*} [options] Override http request options.
+     */
+    public createLocation (createLocationInput: CreateLocation, locationAreaId: number, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/location-areas/{locationAreaId}/location'
+            .replace('{' + 'locationAreaId' + '}', encodeURIComponent(String(locationAreaId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'createLocationInput' is not null or undefined
+        if (createLocationInput === null || createLocationInput === undefined) {
+            throw new Error('Required parameter createLocationInput was null or undefined when calling createLocation.');
+        }
+
+        // verify required parameter 'locationAreaId' is not null or undefined
+        if (locationAreaId === null || locationAreaId === undefined) {
+            throw new Error('Required parameter locationAreaId was null or undefined when calling createLocation.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createLocation.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling createLocation.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(createLocationInput, "CreateLocation")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
