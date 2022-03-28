@@ -1143,10 +1143,6 @@ export namespace App {
         InitiateBluetoothPairingMode = <any> 'InitiateBluetoothPairingMode',
         ViewCustomers = <any> 'ViewCustomers',
         EditCustomers = <any> 'EditCustomers',
-        CreateProduct = <any> 'CreateProduct',
-        UpdateProduct = <any> 'UpdateProduct',
-        ViewProduct = <any> 'ViewProduct',
-        DeleteProduct = <any> 'DeleteProduct',
         CreateCatalogElements = <any> 'CreateCatalogElements',
         UpdateCatalogElements = <any> 'UpdateCatalogElements',
         ViewCatalogElements = <any> 'ViewCatalogElements',
@@ -1156,6 +1152,8 @@ export namespace App {
         UpdateMetafieldDefinitions = <any> 'UpdateMetafieldDefinitions',
         DeleteMetafieldDefinitions = <any> 'DeleteMetafieldDefinitions',
         UpdateMetafields = <any> 'UpdateMetafields',
+        ViewCatalogMenuChanges = <any> 'ViewCatalogMenuChanges',
+        PublishCatalogMenuChanges = <any> 'PublishCatalogMenuChanges',
         ViewAppStatistics = <any> 'ViewAppStatistics',
         ViewApmStatistics = <any> 'ViewApmStatistics',
         ViewCampaignsStatistics = <any> 'ViewCampaignsStatistics',
@@ -24849,9 +24847,9 @@ export namespace PayoutSummary {
 */
 export class PendingMenuChanges {
     /**
-    * Unique product id
+    * Unique catalog element id
     */
-    'ProductId'?: string;
+    'CatalogElementId'?: string;
     /**
     * Unique menu id
     */
@@ -24865,8 +24863,8 @@ export class PendingMenuChanges {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "ProductId",
-            "baseName": "ProductId",
+            "name": "CatalogElementId",
+            "baseName": "CatalogElementId",
             "type": "string"
         },
         {
@@ -47691,6 +47689,133 @@ export class CardReadersApi {
         });
     }
 }
+export enum CatalogChangesApiApiKeys {
+}
+
+export class CatalogChangesApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: CatalogChangesApiApiKeys, value: string) {
+        (this.authentications as any)[CatalogChangesApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get menu pending changes from Catalog groups and items
+     * @param appId 
+     * @param menuId 
+     * @param catalogElementId 
+     * @param page 
+     * @param limit 
+     * @param {*} [options] Override http request options.
+     */
+    public getPendingMenuChanges (appId: string, menuId?: number, catalogElementId?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPendingMenuChanges;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/menus/catalog-changes'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getPendingMenuChanges.');
+        }
+
+        if (menuId !== undefined) {
+            localVarQueryParameters['menuId'] = ObjectSerializer.serialize(menuId, "number");
+        }
+
+        if (catalogElementId !== undefined) {
+            localVarQueryParameters['catalogElementId'] = ObjectSerializer.serialize(catalogElementId, "string");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPendingMenuChanges;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultPendingMenuChanges");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
 export enum CatalogGroupsApiApiKeys {
 }
 
@@ -64327,133 +64452,6 @@ export class PayoutsExportApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "string");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-}
-export enum PendingMenuChangesApiApiKeys {
-}
-
-export class PendingMenuChangesApi {
-    protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
-    protected _useQuerystring : boolean = false;
-
-    protected authentications = {
-        'default': <Authentication>new VoidAuth(),
-        'oauth2': new OAuth(),
-    }
-
-    constructor(basePath?: string);
-    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
-        if (password) {
-            if (basePath) {
-                this.basePath = basePath;
-            }
-        } else {
-            if (basePathOrUsername) {
-                this.basePath = basePathOrUsername
-            }
-        }
-    }
-
-    set useQuerystring(value: boolean) {
-        this._useQuerystring = value;
-    }
-
-    set basePath(basePath: string) {
-        this._basePath = basePath;
-    }
-
-    get basePath() {
-        return this._basePath;
-    }
-
-    public setDefaultAuthentication(auth: Authentication) {
-	this.authentications.default = auth;
-    }
-
-    public setApiKey(key: PendingMenuChangesApiApiKeys, value: string) {
-        (this.authentications as any)[PendingMenuChangesApiApiKeys[key]].apiKey = value;
-    }
-
-    set accessToken(token: string) {
-        this.authentications.oauth2.accessToken = token;
-    }
-    /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get menu pending changes from Catalog groups and items
-     * @param appId 
-     * @param menuId 
-     * @param catalogElementId 
-     * @param page 
-     * @param limit 
-     * @param {*} [options] Override http request options.
-     */
-    public getPendingMenuChanges (appId: string, menuId?: number, catalogElementId?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPendingMenuChanges;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/menus/pendingmenuchanges'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getPendingMenuChanges.');
-        }
-
-        if (menuId !== undefined) {
-            localVarQueryParameters['menuId'] = ObjectSerializer.serialize(menuId, "number");
-        }
-
-        if (catalogElementId !== undefined) {
-            localVarQueryParameters['catalogElementId'] = ObjectSerializer.serialize(catalogElementId, "string");
-        }
-
-        if (page !== undefined) {
-            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
-        }
-
-        if (limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPendingMenuChanges;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultPendingMenuChanges");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
