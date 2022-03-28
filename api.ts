@@ -10312,6 +10312,10 @@ export class EventSearchResult {
     * Catalog Group Archived
     */
     'CatalogGroupArchivedEvent'?: Array<CatalogGroupArchivedEvent>;
+    /**
+    * Store Tip Updated Event
+    */
+    'StoreTipUpdatedEvent'?: Array<StoreTipUpdatedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -10935,6 +10939,11 @@ export class EventSearchResult {
             "name": "CatalogGroupArchivedEvent",
             "baseName": "CatalogGroupArchivedEvent",
             "type": "Array<CatalogGroupArchivedEvent>"
+        },
+        {
+            "name": "StoreTipUpdatedEvent",
+            "baseName": "StoreTipUpdatedEvent",
+            "type": "Array<StoreTipUpdatedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -15624,6 +15633,10 @@ export class LocationAreaWithLocations {
     * List of Locations that belongs to this Location Area
     */
     'Locations'?: Array<LocationAreaLocation>;
+    /**
+    * Returns if the LocationArea is deleted or not
+    */
+    'IsDeleted'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -15647,6 +15660,11 @@ export class LocationAreaWithLocations {
             "name": "Locations",
             "baseName": "Locations",
             "type": "Array<LocationAreaLocation>"
+        },
+        {
+            "name": "IsDeleted",
+            "baseName": "IsDeleted",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -30187,6 +30205,29 @@ export class RestApiResultCatalogItem {
 /**
 * Rest api result
 */
+export class RestApiResultChannel {
+    /**
+    * Generic data object.
+    */
+    'Data': Channel;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Channel"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultChannel.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultCoordinates {
     /**
     * Generic data object.
@@ -30572,6 +30613,29 @@ export class RestApiResultLightspeedSettings {
 
     static getAttributeTypeMap() {
         return RestApiResultLightspeedSettings.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultLocationAreaWithLocations {
+    /**
+    * Generic data object.
+    */
+    'Data': LocationAreaWithLocations;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "LocationAreaWithLocations"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultLocationAreaWithLocations.attributeTypeMap;
     }
 }
 
@@ -37543,6 +37607,110 @@ export namespace StoreSummary {
     }
 }
 /**
+* Store Tip Updated
+*/
+export class StoreTipUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * User which made the update
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Configuration change
+    */
+    'Config'?: UpdateTipConfiguration;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Config",
+            "baseName": "Config",
+            "type": "UpdateTipConfiguration"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreTipUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Store Unarchived Event
 */
 export class StoreUnarchivedEvent {
@@ -43315,6 +43483,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultCardReader": RestApiResultCardReader,
     "RestApiResultCatalogGroup": RestApiResultCatalogGroup,
     "RestApiResultCatalogItem": RestApiResultCatalogItem,
+    "RestApiResultChannel": RestApiResultChannel,
     "RestApiResultCoordinates": RestApiResultCoordinates,
     "RestApiResultCreatedMenuSectionItems": RestApiResultCreatedMenuSectionItems,
     "RestApiResultCustomer": RestApiResultCustomer,
@@ -43332,6 +43501,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultKioskIotConnectionParameters": RestApiResultKioskIotConnectionParameters,
     "RestApiResultKioskStoreSettings": RestApiResultKioskStoreSettings,
     "RestApiResultLightspeedSettings": RestApiResultLightspeedSettings,
+    "RestApiResultLocationAreaWithLocations": RestApiResultLocationAreaWithLocations,
     "RestApiResultLoyaltyCampaign": RestApiResultLoyaltyCampaign,
     "RestApiResultMenu": RestApiResultMenu,
     "RestApiResultMenuItemOptionSet": RestApiResultMenuItemOptionSet,
@@ -43433,6 +43603,7 @@ let typeMap: {[index: string]: any} = {
     "StorePublishedEvent": StorePublishedEvent,
     "StoreStatistics": StoreStatistics,
     "StoreSummary": StoreSummary,
+    "StoreTipUpdatedEvent": StoreTipUpdatedEvent,
     "StoreUnarchivedEvent": StoreUnarchivedEvent,
     "StoreUnpublishedEvent": StoreUnpublishedEvent,
     "StoreUpdatedEvent": StoreUpdatedEvent,
@@ -50488,7 +50659,7 @@ export class ChannelsApi {
      * @param appId AppId
      * @param {*} [options] Override http request options.
      */
-    public getChannel (id: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: Channel;  }> {
+    public getChannel (id: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultChannel;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -50530,12 +50701,12 @@ export class ChannelsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Channel;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultChannel;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Channel");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultChannel");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -56708,6 +56879,91 @@ export class LocationApi {
             });
         });
     }
+    /**
+     * 
+     * @summary Update a Location i.e: Table, Hotel Room, Car park space
+     * @param updateLocationInput Input data for updating the Location
+     * @param locationAreaId Id of the Location area where the Location belongs
+     * @param locationId Id of the Location to be updated
+     * @param appId AppId i.e: (fd1234)
+     * @param storeId Id of the Store
+     * @param {*} [options] Override http request options.
+     */
+    public updateLocation (updateLocationInput: CreateLocation, locationAreaId: number, locationId: number, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: LocationAreaLocation;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/location-areas/{locationAreaId}/location/{locationId}/update'
+            .replace('{' + 'locationAreaId' + '}', encodeURIComponent(String(locationAreaId)))
+            .replace('{' + 'locationId' + '}', encodeURIComponent(String(locationId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'updateLocationInput' is not null or undefined
+        if (updateLocationInput === null || updateLocationInput === undefined) {
+            throw new Error('Required parameter updateLocationInput was null or undefined when calling updateLocation.');
+        }
+
+        // verify required parameter 'locationAreaId' is not null or undefined
+        if (locationAreaId === null || locationAreaId === undefined) {
+            throw new Error('Required parameter locationAreaId was null or undefined when calling updateLocation.');
+        }
+
+        // verify required parameter 'locationId' is not null or undefined
+        if (locationId === null || locationId === undefined) {
+            throw new Error('Required parameter locationId was null or undefined when calling updateLocation.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateLocation.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling updateLocation.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(updateLocationInput, "CreateLocation")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: LocationAreaLocation;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "LocationAreaLocation");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
 }
 export enum LocationAreasApiApiKeys {
 }
@@ -56837,7 +57093,7 @@ export class LocationAreasApi {
      * @param storeId Id of the Store
      * @param {*} [options] Override http request options.
      */
-    public getLocationArea (locationAreaId: number, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: LocationAreaWithLocations;  }> {
+    public getLocationArea (locationAreaId: number, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLocationAreaWithLocations;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/location-areas/{locationAreaId}'
             .replace('{' + 'locationAreaId' + '}', encodeURIComponent(String(locationAreaId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
@@ -56885,12 +57141,12 @@ export class LocationAreasApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: LocationAreaWithLocations;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultLocationAreaWithLocations;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "LocationAreaWithLocations");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultLocationAreaWithLocations");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
