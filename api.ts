@@ -30619,6 +30619,29 @@ export class RestApiResultLightspeedSettings {
 /**
 * Rest api result
 */
+export class RestApiResultLocationAreaLocation {
+    /**
+    * Generic data object.
+    */
+    'Data': LocationAreaLocation;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "LocationAreaLocation"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultLocationAreaLocation.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultLocationAreaWithLocations {
     /**
     * Generic data object.
@@ -43501,6 +43524,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultKioskIotConnectionParameters": RestApiResultKioskIotConnectionParameters,
     "RestApiResultKioskStoreSettings": RestApiResultKioskStoreSettings,
     "RestApiResultLightspeedSettings": RestApiResultLightspeedSettings,
+    "RestApiResultLocationAreaLocation": RestApiResultLocationAreaLocation,
     "RestApiResultLocationAreaWithLocations": RestApiResultLocationAreaWithLocations,
     "RestApiResultLoyaltyCampaign": RestApiResultLoyaltyCampaign,
     "RestApiResultMenu": RestApiResultMenu,
@@ -56881,6 +56905,94 @@ export class LocationApi {
     }
     /**
      * 
+     * @summary Move a Location to a different location Area
+     * @param locationId Id of the Location that will be moved
+     * @param locationAreaId Id of the new Location area that it should be moved to
+     * @param newLocationAreaId Id of the new Location area that it should be moved to
+     * @param appId AppId i.e: (fd1234)
+     * @param storeId Id of the Store
+     * @param {*} [options] Override http request options.
+     */
+    public moveLocation (locationId: number, locationAreaId: number, newLocationAreaId: number, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/location-areas/{locationAreaId}/location/{locationId}/move'
+            .replace('{' + 'locationId' + '}', encodeURIComponent(String(locationId)))
+            .replace('{' + 'locationAreaId' + '}', encodeURIComponent(String(locationAreaId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'locationId' is not null or undefined
+        if (locationId === null || locationId === undefined) {
+            throw new Error('Required parameter locationId was null or undefined when calling moveLocation.');
+        }
+
+        // verify required parameter 'locationAreaId' is not null or undefined
+        if (locationAreaId === null || locationAreaId === undefined) {
+            throw new Error('Required parameter locationAreaId was null or undefined when calling moveLocation.');
+        }
+
+        // verify required parameter 'newLocationAreaId' is not null or undefined
+        if (newLocationAreaId === null || newLocationAreaId === undefined) {
+            throw new Error('Required parameter newLocationAreaId was null or undefined when calling moveLocation.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling moveLocation.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling moveLocation.');
+        }
+
+        if (newLocationAreaId !== undefined) {
+            localVarQueryParameters['newLocationAreaId'] = ObjectSerializer.serialize(newLocationAreaId, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Update a Location i.e: Table, Hotel Room, Car park space
      * @param updateLocationInput Input data for updating the Location
      * @param locationAreaId Id of the Location area where the Location belongs
@@ -56889,7 +57001,7 @@ export class LocationApi {
      * @param storeId Id of the Store
      * @param {*} [options] Override http request options.
      */
-    public updateLocation (updateLocationInput: CreateLocation, locationAreaId: number, locationId: number, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: LocationAreaLocation;  }> {
+    public updateLocation (updateLocationInput: CreateLocation, locationAreaId: number, locationId: number, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLocationAreaLocation;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/location-areas/{locationAreaId}/location/{locationId}/update'
             .replace('{' + 'locationAreaId' + '}', encodeURIComponent(String(locationAreaId)))
             .replace('{' + 'locationId' + '}', encodeURIComponent(String(locationId)))
@@ -56949,12 +57061,12 @@ export class LocationApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: LocationAreaLocation;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultLocationAreaLocation;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "LocationAreaLocation");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultLocationAreaLocation");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
