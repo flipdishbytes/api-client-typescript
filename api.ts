@@ -11605,6 +11605,38 @@ export namespace FulfillmentInfo {
     }
 }
 /**
+* Terminal location request
+*/
+export class GeoPointRequest {
+    /**
+    * Kiosk device latitude
+    */
+    'Latitude'?: number;
+    /**
+    * Kiosk device longitude
+    */
+    'Longitude'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Latitude",
+            "baseName": "Latitude",
+            "type": "number"
+        },
+        {
+            "name": "Longitude",
+            "baseName": "Longitude",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GeoPointRequest.attributeTypeMap;
+    }
+}
+
+/**
 * Describes coordinates that have a group
 */
 export class GroupedCoordinates {
@@ -43240,6 +43272,7 @@ let typeMap: {[index: string]: any} = {
     "FlipdishEventBase": FlipdishEventBase,
     "FlipdishFeesDetails": FlipdishFeesDetails,
     "FulfillmentInfo": FulfillmentInfo,
+    "GeoPointRequest": GeoPointRequest,
     "GroupedCoordinates": GroupedCoordinates,
     "HomeAction": HomeAction,
     "HomeStatistics": HomeStatistics,
@@ -48497,15 +48530,21 @@ export class CardReadersApi {
     /**
      * Can only be called by Kiosk  [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get Location ID for Stripe Terminal
+     * @param geoPointRequest 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public generateStripeTerminalLocation (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeTerminalLocation;  }> {
+    public generateStripeTerminalLocation (geoPointRequest: GeoPointRequest, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeTerminalLocation;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stripeterminal/location'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'geoPointRequest' is not null or undefined
+        if (geoPointRequest === null || geoPointRequest === undefined) {
+            throw new Error('Required parameter geoPointRequest was null or undefined when calling generateStripeTerminalLocation.');
+        }
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
@@ -48523,6 +48562,7 @@ export class CardReadersApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+            body: ObjectSerializer.serialize(geoPointRequest, "GeoPointRequest")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
