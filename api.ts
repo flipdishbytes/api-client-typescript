@@ -524,6 +524,79 @@ export class AddItemDetails {
     }
 }
 
+export class AddressFormDisplayFormat {
+    'OneLine'?: string;
+    'TwoLines'?: Array<string>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OneLine",
+            "baseName": "OneLine",
+            "type": "string"
+        },
+        {
+            "name": "TwoLines",
+            "baseName": "TwoLines",
+            "type": "Array<string>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AddressFormDisplayFormat.attributeTypeMap;
+    }
+}
+
+/**
+* A response of a dyanmic form definition.
+*/
+export class AddressFormResponse {
+    /**
+    * List of field definitions.
+    */
+    'FormData'?: Array<DynamicFormField>;
+    /**
+    * ISO two letter code.
+    */
+    'CountryCode'?: string;
+    /**
+    * ISO culture code.
+    */
+    'Language'?: string;
+    /**
+    * Templates used to format form fields when displaying items in a list.
+    */
+    'DisplayFormat'?: AddressFormDisplayFormat;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "FormData",
+            "baseName": "FormData",
+            "type": "Array<DynamicFormField>"
+        },
+        {
+            "name": "CountryCode",
+            "baseName": "CountryCode",
+            "type": "string"
+        },
+        {
+            "name": "Language",
+            "baseName": "Language",
+            "type": "string"
+        },
+        {
+            "name": "DisplayFormat",
+            "baseName": "DisplayFormat",
+            "type": "AddressFormDisplayFormat"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AddressFormResponse.attributeTypeMap;
+    }
+}
+
 /**
 * 
 */
@@ -9518,6 +9591,157 @@ export namespace DriverStore {
         Online = <any> 'Online'
     }
 }
+export class DynamicFormField {
+    'Identifier'?: string;
+    'Label'?: string;
+    'Placeholder'?: string;
+    'Rules'?: DynamicFormRules;
+    'Mapping'?: DynamicFormFieldMapping;
+    'Value'?: any;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Identifier",
+            "baseName": "Identifier",
+            "type": "string"
+        },
+        {
+            "name": "Label",
+            "baseName": "Label",
+            "type": "string"
+        },
+        {
+            "name": "Placeholder",
+            "baseName": "Placeholder",
+            "type": "string"
+        },
+        {
+            "name": "Rules",
+            "baseName": "Rules",
+            "type": "DynamicFormRules"
+        },
+        {
+            "name": "Mapping",
+            "baseName": "Mapping",
+            "type": "DynamicFormFieldMapping"
+        },
+        {
+            "name": "Value",
+            "baseName": "Value",
+            "type": "any"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DynamicFormField.attributeTypeMap;
+    }
+}
+
+export class DynamicFormFieldMapping {
+    'Source'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Source",
+            "baseName": "Source",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DynamicFormFieldMapping.attributeTypeMap;
+    }
+}
+
+export class DynamicFormFieldOption {
+    'Display'?: string;
+    'Value'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Display",
+            "baseName": "Display",
+            "type": "string"
+        },
+        {
+            "name": "Value",
+            "baseName": "Value",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DynamicFormFieldOption.attributeTypeMap;
+    }
+}
+
+export class DynamicFormRule {
+    'Value'?: any;
+    'Message'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Value",
+            "baseName": "Value",
+            "type": "any"
+        },
+        {
+            "name": "Message",
+            "baseName": "Message",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DynamicFormRule.attributeTypeMap;
+    }
+}
+
+export class DynamicFormRules {
+    'MaxLength'?: DynamicFormRule;
+    'MinLength'?: DynamicFormRule;
+    'Required'?: DynamicFormRule;
+    'Pattern'?: DynamicFormRule;
+    'Predefined'?: Array<DynamicFormFieldOption>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MaxLength",
+            "baseName": "MaxLength",
+            "type": "DynamicFormRule"
+        },
+        {
+            "name": "MinLength",
+            "baseName": "MinLength",
+            "type": "DynamicFormRule"
+        },
+        {
+            "name": "Required",
+            "baseName": "Required",
+            "type": "DynamicFormRule"
+        },
+        {
+            "name": "Pattern",
+            "baseName": "Pattern",
+            "type": "DynamicFormRule"
+        },
+        {
+            "name": "Predefined",
+            "baseName": "Predefined",
+            "type": "Array<DynamicFormFieldOption>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DynamicFormRules.attributeTypeMap;
+    }
+}
+
 /**
 * Order Terminal Notification
 */
@@ -11633,6 +11857,203 @@ export class GeoPointRequest {
 
     static getAttributeTypeMap() {
         return GeoPointRequest.attributeTypeMap;
+    }
+}
+
+export class GoogleAddress {
+    'Results'?: Array<GoogleAddressResult>;
+    'Result'?: GoogleAddressResult;
+    'Status'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Results",
+            "baseName": "Results",
+            "type": "Array<GoogleAddressResult>"
+        },
+        {
+            "name": "Result",
+            "baseName": "Result",
+            "type": "GoogleAddressResult"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GoogleAddress.attributeTypeMap;
+    }
+}
+
+export class GoogleAddressComponent {
+    'Long_name'?: string;
+    'Short_name'?: string;
+    'Types'?: Array<string>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Long_name",
+            "baseName": "Long_name",
+            "type": "string"
+        },
+        {
+            "name": "Short_name",
+            "baseName": "Short_name",
+            "type": "string"
+        },
+        {
+            "name": "Types",
+            "baseName": "Types",
+            "type": "Array<string>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GoogleAddressComponent.attributeTypeMap;
+    }
+}
+
+export class GoogleAddressResult {
+    'Address_components'?: Array<GoogleAddressComponent>;
+    'Formatted_address'?: string;
+    'Geometry'?: GoogleGeometry;
+    'Place_id'?: string;
+    'Types'?: Array<string>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Address_components",
+            "baseName": "Address_components",
+            "type": "Array<GoogleAddressComponent>"
+        },
+        {
+            "name": "Formatted_address",
+            "baseName": "Formatted_address",
+            "type": "string"
+        },
+        {
+            "name": "Geometry",
+            "baseName": "Geometry",
+            "type": "GoogleGeometry"
+        },
+        {
+            "name": "Place_id",
+            "baseName": "Place_id",
+            "type": "string"
+        },
+        {
+            "name": "Types",
+            "baseName": "Types",
+            "type": "Array<string>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GoogleAddressResult.attributeTypeMap;
+    }
+}
+
+export class GoogleCoordinates {
+    'Lat'?: number;
+    'Lng'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Lat",
+            "baseName": "Lat",
+            "type": "number"
+        },
+        {
+            "name": "Lng",
+            "baseName": "Lng",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GoogleCoordinates.attributeTypeMap;
+    }
+}
+
+export class GoogleGeometry {
+    'Location'?: GoogleLocation;
+    'Location_type'?: string;
+    'Viewport'?: GoogleViewport;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Location",
+            "baseName": "Location",
+            "type": "GoogleLocation"
+        },
+        {
+            "name": "Location_type",
+            "baseName": "Location_type",
+            "type": "string"
+        },
+        {
+            "name": "Viewport",
+            "baseName": "Viewport",
+            "type": "GoogleViewport"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GoogleGeometry.attributeTypeMap;
+    }
+}
+
+export class GoogleLocation {
+    'Lat'?: number;
+    'Lng'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Lat",
+            "baseName": "Lat",
+            "type": "number"
+        },
+        {
+            "name": "Lng",
+            "baseName": "Lng",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GoogleLocation.attributeTypeMap;
+    }
+}
+
+export class GoogleViewport {
+    'Northeast'?: GoogleCoordinates;
+    'Southwest'?: GoogleCoordinates;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Northeast",
+            "baseName": "Northeast",
+            "type": "GoogleCoordinates"
+        },
+        {
+            "name": "Southwest",
+            "baseName": "Southwest",
+            "type": "GoogleCoordinates"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GoogleViewport.attributeTypeMap;
     }
 }
 
@@ -29919,6 +30340,29 @@ export class RestApiResultAccountFieldsDefinitions {
 /**
 * Rest api result
 */
+export class RestApiResultAddressFormResponse {
+    /**
+    * Generic data object.
+    */
+    'Data': AddressFormResponse;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "AddressFormResponse"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultAddressFormResponse.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultApmStatistics {
     /**
     * Generic data object.
@@ -33599,6 +34043,10 @@ export class StoreAddress {
     * Display for customer
     */
     'DisplayForCustomer'?: string;
+    /**
+    * Dyanmic field/value pairs, defined by the form assigned to the given country code.
+    */
+    'AddressFields'?: { [key: string]: any; };
 
     static discriminator: string | undefined = undefined;
 
@@ -33637,6 +34085,11 @@ export class StoreAddress {
             "name": "DisplayForCustomer",
             "baseName": "DisplayForCustomer",
             "type": "string"
+        },
+        {
+            "name": "AddressFields",
+            "baseName": "AddressFields",
+            "type": "{ [key: string]: any; }"
         }    ];
 
     static getAttributeTypeMap() {
@@ -33668,6 +34121,10 @@ export class StoreAddressBase {
     * Display for customer
     */
     'DisplayForCustomer'?: string;
+    /**
+    * Dyanmic field/value pairs, defined by the form assigned to the given country code.
+    */
+    'AddressFields'?: { [key: string]: any; };
 
     static discriminator: string | undefined = undefined;
 
@@ -33696,6 +34153,11 @@ export class StoreAddressBase {
             "name": "DisplayForCustomer",
             "baseName": "DisplayForCustomer",
             "type": "string"
+        },
+        {
+            "name": "AddressFields",
+            "baseName": "AddressFields",
+            "type": "{ [key: string]: any; }"
         }    ];
 
     static getAttributeTypeMap() {
@@ -43179,6 +43641,8 @@ let typeMap: {[index: string]: any} = {
     "AccountFieldKeyValuePair": AccountFieldKeyValuePair,
     "AccountFieldsDefinitions": AccountFieldsDefinitions,
     "AddItemDetails": AddItemDetails,
+    "AddressFormDisplayFormat": AddressFormDisplayFormat,
+    "AddressFormResponse": AddressFormResponse,
     "AllMetadataResult": AllMetadataResult,
     "AnalyticsClientEvent": AnalyticsClientEvent,
     "ApmCurrencyDataPoint": ApmCurrencyDataPoint,
@@ -43287,6 +43751,11 @@ let typeMap: {[index: string]: any} = {
     "DriverLoginModel": DriverLoginModel,
     "DriverRequestLoginPinModel": DriverRequestLoginPinModel,
     "DriverStore": DriverStore,
+    "DynamicFormField": DynamicFormField,
+    "DynamicFormFieldMapping": DynamicFormFieldMapping,
+    "DynamicFormFieldOption": DynamicFormFieldOption,
+    "DynamicFormRule": DynamicFormRule,
+    "DynamicFormRules": DynamicFormRules,
     "EmvNotificationEvent": EmvNotificationEvent,
     "EmvTerminal": EmvTerminal,
     "EmvTerminalWithAssignments": EmvTerminalWithAssignments,
@@ -43300,6 +43769,13 @@ let typeMap: {[index: string]: any} = {
     "FlipdishFeesDetails": FlipdishFeesDetails,
     "FulfillmentInfo": FulfillmentInfo,
     "GeoPointRequest": GeoPointRequest,
+    "GoogleAddress": GoogleAddress,
+    "GoogleAddressComponent": GoogleAddressComponent,
+    "GoogleAddressResult": GoogleAddressResult,
+    "GoogleCoordinates": GoogleCoordinates,
+    "GoogleGeometry": GoogleGeometry,
+    "GoogleLocation": GoogleLocation,
+    "GoogleViewport": GoogleViewport,
     "GroupedCoordinates": GroupedCoordinates,
     "HomeAction": HomeAction,
     "HomeStatistics": HomeStatistics,
@@ -43551,6 +44027,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultWebhookSubscription": RestApiPaginationResultWebhookSubscription,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
     "RestApiResultAccountFieldsDefinitions": RestApiResultAccountFieldsDefinitions,
+    "RestApiResultAddressFormResponse": RestApiResultAddressFormResponse,
     "RestApiResultApmStatistics": RestApiResultApmStatistics,
     "RestApiResultApmStatus": RestApiResultApmStatus,
     "RestApiResultApp": RestApiResultApp,
@@ -44615,6 +45092,237 @@ export class AccountsApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum AddressApiApiKeys {
+}
+
+export class AddressApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: AddressApiApiKeys, value: string) {
+        (this.authentications as any)[AddressApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Provides a dyamic form definition based for the country of the given appId, with labels localized using the provided language.
+     * @param appId Application (WhiteLabel) Id (WhiteLabelId or AppNameId).
+     * @param language (Optional) ISO culture info code, e.g.: en-IE, the default is en-US.
+     * @param {*} [options] Override http request options.
+     */
+    public formByApp (appId: string, language?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAddressFormResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/app/{appId}/address/form'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling formByApp.');
+        }
+
+        if (language !== undefined) {
+            localVarQueryParameters['language'] = ObjectSerializer.serialize(language, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAddressFormResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAddressFormResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Provides a dyamic form definition for the given country code, with labels localized using the provided language.
+     * @param countryCode The 2 letter ISO country code, e.g.: IE.
+     * @param language (Optional) ISO culture info code, e.g.: en-IE, the default is en-US.
+     * @param {*} [options] Override http request options.
+     */
+    public formByCountry (countryCode: string, language?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAddressFormResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/address/country/{countryCode}/form'
+            .replace('{' + 'countryCode' + '}', encodeURIComponent(String(countryCode)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'countryCode' is not null or undefined
+        if (countryCode === null || countryCode === undefined) {
+            throw new Error('Required parameter countryCode was null or undefined when calling formByCountry.');
+        }
+
+        if (language !== undefined) {
+            localVarQueryParameters['language'] = ObjectSerializer.serialize(language, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAddressFormResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAddressFormResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Maps a Google Address Object to the values of the dynamic form associated with the address country and returns the dynamic form.
+     * @param googleAddress A Google address object, as it is retuned from the maps API.
+     * @param {*} [options] Override http request options.
+     */
+    public formatGoogleAddress (googleAddress: GoogleAddress, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAddressFormResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/address/google';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'googleAddress' is not null or undefined
+        if (googleAddress === null || googleAddress === undefined) {
+            throw new Error('Required parameter googleAddress was null or undefined when calling formatGoogleAddress.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(googleAddress, "GoogleAddress")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAddressFormResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAddressFormResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
