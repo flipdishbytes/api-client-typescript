@@ -15615,6 +15615,10 @@ export class LocationAreaLocation {
     * Id of the Location on an external system
     */
     'ExternalLocationId'?: string;
+    /**
+    * Shows if the Location is deleted or not
+    */
+    'IsDeleted'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -15638,6 +15642,11 @@ export class LocationAreaLocation {
             "name": "ExternalLocationId",
             "baseName": "ExternalLocationId",
             "type": "string"
+        },
+        {
+            "name": "IsDeleted",
+            "baseName": "IsDeleted",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -56963,6 +56972,84 @@ export class LocationApi {
     }
     /**
      * 
+     * @summary Set a Location as deleted
+     * @param locationId Id of the Location that will be moved
+     * @param locationAreaId Id of the Location Area that the Location belong
+     * @param appId AppId i.e: (fd1234)
+     * @param storeId Id of the Store
+     * @param {*} [options] Override http request options.
+     */
+    public deleteLocation (locationId: number, locationAreaId: number, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/location-areas/{locationAreaId}/location/{locationId}/delete'
+            .replace('{' + 'locationId' + '}', encodeURIComponent(String(locationId)))
+            .replace('{' + 'locationAreaId' + '}', encodeURIComponent(String(locationAreaId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'locationId' is not null or undefined
+        if (locationId === null || locationId === undefined) {
+            throw new Error('Required parameter locationId was null or undefined when calling deleteLocation.');
+        }
+
+        // verify required parameter 'locationAreaId' is not null or undefined
+        if (locationAreaId === null || locationAreaId === undefined) {
+            throw new Error('Required parameter locationAreaId was null or undefined when calling deleteLocation.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling deleteLocation.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling deleteLocation.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Move a Location to a different location Area
      * @param locationId Id of the Location that will be moved
      * @param locationAreaId Id of the new Location area that it should be moved to
@@ -57333,7 +57420,7 @@ export class LocationAreasApi {
      * @param storeId Id of the Store
      * @param {*} [options] Override http request options.
      */
-    public getLocationsForStore (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLocationAreaWithLocations;  }> {
+    public getLocationAreasForStore (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLocationAreaWithLocations;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/location-areas'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
@@ -57343,12 +57430,12 @@ export class LocationAreasApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getLocationsForStore.');
+            throw new Error('Required parameter appId was null or undefined when calling getLocationAreasForStore.');
         }
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getLocationsForStore.');
+            throw new Error('Required parameter storeId was null or undefined when calling getLocationAreasForStore.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
