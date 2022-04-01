@@ -16769,6 +16769,38 @@ export class LumpDiscountDetails {
 }
 
 /**
+* Representation of a Location and its External Mapping
+*/
+export class MappedLocation {
+    /**
+    * Id of the Location
+    */
+    'LocationId'?: number;
+    /**
+    * Id of the Location on an external system
+    */
+    'ExternalLocationId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LocationId",
+            "baseName": "LocationId",
+            "type": "number"
+        },
+        {
+            "name": "ExternalLocationId",
+            "baseName": "ExternalLocationId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MappedLocation.attributeTypeMap;
+    }
+}
+
+/**
 * Represents a masked phone number
 */
 export class MaskedPhoneNumber {
@@ -31122,6 +31154,29 @@ export class RestApiResultLightspeedSettings {
 /**
 * Rest api result
 */
+export class RestApiResultLocationArea {
+    /**
+    * Generic data object.
+    */
+    'Data': LocationArea;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "LocationArea"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultLocationArea.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultLocationAreaLocation {
     /**
     * Generic data object.
@@ -31185,6 +31240,29 @@ export class RestApiResultLoyaltyCampaign {
 
     static getAttributeTypeMap() {
         return RestApiResultLoyaltyCampaign.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultMappedLocation {
+    /**
+    * Generic data object.
+    */
+    'Data': MappedLocation;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "MappedLocation"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultMappedLocation.attributeTypeMap;
     }
 }
 
@@ -43834,6 +43912,7 @@ let typeMap: {[index: string]: any} = {
     "LoyaltyCampaignDeletedEvent": LoyaltyCampaignDeletedEvent,
     "LoyaltyCampaignUpdatedEvent": LoyaltyCampaignUpdatedEvent,
     "LumpDiscountDetails": LumpDiscountDetails,
+    "MappedLocation": MappedLocation,
     "MaskedPhoneNumber": MaskedPhoneNumber,
     "Menu": Menu,
     "MenuBase": MenuBase,
@@ -44061,9 +44140,11 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultKioskIotConnectionParameters": RestApiResultKioskIotConnectionParameters,
     "RestApiResultKioskStoreSettings": RestApiResultKioskStoreSettings,
     "RestApiResultLightspeedSettings": RestApiResultLightspeedSettings,
+    "RestApiResultLocationArea": RestApiResultLocationArea,
     "RestApiResultLocationAreaLocation": RestApiResultLocationAreaLocation,
     "RestApiResultLocationAreaWithLocations": RestApiResultLocationAreaWithLocations,
     "RestApiResultLoyaltyCampaign": RestApiResultLoyaltyCampaign,
+    "RestApiResultMappedLocation": RestApiResultMappedLocation,
     "RestApiResultMenu": RestApiResultMenu,
     "RestApiResultMenuItemOptionSet": RestApiResultMenuItemOptionSet,
     "RestApiResultMenuItemOptionSetItem": RestApiResultMenuItemOptionSetItem,
@@ -57722,7 +57803,7 @@ export class LocationApi {
         let localVarUseFormData = false;
 
         let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
+            method: 'DELETE',
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
@@ -57747,6 +57828,89 @@ export class LocationApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Set or unset External Location Id on a Location
+     * @param locationId Id of the Location that will be mapped
+     * @param locationAreaId Id of the Location Area that the Location belong
+     * @param appId AppId i.e: (fd1234)
+     * @param storeId Id of the Store
+     * @param externalLocationId External Id to be mapped to the location
+     * @param {*} [options] Override http request options.
+     */
+    public mapLocationToExternalId (locationId: number, locationAreaId: number, appId: string, storeId: number, externalLocationId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMappedLocation;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/location-areas/{locationAreaId}/location/{locationId}/map-external'
+            .replace('{' + 'locationId' + '}', encodeURIComponent(String(locationId)))
+            .replace('{' + 'locationAreaId' + '}', encodeURIComponent(String(locationAreaId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'locationId' is not null or undefined
+        if (locationId === null || locationId === undefined) {
+            throw new Error('Required parameter locationId was null or undefined when calling mapLocationToExternalId.');
+        }
+
+        // verify required parameter 'locationAreaId' is not null or undefined
+        if (locationAreaId === null || locationAreaId === undefined) {
+            throw new Error('Required parameter locationAreaId was null or undefined when calling mapLocationToExternalId.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling mapLocationToExternalId.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling mapLocationToExternalId.');
+        }
+
+        if (externalLocationId !== undefined) {
+            localVarQueryParameters['externalLocationId'] = ObjectSerializer.serialize(externalLocationId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMappedLocation;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMappedLocation");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -58194,7 +58358,7 @@ export class LocationAreasApi {
      * @param locationAreaId 
      * @param {*} [options] Override http request options.
      */
-    public updateLocationArea (locationAreaInput: UpdateLocationArea, appId: string, storeId: number, locationAreaId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: LocationArea;  }> {
+    public updateLocationArea (locationAreaInput: UpdateLocationArea, appId: string, storeId: number, locationAreaId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLocationArea;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/location-areas/{locationAreaId}/update'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -58248,12 +58412,12 @@ export class LocationAreasApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: LocationArea;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultLocationArea;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "LocationArea");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultLocationArea");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
