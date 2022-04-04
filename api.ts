@@ -10523,6 +10523,10 @@ export class EventSearchResult {
     * Store Tip Updated Event
     */
     'StoreTipUpdatedEvent'?: Array<StoreTipUpdatedEvent>;
+    /**
+    * Service Charge Updated Event
+    */
+    'StoreServiceChargeUpdatedEvent'?: Array<StoreServiceChargeUpdatedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -11151,6 +11155,11 @@ export class EventSearchResult {
             "name": "StoreTipUpdatedEvent",
             "baseName": "StoreTipUpdatedEvent",
             "type": "Array<StoreTipUpdatedEvent>"
+        },
+        {
+            "name": "StoreServiceChargeUpdatedEvent",
+            "baseName": "StoreServiceChargeUpdatedEvent",
+            "type": "Array<StoreServiceChargeUpdatedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -31735,6 +31744,29 @@ export class RestApiResultRetentionCampaign {
 /**
 * Rest api result
 */
+export class RestApiResultServiceCharge {
+    /**
+    * Generic data object.
+    */
+    'Data': ServiceCharge;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "ServiceCharge"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultServiceCharge.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultStore {
     /**
     * Generic data object.
@@ -37977,6 +38009,110 @@ export class StorePublishedEvent {
 }
 
 /**
+* Service Charge Updated Event
+*/
+export class StoreServiceChargeUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * User which made the update
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Service Charge Configuration
+    */
+    'ServiceCharge'?: ServiceCharge;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "ServiceCharge",
+            "baseName": "ServiceCharge",
+            "type": "ServiceCharge"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreServiceChargeUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Store statistics
 */
 export class StoreStatistics {
@@ -44148,6 +44284,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultPushNotificationResponse": RestApiResultPushNotificationResponse,
     "RestApiResultRedeemInvitationResult": RestApiResultRedeemInvitationResult,
     "RestApiResultRetentionCampaign": RestApiResultRetentionCampaign,
+    "RestApiResultServiceCharge": RestApiResultServiceCharge,
     "RestApiResultStore": RestApiResultStore,
     "RestApiResultStoreAddress": RestApiResultStoreAddress,
     "RestApiResultStoreChannelAssignment": RestApiResultStoreChannelAssignment,
@@ -44225,6 +44362,7 @@ let typeMap: {[index: string]: any} = {
     "StoreOrderCapacityPeriod": StoreOrderCapacityPeriod,
     "StorePreOrderConfigUpdatedEvent": StorePreOrderConfigUpdatedEvent,
     "StorePublishedEvent": StorePublishedEvent,
+    "StoreServiceChargeUpdatedEvent": StoreServiceChargeUpdatedEvent,
     "StoreStatistics": StoreStatistics,
     "StoreSummary": StoreSummary,
     "StoreTipUpdatedEvent": StoreTipUpdatedEvent,
@@ -68327,7 +68465,7 @@ export class StoresApi {
      * @param serviceCharge Service charge
      * @param {*} [options] Override http request options.
      */
-    public configureStoreServiceCharge (storeId: number, serviceCharge: ServiceCharge, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public configureStoreServiceCharge (storeId: number, serviceCharge: ServiceCharge, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultServiceCharge;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/servicecharge'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -68369,12 +68507,12 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultServiceCharge;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultServiceCharge");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
