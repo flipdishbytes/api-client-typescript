@@ -9596,7 +9596,7 @@ export class DynamicFormField {
     'Label'?: string;
     'Placeholder'?: string;
     'Rules'?: DynamicFormRules;
-    'Mapping'?: DynamicFormFieldMapping;
+    'Mapping'?: { [key: string]: string; };
     'Value'?: any;
 
     static discriminator: string | undefined = undefined;
@@ -9625,7 +9625,7 @@ export class DynamicFormField {
         {
             "name": "Mapping",
             "baseName": "Mapping",
-            "type": "DynamicFormFieldMapping"
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "Value",
@@ -9635,23 +9635,6 @@ export class DynamicFormField {
 
     static getAttributeTypeMap() {
         return DynamicFormField.attributeTypeMap;
-    }
-}
-
-export class DynamicFormFieldMapping {
-    'Source'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Source",
-            "baseName": "Source",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return DynamicFormFieldMapping.attributeTypeMap;
     }
 }
 
@@ -43830,7 +43813,6 @@ let typeMap: {[index: string]: any} = {
     "DriverRequestLoginPinModel": DriverRequestLoginPinModel,
     "DriverStore": DriverStore,
     "DynamicFormField": DynamicFormField,
-    "DynamicFormFieldMapping": DynamicFormFieldMapping,
     "DynamicFormFieldOption": DynamicFormFieldOption,
     "DynamicFormRule": DynamicFormRule,
     "DynamicFormRules": DynamicFormRules,
