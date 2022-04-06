@@ -27155,6 +27155,38 @@ export namespace ProcessingFeeConfig {
     }
 }
 /**
+* Publish Menu Changes
+*/
+export class PublishMenuChanges {
+    /**
+    * Optional Catalog element id
+    */
+    'CatalogElementId'?: string;
+    /**
+    * Optional Collection of Menu id
+    */
+    'MenuIds'?: Array<number>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CatalogElementId",
+            "baseName": "CatalogElementId",
+            "type": "string"
+        },
+        {
+            "name": "MenuIds",
+            "baseName": "MenuIds",
+            "type": "Array<number>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PublishMenuChanges.attributeTypeMap;
+    }
+}
+
+/**
 * 
 */
 export class PushNotificationDeletedEvent {
@@ -44133,6 +44165,7 @@ let typeMap: {[index: string]: any} = {
     "PrinterTurnedOnEvent": PrinterTurnedOnEvent,
     "PrinterUnassignedFromStoreEvent": PrinterUnassignedFromStoreEvent,
     "ProcessingFeeConfig": ProcessingFeeConfig,
+    "PublishMenuChanges": PublishMenuChanges,
     "PushNotificationDeletedEvent": PushNotificationDeletedEvent,
     "PushNotificationRequest": PushNotificationRequest,
     "PushNotificationResponse": PushNotificationResponse,
@@ -50102,6 +50135,69 @@ export class CatalogChangesApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultPendingMenuChanges");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Update menus with the pending changes from Catalog groups and items
+     * @param appId 
+     * @param publishMenuChanges 
+     * @param {*} [options] Override http request options.
+     */
+    public publishPendingMenuChanges (appId: string, publishMenuChanges: PublishMenuChanges, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/menus/catalog-changes/publish'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling publishPendingMenuChanges.');
+        }
+
+        // verify required parameter 'publishMenuChanges' is not null or undefined
+        if (publishMenuChanges === null || publishMenuChanges === undefined) {
+            throw new Error('Required parameter publishMenuChanges was null or undefined when calling publishPendingMenuChanges.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(publishMenuChanges, "PublishMenuChanges")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
