@@ -9597,6 +9597,7 @@ export class DynamicFormField {
     'Placeholder'?: string;
     'Rules'?: DynamicFormRules;
     'Mapping'?: { [key: string]: string; };
+    'Modifiers'?: Array<string>;
     'Value'?: any;
 
     static discriminator: string | undefined = undefined;
@@ -9626,6 +9627,11 @@ export class DynamicFormField {
             "name": "Mapping",
             "baseName": "Mapping",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "Modifiers",
+            "baseName": "Modifiers",
+            "type": "Array<string>"
         },
         {
             "name": "Value",
