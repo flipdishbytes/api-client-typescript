@@ -58644,6 +58644,112 @@ export class LocationAreasApi {
         });
     }
 }
+export enum LookerDashboardApiApiKeys {
+}
+
+export class LookerDashboardApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: LookerDashboardApiApiKeys, value: string) {
+        (this.authentications as any)[LookerDashboardApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Get all dashboards
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public lookerDashboardGetAll (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/looker/dashboards'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling lookerDashboardGetAll.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
 export enum LookerSingleSignOnApiApiKeys {
 }
 
@@ -58766,8 +58872,8 @@ export class LookerSingleSignOnApi {
      * @param embedPath Embed URL of the dashboard
      * @param {*} [options] Override http request options.
      */
-    public getLookerPerformanceSummaryEmbedUrl (appId: string, embedPath: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: DashboardEmbed;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/looker/sso/PerformanceSummary'
+    public getSSOEndpoint (appId: string, embedPath: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: DashboardEmbed;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/looker/sso'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -58775,12 +58881,12 @@ export class LookerSingleSignOnApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getLookerPerformanceSummaryEmbedUrl.');
+            throw new Error('Required parameter appId was null or undefined when calling getSSOEndpoint.');
         }
 
         // verify required parameter 'embedPath' is not null or undefined
         if (embedPath === null || embedPath === undefined) {
-            throw new Error('Required parameter embedPath was null or undefined when calling getLookerPerformanceSummaryEmbedUrl.');
+            throw new Error('Required parameter embedPath was null or undefined when calling getSSOEndpoint.');
         }
 
         if (embedPath !== undefined) {
