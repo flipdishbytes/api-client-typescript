@@ -23921,6 +23921,65 @@ export class PaymentInfo {
 }
 
 /**
+* Represents stripe PaymentIntent
+*/
+export class PaymentIntent {
+    /**
+    * Id of payment intent
+    */
+    'Id'?: string;
+    /**
+    * An arbitrary string attached to the object. Often useful for displaying to users.
+    */
+    'Description'?: string;
+    /**
+    * Three-letter <a href=\"https://www.iso.org/iso-4217-currency-codes.html\">ISO currency  code</a>, in lowercase. Must be a <a href=\"https://stripe.com/docs/currencies\">supported  currency</a>.
+    */
+    'Currency'?: string;
+    /**
+    * Status of this PaymentIntent, one of requires_payment_method,  requires_confirmation, requires_action, processing,  requires_capture, canceled, or succeeded. Read more about each  PaymentIntent <a href=\"https://stripe.com/docs/payments/intents#intent-statuses\">status</a>.  One of: canceled, processing, requires_action,  requires_capture, requires_confirmation, requires_payment_method,  or succeeded.
+    */
+    'Status'?: string;
+    /**
+    * Time at which the object was created. Measured in seconds since the Unix epoch.
+    */
+    'Created'?: Date;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "string"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "string"
+        },
+        {
+            "name": "Created",
+            "baseName": "Created",
+            "type": "Date"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PaymentIntent.attributeTypeMap;
+    }
+}
+
+/**
 * Details of Payment Terminal
 */
 export class PaymentTerminalDetails {
@@ -26048,10 +26107,6 @@ export class PendingMenuChanges {
     * Unique menu id
     */
     'MenuId'?: number;
-    /**
-    * Update date and time
-    */
-    'LastUpdatedAt'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -26065,11 +26120,6 @@ export class PendingMenuChanges {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
-        },
-        {
-            "name": "LastUpdatedAt",
-            "baseName": "LastUpdatedAt",
-            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
@@ -31615,6 +31665,29 @@ export class RestApiResultOrderPaymentInformation {
 
     static getAttributeTypeMap() {
         return RestApiResultOrderPaymentInformation.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultPaymentIntent {
+    /**
+    * Generic data object.
+    */
+    'Data': PaymentIntent;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "PaymentIntent"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultPaymentIntent.attributeTypeMap;
     }
 }
 
@@ -44145,6 +44218,7 @@ let typeMap: {[index: string]: any} = {
     "OwnerEntityConfigurations": OwnerEntityConfigurations,
     "PasswordResetModel": PasswordResetModel,
     "PaymentInfo": PaymentInfo,
+    "PaymentIntent": PaymentIntent,
     "PaymentTerminalDetails": PaymentTerminalDetails,
     "PaymentTerminalTransactionDetails": PaymentTerminalTransactionDetails,
     "Payout": Payout,
@@ -44316,6 +44390,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultOrderDeliveryInformation": RestApiResultOrderDeliveryInformation,
     "RestApiResultOrderIngestSubmitOrderResponse": RestApiResultOrderIngestSubmitOrderResponse,
     "RestApiResultOrderPaymentInformation": RestApiResultOrderPaymentInformation,
+    "RestApiResultPaymentIntent": RestApiResultPaymentIntent,
     "RestApiResultPaymentTerminalDetails": RestApiResultPaymentTerminalDetails,
     "RestApiResultPaymentTerminalTransactionDetails": RestApiResultPaymentTerminalTransactionDetails,
     "RestApiResultPreOrderConfig": RestApiResultPreOrderConfig,
@@ -66114,6 +66189,113 @@ export class OrdersApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum PaymentIntentsApiApiKeys {
+}
+
+export class PaymentIntentsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: PaymentIntentsApiApiKeys, value: string) {
+        (this.authentications as any)[PaymentIntentsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Returns stripe payment intent for a given id
+     * @param paymentIntentId Stripes payment intent indentifier
+     * @param {*} [options] Override http request options.
+     */
+    public getPaymentIntent (paymentIntentId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentIntent;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/payment_intents/{paymentIntentId}'
+            .replace('{' + 'paymentIntentId' + '}', encodeURIComponent(String(paymentIntentId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'paymentIntentId' is not null or undefined
+        if (paymentIntentId === null || paymentIntentId === undefined) {
+            throw new Error('Required parameter paymentIntentId was null or undefined when calling getPaymentIntent.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentIntent;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultPaymentIntent");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
