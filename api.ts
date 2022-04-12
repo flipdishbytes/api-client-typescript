@@ -20980,6 +20980,10 @@ export class Order {
     */
     'ReceiptCode'?: string;
     /**
+    * Order Drop Off Location
+    */
+    'OrderDropOffLocation'?: OrderDropOffLocation;
+    /**
     * Order identifier
     */
     'OrderId'?: number;
@@ -21180,6 +21184,11 @@ export class Order {
             "name": "ReceiptCode",
             "baseName": "ReceiptCode",
             "type": "string"
+        },
+        {
+            "name": "OrderDropOffLocation",
+            "baseName": "OrderDropOffLocation",
+            "type": "OrderDropOffLocation"
         },
         {
             "name": "OrderId",
@@ -22157,6 +22166,53 @@ export class OrderDispatchedEvent {
 
     static getAttributeTypeMap() {
         return OrderDispatchedEvent.attributeTypeMap;
+    }
+}
+
+export class OrderDropOffLocation {
+    'OrderId'?: number;
+    'LocationName'?: string;
+    'LocationAreaName'?: string;
+    'LocationId'?: number;
+    'LocationAreaId'?: number;
+    'ExternalLocationId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrderId",
+            "baseName": "OrderId",
+            "type": "number"
+        },
+        {
+            "name": "LocationName",
+            "baseName": "LocationName",
+            "type": "string"
+        },
+        {
+            "name": "LocationAreaName",
+            "baseName": "LocationAreaName",
+            "type": "string"
+        },
+        {
+            "name": "LocationId",
+            "baseName": "LocationId",
+            "type": "number"
+        },
+        {
+            "name": "LocationAreaId",
+            "baseName": "LocationAreaId",
+            "type": "number"
+        },
+        {
+            "name": "ExternalLocationId",
+            "baseName": "ExternalLocationId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderDropOffLocation.attributeTypeMap;
     }
 }
 
@@ -44201,6 +44257,7 @@ let typeMap: {[index: string]: any} = {
     "OrderDeliveryInformationBase": OrderDeliveryInformationBase,
     "OrderDeliveryTrackingStatusUpdatedEvent": OrderDeliveryTrackingStatusUpdatedEvent,
     "OrderDispatchedEvent": OrderDispatchedEvent,
+    "OrderDropOffLocation": OrderDropOffLocation,
     "OrderIdAndSequenceNumber": OrderIdAndSequenceNumber,
     "OrderIngestSubmitOrderRequest": OrderIngestSubmitOrderRequest,
     "OrderIngestSubmitOrderResponse": OrderIngestSubmitOrderResponse,
