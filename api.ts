@@ -1266,14 +1266,6 @@ export namespace App {
         ViewExternalAuditLogs = <any> 'ViewExternalAuditLogs',
         CreateExternalAuditLogEvents = <any> 'CreateExternalAuditLogEvents',
         ViewCatalogAuditLogs = <any> 'ViewCatalogAuditLogs',
-        CreateAppStoreApp = <any> 'CreateAppStoreApp',
-        ViewAppStoreApp = <any> 'ViewAppStoreApp',
-        UpdateAppStoreApp = <any> 'UpdateAppStoreApp',
-        DeleteAppStoreApp = <any> 'DeleteAppStoreApp',
-        CreateAppStoreAppConfiguration = <any> 'CreateAppStoreAppConfiguration',
-        ViewAppStoreAppConfiguration = <any> 'ViewAppStoreAppConfiguration',
-        UpdateAppStoreAppConfiguration = <any> 'UpdateAppStoreAppConfiguration',
-        DeleteAppStoreAppConfiguration = <any> 'DeleteAppStoreAppConfiguration',
         SendPushNotificationToCustomer = <any> 'SendPushNotificationToCustomer',
         InviteDriverToApp = <any> 'InviteDriverToApp',
         GetDriverForApp = <any> 'GetDriverForApp',
@@ -1284,7 +1276,11 @@ export namespace App {
         ViewPayouts = <any> 'ViewPayouts',
         ViewChannels = <any> 'ViewChannels',
         ViewOnboarding = <any> 'ViewOnboarding',
-        UpdateOnboarding = <any> 'UpdateOnboarding'
+        UpdateOnboarding = <any> 'UpdateOnboarding',
+        CreateAppStoreAppConfiguration = <any> 'CreateAppStoreAppConfiguration',
+        ViewAppStoreAppConfiguration = <any> 'ViewAppStoreAppConfiguration',
+        UpdateAppStoreAppConfiguration = <any> 'UpdateAppStoreAppConfiguration',
+        DeleteAppStoreAppConfiguration = <any> 'DeleteAppStoreAppConfiguration'
     }
     export enum ApplicationCategoryEnum {
         Restaurant = <any> 'Restaurant',
@@ -1558,6 +1554,10 @@ export class AppStoreApp {
     */
     'Logo'?: string;
     /**
+    * OAuth App identifier
+    */
+    'OAuthAppId': string;
+    /**
     * Details
     */
     'Details': string;
@@ -1581,10 +1581,6 @@ export class AppStoreApp {
     * External setup link
     */
     'ExternalSetupLink'?: string;
-    /**
-    * OAuth app id
-    */
-    'OAuthAppId': string;
     /**
     * Teammate app access level
     */
@@ -1637,6 +1633,11 @@ export class AppStoreApp {
             "type": "string"
         },
         {
+            "name": "OAuthAppId",
+            "baseName": "OAuthAppId",
+            "type": "string"
+        },
+        {
             "name": "Details",
             "baseName": "Details",
             "type": "string"
@@ -1664,11 +1665,6 @@ export class AppStoreApp {
         {
             "name": "ExternalSetupLink",
             "baseName": "ExternalSetupLink",
-            "type": "string"
-        },
-        {
-            "name": "OAuthAppId",
-            "baseName": "OAuthAppId",
             "type": "string"
         },
         {
@@ -1811,6 +1807,10 @@ export class AppStoreAppConfiguration {
     */
     'Logo'?: string;
     /**
+    * OAuth App identifier
+    */
+    'OAuthAppId': string;
+    /**
     * Details
     */
     'Details': string;
@@ -1834,10 +1834,6 @@ export class AppStoreAppConfiguration {
     * External setup link
     */
     'ExternalSetupLink'?: string;
-    /**
-    * OAuth app id
-    */
-    'OAuthAppId': string;
     /**
     * Teammate app access level
     */
@@ -1911,6 +1907,11 @@ export class AppStoreAppConfiguration {
             "type": "string"
         },
         {
+            "name": "OAuthAppId",
+            "baseName": "OAuthAppId",
+            "type": "string"
+        },
+        {
             "name": "Details",
             "baseName": "Details",
             "type": "string"
@@ -1938,11 +1939,6 @@ export class AppStoreAppConfiguration {
         {
             "name": "ExternalSetupLink",
             "baseName": "ExternalSetupLink",
-            "type": "string"
-        },
-        {
-            "name": "OAuthAppId",
-            "baseName": "OAuthAppId",
             "type": "string"
         },
         {
@@ -6094,10 +6090,6 @@ export class CreateAppStoreApp {
     */
     'ExternalSetupLink'?: string;
     /**
-    * OAuth app id
-    */
-    'OAuthAppId': string;
-    /**
     * Teammate app access level
     */
     'TeammateAppAccessLevel'?: CreateAppStoreApp.TeammateAppAccessLevelEnum;
@@ -6161,11 +6153,6 @@ export class CreateAppStoreApp {
         {
             "name": "ExternalSetupLink",
             "baseName": "ExternalSetupLink",
-            "type": "string"
-        },
-        {
-            "name": "OAuthAppId",
-            "baseName": "OAuthAppId",
             "type": "string"
         },
         {
@@ -7107,6 +7094,10 @@ export namespace CreateFullMenuSectionItem {
 */
 export class CreateLocation {
     /**
+    * Location Id
+    */
+    'LocationId'?: number;
+    /**
     * Descriptive LocationArea name
     */
     'LocationName'?: string;
@@ -7122,6 +7113,11 @@ export class CreateLocation {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LocationId",
+            "baseName": "LocationId",
+            "type": "number"
+        },
         {
             "name": "LocationName",
             "baseName": "LocationName",
@@ -20980,7 +20976,7 @@ export class Order {
     */
     'ReceiptCode'?: string;
     /**
-    * Order Drop Off Location
+    * DropOffLocation selected for this order
     */
     'OrderDropOffLocation'?: OrderDropOffLocation;
     /**
@@ -28322,6 +28318,29 @@ export class RestApiArrayResultLocalisedTimeZone {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultLocationAreaLocation {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<LocationAreaLocation>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<LocationAreaLocation>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultLocationAreaLocation.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultLocationAreaWithLocations {
     /**
     * Generic data object.
@@ -33271,6 +33290,18 @@ export class ServiceCharge {
     * Enable Service Charge for store true(on) / false(off)
     */
     'Enabled'?: boolean;
+    /**
+    * Sets the service charge to be optional
+    */
+    'IsOptional'?: boolean;
+    /**
+    * Display service charge together with processing fee
+    */
+    'DisplayWithProcessingFee'?: boolean;
+    /**
+    * If true, will include voucher value in calculation   i.e 10E order with 1E service charge and 5E voucher would have service charge at 0.5E
+    */
+    'IncludesVouchers'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -33288,6 +33319,21 @@ export class ServiceCharge {
         {
             "name": "Enabled",
             "baseName": "Enabled",
+            "type": "boolean"
+        },
+        {
+            "name": "IsOptional",
+            "baseName": "IsOptional",
+            "type": "boolean"
+        },
+        {
+            "name": "DisplayWithProcessingFee",
+            "baseName": "DisplayWithProcessingFee",
+            "type": "boolean"
+        },
+        {
+            "name": "IncludesVouchers",
+            "baseName": "IncludesVouchers",
             "type": "boolean"
         }    ];
 
@@ -40132,10 +40178,6 @@ export class UpdateAppStoreApp {
     */
     'ExternalSetupLink'?: string;
     /**
-    * OAuth app id
-    */
-    'OAuthAppId': string;
-    /**
     * Teammate app access level
     */
     'TeammateAppAccessLevel'?: UpdateAppStoreApp.TeammateAppAccessLevelEnum;
@@ -40199,11 +40241,6 @@ export class UpdateAppStoreApp {
         {
             "name": "ExternalSetupLink",
             "baseName": "ExternalSetupLink",
-            "type": "string"
-        },
-        {
-            "name": "OAuthAppId",
-            "baseName": "OAuthAppId",
             "type": "string"
         },
         {
@@ -44333,6 +44370,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultHomeAction": RestApiArrayResultHomeAction,
     "RestApiArrayResultKioskCashPaymentSettings": RestApiArrayResultKioskCashPaymentSettings,
     "RestApiArrayResultLocalisedTimeZone": RestApiArrayResultLocalisedTimeZone,
+    "RestApiArrayResultLocationAreaLocation": RestApiArrayResultLocationAreaLocation,
     "RestApiArrayResultLocationAreaWithLocations": RestApiArrayResultLocationAreaWithLocations,
     "RestApiArrayResultLoyaltyCampaign": RestApiArrayResultLoyaltyCampaign,
     "RestApiArrayResultMenuCheckpoint": RestApiArrayResultMenuCheckpoint,
@@ -46206,184 +46244,7 @@ export class AppStoreApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system][Note: Only Flipdish staff can verify apps]
-     * @summary Update App store app verification
-     * @param appStoreAppId App store app id
-     * @param verificationStatus New verification status
-     * @param {*} [options] Override http request options.
-     */
-    public appVerificationUpdate (appStoreAppId: string, verificationStatus: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/appstore/apps/{appStoreAppId}/verification'
-            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appStoreAppId' is not null or undefined
-        if (appStoreAppId === null || appStoreAppId === undefined) {
-            throw new Error('Required parameter appStoreAppId was null or undefined when calling appVerificationUpdate.');
-        }
-
-        // verify required parameter 'verificationStatus' is not null or undefined
-        if (verificationStatus === null || verificationStatus === undefined) {
-            throw new Error('Required parameter verificationStatus was null or undefined when calling appVerificationUpdate.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PUT',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(verificationStatus, "string")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Create App store app
-     * @param createAppStoreApp App store app
-     * @param {*} [options] Override http request options.
-     */
-    public createAppStoreApp (createAppStoreApp: CreateAppStoreApp, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreApp;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/appstore/apps';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'createAppStoreApp' is not null or undefined
-        if (createAppStoreApp === null || createAppStoreApp === undefined) {
-            throw new Error('Required parameter createAppStoreApp was null or undefined when calling createAppStoreApp.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(createAppStoreApp, "CreateAppStoreApp")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreApp;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreApp");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Delete App store app
-     * @param appStoreAppId App store app id
-     * @param {*} [options] Override http request options.
-     */
-    public deleteAppStoreApp (appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/appstore/apps/{appStoreAppId}'
-            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appStoreAppId' is not null or undefined
-        if (appStoreAppId === null || appStoreAppId === undefined) {
-            throw new Error('Required parameter appStoreAppId was null or undefined when calling deleteAppStoreApp.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
+     * App store app must be verified or you are the owner [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get App store app
      * @param appStoreAppId App store app id
      * @param {*} [options] Override http request options.
@@ -46505,136 +46366,6 @@ export class AppStoreApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultAppStoreAppSummary");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Update App store app
-     * @param appStoreAppId App store app id
-     * @param appStoreApp Update App store app
-     * @param {*} [options] Override http request options.
-     */
-    public updateAppStoreApp (appStoreAppId: string, appStoreApp: UpdateAppStoreApp, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/appstore/apps/{appStoreAppId}'
-            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appStoreAppId' is not null or undefined
-        if (appStoreAppId === null || appStoreAppId === undefined) {
-            throw new Error('Required parameter appStoreAppId was null or undefined when calling updateAppStoreApp.');
-        }
-
-        // verify required parameter 'appStoreApp' is not null or undefined
-        if (appStoreApp === null || appStoreApp === undefined) {
-            throw new Error('Required parameter appStoreApp was null or undefined when calling updateAppStoreApp.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PUT',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(appStoreApp, "UpdateAppStoreApp")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Upload the App store app logo \\ icon
-     * @param appStoreAppId App store app id
-     * @param Image App Store App Logo
-     * @param {*} [options] Override http request options.
-     */
-    public uploadAppStoreAppLogo (appStoreAppId: string, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/appstore/apps/{appStoreAppId}/logo'
-            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appStoreAppId' is not null or undefined
-        if (appStoreAppId === null || appStoreAppId === undefined) {
-            throw new Error('Required parameter appStoreAppId was null or undefined when calling uploadAppStoreAppLogo.');
-        }
-
-        // verify required parameter 'Image' is not null or undefined
-        if (Image === null || Image === undefined) {
-            throw new Error('Required parameter Image was null or undefined when calling uploadAppStoreAppLogo.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        if (Image !== undefined) {
-            localVarFormParams['Image'] = Image;
-        }
-        localVarUseFormData = true;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -47071,6 +46802,462 @@ export class AppStoreConfigurationsApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(updateAppStoreAppConfiguration, "UpdateAppStoreAppConfiguration")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum AppStoreDeveloperApiApiKeys {
+}
+
+export class AppStoreDeveloperApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: AppStoreDeveloperApiApiKeys, value: string) {
+        (this.authentications as any)[AppStoreDeveloperApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system][Note: Only Flipdish staff can verify apps]
+     * @summary Update App store app verification
+     * @param oauthAppId OAuth App identifier
+     * @param appStoreAppId App store app id
+     * @param verificationStatus New verification status
+     * @param {*} [options] Override http request options.
+     */
+    public appVerificationUpdate (oauthAppId: string, appStoreAppId: string, verificationStatus: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oauthAppId}/appstore/apps/{appStoreAppId}/verification'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling appVerificationUpdate.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling appVerificationUpdate.');
+        }
+
+        // verify required parameter 'verificationStatus' is not null or undefined
+        if (verificationStatus === null || verificationStatus === undefined) {
+            throw new Error('Required parameter verificationStatus was null or undefined when calling appVerificationUpdate.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(verificationStatus, "string")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Create App store app
+     * @param oauthAppId OAuth App identifier
+     * @param createAppStoreApp App store app
+     * @param {*} [options] Override http request options.
+     */
+    public createAppStoreApp (oauthAppId: string, createAppStoreApp: CreateAppStoreApp, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreApp;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oauthAppId}/appstore/apps'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling createAppStoreApp.');
+        }
+
+        // verify required parameter 'createAppStoreApp' is not null or undefined
+        if (createAppStoreApp === null || createAppStoreApp === undefined) {
+            throw new Error('Required parameter createAppStoreApp was null or undefined when calling createAppStoreApp.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(createAppStoreApp, "CreateAppStoreApp")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreApp;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreApp");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Delete App store app
+     * @param oauthAppId OAuth App identifier
+     * @param appStoreAppId App store app id
+     * @param {*} [options] Override http request options.
+     */
+    public deleteAppStoreApp (oauthAppId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oauthAppId}/appstore/apps/{appStoreAppId}'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling deleteAppStoreApp.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling deleteAppStoreApp.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get App store app
+     * @param oauthAppId OAuth App identifier
+     * @param appStoreAppId App store app id
+     * @param {*} [options] Override http request options.
+     */
+    public getAppStoreApp (oauthAppId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: AppStoreApp;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oauthAppId}/appstore/apps/{appStoreAppId}'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling getAppStoreApp.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling getAppStoreApp.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: AppStoreApp;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "AppStoreApp");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Update App store app
+     * @param oauthAppId OAuth App identifier
+     * @param appStoreAppId App store app id
+     * @param appStoreApp Update App store app
+     * @param {*} [options] Override http request options.
+     */
+    public updateAppStoreApp (oauthAppId: string, appStoreAppId: string, appStoreApp: UpdateAppStoreApp, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oauthAppId}/appstore/apps/{appStoreAppId}'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling updateAppStoreApp.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling updateAppStoreApp.');
+        }
+
+        // verify required parameter 'appStoreApp' is not null or undefined
+        if (appStoreApp === null || appStoreApp === undefined) {
+            throw new Error('Required parameter appStoreApp was null or undefined when calling updateAppStoreApp.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(appStoreApp, "UpdateAppStoreApp")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Upload the App store app logo \\ icon
+     * @param oauthAppId OAuth App identifier
+     * @param appStoreAppId App store app id
+     * @param Image App Store App Logo
+     * @param {*} [options] Override http request options.
+     */
+    public uploadAppStoreAppLogo (oauthAppId: string, appStoreAppId: string, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oauthAppId}/appstore/apps/{appStoreAppId}/logo'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling uploadAppStoreAppLogo.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling uploadAppStoreAppLogo.');
+        }
+
+        // verify required parameter 'Image' is not null or undefined
+        if (Image === null || Image === undefined) {
+            throw new Error('Required parameter Image was null or undefined when calling uploadAppStoreAppLogo.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (Image !== undefined) {
+            localVarFormParams['Image'] = Image;
+        }
+        localVarUseFormData = true;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -58044,7 +58231,7 @@ export class LocationApi {
      * @param storeId Id of the Store
      * @param {*} [options] Override http request options.
      */
-    public createLocation (createLocationInput: CreateLocation, locationAreaId: number, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public createLocation (createLocationInput: Array<CreateLocation>, locationAreaId: number, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/location-areas/{locationAreaId}/location'
             .replace('{' + 'locationAreaId' + '}', encodeURIComponent(String(locationAreaId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
@@ -58084,7 +58271,7 @@ export class LocationApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(createLocationInput, "CreateLocation")
+            body: ObjectSerializer.serialize(createLocationInput, "Array<CreateLocation>")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
