@@ -49822,6 +49822,70 @@ export class CardReadersApi {
         });
     }
     /**
+     * Can only be called by Kiosk
+     * @summary Cancel terminals action
+     * @param readerId 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public cancelReaderAction (readerId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCardReader;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/payments/terminals/stripe/{readerId}/cancel_action'
+            .replace('{' + 'readerId' + '}', encodeURIComponent(String(readerId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'readerId' is not null or undefined
+        if (readerId === null || readerId === undefined) {
+            throw new Error('Required parameter readerId was null or undefined when calling cancelReaderAction.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling cancelReaderAction.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCardReader;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultCardReader");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * Can only be called by Kiosk  [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get Location ID for Stripe Terminal
      * @param geoPointRequest 
