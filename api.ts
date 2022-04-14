@@ -51039,7 +51039,7 @@ export class CatalogImagesApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Upload a Catalog Image
      * @param appId 
      * @param Image Catalog image
@@ -51347,7 +51347,7 @@ export class CatalogItemsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get item by Id
      * @param appId 
      * @param catalogItemId 
