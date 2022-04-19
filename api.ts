@@ -10526,6 +10526,22 @@ export class EventSearchResult {
     */
     'StoreTipUpdatedEvent'?: Array<StoreTipUpdatedEvent>;
     /**
+    * LocationArea created event
+    */
+    'LocationAreaCreatedEvent'?: Array<LocationAreaCreatedEvent>;
+    /**
+    * LocationArea updated event
+    */
+    'LocationAreaUpdatedEvent'?: Array<LocationAreaUpdatedEvent>;
+    /**
+    * Location created event
+    */
+    'LocationCreatedEvent'?: Array<LocationCreatedEvent>;
+    /**
+    * Location deleted event
+    */
+    'LocationDeletedEvent'?: Array<LocationDeletedEvent>;
+    /**
     * Service Charge Updated Event
     */
     'StoreServiceChargeUpdatedEvent'?: Array<StoreServiceChargeUpdatedEvent>;
@@ -11157,6 +11173,26 @@ export class EventSearchResult {
             "name": "StoreTipUpdatedEvent",
             "baseName": "StoreTipUpdatedEvent",
             "type": "Array<StoreTipUpdatedEvent>"
+        },
+        {
+            "name": "LocationAreaCreatedEvent",
+            "baseName": "LocationAreaCreatedEvent",
+            "type": "Array<LocationAreaCreatedEvent>"
+        },
+        {
+            "name": "LocationAreaUpdatedEvent",
+            "baseName": "LocationAreaUpdatedEvent",
+            "type": "Array<LocationAreaUpdatedEvent>"
+        },
+        {
+            "name": "LocationCreatedEvent",
+            "baseName": "LocationCreatedEvent",
+            "type": "Array<LocationCreatedEvent>"
+        },
+        {
+            "name": "LocationDeletedEvent",
+            "baseName": "LocationDeletedEvent",
+            "type": "Array<LocationDeletedEvent>"
         },
         {
             "name": "StoreServiceChargeUpdatedEvent",
@@ -16011,6 +16047,101 @@ export class LocationArea {
 }
 
 /**
+* Event for logging creating of LocationAreas
+*/
+export class LocationAreaCreatedEvent {
+    /**
+    * LocationArea Id
+    */
+    'LocationAreaId'?: string;
+    /**
+    * LocationArea name
+    */
+    'LocationAreaName'?: string;
+    /**
+    * User who created the LocationArea
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LocationAreaId",
+            "baseName": "LocationAreaId",
+            "type": "string"
+        },
+        {
+            "name": "LocationAreaName",
+            "baseName": "LocationAreaName",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LocationAreaCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Representation of a Location i.e: (Table, Hotel Room, Car Park, etc )
 */
 export class LocationAreaLocation {
@@ -16070,6 +16201,101 @@ export class LocationAreaLocation {
 }
 
 /**
+* Event for logging updates of LocationAreas
+*/
+export class LocationAreaUpdatedEvent {
+    /**
+    * LocationArea Id
+    */
+    'LocationAreaId'?: string;
+    /**
+    * LocationArea Name
+    */
+    'LocationAreaName'?: string;
+    /**
+    * User who updated the LocationArea
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LocationAreaId",
+            "baseName": "LocationAreaId",
+            "type": "string"
+        },
+        {
+            "name": "LocationAreaName",
+            "baseName": "LocationAreaName",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LocationAreaUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Represents a LocationArea and its Location list
 */
 export class LocationAreaWithLocations {
@@ -16125,6 +16351,232 @@ export class LocationAreaWithLocations {
 
     static getAttributeTypeMap() {
         return LocationAreaWithLocations.attributeTypeMap;
+    }
+}
+
+/**
+* Event for logging the creating of Locations
+*/
+export class LocationCreatedEvent {
+    /**
+    * Location Location Id
+    */
+    'LocationId'?: number;
+    /**
+    * Location LocationName
+    */
+    'LocationName'?: string;
+    /**
+    * Location DisplayOrder
+    */
+    'DisplayOrder'?: number;
+    /**
+    * Location ExternalLocationId
+    */
+    'ExternalLocationId'?: string;
+    /**
+    * Location LocationAreaId
+    */
+    'LocationAreaId'?: number;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LocationId",
+            "baseName": "LocationId",
+            "type": "number"
+        },
+        {
+            "name": "LocationName",
+            "baseName": "LocationName",
+            "type": "string"
+        },
+        {
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
+            "type": "number"
+        },
+        {
+            "name": "ExternalLocationId",
+            "baseName": "ExternalLocationId",
+            "type": "string"
+        },
+        {
+            "name": "LocationAreaId",
+            "baseName": "LocationAreaId",
+            "type": "number"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LocationCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Event for logging the deleting of Locations
+*/
+export class LocationDeletedEvent {
+    /**
+    * Location Id
+    */
+    'LocationId'?: number;
+    /**
+    * Location Name
+    */
+    'LocationName'?: string;
+    /**
+    * Location DisplayOrder
+    */
+    'DisplayOrder'?: number;
+    /**
+    * Location ExternalLocationId
+    */
+    'ExternalLocationId'?: string;
+    /**
+    * LocationAreaId
+    */
+    'LocationAreaId'?: number;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LocationId",
+            "baseName": "LocationId",
+            "type": "number"
+        },
+        {
+            "name": "LocationName",
+            "baseName": "LocationName",
+            "type": "string"
+        },
+        {
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
+            "type": "number"
+        },
+        {
+            "name": "ExternalLocationId",
+            "baseName": "ExternalLocationId",
+            "type": "string"
+        },
+        {
+            "name": "LocationAreaId",
+            "baseName": "LocationAreaId",
+            "type": "number"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LocationDeletedEvent.attributeTypeMap;
     }
 }
 
@@ -44224,8 +44676,12 @@ let typeMap: {[index: string]: any} = {
     "LocalisedTimeZone": LocalisedTimeZone,
     "Location": Location,
     "LocationArea": LocationArea,
+    "LocationAreaCreatedEvent": LocationAreaCreatedEvent,
     "LocationAreaLocation": LocationAreaLocation,
+    "LocationAreaUpdatedEvent": LocationAreaUpdatedEvent,
     "LocationAreaWithLocations": LocationAreaWithLocations,
+    "LocationCreatedEvent": LocationCreatedEvent,
+    "LocationDeletedEvent": LocationDeletedEvent,
     "LoginModel": LoginModel,
     "LoginWithPinModel": LoginWithPinModel,
     "LoyaltyCampaign": LoyaltyCampaign,
