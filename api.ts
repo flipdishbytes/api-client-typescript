@@ -2539,7 +2539,7 @@ export class AppStoreConfigUpdatedEvent {
     /**
     * App Configuration
     */
-    'UpdateAppStoreAppStoreAppStoreAppConfiguration'?: UpdateAppStoreAppConfigurationWebhookDTO;
+    'AppStoreAppConfiguration'?: UpdateAppStoreAppConfigurationWebhookDTO;
     /**
     * The identitfier of the event
     */
@@ -2575,8 +2575,8 @@ export class AppStoreConfigUpdatedEvent {
             "type": "string"
         },
         {
-            "name": "UpdateAppStoreAppStoreAppStoreAppConfiguration",
-            "baseName": "UpdateAppStoreAppStoreAppStoreAppConfiguration",
+            "name": "AppStoreAppConfiguration",
+            "baseName": "AppStoreAppConfiguration",
             "type": "UpdateAppStoreAppConfigurationWebhookDTO"
         },
         {
