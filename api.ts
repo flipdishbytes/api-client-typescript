@@ -7146,7 +7146,7 @@ export class CreateLocationArea {
     /**
     * Descriptive LocationArea name
     */
-    'LocationAreaName'?: string;
+    'LocationAreaName': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -16148,15 +16148,15 @@ export class LocationAreaLocation {
     /**
     * Id of the Location
     */
-    'LocationId'?: number;
+    'LocationId': number;
     /**
     * Name of the Location
     */
-    'LocationName'?: string;
+    'LocationName': string;
     /**
     * The order that the Location should be displayed on the screen
     */
-    'DisplayOrder'?: number;
+    'DisplayOrder': number;
     /**
     * Id of the Location on an external system
     */
@@ -16302,15 +16302,15 @@ export class LocationAreaWithLocations {
     /**
     * Id of the LocationArea
     */
-    'LocationAreaId'?: number;
+    'LocationAreaId': number;
     /**
     * Id of the Store that this LocationArea belongs to
     */
-    'StoreId'?: number;
+    'StoreId': number;
     /**
     * Descriptive LocationArea name
     */
-    'LocationAreaName'?: string;
+    'LocationAreaName': string;
     /**
     * List of Locations that belongs to this Location Area
     */
@@ -17221,11 +17221,11 @@ export class MappedLocation {
     /**
     * Id of the Location
     */
-    'LocationId'?: number;
+    'LocationId': number;
     /**
     * Id of the Location on an external system
     */
-    'ExternalLocationId'?: string;
+    'ExternalLocationId': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -41193,11 +41193,11 @@ export class UpdateLocationArea {
     /**
     * Location Area Id
     */
-    'LocationAreaId'?: number;
+    'LocationAreaId': number;
     /**
     * Descriptive LocationArea name
     */
-    'LocationAreaName'?: string;
+    'LocationAreaName': string;
     /**
     * Sets if the Location Area should be soft deleted or not
     */
