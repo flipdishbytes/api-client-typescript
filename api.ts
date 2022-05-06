@@ -28359,6 +28359,29 @@ export class RequestPasswordResetModel {
     }
 }
 
+/**
+* Request Password Reset PIN response
+*/
+export class RequestPasswordResetPinResponse {
+    /**
+    * Password Reset PIN sent via email to user
+    */
+    'PasswordResetPinSentViaEmail'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PasswordResetPinSentViaEmail",
+            "baseName": "PasswordResetPinSentViaEmail",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RequestPasswordResetPinResponse.attributeTypeMap;
+    }
+}
+
 export class Response {
     'Stores'?: Array<StoreItemHeader>;
 
@@ -44849,6 +44872,7 @@ let typeMap: {[index: string]: any} = {
     "RequestLoginPinModel": RequestLoginPinModel,
     "RequestLoginPinResposne": RequestLoginPinResposne,
     "RequestPasswordResetModel": RequestPasswordResetModel,
+    "RequestPasswordResetPinResponse": RequestPasswordResetPinResponse,
     "Response": Response,
     "RestApiArrayResultAllMetadataResult": RestApiArrayResultAllMetadataResult,
     "RestApiArrayResultApmCurrencyDataPoint": RestApiArrayResultApmCurrencyDataPoint,
@@ -45888,6 +45912,63 @@ export class AccountsApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Request Password Reset PIN. The server sends the PIN to the email address.
+     * @param requestPasswordResetRequest 
+     * @param {*} [options] Override http request options.
+     */
+    public sendPinForPasswordReset (requestPasswordResetRequest: RequestPasswordResetModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RequestPasswordResetPinResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts/password/resetpin';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'requestPasswordResetRequest' is not null or undefined
+        if (requestPasswordResetRequest === null || requestPasswordResetRequest === undefined) {
+            throw new Error('Required parameter requestPasswordResetRequest was null or undefined when calling sendPinForPasswordReset.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(requestPasswordResetRequest, "RequestPasswordResetModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RequestPasswordResetPinResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RequestPasswordResetPinResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
