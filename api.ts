@@ -1223,6 +1223,7 @@ export namespace App {
         ViewHydraConfig = <any> 'ViewHydraConfig',
         UpdateHydraConfigManage = <any> 'UpdateHydraConfigManage',
         InitiateBluetoothPairingMode = <any> 'InitiateBluetoothPairingMode',
+        DeleteTerminal = <any> 'DeleteTerminal',
         ViewCustomers = <any> 'ViewCustomers',
         EditCustomers = <any> 'EditCustomers',
         CreateCatalogElements = <any> 'CreateCatalogElements',
@@ -4460,6 +4461,10 @@ export class CardReader {
     * Device type
     */
     'DeviceType'?: string;
+    /**
+    * Indicates that the reader is deleted or not
+    */
+    'Deleted'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -4493,6 +4498,11 @@ export class CardReader {
             "name": "DeviceType",
             "baseName": "DeviceType",
             "type": "string"
+        },
+        {
+            "name": "Deleted",
+            "baseName": "Deleted",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -40666,6 +40676,38 @@ export class TipConfiguration {
 }
 
 /**
+* Un-Register card reader request
+*/
+export class UnRegisterCardReaderRequest {
+    /**
+    * Device card readerid
+    */
+    'ReaderId': string;
+    /**
+    * The kiosk device id
+    */
+    'KioskDeviceId': string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ReaderId",
+            "baseName": "ReaderId",
+            "type": "string"
+        },
+        {
+            "name": "KioskDeviceId",
+            "baseName": "KioskDeviceId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UnRegisterCardReaderRequest.attributeTypeMap;
+    }
+}
+
+/**
 * Update App store app
 */
 export class UpdateAppStoreApp {
@@ -45116,6 +45158,7 @@ let typeMap: {[index: string]: any} = {
     "TeammateInviteSentEvent": TeammateInviteSentEvent,
     "TeammateUpdatedEvent": TeammateUpdatedEvent,
     "TipConfiguration": TipConfiguration,
+    "UnRegisterCardReaderRequest": UnRegisterCardReaderRequest,
     "UpdateAppStoreApp": UpdateAppStoreApp,
     "UpdateAppStoreAppConfiguration": UpdateAppStoreAppConfiguration,
     "UpdateAppStoreAppConfigurationWebhookDTO": UpdateAppStoreAppConfigurationWebhookDTO,
@@ -50830,6 +50873,70 @@ export class CardReadersApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(request, "CardReaderRegistrationRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCardReader;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultCardReader");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Can only be called by Kiosk
+     * @summary Un-register terminal by deleting it from stripe
+     * @param request 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public unRegisterTerminal (request: UnRegisterCardReaderRequest, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCardReader;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/payments/terminals/stripe/unregister'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'request' is not null or undefined
+        if (request === null || request === undefined) {
+            throw new Error('Required parameter request was null or undefined when calling unRegisterTerminal.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling unRegisterTerminal.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(request, "UnRegisterCardReaderRequest")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
