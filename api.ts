@@ -21478,6 +21478,10 @@ export class Order {
     */
     'ServiceChargeAmount'?: number;
     /**
+    * Service Charge Percentage
+    */
+    'ServiceChargePercentage'?: number;
+    /**
     * This is the sum of the OrderItemsAmount, DeliveryAmount, TipAmount and Voucher.Amount (which is usually negative) and OnlineOrderingFee for cash orders.  It does not include the OnlineOrderingFee in the case of card orders as this fee is charged by Flipdish directly to the customer.
     */
     'Amount'?: number;
@@ -21691,6 +21695,11 @@ export class Order {
         {
             "name": "ServiceChargeAmount",
             "baseName": "ServiceChargeAmount",
+            "type": "number"
+        },
+        {
+            "name": "ServiceChargePercentage",
+            "baseName": "ServiceChargePercentage",
             "type": "number"
         },
         {
