@@ -30825,6 +30825,56 @@ export class RestApiPaginationResultStoreHeader {
 /**
 * Rest api pagination result
 */
+export class RestApiPaginationResultStoreValidationConfig {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<StoreValidationConfig>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<StoreValidationConfig>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultStoreValidationConfig.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultVoucherSummary {
     /**
     * Current page index
@@ -35861,6 +35911,71 @@ export class StoreCloneSettings {
     }
 }
 
+export class StoreConfig {
+    /**
+    * True if the store accepts pickup orders
+    */
+    'PickupEnabled'?: boolean;
+    /**
+    * True if the store has a Bank Account attached
+    */
+    'BankAccountAttached'?: boolean;
+    /**
+    * True if the store is assigned to a Menu
+    */
+    'MenuAssigned'?: boolean;
+    /**
+    * True if the store has a valid Address
+    */
+    'HasFullAddress'?: boolean;
+    /**
+    * True if the store has Pickup hours
+    */
+    'PickupHours'?: boolean;
+    /**
+    * Is the Store Published
+    */
+    'IsPublished'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PickupEnabled",
+            "baseName": "PickupEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "BankAccountAttached",
+            "baseName": "BankAccountAttached",
+            "type": "boolean"
+        },
+        {
+            "name": "MenuAssigned",
+            "baseName": "MenuAssigned",
+            "type": "boolean"
+        },
+        {
+            "name": "HasFullAddress",
+            "baseName": "HasFullAddress",
+            "type": "boolean"
+        },
+        {
+            "name": "PickupHours",
+            "baseName": "PickupHours",
+            "type": "boolean"
+        },
+        {
+            "name": "IsPublished",
+            "baseName": "IsPublished",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreConfig.attributeTypeMap;
+    }
+}
+
 /**
 * Store Create Base
 */
@@ -39526,6 +39641,59 @@ export class StoreUpdatedEvent {
 
     static getAttributeTypeMap() {
         return StoreUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Hey
+*/
+export class StoreValidationConfig {
+    /**
+    * Store identifier
+    */
+    'StoreId'?: number;
+    'Name'?: string;
+    /**
+    * Is Store Valid for Kiosk
+    */
+    'IsValid'?: boolean;
+    /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    'ConfigValidation'?: StoreConfig;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "IsValid",
+            "baseName": "IsValid",
+            "type": "boolean"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
+            "type": "number"
+        },
+        {
+            "name": "ConfigValidation",
+            "baseName": "ConfigValidation",
+            "type": "StoreConfig"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreValidationConfig.attributeTypeMap;
     }
 }
 
@@ -44999,6 +45167,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultStoreGroup": RestApiPaginationResultStoreGroup,
     "RestApiPaginationResultStoreGroupExtended": RestApiPaginationResultStoreGroupExtended,
     "RestApiPaginationResultStoreHeader": RestApiPaginationResultStoreHeader,
+    "RestApiPaginationResultStoreValidationConfig": RestApiPaginationResultStoreValidationConfig,
     "RestApiPaginationResultVoucherSummary": RestApiPaginationResultVoucherSummary,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiPaginationResultWebhookSubscription": RestApiPaginationResultWebhookSubscription,
@@ -45115,6 +45284,7 @@ let typeMap: {[index: string]: any} = {
     "StoreChannelAssignment": StoreChannelAssignment,
     "StoreChannelStoreMapping": StoreChannelStoreMapping,
     "StoreCloneSettings": StoreCloneSettings,
+    "StoreConfig": StoreConfig,
     "StoreCreateBase": StoreCreateBase,
     "StoreCreatedEvent": StoreCreatedEvent,
     "StoreDataPoint": StoreDataPoint,
@@ -45151,6 +45321,7 @@ let typeMap: {[index: string]: any} = {
     "StoreUnarchivedEvent": StoreUnarchivedEvent,
     "StoreUnpublishedEvent": StoreUnpublishedEvent,
     "StoreUpdatedEvent": StoreUpdatedEvent,
+    "StoreValidationConfig": StoreValidationConfig,
     "StripeAccountLinkRequest": StripeAccountLinkRequest,
     "StripeConnectedAccount": StripeConnectedAccount,
     "StripeConnectedAccountInfo": StripeConnectedAccountInfo,
@@ -70996,6 +71167,83 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultStore");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get store validation by storeIds
+     * @param storeId Store identifier
+     * @param appId 
+     * @param page Requested page index
+     * @param limit Requested page limit
+     * @param {*} [options] Override http request options.
+     */
+    public getStoresByStoreIdWithValidations (storeId: Array<number>, appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreValidationConfig;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/storevalidation/kiosk'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getStoresByStoreIdWithValidations.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getStoresByStoreIdWithValidations.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreValidationConfig;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultStoreValidationConfig");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
