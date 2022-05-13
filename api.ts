@@ -4068,7 +4068,8 @@ export namespace BluetoothTerminalStatus {
         CHIPPER2X = <any> 'CHIPPER_2X',
         COTSDEVICE = <any> 'COTS_DEVICE',
         VERIFONEP400 = <any> 'VERIFONE_P400',
-        WISEPAD3 = <any> 'WISEPAD_3'
+        WISEPAD3 = <any> 'WISEPAD_3',
+        WISEPOSE = <any> 'WISEPOS_E'
     }
     export enum StatusEnum {
         NotConnected = <any> 'Not_Connected',
@@ -14482,7 +14483,8 @@ export namespace KioskBluetoothInstallUpdateInitiateEvent {
         CHIPPER2X = <any> 'CHIPPER_2X',
         COTSDEVICE = <any> 'COTS_DEVICE',
         VERIFONEP400 = <any> 'VERIFONE_P400',
-        WISEPAD3 = <any> 'WISEPAD_3'
+        WISEPAD3 = <any> 'WISEPAD_3',
+        WISEPOSE = <any> 'WISEPOS_E'
     }
 }
 /**
@@ -14585,7 +14587,8 @@ export namespace KioskBluetoothPairingModeEvent {
         CHIPPER2X = <any> 'CHIPPER_2X',
         COTSDEVICE = <any> 'COTS_DEVICE',
         VERIFONEP400 = <any> 'VERIFONE_P400',
-        WISEPAD3 = <any> 'WISEPAD_3'
+        WISEPAD3 = <any> 'WISEPAD_3',
+        WISEPOSE = <any> 'WISEPOS_E'
     }
 }
 /**
@@ -14688,7 +14691,8 @@ export namespace KioskBluetoothTerminalCancelUpdateEvent {
         CHIPPER2X = <any> 'CHIPPER_2X',
         COTSDEVICE = <any> 'COTS_DEVICE',
         VERIFONEP400 = <any> 'VERIFONE_P400',
-        WISEPAD3 = <any> 'WISEPAD_3'
+        WISEPAD3 = <any> 'WISEPAD_3',
+        WISEPOSE = <any> 'WISEPOS_E'
     }
 }
 /**
@@ -15034,7 +15038,8 @@ export namespace KioskBluetoothTerminalInstallationStatusEvent {
         CHIPPER2X = <any> 'CHIPPER_2X',
         COTSDEVICE = <any> 'COTS_DEVICE',
         VERIFONEP400 = <any> 'VERIFONE_P400',
-        WISEPAD3 = <any> 'WISEPAD_3'
+        WISEPAD3 = <any> 'WISEPAD_3',
+        WISEPOSE = <any> 'WISEPOS_E'
     }
 }
 /**
@@ -15137,7 +15142,8 @@ export namespace KioskBluetoothTerminalUnpairedEvent {
         CHIPPER2X = <any> 'CHIPPER_2X',
         COTSDEVICE = <any> 'COTS_DEVICE',
         VERIFONEP400 = <any> 'VERIFONE_P400',
-        WISEPAD3 = <any> 'WISEPAD_3'
+        WISEPAD3 = <any> 'WISEPAD_3',
+        WISEPOSE = <any> 'WISEPOS_E'
     }
 }
 /**
@@ -15258,7 +15264,8 @@ export namespace KioskBluetoothTerminalUpdatedEvent {
         CHIPPER2X = <any> 'CHIPPER_2X',
         COTSDEVICE = <any> 'COTS_DEVICE',
         VERIFONEP400 = <any> 'VERIFONE_P400',
-        WISEPAD3 = <any> 'WISEPAD_3'
+        WISEPAD3 = <any> 'WISEPAD_3',
+        WISEPOSE = <any> 'WISEPOS_E'
     }
 }
 /**
@@ -15361,7 +15368,8 @@ export namespace KioskBluetoothUnpairingModeEvent {
         CHIPPER2X = <any> 'CHIPPER_2X',
         COTSDEVICE = <any> 'COTS_DEVICE',
         VERIFONEP400 = <any> 'VERIFONE_P400',
-        WISEPAD3 = <any> 'WISEPAD_3'
+        WISEPAD3 = <any> 'WISEPAD_3',
+        WISEPOSE = <any> 'WISEPOS_E'
     }
 }
 /**
@@ -50497,7 +50505,7 @@ export class CardReadersApi {
      * @param terminalType 
      * @param {*} [options] Override http request options.
      */
-    public cancelCurrentlyInitiatedBluetoothDeviceUpdate (appId: string, deviceId: string, terminalType: 'CHIPPER_2X' | 'COTS_DEVICE' | 'VERIFONE_P400' | 'WISEPAD_3', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public cancelCurrentlyInitiatedBluetoothDeviceUpdate (appId: string, deviceId: string, terminalType: 'CHIPPER_2X' | 'COTS_DEVICE' | 'VERIFONE_P400' | 'WISEPAD_3' | 'WISEPOS_E', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/cardreaders/kiosk/{deviceId}/bluetooth/{terminalType}/cancelUpdate'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)))
@@ -50886,7 +50894,7 @@ export class CardReadersApi {
      * @param terminalType 
      * @param {*} [options] Override http request options.
      */
-    public initiateKioskBluetoothPairingMode (appId: string, deviceId: string, terminalType: 'CHIPPER_2X' | 'COTS_DEVICE' | 'VERIFONE_P400' | 'WISEPAD_3', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public initiateKioskBluetoothPairingMode (appId: string, deviceId: string, terminalType: 'CHIPPER_2X' | 'COTS_DEVICE' | 'VERIFONE_P400' | 'WISEPAD_3' | 'WISEPOS_E', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/cardreaders/kiosk/{deviceId}/bluetooth/{terminalType}/pair'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)))
@@ -50956,7 +50964,7 @@ export class CardReadersApi {
      * @param terminalType 
      * @param {*} [options] Override http request options.
      */
-    public initiateKioskBluetoothUpdateInstall (appId: string, deviceId: string, terminalType: 'CHIPPER_2X' | 'COTS_DEVICE' | 'VERIFONE_P400' | 'WISEPAD_3', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public initiateKioskBluetoothUpdateInstall (appId: string, deviceId: string, terminalType: 'CHIPPER_2X' | 'COTS_DEVICE' | 'VERIFONE_P400' | 'WISEPAD_3' | 'WISEPOS_E', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/cardreaders/kiosk/{deviceId}/bluetooth/{terminalType}/installUpdate'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)))
