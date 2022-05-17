@@ -33625,6 +33625,10 @@ export class RevenueDetail {
     * Online sales plus online delivery charges and tips
     */
     'TotalOnlineRevenue'?: number;
+    /**
+    * Service charge on online sales
+    */
+    'OnlineSalesServiceCharges'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -33687,6 +33691,11 @@ export class RevenueDetail {
         {
             "name": "TotalOnlineRevenue",
             "baseName": "TotalOnlineRevenue",
+            "type": "number"
+        },
+        {
+            "name": "OnlineSalesServiceCharges",
+            "baseName": "OnlineSalesServiceCharges",
             "type": "number"
         }    ];
 
