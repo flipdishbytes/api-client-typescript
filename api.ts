@@ -4023,6 +4023,10 @@ export class BluetoothTerminalStatus {
     * Last time the status was updated
     */
     'UpdateTime'?: Date;
+    /**
+    * ReaderId for Stripe Terminal
+    */
+    'ReaderId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -4056,6 +4060,11 @@ export class BluetoothTerminalStatus {
             "name": "UpdateTime",
             "baseName": "UpdateTime",
             "type": "Date"
+        },
+        {
+            "name": "ReaderId",
+            "baseName": "ReaderId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4074,7 +4083,9 @@ export namespace BluetoothTerminalStatus {
     export enum StatusEnum {
         NotConnected = <any> 'Not_Connected',
         Connecting = <any> 'Connecting',
-        Connected = <any> 'Connected'
+        Connected = <any> 'Connected',
+        Online = <any> 'Online',
+        Offline = <any> 'Offline'
     }
 }
 /**
