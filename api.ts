@@ -18169,9 +18169,9 @@ export class MenuItemOptionSet {
     */
     'PublicId'?: string;
     /**
-    * Product Id when the OptionSet is associated to a Product
+    * Catalog item Id when the OptionSet is associated to a Product
     */
-    'ProductId'?: string;
+    'CatalogItemId'?: string;
     /**
     * Menu item option set name
     */
@@ -18226,8 +18226,8 @@ export class MenuItemOptionSet {
             "type": "string"
         },
         {
-            "name": "ProductId",
-            "baseName": "ProductId",
+            "name": "CatalogItemId",
+            "baseName": "CatalogItemId",
             "type": "string"
         },
         {
@@ -18579,9 +18579,9 @@ export class MenuItemOptionSetItem {
     */
     'NextMenuItemOptionSetId'?: number;
     /**
-    * Product Id when the OptionSet is associated to a Product
+    * Catalog item Id when the OptionSet is associated to a Product
     */
-    'ProductId'?: string;
+    'CatalogItemId'?: string;
     /**
     * Tax rate name
     */
@@ -18637,8 +18637,8 @@ export class MenuItemOptionSetItem {
             "type": "number"
         },
         {
-            "name": "ProductId",
-            "baseName": "ProductId",
+            "name": "CatalogItemId",
+            "baseName": "CatalogItemId",
             "type": "string"
         },
         {
@@ -19725,9 +19725,9 @@ export class MenuSectionItem {
     */
     'Metadata'?: Array<CreateMetadata>;
     /**
-    * Product Id when the Item is associated to a Product
+    * Catalog item Id when the Item is associated to a Product
     */
-    'ProductId'?: string;
+    'CatalogItemId'?: string;
     /**
     * Menu item name (like \"Korma\")
     */
@@ -19822,8 +19822,8 @@ export class MenuSectionItem {
             "type": "Array<CreateMetadata>"
         },
         {
-            "name": "ProductId",
-            "baseName": "ProductId",
+            "name": "CatalogItemId",
+            "baseName": "CatalogItemId",
             "type": "string"
         },
         {
