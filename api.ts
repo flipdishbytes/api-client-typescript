@@ -7112,6 +7112,43 @@ export namespace CreateFullMenuSectionItem {
     }
 }
 /**
+* Information to create a reference to a {System.Text.RegularExpressions.Group}
+*/
+export class CreateGroupReference {
+    /**
+    * Identifier of the ProductId to use as SubProduct
+    */
+    'CatalogGroupId': string;
+    /**
+    * Type of the SupProduct
+    */
+    'GroupType': CreateGroupReference.GroupTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CatalogGroupId",
+            "baseName": "CatalogGroupId",
+            "type": "string"
+        },
+        {
+            "name": "GroupType",
+            "baseName": "GroupType",
+            "type": "CreateGroupReference.GroupTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateGroupReference.attributeTypeMap;
+    }
+}
+
+export namespace CreateGroupReference {
+    export enum GroupTypeEnum {
+        ModifierGroup = <any> 'ModifierGroup'
+    }
+}
+/**
 * Input model for creating a Location
 */
 export class CreateLocation {
@@ -7380,6 +7417,107 @@ export namespace CreateMetafieldDefinition {
     export enum BehaviorsEnum {
         SendToOrder = <any> 'SendToOrder',
         SendToMenu = <any> 'SendToMenu'
+    }
+}
+/**
+* Create a Catalog Item
+*/
+export class CreateProduct {
+    /**
+    * Collection of groups associated with this item
+    */
+    'Groups'?: Array<CreateGroupReference>;
+    /**
+    * Collection of metafields
+    */
+    'Metafields'?: Array<Metafield>;
+    /**
+    * Type of item (Product, Modifier, etc)
+    */
+    'ItemType': CreateProduct.ItemTypeEnum;
+    /**
+    * Stock Keeping Unit (SKU)
+    */
+    'Sku': string;
+    /**
+    * Item name
+    */
+    'Name': string;
+    /**
+    * Item description
+    */
+    'Description'?: string;
+    /**
+    * Item price
+    */
+    'Price': number;
+    /**
+    * Image File Name
+    */
+    'ImageFileName'?: string;
+    /**
+    * item contains alcohol
+    */
+    'Alcohol'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Groups",
+            "baseName": "Groups",
+            "type": "Array<CreateGroupReference>"
+        },
+        {
+            "name": "Metafields",
+            "baseName": "Metafields",
+            "type": "Array<Metafield>"
+        },
+        {
+            "name": "ItemType",
+            "baseName": "ItemType",
+            "type": "CreateProduct.ItemTypeEnum"
+        },
+        {
+            "name": "Sku",
+            "baseName": "Sku",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Price",
+            "baseName": "Price",
+            "type": "number"
+        },
+        {
+            "name": "ImageFileName",
+            "baseName": "ImageFileName",
+            "type": "string"
+        },
+        {
+            "name": "Alcohol",
+            "baseName": "Alcohol",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateProduct.attributeTypeMap;
+    }
+}
+
+export namespace CreateProduct {
+    export enum ItemTypeEnum {
+        Product = <any> 'Product',
+        Modifier = <any> 'Modifier'
     }
 }
 /**
@@ -12109,6 +12247,52 @@ export class GoogleViewport {
     }
 }
 
+/**
+* Reference to an existing {Flipdish.PublicModels.V1.Catalog.Groups.CatalogGroup}
+*/
+export class GroupReference {
+    /**
+    * Details of the referenced {Flipdish.PublicModels.V1.Catalog.Products.Product}
+    */
+    'Group'?: CatalogGroup;
+    /**
+    * Identifier of the ProductId to use as SubProduct
+    */
+    'CatalogGroupId': string;
+    /**
+    * Type of the SupProduct
+    */
+    'GroupType': GroupReference.GroupTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Group",
+            "baseName": "Group",
+            "type": "CatalogGroup"
+        },
+        {
+            "name": "CatalogGroupId",
+            "baseName": "CatalogGroupId",
+            "type": "string"
+        },
+        {
+            "name": "GroupType",
+            "baseName": "GroupType",
+            "type": "GroupReference.GroupTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GroupReference.attributeTypeMap;
+    }
+}
+
+export namespace GroupReference {
+    export enum GroupTypeEnum {
+        ModifierGroup = <any> 'ModifierGroup'
+    }
+}
 /**
 * Describes coordinates that have a group
 */
@@ -27753,6 +27937,125 @@ export namespace ProcessingFeeConfig {
     }
 }
 /**
+* Product
+*/
+export class Product {
+    /**
+    * Unique catalog Item id
+    */
+    'CatalogItemId'?: string;
+    /**
+    * Returns true if the item is archived
+    */
+    'IsArchived'?: boolean;
+    /**
+    * Collection of groups associated with this item
+    */
+    'Groups'?: Array<GroupReference>;
+    /**
+    * Collection of metafields
+    */
+    'Metafields'?: Array<Metafield>;
+    /**
+    * Type of item (Product, Modifier, etc)
+    */
+    'ItemType': Product.ItemTypeEnum;
+    /**
+    * Stock Keeping Unit (SKU)
+    */
+    'Sku': string;
+    /**
+    * Item name
+    */
+    'Name': string;
+    /**
+    * Item description
+    */
+    'Description'?: string;
+    /**
+    * Item price
+    */
+    'Price': number;
+    /**
+    * Image File Name
+    */
+    'ImageFileName'?: string;
+    /**
+    * item contains alcohol
+    */
+    'Alcohol'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CatalogItemId",
+            "baseName": "CatalogItemId",
+            "type": "string"
+        },
+        {
+            "name": "IsArchived",
+            "baseName": "IsArchived",
+            "type": "boolean"
+        },
+        {
+            "name": "Groups",
+            "baseName": "Groups",
+            "type": "Array<GroupReference>"
+        },
+        {
+            "name": "Metafields",
+            "baseName": "Metafields",
+            "type": "Array<Metafield>"
+        },
+        {
+            "name": "ItemType",
+            "baseName": "ItemType",
+            "type": "Product.ItemTypeEnum"
+        },
+        {
+            "name": "Sku",
+            "baseName": "Sku",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Price",
+            "baseName": "Price",
+            "type": "number"
+        },
+        {
+            "name": "ImageFileName",
+            "baseName": "ImageFileName",
+            "type": "string"
+        },
+        {
+            "name": "Alcohol",
+            "baseName": "Alcohol",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Product.attributeTypeMap;
+    }
+}
+
+export namespace Product {
+    export enum ItemTypeEnum {
+        Product = <any> 'Product',
+        Modifier = <any> 'Modifier'
+    }
+}
+/**
 * Publish Menu Changes
 */
 export class PublishMenuChanges {
@@ -32418,6 +32721,29 @@ export class RestApiResultProcessingFeeConfig {
 
     static getAttributeTypeMap() {
         return RestApiResultProcessingFeeConfig.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultProduct {
+    /**
+    * Generic data object.
+    */
+    'Data': Product;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Product"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultProduct.attributeTypeMap;
     }
 }
 
@@ -41498,6 +41824,43 @@ export class UpdateDriverProfileModel {
 }
 
 /**
+* Data to update a {Flipdish.PublicModels.V1.Catalog.Products.GroupReference}
+*/
+export class UpdateGroupReference {
+    /**
+    * Identifier of the ProductId to use as SubProduct
+    */
+    'CatalogGroupId': string;
+    /**
+    * Type of the SupProduct
+    */
+    'GroupType': UpdateGroupReference.GroupTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CatalogGroupId",
+            "baseName": "CatalogGroupId",
+            "type": "string"
+        },
+        {
+            "name": "GroupType",
+            "baseName": "GroupType",
+            "type": "UpdateGroupReference.GroupTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateGroupReference.attributeTypeMap;
+    }
+}
+
+export namespace UpdateGroupReference {
+    export enum GroupTypeEnum {
+        ModifierGroup = <any> 'ModifierGroup'
+    }
+}
+/**
 * Input model for updating a LocationArea
 */
 export class UpdateLocationArea {
@@ -41585,6 +41948,92 @@ export namespace UpdateMetafieldDefinition {
         SendToMenu = <any> 'SendToMenu'
     }
 }
+/**
+* Update Product
+*/
+export class UpdateProduct {
+    /**
+    * Stock Keeping Unit (SKU)
+    */
+    'Sku'?: string;
+    /**
+    * Product name
+    */
+    'Name'?: string;
+    /**
+    * Product description
+    */
+    'Description'?: string;
+    /**
+    * Product price
+    */
+    'Price'?: number;
+    /**
+    * Image File Name
+    */
+    'ImageFileName'?: string;
+    /**
+    * Product contains alcohol
+    */
+    'Alcohol'?: boolean;
+    /**
+    * Collection of groups associated with this item
+    */
+    'Groups'?: Array<UpdateGroupReference>;
+    /**
+    * Collection of metafields
+    */
+    'Metafields'?: Array<Metafield>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Sku",
+            "baseName": "Sku",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Price",
+            "baseName": "Price",
+            "type": "number"
+        },
+        {
+            "name": "ImageFileName",
+            "baseName": "ImageFileName",
+            "type": "string"
+        },
+        {
+            "name": "Alcohol",
+            "baseName": "Alcohol",
+            "type": "boolean"
+        },
+        {
+            "name": "Groups",
+            "baseName": "Groups",
+            "type": "Array<UpdateGroupReference>"
+        },
+        {
+            "name": "Metafields",
+            "baseName": "Metafields",
+            "type": "Array<Metafield>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateProduct.attributeTypeMap;
+    }
+}
+
 /**
 * Describes the configuration of tipping
 */
@@ -44644,9 +45093,11 @@ let enumsMap: {[index: string]: any} = {
         "CreateFullMenuItemOptionSetItem.CellLayoutTypeEnum": CreateFullMenuItemOptionSetItem.CellLayoutTypeEnum,
         "CreateFullMenuSectionItem.SpicinessRatingEnum": CreateFullMenuSectionItem.SpicinessRatingEnum,
         "CreateFullMenuSectionItem.CellLayoutTypeEnum": CreateFullMenuSectionItem.CellLayoutTypeEnum,
+        "CreateGroupReference.GroupTypeEnum": CreateGroupReference.GroupTypeEnum,
         "CreateMetafieldDefinition.OwnerEntityEnum": CreateMetafieldDefinition.OwnerEntityEnum,
         "CreateMetafieldDefinition.ValueTypeEnum": CreateMetafieldDefinition.ValueTypeEnum,
         "CreateMetafieldDefinition.BehaviorsEnum": CreateMetafieldDefinition.BehaviorsEnum,
+        "CreateProduct.ItemTypeEnum": CreateProduct.ItemTypeEnum,
         "CreateTeammate.AppAccessLevelEnum": CreateTeammate.AppAccessLevelEnum,
         "CreateVoucher.VoucherTypeEnum": CreateVoucher.VoucherTypeEnum,
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
@@ -44654,6 +45105,7 @@ let enumsMap: {[index: string]: any} = {
         "DriverStore.PresenceEnum": DriverStore.PresenceEnum,
         "Field.FieldTypeEnum": Field.FieldTypeEnum,
         "FulfillmentInfo.DispatchTypeEnum": FulfillmentInfo.DispatchTypeEnum,
+        "GroupReference.GroupTypeEnum": GroupReference.GroupTypeEnum,
         "HomeAction.HomeActionTypeEnum": HomeAction.HomeActionTypeEnum,
         "HydraConfig.PaymentOptionsEnum": HydraConfig.PaymentOptionsEnum,
         "HydraConnectionStatusChangedEvent.HydraDeviceStatusEnum": HydraConnectionStatusChangedEvent.HydraDeviceStatusEnum,
@@ -44744,6 +45196,7 @@ let enumsMap: {[index: string]: any} = {
         "PhoneCall.CallStatusEnum": PhoneCall.CallStatusEnum,
         "PreOrderConfig.PreOrderTimeDisplayTypeEnum": PreOrderConfig.PreOrderTimeDisplayTypeEnum,
         "ProcessingFeeConfig.PaymentAccountTypeEnum": ProcessingFeeConfig.PaymentAccountTypeEnum,
+        "Product.ItemTypeEnum": Product.ItemTypeEnum,
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
         "RedeemInvitationResult.InvitationStatusEnum": RedeemInvitationResult.InvitationStatusEnum,
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
@@ -44782,6 +45235,7 @@ let enumsMap: {[index: string]: any} = {
         "UpdateAppStoreApp.CountriesEnum": UpdateAppStoreApp.CountriesEnum,
         "UpdateCatalogGroupReference.GroupTypeEnum": UpdateCatalogGroupReference.GroupTypeEnum,
         "UpdateCatalogItemReference.ItemTypeEnum": UpdateCatalogItemReference.ItemTypeEnum,
+        "UpdateGroupReference.GroupTypeEnum": UpdateGroupReference.GroupTypeEnum,
         "UpdateMetafieldDefinition.BehaviorsEnum": UpdateMetafieldDefinition.BehaviorsEnum,
         "Voucher.StatusEnum": Voucher.StatusEnum,
         "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
@@ -44879,12 +45333,14 @@ let typeMap: {[index: string]: any} = {
     "CreateFullMenuItemOptionSetItem": CreateFullMenuItemOptionSetItem,
     "CreateFullMenuSection": CreateFullMenuSection,
     "CreateFullMenuSectionItem": CreateFullMenuSectionItem,
+    "CreateGroupReference": CreateGroupReference,
     "CreateLocation": CreateLocation,
     "CreateLocationArea": CreateLocationArea,
     "CreateMenuSectionItemFromCatalogItems": CreateMenuSectionItemFromCatalogItems,
     "CreateMenuTaxRate": CreateMenuTaxRate,
     "CreateMetadata": CreateMetadata,
     "CreateMetafieldDefinition": CreateMetafieldDefinition,
+    "CreateProduct": CreateProduct,
     "CreateTeammate": CreateTeammate,
     "CreateVoucher": CreateVoucher,
     "CreatedMenuSectionItems": CreatedMenuSectionItems,
@@ -44939,6 +45395,7 @@ let typeMap: {[index: string]: any} = {
     "GoogleGeometry": GoogleGeometry,
     "GoogleLocation": GoogleLocation,
     "GoogleViewport": GoogleViewport,
+    "GroupReference": GroupReference,
     "GroupedCoordinates": GroupedCoordinates,
     "HomeAction": HomeAction,
     "HomeStatistics": HomeStatistics,
@@ -45106,6 +45563,7 @@ let typeMap: {[index: string]: any} = {
     "PrinterTurnedOnEvent": PrinterTurnedOnEvent,
     "PrinterUnassignedFromStoreEvent": PrinterUnassignedFromStoreEvent,
     "ProcessingFeeConfig": ProcessingFeeConfig,
+    "Product": Product,
     "PublishMenuChanges": PublishMenuChanges,
     "PushNotificationDeletedEvent": PushNotificationDeletedEvent,
     "PushNotificationRequest": PushNotificationRequest,
@@ -45259,6 +45717,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultPaymentTerminalTransactionDetails": RestApiResultPaymentTerminalTransactionDetails,
     "RestApiResultPreOrderConfig": RestApiResultPreOrderConfig,
     "RestApiResultProcessingFeeConfig": RestApiResultProcessingFeeConfig,
+    "RestApiResultProduct": RestApiResultProduct,
     "RestApiResultPushNotificationResponse": RestApiResultPushNotificationResponse,
     "RestApiResultRedeemInvitationResult": RestApiResultRedeemInvitationResult,
     "RestApiResultRetentionCampaign": RestApiResultRetentionCampaign,
@@ -45376,8 +45835,10 @@ let typeMap: {[index: string]: any} = {
     "UpdateCatalogItemReference": UpdateCatalogItemReference,
     "UpdateDriverNotificationToken": UpdateDriverNotificationToken,
     "UpdateDriverProfileModel": UpdateDriverProfileModel,
+    "UpdateGroupReference": UpdateGroupReference,
     "UpdateLocationArea": UpdateLocationArea,
     "UpdateMetafieldDefinition": UpdateMetafieldDefinition,
+    "UpdateProduct": UpdateProduct,
     "UpdateTipConfiguration": UpdateTipConfiguration,
     "UserAnsweredSignupQuestionsEvent": UserAnsweredSignupQuestionsEvent,
     "UserCreatedEvent": UserCreatedEvent,
@@ -52429,6 +52890,462 @@ export class CatalogItemsApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(updateCatalogItem, "UpdateCatalogItem")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum CatalogProductsApiApiKeys {
+}
+
+export class CatalogProductsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: CatalogProductsApiApiKeys, value: string) {
+        (this.authentications as any)[CatalogProductsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Archive Product
+     * @param appId 
+     * @param catalogItemId 
+     * @param {*} [options] Override http request options.
+     */
+    public archiveProduct (appId: string, catalogItemId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/{catalogItemId}/archive'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'catalogItemId' + '}', encodeURIComponent(String(catalogItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling archiveProduct.');
+        }
+
+        // verify required parameter 'catalogItemId' is not null or undefined
+        if (catalogItemId === null || catalogItemId === undefined) {
+            throw new Error('Required parameter catalogItemId was null or undefined when calling archiveProduct.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Create a Product
+     * @param appId 
+     * @param createProduct 
+     * @param {*} [options] Override http request options.
+     */
+    public createProduct (appId: string, createProduct: CreateProduct, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProduct;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createProduct.');
+        }
+
+        // verify required parameter 'createProduct' is not null or undefined
+        if (createProduct === null || createProduct === undefined) {
+            throw new Error('Required parameter createProduct was null or undefined when calling createProduct.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(createProduct, "CreateProduct")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultProduct;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultProduct");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Duplicate Product
+     * @param appId 
+     * @param catalogItemId 
+     * @param {*} [options] Override http request options.
+     */
+    public duplicateProduct (appId: string, catalogItemId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/{catalogItemId}/duplicate'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'catalogItemId' + '}', encodeURIComponent(String(catalogItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling duplicateProduct.');
+        }
+
+        // verify required parameter 'catalogItemId' is not null or undefined
+        if (catalogItemId === null || catalogItemId === undefined) {
+            throw new Error('Required parameter catalogItemId was null or undefined when calling duplicateProduct.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get Product by Id
+     * @param appId 
+     * @param catalogItemId 
+     * @param {*} [options] Override http request options.
+     */
+    public getProductById (appId: string, catalogItemId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: Product;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/{catalogItemId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'catalogItemId' + '}', encodeURIComponent(String(catalogItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getProductById.');
+        }
+
+        // verify required parameter 'catalogItemId' is not null or undefined
+        if (catalogItemId === null || catalogItemId === undefined) {
+            throw new Error('Required parameter catalogItemId was null or undefined when calling getProductById.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: Product;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Product");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get paginated products by app name id filtered by types
+     * @param appId 
+     * @param itemTypes 
+     * @param searchTerm 
+     * @param page 
+     * @param limit 
+     * @param {*} [options] Override http request options.
+     */
+    public getProducts (appId: string, itemTypes: Array<'Product' | 'Modifier'>, searchTerm?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultCatalogItem;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getProducts.');
+        }
+
+        // verify required parameter 'itemTypes' is not null or undefined
+        if (itemTypes === null || itemTypes === undefined) {
+            throw new Error('Required parameter itemTypes was null or undefined when calling getProducts.');
+        }
+
+        if (itemTypes !== undefined) {
+            localVarQueryParameters['itemTypes'] = ObjectSerializer.serialize(itemTypes, "Array<'Product' | 'Modifier'>");
+        }
+
+        if (searchTerm !== undefined) {
+            localVarQueryParameters['searchTerm'] = ObjectSerializer.serialize(searchTerm, "string");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultCatalogItem;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultCatalogItem");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Update Product
+     * @param appId 
+     * @param catalogItemId 
+     * @param updateProduct 
+     * @param {*} [options] Override http request options.
+     */
+    public updateProduct (appId: string, catalogItemId: string, updateProduct: UpdateProduct, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products/{catalogItemId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'catalogItemId' + '}', encodeURIComponent(String(catalogItemId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateProduct.');
+        }
+
+        // verify required parameter 'catalogItemId' is not null or undefined
+        if (catalogItemId === null || catalogItemId === undefined) {
+            throw new Error('Required parameter catalogItemId was null or undefined when calling updateProduct.');
+        }
+
+        // verify required parameter 'updateProduct' is not null or undefined
+        if (updateProduct === null || updateProduct === undefined) {
+            throw new Error('Required parameter updateProduct was null or undefined when calling updateProduct.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(updateProduct, "UpdateProduct")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
