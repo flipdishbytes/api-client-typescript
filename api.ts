@@ -4604,6 +4604,10 @@ export class CatalogGroup {
     */
     'CatalogGroupId'?: string;
     /**
+    * Unique catalog item id
+    */
+    'CatalogItemId'?: string;
+    /**
     * Returns true if the group is archived
     */
     'IsArchived'?: boolean;
@@ -4650,6 +4654,11 @@ export class CatalogGroup {
         {
             "name": "CatalogGroupId",
             "baseName": "CatalogGroupId",
+            "type": "string"
+        },
+        {
+            "name": "CatalogItemId",
+            "baseName": "CatalogItemId",
             "type": "string"
         },
         {
@@ -4916,6 +4925,10 @@ export class CatalogGroupReference {
     */
     'CatalogGroupId': string;
     /**
+    * Identifier of the ProductId to use as SubProduct
+    */
+    'CatalogItemId'?: string;
+    /**
     * Type of the SupProduct
     */
     'GroupType': CatalogGroupReference.GroupTypeEnum;
@@ -4931,6 +4944,11 @@ export class CatalogGroupReference {
         {
             "name": "CatalogGroupId",
             "baseName": "CatalogGroupId",
+            "type": "string"
+        },
+        {
+            "name": "CatalogItemId",
+            "baseName": "CatalogItemId",
             "type": "string"
         },
         {
@@ -6384,6 +6402,10 @@ export class CreateCatalogGroupReference {
     */
     'CatalogGroupId': string;
     /**
+    * Identifier of the ProductId to use as SubProduct
+    */
+    'CatalogItemId'?: string;
+    /**
     * Type of the SupProduct
     */
     'GroupType': CreateCatalogGroupReference.GroupTypeEnum;
@@ -6394,6 +6416,11 @@ export class CreateCatalogGroupReference {
         {
             "name": "CatalogGroupId",
             "baseName": "CatalogGroupId",
+            "type": "string"
+        },
+        {
+            "name": "CatalogItemId",
+            "baseName": "CatalogItemId",
             "type": "string"
         },
         {
@@ -7120,6 +7147,10 @@ export class CreateGroupReference {
     */
     'CatalogGroupId': string;
     /**
+    * Identifier of the ProductId to use as SubProduct
+    */
+    'CatalogItemId'?: string;
+    /**
     * Type of the SupProduct
     */
     'GroupType': CreateGroupReference.GroupTypeEnum;
@@ -7130,6 +7161,11 @@ export class CreateGroupReference {
         {
             "name": "CatalogGroupId",
             "baseName": "CatalogGroupId",
+            "type": "string"
+        },
+        {
+            "name": "CatalogItemId",
+            "baseName": "CatalogItemId",
             "type": "string"
         },
         {
@@ -12260,6 +12296,10 @@ export class GroupReference {
     */
     'CatalogGroupId': string;
     /**
+    * Identifier of the ProductId to use as SubProduct
+    */
+    'CatalogItemId'?: string;
+    /**
     * Type of the SupProduct
     */
     'GroupType': GroupReference.GroupTypeEnum;
@@ -12275,6 +12315,11 @@ export class GroupReference {
         {
             "name": "CatalogGroupId",
             "baseName": "CatalogGroupId",
+            "type": "string"
+        },
+        {
+            "name": "CatalogItemId",
+            "baseName": "CatalogItemId",
             "type": "string"
         },
         {
@@ -41616,6 +41661,10 @@ export class UpdateCatalogGroupReference {
     */
     'CatalogGroupId': string;
     /**
+    * Identifier of the ProductId to use as SubProduct
+    */
+    'CatalogItemId'?: string;
+    /**
     * Type of the SupProduct
     */
     'GroupType': UpdateCatalogGroupReference.GroupTypeEnum;
@@ -41626,6 +41675,11 @@ export class UpdateCatalogGroupReference {
         {
             "name": "CatalogGroupId",
             "baseName": "CatalogGroupId",
+            "type": "string"
+        },
+        {
+            "name": "CatalogItemId",
+            "baseName": "CatalogItemId",
             "type": "string"
         },
         {
@@ -41832,6 +41886,10 @@ export class UpdateGroupReference {
     */
     'CatalogGroupId': string;
     /**
+    * Identifier of the ProductId to use as SubProduct
+    */
+    'CatalogItemId'?: string;
+    /**
     * Type of the SupProduct
     */
     'GroupType': UpdateGroupReference.GroupTypeEnum;
@@ -41842,6 +41900,11 @@ export class UpdateGroupReference {
         {
             "name": "CatalogGroupId",
             "baseName": "CatalogGroupId",
+            "type": "string"
+        },
+        {
+            "name": "CatalogItemId",
+            "baseName": "CatalogItemId",
             "type": "string"
         },
         {
@@ -51941,25 +52004,25 @@ export class CatalogGroupsApi {
      * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Archive Catalog Group
      * @param appId 
-     * @param catalogGroupId 
+     * @param catalogItemId 
      * @param {*} [options] Override http request options.
      */
-    public archiveCatalogGroup (appId: string, catalogGroupId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/groups/{catalogGroupId}/archive'
+    public archiveGroup (appId: string, catalogItemId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/groups/{catalogItemId}/archive'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'catalogGroupId' + '}', encodeURIComponent(String(catalogGroupId)));
+            .replace('{' + 'catalogItemId' + '}', encodeURIComponent(String(catalogItemId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling archiveCatalogGroup.');
+            throw new Error('Required parameter appId was null or undefined when calling archiveGroup.');
         }
 
-        // verify required parameter 'catalogGroupId' is not null or undefined
-        if (catalogGroupId === null || catalogGroupId === undefined) {
-            throw new Error('Required parameter catalogGroupId was null or undefined when calling archiveCatalogGroup.');
+        // verify required parameter 'catalogItemId' is not null or undefined
+        if (catalogItemId === null || catalogItemId === undefined) {
+            throw new Error('Required parameter catalogItemId was null or undefined when calling archiveGroup.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -52068,25 +52131,25 @@ export class CatalogGroupsApi {
      * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Duplicate Catalog Group
      * @param appId 
-     * @param catalogGroupId 
+     * @param catalogItemId 
      * @param {*} [options] Override http request options.
      */
-    public duplicateCatalogGroup (appId: string, catalogGroupId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/groups/{catalogGroupId}/duplicate'
+    public duplicateGroup (appId: string, catalogItemId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/groups/{catalogItemId}/duplicate'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'catalogGroupId' + '}', encodeURIComponent(String(catalogGroupId)));
+            .replace('{' + 'catalogItemId' + '}', encodeURIComponent(String(catalogItemId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling duplicateCatalogGroup.');
+            throw new Error('Required parameter appId was null or undefined when calling duplicateGroup.');
         }
 
-        // verify required parameter 'catalogGroupId' is not null or undefined
-        if (catalogGroupId === null || catalogGroupId === undefined) {
-            throw new Error('Required parameter catalogGroupId was null or undefined when calling duplicateCatalogGroup.');
+        // verify required parameter 'catalogItemId' is not null or undefined
+        if (catalogItemId === null || catalogItemId === undefined) {
+            throw new Error('Required parameter catalogItemId was null or undefined when calling duplicateGroup.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -52131,25 +52194,25 @@ export class CatalogGroupsApi {
      * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get group by Id
      * @param appId 
-     * @param catalogGroupId 
+     * @param catalogItemId 
      * @param {*} [options] Override http request options.
      */
-    public getCatalogGroupById (appId: string, catalogGroupId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: CatalogGroup;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/groups/{catalogGroupId}'
+    public getGroupById (appId: string, catalogItemId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: CatalogGroup;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/groups/{catalogItemId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'catalogGroupId' + '}', encodeURIComponent(String(catalogGroupId)));
+            .replace('{' + 'catalogItemId' + '}', encodeURIComponent(String(catalogItemId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getCatalogGroupById.');
+            throw new Error('Required parameter appId was null or undefined when calling getGroupById.');
         }
 
-        // verify required parameter 'catalogGroupId' is not null or undefined
-        if (catalogGroupId === null || catalogGroupId === undefined) {
-            throw new Error('Required parameter catalogGroupId was null or undefined when calling getCatalogGroupById.');
+        // verify required parameter 'catalogItemId' is not null or undefined
+        if (catalogItemId === null || catalogItemId === undefined) {
+            throw new Error('Required parameter catalogItemId was null or undefined when calling getGroupById.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -52277,31 +52340,31 @@ export class CatalogGroupsApi {
      * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Update Catalog Group
      * @param appId 
-     * @param catalogGroupId 
+     * @param catalogItemId 
      * @param updateCatalogGroup 
      * @param {*} [options] Override http request options.
      */
-    public updateCatalogGroup (appId: string, catalogGroupId: string, updateCatalogGroup: UpdateCatalogGroup, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/groups/{catalogGroupId}'
+    public updateGroup (appId: string, catalogItemId: string, updateCatalogGroup: UpdateCatalogGroup, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/groups/{catalogItemId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'catalogGroupId' + '}', encodeURIComponent(String(catalogGroupId)));
+            .replace('{' + 'catalogItemId' + '}', encodeURIComponent(String(catalogItemId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling updateCatalogGroup.');
+            throw new Error('Required parameter appId was null or undefined when calling updateGroup.');
         }
 
-        // verify required parameter 'catalogGroupId' is not null or undefined
-        if (catalogGroupId === null || catalogGroupId === undefined) {
-            throw new Error('Required parameter catalogGroupId was null or undefined when calling updateCatalogGroup.');
+        // verify required parameter 'catalogItemId' is not null or undefined
+        if (catalogItemId === null || catalogItemId === undefined) {
+            throw new Error('Required parameter catalogItemId was null or undefined when calling updateGroup.');
         }
 
         // verify required parameter 'updateCatalogGroup' is not null or undefined
         if (updateCatalogGroup === null || updateCatalogGroup === undefined) {
-            throw new Error('Required parameter updateCatalogGroup was null or undefined when calling updateCatalogGroup.');
+            throw new Error('Required parameter updateCatalogGroup was null or undefined when calling updateGroup.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
