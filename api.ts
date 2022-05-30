@@ -1224,6 +1224,7 @@ export namespace App {
         UpdateHydraConfigManage = <any> 'UpdateHydraConfigManage',
         InitiateBluetoothPairingMode = <any> 'InitiateBluetoothPairingMode',
         DeleteTerminal = <any> 'DeleteTerminal',
+        ViewKioskTelemetry = <any> 'ViewKioskTelemetry',
         ViewCustomers = <any> 'ViewCustomers',
         EditCustomers = <any> 'EditCustomers',
         CreateCatalogElements = <any> 'CreateCatalogElements',
@@ -33209,6 +33210,29 @@ export class RestApiResultTeammate {
 /**
 * Rest api result
 */
+export class RestApiResultTelemetrySeriesResult {
+    /**
+    * Generic data object.
+    */
+    'Data': TelemetrySeriesResult;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "TelemetrySeriesResult"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultTelemetrySeriesResult.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultTipConfiguration {
     /**
     * Generic data object.
@@ -41192,6 +41216,105 @@ export class TeammateUpdatedEvent {
     }
 }
 
+export class TelemetrySeriesProperty {
+    'Name'?: string;
+    'Type'?: string;
+    'IntValues'?: Array<number>;
+    'StringValues'?: Array<string>;
+    'DoubleValues'?: Array<number>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Type",
+            "baseName": "Type",
+            "type": "string"
+        },
+        {
+            "name": "IntValues",
+            "baseName": "IntValues",
+            "type": "Array<number>"
+        },
+        {
+            "name": "StringValues",
+            "baseName": "StringValues",
+            "type": "Array<string>"
+        },
+        {
+            "name": "DoubleValues",
+            "baseName": "DoubleValues",
+            "type": "Array<number>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return TelemetrySeriesProperty.attributeTypeMap;
+    }
+}
+
+export class TelemetrySeriesQueryParameters {
+    'KioskId'?: string;
+    'Variables'?: Array<string>;
+    'StartDate'?: Date;
+    'EndDate'?: Date;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "KioskId",
+            "baseName": "KioskId",
+            "type": "string"
+        },
+        {
+            "name": "Variables",
+            "baseName": "Variables",
+            "type": "Array<string>"
+        },
+        {
+            "name": "StartDate",
+            "baseName": "StartDate",
+            "type": "Date"
+        },
+        {
+            "name": "EndDate",
+            "baseName": "EndDate",
+            "type": "Date"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return TelemetrySeriesQueryParameters.attributeTypeMap;
+    }
+}
+
+export class TelemetrySeriesResult {
+    'Timestamps'?: Array<Date>;
+    'Properties'?: Array<TelemetrySeriesProperty>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Timestamps",
+            "baseName": "Timestamps",
+            "type": "Array<Date>"
+        },
+        {
+            "name": "Properties",
+            "baseName": "Properties",
+            "type": "Array<TelemetrySeriesProperty>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return TelemetrySeriesResult.attributeTypeMap;
+    }
+}
+
 /**
 * Describes the configuration of tipping
 */
@@ -45799,6 +45922,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultStripeTerminalPrivateKey": RestApiResultStripeTerminalPrivateKey,
     "RestApiResultStuartSettings": RestApiResultStuartSettings,
     "RestApiResultTeammate": RestApiResultTeammate,
+    "RestApiResultTelemetrySeriesResult": RestApiResultTelemetrySeriesResult,
     "RestApiResultTipConfiguration": RestApiResultTipConfiguration,
     "RestApiResultVoucherWithStats": RestApiResultVoucherWithStats,
     "RestApiResultWebsiteImage": RestApiResultWebsiteImage,
@@ -45887,6 +46011,9 @@ let typeMap: {[index: string]: any} = {
     "TeammateInviteAcceptedEvent": TeammateInviteAcceptedEvent,
     "TeammateInviteSentEvent": TeammateInviteSentEvent,
     "TeammateUpdatedEvent": TeammateUpdatedEvent,
+    "TelemetrySeriesProperty": TelemetrySeriesProperty,
+    "TelemetrySeriesQueryParameters": TelemetrySeriesQueryParameters,
+    "TelemetrySeriesResult": TelemetrySeriesResult,
     "TipConfiguration": TipConfiguration,
     "UnRegisterCardReaderRequest": UnRegisterCardReaderRequest,
     "UpdateAppStoreApp": UpdateAppStoreApp,
@@ -59572,6 +59699,70 @@ export class KioskIotApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultKioskIotConnectionParameters");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get the IoT time series values for a given Kiosk Id, properties and time range
+     * @param appId 
+     * @param queryParams 
+     * @param {*} [options] Override http request options.
+     */
+    public queryTelemetrySeries (appId: string, queryParams: TelemetrySeriesQueryParameters, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultTelemetrySeriesResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/kioskiot/timeseries/query'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling queryTelemetrySeries.');
+        }
+
+        // verify required parameter 'queryParams' is not null or undefined
+        if (queryParams === null || queryParams === undefined) {
+            throw new Error('Required parameter queryParams was null or undefined when calling queryTelemetrySeries.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(queryParams, "TelemetrySeriesQueryParameters")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultTelemetrySeriesResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultTelemetrySeriesResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
