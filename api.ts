@@ -7471,7 +7471,7 @@ export class CreateProduct {
     /**
     * Type of item (Product, Modifier, etc)
     */
-    'ItemType': CreateProduct.ItemTypeEnum;
+    'ProductType': CreateProduct.ProductTypeEnum;
     /**
     * Stock Keeping Unit (SKU)
     */
@@ -7511,9 +7511,9 @@ export class CreateProduct {
             "type": "Array<Metafield>"
         },
         {
-            "name": "ItemType",
-            "baseName": "ItemType",
-            "type": "CreateProduct.ItemTypeEnum"
+            "name": "ProductType",
+            "baseName": "ProductType",
+            "type": "CreateProduct.ProductTypeEnum"
         },
         {
             "name": "Sku",
@@ -7552,7 +7552,7 @@ export class CreateProduct {
 }
 
 export namespace CreateProduct {
-    export enum ItemTypeEnum {
+    export enum ProductTypeEnum {
         Product = <any> 'Product',
         Modifier = <any> 'Modifier'
     }
@@ -28005,7 +28005,7 @@ export class Product {
     /**
     * Type of item (Product, Modifier, etc)
     */
-    'ItemType': Product.ItemTypeEnum;
+    'ProductType': Product.ProductTypeEnum;
     /**
     * Stock Keeping Unit (SKU)
     */
@@ -28055,9 +28055,9 @@ export class Product {
             "type": "Array<Metafield>"
         },
         {
-            "name": "ItemType",
-            "baseName": "ItemType",
-            "type": "Product.ItemTypeEnum"
+            "name": "ProductType",
+            "baseName": "ProductType",
+            "type": "Product.ProductTypeEnum"
         },
         {
             "name": "Sku",
@@ -28096,7 +28096,7 @@ export class Product {
 }
 
 export namespace Product {
-    export enum ItemTypeEnum {
+    export enum ProductTypeEnum {
         Product = <any> 'Product',
         Modifier = <any> 'Modifier'
     }
@@ -30937,6 +30937,56 @@ export class RestApiPaginationResultPhoneCall {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultPhoneCall.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
+export class RestApiPaginationResultProduct {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<Product>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<Product>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultProduct.attributeTypeMap;
     }
 }
 
@@ -45283,7 +45333,7 @@ let enumsMap: {[index: string]: any} = {
         "CreateMetafieldDefinition.OwnerEntityEnum": CreateMetafieldDefinition.OwnerEntityEnum,
         "CreateMetafieldDefinition.ValueTypeEnum": CreateMetafieldDefinition.ValueTypeEnum,
         "CreateMetafieldDefinition.BehaviorsEnum": CreateMetafieldDefinition.BehaviorsEnum,
-        "CreateProduct.ItemTypeEnum": CreateProduct.ItemTypeEnum,
+        "CreateProduct.ProductTypeEnum": CreateProduct.ProductTypeEnum,
         "CreateTeammate.AppAccessLevelEnum": CreateTeammate.AppAccessLevelEnum,
         "CreateVoucher.VoucherTypeEnum": CreateVoucher.VoucherTypeEnum,
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
@@ -45382,7 +45432,7 @@ let enumsMap: {[index: string]: any} = {
         "PhoneCall.CallStatusEnum": PhoneCall.CallStatusEnum,
         "PreOrderConfig.PreOrderTimeDisplayTypeEnum": PreOrderConfig.PreOrderTimeDisplayTypeEnum,
         "ProcessingFeeConfig.PaymentAccountTypeEnum": ProcessingFeeConfig.PaymentAccountTypeEnum,
-        "Product.ItemTypeEnum": Product.ItemTypeEnum,
+        "Product.ProductTypeEnum": Product.ProductTypeEnum,
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
         "RedeemInvitationResult.InvitationStatusEnum": RedeemInvitationResult.InvitationStatusEnum,
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
@@ -45834,6 +45884,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultPayoutRefund": RestApiPaginationResultPayoutRefund,
     "RestApiPaginationResultPendingMenuChanges": RestApiPaginationResultPendingMenuChanges,
     "RestApiPaginationResultPhoneCall": RestApiPaginationResultPhoneCall,
+    "RestApiPaginationResultProduct": RestApiPaginationResultProduct,
     "RestApiPaginationResultPushNotificationResponse": RestApiPaginationResultPushNotificationResponse,
     "RestApiPaginationResultStore": RestApiPaginationResultStore,
     "RestApiPaginationResultStoreGroup": RestApiPaginationResultStoreGroup,
@@ -53415,13 +53466,13 @@ export class CatalogProductsApi {
      * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get paginated products by app name id filtered by types
      * @param appId 
-     * @param itemTypes 
+     * @param productTypes 
      * @param searchTerm 
      * @param page 
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getProducts (appId: string, itemTypes: Array<'Product' | 'Modifier'>, searchTerm?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultCatalogItem;  }> {
+    public getProducts (appId: string, productTypes: Array<'Product' | 'Modifier'>, searchTerm?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultProduct;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/catalog/products'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -53433,13 +53484,13 @@ export class CatalogProductsApi {
             throw new Error('Required parameter appId was null or undefined when calling getProducts.');
         }
 
-        // verify required parameter 'itemTypes' is not null or undefined
-        if (itemTypes === null || itemTypes === undefined) {
-            throw new Error('Required parameter itemTypes was null or undefined when calling getProducts.');
+        // verify required parameter 'productTypes' is not null or undefined
+        if (productTypes === null || productTypes === undefined) {
+            throw new Error('Required parameter productTypes was null or undefined when calling getProducts.');
         }
 
-        if (itemTypes !== undefined) {
-            localVarQueryParameters['itemTypes'] = ObjectSerializer.serialize(itemTypes, "Array<'Product' | 'Modifier'>");
+        if (productTypes !== undefined) {
+            localVarQueryParameters['productTypes'] = ObjectSerializer.serialize(productTypes, "Array<'Product' | 'Modifier'>");
         }
 
         if (searchTerm !== undefined) {
@@ -53478,12 +53529,12 @@ export class CatalogProductsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultCatalogItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultProduct;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultCatalogItem");
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultProduct");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
