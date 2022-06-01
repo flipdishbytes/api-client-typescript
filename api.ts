@@ -15865,6 +15865,10 @@ export class LightspeedSettings {
     * The Lightspeed Chef Note Modifier Id to map
     */
     'ChefNoteModifierId'?: string;
+    /**
+    * The Lightspeed Service Charge Id to map
+    */
+    'ServiceChargeId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -15977,6 +15981,11 @@ export class LightspeedSettings {
         {
             "name": "ChefNoteModifierId",
             "baseName": "ChefNoteModifierId",
+            "type": "string"
+        },
+        {
+            "name": "ServiceChargeId",
+            "baseName": "ServiceChargeId",
             "type": "string"
         }    ];
 
