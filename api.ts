@@ -21595,7 +21595,13 @@ export class ObjectDisplayOrder {
     }
 }
 
+/**
+* 
+*/
 export class OnboardingItemUpdate {
+    /**
+    * Completion Status for Onboarding Item
+    */
     'Status'?: OnboardingItemUpdate.StatusEnum;
 
     static discriminator: string | undefined = undefined;
