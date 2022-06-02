@@ -48434,7 +48434,7 @@ export class AppStoreDeveloperApi {
      * @param verificationStatus New verification status
      * @param {*} [options] Override http request options.
      */
-    public appVerificationUpdate (oauthAppId: string, appStoreAppId: string, verificationStatus: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public appVerificationUpdate (oauthAppId: string, appStoreAppId: string, verificationStatus: 'Draft' | 'Submitted' | 'Verified', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oauthAppId}/appstore/apps/{appStoreAppId}/verification'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
@@ -48457,6 +48457,10 @@ export class AppStoreDeveloperApi {
             throw new Error('Required parameter verificationStatus was null or undefined when calling appVerificationUpdate.');
         }
 
+        if (verificationStatus !== undefined) {
+            localVarQueryParameters['verificationStatus'] = ObjectSerializer.serialize(verificationStatus, "'Draft' | 'Submitted' | 'Verified'");
+        }
+
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -48468,7 +48472,6 @@ export class AppStoreDeveloperApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(verificationStatus, "string")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
