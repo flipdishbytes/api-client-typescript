@@ -7477,15 +7477,15 @@ export class CreateProduct {
     */
     'Sku': string;
     /**
-    * Item name
+    * Product name
     */
     'Name': string;
     /**
-    * Item description
+    * Product description
     */
     'Description'?: string;
     /**
-    * Item price
+    * Product price
     */
     'Price': number;
     /**
@@ -7493,7 +7493,7 @@ export class CreateProduct {
     */
     'ImageFileName'?: string;
     /**
-    * item contains alcohol
+    * Product contains alcohol
     */
     'Alcohol'?: boolean;
 
@@ -28026,15 +28026,15 @@ export class Product {
     */
     'Sku': string;
     /**
-    * Item name
+    * Product name
     */
     'Name': string;
     /**
-    * Item description
+    * Product description
     */
     'Description'?: string;
     /**
-    * Item price
+    * Product price
     */
     'Price': number;
     /**
@@ -28042,7 +28042,7 @@ export class Product {
     */
     'ImageFileName'?: string;
     /**
-    * item contains alcohol
+    * Product contains alcohol
     */
     'Alcohol'?: boolean;
 
