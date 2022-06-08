@@ -41397,6 +41397,10 @@ export class TipConfiguration {
     */
     'AllowCustomTips'?: boolean;
     /**
+    * Is round up allowed?
+    */
+    'AllowRoundUp'?: boolean;
+    /**
     * Ordered list of tip breakpoints (smallest -&gt; largest)
     */
     'Percentages'?: Array<number>;
@@ -41421,6 +41425,11 @@ export class TipConfiguration {
         {
             "name": "AllowCustomTips",
             "baseName": "AllowCustomTips",
+            "type": "boolean"
+        },
+        {
+            "name": "AllowRoundUp",
+            "baseName": "AllowRoundUp",
             "type": "boolean"
         },
         {
@@ -42298,6 +42307,10 @@ export class UpdateTipConfiguration {
     */
     'AllowCustomTips'?: boolean;
     /**
+    * Is round up allowed?
+    */
+    'AllowRoundUp'?: boolean;
+    /**
     * Ordered list of tip breakpoints (smallest -&gt; largest)
     */
     'Percentages'?: Array<number>;
@@ -42317,6 +42330,11 @@ export class UpdateTipConfiguration {
         {
             "name": "AllowCustomTips",
             "baseName": "AllowCustomTips",
+            "type": "boolean"
+        },
+        {
+            "name": "AllowRoundUp",
+            "baseName": "AllowRoundUp",
             "type": "boolean"
         },
         {
