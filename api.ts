@@ -25816,6 +25816,14 @@ export class PayoutOrder {
     * Store id
     */
     'StoreId'?: number;
+    /**
+    * Order ServiceChargeAmount amount
+    */
+    'ServiceChargeAmount'?: number;
+    /**
+    * Order ServiceChargePercentage amount
+    */
+    'ServiceChargePercentage'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -25913,6 +25921,16 @@ export class PayoutOrder {
         {
             "name": "StoreId",
             "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "ServiceChargeAmount",
+            "baseName": "ServiceChargeAmount",
+            "type": "number"
+        },
+        {
+            "name": "ServiceChargePercentage",
+            "baseName": "ServiceChargePercentage",
             "type": "number"
         }    ];
 
