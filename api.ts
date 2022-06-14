@@ -61344,12 +61344,13 @@ export class LookerSingleSignOnApi {
     }
     /**
      * 
-     * @summary Get the single sign on embed URL for PerformanceSummary Dashboard
+     * @summary Get the generic single sign on embed URL for Looker dashboards
      * @param appId AppNameId
      * @param embedPath Embed URL of the dashboard
+     * @param filters Filters that will be passed to the dashboard
      * @param {*} [options] Override http request options.
      */
-    public getSSOEndpoint (appId: string, embedPath: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: DashboardEmbed;  }> {
+    public getSSOEndpoint (appId: string, embedPath: string, filters?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: DashboardEmbed;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/looker/sso'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -61368,6 +61369,10 @@ export class LookerSingleSignOnApi {
 
         if (embedPath !== undefined) {
             localVarQueryParameters['embedPath'] = ObjectSerializer.serialize(embedPath, "string");
+        }
+
+        if (filters !== undefined) {
+            localVarQueryParameters['filters'] = ObjectSerializer.serialize(filters, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
