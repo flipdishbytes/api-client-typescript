@@ -21301,6 +21301,21 @@ export namespace MetafieldDefinitionRecommendation {
     }
 }
 /**
+* Model base
+*/
+export class ModelBase {
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return ModelBase.attributeTypeMap;
+    }
+}
+
+/**
 * Oauth client (also knowns as 'app')
 */
 export class OAuthApp {
@@ -32594,6 +32609,29 @@ export class RestApiResultMetafieldDefinition {
 /**
 * Rest api result
 */
+export class RestApiResultModelBase {
+    /**
+    * Generic data object.
+    */
+    'Data': ModelBase;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "ModelBase"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultModelBase.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultOAuthApp {
     /**
     * Generic data object.
@@ -40361,6 +40399,10 @@ export class StripeConnectedAccountInfo {
     * Current status of the Card Payment capability of the account
     */
     'CardPaymentStatus'?: StripeConnectedAccountInfo.CardPaymentStatusEnum;
+    /**
+    * Payouts Schedule Interval
+    */
+    'PayoutScheduleInterval'?: StripeConnectedAccountInfo.PayoutScheduleIntervalEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -40379,6 +40421,11 @@ export class StripeConnectedAccountInfo {
             "name": "CardPaymentStatus",
             "baseName": "CardPaymentStatus",
             "type": "StripeConnectedAccountInfo.CardPaymentStatusEnum"
+        },
+        {
+            "name": "PayoutScheduleInterval",
+            "baseName": "PayoutScheduleInterval",
+            "type": "StripeConnectedAccountInfo.PayoutScheduleIntervalEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -40401,6 +40448,12 @@ export namespace StripeConnectedAccountInfo {
         Pending = <any> 'Pending',
         Active = <any> 'Active',
         Unrequested = <any> 'Unrequested'
+    }
+    export enum PayoutScheduleIntervalEnum {
+        Manual = <any> 'Manual',
+        Daily = <any> 'Daily',
+        Weekly = <any> 'Weekly',
+        Monthly = <any> 'Monthly'
     }
 }
 /**
@@ -45488,6 +45541,7 @@ let enumsMap: {[index: string]: any} = {
         "StripeConnectedAccount.AccountStatusEnum": StripeConnectedAccount.AccountStatusEnum,
         "StripeConnectedAccountInfo.AccountStatusEnum": StripeConnectedAccountInfo.AccountStatusEnum,
         "StripeConnectedAccountInfo.CardPaymentStatusEnum": StripeConnectedAccountInfo.CardPaymentStatusEnum,
+        "StripeConnectedAccountInfo.PayoutScheduleIntervalEnum": StripeConnectedAccountInfo.PayoutScheduleIntervalEnum,
         "StuartSettings.PackageTypeEnum": StuartSettings.PackageTypeEnum,
         "StuartSettings.TransportTypeEnum": StuartSettings.TransportTypeEnum,
         "SupportedCountry.AddressLayoutEnum": SupportedCountry.AddressLayoutEnum,
@@ -45772,6 +45826,7 @@ let typeMap: {[index: string]: any} = {
     "Metafield": Metafield,
     "MetafieldDefinition": MetafieldDefinition,
     "MetafieldDefinitionRecommendation": MetafieldDefinitionRecommendation,
+    "ModelBase": ModelBase,
     "OAuthApp": OAuthApp,
     "OAuthTokenModel": OAuthTokenModel,
     "OauthClientRedirectUri": OauthClientRedirectUri,
@@ -45976,6 +46031,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultMenuSectionItem": RestApiResultMenuSectionItem,
     "RestApiResultMetadata": RestApiResultMetadata,
     "RestApiResultMetafieldDefinition": RestApiResultMetafieldDefinition,
+    "RestApiResultModelBase": RestApiResultModelBase,
     "RestApiResultOAuthApp": RestApiResultOAuthApp,
     "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
     "RestApiResultOrder": RestApiResultOrder,
@@ -73648,6 +73704,77 @@ export class StripeCustomConnectApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultStripeConnectedAccount");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update Stripe Connection Account's payout schedule
+     * @param appId 
+     * @param stripeConnectedAccountId 
+     * @param interval 
+     * @param {*} [options] Override http request options.
+     */
+    public updatePayoutSchedule (appId: string, stripeConnectedAccountId: string, interval: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultModelBase;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/update-payout-schedule/{stripeConnectedAccountId}/{interval}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'stripeConnectedAccountId' + '}', encodeURIComponent(String(stripeConnectedAccountId)))
+            .replace('{' + 'interval' + '}', encodeURIComponent(String(interval)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updatePayoutSchedule.');
+        }
+
+        // verify required parameter 'stripeConnectedAccountId' is not null or undefined
+        if (stripeConnectedAccountId === null || stripeConnectedAccountId === undefined) {
+            throw new Error('Required parameter stripeConnectedAccountId was null or undefined when calling updatePayoutSchedule.');
+        }
+
+        // verify required parameter 'interval' is not null or undefined
+        if (interval === null || interval === undefined) {
+            throw new Error('Required parameter interval was null or undefined when calling updatePayoutSchedule.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultModelBase;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultModelBase");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
