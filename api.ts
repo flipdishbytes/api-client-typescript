@@ -1275,6 +1275,7 @@ export namespace App {
         AssignDriverToOrder = <any> 'AssignDriverToOrder',
         UnassignDriverFromOrder = <any> 'UnassignDriverFromOrder',
         UpdateOrdersDeliveryTrackingStatus = <any> 'UpdateOrdersDeliveryTrackingStatus',
+        UpdateOrderFulfillmentStatus = <any> 'UpdateOrderFulfillmentStatus',
         ViewPayouts = <any> 'ViewPayouts',
         ViewChannels = <any> 'ViewChannels',
         ViewOnboarding = <any> 'ViewOnboarding',
@@ -22889,6 +22890,61 @@ export class OrderDropOffLocation {
 }
 
 /**
+* Order Delivery Status Information
+*/
+export class OrderFulfillmentStatus {
+    /**
+    * Order Id
+    */
+    'OrderId'?: number;
+    /**
+    * Fulfillment Status Id
+    */
+    'StatusId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrderId",
+            "baseName": "OrderId",
+            "type": "number"
+        },
+        {
+            "name": "StatusId",
+            "baseName": "StatusId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderFulfillmentStatus.attributeTypeMap;
+    }
+}
+
+/**
+* Fulfillment Status Information
+*/
+export class OrderFulfillmentStatusBase {
+    /**
+    * Fulfillment Status Id
+    */
+    'StatusId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StatusId",
+            "baseName": "StatusId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderFulfillmentStatusBase.attributeTypeMap;
+    }
+}
+
+/**
 * 
 */
 export class OrderIdAndSequenceNumber {
@@ -32718,6 +32774,29 @@ export class RestApiResultOrderDeliveryInformation {
 
     static getAttributeTypeMap() {
         return RestApiResultOrderDeliveryInformation.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultOrderFulfillmentStatus {
+    /**
+    * Generic data object.
+    */
+    'Data': OrderFulfillmentStatus;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "OrderFulfillmentStatus"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultOrderFulfillmentStatus.attributeTypeMap;
     }
 }
 
@@ -45842,6 +45921,8 @@ let typeMap: {[index: string]: any} = {
     "OrderDeliveryTrackingStatusUpdatedEvent": OrderDeliveryTrackingStatusUpdatedEvent,
     "OrderDispatchedEvent": OrderDispatchedEvent,
     "OrderDropOffLocation": OrderDropOffLocation,
+    "OrderFulfillmentStatus": OrderFulfillmentStatus,
+    "OrderFulfillmentStatusBase": OrderFulfillmentStatusBase,
     "OrderIdAndSequenceNumber": OrderIdAndSequenceNumber,
     "OrderIngestSubmitOrderRequest": OrderIngestSubmitOrderRequest,
     "OrderIngestSubmitOrderResponse": OrderIngestSubmitOrderResponse,
@@ -46036,6 +46117,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
     "RestApiResultOrder": RestApiResultOrder,
     "RestApiResultOrderDeliveryInformation": RestApiResultOrderDeliveryInformation,
+    "RestApiResultOrderFulfillmentStatus": RestApiResultOrderFulfillmentStatus,
     "RestApiResultOrderIngestSubmitOrderResponse": RestApiResultOrderIngestSubmitOrderResponse,
     "RestApiResultOrderPaymentInformation": RestApiResultOrderPaymentInformation,
     "RestApiResultPaymentIntent": RestApiResultPaymentIntent,
@@ -68238,6 +68320,63 @@ export class OrdersApi {
         });
     }
     /**
+     * [BETA - this endpoint is under development, do not use it in your production system] Returns an order's fulfillment status.
+     * @summary Get order delivery information
+     * @param orderId Flipdish Order Id
+     * @param {*} [options] Override http request options.
+     */
+    public getFulfillmentStatus (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderFulfillmentStatus;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/fulfillmentstatus'
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orderId' is not null or undefined
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling getFulfillmentStatus.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOrderFulfillmentStatus;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultOrderFulfillmentStatus");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * 
      * @summary Get order by ID
      * @param id Order identifier
@@ -68628,6 +68767,69 @@ export class OrdersApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(deliveryInformation, "OrderDeliveryInformationBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system] Updates an order's fulfillment status.
+     * @summary Add/update fulfillment status information to an order
+     * @param orderId Flipdish Order Id
+     * @param fulfillmentStatusRequest 
+     * @param {*} [options] Override http request options.
+     */
+    public updateFulfillmentStatus (orderId: number, fulfillmentStatusRequest: OrderFulfillmentStatusBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/fulfillmentstatus'
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orderId' is not null or undefined
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling updateFulfillmentStatus.');
+        }
+
+        // verify required parameter 'fulfillmentStatusRequest' is not null or undefined
+        if (fulfillmentStatusRequest === null || fulfillmentStatusRequest === undefined) {
+            throw new Error('Required parameter fulfillmentStatusRequest was null or undefined when calling updateFulfillmentStatus.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(fulfillmentStatusRequest, "OrderFulfillmentStatusBase")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
