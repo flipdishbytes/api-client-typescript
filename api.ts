@@ -1268,6 +1268,7 @@ export namespace App {
         ViewExternalAuditLogs = <any> 'ViewExternalAuditLogs',
         CreateExternalAuditLogEvents = <any> 'CreateExternalAuditLogEvents',
         ViewCatalogAuditLogs = <any> 'ViewCatalogAuditLogs',
+        ViewOrderFulfillmentAuditLogs = <any> 'ViewOrderFulfillmentAuditLogs',
         SendPushNotificationToCustomer = <any> 'SendPushNotificationToCustomer',
         InviteDriverToApp = <any> 'InviteDriverToApp',
         GetDriverForApp = <any> 'GetDriverForApp',
@@ -10492,6 +10493,10 @@ export class EventSearchResult {
     */
     'ExternalStoreEvent'?: Array<ExternalStoreEvent>;
     /**
+    * Fulfillment status updated event
+    */
+    'OrderFulfillmentStatusUpdatedEvent'?: Array<OrderFulfillmentStatusUpdatedEvent>;
+    /**
     * App Store Config Created
     */
     'AppStoreConfigCreatedEvent'?: Array<AppStoreConfigCreatedEvent>;
@@ -11129,6 +11134,11 @@ export class EventSearchResult {
             "name": "ExternalStoreEvent",
             "baseName": "ExternalStoreEvent",
             "type": "Array<ExternalStoreEvent>"
+        },
+        {
+            "name": "OrderFulfillmentStatusUpdatedEvent",
+            "baseName": "OrderFulfillmentStatusUpdatedEvent",
+            "type": "Array<OrderFulfillmentStatusUpdatedEvent>"
         },
         {
             "name": "AppStoreConfigCreatedEvent",
@@ -22890,7 +22900,7 @@ export class OrderDropOffLocation {
 }
 
 /**
-* Order Delivery Status Information
+* Order Fulfillment Status Information
 */
 export class OrderFulfillmentStatus {
     /**
@@ -22941,6 +22951,119 @@ export class OrderFulfillmentStatusBase {
 
     static getAttributeTypeMap() {
         return OrderFulfillmentStatusBase.attributeTypeMap;
+    }
+}
+
+/**
+* Fulfillment status updated event
+*/
+export class OrderFulfillmentStatusUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Order Id
+    */
+    'OrderId'?: number;
+    /**
+    * Fulfillment status name
+    */
+    'StatusName'?: string;
+    /**
+    * Fulfillment status ID
+    */
+    'StatusId'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "OrderId",
+            "baseName": "OrderId",
+            "type": "number"
+        },
+        {
+            "name": "StatusName",
+            "baseName": "StatusName",
+            "type": "string"
+        },
+        {
+            "name": "StatusId",
+            "baseName": "StatusId",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderFulfillmentStatusUpdatedEvent.attributeTypeMap;
     }
 }
 
@@ -45923,6 +46046,7 @@ let typeMap: {[index: string]: any} = {
     "OrderDropOffLocation": OrderDropOffLocation,
     "OrderFulfillmentStatus": OrderFulfillmentStatus,
     "OrderFulfillmentStatusBase": OrderFulfillmentStatusBase,
+    "OrderFulfillmentStatusUpdatedEvent": OrderFulfillmentStatusUpdatedEvent,
     "OrderIdAndSequenceNumber": OrderIdAndSequenceNumber,
     "OrderIngestSubmitOrderRequest": OrderIngestSubmitOrderRequest,
     "OrderIngestSubmitOrderResponse": OrderIngestSubmitOrderResponse,
@@ -68321,7 +68445,7 @@ export class OrdersApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system] Returns an order's fulfillment status.
-     * @summary Get order delivery information
+     * @summary Get order fulfillment status
      * @param orderId Flipdish Order Id
      * @param {*} [options] Override http request options.
      */
@@ -68798,7 +68922,7 @@ export class OrdersApi {
      * [BETA - this endpoint is under development, do not use it in your production system] Updates an order's fulfillment status.
      * @summary Add/update fulfillment status information to an order
      * @param orderId Flipdish Order Id
-     * @param fulfillmentStatusRequest 
+     * @param fulfillmentStatusRequest Fulfillment Status
      * @param {*} [options] Override http request options.
      */
     public updateFulfillmentStatus (orderId: number, fulfillmentStatusRequest: OrderFulfillmentStatusBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
