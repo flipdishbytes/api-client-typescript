@@ -21548,6 +21548,29 @@ export class ObjectDisplayOrder {
 }
 
 /**
+* Model for updating the onboarding config
+*/
+export class OnboardingConfigUpdate {
+    /**
+    * Gets or sets whether onboarding is enabled
+    */
+    'IsEnabled'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OnboardingConfigUpdate.attributeTypeMap;
+    }
+}
+
+/**
 * 
 */
 export class OnboardingItemUpdate {
@@ -46033,6 +46056,7 @@ let typeMap: {[index: string]: any} = {
     "OAuthTokenModel": OAuthTokenModel,
     "OauthClientRedirectUri": OauthClientRedirectUri,
     "ObjectDisplayOrder": ObjectDisplayOrder,
+    "OnboardingConfigUpdate": OnboardingConfigUpdate,
     "OnboardingItemUpdate": OnboardingItemUpdate,
     "Order": Order,
     "OrderAcceptedEvent": OrderAcceptedEvent,
@@ -67966,6 +67990,62 @@ export class OnboardingApi {
     /**
      * 
      * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public onboardingGetOnboardingConfig (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/clients/{appId}/onboarding/config'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling onboardingGetOnboardingConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
@@ -67998,6 +68078,69 @@ export class OnboardingApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param configUpdate 
+     * @param {*} [options] Override http request options.
+     */
+    public onboardingUpdateOnboardingConfig (appId: string, configUpdate: OnboardingConfigUpdate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/clients/{appId}/onboarding/config'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling onboardingUpdateOnboardingConfig.');
+        }
+
+        // verify required parameter 'configUpdate' is not null or undefined
+        if (configUpdate === null || configUpdate === undefined) {
+            throw new Error('Required parameter configUpdate was null or undefined when calling onboardingUpdateOnboardingConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(configUpdate, "OnboardingConfigUpdate")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
