@@ -39430,6 +39430,10 @@ export class StorePreOrderConfigUpdatedEvent {
     */
     'PreOrderConfig'?: PreOrderConfig;
     /**
+    * Old Pre Order Configuration
+    */
+    'OldPreOrderConfig'?: PreOrderConfig;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -39476,6 +39480,11 @@ export class StorePreOrderConfigUpdatedEvent {
         {
             "name": "PreOrderConfig",
             "baseName": "PreOrderConfig",
+            "type": "PreOrderConfig"
+        },
+        {
+            "name": "OldPreOrderConfig",
+            "baseName": "OldPreOrderConfig",
             "type": "PreOrderConfig"
         },
         {
