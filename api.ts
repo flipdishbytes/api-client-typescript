@@ -69186,7 +69186,7 @@ export class PaymentIntentsApi {
     /**
      * 
      * @summary Returns stripe payment intent for a given id
-     * @param paymentIntentId Stripes payment intent indentifier
+     * @param paymentIntentId Stripe payment intent identifier
      * @param {*} [options] Override http request options.
      */
     public getPaymentIntent (paymentIntentId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentIntent;  }> {
