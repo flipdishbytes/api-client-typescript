@@ -22056,7 +22056,8 @@ export namespace Order {
         Table = <any> 'Table',
         ParkingBay = <any> 'ParkingBay',
         Gate = <any> 'Gate',
-        DriveThrough = <any> 'DriveThrough'
+        DriveThrough = <any> 'DriveThrough',
+        Team = <any> 'Team'
     }
     export enum PaymentAccountTypeEnum {
         Card = <any> 'Card',
@@ -24327,7 +24328,8 @@ export namespace OrderSummary {
         Table = <any> 'Table',
         ParkingBay = <any> 'ParkingBay',
         Gate = <any> 'Gate',
-        DriveThrough = <any> 'DriveThrough'
+        DriveThrough = <any> 'DriveThrough',
+        Team = <any> 'Team'
     }
     export enum OrderStateEnum {
         Created = <any> 'Created',
