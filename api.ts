@@ -1277,6 +1277,10 @@ export namespace App {
         UnassignDriverFromOrder = <any> 'UnassignDriverFromOrder',
         UpdateOrdersDeliveryTrackingStatus = <any> 'UpdateOrdersDeliveryTrackingStatus',
         UpdateOrderFulfillmentStatus = <any> 'UpdateOrderFulfillmentStatus',
+        ViewFulfillmentStatesConfiguration = <any> 'ViewFulfillmentStatesConfiguration',
+        CreateFulfillmentStatesConfiguration = <any> 'CreateFulfillmentStatesConfiguration',
+        UpdateFulfillmentStatesConfiguration = <any> 'UpdateFulfillmentStatesConfiguration',
+        DeleteFulfillmentStatesConfiguration = <any> 'DeleteFulfillmentStatesConfiguration',
         ViewPayouts = <any> 'ViewPayouts',
         ViewChannels = <any> 'ViewChannels',
         ViewOnboarding = <any> 'ViewOnboarding',
@@ -11872,6 +11876,317 @@ export namespace FulfillmentInfo {
     export enum DispatchTypeEnum {
         Delivery = <any> 'Delivery',
         Pickup = <any> 'Pickup'
+    }
+}
+/**
+* Fulfillment States Configuration
+*/
+export class FulfillmentStatesConfiguration {
+    /**
+    * States
+    */
+    'States'?: Array<FulfillmentStatusConfigurationItem>;
+    /**
+    * AppId
+    */
+    'AppId'?: string;
+    /**
+    * Configuration Uid
+    */
+    'ConfigurationUid'?: string;
+    /**
+    * Store Selector Type
+    */
+    'StoreSelectorType'?: FulfillmentStatesConfiguration.StoreSelectorTypeEnum;
+    /**
+    * Store Ids
+    */
+    'StoreIds'?: Array<number>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "States",
+            "baseName": "States",
+            "type": "Array<FulfillmentStatusConfigurationItem>"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "ConfigurationUid",
+            "baseName": "ConfigurationUid",
+            "type": "string"
+        },
+        {
+            "name": "StoreSelectorType",
+            "baseName": "StoreSelectorType",
+            "type": "FulfillmentStatesConfiguration.StoreSelectorTypeEnum"
+        },
+        {
+            "name": "StoreIds",
+            "baseName": "StoreIds",
+            "type": "Array<number>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FulfillmentStatesConfiguration.attributeTypeMap;
+    }
+}
+
+export namespace FulfillmentStatesConfiguration {
+    export enum StoreSelectorTypeEnum {
+        None = <any> 'None',
+        Single = <any> 'Single',
+        Multiple = <any> 'Multiple'
+    }
+}
+/**
+* App store app configuration header information
+*/
+export class FulfillmentStatesConfigurationSummary {
+    /**
+    * AppId
+    */
+    'AppId': string;
+    /**
+    * Configuration Uid
+    */
+    'ConfigurationUid'?: string;
+    /**
+    * Store selector type
+    */
+    'StoreSelectorType'?: FulfillmentStatesConfigurationSummary.StoreSelectorTypeEnum;
+    /**
+    * Stores
+    */
+    'Stores'?: Array<FulfillmentStatesConfiguredStore>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "ConfigurationUid",
+            "baseName": "ConfigurationUid",
+            "type": "string"
+        },
+        {
+            "name": "StoreSelectorType",
+            "baseName": "StoreSelectorType",
+            "type": "FulfillmentStatesConfigurationSummary.StoreSelectorTypeEnum"
+        },
+        {
+            "name": "Stores",
+            "baseName": "Stores",
+            "type": "Array<FulfillmentStatesConfiguredStore>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FulfillmentStatesConfigurationSummary.attributeTypeMap;
+    }
+}
+
+export namespace FulfillmentStatesConfigurationSummary {
+    export enum StoreSelectorTypeEnum {
+        None = <any> 'None',
+        Single = <any> 'Single',
+        Multiple = <any> 'Multiple'
+    }
+}
+/**
+* Configured stores
+*/
+export class FulfillmentStatesConfiguredStore {
+    /**
+    * Store id
+    */
+    'StoreId'?: number;
+    /**
+    * Name of store
+    */
+    'Name'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FulfillmentStatesConfiguredStore.attributeTypeMap;
+    }
+}
+
+/**
+* Fulfillment Status Item
+*/
+export class FulfillmentStatusConfigurationItem {
+    /**
+    * Status Id (no whitespaces)
+    */
+    'StatusId'?: string;
+    /**
+    * Status name
+    */
+    'StatusName'?: string;
+    /**
+    * Is status enabled
+    */
+    'Enabled'?: boolean;
+    /**
+    * The short status string that is displayed to users in apps, portal. If empty then Order Status Name is displayed instead
+    */
+    'DisplayName'?: string;
+    /**
+    * Icon/Image that represents that status visual
+    */
+    'Icon'?: string;
+    /**
+    * A string which could be used in notification templates with a placeholder (SMS, email, push, web page with status)
+    */
+    'PublicDescription'?: string;
+    /**
+    * Is internal state (internal states not shown to customers)
+    */
+    'Internal'?: boolean;
+    /**
+    * list of statuses that this status can move to (can be back or forth)
+    */
+    'NextStatuses'?: Array<string>;
+    /**
+    * The default next status (on a dropdown or quick button on terminal or portal)
+    */
+    'DefaultNextStatus'?: string;
+    /**
+    * How will state change (manually or automated, including timed)
+    */
+    'ChangeType'?: FulfillmentStatusConfigurationItem.ChangeTypeEnum;
+    /**
+    * Include in reports
+    */
+    'IncludeInReports'?: boolean;
+    /**
+    * Is custom state. If not, then it's a system state
+    */
+    'IsCustom'?: boolean;
+    /**
+    * If empty then applies to all ordertypes, otherwise a list of order types this state applies to
+    */
+    'OrderTypes'?: Array<string>;
+    /**
+    * Whether state should fire off a notification to the customer
+    */
+    'Communication'?: boolean;
+    /**
+    * Integer for ordering results in choices (eg. dropdowns)
+    */
+    'VisualOrder'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StatusId",
+            "baseName": "StatusId",
+            "type": "string"
+        },
+        {
+            "name": "StatusName",
+            "baseName": "StatusName",
+            "type": "string"
+        },
+        {
+            "name": "Enabled",
+            "baseName": "Enabled",
+            "type": "boolean"
+        },
+        {
+            "name": "DisplayName",
+            "baseName": "DisplayName",
+            "type": "string"
+        },
+        {
+            "name": "Icon",
+            "baseName": "Icon",
+            "type": "string"
+        },
+        {
+            "name": "PublicDescription",
+            "baseName": "PublicDescription",
+            "type": "string"
+        },
+        {
+            "name": "Internal",
+            "baseName": "Internal",
+            "type": "boolean"
+        },
+        {
+            "name": "NextStatuses",
+            "baseName": "NextStatuses",
+            "type": "Array<string>"
+        },
+        {
+            "name": "DefaultNextStatus",
+            "baseName": "DefaultNextStatus",
+            "type": "string"
+        },
+        {
+            "name": "ChangeType",
+            "baseName": "ChangeType",
+            "type": "FulfillmentStatusConfigurationItem.ChangeTypeEnum"
+        },
+        {
+            "name": "IncludeInReports",
+            "baseName": "IncludeInReports",
+            "type": "boolean"
+        },
+        {
+            "name": "IsCustom",
+            "baseName": "IsCustom",
+            "type": "boolean"
+        },
+        {
+            "name": "OrderTypes",
+            "baseName": "OrderTypes",
+            "type": "Array<string>"
+        },
+        {
+            "name": "Communication",
+            "baseName": "Communication",
+            "type": "boolean"
+        },
+        {
+            "name": "VisualOrder",
+            "baseName": "VisualOrder",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FulfillmentStatusConfigurationItem.attributeTypeMap;
+    }
+}
+
+export namespace FulfillmentStatusConfigurationItem {
+    export enum ChangeTypeEnum {
+        Manual = <any> 'Manual',
+        Automated = <any> 'Automated',
+        Integrated = <any> 'Integrated'
     }
 }
 /**
@@ -29354,6 +29669,29 @@ export class RestApiArrayResultEmvTerminalWithAssignments {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultFulfillmentStatesConfigurationSummary {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<FulfillmentStatesConfigurationSummary>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<FulfillmentStatesConfigurationSummary>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultFulfillmentStatesConfigurationSummary.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultHomeAction {
     /**
     * Generic data object.
@@ -38642,6 +38980,10 @@ export class StoreListItem {
     * Store has retention campaign
     */
     'HasRetentionCampaign'?: boolean;
+    /**
+    * Is Published store
+    */
+    'IsPublished'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -38674,6 +39016,11 @@ export class StoreListItem {
         {
             "name": "HasRetentionCampaign",
             "baseName": "HasRetentionCampaign",
+            "type": "boolean"
+        },
+        {
+            "name": "IsPublished",
+            "baseName": "IsPublished",
             "type": "boolean"
         }    ];
 
@@ -42240,6 +42587,54 @@ export class UpdateDriverProfileModel {
 }
 
 /**
+* Update fulfillment states configuration
+*/
+export class UpdateFulfillmentStatesConfiguration {
+    /**
+    * Stores id's
+    */
+    'StoreIds'?: Array<number>;
+    /**
+    * Store Selector Type
+    */
+    'StoreSelectorType'?: UpdateFulfillmentStatesConfiguration.StoreSelectorTypeEnum;
+    /**
+    * Settings
+    */
+    'States'?: Array<FulfillmentStatusConfigurationItem>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreIds",
+            "baseName": "StoreIds",
+            "type": "Array<number>"
+        },
+        {
+            "name": "StoreSelectorType",
+            "baseName": "StoreSelectorType",
+            "type": "UpdateFulfillmentStatesConfiguration.StoreSelectorTypeEnum"
+        },
+        {
+            "name": "States",
+            "baseName": "States",
+            "type": "Array<FulfillmentStatusConfigurationItem>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateFulfillmentStatesConfiguration.attributeTypeMap;
+    }
+}
+
+export namespace UpdateFulfillmentStatesConfiguration {
+    export enum StoreSelectorTypeEnum {
+        None = <any> 'None',
+        Single = <any> 'Single',
+        Multiple = <any> 'Multiple'
+    }
+}
+/**
 * Update Catalog Group
 */
 export class UpdateGroup {
@@ -45661,6 +46056,9 @@ let enumsMap: {[index: string]: any} = {
         "DriverStore.PresenceEnum": DriverStore.PresenceEnum,
         "Field.FieldTypeEnum": Field.FieldTypeEnum,
         "FulfillmentInfo.DispatchTypeEnum": FulfillmentInfo.DispatchTypeEnum,
+        "FulfillmentStatesConfiguration.StoreSelectorTypeEnum": FulfillmentStatesConfiguration.StoreSelectorTypeEnum,
+        "FulfillmentStatesConfigurationSummary.StoreSelectorTypeEnum": FulfillmentStatesConfigurationSummary.StoreSelectorTypeEnum,
+        "FulfillmentStatusConfigurationItem.ChangeTypeEnum": FulfillmentStatusConfigurationItem.ChangeTypeEnum,
         "Group.GroupTypeEnum": Group.GroupTypeEnum,
         "GroupReference.GroupTypeEnum": GroupReference.GroupTypeEnum,
         "HomeAction.HomeActionTypeEnum": HomeAction.HomeActionTypeEnum,
@@ -45793,6 +46191,7 @@ let enumsMap: {[index: string]: any} = {
         "UpdateAppStoreApp.CategoriesEnum": UpdateAppStoreApp.CategoriesEnum,
         "UpdateAppStoreApp.CountriesEnum": UpdateAppStoreApp.CountriesEnum,
         "UpdateCatalogGroupReference.GroupTypeEnum": UpdateCatalogGroupReference.GroupTypeEnum,
+        "UpdateFulfillmentStatesConfiguration.StoreSelectorTypeEnum": UpdateFulfillmentStatesConfiguration.StoreSelectorTypeEnum,
         "UpdateGroupReference.GroupTypeEnum": UpdateGroupReference.GroupTypeEnum,
         "UpdateMetafieldDefinition.BehaviorsEnum": UpdateMetafieldDefinition.BehaviorsEnum,
         "UpdateProductReference.ProductTypeEnum": UpdateProductReference.ProductTypeEnum,
@@ -45944,6 +46343,10 @@ let typeMap: {[index: string]: any} = {
     "FlipdishEventBase": FlipdishEventBase,
     "FlipdishFeesDetails": FlipdishFeesDetails,
     "FulfillmentInfo": FulfillmentInfo,
+    "FulfillmentStatesConfiguration": FulfillmentStatesConfiguration,
+    "FulfillmentStatesConfigurationSummary": FulfillmentStatesConfigurationSummary,
+    "FulfillmentStatesConfiguredStore": FulfillmentStatesConfiguredStore,
+    "FulfillmentStatusConfigurationItem": FulfillmentStatusConfigurationItem,
     "GeoPointRequest": GeoPointRequest,
     "GoogleAddress": GoogleAddress,
     "GoogleAddressComponent": GoogleAddressComponent,
@@ -46157,6 +46560,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultDriver": RestApiArrayResultDriver,
     "RestApiArrayResultDriverStore": RestApiArrayResultDriverStore,
     "RestApiArrayResultEmvTerminalWithAssignments": RestApiArrayResultEmvTerminalWithAssignments,
+    "RestApiArrayResultFulfillmentStatesConfigurationSummary": RestApiArrayResultFulfillmentStatesConfigurationSummary,
     "RestApiArrayResultHomeAction": RestApiArrayResultHomeAction,
     "RestApiArrayResultKioskCashPaymentSettings": RestApiArrayResultKioskCashPaymentSettings,
     "RestApiArrayResultLocalisedTimeZone": RestApiArrayResultLocalisedTimeZone,
@@ -46404,6 +46808,7 @@ let typeMap: {[index: string]: any} = {
     "UpdateCatalogItem": UpdateCatalogItem,
     "UpdateDriverNotificationToken": UpdateDriverNotificationToken,
     "UpdateDriverProfileModel": UpdateDriverProfileModel,
+    "UpdateFulfillmentStatesConfiguration": UpdateFulfillmentStatesConfiguration,
     "UpdateGroup": UpdateGroup,
     "UpdateGroupReference": UpdateGroupReference,
     "UpdateLocationArea": UpdateLocationArea,
@@ -51187,9 +51592,10 @@ export class CampaignsApi {
      * 
      * @summary Gets list of stores for app
      * @param appId App Name Id
+     * @param onlyPublished 
      * @param {*} [options] Override http request options.
      */
-    public getStoreList (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreListItem;  }> {
+    public getStoreList (appId: string, onlyPublished?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreListItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/campaigns/stores'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -51199,6 +51605,10 @@ export class CampaignsApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getStoreList.');
+        }
+
+        if (onlyPublished !== undefined) {
+            localVarQueryParameters['onlyPublished'] = ObjectSerializer.serialize(onlyPublished, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -57875,6 +58285,368 @@ export class FilesApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "string");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum FulfillmentStateConfigurationApiApiKeys {
+}
+
+export class FulfillmentStateConfigurationApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: FulfillmentStateConfigurationApiApiKeys, value: string) {
+        (this.authentications as any)[FulfillmentStateConfigurationApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Create fulfillment configuration
+     * @param appId App id
+     * @param {*} [options] Override http request options.
+     */
+    public createFulfillmentStatesConfig (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/fulfillment/configuration/states'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createFulfillmentStatesConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Delete fulfillment states configuration
+     * @param appId App id
+     * @param configId Fulfillment states configuration id
+     * @param {*} [options] Override http request options.
+     */
+    public deleteFulfillmentStatesConfig (appId: string, configId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/fulfillment/configuration/states/{configId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'configId' + '}', encodeURIComponent(String(configId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling deleteFulfillmentStatesConfig.');
+        }
+
+        // verify required parameter 'configId' is not null or undefined
+        if (configId === null || configId === undefined) {
+            throw new Error('Required parameter configId was null or undefined when calling deleteFulfillmentStatesConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get fulfillment configuration
+     * @param appId App id
+     * @param configId App store app configuration id
+     * @param {*} [options] Override http request options.
+     */
+    public getFulfillmentStatesConfiguration (appId: string, configId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: FulfillmentStatesConfiguration;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/fulfillment/configuration/states/{configId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'configId' + '}', encodeURIComponent(String(configId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getFulfillmentStatesConfiguration.');
+        }
+
+        // verify required parameter 'configId' is not null or undefined
+        if (configId === null || configId === undefined) {
+            throw new Error('Required parameter configId was null or undefined when calling getFulfillmentStatesConfiguration.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: FulfillmentStatesConfiguration;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "FulfillmentStatesConfiguration");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary List fulfillment configurations for AppId
+     * @param appId App id
+     * @param {*} [options] Override http request options.
+     */
+    public searchFulfillmentStatesConfigurations (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultFulfillmentStatesConfigurationSummary;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/fulfillment/configuration/states'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling searchFulfillmentStatesConfigurations.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultFulfillmentStatesConfigurationSummary;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultFulfillmentStatesConfigurationSummary");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Update fulfillment configuration
+     * @param appId App id
+     * @param configId Fulfillment states configuration id
+     * @param updateFulfillmentStatesConfiguration Update fulfillment states configuration
+     * @param {*} [options] Override http request options.
+     */
+    public updateFulfillmentStatesConfig (appId: string, configId: string, updateFulfillmentStatesConfiguration: UpdateFulfillmentStatesConfiguration, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/fulfillment/configuration/states/{configId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'configId' + '}', encodeURIComponent(String(configId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateFulfillmentStatesConfig.');
+        }
+
+        // verify required parameter 'configId' is not null or undefined
+        if (configId === null || configId === undefined) {
+            throw new Error('Required parameter configId was null or undefined when calling updateFulfillmentStatesConfig.');
+        }
+
+        // verify required parameter 'updateFulfillmentStatesConfiguration' is not null or undefined
+        if (updateFulfillmentStatesConfiguration === null || updateFulfillmentStatesConfiguration === undefined) {
+            throw new Error('Required parameter updateFulfillmentStatesConfiguration was null or undefined when calling updateFulfillmentStatesConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(updateFulfillmentStatesConfiguration, "UpdateFulfillmentStatesConfiguration")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
