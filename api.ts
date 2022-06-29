@@ -21996,6 +21996,10 @@ export class Order {
     */
     'OrderDropOffLocation'?: OrderDropOffLocation;
     /**
+    * Fulfillment status for this order
+    */
+    'FulfillmentStatus'?: OrderFulfillmentStatusBase;
+    /**
     * Order identifier
     */
     'OrderId'?: number;
@@ -22205,6 +22209,11 @@ export class Order {
             "name": "OrderDropOffLocation",
             "baseName": "OrderDropOffLocation",
             "type": "OrderDropOffLocation"
+        },
+        {
+            "name": "FulfillmentStatus",
+            "baseName": "FulfillmentStatus",
+            "type": "OrderFulfillmentStatusBase"
         },
         {
             "name": "OrderId",
@@ -23250,6 +23259,14 @@ export class OrderFulfillmentStatus {
     * Fulfillment Status Id
     */
     'StatusId'?: string;
+    /**
+    * Fulfillment Status Name
+    */
+    'StatusName'?: string;
+    /**
+    * Status Icon
+    */
+    'Icon'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -23262,6 +23279,16 @@ export class OrderFulfillmentStatus {
         {
             "name": "StatusId",
             "baseName": "StatusId",
+            "type": "string"
+        },
+        {
+            "name": "StatusName",
+            "baseName": "StatusName",
+            "type": "string"
+        },
+        {
+            "name": "Icon",
+            "baseName": "Icon",
             "type": "string"
         }    ];
 
@@ -23278,6 +23305,14 @@ export class OrderFulfillmentStatusBase {
     * Fulfillment Status Id
     */
     'StatusId'?: string;
+    /**
+    * Fulfillment Status Name
+    */
+    'StatusName'?: string;
+    /**
+    * Status Icon
+    */
+    'Icon'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -23285,6 +23320,16 @@ export class OrderFulfillmentStatusBase {
         {
             "name": "StatusId",
             "baseName": "StatusId",
+            "type": "string"
+        },
+        {
+            "name": "StatusName",
+            "baseName": "StatusName",
+            "type": "string"
+        },
+        {
+            "name": "Icon",
+            "baseName": "Icon",
             "type": "string"
         }    ];
 
