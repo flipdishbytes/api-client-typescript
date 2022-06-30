@@ -1598,6 +1598,10 @@ export class AppStoreApp {
     */
     'PermissionsType': AppStoreApp.PermissionsTypeEnum;
     /**
+    * Support information
+    */
+    'Support'?: AppStoreAppSupportInfo;
+    /**
     * Name
     */
     'Name': string;
@@ -1684,6 +1688,11 @@ export class AppStoreApp {
             "name": "PermissionsType",
             "baseName": "PermissionsType",
             "type": "AppStoreApp.PermissionsTypeEnum"
+        },
+        {
+            "name": "Support",
+            "baseName": "Support",
+            "type": "AppStoreAppSupportInfo"
         },
         {
             "name": "Name",
@@ -1851,6 +1860,10 @@ export class AppStoreAppConfiguration {
     */
     'PermissionsType': AppStoreAppConfiguration.PermissionsTypeEnum;
     /**
+    * Support information
+    */
+    'Support'?: AppStoreAppSupportInfo;
+    /**
     * Name
     */
     'Name': string;
@@ -1958,6 +1971,11 @@ export class AppStoreAppConfiguration {
             "name": "PermissionsType",
             "baseName": "PermissionsType",
             "type": "AppStoreAppConfiguration.PermissionsTypeEnum"
+        },
+        {
+            "name": "Support",
+            "baseName": "Support",
+            "type": "AppStoreAppSupportInfo"
         },
         {
             "name": "Name",
@@ -2360,6 +2378,74 @@ export namespace AppStoreAppSummary {
         NZ = <any> 'NZ'
     }
 }
+/**
+* App store app support information
+*/
+export class AppStoreAppSupportInfo {
+    /**
+    * Privacy policy url
+    */
+    'PrivacyPolicy'?: string;
+    /**
+    * Terms of use url
+    */
+    'TermsOfUse'?: string;
+    /**
+    * Company website url
+    */
+    'CompanyWebsite'?: string;
+    /**
+    * Learn more url
+    */
+    'LearnMore'?: string;
+    /**
+    * Installation message
+    */
+    'InstallationMessage'?: string;
+    /**
+    * Support email
+    */
+    'SupportEmail'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PrivacyPolicy",
+            "baseName": "PrivacyPolicy",
+            "type": "string"
+        },
+        {
+            "name": "TermsOfUse",
+            "baseName": "TermsOfUse",
+            "type": "string"
+        },
+        {
+            "name": "CompanyWebsite",
+            "baseName": "CompanyWebsite",
+            "type": "string"
+        },
+        {
+            "name": "LearnMore",
+            "baseName": "LearnMore",
+            "type": "string"
+        },
+        {
+            "name": "InstallationMessage",
+            "baseName": "InstallationMessage",
+            "type": "string"
+        },
+        {
+            "name": "SupportEmail",
+            "baseName": "SupportEmail",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppStoreAppSupportInfo.attributeTypeMap;
+    }
+}
+
 /**
 * AppStore Config Created event
 */
@@ -5962,6 +6048,10 @@ export class CreateAppStoreApp {
     */
     'PermissionsType': CreateAppStoreApp.PermissionsTypeEnum;
     /**
+    * Support information
+    */
+    'Support'?: AppStoreAppSupportInfo;
+    /**
     * Name
     */
     'Name': string;
@@ -6028,6 +6118,11 @@ export class CreateAppStoreApp {
             "name": "PermissionsType",
             "baseName": "PermissionsType",
             "type": "CreateAppStoreApp.PermissionsTypeEnum"
+        },
+        {
+            "name": "Support",
+            "baseName": "Support",
+            "type": "AppStoreAppSupportInfo"
         },
         {
             "name": "Name",
@@ -42230,6 +42325,10 @@ export class UpdateAppStoreApp {
     */
     'PermissionsType': UpdateAppStoreApp.PermissionsTypeEnum;
     /**
+    * Support information
+    */
+    'Support'?: AppStoreAppSupportInfo;
+    /**
     * Name
     */
     'Name': string;
@@ -42296,6 +42395,11 @@ export class UpdateAppStoreApp {
             "name": "PermissionsType",
             "baseName": "PermissionsType",
             "type": "UpdateAppStoreApp.PermissionsTypeEnum"
+        },
+        {
+            "name": "Support",
+            "baseName": "Support",
+            "type": "AppStoreAppSupportInfo"
         },
         {
             "name": "Name",
@@ -46304,6 +46408,7 @@ let typeMap: {[index: string]: any} = {
     "AppStoreAppConfigurationHeader": AppStoreAppConfigurationHeader,
     "AppStoreAppConfigurationSummary": AppStoreAppConfigurationSummary,
     "AppStoreAppSummary": AppStoreAppSummary,
+    "AppStoreAppSupportInfo": AppStoreAppSupportInfo,
     "AppStoreConfigCreatedEvent": AppStoreConfigCreatedEvent,
     "AppStoreConfigDeletedEvent": AppStoreConfigDeletedEvent,
     "AppStoreConfigUpdatedEvent": AppStoreConfigUpdatedEvent,
