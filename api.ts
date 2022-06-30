@@ -30174,6 +30174,29 @@ export class RestApiArrayResultOauthClientRedirectUri {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultOrderFulfillmentStatus {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<OrderFulfillmentStatus>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<OrderFulfillmentStatus>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultOrderFulfillmentStatus.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultPayoutSummary {
     /**
     * Generic data object.
@@ -46625,6 +46648,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultMetadata": RestApiArrayResultMetadata,
     "RestApiArrayResultOAuthApp": RestApiArrayResultOAuthApp,
     "RestApiArrayResultOauthClientRedirectUri": RestApiArrayResultOauthClientRedirectUri,
+    "RestApiArrayResultOrderFulfillmentStatus": RestApiArrayResultOrderFulfillmentStatus,
     "RestApiArrayResultPayoutSummary": RestApiArrayResultPayoutSummary,
     "RestApiArrayResultPreOrderTime": RestApiArrayResultPreOrderTime,
     "RestApiArrayResultProcessingFeeConfig": RestApiArrayResultProcessingFeeConfig,
@@ -69817,6 +69841,73 @@ export class OrdersApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system] Returns fulfillment status for list of orders.
+     * @summary Get fulfillment status for a list of orders
+     * @param appId App Id
+     * @param orderIds Flipdish Order Id list, comma separated
+     * @param {*} [options] Override http request options.
+     */
+    public searchFulfillmentStatuses (appId: string, orderIds: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOrderFulfillmentStatus;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/orders/fulfillmentstatuses'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling searchFulfillmentStatuses.');
+        }
+
+        // verify required parameter 'orderIds' is not null or undefined
+        if (orderIds === null || orderIds === undefined) {
+            throw new Error('Required parameter orderIds was null or undefined when calling searchFulfillmentStatuses.');
+        }
+
+        if (orderIds !== undefined) {
+            localVarQueryParameters['orderIds'] = ObjectSerializer.serialize(orderIds, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOrderFulfillmentStatus;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultOrderFulfillmentStatus");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
