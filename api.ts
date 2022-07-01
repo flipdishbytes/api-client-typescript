@@ -1367,6 +1367,61 @@ export namespace AppCompliance {
     }
 }
 /**
+* App Config Sales Channel
+*/
+export class AppConfigSalesChannel {
+    /**
+    * Display a popup to users requesting their email address
+    */
+    'EmailRequestMode'?: AppConfigSalesChannel.EmailRequestModeEnum;
+    /**
+    * Sends users to their native apps or request them to install the pwa
+    */
+    'WebToAppRedirect'?: AppConfigSalesChannel.WebToAppRedirectEnum;
+    /**
+    * Display Pickup Restaurant List Screen
+    */
+    'DisplayDeliveryRestaurantListScreen'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EmailRequestMode",
+            "baseName": "EmailRequestMode",
+            "type": "AppConfigSalesChannel.EmailRequestModeEnum"
+        },
+        {
+            "name": "WebToAppRedirect",
+            "baseName": "WebToAppRedirect",
+            "type": "AppConfigSalesChannel.WebToAppRedirectEnum"
+        },
+        {
+            "name": "DisplayDeliveryRestaurantListScreen",
+            "baseName": "DisplayDeliveryRestaurantListScreen",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppConfigSalesChannel.attributeTypeMap;
+    }
+}
+
+export namespace AppConfigSalesChannel {
+    export enum EmailRequestModeEnum {
+        DoNotRequest = <any> 'DoNotRequest',
+        Request = <any> 'Request',
+        Require = <any> 'Require'
+    }
+    export enum WebToAppRedirectEnum {
+        NoRedirect = <any> 'NoRedirect',
+        RedirectOnce = <any> 'RedirectOnce',
+        RedirectAlways = <any> 'RedirectAlways',
+        SuggestPwa = <any> 'SuggestPwa',
+        ForcePwa = <any> 'ForcePwa'
+    }
+}
+/**
 * Application configuration
 */
 export class AppConfigUpdateModel {
@@ -32371,6 +32426,29 @@ export class RestApiResultAppCompliance {
 /**
 * Rest api result
 */
+export class RestApiResultAppConfigSalesChannel {
+    /**
+    * Generic data object.
+    */
+    'Data': AppConfigSalesChannel;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "AppConfigSalesChannel"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultAppConfigSalesChannel.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultAppStoreApp {
     /**
     * Generic data object.
@@ -46160,6 +46238,8 @@ let enumsMap: {[index: string]: any} = {
         "App.AppResourceSetEnum": App.AppResourceSetEnum,
         "App.ApplicationCategoryEnum": App.ApplicationCategoryEnum,
         "AppCompliance.ComplianceTypeEnum": AppCompliance.ComplianceTypeEnum,
+        "AppConfigSalesChannel.EmailRequestModeEnum": AppConfigSalesChannel.EmailRequestModeEnum,
+        "AppConfigSalesChannel.WebToAppRedirectEnum": AppConfigSalesChannel.WebToAppRedirectEnum,
         "AppConfigUpdateModel.ApplicationCategoryEnum": AppConfigUpdateModel.ApplicationCategoryEnum,
         "AppStoreApp.VerificationStatusEnum": AppStoreApp.VerificationStatusEnum,
         "AppStoreApp.ConfigurationTypeEnum": AppStoreApp.ConfigurationTypeEnum,
@@ -46401,6 +46481,7 @@ let typeMap: {[index: string]: any} = {
     "App": App,
     "AppChannelAssignment": AppChannelAssignment,
     "AppCompliance": AppCompliance,
+    "AppConfigSalesChannel": AppConfigSalesChannel,
     "AppConfigUpdateModel": AppConfigUpdateModel,
     "AppCreatedEvent": AppCreatedEvent,
     "AppStoreApp": AppStoreApp,
@@ -46808,6 +46889,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultApp": RestApiResultApp,
     "RestApiResultAppChannelAssignment": RestApiResultAppChannelAssignment,
     "RestApiResultAppCompliance": RestApiResultAppCompliance,
+    "RestApiResultAppConfigSalesChannel": RestApiResultAppConfigSalesChannel,
     "RestApiResultAppStoreApp": RestApiResultAppStoreApp,
     "RestApiResultAppStoreAppConfiguration": RestApiResultAppStoreAppConfiguration,
     "RestApiResultAssignedBankAccount": RestApiResultAssignedBankAccount,
@@ -49714,6 +49796,70 @@ export class AppsApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Set the application sales channel configuration
+     * @param appId 
+     * @param appConfigSalesChannel 
+     * @param {*} [options] Override http request options.
+     */
+    public editAppConfigSalesChannel (appId: string, appConfigSalesChannel: AppConfigSalesChannel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppConfigSalesChannel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/config/saleschannel'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling editAppConfigSalesChannel.');
+        }
+
+        // verify required parameter 'appConfigSalesChannel' is not null or undefined
+        if (appConfigSalesChannel === null || appConfigSalesChannel === undefined) {
+            throw new Error('Required parameter appConfigSalesChannel was null or undefined when calling editAppConfigSalesChannel.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(appConfigSalesChannel, "AppConfigSalesChannel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppConfigSalesChannel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppConfigSalesChannel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
     }
     /**
      * 
