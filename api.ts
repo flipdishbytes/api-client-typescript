@@ -22020,6 +22020,7 @@ export class OnboardingConfigUpdate {
     * Gets or sets whether onboarding is enabled
     */
     'IsEnabled'?: boolean;
+    'IsWelcomeScreenEnabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -22027,6 +22028,11 @@ export class OnboardingConfigUpdate {
         {
             "name": "IsEnabled",
             "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "IsWelcomeScreenEnabled",
+            "baseName": "IsWelcomeScreenEnabled",
             "type": "boolean"
         }    ];
 
