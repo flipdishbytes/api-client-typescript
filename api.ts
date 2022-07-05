@@ -1379,6 +1379,10 @@ export class AppConfigSalesChannel {
     */
     'WebToAppRedirect'?: AppConfigSalesChannel.WebToAppRedirectEnum;
     /**
+    * Address entry type
+    */
+    'AddressEntryType'?: AppConfigSalesChannel.AddressEntryTypeEnum;
+    /**
     * Display Pickup Restaurant List Screen
     */
     'DisplayDeliveryRestaurantListScreen'?: boolean;
@@ -1395,6 +1399,11 @@ export class AppConfigSalesChannel {
             "name": "WebToAppRedirect",
             "baseName": "WebToAppRedirect",
             "type": "AppConfigSalesChannel.WebToAppRedirectEnum"
+        },
+        {
+            "name": "AddressEntryType",
+            "baseName": "AddressEntryType",
+            "type": "AppConfigSalesChannel.AddressEntryTypeEnum"
         },
         {
             "name": "DisplayDeliveryRestaurantListScreen",
@@ -1419,6 +1428,11 @@ export namespace AppConfigSalesChannel {
         RedirectAlways = <any> 'RedirectAlways',
         SuggestPwa = <any> 'SuggestPwa',
         ForcePwa = <any> 'ForcePwa'
+    }
+    export enum AddressEntryTypeEnum {
+        MapFirst = <any> 'MapFirst',
+        TextEntryManualAllowed = <any> 'TextEntryManualAllowed',
+        TextEntryManualDisallowed = <any> 'TextEntryManualDisallowed'
     }
 }
 /**
@@ -46246,6 +46260,7 @@ let enumsMap: {[index: string]: any} = {
         "AppCompliance.ComplianceTypeEnum": AppCompliance.ComplianceTypeEnum,
         "AppConfigSalesChannel.EmailRequestModeEnum": AppConfigSalesChannel.EmailRequestModeEnum,
         "AppConfigSalesChannel.WebToAppRedirectEnum": AppConfigSalesChannel.WebToAppRedirectEnum,
+        "AppConfigSalesChannel.AddressEntryTypeEnum": AppConfigSalesChannel.AddressEntryTypeEnum,
         "AppConfigUpdateModel.ApplicationCategoryEnum": AppConfigUpdateModel.ApplicationCategoryEnum,
         "AppStoreApp.VerificationStatusEnum": AppStoreApp.VerificationStatusEnum,
         "AppStoreApp.ConfigurationTypeEnum": AppStoreApp.ConfigurationTypeEnum,
