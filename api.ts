@@ -70240,16 +70240,23 @@ export class OrdersApi {
     /**
      * [BETA - this endpoint is under development, do not use it in your production system] Updates an order's fulfillment status.
      * @summary Add/update fulfillment status information to an order
+     * @param appId 
      * @param orderId Flipdish Order Id
      * @param fulfillmentStatusRequest Fulfillment Status
      * @param {*} [options] Override http request options.
      */
-    public updateFulfillmentStatus (orderId: number, fulfillmentStatusRequest: OrderFulfillmentStatusBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/fulfillmentstatus'
+    public updateFulfillmentStatus (appId: string, orderId: number, fulfillmentStatusRequest: OrderFulfillmentStatusBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/orders/{orderId}/fulfillmentstatus'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateFulfillmentStatus.');
+        }
 
         // verify required parameter 'orderId' is not null or undefined
         if (orderId === null || orderId === undefined) {
