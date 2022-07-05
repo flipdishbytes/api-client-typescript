@@ -11987,6 +11987,38 @@ export class FlipdishFeesDetails {
 }
 
 /**
+* Action item for next fulfillment status selector
+*/
+export class FulfillentStatusActionItem {
+    /**
+    * Status Id
+    */
+    'Id'?: string;
+    /**
+    * Status Name
+    */
+    'Name'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FulfillentStatusActionItem.attributeTypeMap;
+    }
+}
+
+/**
 * Fulfillment information (required for all orders)
 */
 export class FulfillmentInfo {
@@ -23622,6 +23654,74 @@ export class OrderFulfillmentStatusUpdatedEvent {
 }
 
 /**
+* Order Fulfillment status with configured next actions
+*/
+export class OrderFulfillmentStatusWithConfigurationActions {
+    /**
+    * Default next status (id)
+    */
+    'DefaultNextStatus'?: string;
+    /**
+    * Possible next statuses
+    */
+    'NextStatuses'?: Array<FulfillentStatusActionItem>;
+    /**
+    * Order Id
+    */
+    'OrderId'?: number;
+    /**
+    * Fulfillment Status Id
+    */
+    'StatusId'?: string;
+    /**
+    * Fulfillment Status Name
+    */
+    'StatusName'?: string;
+    /**
+    * Status Icon
+    */
+    'Icon'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DefaultNextStatus",
+            "baseName": "DefaultNextStatus",
+            "type": "string"
+        },
+        {
+            "name": "NextStatuses",
+            "baseName": "NextStatuses",
+            "type": "Array<FulfillentStatusActionItem>"
+        },
+        {
+            "name": "OrderId",
+            "baseName": "OrderId",
+            "type": "number"
+        },
+        {
+            "name": "StatusId",
+            "baseName": "StatusId",
+            "type": "string"
+        },
+        {
+            "name": "StatusName",
+            "baseName": "StatusName",
+            "type": "string"
+        },
+        {
+            "name": "Icon",
+            "baseName": "Icon",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderFulfillmentStatusWithConfigurationActions.attributeTypeMap;
+    }
+}
+
+/**
 * 
 */
 export class OrderIdAndSequenceNumber {
@@ -33544,6 +33644,29 @@ export class RestApiResultOrderFulfillmentStatus {
 
     static getAttributeTypeMap() {
         return RestApiResultOrderFulfillmentStatus.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultOrderFulfillmentStatusWithConfigurationActions {
+    /**
+    * Generic data object.
+    */
+    'Data': OrderFulfillmentStatusWithConfigurationActions;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "OrderFulfillmentStatusWithConfigurationActions"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultOrderFulfillmentStatusWithConfigurationActions.attributeTypeMap;
     }
 }
 
@@ -46617,6 +46740,7 @@ let typeMap: {[index: string]: any} = {
     "FieldGroup": FieldGroup,
     "FlipdishEventBase": FlipdishEventBase,
     "FlipdishFeesDetails": FlipdishFeesDetails,
+    "FulfillentStatusActionItem": FulfillentStatusActionItem,
     "FulfillmentInfo": FulfillmentInfo,
     "FulfillmentStatesConfiguration": FulfillmentStatesConfiguration,
     "FulfillmentStatesConfigurationSummary": FulfillmentStatesConfigurationSummary,
@@ -46760,6 +46884,7 @@ let typeMap: {[index: string]: any} = {
     "OrderFulfillmentStatus": OrderFulfillmentStatus,
     "OrderFulfillmentStatusBase": OrderFulfillmentStatusBase,
     "OrderFulfillmentStatusUpdatedEvent": OrderFulfillmentStatusUpdatedEvent,
+    "OrderFulfillmentStatusWithConfigurationActions": OrderFulfillmentStatusWithConfigurationActions,
     "OrderIdAndSequenceNumber": OrderIdAndSequenceNumber,
     "OrderIngestSubmitOrderRequest": OrderIngestSubmitOrderRequest,
     "OrderIngestSubmitOrderResponse": OrderIngestSubmitOrderResponse,
@@ -46958,6 +47083,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultOrder": RestApiResultOrder,
     "RestApiResultOrderDeliveryInformation": RestApiResultOrderDeliveryInformation,
     "RestApiResultOrderFulfillmentStatus": RestApiResultOrderFulfillmentStatus,
+    "RestApiResultOrderFulfillmentStatusWithConfigurationActions": RestApiResultOrderFulfillmentStatusWithConfigurationActions,
     "RestApiResultOrderIngestSubmitOrderResponse": RestApiResultOrderIngestSubmitOrderResponse,
     "RestApiResultOrderPaymentInformation": RestApiResultOrderPaymentInformation,
     "RestApiResultPaymentIntent": RestApiResultPaymentIntent,
@@ -69758,6 +69884,63 @@ export class OrdersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultOrderFulfillmentStatus");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system] Returns an order's fulfillment status and details about possible states.
+     * @summary Get order fulfillment status with actionable details like default next status
+     * @param orderId Flipdish Order Id
+     * @param {*} [options] Override http request options.
+     */
+    public getFulfillmentStatus_1 (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderFulfillmentStatusWithConfigurationActions;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/fulfillmentstatusdetails'
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orderId' is not null or undefined
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling getFulfillmentStatus_1.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOrderFulfillmentStatusWithConfigurationActions;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultOrderFulfillmentStatusWithConfigurationActions");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
