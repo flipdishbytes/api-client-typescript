@@ -36431,6 +36431,14 @@ export class StoreAddress {
     * Dyanmic field/value pairs, defined by the form assigned to the given country code.
     */
     'AddressFields'?: { [key: string]: any; };
+    /**
+    * Single line display i18n, may be empty for not supported countries
+    */
+    'SingleLineDisplay'?: string;
+    /**
+    * Two line display i18n, may be empty for not supported countries
+    */
+    'TwoLinesDisplay'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
@@ -36474,6 +36482,16 @@ export class StoreAddress {
             "name": "AddressFields",
             "baseName": "AddressFields",
             "type": "{ [key: string]: any; }"
+        },
+        {
+            "name": "SingleLineDisplay",
+            "baseName": "SingleLineDisplay",
+            "type": "string"
+        },
+        {
+            "name": "TwoLinesDisplay",
+            "baseName": "TwoLinesDisplay",
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -36509,6 +36527,14 @@ export class StoreAddressBase {
     * Dyanmic field/value pairs, defined by the form assigned to the given country code.
     */
     'AddressFields'?: { [key: string]: any; };
+    /**
+    * Single line display i18n, may be empty for not supported countries
+    */
+    'SingleLineDisplay'?: string;
+    /**
+    * Two line display i18n, may be empty for not supported countries
+    */
+    'TwoLinesDisplay'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
@@ -36542,6 +36568,16 @@ export class StoreAddressBase {
             "name": "AddressFields",
             "baseName": "AddressFields",
             "type": "{ [key: string]: any; }"
+        },
+        {
+            "name": "SingleLineDisplay",
+            "baseName": "SingleLineDisplay",
+            "type": "string"
+        },
+        {
+            "name": "TwoLinesDisplay",
+            "baseName": "TwoLinesDisplay",
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
