@@ -1288,7 +1288,9 @@ export namespace App {
         CreateAppStoreAppConfiguration = <any> 'CreateAppStoreAppConfiguration',
         ViewAppStoreAppConfiguration = <any> 'ViewAppStoreAppConfiguration',
         UpdateAppStoreAppConfiguration = <any> 'UpdateAppStoreAppConfiguration',
-        DeleteAppStoreAppConfiguration = <any> 'DeleteAppStoreAppConfiguration'
+        DeleteAppStoreAppConfiguration = <any> 'DeleteAppStoreAppConfiguration',
+        ViewSalesChannels = <any> 'ViewSalesChannels',
+        EditSalesChannels = <any> 'EditSalesChannels'
     }
     export enum ApplicationCategoryEnum {
         Restaurant = <any> 'Restaurant',
