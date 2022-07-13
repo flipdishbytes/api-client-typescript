@@ -21823,6 +21823,65 @@ export namespace MetafieldDefinitionRecommendation {
     }
 }
 /**
+* Mobile Apps form submission
+*/
+export class MobileAppsDetails {
+    /**
+    * App Name
+    */
+    'AppName'?: string;
+    /**
+    * App Description
+    */
+    'AppDescription'?: string;
+    /**
+    * App Description
+    */
+    'AppShortDescription'?: string;
+    /**
+    * Keywords
+    */
+    'Keywords'?: Array<string>;
+    /**
+    * Logo URL
+    */
+    'AppLogoUrl'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AppName",
+            "baseName": "AppName",
+            "type": "string"
+        },
+        {
+            "name": "AppDescription",
+            "baseName": "AppDescription",
+            "type": "string"
+        },
+        {
+            "name": "AppShortDescription",
+            "baseName": "AppShortDescription",
+            "type": "string"
+        },
+        {
+            "name": "Keywords",
+            "baseName": "Keywords",
+            "type": "Array<string>"
+        },
+        {
+            "name": "AppLogoUrl",
+            "baseName": "AppLogoUrl",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MobileAppsDetails.attributeTypeMap;
+    }
+}
+
+/**
 * Mobile Apps Image
 */
 export class MobileAppsImage {
@@ -33579,6 +33638,29 @@ export class RestApiResultMetafieldDefinition {
 
     static getAttributeTypeMap() {
         return RestApiResultMetafieldDefinition.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultMobileAppsDetails {
+    /**
+    * Generic data object.
+    */
+    'Data': MobileAppsDetails;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "MobileAppsDetails"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultMobileAppsDetails.attributeTypeMap;
     }
 }
 
@@ -47019,6 +47101,7 @@ let typeMap: {[index: string]: any} = {
     "Metafield": Metafield,
     "MetafieldDefinition": MetafieldDefinition,
     "MetafieldDefinitionRecommendation": MetafieldDefinitionRecommendation,
+    "MobileAppsDetails": MobileAppsDetails,
     "MobileAppsImage": MobileAppsImage,
     "MobileAppsSubmission": MobileAppsSubmission,
     "ModelBase": ModelBase,
@@ -47234,6 +47317,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultMenuSectionItem": RestApiResultMenuSectionItem,
     "RestApiResultMetadata": RestApiResultMetadata,
     "RestApiResultMetafieldDefinition": RestApiResultMetafieldDefinition,
+    "RestApiResultMobileAppsDetails": RestApiResultMobileAppsDetails,
     "RestApiResultMobileAppsImage": RestApiResultMobileAppsImage,
     "RestApiResultMobileAppsSubmission": RestApiResultMobileAppsSubmission,
     "RestApiResultModelBase": RestApiResultModelBase,
@@ -68690,6 +68774,63 @@ export class MobileAppsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultAppConfigSalesChannel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get mobile app details
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getAppDetails (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsDetails;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/details'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAppDetails.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsDetails;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMobileAppsDetails");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
