@@ -22332,7 +22332,7 @@ export class Order {
     */
     'OrderDropOffLocation'?: OrderDropOffLocation;
     /**
-    * Fulfillment status for this order
+    * [BETA - this is a new field in development] Fulfillment status for this order
     */
     'FulfillmentStatus'?: OrderFulfillmentStatusBase;
     /**
@@ -23671,6 +23671,26 @@ export class OrderFulfillmentStatusBase {
 
     static getAttributeTypeMap() {
         return OrderFulfillmentStatusBase.attributeTypeMap;
+    }
+}
+
+export class OrderFulfillmentStatusUpdate {
+    /**
+    * Fulfillment Status Id
+    */
+    'StatusId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StatusId",
+            "baseName": "StatusId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderFulfillmentStatusUpdate.attributeTypeMap;
     }
 }
 
@@ -47125,6 +47145,7 @@ let typeMap: {[index: string]: any} = {
     "OrderDropOffLocation": OrderDropOffLocation,
     "OrderFulfillmentStatus": OrderFulfillmentStatus,
     "OrderFulfillmentStatusBase": OrderFulfillmentStatusBase,
+    "OrderFulfillmentStatusUpdate": OrderFulfillmentStatusUpdate,
     "OrderFulfillmentStatusUpdatedEvent": OrderFulfillmentStatusUpdatedEvent,
     "OrderFulfillmentStatusWithConfigurationActions": OrderFulfillmentStatusWithConfigurationActions,
     "OrderIdAndSequenceNumber": OrderIdAndSequenceNumber,
@@ -70321,13 +70342,13 @@ export class OrdersApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system] Returns an order's fulfillment status.
-     * @summary Get order fulfillment status
+     * [BETA - this endpoint is under development, do not use it in your production system] Returns an order's fulfillment state.
+     * @summary Get order fulfillment state
      * @param orderId Flipdish Order Id
      * @param {*} [options] Override http request options.
      */
-    public getFulfillmentStatus (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderFulfillmentStatus;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/fulfillmentstatus'
+    public getFulfillmentState (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderFulfillmentStatus;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/fulfillment/state'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -70335,7 +70356,7 @@ export class OrdersApi {
 
         // verify required parameter 'orderId' is not null or undefined
         if (orderId === null || orderId === undefined) {
-            throw new Error('Required parameter orderId was null or undefined when calling getFulfillmentStatus.');
+            throw new Error('Required parameter orderId was null or undefined when calling getFulfillmentState.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -70379,12 +70400,12 @@ export class OrdersApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system] Returns an order's fulfillment status and details about possible states.
-     * @summary Get order fulfillment status with actionable details like default next status
+     * @summary Get order fulfillment state with actionable details like default next state
      * @param orderId Flipdish Order Id
      * @param {*} [options] Override http request options.
      */
-    public getFulfillmentStatus_1 (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderFulfillmentStatusWithConfigurationActions;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/fulfillmentstatusdetails'
+    public getFulfillmentStatusWithDetailsAndActions (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderFulfillmentStatusWithConfigurationActions;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/fulfillment/state/details'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -70392,7 +70413,7 @@ export class OrdersApi {
 
         // verify required parameter 'orderId' is not null or undefined
         if (orderId === null || orderId === undefined) {
-            throw new Error('Required parameter orderId was null or undefined when calling getFulfillmentStatus_1.');
+            throw new Error('Required parameter orderId was null or undefined when calling getFulfillmentStatusWithDetailsAndActions.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -70920,34 +70941,27 @@ export class OrdersApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system] Updates an order's fulfillment status.
-     * @summary Add/update fulfillment status information to an order
-     * @param appId 
+     * [BETA - this endpoint is under development, do not use it in your production system] Updates an order's fulfillment states.
+     * @summary Update fulfillment status information to an order
      * @param orderId Flipdish Order Id
      * @param fulfillmentStatusRequest Fulfillment Status
      * @param {*} [options] Override http request options.
      */
-    public updateFulfillmentStatus (appId: string, orderId: number, fulfillmentStatusRequest: OrderFulfillmentStatusBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/orders/{orderId}/fulfillmentstatus'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+    public updateFulfillmentState (orderId: number, fulfillmentStatusRequest: OrderFulfillmentStatusUpdate, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/fulfillment/state'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling updateFulfillmentStatus.');
-        }
-
         // verify required parameter 'orderId' is not null or undefined
         if (orderId === null || orderId === undefined) {
-            throw new Error('Required parameter orderId was null or undefined when calling updateFulfillmentStatus.');
+            throw new Error('Required parameter orderId was null or undefined when calling updateFulfillmentState.');
         }
 
         // verify required parameter 'fulfillmentStatusRequest' is not null or undefined
         if (fulfillmentStatusRequest === null || fulfillmentStatusRequest === undefined) {
-            throw new Error('Required parameter fulfillmentStatusRequest was null or undefined when calling updateFulfillmentStatus.');
+            throw new Error('Required parameter fulfillmentStatusRequest was null or undefined when calling updateFulfillmentState.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -70961,7 +70975,7 @@ export class OrdersApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(fulfillmentStatusRequest, "OrderFulfillmentStatusBase")
+            body: ObjectSerializer.serialize(fulfillmentStatusRequest, "OrderFulfillmentStatusUpdate")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
