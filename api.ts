@@ -21827,6 +21827,29 @@ export namespace MetafieldDefinitionRecommendation {
 /**
 * Mobile Apps form submission
 */
+export class MobileAppConfig {
+    /**
+    * App Name
+    */
+    'AutoPublish'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AutoPublish",
+            "baseName": "AutoPublish",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MobileAppConfig.attributeTypeMap;
+    }
+}
+
+/**
+* Mobile Apps form submission
+*/
 export class MobileAppsDetails {
     /**
     * App Name
@@ -32541,6 +32564,21 @@ export class RestApiPaginationResultWebhookSubscription {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultWebhookSubscription.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResult {
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResult.attributeTypeMap;
     }
 }
 
@@ -47201,6 +47239,7 @@ let typeMap: {[index: string]: any} = {
     "Metafield": Metafield,
     "MetafieldDefinition": MetafieldDefinition,
     "MetafieldDefinitionRecommendation": MetafieldDefinitionRecommendation,
+    "MobileAppConfig": MobileAppConfig,
     "MobileAppsDetails": MobileAppsDetails,
     "MobileAppsImage": MobileAppsImage,
     "MobileAppsSubmission": MobileAppsSubmission,
@@ -47369,6 +47408,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultVoucherSummary": RestApiPaginationResultVoucherSummary,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiPaginationResultWebhookSubscription": RestApiPaginationResultWebhookSubscription,
+    "RestApiResult": RestApiResult,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
     "RestApiResultAccountFieldsDefinitions": RestApiResultAccountFieldsDefinitions,
     "RestApiResultAddressFormResponse": RestApiResultAddressFormResponse,
@@ -69056,6 +69096,70 @@ export class MobileAppsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultMobileAppsSubmissionStatus");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Set mobile app configuration
+     * @param appId 
+     * @param configUpdate 
+     * @param {*} [options] Override http request options.
+     */
+    public setAppConfig (appId: string, configUpdate: MobileAppConfig, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/config'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling setAppConfig.');
+        }
+
+        // verify required parameter 'configUpdate' is not null or undefined
+        if (configUpdate === null || configUpdate === undefined) {
+            throw new Error('Required parameter configUpdate was null or undefined when calling setAppConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(configUpdate, "MobileAppConfig")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
