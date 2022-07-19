@@ -21957,6 +21957,37 @@ export class MobileAppsSubmission {
 }
 
 /**
+* Mobile Apps Status
+*/
+export class MobileAppsSubmissionStatus {
+    /**
+    * Mobile App Status
+    */
+    'Status'?: MobileAppsSubmissionStatus.StatusEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "MobileAppsSubmissionStatus.StatusEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MobileAppsSubmissionStatus.attributeTypeMap;
+    }
+}
+
+export namespace MobileAppsSubmissionStatus {
+    export enum StatusEnum {
+        Submitted = <any> 'Submitted',
+        AppStoreReview = <any> 'AppStoreReview',
+        Sucessfull = <any> 'Sucessfull',
+        Unsuccesful = <any> 'Unsuccesful'
+    }
+}
+/**
 * Model base
 */
 export class ModelBase {
@@ -33091,6 +33122,29 @@ export class RestApiResultDriver {
 /**
 * Rest api result
 */
+export class RestApiResultFulfillmentStatesConfiguration {
+    /**
+    * Generic data object.
+    */
+    'Data': FulfillmentStatesConfiguration;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "FulfillmentStatesConfiguration"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultFulfillmentStatesConfiguration.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultGroup {
     /**
     * Generic data object.
@@ -33729,6 +33783,29 @@ export class RestApiResultMobileAppsSubmission {
 
     static getAttributeTypeMap() {
         return RestApiResultMobileAppsSubmission.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultMobileAppsSubmissionStatus {
+    /**
+    * Generic data object.
+    */
+    'Data': MobileAppsSubmissionStatus;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "MobileAppsSubmissionStatus"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultMobileAppsSubmissionStatus.attributeTypeMap;
     }
 }
 
@@ -46757,6 +46834,7 @@ let enumsMap: {[index: string]: any} = {
         "MetafieldDefinitionRecommendation.OwnerEntityEnum": MetafieldDefinitionRecommendation.OwnerEntityEnum,
         "MetafieldDefinitionRecommendation.ValueTypeEnum": MetafieldDefinitionRecommendation.ValueTypeEnum,
         "MetafieldDefinitionRecommendation.BehaviorsEnum": MetafieldDefinitionRecommendation.BehaviorsEnum,
+        "MobileAppsSubmissionStatus.StatusEnum": MobileAppsSubmissionStatus.StatusEnum,
         "OAuthApp.FlowEnum": OAuthApp.FlowEnum,
         "OAuthApp.RefreshTokenUsageEnum": OAuthApp.RefreshTokenUsageEnum,
         "OnboardingItemUpdate.StatusEnum": OnboardingItemUpdate.StatusEnum,
@@ -47126,6 +47204,7 @@ let typeMap: {[index: string]: any} = {
     "MobileAppsDetails": MobileAppsDetails,
     "MobileAppsImage": MobileAppsImage,
     "MobileAppsSubmission": MobileAppsSubmission,
+    "MobileAppsSubmissionStatus": MobileAppsSubmissionStatus,
     "ModelBase": ModelBase,
     "OAuthApp": OAuthApp,
     "OAuthTokenModel": OAuthTokenModel,
@@ -47315,6 +47394,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultDeliveryZone": RestApiResultDeliveryZone,
     "RestApiResultDnsRecordInformation": RestApiResultDnsRecordInformation,
     "RestApiResultDriver": RestApiResultDriver,
+    "RestApiResultFulfillmentStatesConfiguration": RestApiResultFulfillmentStatesConfiguration,
     "RestApiResultGroup": RestApiResultGroup,
     "RestApiResultHomeStatistics": RestApiResultHomeStatistics,
     "RestApiResultHydraConfig": RestApiResultHydraConfig,
@@ -47343,6 +47423,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultMobileAppsDetails": RestApiResultMobileAppsDetails,
     "RestApiResultMobileAppsImage": RestApiResultMobileAppsImage,
     "RestApiResultMobileAppsSubmission": RestApiResultMobileAppsSubmission,
+    "RestApiResultMobileAppsSubmissionStatus": RestApiResultMobileAppsSubmissionStatus,
     "RestApiResultModelBase": RestApiResultModelBase,
     "RestApiResultOAuthApp": RestApiResultOAuthApp,
     "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
@@ -59019,7 +59100,7 @@ export class FulfillmentStateConfigurationApi {
      * @param appId App id
      * @param {*} [options] Override http request options.
      */
-    public createFulfillmentStatesConfig (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public createFulfillmentStatesConfig (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFulfillmentStatesConfiguration;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/fulfillment/configuration/states'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -59055,12 +59136,12 @@ export class FulfillmentStateConfigurationApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultFulfillmentStatesConfiguration;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultFulfillmentStatesConfiguration");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -68911,6 +68992,70 @@ export class MobileAppsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultMobileAppsDetails");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get mobile app submitted status
+     * @param appId 
+     * @param plataformType 
+     * @param {*} [options] Override http request options.
+     */
+    public getMobileAppsSubmissionStatus (appId: string, plataformType: 'Android' | 'IOS', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmissionStatus;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submissionstatus{plataformType}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'plataformType' + '}', encodeURIComponent(String(plataformType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getMobileAppsSubmissionStatus.');
+        }
+
+        // verify required parameter 'plataformType' is not null or undefined
+        if (plataformType === null || plataformType === undefined) {
+            throw new Error('Required parameter plataformType was null or undefined when calling getMobileAppsSubmissionStatus.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmissionStatus;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMobileAppsSubmissionStatus");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
