@@ -21930,6 +21930,107 @@ export class MobileAppsImage {
 }
 
 /**
+* Mobile Apps Statistics
+*/
+export class MobileAppsStatistics {
+    /**
+    * Number Download
+    */
+    'NumberDownload'?: number;
+    /**
+    * Current Rate
+    */
+    'CurrentRate'?: number;
+    /**
+    * Current Version
+    */
+    'CurrentVersion'?: string;
+    /**
+    * Play Store Link
+    */
+    'PlayStoreLink'?: string;
+    /**
+    * App Bundle Id
+    */
+    'AppBundleId'?: string;
+    /**
+    * Last Updated
+    */
+    'LastUpdated'?: Date;
+    /**
+    * Last Updated
+    */
+    'Notes'?: string;
+    /**
+    * Published
+    */
+    'Published'?: boolean;
+    /**
+    * Platform Type
+    */
+    'PlatformType'?: MobileAppsStatistics.PlatformTypeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "NumberDownload",
+            "baseName": "NumberDownload",
+            "type": "number"
+        },
+        {
+            "name": "CurrentRate",
+            "baseName": "CurrentRate",
+            "type": "number"
+        },
+        {
+            "name": "CurrentVersion",
+            "baseName": "CurrentVersion",
+            "type": "string"
+        },
+        {
+            "name": "PlayStoreLink",
+            "baseName": "PlayStoreLink",
+            "type": "string"
+        },
+        {
+            "name": "AppBundleId",
+            "baseName": "AppBundleId",
+            "type": "string"
+        },
+        {
+            "name": "LastUpdated",
+            "baseName": "LastUpdated",
+            "type": "Date"
+        },
+        {
+            "name": "Notes",
+            "baseName": "Notes",
+            "type": "string"
+        },
+        {
+            "name": "Published",
+            "baseName": "Published",
+            "type": "boolean"
+        },
+        {
+            "name": "PlatformType",
+            "baseName": "PlatformType",
+            "type": "MobileAppsStatistics.PlatformTypeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MobileAppsStatistics.attributeTypeMap;
+    }
+}
+
+export namespace MobileAppsStatistics {
+    export enum PlatformTypeEnum {
+        Android = <any> 'Android',
+        IOS = <any> 'IOS'
+    }
+}
+/**
 * Mobile Apps form submission
 */
 export class MobileAppsSubmission {
@@ -22932,6 +23033,47 @@ export class OrderAcceptedEvent {
 
     static getAttributeTypeMap() {
         return OrderAcceptedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Represents order batches
+*/
+export class OrderBatchItem {
+    /**
+    * Unique identifier
+    */
+    'BatchId'?: number;
+    /**
+    * Creation date
+    */
+    'CreatedAt'?: Date;
+    /**
+    * Is dispatched
+    */
+    'IsPublished'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "BatchId",
+            "baseName": "BatchId",
+            "type": "number"
+        },
+        {
+            "name": "CreatedAt",
+            "baseName": "CreatedAt",
+            "type": "Date"
+        },
+        {
+            "name": "IsPublished",
+            "baseName": "IsPublished",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderBatchItem.attributeTypeMap;
     }
 }
 
@@ -30606,6 +30748,29 @@ export class RestApiArrayResultMetadata {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultMobileAppsStatistics {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<MobileAppsStatistics>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<MobileAppsStatistics>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultMobileAppsStatistics.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultOAuthApp {
     /**
     * Generic data object.
@@ -30646,6 +30811,29 @@ export class RestApiArrayResultOauthClientRedirectUri {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultOauthClientRedirectUri.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultOrderBatchItem {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<OrderBatchItem>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<OrderBatchItem>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultOrderBatchItem.attributeTypeMap;
     }
 }
 
@@ -46872,6 +47060,7 @@ let enumsMap: {[index: string]: any} = {
         "MetafieldDefinitionRecommendation.OwnerEntityEnum": MetafieldDefinitionRecommendation.OwnerEntityEnum,
         "MetafieldDefinitionRecommendation.ValueTypeEnum": MetafieldDefinitionRecommendation.ValueTypeEnum,
         "MetafieldDefinitionRecommendation.BehaviorsEnum": MetafieldDefinitionRecommendation.BehaviorsEnum,
+        "MobileAppsStatistics.PlatformTypeEnum": MobileAppsStatistics.PlatformTypeEnum,
         "MobileAppsSubmissionStatus.StatusEnum": MobileAppsSubmissionStatus.StatusEnum,
         "OAuthApp.FlowEnum": OAuthApp.FlowEnum,
         "OAuthApp.RefreshTokenUsageEnum": OAuthApp.RefreshTokenUsageEnum,
@@ -47242,6 +47431,7 @@ let typeMap: {[index: string]: any} = {
     "MobileAppConfig": MobileAppConfig,
     "MobileAppsDetails": MobileAppsDetails,
     "MobileAppsImage": MobileAppsImage,
+    "MobileAppsStatistics": MobileAppsStatistics,
     "MobileAppsSubmission": MobileAppsSubmission,
     "MobileAppsSubmissionStatus": MobileAppsSubmissionStatus,
     "ModelBase": ModelBase,
@@ -47253,6 +47443,7 @@ let typeMap: {[index: string]: any} = {
     "OnboardingItemUpdate": OnboardingItemUpdate,
     "Order": Order,
     "OrderAcceptedEvent": OrderAcceptedEvent,
+    "OrderBatchItem": OrderBatchItem,
     "OrderCapacityConfigUpdatedEvent": OrderCapacityConfigUpdatedEvent,
     "OrderCreatedEvent": OrderCreatedEvent,
     "OrderCustomerTrackingCreatedEvent": OrderCustomerTrackingCreatedEvent,
@@ -47359,8 +47550,10 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultMenuSummary": RestApiArrayResultMenuSummary,
     "RestApiArrayResultMenuTaxDetails": RestApiArrayResultMenuTaxDetails,
     "RestApiArrayResultMetadata": RestApiArrayResultMetadata,
+    "RestApiArrayResultMobileAppsStatistics": RestApiArrayResultMobileAppsStatistics,
     "RestApiArrayResultOAuthApp": RestApiArrayResultOAuthApp,
     "RestApiArrayResultOauthClientRedirectUri": RestApiArrayResultOauthClientRedirectUri,
+    "RestApiArrayResultOrderBatchItem": RestApiArrayResultOrderBatchItem,
     "RestApiArrayResultOrderFulfillmentStatus": RestApiArrayResultOrderFulfillmentStatus,
     "RestApiArrayResultPayoutSummary": RestApiArrayResultPayoutSummary,
     "RestApiArrayResultPreOrderTime": RestApiArrayResultPreOrderTime,
@@ -68801,13 +68994,13 @@ export class MobileAppsApi {
     }
     /**
      * 
-     * @summary Submission form mobile apps
+     * @summary Set the application sales channel configuration
      * @param appId 
-     * @param mobileAppsSubmission 
+     * @param appConfigSalesChannel 
      * @param {*} [options] Override http request options.
      */
-    public editAppConfigSalesChannel (appId: string, mobileAppsSubmission: MobileAppsSubmission, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmission;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission'
+    public editAppConfigSalesChannel (appId: string, appConfigSalesChannel: AppConfigSalesChannel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppConfigSalesChannel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/saleschannel'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -68818,73 +69011,9 @@ export class MobileAppsApi {
             throw new Error('Required parameter appId was null or undefined when calling editAppConfigSalesChannel.');
         }
 
-        // verify required parameter 'mobileAppsSubmission' is not null or undefined
-        if (mobileAppsSubmission === null || mobileAppsSubmission === undefined) {
-            throw new Error('Required parameter mobileAppsSubmission was null or undefined when calling editAppConfigSalesChannel.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(mobileAppsSubmission, "MobileAppsSubmission")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmission;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultMobileAppsSubmission");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Set the application sales channel configuration
-     * @param appId 
-     * @param appConfigSalesChannel 
-     * @param {*} [options] Override http request options.
-     */
-    public editAppConfigSalesChannel_1 (appId: string, appConfigSalesChannel: AppConfigSalesChannel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppConfigSalesChannel;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/saleschannel'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling editAppConfigSalesChannel_1.');
-        }
-
         // verify required parameter 'appConfigSalesChannel' is not null or undefined
         if (appConfigSalesChannel === null || appConfigSalesChannel === undefined) {
-            throw new Error('Required parameter appConfigSalesChannel was null or undefined when calling editAppConfigSalesChannel_1.');
+            throw new Error('Required parameter appConfigSalesChannel was null or undefined when calling editAppConfigSalesChannel.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -69107,6 +69236,73 @@ export class MobileAppsApi {
     }
     /**
      * 
+     * @summary Get statistics mobile apps
+     * @param appId 
+     * @param platformTypes 
+     * @param {*} [options] Override http request options.
+     */
+    public getStatistics (appId: string, platformTypes: Array<'Android' | 'IOS'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMobileAppsStatistics;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/statistics'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getStatistics.');
+        }
+
+        // verify required parameter 'platformTypes' is not null or undefined
+        if (platformTypes === null || platformTypes === undefined) {
+            throw new Error('Required parameter platformTypes was null or undefined when calling getStatistics.');
+        }
+
+        if (platformTypes !== undefined) {
+            localVarQueryParameters['platformTypes'] = ObjectSerializer.serialize(platformTypes, "Array<'Android' | 'IOS'>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMobileAppsStatistics;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMobileAppsStatistics");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Set mobile app configuration
      * @param appId 
      * @param configUpdate 
@@ -69160,6 +69356,70 @@ export class MobileAppsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Submission form mobile apps
+     * @param appId 
+     * @param mobileAppsSubmission 
+     * @param {*} [options] Override http request options.
+     */
+    public submission (appId: string, mobileAppsSubmission: MobileAppsSubmission, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmission;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling submission.');
+        }
+
+        // verify required parameter 'mobileAppsSubmission' is not null or undefined
+        if (mobileAppsSubmission === null || mobileAppsSubmission === undefined) {
+            throw new Error('Required parameter mobileAppsSubmission was null or undefined when calling submission.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(mobileAppsSubmission, "MobileAppsSubmission")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmission;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMobileAppsSubmission");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -70298,6 +70558,140 @@ export class OnboardingApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum OrderBatchApiApiKeys {
+}
+
+export class OrderBatchApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: OrderBatchApiApiKeys, value: string) {
+        (this.authentications as any)[OrderBatchApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Returns order batches created in a given time range
+     * @param appId App Id
+     * @param storeId Store Id
+     * @param startDate Start Date
+     * @param endDate End Date
+     * @param {*} [options] Override http request options.
+     */
+    public getAllOrderBatches (appId: string, storeId: number, startDate: Date, endDate: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOrderBatchItem;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/order-batches'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAllOrderBatches.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getAllOrderBatches.');
+        }
+
+        // verify required parameter 'startDate' is not null or undefined
+        if (startDate === null || startDate === undefined) {
+            throw new Error('Required parameter startDate was null or undefined when calling getAllOrderBatches.');
+        }
+
+        // verify required parameter 'endDate' is not null or undefined
+        if (endDate === null || endDate === undefined) {
+            throw new Error('Required parameter endDate was null or undefined when calling getAllOrderBatches.');
+        }
+
+        if (startDate !== undefined) {
+            localVarQueryParameters['startDate'] = ObjectSerializer.serialize(startDate, "Date");
+        }
+
+        if (endDate !== undefined) {
+            localVarQueryParameters['endDate'] = ObjectSerializer.serialize(endDate, "Date");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOrderBatchItem;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultOrderBatchItem");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
