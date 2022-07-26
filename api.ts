@@ -1290,7 +1290,11 @@ export namespace App {
         UpdateAppStoreAppConfiguration = <any> 'UpdateAppStoreAppConfiguration',
         DeleteAppStoreAppConfiguration = <any> 'DeleteAppStoreAppConfiguration',
         ViewSalesChannels = <any> 'ViewSalesChannels',
-        EditSalesChannels = <any> 'EditSalesChannels'
+        EditSalesChannels = <any> 'EditSalesChannels',
+        ViewPayGreenWhiteLabelConfiguration = <any> 'ViewPayGreenWhiteLabelConfiguration',
+        CreatePayGreenWhiteLabelConfiguration = <any> 'CreatePayGreenWhiteLabelConfiguration',
+        UpdatePayGreenWhiteLabelConfiguration = <any> 'UpdatePayGreenWhiteLabelConfiguration',
+        UpdatePayGreenStoreConfiguration = <any> 'UpdatePayGreenStoreConfiguration'
     }
     export enum ApplicationCategoryEnum {
         Restaurant = <any> 'Restaurant',
@@ -7391,8 +7395,8 @@ export namespace CreateMetafieldDefinition {
 }
 export class CreatePayGreenConfigurationRequest {
     'Name'?: string;
-    'PaygreenId'?: string;
-    'PaygreenPrivateKey'?: string;
+    'PayGreenId'?: string;
+    'PayGreenPrivateKey'?: string;
     'AssignedStores'?: Array<number>;
 
     static discriminator: string | undefined = undefined;
@@ -7404,13 +7408,13 @@ export class CreatePayGreenConfigurationRequest {
             "type": "string"
         },
         {
-            "name": "PaygreenId",
-            "baseName": "PaygreenId",
+            "name": "PayGreenId",
+            "baseName": "PayGreenId",
             "type": "string"
         },
         {
-            "name": "PaygreenPrivateKey",
-            "baseName": "PaygreenPrivateKey",
+            "name": "PayGreenPrivateKey",
+            "baseName": "PayGreenPrivateKey",
             "type": "string"
         },
         {
@@ -21860,88 +21864,6 @@ export namespace MetafieldDefinitionRecommendation {
     }
 }
 /**
-* Mobile Apps form submission
-*/
-export class MobileAppConfig {
-    /**
-    * App Name
-    */
-    'AutoPublish'?: boolean;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "AutoPublish",
-            "baseName": "AutoPublish",
-            "type": "boolean"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return MobileAppConfig.attributeTypeMap;
-    }
-}
-
-/**
-* Mobile Apps form submission
-*/
-export class MobileAppsDetails {
-    /**
-    * App Name
-    */
-    'AppName'?: string;
-    /**
-    * App Description
-    */
-    'AppDescription'?: string;
-    /**
-    * App Description
-    */
-    'AppShortDescription'?: string;
-    /**
-    * Keywords
-    */
-    'Keywords'?: Array<string>;
-    /**
-    * Logo URL
-    */
-    'AppLogoUrl'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "AppName",
-            "baseName": "AppName",
-            "type": "string"
-        },
-        {
-            "name": "AppDescription",
-            "baseName": "AppDescription",
-            "type": "string"
-        },
-        {
-            "name": "AppShortDescription",
-            "baseName": "AppShortDescription",
-            "type": "string"
-        },
-        {
-            "name": "Keywords",
-            "baseName": "Keywords",
-            "type": "Array<string>"
-        },
-        {
-            "name": "AppLogoUrl",
-            "baseName": "AppLogoUrl",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return MobileAppsDetails.attributeTypeMap;
-    }
-}
-
-/**
 * Mobile Apps Image
 */
 export class MobileAppsImage {
@@ -22085,6 +22007,14 @@ export class MobileAppsSubmission {
     * Keywords
     */
     'Keywords'?: Array<string>;
+    /**
+    * Publish automatically
+    */
+    'AutoPublish'?: boolean;
+    /**
+    * Mobile App Status
+    */
+    'Status'?: MobileAppsSubmission.StatusEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -22108,6 +22038,16 @@ export class MobileAppsSubmission {
             "name": "Keywords",
             "baseName": "Keywords",
             "type": "Array<string>"
+        },
+        {
+            "name": "AutoPublish",
+            "baseName": "AutoPublish",
+            "type": "boolean"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "MobileAppsSubmission.StatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -22115,6 +22055,103 @@ export class MobileAppsSubmission {
     }
 }
 
+export namespace MobileAppsSubmission {
+    export enum StatusEnum {
+        None = <any> 'None',
+        InProgress = <any> 'InProgress',
+        Submitted = <any> 'Submitted',
+        AppStoreReview = <any> 'AppStoreReview',
+        Sucessfull = <any> 'Sucessfull',
+        Unsuccesful = <any> 'Unsuccesful'
+    }
+}
+/**
+* Mobile Apps form submission
+*/
+export class MobileAppsSubmissionDetails {
+    /**
+    * App Name
+    */
+    'AppName'?: string;
+    /**
+    * App Description
+    */
+    'AppDescription'?: string;
+    /**
+    * App Description
+    */
+    'AppShortDescription'?: string;
+    /**
+    * Keywords
+    */
+    'Keywords'?: Array<string>;
+    /**
+    * Logo URL
+    */
+    'AppLogoUrl'?: string;
+    /**
+    * Publish automatically
+    */
+    'AutoPublish'?: boolean;
+    /**
+    * Mobile App Status
+    */
+    'Status'?: MobileAppsSubmissionDetails.StatusEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AppName",
+            "baseName": "AppName",
+            "type": "string"
+        },
+        {
+            "name": "AppDescription",
+            "baseName": "AppDescription",
+            "type": "string"
+        },
+        {
+            "name": "AppShortDescription",
+            "baseName": "AppShortDescription",
+            "type": "string"
+        },
+        {
+            "name": "Keywords",
+            "baseName": "Keywords",
+            "type": "Array<string>"
+        },
+        {
+            "name": "AppLogoUrl",
+            "baseName": "AppLogoUrl",
+            "type": "string"
+        },
+        {
+            "name": "AutoPublish",
+            "baseName": "AutoPublish",
+            "type": "boolean"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "MobileAppsSubmissionDetails.StatusEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MobileAppsSubmissionDetails.attributeTypeMap;
+    }
+}
+
+export namespace MobileAppsSubmissionDetails {
+    export enum StatusEnum {
+        None = <any> 'None',
+        InProgress = <any> 'InProgress',
+        Submitted = <any> 'Submitted',
+        AppStoreReview = <any> 'AppStoreReview',
+        Sucessfull = <any> 'Sucessfull',
+        Unsuccesful = <any> 'Unsuccesful'
+    }
+}
 /**
 * Mobile Apps Status
 */
@@ -22140,6 +22177,8 @@ export class MobileAppsSubmissionStatus {
 
 export namespace MobileAppsSubmissionStatus {
     export enum StatusEnum {
+        None = <any> 'None',
+        InProgress = <any> 'InProgress',
         Submitted = <any> 'Submitted',
         AppStoreReview = <any> 'AppStoreReview',
         Sucessfull = <any> 'Sucessfull',
@@ -31013,11 +31052,11 @@ export class RestApiArrayResultRestaurantVoucherEligibleStore {
 /**
 * Rest api array result
 */
-export class RestApiArrayResultRestaurantVoucherPaygreenConfiguration {
+export class RestApiArrayResultRestaurantVoucherPayGreenConfiguration {
     /**
     * Generic data object.
     */
-    'Data': Array<RestaurantVoucherPaygreenConfiguration>;
+    'Data': Array<RestaurantVoucherPayGreenConfiguration>;
 
     static discriminator: string | undefined = undefined;
 
@@ -31025,22 +31064,22 @@ export class RestApiArrayResultRestaurantVoucherPaygreenConfiguration {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "Array<RestaurantVoucherPaygreenConfiguration>"
+            "type": "Array<RestaurantVoucherPayGreenConfiguration>"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiArrayResultRestaurantVoucherPaygreenConfiguration.attributeTypeMap;
+        return RestApiArrayResultRestaurantVoucherPayGreenConfiguration.attributeTypeMap;
     }
 }
 
 /**
 * Rest api array result
 */
-export class RestApiArrayResultRestaurantVoucherPaygreenConfigurationSummary {
+export class RestApiArrayResultRestaurantVoucherPayGreenConfigurationSummary {
     /**
     * Generic data object.
     */
-    'Data': Array<RestaurantVoucherPaygreenConfigurationSummary>;
+    'Data': Array<RestaurantVoucherPayGreenConfigurationSummary>;
 
     static discriminator: string | undefined = undefined;
 
@@ -31048,11 +31087,11 @@ export class RestApiArrayResultRestaurantVoucherPaygreenConfigurationSummary {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "Array<RestaurantVoucherPaygreenConfigurationSummary>"
+            "type": "Array<RestaurantVoucherPayGreenConfigurationSummary>"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiArrayResultRestaurantVoucherPaygreenConfigurationSummary.attributeTypeMap;
+        return RestApiArrayResultRestaurantVoucherPayGreenConfigurationSummary.attributeTypeMap;
     }
 }
 
@@ -32862,21 +32901,6 @@ export class RestApiPaginationResultWebhookSubscription {
 /**
 * Rest api result
 */
-export class RestApiResult {
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-    ];
-
-    static getAttributeTypeMap() {
-        return RestApiResult.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api result
-*/
 export class RestApiResultAccountDetail {
     /**
     * Generic data object.
@@ -34050,29 +34074,6 @@ export class RestApiResultMetafieldDefinition {
 /**
 * Rest api result
 */
-export class RestApiResultMobileAppsDetails {
-    /**
-    * Generic data object.
-    */
-    'Data': MobileAppsDetails;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "MobileAppsDetails"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiResultMobileAppsDetails.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api result
-*/
 export class RestApiResultMobileAppsImage {
     /**
     * Generic data object.
@@ -34113,6 +34114,29 @@ export class RestApiResultMobileAppsSubmission {
 
     static getAttributeTypeMap() {
         return RestApiResultMobileAppsSubmission.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultMobileAppsSubmissionDetails {
+    /**
+    * Generic data object.
+    */
+    'Data': MobileAppsSubmissionDetails;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "MobileAppsSubmissionDetails"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultMobileAppsSubmissionDetails.attributeTypeMap;
     }
 }
 
@@ -34533,11 +34557,11 @@ export class RestApiResultRedeemInvitationResult {
 /**
 * Rest api result
 */
-export class RestApiResultRestaurantVoucherPaygreenConfiguration {
+export class RestApiResultRestaurantVoucherPayGreenConfiguration {
     /**
     * Generic data object.
     */
-    'Data': RestaurantVoucherPaygreenConfiguration;
+    'Data': RestaurantVoucherPayGreenConfiguration;
 
     static discriminator: string | undefined = undefined;
 
@@ -34545,22 +34569,22 @@ export class RestApiResultRestaurantVoucherPaygreenConfiguration {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "RestaurantVoucherPaygreenConfiguration"
+            "type": "RestaurantVoucherPayGreenConfiguration"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiResultRestaurantVoucherPaygreenConfiguration.attributeTypeMap;
+        return RestApiResultRestaurantVoucherPayGreenConfiguration.attributeTypeMap;
     }
 }
 
 /**
 * Rest api result
 */
-export class RestApiResultRestaurantVoucherPaygreenStoreConfiguration {
+export class RestApiResultRestaurantVoucherPayGreenStoreConfiguration {
     /**
     * Generic data object.
     */
-    'Data': RestaurantVoucherPaygreenStoreConfiguration;
+    'Data': RestaurantVoucherPayGreenStoreConfiguration;
 
     static discriminator: string | undefined = undefined;
 
@@ -34568,11 +34592,11 @@ export class RestApiResultRestaurantVoucherPaygreenStoreConfiguration {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "RestaurantVoucherPaygreenStoreConfiguration"
+            "type": "RestaurantVoucherPayGreenStoreConfiguration"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiResultRestaurantVoucherPaygreenStoreConfiguration.attributeTypeMap;
+        return RestApiResultRestaurantVoucherPayGreenStoreConfiguration.attributeTypeMap;
     }
 }
 
@@ -35180,10 +35204,10 @@ export class RestaurantVoucherEligibleStore {
     }
 }
 
-export class RestaurantVoucherPaygreenConfiguration {
+export class RestaurantVoucherPayGreenConfiguration {
     'Name'?: string;
-    'PaygreenId'?: string;
-    'PaygreenConfigurationId'?: number;
+    'PayGreenId'?: string;
+    'PayGreenConfigurationId'?: number;
     'AssignedStores'?: Array<RestaurantVoucherAssignedStore>;
 
     static discriminator: string | undefined = undefined;
@@ -35195,13 +35219,13 @@ export class RestaurantVoucherPaygreenConfiguration {
             "type": "string"
         },
         {
-            "name": "PaygreenId",
-            "baseName": "PaygreenId",
+            "name": "PayGreenId",
+            "baseName": "PayGreenId",
             "type": "string"
         },
         {
-            "name": "PaygreenConfigurationId",
-            "baseName": "PaygreenConfigurationId",
+            "name": "PayGreenConfigurationId",
+            "baseName": "PayGreenConfigurationId",
             "type": "number"
         },
         {
@@ -35211,13 +35235,13 @@ export class RestaurantVoucherPaygreenConfiguration {
         }    ];
 
     static getAttributeTypeMap() {
-        return RestaurantVoucherPaygreenConfiguration.attributeTypeMap;
+        return RestaurantVoucherPayGreenConfiguration.attributeTypeMap;
     }
 }
 
-export class RestaurantVoucherPaygreenConfigurationSummary {
+export class RestaurantVoucherPayGreenConfigurationSummary {
     'Name'?: string;
-    'PaygreenConfigurationId'?: number;
+    'PayGreenConfigurationId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -35228,21 +35252,21 @@ export class RestaurantVoucherPaygreenConfigurationSummary {
             "type": "string"
         },
         {
-            "name": "PaygreenConfigurationId",
-            "baseName": "PaygreenConfigurationId",
+            "name": "PayGreenConfigurationId",
+            "baseName": "PayGreenConfigurationId",
             "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestaurantVoucherPaygreenConfigurationSummary.attributeTypeMap;
+        return RestaurantVoucherPayGreenConfigurationSummary.attributeTypeMap;
     }
 }
 
-export class RestaurantVoucherPaygreenStoreConfiguration {
+export class RestaurantVoucherPayGreenStoreConfiguration {
     'Name'?: string;
     'Active'?: boolean;
-    'PaygreenId'?: string;
-    'PaygreenConfigurationId'?: number;
+    'PayGreenId'?: string;
+    'PayGreenConfigurationId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -35258,18 +35282,18 @@ export class RestaurantVoucherPaygreenStoreConfiguration {
             "type": "boolean"
         },
         {
-            "name": "PaygreenId",
-            "baseName": "PaygreenId",
+            "name": "PayGreenId",
+            "baseName": "PayGreenId",
             "type": "string"
         },
         {
-            "name": "PaygreenConfigurationId",
-            "baseName": "PaygreenConfigurationId",
+            "name": "PayGreenConfigurationId",
+            "baseName": "PayGreenConfigurationId",
             "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestaurantVoucherPaygreenStoreConfiguration.attributeTypeMap;
+        return RestaurantVoucherPayGreenStoreConfiguration.attributeTypeMap;
     }
 }
 
@@ -44251,8 +44275,9 @@ export namespace UpdateProductReference {
         Modifier = <any> 'Modifier'
     }
 }
-export class UpdateStorePaygreenConfigurationRequest {
+export class UpdateStorePayGreenConfigurationRequest {
     'Active'?: boolean;
+    'PayGreenConfigurationId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -44261,10 +44286,15 @@ export class UpdateStorePaygreenConfigurationRequest {
             "name": "Active",
             "baseName": "Active",
             "type": "boolean"
+        },
+        {
+            "name": "PayGreenConfigurationId",
+            "baseName": "PayGreenConfigurationId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
-        return UpdateStorePaygreenConfigurationRequest.attributeTypeMap;
+        return UpdateStorePayGreenConfigurationRequest.attributeTypeMap;
     }
 }
 
@@ -47396,6 +47426,8 @@ let enumsMap: {[index: string]: any} = {
         "MetafieldDefinitionRecommendation.ValueTypeEnum": MetafieldDefinitionRecommendation.ValueTypeEnum,
         "MetafieldDefinitionRecommendation.BehaviorsEnum": MetafieldDefinitionRecommendation.BehaviorsEnum,
         "MobileAppsStatistics.PlatformTypeEnum": MobileAppsStatistics.PlatformTypeEnum,
+        "MobileAppsSubmission.StatusEnum": MobileAppsSubmission.StatusEnum,
+        "MobileAppsSubmissionDetails.StatusEnum": MobileAppsSubmissionDetails.StatusEnum,
         "MobileAppsSubmissionStatus.StatusEnum": MobileAppsSubmissionStatus.StatusEnum,
         "OAuthApp.FlowEnum": OAuthApp.FlowEnum,
         "OAuthApp.RefreshTokenUsageEnum": OAuthApp.RefreshTokenUsageEnum,
@@ -47764,11 +47796,10 @@ let typeMap: {[index: string]: any} = {
     "Metafield": Metafield,
     "MetafieldDefinition": MetafieldDefinition,
     "MetafieldDefinitionRecommendation": MetafieldDefinitionRecommendation,
-    "MobileAppConfig": MobileAppConfig,
-    "MobileAppsDetails": MobileAppsDetails,
     "MobileAppsImage": MobileAppsImage,
     "MobileAppsStatistics": MobileAppsStatistics,
     "MobileAppsSubmission": MobileAppsSubmission,
+    "MobileAppsSubmissionDetails": MobileAppsSubmissionDetails,
     "MobileAppsSubmissionStatus": MobileAppsSubmissionStatus,
     "ModelBase": ModelBase,
     "OAuthApp": OAuthApp,
@@ -47896,8 +47927,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultProcessingFeeConfig": RestApiArrayResultProcessingFeeConfig,
     "RestApiArrayResultRestApiDefaultResponse": RestApiArrayResultRestApiDefaultResponse,
     "RestApiArrayResultRestaurantVoucherEligibleStore": RestApiArrayResultRestaurantVoucherEligibleStore,
-    "RestApiArrayResultRestaurantVoucherPaygreenConfiguration": RestApiArrayResultRestaurantVoucherPaygreenConfiguration,
-    "RestApiArrayResultRestaurantVoucherPaygreenConfigurationSummary": RestApiArrayResultRestaurantVoucherPaygreenConfigurationSummary,
+    "RestApiArrayResultRestaurantVoucherPayGreenConfiguration": RestApiArrayResultRestaurantVoucherPayGreenConfiguration,
+    "RestApiArrayResultRestaurantVoucherPayGreenConfigurationSummary": RestApiArrayResultRestaurantVoucherPayGreenConfigurationSummary,
     "RestApiArrayResultRetentionCampaign": RestApiArrayResultRetentionCampaign,
     "RestApiArrayResultStoreChannelAssignment": RestApiArrayResultStoreChannelAssignment,
     "RestApiArrayResultStoreChannelStoreMapping": RestApiArrayResultStoreChannelStoreMapping,
@@ -47940,7 +47971,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultVoucherSummary": RestApiPaginationResultVoucherSummary,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiPaginationResultWebhookSubscription": RestApiPaginationResultWebhookSubscription,
-    "RestApiResult": RestApiResult,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
     "RestApiResultAccountFieldsDefinitions": RestApiResultAccountFieldsDefinitions,
     "RestApiResultAddressFormResponse": RestApiResultAddressFormResponse,
@@ -47992,9 +48022,9 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultMenuSectionItem": RestApiResultMenuSectionItem,
     "RestApiResultMetadata": RestApiResultMetadata,
     "RestApiResultMetafieldDefinition": RestApiResultMetafieldDefinition,
-    "RestApiResultMobileAppsDetails": RestApiResultMobileAppsDetails,
     "RestApiResultMobileAppsImage": RestApiResultMobileAppsImage,
     "RestApiResultMobileAppsSubmission": RestApiResultMobileAppsSubmission,
+    "RestApiResultMobileAppsSubmissionDetails": RestApiResultMobileAppsSubmissionDetails,
     "RestApiResultMobileAppsSubmissionStatus": RestApiResultMobileAppsSubmissionStatus,
     "RestApiResultModelBase": RestApiResultModelBase,
     "RestApiResultOAuthApp": RestApiResultOAuthApp,
@@ -48013,8 +48043,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultProduct": RestApiResultProduct,
     "RestApiResultPushNotificationResponse": RestApiResultPushNotificationResponse,
     "RestApiResultRedeemInvitationResult": RestApiResultRedeemInvitationResult,
-    "RestApiResultRestaurantVoucherPaygreenConfiguration": RestApiResultRestaurantVoucherPaygreenConfiguration,
-    "RestApiResultRestaurantVoucherPaygreenStoreConfiguration": RestApiResultRestaurantVoucherPaygreenStoreConfiguration,
+    "RestApiResultRestaurantVoucherPayGreenConfiguration": RestApiResultRestaurantVoucherPayGreenConfiguration,
+    "RestApiResultRestaurantVoucherPayGreenStoreConfiguration": RestApiResultRestaurantVoucherPayGreenStoreConfiguration,
     "RestApiResultRetentionCampaign": RestApiResultRetentionCampaign,
     "RestApiResultServiceCharge": RestApiResultServiceCharge,
     "RestApiResultStore": RestApiResultStore,
@@ -48041,9 +48071,9 @@ let typeMap: {[index: string]: any} = {
     "RestApiUnauthorizedResult": RestApiUnauthorizedResult,
     "RestaurantVoucherAssignedStore": RestaurantVoucherAssignedStore,
     "RestaurantVoucherEligibleStore": RestaurantVoucherEligibleStore,
-    "RestaurantVoucherPaygreenConfiguration": RestaurantVoucherPaygreenConfiguration,
-    "RestaurantVoucherPaygreenConfigurationSummary": RestaurantVoucherPaygreenConfigurationSummary,
-    "RestaurantVoucherPaygreenStoreConfiguration": RestaurantVoucherPaygreenStoreConfiguration,
+    "RestaurantVoucherPayGreenConfiguration": RestaurantVoucherPayGreenConfiguration,
+    "RestaurantVoucherPayGreenConfigurationSummary": RestaurantVoucherPayGreenConfigurationSummary,
+    "RestaurantVoucherPayGreenStoreConfiguration": RestaurantVoucherPayGreenStoreConfiguration,
     "RetentionCampaign": RetentionCampaign,
     "RetentionCampaignBase": RetentionCampaignBase,
     "RetentionCampaignCreatedEvent": RetentionCampaignCreatedEvent,
@@ -48145,7 +48175,7 @@ let typeMap: {[index: string]: any} = {
     "UpdatePayGreenConfigurationRequest": UpdatePayGreenConfigurationRequest,
     "UpdateProduct": UpdateProduct,
     "UpdateProductReference": UpdateProductReference,
-    "UpdateStorePaygreenConfigurationRequest": UpdateStorePaygreenConfigurationRequest,
+    "UpdateStorePayGreenConfigurationRequest": UpdateStorePayGreenConfigurationRequest,
     "UpdateTipConfiguration": UpdateTipConfiguration,
     "UserAnsweredSignupQuestionsEvent": UserAnsweredSignupQuestionsEvent,
     "UserCreatedEvent": UserCreatedEvent,
@@ -69342,248 +69372,6 @@ export class MobileAppsApi {
     }
     /**
      * 
-     * @summary Set the application sales channel configuration
-     * @param appId 
-     * @param appConfigSalesChannel 
-     * @param {*} [options] Override http request options.
-     */
-    public editAppConfigSalesChannel (appId: string, appConfigSalesChannel: AppConfigSalesChannel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppConfigSalesChannel;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/saleschannel'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling editAppConfigSalesChannel.');
-        }
-
-        // verify required parameter 'appConfigSalesChannel' is not null or undefined
-        if (appConfigSalesChannel === null || appConfigSalesChannel === undefined) {
-            throw new Error('Required parameter appConfigSalesChannel was null or undefined when calling editAppConfigSalesChannel.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(appConfigSalesChannel, "AppConfigSalesChannel")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppConfigSalesChannel;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultAppConfigSalesChannel");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Get mobile app configuration
-     * @param appId 
-     * @param {*} [options] Override http request options.
-     */
-    public getAppConfig (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsDetails;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/config'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getAppConfig.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsDetails;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultMobileAppsDetails");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Get mobile app details
-     * @param appId 
-     * @param {*} [options] Override http request options.
-     */
-    public getAppDetails (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsDetails;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/details'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getAppDetails.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsDetails;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultMobileAppsDetails");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Get mobile app submitted status
-     * @param appId 
-     * @param plataformType 
-     * @param {*} [options] Override http request options.
-     */
-    public getMobileAppsSubmissionStatus (appId: string, plataformType: 'Android' | 'IOS', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmissionStatus;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submissionstatus{plataformType}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'plataformType' + '}', encodeURIComponent(String(plataformType)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getMobileAppsSubmissionStatus.');
-        }
-
-        // verify required parameter 'plataformType' is not null or undefined
-        if (plataformType === null || plataformType === undefined) {
-            throw new Error('Required parameter plataformType was null or undefined when calling getMobileAppsSubmissionStatus.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmissionStatus;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultMobileAppsSubmissionStatus");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @summary Get statistics mobile apps
      * @param appId 
      * @param platformTypes 
@@ -69651,13 +69439,12 @@ export class MobileAppsApi {
     }
     /**
      * 
-     * @summary Set mobile app configuration
+     * @summary Get submission details mobile apps
      * @param appId 
-     * @param configUpdate 
      * @param {*} [options] Override http request options.
      */
-    public setAppConfig (appId: string, configUpdate: MobileAppConfig, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/config'
+    public getSubmissionDetails (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmissionDetails;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission/details'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -69665,12 +69452,7 @@ export class MobileAppsApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling setAppConfig.');
-        }
-
-        // verify required parameter 'configUpdate' is not null or undefined
-        if (configUpdate === null || configUpdate === undefined) {
-            throw new Error('Required parameter configUpdate was null or undefined when calling setAppConfig.');
+            throw new Error('Required parameter appId was null or undefined when calling getSubmissionDetails.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -69678,13 +69460,12 @@ export class MobileAppsApi {
         let localVarUseFormData = false;
 
         let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
+            method: 'GET',
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(configUpdate, "MobileAppConfig")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -69698,12 +69479,79 @@ export class MobileAppsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmissionDetails;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResult");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMobileAppsSubmissionDetails");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get submission status mobile apps
+     * @param appId 
+     * @param type 
+     * @param {*} [options] Override http request options.
+     */
+    public getSubmissionStatus (appId: string, type: 'Android' | 'IOS', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmissionStatus;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission/status'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getSubmissionStatus.');
+        }
+
+        // verify required parameter 'type' is not null or undefined
+        if (type === null || type === undefined) {
+            throw new Error('Required parameter type was null or undefined when calling getSubmissionStatus.');
+        }
+
+        if (type !== undefined) {
+            localVarQueryParameters['type'] = ObjectSerializer.serialize(type, "'Android' | 'IOS'");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmissionStatus;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMobileAppsSubmissionStatus");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -69779,13 +69627,13 @@ export class MobileAppsApi {
     }
     /**
      * 
-     * @summary Upload a Mobile Apps Image
+     * @summary Update the application sales channel configuration
      * @param appId 
-     * @param Image Mobile Apps image
+     * @param appConfigSalesChannel 
      * @param {*} [options] Override http request options.
      */
-    public uploadMobileAppsImage (appId: string, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsImage;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/image'
+    public updateAppConfigSalesChannel (appId: string, appConfigSalesChannel: AppConfigSalesChannel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppConfigSalesChannel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/saleschannel'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -69793,12 +69641,76 @@ export class MobileAppsApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling uploadMobileAppsImage.');
+            throw new Error('Required parameter appId was null or undefined when calling updateAppConfigSalesChannel.');
+        }
+
+        // verify required parameter 'appConfigSalesChannel' is not null or undefined
+        if (appConfigSalesChannel === null || appConfigSalesChannel === undefined) {
+            throw new Error('Required parameter appConfigSalesChannel was null or undefined when calling updateAppConfigSalesChannel.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(appConfigSalesChannel, "AppConfigSalesChannel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppConfigSalesChannel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppConfigSalesChannel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Upload image mobile apps
+     * @param appId 
+     * @param Image Mobile Apps image
+     * @param {*} [options] Override http request options.
+     */
+    public uploadImage (appId: string, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsImage;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission/image'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling uploadImage.');
         }
 
         // verify required parameter 'Image' is not null or undefined
         if (Image === null || Image === undefined) {
-            throw new Error('Required parameter Image was null or undefined when calling uploadMobileAppsImage.');
+            throw new Error('Required parameter Image was null or undefined when calling uploadImage.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -72052,623 +71964,6 @@ export class OrdersApi {
         });
     }
 }
-export enum PaygreenApiApiKeys {
-}
-
-export class PaygreenApi {
-    protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
-    protected _useQuerystring : boolean = false;
-
-    protected authentications = {
-        'default': <Authentication>new VoidAuth(),
-        'oauth2': new OAuth(),
-    }
-
-    constructor(basePath?: string);
-    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
-        if (password) {
-            if (basePath) {
-                this.basePath = basePath;
-            }
-        } else {
-            if (basePathOrUsername) {
-                this.basePath = basePathOrUsername
-            }
-        }
-    }
-
-    set useQuerystring(value: boolean) {
-        this._useQuerystring = value;
-    }
-
-    set basePath(basePath: string) {
-        this._basePath = basePath;
-    }
-
-    get basePath() {
-        return this._basePath;
-    }
-
-    public setDefaultAuthentication(auth: Authentication) {
-	this.authentications.default = auth;
-    }
-
-    public setApiKey(key: PaygreenApiApiKeys, value: string) {
-        (this.authentications as any)[PaygreenApiApiKeys[key]].apiKey = value;
-    }
-
-    set accessToken(token: string) {
-        this.authentications.oauth2.accessToken = token;
-    }
-    /**
-     * 
-     * @param appId 
-     * @param request 
-     * @param {*} [options] Override http request options.
-     */
-    public createPayGreenConfiguration (appId: string, request: CreatePayGreenConfigurationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPaygreenConfiguration;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling createPayGreenConfiguration.');
-        }
-
-        // verify required parameter 'request' is not null or undefined
-        if (request === null || request === undefined) {
-            throw new Error('Required parameter request was null or undefined when calling createPayGreenConfiguration.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(request, "CreatePayGreenConfigurationRequest")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPaygreenConfiguration;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultRestaurantVoucherPaygreenConfiguration");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param paygreenConfigurationId 
-     * @param {*} [options] Override http request options.
-     */
-    public deletePaygreenConfiguration (appId: string, paygreenConfigurationId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen/{paygreenConfigurationId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'paygreenConfigurationId' + '}', encodeURIComponent(String(paygreenConfigurationId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling deletePaygreenConfiguration.');
-        }
-
-        // verify required parameter 'paygreenConfigurationId' is not null or undefined
-        if (paygreenConfigurationId === null || paygreenConfigurationId === undefined) {
-            throw new Error('Required parameter paygreenConfigurationId was null or undefined when calling deletePaygreenConfiguration.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "any");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param {*} [options] Override http request options.
-     */
-    public getPaygreenConfigurations (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestaurantVoucherPaygreenConfiguration;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getPaygreenConfigurations.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestaurantVoucherPaygreenConfiguration;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestaurantVoucherPaygreenConfiguration");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param storeId 
-     * @param {*} [options] Override http request options.
-     */
-    public getStoreAvailablePayGreenConfigurations (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestaurantVoucherPaygreenConfigurationSummary;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen/stores/{storeId}/available-configurations'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getStoreAvailablePayGreenConfigurations.');
-        }
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getStoreAvailablePayGreenConfigurations.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestaurantVoucherPaygreenConfigurationSummary;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestaurantVoucherPaygreenConfigurationSummary");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param {*} [options] Override http request options.
-     */
-    public getStorePayGreenConfiguration (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestaurantVoucherEligibleStore;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen/stores'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getStorePayGreenConfiguration.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestaurantVoucherEligibleStore;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestaurantVoucherEligibleStore");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param storeId 
-     * @param {*} [options] Override http request options.
-     */
-    public getStorePayGreenConfiguration_ (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPaygreenStoreConfiguration;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen/stores/{storeId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getStorePayGreenConfiguration_.');
-        }
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getStorePayGreenConfiguration_.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPaygreenStoreConfiguration;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultRestaurantVoucherPaygreenStoreConfiguration");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param paygreenConfigurationId 
-     * @param {*} [options] Override http request options.
-     */
-    public listPayGreenConfigurations (appId: string, paygreenConfigurationId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPaygreenConfiguration;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen/{paygreenConfigurationId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'paygreenConfigurationId' + '}', encodeURIComponent(String(paygreenConfigurationId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling listPayGreenConfigurations.');
-        }
-
-        // verify required parameter 'paygreenConfigurationId' is not null or undefined
-        if (paygreenConfigurationId === null || paygreenConfigurationId === undefined) {
-            throw new Error('Required parameter paygreenConfigurationId was null or undefined when calling listPayGreenConfigurations.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPaygreenConfiguration;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultRestaurantVoucherPaygreenConfiguration");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param paygreenConfigurationId 
-     * @param request 
-     * @param {*} [options] Override http request options.
-     */
-    public updatePayGreenConfiguration (appId: string, paygreenConfigurationId: number, request: UpdatePayGreenConfigurationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPaygreenConfiguration;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen/{paygreenConfigurationId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'paygreenConfigurationId' + '}', encodeURIComponent(String(paygreenConfigurationId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling updatePayGreenConfiguration.');
-        }
-
-        // verify required parameter 'paygreenConfigurationId' is not null or undefined
-        if (paygreenConfigurationId === null || paygreenConfigurationId === undefined) {
-            throw new Error('Required parameter paygreenConfigurationId was null or undefined when calling updatePayGreenConfiguration.');
-        }
-
-        // verify required parameter 'request' is not null or undefined
-        if (request === null || request === undefined) {
-            throw new Error('Required parameter request was null or undefined when calling updatePayGreenConfiguration.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(request, "UpdatePayGreenConfigurationRequest")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPaygreenConfiguration;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultRestaurantVoucherPaygreenConfiguration");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param storeId 
-     * @param request 
-     * @param {*} [options] Override http request options.
-     */
-    public updateStorePayGreenConfiguration_ (appId: string, storeId: number, request: UpdateStorePaygreenConfigurationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPaygreenStoreConfiguration;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen/stores/{storeId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling updateStorePayGreenConfiguration_.');
-        }
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling updateStorePayGreenConfiguration_.');
-        }
-
-        // verify required parameter 'request' is not null or undefined
-        if (request === null || request === undefined) {
-            throw new Error('Required parameter request was null or undefined when calling updateStorePayGreenConfiguration_.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(request, "UpdateStorePaygreenConfigurationRequest")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPaygreenStoreConfiguration;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultRestaurantVoucherPaygreenStoreConfiguration");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-}
 export enum PaymentIntentsApiApiKeys {
 }
 
@@ -74434,6 +73729,623 @@ export class PushNotificationsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultPushNotificationResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum RestaurantVouchersPayGreenApiApiKeys {
+}
+
+export class RestaurantVouchersPayGreenApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: RestaurantVouchersPayGreenApiApiKeys, value: string) {
+        (this.authentications as any)[RestaurantVouchersPayGreenApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param appId 
+     * @param request 
+     * @param {*} [options] Override http request options.
+     */
+    public createPayGreenConfiguration (appId: string, request: CreatePayGreenConfigurationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPayGreenConfiguration;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createPayGreenConfiguration.');
+        }
+
+        // verify required parameter 'request' is not null or undefined
+        if (request === null || request === undefined) {
+            throw new Error('Required parameter request was null or undefined when calling createPayGreenConfiguration.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(request, "CreatePayGreenConfigurationRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPayGreenConfiguration;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultRestaurantVoucherPayGreenConfiguration");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param paygreenConfigurationId 
+     * @param {*} [options] Override http request options.
+     */
+    public deletePayGreenConfiguration (appId: string, paygreenConfigurationId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen/{paygreenConfigurationId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'paygreenConfigurationId' + '}', encodeURIComponent(String(paygreenConfigurationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling deletePayGreenConfiguration.');
+        }
+
+        // verify required parameter 'paygreenConfigurationId' is not null or undefined
+        if (paygreenConfigurationId === null || paygreenConfigurationId === undefined) {
+            throw new Error('Required parameter paygreenConfigurationId was null or undefined when calling deletePayGreenConfiguration.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getElegibleStores (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestaurantVoucherEligibleStore;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen/stores'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getElegibleStores.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestaurantVoucherEligibleStore;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestaurantVoucherEligibleStore");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getPayGreenConfigurations (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestaurantVoucherPayGreenConfiguration;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getPayGreenConfigurations.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestaurantVoucherPayGreenConfiguration;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestaurantVoucherPayGreenConfiguration");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param storeId 
+     * @param {*} [options] Override http request options.
+     */
+    public getStoreAvailablePayGreenConfigurations (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestaurantVoucherPayGreenConfigurationSummary;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen/stores/{storeId}/available-configurations'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getStoreAvailablePayGreenConfigurations.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getStoreAvailablePayGreenConfigurations.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestaurantVoucherPayGreenConfigurationSummary;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestaurantVoucherPayGreenConfigurationSummary");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param storeId 
+     * @param {*} [options] Override http request options.
+     */
+    public getStorePayGreenConfiguration_ (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPayGreenStoreConfiguration;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen/stores/{storeId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getStorePayGreenConfiguration_.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getStorePayGreenConfiguration_.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPayGreenStoreConfiguration;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultRestaurantVoucherPayGreenStoreConfiguration");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param paygreenConfigurationId 
+     * @param {*} [options] Override http request options.
+     */
+    public listPayGreenConfigurations (appId: string, paygreenConfigurationId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPayGreenConfiguration;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen/{paygreenConfigurationId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'paygreenConfigurationId' + '}', encodeURIComponent(String(paygreenConfigurationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling listPayGreenConfigurations.');
+        }
+
+        // verify required parameter 'paygreenConfigurationId' is not null or undefined
+        if (paygreenConfigurationId === null || paygreenConfigurationId === undefined) {
+            throw new Error('Required parameter paygreenConfigurationId was null or undefined when calling listPayGreenConfigurations.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPayGreenConfiguration;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultRestaurantVoucherPayGreenConfiguration");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param paygreenConfigurationId 
+     * @param request 
+     * @param {*} [options] Override http request options.
+     */
+    public updatePayGreenConfiguration (appId: string, paygreenConfigurationId: number, request: UpdatePayGreenConfigurationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPayGreenConfiguration;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen/{paygreenConfigurationId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'paygreenConfigurationId' + '}', encodeURIComponent(String(paygreenConfigurationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updatePayGreenConfiguration.');
+        }
+
+        // verify required parameter 'paygreenConfigurationId' is not null or undefined
+        if (paygreenConfigurationId === null || paygreenConfigurationId === undefined) {
+            throw new Error('Required parameter paygreenConfigurationId was null or undefined when calling updatePayGreenConfiguration.');
+        }
+
+        // verify required parameter 'request' is not null or undefined
+        if (request === null || request === undefined) {
+            throw new Error('Required parameter request was null or undefined when calling updatePayGreenConfiguration.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(request, "UpdatePayGreenConfigurationRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPayGreenConfiguration;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultRestaurantVoucherPayGreenConfiguration");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param storeId 
+     * @param request 
+     * @param {*} [options] Override http request options.
+     */
+    public updateStorePayGreenConfiguration_ (appId: string, storeId: number, request: UpdateStorePayGreenConfigurationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPayGreenStoreConfiguration;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen/stores/{storeId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateStorePayGreenConfiguration_.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling updateStorePayGreenConfiguration_.');
+        }
+
+        // verify required parameter 'request' is not null or undefined
+        if (request === null || request === undefined) {
+            throw new Error('Required parameter request was null or undefined when calling updateStorePayGreenConfiguration_.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(request, "UpdateStorePayGreenConfigurationRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRestaurantVoucherPayGreenStoreConfiguration;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultRestaurantVoucherPayGreenStoreConfiguration");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
