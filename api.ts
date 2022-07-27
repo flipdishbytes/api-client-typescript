@@ -23111,6 +23111,65 @@ export class OrderAcceptedEvent {
 }
 
 /**
+* Order batch
+*/
+export class OrderBatch {
+    /**
+    * Order batch id
+    */
+    'Id'?: number;
+    /**
+    * Order batch 6-sign human readable code
+    */
+    'DisplayCode'?: string;
+    /**
+    * Batch creation date and time
+    */
+    'CreateTime'?: Date;
+    /**
+    * If the batch is already published
+    */
+    'IsPublished'?: boolean;
+    /**
+    * Orders' ids on the batch
+    */
+    'OrderIds'?: Array<number>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "DisplayCode",
+            "baseName": "DisplayCode",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "IsPublished",
+            "baseName": "IsPublished",
+            "type": "boolean"
+        },
+        {
+            "name": "OrderIds",
+            "baseName": "OrderIds",
+            "type": "Array<number>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderBatch.attributeTypeMap;
+    }
+}
+
+/**
 * Represents order batches
 */
 export class OrderBatchItem {
@@ -34307,6 +34366,29 @@ export class RestApiResultOrder {
 
     static getAttributeTypeMap() {
         return RestApiResultOrder.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultOrderBatch {
+    /**
+    * Generic data object.
+    */
+    'Data': OrderBatch;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "OrderBatch"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultOrderBatch.attributeTypeMap;
     }
 }
 
@@ -47865,6 +47947,7 @@ let typeMap: {[index: string]: any} = {
     "OnboardingItemUpdate": OnboardingItemUpdate,
     "Order": Order,
     "OrderAcceptedEvent": OrderAcceptedEvent,
+    "OrderBatch": OrderBatch,
     "OrderBatchItem": OrderBatchItem,
     "OrderCapacityConfigUpdatedEvent": OrderCapacityConfigUpdatedEvent,
     "OrderCreatedEvent": OrderCreatedEvent,
@@ -48087,6 +48170,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultOAuthApp": RestApiResultOAuthApp,
     "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
     "RestApiResultOrder": RestApiResultOrder,
+    "RestApiResultOrderBatch": RestApiResultOrderBatch,
     "RestApiResultOrderDeliveryInformation": RestApiResultOrderDeliveryInformation,
     "RestApiResultOrderFulfillmentStatus": RestApiResultOrderFulfillmentStatus,
     "RestApiResultOrderFulfillmentStatusWithConfigurationActions": RestApiResultOrderFulfillmentStatusWithConfigurationActions,
@@ -70942,10 +71026,10 @@ export class OnboardingApi {
         });
     }
 }
-export enum OrderBatchApiApiKeys {
+export enum OrderBatchesApiApiKeys {
 }
 
-export class OrderBatchApi {
+export class OrderBatchesApi {
     protected _basePath = defaultBasePath;
     protected defaultHeaders : any = {};
     protected _useQuerystring : boolean = false;
@@ -70984,23 +71068,23 @@ export class OrderBatchApi {
 	this.authentications.default = auth;
     }
 
-    public setApiKey(key: OrderBatchApiApiKeys, value: string) {
-        (this.authentications as any)[OrderBatchApiApiKeys[key]].apiKey = value;
+    public setApiKey(key: OrderBatchesApiApiKeys, value: string) {
+        (this.authentications as any)[OrderBatchesApiApiKeys[key]].apiKey = value;
     }
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * 
-     * @summary Returns order batches created in a given time range
+     * Entries are sorted by date, from the most recent. At most 100 entries are returned.
+     * @summary Returns order batches
      * @param appId App Id
      * @param storeId Store Id
-     * @param startDate Start Date
-     * @param endDate End Date
+     * @param createdFrom Start date for retrieving the entries
+     * @param createdTo End date for retrieving the entries
      * @param {*} [options] Override http request options.
      */
-    public getAllOrderBatches (appId: string, storeId: number, startDate: Date, endDate: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOrderBatchItem;  }> {
+    public getAllOrderBatches (appId: string, storeId: number, createdFrom?: Date, createdTo?: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOrderBatchItem;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/order-batches'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
@@ -71018,22 +71102,12 @@ export class OrderBatchApi {
             throw new Error('Required parameter storeId was null or undefined when calling getAllOrderBatches.');
         }
 
-        // verify required parameter 'startDate' is not null or undefined
-        if (startDate === null || startDate === undefined) {
-            throw new Error('Required parameter startDate was null or undefined when calling getAllOrderBatches.');
+        if (createdFrom !== undefined) {
+            localVarQueryParameters['createdFrom'] = ObjectSerializer.serialize(createdFrom, "Date");
         }
 
-        // verify required parameter 'endDate' is not null or undefined
-        if (endDate === null || endDate === undefined) {
-            throw new Error('Required parameter endDate was null or undefined when calling getAllOrderBatches.');
-        }
-
-        if (startDate !== undefined) {
-            localVarQueryParameters['startDate'] = ObjectSerializer.serialize(startDate, "Date");
-        }
-
-        if (endDate !== undefined) {
-            localVarQueryParameters['endDate'] = ObjectSerializer.serialize(endDate, "Date");
+        if (createdTo !== undefined) {
+            localVarQueryParameters['createdTo'] = ObjectSerializer.serialize(createdTo, "Date");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -71066,6 +71140,77 @@ export class OrderBatchApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultOrderBatchItem");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Returns the order batch details
+     * @param appId App Id
+     * @param storeId Store Id
+     * @param batchId Order Batch Id
+     * @param {*} [options] Override http request options.
+     */
+    public getOrderBatch (appId: string, storeId: number, batchId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderBatch;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/order-batches/{batchId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'batchId' + '}', encodeURIComponent(String(batchId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getOrderBatch.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getOrderBatch.');
+        }
+
+        // verify required parameter 'batchId' is not null or undefined
+        if (batchId === null || batchId === undefined) {
+            throw new Error('Required parameter batchId was null or undefined when calling getOrderBatch.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOrderBatch;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultOrderBatch");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
