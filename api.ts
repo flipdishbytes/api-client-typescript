@@ -28132,6 +28132,38 @@ export class PendingMenuChanges {
 }
 
 /**
+* Pending menu changes summaries
+*/
+export class PendingMenuChangesSummaries {
+    /**
+    * Menu id
+    */
+    'MenuId'?: number;
+    /**
+    * Sum of pending changes per menu id
+    */
+    'TotalPendingChanges'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "TotalPendingChanges",
+            "baseName": "TotalPendingChanges",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PendingMenuChangesSummaries.attributeTypeMap;
+    }
+}
+
+/**
 * Percent discount details
 */
 export class PercentDiscountDetails {
@@ -30954,6 +30986,29 @@ export class RestApiArrayResultPayoutSummary {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultPayoutSummary.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultPendingMenuChangesSummaries {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<PendingMenuChangesSummaries>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<PendingMenuChangesSummaries>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultPendingMenuChangesSummaries.attributeTypeMap;
     }
 }
 
@@ -47854,6 +47909,7 @@ let typeMap: {[index: string]: any} = {
     "PayoutStore": PayoutStore,
     "PayoutSummary": PayoutSummary,
     "PendingMenuChanges": PendingMenuChanges,
+    "PendingMenuChangesSummaries": PendingMenuChangesSummaries,
     "PercentDiscountDetails": PercentDiscountDetails,
     "PhoneCall": PhoneCall,
     "PhoneCallEndedEvent": PhoneCallEndedEvent,
@@ -47923,6 +47979,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultOrderBatchItem": RestApiArrayResultOrderBatchItem,
     "RestApiArrayResultOrderFulfillmentStatus": RestApiArrayResultOrderFulfillmentStatus,
     "RestApiArrayResultPayoutSummary": RestApiArrayResultPayoutSummary,
+    "RestApiArrayResultPendingMenuChangesSummaries": RestApiArrayResultPendingMenuChangesSummaries,
     "RestApiArrayResultPreOrderTime": RestApiArrayResultPreOrderTime,
     "RestApiArrayResultProcessingFeeConfig": RestApiArrayResultProcessingFeeConfig,
     "RestApiArrayResultRestApiDefaultResponse": RestApiArrayResultRestApiDefaultResponse,
@@ -54160,6 +54217,63 @@ export class CatalogChangesApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultPendingMenuChanges");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get menu pending changes summaries by appId
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getPendingMenuChangesSummaries (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPendingMenuChangesSummaries;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/menus/catalog-changes/summaries'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getPendingMenuChangesSummaries.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPendingMenuChangesSummaries;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultPendingMenuChangesSummaries");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
