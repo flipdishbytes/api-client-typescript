@@ -2925,6 +2925,65 @@ export class AssignedBankAccount {
 }
 
 /**
+* Change information for a field
+*/
+export class AuditLogFieldChangeInformation {
+    /**
+    * Path (hierarchy)
+    */
+    'Path'?: string;
+    /**
+    * Name of field
+    */
+    'Name'?: string;
+    /**
+    * Key (code) of field
+    */
+    'Key'?: string;
+    /**
+    * Old value
+    */
+    'OldValue'?: string;
+    /**
+    * New value
+    */
+    'NewValue'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Path",
+            "baseName": "Path",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Key",
+            "baseName": "Key",
+            "type": "string"
+        },
+        {
+            "name": "OldValue",
+            "baseName": "OldValue",
+            "type": "string"
+        },
+        {
+            "name": "NewValue",
+            "baseName": "NewValue",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AuditLogFieldChangeInformation.attributeTypeMap;
+    }
+}
+
+/**
 * Period opening and closing balance
 */
 export class BalanceDetails {
@@ -11427,6 +11486,155 @@ export class EventSearchResult {
 
     static getAttributeTypeMap() {
         return EventSearchResult.attributeTypeMap;
+    }
+}
+
+/**
+* External event
+*/
+export class ExternalStoreAuditLog {
+    /**
+    * The time of creation of the event
+    */
+    'ExternalCreateTime'?: Date;
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Identifies the source of the log
+    */
+    'Source'?: string;
+    /**
+    * Identifies the version of the {Flipdish.PublicModels.V1.AuditLogs.ExternalStoreAuditLog.Source}
+    */
+    'Version'?: string;
+    /**
+    * Description with format placeholders
+    */
+    'DescriptionFormat'?: string;
+    /**
+    * Description with format placeholders
+    */
+    'DescriptionFields'?: string;
+    /**
+    * Description
+    */
+    'DescriptionId'?: string;
+    /**
+    * Ref (reference field)
+    */
+    'Ref1'?: string;
+    /**
+    * Ref2 (reference field)
+    */
+    'Ref2'?: string;
+    /**
+    * Ref3 (reference field)
+    */
+    'Ref3'?: string;
+    /**
+    * Ref4 (reference field)
+    */
+    'Ref4'?: string;
+    /**
+    * Order Id
+    */
+    'OrderId'?: number;
+    /**
+    * Tags
+    */
+    'Tags'?: Array<string>;
+    /**
+    * Field changes list
+    */
+    'FieldChanges'?: Array<AuditLogFieldChangeInformation>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ExternalCreateTime",
+            "baseName": "ExternalCreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Source",
+            "baseName": "Source",
+            "type": "string"
+        },
+        {
+            "name": "Version",
+            "baseName": "Version",
+            "type": "string"
+        },
+        {
+            "name": "DescriptionFormat",
+            "baseName": "DescriptionFormat",
+            "type": "string"
+        },
+        {
+            "name": "DescriptionFields",
+            "baseName": "DescriptionFields",
+            "type": "string"
+        },
+        {
+            "name": "DescriptionId",
+            "baseName": "DescriptionId",
+            "type": "string"
+        },
+        {
+            "name": "Ref1",
+            "baseName": "Ref1",
+            "type": "string"
+        },
+        {
+            "name": "Ref2",
+            "baseName": "Ref2",
+            "type": "string"
+        },
+        {
+            "name": "Ref3",
+            "baseName": "Ref3",
+            "type": "string"
+        },
+        {
+            "name": "Ref4",
+            "baseName": "Ref4",
+            "type": "string"
+        },
+        {
+            "name": "OrderId",
+            "baseName": "OrderId",
+            "type": "number"
+        },
+        {
+            "name": "Tags",
+            "baseName": "Tags",
+            "type": "Array<string>"
+        },
+        {
+            "name": "FieldChanges",
+            "baseName": "FieldChanges",
+            "type": "Array<AuditLogFieldChangeInformation>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ExternalStoreAuditLog.attributeTypeMap;
     }
 }
 
@@ -47716,6 +47924,7 @@ let typeMap: {[index: string]: any} = {
     "AppStoreConfigUpdatedEvent": AppStoreConfigUpdatedEvent,
     "AppUpdatedEvent": AppUpdatedEvent,
     "AssignedBankAccount": AssignedBankAccount,
+    "AuditLogFieldChangeInformation": AuditLogFieldChangeInformation,
     "BalanceDetails": BalanceDetails,
     "BankAccount": BankAccount,
     "BankAccountCreate": BankAccountCreate,
@@ -47811,6 +48020,7 @@ let typeMap: {[index: string]: any} = {
     "EmvTerminal": EmvTerminal,
     "EmvTerminalWithAssignments": EmvTerminalWithAssignments,
     "EventSearchResult": EventSearchResult,
+    "ExternalStoreAuditLog": ExternalStoreAuditLog,
     "ExternalStoreEvent": ExternalStoreEvent,
     "FeeSummary": FeeSummary,
     "Field": Field,
@@ -51836,6 +52046,182 @@ export class AppsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum AuditLogsApiApiKeys {
+}
+
+export class AuditLogsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: AuditLogsApiApiKeys, value: string) {
+        (this.authentications as any)[AuditLogsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Create an order audit log event
+     * @param orderId 
+     * @param externalEventCreate 
+     * @param {*} [options] Override http request options.
+     */
+    public addOrderAuditLog (orderId: number, externalEventCreate: Array<ExternalStoreAuditLog>, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/auditlogs/orders/{orderId}'
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orderId' is not null or undefined
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling addOrderAuditLog.');
+        }
+
+        // verify required parameter 'externalEventCreate' is not null or undefined
+        if (externalEventCreate === null || externalEventCreate === undefined) {
+            throw new Error('Required parameter externalEventCreate was null or undefined when calling addOrderAuditLog.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(externalEventCreate, "Array<ExternalStoreAuditLog>")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Create a store audit log event
+     * @param storeId 
+     * @param externalEventCreate 
+     * @param {*} [options] Override http request options.
+     */
+    public addStoreAuditLogEvent (storeId: number, externalEventCreate: Array<ExternalStoreAuditLog>, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/auditlogs/stores/{storeId}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling addStoreAuditLogEvent.');
+        }
+
+        // verify required parameter 'externalEventCreate' is not null or undefined
+        if (externalEventCreate === null || externalEventCreate === undefined) {
+            throw new Error('Required parameter externalEventCreate was null or undefined when calling addStoreAuditLogEvent.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(externalEventCreate, "Array<ExternalStoreAuditLog>")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
