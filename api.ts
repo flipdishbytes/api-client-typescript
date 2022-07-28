@@ -25287,6 +25287,10 @@ export class OrderSummary {
     * ChannelOrderDisplayId from external channel
     */
     'ChannelOrderDisplayId'?: string;
+    /**
+    * DropOffLocation selected for this order
+    */
+    'OrderDropOffLocation'?: OrderDropOffLocation;
 
     static discriminator: string | undefined = undefined;
 
@@ -25415,6 +25419,11 @@ export class OrderSummary {
             "name": "ChannelOrderDisplayId",
             "baseName": "ChannelOrderDisplayId",
             "type": "string"
+        },
+        {
+            "name": "OrderDropOffLocation",
+            "baseName": "OrderDropOffLocation",
+            "type": "OrderDropOffLocation"
         }    ];
 
     static getAttributeTypeMap() {
@@ -69567,6 +69576,63 @@ export class MobileAppsApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Get sales channel configuration
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getAppConfigSalesChannel (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppConfigSalesChannel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/saleschannel/details'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAppConfigSalesChannel.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppConfigSalesChannel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppConfigSalesChannel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
     }
     /**
      * 
