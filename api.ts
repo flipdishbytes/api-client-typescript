@@ -43665,6 +43665,10 @@ export class TipConfiguration {
     */
     'AllowRoundUp'?: boolean;
     /**
+    * Are emojis allowed?
+    */
+    'AllowEmojis'?: boolean;
+    /**
     * Ordered list of tip breakpoints (smallest -&gt; largest)
     */
     'Percentages'?: Array<number>;
@@ -43694,6 +43698,11 @@ export class TipConfiguration {
         {
             "name": "AllowRoundUp",
             "baseName": "AllowRoundUp",
+            "type": "boolean"
+        },
+        {
+            "name": "AllowEmojis",
+            "baseName": "AllowEmojis",
             "type": "boolean"
         },
         {
@@ -44669,6 +44678,10 @@ export class UpdateTipConfiguration {
     */
     'AllowRoundUp'?: boolean;
     /**
+    * Are emojis allowed?
+    */
+    'AllowEmojis'?: boolean;
+    /**
     * Ordered list of tip breakpoints (smallest -&gt; largest)
     */
     'Percentages'?: Array<number>;
@@ -44693,6 +44706,11 @@ export class UpdateTipConfiguration {
         {
             "name": "AllowRoundUp",
             "baseName": "AllowRoundUp",
+            "type": "boolean"
+        },
+        {
+            "name": "AllowEmojis",
+            "baseName": "AllowEmojis",
             "type": "boolean"
         },
         {
