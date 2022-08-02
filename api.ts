@@ -22202,15 +22202,15 @@ export class MobileAppsSubmission {
     /**
     * App Name
     */
-    'AppName'?: string;
+    'AppName': string;
     /**
     * App Description
     */
-    'AppDescription'?: string;
+    'AppDescription': string;
     /**
     * App Description
     */
-    'AppShortDescription'?: string;
+    'AppShortDescription': string;
     /**
     * Keywords
     */
