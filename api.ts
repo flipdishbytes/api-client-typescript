@@ -23419,6 +23419,38 @@ export class OrderBatchItem {
 }
 
 /**
+* Describes the configuration of OrderBatching
+*/
+export class OrderBatchingConfiguration {
+    /**
+    * Batch sending interval in minutes
+    */
+    'BatchIntervalInMinutes'?: number;
+    /**
+    * OrderBatching is enabled or not
+    */
+    'IsEnabled'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "BatchIntervalInMinutes",
+            "baseName": "BatchIntervalInMinutes",
+            "type": "number"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderBatchingConfiguration.attributeTypeMap;
+    }
+}
+
+/**
 * Store's Order Capacity Configuration Updated
 */
 export class OrderCapacityConfigUpdatedEvent {
@@ -34612,6 +34644,29 @@ export class RestApiResultOrderBatch {
 /**
 * Rest api result
 */
+export class RestApiResultOrderBatchingConfiguration {
+    /**
+    * Generic data object.
+    */
+    'Data': OrderBatchingConfiguration;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "OrderBatchingConfiguration"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultOrderBatchingConfiguration.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultOrderDeliveryInformation {
     /**
     * Generic data object.
@@ -36566,6 +36621,38 @@ export class ServiceCharge {
 
     static getAttributeTypeMap() {
         return ServiceCharge.attributeTypeMap;
+    }
+}
+
+/**
+* Describes the configuration of OrderBatching
+*/
+export class SetOrderBatchingConfiguration {
+    /**
+    * Batch sending interval in minutes
+    */
+    'BatchIntervalInMinutes'?: number;
+    /**
+    * OrderBatching is enabled or not
+    */
+    'Enabled'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "BatchIntervalInMinutes",
+            "baseName": "BatchIntervalInMinutes",
+            "type": "number"
+        },
+        {
+            "name": "Enabled",
+            "baseName": "Enabled",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SetOrderBatchingConfiguration.attributeTypeMap;
     }
 }
 
@@ -48186,6 +48273,7 @@ let typeMap: {[index: string]: any} = {
     "OrderAcceptedEvent": OrderAcceptedEvent,
     "OrderBatch": OrderBatch,
     "OrderBatchItem": OrderBatchItem,
+    "OrderBatchingConfiguration": OrderBatchingConfiguration,
     "OrderCapacityConfigUpdatedEvent": OrderCapacityConfigUpdatedEvent,
     "OrderCreatedEvent": OrderCreatedEvent,
     "OrderCustomerTrackingCreatedEvent": OrderCustomerTrackingCreatedEvent,
@@ -48408,6 +48496,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
     "RestApiResultOrder": RestApiResultOrder,
     "RestApiResultOrderBatch": RestApiResultOrderBatch,
+    "RestApiResultOrderBatchingConfiguration": RestApiResultOrderBatchingConfiguration,
     "RestApiResultOrderDeliveryInformation": RestApiResultOrderDeliveryInformation,
     "RestApiResultOrderFulfillmentStatus": RestApiResultOrderFulfillmentStatus,
     "RestApiResultOrderFulfillmentStatusWithConfigurationActions": RestApiResultOrderFulfillmentStatusWithConfigurationActions,
@@ -48461,6 +48550,7 @@ let typeMap: {[index: string]: any} = {
     "RevenueDetail": RevenueDetail,
     "SearchCriteria": SearchCriteria,
     "ServiceCharge": ServiceCharge,
+    "SetOrderBatchingConfiguration": SetOrderBatchingConfiguration,
     "SetPasswordWithPinModel": SetPasswordWithPinModel,
     "Setting": Setting,
     "SignupStep": SignupStep,
@@ -71681,6 +71771,176 @@ export class OrderBatchesApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultOrderBatch");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum OrderBatchingConfigurationApiApiKeys {
+}
+
+export class OrderBatchingConfigurationApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: OrderBatchingConfigurationApiApiKeys, value: string) {
+        (this.authentications as any)[OrderBatchingConfigurationApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Returns order batching configuration for a specific store
+     * @param storeId Store Id
+     * @param {*} [options] Override http request options.
+     */
+    public get (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderBatchingConfiguration;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/order-batching-configuration'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling get.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOrderBatchingConfiguration;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultOrderBatchingConfiguration");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Sets order batching configuration for a specific store
+     * @param storeId Store Id
+     * @param setOrderBatchingConfiguration SetOrderBatchingConfiguration
+     * @param {*} [options] Override http request options.
+     */
+    public post (storeId: number, setOrderBatchingConfiguration: SetOrderBatchingConfiguration, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/order-batching-configuration'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling post.');
+        }
+
+        // verify required parameter 'setOrderBatchingConfiguration' is not null or undefined
+        if (setOrderBatchingConfiguration === null || setOrderBatchingConfiguration === undefined) {
+            throw new Error('Required parameter setOrderBatchingConfiguration was null or undefined when calling post.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(setOrderBatchingConfiguration, "SetOrderBatchingConfiguration")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
