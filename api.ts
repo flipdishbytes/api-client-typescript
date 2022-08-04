@@ -12347,6 +12347,10 @@ export class FulfillmentStatesConfiguration {
     * Store Ids
     */
     'StoreIds'?: Array<number>;
+    /**
+    * Name
+    */
+    'Name'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -12375,6 +12379,11 @@ export class FulfillmentStatesConfiguration {
             "name": "StoreIds",
             "baseName": "StoreIds",
             "type": "Array<number>"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -12390,6 +12399,29 @@ export namespace FulfillmentStatesConfiguration {
     }
 }
 /**
+* Fulfillment States Configuration Create Base
+*/
+export class FulfillmentStatesConfigurationCreateBase {
+    /**
+    * Name
+    */
+    'Name'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FulfillmentStatesConfigurationCreateBase.attributeTypeMap;
+    }
+}
+
+/**
 * App store app configuration header information
 */
 export class FulfillmentStatesConfigurationSummary {
@@ -12401,6 +12433,10 @@ export class FulfillmentStatesConfigurationSummary {
     * Configuration Uid
     */
     'ConfigurationUid'?: string;
+    /**
+    * Name
+    */
+    'Name'?: string;
     /**
     * Store selector type
     */
@@ -12421,6 +12457,11 @@ export class FulfillmentStatesConfigurationSummary {
         {
             "name": "ConfigurationUid",
             "baseName": "ConfigurationUid",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
@@ -44326,6 +44367,10 @@ export class UpdateFulfillmentStatesConfiguration {
     * Settings
     */
     'States'?: Array<FulfillmentStatusConfigurationItem>;
+    /**
+    * Name
+    */
+    'Name'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -44344,6 +44389,11 @@ export class UpdateFulfillmentStatesConfiguration {
             "name": "States",
             "baseName": "States",
             "type": "Array<FulfillmentStatusConfigurationItem>"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -48136,6 +48186,7 @@ let typeMap: {[index: string]: any} = {
     "FulfillentStatusActionItem": FulfillentStatusActionItem,
     "FulfillmentInfo": FulfillmentInfo,
     "FulfillmentStatesConfiguration": FulfillmentStatesConfiguration,
+    "FulfillmentStatesConfigurationCreateBase": FulfillmentStatesConfigurationCreateBase,
     "FulfillmentStatesConfigurationSummary": FulfillmentStatesConfigurationSummary,
     "FulfillmentStatesConfiguredStore": FulfillmentStatesConfiguredStore,
     "FulfillmentStatusConfigurationItem": FulfillmentStatusConfigurationItem,
@@ -60410,9 +60461,10 @@ export class FulfillmentStateConfigurationApi {
      * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Create fulfillment configuration
      * @param appId App id
+     * @param fulfillmentStateConfiguration Fulfillment state configuration
      * @param {*} [options] Override http request options.
      */
-    public createFulfillmentStatesConfig (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFulfillmentStatesConfiguration;  }> {
+    public createFulfillmentStatesConfig (appId: string, fulfillmentStateConfiguration: FulfillmentStatesConfigurationCreateBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFulfillmentStatesConfiguration;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/fulfillment/configuration/states'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -60422,6 +60474,11 @@ export class FulfillmentStateConfigurationApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling createFulfillmentStatesConfig.');
+        }
+
+        // verify required parameter 'fulfillmentStateConfiguration' is not null or undefined
+        if (fulfillmentStateConfiguration === null || fulfillmentStateConfiguration === undefined) {
+            throw new Error('Required parameter fulfillmentStateConfiguration was null or undefined when calling createFulfillmentStatesConfig.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -60435,6 +60492,7 @@ export class FulfillmentStateConfigurationApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+            body: ObjectSerializer.serialize(fulfillmentStateConfiguration, "FulfillmentStatesConfigurationCreateBase")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
