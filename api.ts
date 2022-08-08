@@ -39479,6 +39479,335 @@ export namespace StoreEndOfDayReport {
     }
 }
 /**
+* 
+*/
+export class StoreFeeConfig {
+    /**
+    * 
+    */
+    'FeeConfigId'?: number;
+    /**
+    * 
+    */
+    'StoreId'?: number;
+    /**
+    * 
+    */
+    'StartTime'?: Date;
+    /**
+    * 
+    */
+    'PercentFeeCardOrders'?: number;
+    /**
+    * 
+    */
+    'PercentFeeCashOrders'?: number;
+    /**
+    * 
+    */
+    'PercentFeeCardOrdersWeb'?: number;
+    /**
+    * 
+    */
+    'PercentFeeCashOrdersWeb'?: number;
+    /**
+    * 
+    */
+    'PercentFeeCardOrdersKiosk'?: number;
+    /**
+    * 
+    */
+    'PercentFeeCashOrdersKiosk'?: number;
+    /**
+    * 
+    */
+    'FixedFeeCardOrdersKiosk'?: number;
+    /**
+    * 
+    */
+    'FixedFeeCashOrdersKiosk'?: number;
+    /**
+    * 
+    */
+    'PercentFeeCardOrdersKioskChargedToCustomerIncludingVat'?: number;
+    /**
+    * 
+    */
+    'FixedFeeCardOrdersKioskChargedToCustomerIncludingVat'?: number;
+    /**
+    * 
+    */
+    'PercentFeeCashOrdersKioskChargedToCustomerIncludingVat'?: number;
+    /**
+    * 
+    */
+    'FixedFeeCashOrdersKioskChargedToCustomerIncludingVat'?: number;
+    /**
+    * 
+    */
+    'FixedFeeCardOrders'?: number;
+    /**
+    * 
+    */
+    'FixedFeeCashOrders'?: number;
+    /**
+    * 
+    */
+    'PercentFeeCardOrdersChargedToCustomerIncludingVat'?: number;
+    /**
+    * 
+    */
+    'FixedFeeCardOrdersChargedToCustomerIncludingVat'?: number;
+    /**
+    * 
+    */
+    'PercentFeeCashOrdersChargedToCustomerIncludingVat'?: number;
+    /**
+    * 
+    */
+    'FixedFeeCashOrdersChargedToCustomerIncludingVat'?: number;
+    /**
+    * Gets or sets the percent fee tips.
+    */
+    'PercentFeeTips'?: number;
+    /**
+    * Gets or sets the tax rate percent.
+    */
+    'TaxRatePercent'?: number;
+    /**
+    * Gets or sets the percent fee card orders location service.
+    */
+    'PercentFeeCardOrdersLocationService'?: number;
+    /**
+    * Gets or sets the percent fee cash orders location service.
+    */
+    'PercentFeeCashOrdersLocationService'?: number;
+    /**
+    * Gets or sets the fixed fee card orders location service.
+    */
+    'FixedFeeCardOrdersLocationService'?: number;
+    /**
+    * Gets or sets the fixed fee cash orders location service.
+    */
+    'FixedFeeCashOrdersLocationService'?: number;
+    /**
+    * Gets or sets the percent fee card orders location service charged to customer including vat.
+    */
+    'PercentFeeCardOrdersLocationServiceChargedToCustomerIncludingVat'?: number;
+    /**
+    * Gets or sets the percent fee cash orders location service charged to customer including vat.
+    */
+    'PercentFeeCashOrdersLocationServiceChargedToCustomerIncludingVat'?: number;
+    /**
+    * Gets or sets the fixed fee card orders location service charged to customer including vat.
+    */
+    'FixedFeeCardOrdersLocationServiceChargedToCustomerIncludingVat'?: number;
+    /**
+    * Gets or sets the fixed fee cash orders location service charged to customer including vat.
+    */
+    'FixedFeeCashOrdersLocationServiceChargedToCustomerIncludingVat'?: number;
+    /**
+    * Gets or sets the percent fee card orders ingest.
+    */
+    'PercentFeeCardOrdersIngest'?: number;
+    /**
+    * Gets or sets the percent fee cash orders ingest.
+    */
+    'PercentFeeCashOrdersIngest'?: number;
+    /**
+    * Gets or sets the fixed fee card orders ingest.
+    */
+    'FixedFeeCardOrdersIngest'?: number;
+    /**
+    * Gets or sets the fixed fee cash orders ingest.
+    */
+    'FixedFeeCashOrdersIngest'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "FeeConfigId",
+            "baseName": "FeeConfigId",
+            "type": "number"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StartTime",
+            "baseName": "StartTime",
+            "type": "Date"
+        },
+        {
+            "name": "PercentFeeCardOrders",
+            "baseName": "PercentFeeCardOrders",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCashOrders",
+            "baseName": "PercentFeeCashOrders",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCardOrdersWeb",
+            "baseName": "PercentFeeCardOrdersWeb",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCashOrdersWeb",
+            "baseName": "PercentFeeCashOrdersWeb",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCardOrdersKiosk",
+            "baseName": "PercentFeeCardOrdersKiosk",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCashOrdersKiosk",
+            "baseName": "PercentFeeCashOrdersKiosk",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCardOrdersKiosk",
+            "baseName": "FixedFeeCardOrdersKiosk",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCashOrdersKiosk",
+            "baseName": "FixedFeeCashOrdersKiosk",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCardOrdersKioskChargedToCustomerIncludingVat",
+            "baseName": "PercentFeeCardOrdersKioskChargedToCustomerIncludingVat",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCardOrdersKioskChargedToCustomerIncludingVat",
+            "baseName": "FixedFeeCardOrdersKioskChargedToCustomerIncludingVat",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCashOrdersKioskChargedToCustomerIncludingVat",
+            "baseName": "PercentFeeCashOrdersKioskChargedToCustomerIncludingVat",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCashOrdersKioskChargedToCustomerIncludingVat",
+            "baseName": "FixedFeeCashOrdersKioskChargedToCustomerIncludingVat",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCardOrders",
+            "baseName": "FixedFeeCardOrders",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCashOrders",
+            "baseName": "FixedFeeCashOrders",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCardOrdersChargedToCustomerIncludingVat",
+            "baseName": "PercentFeeCardOrdersChargedToCustomerIncludingVat",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCardOrdersChargedToCustomerIncludingVat",
+            "baseName": "FixedFeeCardOrdersChargedToCustomerIncludingVat",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCashOrdersChargedToCustomerIncludingVat",
+            "baseName": "PercentFeeCashOrdersChargedToCustomerIncludingVat",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCashOrdersChargedToCustomerIncludingVat",
+            "baseName": "FixedFeeCashOrdersChargedToCustomerIncludingVat",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeTips",
+            "baseName": "PercentFeeTips",
+            "type": "number"
+        },
+        {
+            "name": "TaxRatePercent",
+            "baseName": "TaxRatePercent",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCardOrdersLocationService",
+            "baseName": "PercentFeeCardOrdersLocationService",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCashOrdersLocationService",
+            "baseName": "PercentFeeCashOrdersLocationService",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCardOrdersLocationService",
+            "baseName": "FixedFeeCardOrdersLocationService",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCashOrdersLocationService",
+            "baseName": "FixedFeeCashOrdersLocationService",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCardOrdersLocationServiceChargedToCustomerIncludingVat",
+            "baseName": "PercentFeeCardOrdersLocationServiceChargedToCustomerIncludingVat",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCashOrdersLocationServiceChargedToCustomerIncludingVat",
+            "baseName": "PercentFeeCashOrdersLocationServiceChargedToCustomerIncludingVat",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCardOrdersLocationServiceChargedToCustomerIncludingVat",
+            "baseName": "FixedFeeCardOrdersLocationServiceChargedToCustomerIncludingVat",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCashOrdersLocationServiceChargedToCustomerIncludingVat",
+            "baseName": "FixedFeeCashOrdersLocationServiceChargedToCustomerIncludingVat",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCardOrdersIngest",
+            "baseName": "PercentFeeCardOrdersIngest",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCashOrdersIngest",
+            "baseName": "PercentFeeCashOrdersIngest",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCardOrdersIngest",
+            "baseName": "FixedFeeCardOrdersIngest",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCashOrdersIngest",
+            "baseName": "FixedFeeCashOrdersIngest",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreFeeConfig.attributeTypeMap;
+    }
+}
+
+/**
 * Store Group
 */
 export class StoreGroup {
@@ -48627,6 +48956,7 @@ let typeMap: {[index: string]: any} = {
     "StoreDataPoint": StoreDataPoint,
     "StoreDeletedEvent": StoreDeletedEvent,
     "StoreEndOfDayReport": StoreEndOfDayReport,
+    "StoreFeeConfig": StoreFeeConfig,
     "StoreGroup": StoreGroup,
     "StoreGroupBase": StoreGroupBase,
     "StoreGroupCreatedEvent": StoreGroupCreatedEvent,
@@ -77232,12 +77562,12 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Retrieve Store Service Charge
+     * @summary Retrieve Store feeConfig
      * @param storeId Store identifier
      * @param {*} [options] Override http request options.
      */
-    public getStoreServiceCharge (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: ServiceCharge;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/servicecharge'
+    public getStoreServiceCharge (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: StoreFeeConfig;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/feeConfig'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -77246,6 +77576,63 @@ export class StoresApi {
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
             throw new Error('Required parameter storeId was null or undefined when calling getStoreServiceCharge.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: StoreFeeConfig;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "StoreFeeConfig");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Retrieve Store Service Charge
+     * @param storeId Store identifier
+     * @param {*} [options] Override http request options.
+     */
+    public getStoreServiceCharge_1 (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: ServiceCharge;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/servicecharge'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getStoreServiceCharge_1.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
