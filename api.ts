@@ -10697,6 +10697,10 @@ export class EventSearchResult {
     */
     'KioskBluetoothTerminalUnpairedEvent'?: Array<KioskBluetoothTerminalUnpairedEvent>;
     /**
+    * Terminal actionstate change
+    */
+    'KioskTerminalActionStateChangedEvent'?: Array<KioskTerminalActionStateChangedEvent>;
+    /**
     * Bluetooth Terminal Updated
     */
     'KioskBluetoothTerminalUpdatedEvent'?: Array<KioskBluetoothTerminalUpdatedEvent>;
@@ -11322,6 +11326,11 @@ export class EventSearchResult {
             "name": "KioskBluetoothTerminalUnpairedEvent",
             "baseName": "KioskBluetoothTerminalUnpairedEvent",
             "type": "Array<KioskBluetoothTerminalUnpairedEvent>"
+        },
+        {
+            "name": "KioskTerminalActionStateChangedEvent",
+            "baseName": "KioskTerminalActionStateChangedEvent",
+            "type": "Array<KioskTerminalActionStateChangedEvent>"
         },
         {
             "name": "KioskBluetoothTerminalUpdatedEvent",
@@ -16470,6 +16479,119 @@ export class KioskStoreSettings {
     }
 }
 
+/**
+* Kiosk Terminal action state changed
+*/
+export class KioskTerminalActionStateChangedEvent {
+    /**
+    * Card reader id
+    */
+    'ReaderId'?: string;
+    /**
+    * Terminal type
+    */
+    'BluetoothTerminalType'?: KioskTerminalActionStateChangedEvent.BluetoothTerminalTypeEnum;
+    /**
+    * Action state. success or fail
+    */
+    'ActionState'?: string;
+    /**
+    * Failure code if processing is failed
+    */
+    'FailureCode'?: string;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ReaderId",
+            "baseName": "ReaderId",
+            "type": "string"
+        },
+        {
+            "name": "BluetoothTerminalType",
+            "baseName": "BluetoothTerminalType",
+            "type": "KioskTerminalActionStateChangedEvent.BluetoothTerminalTypeEnum"
+        },
+        {
+            "name": "ActionState",
+            "baseName": "ActionState",
+            "type": "string"
+        },
+        {
+            "name": "FailureCode",
+            "baseName": "FailureCode",
+            "type": "string"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return KioskTerminalActionStateChangedEvent.attributeTypeMap;
+    }
+}
+
+export namespace KioskTerminalActionStateChangedEvent {
+    export enum BluetoothTerminalTypeEnum {
+        CHIPPER2X = <any> 'CHIPPER_2X',
+        COTSDEVICE = <any> 'COTS_DEVICE',
+        VERIFONEP400 = <any> 'VERIFONE_P400',
+        WISEPAD3 = <any> 'WISEPAD_3',
+        WISEPOSE = <any> 'WISEPOS_E'
+    }
+}
 /**
 * Sorted Language
 */
@@ -48236,6 +48358,7 @@ let enumsMap: {[index: string]: any} = {
         "KioskBluetoothTerminalUnpairedEvent.BluetoothTerminalTypeEnum": KioskBluetoothTerminalUnpairedEvent.BluetoothTerminalTypeEnum,
         "KioskBluetoothTerminalUpdatedEvent.BluetoothTerminalTypeEnum": KioskBluetoothTerminalUpdatedEvent.BluetoothTerminalTypeEnum,
         "KioskBluetoothUnpairingModeEvent.BluetoothTerminalTypeEnum": KioskBluetoothUnpairingModeEvent.BluetoothTerminalTypeEnum,
+        "KioskTerminalActionStateChangedEvent.BluetoothTerminalTypeEnum": KioskTerminalActionStateChangedEvent.BluetoothTerminalTypeEnum,
         "LightspeedSettings.PriceTypeEnum": LightspeedSettings.PriceTypeEnum,
         "Menu.MenuSectionBehaviourEnum": Menu.MenuSectionBehaviourEnum,
         "Menu.TaxTypeEnum": Menu.TaxTypeEnum,
@@ -48570,6 +48693,7 @@ let typeMap: {[index: string]: any} = {
     "KioskCashSetting": KioskCashSetting,
     "KioskIotConnectionParameters": KioskIotConnectionParameters,
     "KioskStoreSettings": KioskStoreSettings,
+    "KioskTerminalActionStateChangedEvent": KioskTerminalActionStateChangedEvent,
     "Language": Language,
     "LightspeedSettings": LightspeedSettings,
     "LineItem": LineItem,
