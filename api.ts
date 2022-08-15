@@ -4704,6 +4704,10 @@ export class CardReader {
     * Indicates that the reader is deleted or not
     */
     'Deleted'?: boolean;
+    /**
+    * Action status
+    */
+    'Action'?: ReaderActionStateInfo;
 
     static discriminator: string | undefined = undefined;
 
@@ -4742,6 +4746,11 @@ export class CardReader {
             "name": "Deleted",
             "baseName": "Deleted",
             "type": "boolean"
+        },
+        {
+            "name": "Action",
+            "baseName": "Action",
+            "type": "ReaderActionStateInfo"
         }    ];
 
     static getAttributeTypeMap() {
@@ -29656,6 +29665,29 @@ export class PrinterUnassignedFromStoreEvent {
 }
 
 /**
+* Initiate card reader Payment process request
+*/
+export class ProcessPaymentIntentRequest {
+    /**
+    * Device card paymentIntentId
+    */
+    'PaymentIntentId': string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PaymentIntentId",
+            "baseName": "PaymentIntentId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ProcessPaymentIntentRequest.attributeTypeMap;
+    }
+}
+
+/**
 * Processing fee config
 */
 export class ProcessingFeeConfig {
@@ -30352,6 +30384,47 @@ export namespace Range {
         Saturday = <any> 'Saturday'
     }
 }
+/**
+* Card reader state information
+*/
+export class ReaderActionStateInfo {
+    /**
+    * Action state
+    */
+    'ActionState'?: string;
+    /**
+    * Failure code
+    */
+    'FailureCode'?: string;
+    /**
+    * Type
+    */
+    'Type'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ActionState",
+            "baseName": "ActionState",
+            "type": "string"
+        },
+        {
+            "name": "FailureCode",
+            "baseName": "FailureCode",
+            "type": "string"
+        },
+        {
+            "name": "Type",
+            "baseName": "Type",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ReaderActionStateInfo.attributeTypeMap;
+    }
+}
+
 /**
 * 
 */
@@ -48835,6 +48908,7 @@ let typeMap: {[index: string]: any} = {
     "PrinterTurnedOffEvent": PrinterTurnedOffEvent,
     "PrinterTurnedOnEvent": PrinterTurnedOnEvent,
     "PrinterUnassignedFromStoreEvent": PrinterUnassignedFromStoreEvent,
+    "ProcessPaymentIntentRequest": ProcessPaymentIntentRequest,
     "ProcessingFeeConfig": ProcessingFeeConfig,
     "Product": Product,
     "ProductReference": ProductReference,
@@ -48845,6 +48919,7 @@ let typeMap: {[index: string]: any} = {
     "PushNotificationScheduledEvent": PushNotificationScheduledEvent,
     "PushNotificationSentEvent": PushNotificationSentEvent,
     "Range": Range,
+    "ReaderActionStateInfo": ReaderActionStateInfo,
     "RedeemInvitationResult": RedeemInvitationResult,
     "Refund": Refund,
     "Reject": Reject,
@@ -54607,6 +54682,70 @@ export class CardReadersApi {
         });
     }
     /**
+     * Can only be called by Kiosk
+     * @summary Get reader
+     * @param readerId 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public cardReadersGetReader (readerId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCardReader;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/payments/terminals/stripe/{readerId}'
+            .replace('{' + 'readerId' + '}', encodeURIComponent(String(readerId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'readerId' is not null or undefined
+        if (readerId === null || readerId === undefined) {
+            throw new Error('Required parameter readerId was null or undefined when calling cardReadersGetReader.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling cardReadersGetReader.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCardReader;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultCardReader");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * Can only be called by Kiosk  [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get Location ID for Stripe Terminal
      * @param geoPointRequest 
@@ -54992,6 +55131,77 @@ export class CardReadersApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Can only be called by Kiosk  [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Initiate Stripe terminal to Process Payment Intent
+     * @param request 
+     * @param readerId 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public initiateReaderProcessPaymentIntent (request: ProcessPaymentIntentRequest, readerId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCardReader;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/payments/terminals/stripe/{readerId}/processPaymentIntent'
+            .replace('{' + 'readerId' + '}', encodeURIComponent(String(readerId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'request' is not null or undefined
+        if (request === null || request === undefined) {
+            throw new Error('Required parameter request was null or undefined when calling initiateReaderProcessPaymentIntent.');
+        }
+
+        // verify required parameter 'readerId' is not null or undefined
+        if (readerId === null || readerId === undefined) {
+            throw new Error('Required parameter readerId was null or undefined when calling initiateReaderProcessPaymentIntent.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling initiateReaderProcessPaymentIntent.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(request, "ProcessPaymentIntentRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCardReader;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultCardReader");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
