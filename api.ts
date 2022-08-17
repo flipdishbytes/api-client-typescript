@@ -22476,7 +22476,7 @@ export class MobileAppsSubmissionDetails {
     /**
     * Mobile App Status
     */
-    'Status'?: MobileAppsSubmissionDetails.StatusEnum;
+    'Status'?: Array<MobileAppsSubmissionStatus>;
 
     static discriminator: string | undefined = undefined;
 
@@ -22514,7 +22514,7 @@ export class MobileAppsSubmissionDetails {
         {
             "name": "Status",
             "baseName": "Status",
-            "type": "MobileAppsSubmissionDetails.StatusEnum"
+            "type": "Array<MobileAppsSubmissionStatus>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -22522,32 +22522,94 @@ export class MobileAppsSubmissionDetails {
     }
 }
 
-export namespace MobileAppsSubmissionDetails {
-    export enum StatusEnum {
-        None = <any> 'None',
-        InProgress = <any> 'InProgress',
-        Submitted = <any> 'Submitted',
-        AppStoreReview = <any> 'AppStoreReview',
-        Sucessfull = <any> 'Sucessfull',
-        Unsuccesful = <any> 'Unsuccesful'
-    }
-}
 /**
 * Mobile Apps Status
 */
 export class MobileAppsSubmissionStatus {
     /**
+    * Mobile Apps Submission Status Id
+    */
+    'MobileAppsSubmissionStatusId'?: number;
+    /**
+    * Mobile Apps Submission Id
+    */
+    'MobileAppsSubmissionId'?: number;
+    /**
+    * Mobile Type
+    */
+    'Type'?: MobileAppsSubmissionStatus.TypeEnum;
+    /**
+    * Mobile App Status
+    */
+    'AppStatus'?: MobileAppsSubmissionStatus.AppStatusEnum;
+    /**
     * Mobile App Status
     */
     'Status'?: MobileAppsSubmissionStatus.StatusEnum;
+    /**
+    * Mobile LastUpdateStatusTime
+    */
+    'LastUpdateStatusTime'?: Date;
+    /**
+    * Mobile CreateTime
+    */
+    'CreateTime'?: Date;
+    /**
+    * Mobile UpdateTime
+    */
+    'UpdateTime'?: Date;
+    /**
+    * Mobile Notes
+    */
+    'Notes'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "MobileAppsSubmissionStatusId",
+            "baseName": "MobileAppsSubmissionStatusId",
+            "type": "number"
+        },
+        {
+            "name": "MobileAppsSubmissionId",
+            "baseName": "MobileAppsSubmissionId",
+            "type": "number"
+        },
+        {
+            "name": "Type",
+            "baseName": "Type",
+            "type": "MobileAppsSubmissionStatus.TypeEnum"
+        },
+        {
+            "name": "AppStatus",
+            "baseName": "AppStatus",
+            "type": "MobileAppsSubmissionStatus.AppStatusEnum"
+        },
+        {
             "name": "Status",
             "baseName": "Status",
             "type": "MobileAppsSubmissionStatus.StatusEnum"
+        },
+        {
+            "name": "LastUpdateStatusTime",
+            "baseName": "LastUpdateStatusTime",
+            "type": "Date"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "UpdateTime",
+            "baseName": "UpdateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Notes",
+            "baseName": "Notes",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -22556,6 +22618,15 @@ export class MobileAppsSubmissionStatus {
 }
 
 export namespace MobileAppsSubmissionStatus {
+    export enum TypeEnum {
+        Android = <any> 'Android',
+        IOS = <any> 'IOS'
+    }
+    export enum AppStatusEnum {
+        None = <any> 'None',
+        Published = <any> 'Published',
+        Unpublished = <any> 'Unpublished'
+    }
     export enum StatusEnum {
         None = <any> 'None',
         InProgress = <any> 'InProgress',
@@ -48461,7 +48532,8 @@ let enumsMap: {[index: string]: any} = {
         "MetafieldDefinitionRecommendation.BehaviorsEnum": MetafieldDefinitionRecommendation.BehaviorsEnum,
         "MobileAppsStatistics.PlatformTypeEnum": MobileAppsStatistics.PlatformTypeEnum,
         "MobileAppsSubmission.StatusEnum": MobileAppsSubmission.StatusEnum,
-        "MobileAppsSubmissionDetails.StatusEnum": MobileAppsSubmissionDetails.StatusEnum,
+        "MobileAppsSubmissionStatus.TypeEnum": MobileAppsSubmissionStatus.TypeEnum,
+        "MobileAppsSubmissionStatus.AppStatusEnum": MobileAppsSubmissionStatus.AppStatusEnum,
         "MobileAppsSubmissionStatus.StatusEnum": MobileAppsSubmissionStatus.StatusEnum,
         "OAuthApp.FlowEnum": OAuthApp.FlowEnum,
         "OAuthApp.RefreshTokenUsageEnum": OAuthApp.RefreshTokenUsageEnum,
@@ -70912,10 +70984,10 @@ export class MobileAppsApi {
      * 
      * @summary Get submission status mobile apps
      * @param appId 
-     * @param type 
+     * @param mobileAppsSubmissionId 
      * @param {*} [options] Override http request options.
      */
-    public getSubmissionStatus (appId: string, type: 'Android' | 'IOS', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmissionStatus;  }> {
+    public getSubmissionStatus (appId: string, mobileAppsSubmissionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmissionStatus;  }> {
         const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission/status'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -70927,13 +70999,13 @@ export class MobileAppsApi {
             throw new Error('Required parameter appId was null or undefined when calling getSubmissionStatus.');
         }
 
-        // verify required parameter 'type' is not null or undefined
-        if (type === null || type === undefined) {
-            throw new Error('Required parameter type was null or undefined when calling getSubmissionStatus.');
+        // verify required parameter 'mobileAppsSubmissionId' is not null or undefined
+        if (mobileAppsSubmissionId === null || mobileAppsSubmissionId === undefined) {
+            throw new Error('Required parameter mobileAppsSubmissionId was null or undefined when calling getSubmissionStatus.');
         }
 
-        if (type !== undefined) {
-            localVarQueryParameters['type'] = ObjectSerializer.serialize(type, "'Android' | 'IOS'");
+        if (mobileAppsSubmissionId !== undefined) {
+            localVarQueryParameters['mobileAppsSubmissionId'] = ObjectSerializer.serialize(mobileAppsSubmissionId, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
