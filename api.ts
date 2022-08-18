@@ -22391,10 +22391,6 @@ export class MobileAppsSubmission {
     * Publish automatically
     */
     'AutoPublish'?: boolean;
-    /**
-    * Mobile App Status
-    */
-    'Status'?: MobileAppsSubmission.StatusEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -22423,11 +22419,6 @@ export class MobileAppsSubmission {
             "name": "AutoPublish",
             "baseName": "AutoPublish",
             "type": "boolean"
-        },
-        {
-            "name": "Status",
-            "baseName": "Status",
-            "type": "MobileAppsSubmission.StatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -22435,16 +22426,6 @@ export class MobileAppsSubmission {
     }
 }
 
-export namespace MobileAppsSubmission {
-    export enum StatusEnum {
-        None = <any> 'None',
-        InProgress = <any> 'InProgress',
-        Submitted = <any> 'Submitted',
-        AppStoreReview = <any> 'AppStoreReview',
-        Sucessfull = <any> 'Sucessfull',
-        Unsuccesful = <any> 'Unsuccesful'
-    }
-}
 /**
 * Mobile Apps form submission
 */
@@ -22545,7 +22526,7 @@ export class MobileAppsSubmissionStatus {
     /**
     * Mobile App Status
     */
-    'Status'?: MobileAppsSubmissionStatus.StatusEnum;
+    'UpdateStatus'?: MobileAppsSubmissionStatus.UpdateStatusEnum;
     /**
     * Mobile LastUpdateStatusTime
     */
@@ -22587,9 +22568,9 @@ export class MobileAppsSubmissionStatus {
             "type": "MobileAppsSubmissionStatus.AppStatusEnum"
         },
         {
-            "name": "Status",
-            "baseName": "Status",
-            "type": "MobileAppsSubmissionStatus.StatusEnum"
+            "name": "UpdateStatus",
+            "baseName": "UpdateStatus",
+            "type": "MobileAppsSubmissionStatus.UpdateStatusEnum"
         },
         {
             "name": "LastUpdateStatusTime",
@@ -22627,13 +22608,13 @@ export namespace MobileAppsSubmissionStatus {
         Published = <any> 'Published',
         Unpublished = <any> 'Unpublished'
     }
-    export enum StatusEnum {
+    export enum UpdateStatusEnum {
         None = <any> 'None',
-        InProgress = <any> 'InProgress',
         Submitted = <any> 'Submitted',
-        AppStoreReview = <any> 'AppStoreReview',
-        Sucessfull = <any> 'Sucessfull',
-        Unsuccesful = <any> 'Unsuccesful'
+        InReview = <any> 'InReview',
+        Rejected = <any> 'Rejected',
+        Approved = <any> 'Approved',
+        Published = <any> 'Published'
     }
 }
 /**
@@ -48531,10 +48512,9 @@ let enumsMap: {[index: string]: any} = {
         "MetafieldDefinitionRecommendation.ValueTypeEnum": MetafieldDefinitionRecommendation.ValueTypeEnum,
         "MetafieldDefinitionRecommendation.BehaviorsEnum": MetafieldDefinitionRecommendation.BehaviorsEnum,
         "MobileAppsStatistics.PlatformTypeEnum": MobileAppsStatistics.PlatformTypeEnum,
-        "MobileAppsSubmission.StatusEnum": MobileAppsSubmission.StatusEnum,
         "MobileAppsSubmissionStatus.TypeEnum": MobileAppsSubmissionStatus.TypeEnum,
         "MobileAppsSubmissionStatus.AppStatusEnum": MobileAppsSubmissionStatus.AppStatusEnum,
-        "MobileAppsSubmissionStatus.StatusEnum": MobileAppsSubmissionStatus.StatusEnum,
+        "MobileAppsSubmissionStatus.UpdateStatusEnum": MobileAppsSubmissionStatus.UpdateStatusEnum,
         "OAuthApp.FlowEnum": OAuthApp.FlowEnum,
         "OAuthApp.RefreshTokenUsageEnum": OAuthApp.RefreshTokenUsageEnum,
         "OnboardingItemUpdate.StatusEnum": OnboardingItemUpdate.StatusEnum,
