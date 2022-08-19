@@ -9950,6 +9950,7 @@ export class DynamicFormFieldOption {
 export class DynamicFormRule {
     'Value'?: any;
     'Message'?: string;
+    'Scopes'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -9962,6 +9963,11 @@ export class DynamicFormRule {
         {
             "name": "Message",
             "baseName": "Message",
+            "type": "string"
+        },
+        {
+            "name": "Scopes",
+            "baseName": "Scopes",
             "type": "string"
         }    ];
 
