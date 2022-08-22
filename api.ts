@@ -50423,9 +50423,10 @@ export class AddressApi {
      * 
      * @summary Maps a Google Address Object to the values of the dynamic form associated with the address country and returns the dynamic form.
      * @param googleAddress A Google address object, as it is retuned from the maps API.
+     * @param language (Optional) ISO culture info code, e.g.: en-IE, the default is en-US.
      * @param {*} [options] Override http request options.
      */
-    public formatGoogleAddress (googleAddress: GoogleAddress, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAddressFormResponse;  }> {
+    public formatGoogleAddress (googleAddress: GoogleAddress, language?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAddressFormResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/address/google';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -50434,6 +50435,10 @@ export class AddressApi {
         // verify required parameter 'googleAddress' is not null or undefined
         if (googleAddress === null || googleAddress === undefined) {
             throw new Error('Required parameter googleAddress was null or undefined when calling formatGoogleAddress.');
+        }
+
+        if (language !== undefined) {
+            localVarQueryParameters['language'] = ObjectSerializer.serialize(language, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
