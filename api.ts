@@ -35720,6 +35720,29 @@ export class RestApiResultTipConfiguration {
 /**
 * Rest api result
 */
+export class RestApiResultUpdateMobileAppsSubmissionStatus {
+    /**
+    * Generic data object.
+    */
+    'Data': UpdateMobileAppsSubmissionStatus;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "UpdateMobileAppsSubmissionStatus"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultUpdateMobileAppsSubmissionStatus.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultVoucherWithStats {
     /**
     * Generic data object.
@@ -45201,6 +45224,93 @@ export namespace UpdateMetafieldDefinition {
         SendToMenu = <any> 'SendToMenu'
     }
 }
+/**
+* Update Mobile Apps Status
+*/
+export class UpdateMobileAppsSubmissionStatus {
+    /**
+    * Mobile Apps Submission Status Id
+    */
+    'MobileAppsSubmissionStatusId'?: number;
+    /**
+    * Mobile Type
+    */
+    'Type'?: UpdateMobileAppsSubmissionStatus.TypeEnum;
+    /**
+    * Mobile App Status
+    */
+    'AppStatus'?: UpdateMobileAppsSubmissionStatus.AppStatusEnum;
+    /**
+    * Mobile App Status
+    */
+    'UpdateStatus'?: UpdateMobileAppsSubmissionStatus.UpdateStatusEnum;
+    /**
+    * Mobile LastUpdateStatusTime
+    */
+    'LastUpdateStatusTime'?: Date;
+    /**
+    * Mobile Notes
+    */
+    'Notes'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MobileAppsSubmissionStatusId",
+            "baseName": "MobileAppsSubmissionStatusId",
+            "type": "number"
+        },
+        {
+            "name": "Type",
+            "baseName": "Type",
+            "type": "UpdateMobileAppsSubmissionStatus.TypeEnum"
+        },
+        {
+            "name": "AppStatus",
+            "baseName": "AppStatus",
+            "type": "UpdateMobileAppsSubmissionStatus.AppStatusEnum"
+        },
+        {
+            "name": "UpdateStatus",
+            "baseName": "UpdateStatus",
+            "type": "UpdateMobileAppsSubmissionStatus.UpdateStatusEnum"
+        },
+        {
+            "name": "LastUpdateStatusTime",
+            "baseName": "LastUpdateStatusTime",
+            "type": "Date"
+        },
+        {
+            "name": "Notes",
+            "baseName": "Notes",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateMobileAppsSubmissionStatus.attributeTypeMap;
+    }
+}
+
+export namespace UpdateMobileAppsSubmissionStatus {
+    export enum TypeEnum {
+        Android = <any> 'Android',
+        IOS = <any> 'IOS'
+    }
+    export enum AppStatusEnum {
+        None = <any> 'None',
+        Published = <any> 'Published',
+        Unpublished = <any> 'Unpublished'
+    }
+    export enum UpdateStatusEnum {
+        None = <any> 'None',
+        Submitted = <any> 'Submitted',
+        InReview = <any> 'InReview',
+        Rejected = <any> 'Rejected',
+        Approved = <any> 'Approved',
+        Published = <any> 'Published'
+    }
+}
 export class UpdatePayGreenConfigurationRequest {
     'Name'?: string;
     'AssignedStores'?: Array<number>;
@@ -48613,6 +48723,9 @@ let enumsMap: {[index: string]: any} = {
         "UpdateFulfillmentStatesConfiguration.StoreSelectorTypeEnum": UpdateFulfillmentStatesConfiguration.StoreSelectorTypeEnum,
         "UpdateGroupReference.GroupTypeEnum": UpdateGroupReference.GroupTypeEnum,
         "UpdateMetafieldDefinition.BehaviorsEnum": UpdateMetafieldDefinition.BehaviorsEnum,
+        "UpdateMobileAppsSubmissionStatus.TypeEnum": UpdateMobileAppsSubmissionStatus.TypeEnum,
+        "UpdateMobileAppsSubmissionStatus.AppStatusEnum": UpdateMobileAppsSubmissionStatus.AppStatusEnum,
+        "UpdateMobileAppsSubmissionStatus.UpdateStatusEnum": UpdateMobileAppsSubmissionStatus.UpdateStatusEnum,
         "UpdateProductReference.ProductTypeEnum": UpdateProductReference.ProductTypeEnum,
         "Voucher.StatusEnum": Voucher.StatusEnum,
         "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
@@ -49167,6 +49280,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultTeammate": RestApiResultTeammate,
     "RestApiResultTelemetrySeriesResult": RestApiResultTelemetrySeriesResult,
     "RestApiResultTipConfiguration": RestApiResultTipConfiguration,
+    "RestApiResultUpdateMobileAppsSubmissionStatus": RestApiResultUpdateMobileAppsSubmissionStatus,
     "RestApiResultVoucherWithStats": RestApiResultVoucherWithStats,
     "RestApiResultWebsiteImage": RestApiResultWebsiteImage,
     "RestApiResultWebsiteTestimonial": RestApiResultWebsiteTestimonial,
@@ -49278,6 +49392,7 @@ let typeMap: {[index: string]: any} = {
     "UpdateGroupReference": UpdateGroupReference,
     "UpdateLocationArea": UpdateLocationArea,
     "UpdateMetafieldDefinition": UpdateMetafieldDefinition,
+    "UpdateMobileAppsSubmissionStatus": UpdateMobileAppsSubmissionStatus,
     "UpdatePayGreenConfigurationRequest": UpdatePayGreenConfigurationRequest,
     "UpdateProduct": UpdateProduct,
     "UpdateProductReference": UpdateProductReference,
@@ -71157,6 +71272,77 @@ export class MobileAppsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultAppConfigSalesChannel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Update submission status
+     * @param appId 
+     * @param mobileAppsSubmissionId 
+     * @param updateMobileAppsSubmissionStatus 
+     * @param {*} [options] Override http request options.
+     */
+    public updateSubmissionStatus (appId: string, mobileAppsSubmissionId: number, updateMobileAppsSubmissionStatus: UpdateMobileAppsSubmissionStatus, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultUpdateMobileAppsSubmissionStatus;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission/{mobileAppsSubmissionId}/status'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'mobileAppsSubmissionId' + '}', encodeURIComponent(String(mobileAppsSubmissionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateSubmissionStatus.');
+        }
+
+        // verify required parameter 'mobileAppsSubmissionId' is not null or undefined
+        if (mobileAppsSubmissionId === null || mobileAppsSubmissionId === undefined) {
+            throw new Error('Required parameter mobileAppsSubmissionId was null or undefined when calling updateSubmissionStatus.');
+        }
+
+        // verify required parameter 'updateMobileAppsSubmissionStatus' is not null or undefined
+        if (updateMobileAppsSubmissionStatus === null || updateMobileAppsSubmissionStatus === undefined) {
+            throw new Error('Required parameter updateMobileAppsSubmissionStatus was null or undefined when calling updateSubmissionStatus.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(updateMobileAppsSubmissionStatus, "UpdateMobileAppsSubmissionStatus")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultUpdateMobileAppsSubmissionStatus;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultUpdateMobileAppsSubmissionStatus");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
