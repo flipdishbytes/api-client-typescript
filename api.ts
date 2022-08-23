@@ -16649,6 +16649,47 @@ export class Language {
 }
 
 /**
+* List's the issues with the last failed payment intent
+*/
+export class LastPaymentError {
+    /**
+    * For some errors that could be handled programmatically, a short string indicating the error code reported.
+    */
+    'Code'?: string;
+    /**
+    * For card errors resulting from a card issuer decline, a short string indicating the card issuer’s reason for the decline if they provide one.
+    */
+    'DeclineCode'?: string;
+    /**
+    * A human-readable message providing more details about the error. For card errors, these messages can be shown to your users.
+    */
+    'Message'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Code",
+            "baseName": "Code",
+            "type": "string"
+        },
+        {
+            "name": "DeclineCode",
+            "baseName": "DeclineCode",
+            "type": "string"
+        },
+        {
+            "name": "Message",
+            "baseName": "Message",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LastPaymentError.attributeTypeMap;
+    }
+}
+
+/**
 * Ligthspeed store settings
 */
 export class LightspeedSettings {
@@ -26468,6 +26509,10 @@ export class PaymentIntent {
     * Time at which the object was created. Measured in seconds since the Unix epoch.
     */
     'Created'?: Date;
+    /**
+    * Failed payment intent Errors
+    */
+    'LastPaymentError'?: LastPaymentError;
 
     static discriminator: string | undefined = undefined;
 
@@ -26496,6 +26541,11 @@ export class PaymentIntent {
             "name": "Created",
             "baseName": "Created",
             "type": "Date"
+        },
+        {
+            "name": "LastPaymentError",
+            "baseName": "LastPaymentError",
+            "type": "LastPaymentError"
         }    ];
 
     static getAttributeTypeMap() {
@@ -30455,6 +30505,10 @@ export class ReaderActionStateInfo {
     */
     'FailureCode'?: string;
     /**
+    * Failure Message
+    */
+    'FailureMessage'?: string;
+    /**
     * Type
     */
     'Type'?: string;
@@ -30470,6 +30524,11 @@ export class ReaderActionStateInfo {
         {
             "name": "FailureCode",
             "baseName": "FailureCode",
+            "type": "string"
+        },
+        {
+            "name": "FailureMessage",
+            "baseName": "FailureMessage",
             "type": "string"
         },
         {
@@ -48939,6 +48998,7 @@ let typeMap: {[index: string]: any} = {
     "KioskStoreSettings": KioskStoreSettings,
     "KioskTerminalActionStateChangedEvent": KioskTerminalActionStateChangedEvent,
     "Language": Language,
+    "LastPaymentError": LastPaymentError,
     "LightspeedSettings": LightspeedSettings,
     "LineItem": LineItem,
     "LineItemOption": LineItemOption,
