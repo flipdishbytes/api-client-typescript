@@ -6046,6 +6046,38 @@ export class Coordinates {
 }
 
 /**
+* Country
+*/
+export class CountryFormResponse {
+    /**
+    * ISO two letter code.
+    */
+    'Value'?: string;
+    /**
+    * Label
+    */
+    'Label'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Value",
+            "baseName": "Value",
+            "type": "string"
+        },
+        {
+            "name": "Label",
+            "baseName": "Label",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CountryFormResponse.attributeTypeMap;
+    }
+}
+
+/**
 * List of field definitions per country
 */
 export class CountryWithAccountFieldsDefinitions {
@@ -23444,7 +23476,8 @@ export namespace Order {
         Giropay = <any> 'Giropay',
         Eps = <any> 'Eps',
         Emv = <any> 'Emv',
-        PayPal = <any> 'PayPal'
+        PayPal = <any> 'PayPal',
+        PayGreen = <any> 'PayGreen'
     }
     export enum OrderStateEnum {
         Created = <any> 'Created',
@@ -25996,7 +26029,8 @@ export namespace OrderSummary {
         Giropay = <any> 'Giropay',
         Eps = <any> 'Eps',
         Emv = <any> 'Emv',
-        PayPal = <any> 'PayPal'
+        PayPal = <any> 'PayPal',
+        PayGreen = <any> 'PayGreen'
     }
     export enum PaymentStatusEnum {
         Paid = <any> 'Paid',
@@ -29863,7 +29897,8 @@ export namespace ProcessingFeeConfig {
         Giropay = <any> 'Giropay',
         Eps = <any> 'Eps',
         Emv = <any> 'Emv',
-        PayPal = <any> 'PayPal'
+        PayPal = <any> 'PayPal',
+        PayGreen = <any> 'PayGreen'
     }
 }
 /**
@@ -34080,6 +34115,29 @@ export class RestApiResultCoordinates {
 
     static getAttributeTypeMap() {
         return RestApiResultCoordinates.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultCountryFormResponse {
+    /**
+    * Generic data object.
+    */
+    'Data': CountryFormResponse;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "CountryFormResponse"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultCountryFormResponse.attributeTypeMap;
     }
 }
 
@@ -48880,6 +48938,7 @@ let typeMap: {[index: string]: any} = {
     "ConfiguredStore": ConfiguredStore,
     "Contact": Contact,
     "Coordinates": Coordinates,
+    "CountryFormResponse": CountryFormResponse,
     "CountryWithAccountFieldsDefinitions": CountryWithAccountFieldsDefinitions,
     "CreateAccountModel": CreateAccountModel,
     "CreateAppStoreApp": CreateAppStoreApp,
@@ -49275,6 +49334,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultCatalogItem": RestApiResultCatalogItem,
     "RestApiResultChannel": RestApiResultChannel,
     "RestApiResultCoordinates": RestApiResultCoordinates,
+    "RestApiResultCountryFormResponse": RestApiResultCountryFormResponse,
     "RestApiResultCreatedMenuSectionItems": RestApiResultCreatedMenuSectionItems,
     "RestApiResultCustomer": RestApiResultCustomer,
     "RestApiResultDeliveryZone": RestApiResultDeliveryZone,
@@ -50656,6 +50716,61 @@ export class AddressApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultAddressFormResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Retuns a list of localised countries
+     * @param language 
+     * @param {*} [options] Override http request options.
+     */
+    public getCountries (language?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCountryFormResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/address/countries';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        if (language !== undefined) {
+            localVarQueryParameters['language'] = ObjectSerializer.serialize(language, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCountryFormResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultCountryFormResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -77955,7 +78070,7 @@ export class StoresApi {
      * @param appNameId App Name Id(Not used, still here for compatability reasons)
      * @param {*} [options] Override http request options.
      */
-    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: 'Card' | 'Cash' | 'Ideal' | 'Bancontact' | 'Giropay' | 'Eps' | 'Emv' | 'PayPal', appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }> {
+    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: 'Card' | 'Cash' | 'Ideal' | 'Bancontact' | 'Giropay' | 'Eps' | 'Emv' | 'PayPal' | 'PayGreen', appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs/{paymentAccountType}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'paymentAccountType' + '}', encodeURIComponent(String(paymentAccountType)));
