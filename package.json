@@ -1,0 +1,32 @@
+{
+  "name": "@flipdish/api-client-typescript",
+  "version": "1.0.0",
+  "description": "Typescript Flipdish API client",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flipdishbytes/api-client-typescript.git"
+  },
+  "keywords": [
+    "flipdish",
+    "client",
+    "typescript"
+  ],
+  "bugs": {
+    "url": "https://github.com/flipdishbytes/api-client-typescript/issues"
+  },
+  "homepage": "https://github.com/flipdishbytes/api-client-typescript#readme",
+  "main": "api.js",
+  "scripts": {
+    "clean": "rm -Rf node_modules/ *.js",
+    "build": "tsc"
+  },
+  "author": "Flipdish",
+  "license": "Unlicense",
+  "dependencies": {
+    "@types/bluebird":  "^3.5.19",
+    "@types/request": "^2.0.11"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
+}
