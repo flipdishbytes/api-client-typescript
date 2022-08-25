@@ -12614,7 +12614,7 @@ export class FulfillmentStatusConfigurationItem {
     /**
     * The default next status (on a dropdown or quick button on terminal or portal)
     */
-    'DefaultNextStatus'?: string;
+    'DefaultNextStatus'?: Array<NextStatusWithOrderType>;
     /**
     * How will state change (manually or automated, including timed)
     */
@@ -12630,7 +12630,7 @@ export class FulfillmentStatusConfigurationItem {
     /**
     * If empty then applies to all ordertypes, otherwise a list of order types this state applies to
     */
-    'OrderTypes'?: Array<string>;
+    'OrderTypes'?: Array<FulfillmentStatusConfigurationItem.OrderTypesEnum>;
     /**
     * Whether state should fire off a notification to the customer
     */
@@ -12686,7 +12686,7 @@ export class FulfillmentStatusConfigurationItem {
         {
             "name": "DefaultNextStatus",
             "baseName": "DefaultNextStatus",
-            "type": "string"
+            "type": "Array<NextStatusWithOrderType>"
         },
         {
             "name": "ChangeType",
@@ -12706,7 +12706,7 @@ export class FulfillmentStatusConfigurationItem {
         {
             "name": "OrderTypes",
             "baseName": "OrderTypes",
-            "type": "Array<string>"
+            "type": "Array<FulfillmentStatusConfigurationItem.OrderTypesEnum>"
         },
         {
             "name": "Communication",
@@ -12729,6 +12729,12 @@ export namespace FulfillmentStatusConfigurationItem {
         Manual = <any> 'Manual',
         Automated = <any> 'Automated',
         Integrated = <any> 'Integrated'
+    }
+    export enum OrderTypesEnum {
+        All = <any> 'All',
+        Delivery = <any> 'Delivery',
+        Collection = <any> 'Collection',
+        DineIn = <any> 'DineIn'
     }
 }
 /**
@@ -22720,6 +22726,46 @@ export class ModelBase {
     }
 }
 
+/**
+* Next status by order type
+*/
+export class NextStatusWithOrderType {
+    /**
+    * Order type
+    */
+    'OrderType'?: NextStatusWithOrderType.OrderTypeEnum;
+    /**
+    * Next status id
+    */
+    'NextStatus'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrderType",
+            "baseName": "OrderType",
+            "type": "NextStatusWithOrderType.OrderTypeEnum"
+        },
+        {
+            "name": "NextStatus",
+            "baseName": "NextStatus",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return NextStatusWithOrderType.attributeTypeMap;
+    }
+}
+
+export namespace NextStatusWithOrderType {
+    export enum OrderTypeEnum {
+        All = <any> 'All',
+        Delivery = <any> 'Delivery',
+        Collection = <any> 'Collection',
+        DineIn = <any> 'DineIn'
+    }
+}
 /**
 * Oauth client (also knowns as 'app')
 */
@@ -48709,6 +48755,7 @@ let enumsMap: {[index: string]: any} = {
         "FulfillmentStatesConfiguration.StoreSelectorTypeEnum": FulfillmentStatesConfiguration.StoreSelectorTypeEnum,
         "FulfillmentStatesConfigurationSummary.StoreSelectorTypeEnum": FulfillmentStatesConfigurationSummary.StoreSelectorTypeEnum,
         "FulfillmentStatusConfigurationItem.ChangeTypeEnum": FulfillmentStatusConfigurationItem.ChangeTypeEnum,
+        "FulfillmentStatusConfigurationItem.OrderTypesEnum": FulfillmentStatusConfigurationItem.OrderTypesEnum,
         "Group.GroupTypeEnum": Group.GroupTypeEnum,
         "GroupReference.GroupTypeEnum": GroupReference.GroupTypeEnum,
         "HomeAction.HomeActionTypeEnum": HomeAction.HomeActionTypeEnum,
@@ -48757,6 +48804,7 @@ let enumsMap: {[index: string]: any} = {
         "MobileAppsSubmissionStatus.TypeEnum": MobileAppsSubmissionStatus.TypeEnum,
         "MobileAppsSubmissionStatus.AppStatusEnum": MobileAppsSubmissionStatus.AppStatusEnum,
         "MobileAppsSubmissionStatus.UpdateStatusEnum": MobileAppsSubmissionStatus.UpdateStatusEnum,
+        "NextStatusWithOrderType.OrderTypeEnum": NextStatusWithOrderType.OrderTypeEnum,
         "OAuthApp.FlowEnum": OAuthApp.FlowEnum,
         "OAuthApp.RefreshTokenUsageEnum": OAuthApp.RefreshTokenUsageEnum,
         "OnboardingItemUpdate.StatusEnum": OnboardingItemUpdate.StatusEnum,
@@ -49139,6 +49187,7 @@ let typeMap: {[index: string]: any} = {
     "MobileAppsSubmissionDetails": MobileAppsSubmissionDetails,
     "MobileAppsSubmissionStatus": MobileAppsSubmissionStatus,
     "ModelBase": ModelBase,
+    "NextStatusWithOrderType": NextStatusWithOrderType,
     "OAuthApp": OAuthApp,
     "OAuthTokenModel": OAuthTokenModel,
     "OauthClientRedirectUri": OauthClientRedirectUri,
