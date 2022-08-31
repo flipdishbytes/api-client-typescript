@@ -71327,8 +71327,9 @@ export class MobileAppsApi {
      * @param {*} [options] Override http request options.
      */
     public getSubmissionStatus (appId: string, mobileAppsSubmissionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmissionStatus;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission/status'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission/status/{mobileAppsSubmissionId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'mobileAppsSubmissionId' + '}', encodeURIComponent(String(mobileAppsSubmissionId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -71341,10 +71342,6 @@ export class MobileAppsApi {
         // verify required parameter 'mobileAppsSubmissionId' is not null or undefined
         if (mobileAppsSubmissionId === null || mobileAppsSubmissionId === undefined) {
             throw new Error('Required parameter mobileAppsSubmissionId was null or undefined when calling getSubmissionStatus.');
-        }
-
-        if (mobileAppsSubmissionId !== undefined) {
-            localVarQueryParameters['mobileAppsSubmissionId'] = ObjectSerializer.serialize(mobileAppsSubmissionId, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
