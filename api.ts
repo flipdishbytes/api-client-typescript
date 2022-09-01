@@ -23131,6 +23131,10 @@ export class Order {
     */
     'FulfillmentStatus'?: OrderFulfillmentStatusBase;
     /**
+    * OrderBatch info. This property is not populated in the API
+    */
+    'OrderBatchInfo'?: OrderBatchDetails;
+    /**
     * Order identifier
     */
     'OrderId'?: number;
@@ -23345,6 +23349,11 @@ export class Order {
             "name": "FulfillmentStatus",
             "baseName": "FulfillmentStatus",
             "type": "OrderFulfillmentStatusBase"
+        },
+        {
+            "name": "OrderBatchInfo",
+            "baseName": "OrderBatchInfo",
+            "type": "OrderBatchDetails"
         },
         {
             "name": "OrderId",
@@ -23733,6 +23742,56 @@ export class OrderBatch {
 
     static getAttributeTypeMap() {
         return OrderBatch.attributeTypeMap;
+    }
+}
+
+/**
+* Order batch info
+*/
+export class OrderBatchDetails {
+    /**
+    * Order batch id
+    */
+    'OrderBatchId'?: number;
+    /**
+    * Order batch 6-sign human readable code
+    */
+    'DisplayCode'?: string;
+    /**
+    * Batch creation date and time
+    */
+    'CreateTime'?: Date;
+    /**
+    * If the batch is already published
+    */
+    'IsPublished'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrderBatchId",
+            "baseName": "OrderBatchId",
+            "type": "number"
+        },
+        {
+            "name": "DisplayCode",
+            "baseName": "DisplayCode",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "IsPublished",
+            "baseName": "IsPublished",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderBatchDetails.attributeTypeMap;
     }
 }
 
@@ -49197,6 +49256,7 @@ let typeMap: {[index: string]: any} = {
     "Order": Order,
     "OrderAcceptedEvent": OrderAcceptedEvent,
     "OrderBatch": OrderBatch,
+    "OrderBatchDetails": OrderBatchDetails,
     "OrderBatchItem": OrderBatchItem,
     "OrderBatchingConfiguration": OrderBatchingConfiguration,
     "OrderCapacityConfigUpdatedEvent": OrderCapacityConfigUpdatedEvent,
