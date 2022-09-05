@@ -22457,6 +22457,10 @@ export namespace MobileAppsStatistics {
 */
 export class MobileAppsSubmission {
     /**
+    * Mobile Apps Submission Id
+    */
+    'SubmissionId'?: number;
+    /**
     * App Name
     */
     'AppName': string;
@@ -22480,6 +22484,11 @@ export class MobileAppsSubmission {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "SubmissionId",
+            "baseName": "SubmissionId",
+            "type": "number"
+        },
         {
             "name": "AppName",
             "baseName": "AppName",
@@ -35485,6 +35494,29 @@ export class RestApiResultRedeemInvitationResult {
 
     static getAttributeTypeMap() {
         return RestApiResultRedeemInvitationResult.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultRestApiIntegerResult {
+    /**
+    * Generic data object.
+    */
+    'Data': RestApiIntegerResult;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "RestApiIntegerResult"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultRestApiIntegerResult.attributeTypeMap;
     }
 }
 
@@ -49498,6 +49530,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultProduct": RestApiResultProduct,
     "RestApiResultPushNotificationResponse": RestApiResultPushNotificationResponse,
     "RestApiResultRedeemInvitationResult": RestApiResultRedeemInvitationResult,
+    "RestApiResultRestApiIntegerResult": RestApiResultRestApiIntegerResult,
     "RestApiResultRestaurantVoucherPayGreenConfiguration": RestApiResultRestaurantVoucherPayGreenConfiguration,
     "RestApiResultRestaurantVoucherPayGreenStoreConfiguration": RestApiResultRestaurantVoucherPayGreenStoreConfiguration,
     "RestApiResultRetentionCampaign": RestApiResultRetentionCampaign,
@@ -71383,13 +71416,13 @@ export class MobileAppsApi {
      * 
      * @summary Get submission status mobile apps
      * @param appId 
-     * @param mobileAppsSubmissionId 
+     * @param submissionId 
      * @param {*} [options] Override http request options.
      */
-    public getSubmissionStatus (appId: string, mobileAppsSubmissionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmissionStatus;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission/status/{mobileAppsSubmissionId}'
+    public getSubmissionStatus (appId: string, submissionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmissionStatus;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission/{submissionId}/status'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'mobileAppsSubmissionId' + '}', encodeURIComponent(String(mobileAppsSubmissionId)));
+            .replace('{' + 'submissionId' + '}', encodeURIComponent(String(submissionId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -71399,9 +71432,9 @@ export class MobileAppsApi {
             throw new Error('Required parameter appId was null or undefined when calling getSubmissionStatus.');
         }
 
-        // verify required parameter 'mobileAppsSubmissionId' is not null or undefined
-        if (mobileAppsSubmissionId === null || mobileAppsSubmissionId === undefined) {
-            throw new Error('Required parameter mobileAppsSubmissionId was null or undefined when calling getSubmissionStatus.');
+        // verify required parameter 'submissionId' is not null or undefined
+        if (submissionId === null || submissionId === undefined) {
+            throw new Error('Required parameter submissionId was null or undefined when calling getSubmissionStatus.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -71434,6 +71467,144 @@ export class MobileAppsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultMobileAppsSubmissionStatus");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Publish mobile apps
+     * @param appId 
+     * @param submissionId 
+     * @param platformType 
+     * @param {*} [options] Override http request options.
+     */
+    public publish (appId: string, submissionId: number, platformType: 'Android' | 'IOS', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRestApiIntegerResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission/{submissionId}/publish'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'submissionId' + '}', encodeURIComponent(String(submissionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling publish.');
+        }
+
+        // verify required parameter 'submissionId' is not null or undefined
+        if (submissionId === null || submissionId === undefined) {
+            throw new Error('Required parameter submissionId was null or undefined when calling publish.');
+        }
+
+        // verify required parameter 'platformType' is not null or undefined
+        if (platformType === null || platformType === undefined) {
+            throw new Error('Required parameter platformType was null or undefined when calling publish.');
+        }
+
+        if (platformType !== undefined) {
+            localVarQueryParameters['platformType'] = ObjectSerializer.serialize(platformType, "'Android' | 'IOS'");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRestApiIntegerResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultRestApiIntegerResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Re-submission form mobile apps
+     * @param appId 
+     * @param mobileAppsSubmission 
+     * @param {*} [options] Override http request options.
+     */
+    public resubmission (appId: string, mobileAppsSubmission: MobileAppsSubmission, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmission;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/resubmission'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling resubmission.');
+        }
+
+        // verify required parameter 'mobileAppsSubmission' is not null or undefined
+        if (mobileAppsSubmission === null || mobileAppsSubmission === undefined) {
+            throw new Error('Required parameter mobileAppsSubmission was null or undefined when calling resubmission.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(mobileAppsSubmission, "MobileAppsSubmission")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppsSubmission;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMobileAppsSubmission");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -71498,6 +71669,80 @@ export class MobileAppsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultMobileAppsSubmission");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Unpublish mobile apps
+     * @param appId 
+     * @param submissionId 
+     * @param platformType 
+     * @param {*} [options] Override http request options.
+     */
+    public unpublish (appId: string, submissionId: number, platformType: 'Android' | 'IOS', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission/{submissionId}/unpublish'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'submissionId' + '}', encodeURIComponent(String(submissionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling unpublish.');
+        }
+
+        // verify required parameter 'submissionId' is not null or undefined
+        if (submissionId === null || submissionId === undefined) {
+            throw new Error('Required parameter submissionId was null or undefined when calling unpublish.');
+        }
+
+        // verify required parameter 'platformType' is not null or undefined
+        if (platformType === null || platformType === undefined) {
+            throw new Error('Required parameter platformType was null or undefined when calling unpublish.');
+        }
+
+        if (platformType !== undefined) {
+            localVarQueryParameters['platformType'] = ObjectSerializer.serialize(platformType, "'Android' | 'IOS'");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiIntegerResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -71575,14 +71820,14 @@ export class MobileAppsApi {
      * 
      * @summary Update submission status
      * @param appId 
-     * @param mobileAppsSubmissionId 
+     * @param submissionId 
      * @param updateMobileAppsSubmissionStatus 
      * @param {*} [options] Override http request options.
      */
-    public updateSubmissionStatus (appId: string, mobileAppsSubmissionId: number, updateMobileAppsSubmissionStatus: UpdateMobileAppsSubmissionStatus, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultUpdateMobileAppsSubmissionStatus;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission/{mobileAppsSubmissionId}/status'
+    public updateSubmissionStatus (appId: string, submissionId: number, updateMobileAppsSubmissionStatus: UpdateMobileAppsSubmissionStatus, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultUpdateMobileAppsSubmissionStatus;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission/{submissionId}/status'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'mobileAppsSubmissionId' + '}', encodeURIComponent(String(mobileAppsSubmissionId)));
+            .replace('{' + 'submissionId' + '}', encodeURIComponent(String(submissionId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -71592,9 +71837,9 @@ export class MobileAppsApi {
             throw new Error('Required parameter appId was null or undefined when calling updateSubmissionStatus.');
         }
 
-        // verify required parameter 'mobileAppsSubmissionId' is not null or undefined
-        if (mobileAppsSubmissionId === null || mobileAppsSubmissionId === undefined) {
-            throw new Error('Required parameter mobileAppsSubmissionId was null or undefined when calling updateSubmissionStatus.');
+        // verify required parameter 'submissionId' is not null or undefined
+        if (submissionId === null || submissionId === undefined) {
+            throw new Error('Required parameter submissionId was null or undefined when calling updateSubmissionStatus.');
         }
 
         // verify required parameter 'updateMobileAppsSubmissionStatus' is not null or undefined
