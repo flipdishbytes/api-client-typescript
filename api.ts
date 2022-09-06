@@ -1285,6 +1285,10 @@ export namespace App {
         ViewChannels = <any> 'ViewChannels',
         ViewOnboarding = <any> 'ViewOnboarding',
         UpdateOnboarding = <any> 'UpdateOnboarding',
+        ViewClientDevices = <any> 'ViewClientDevices',
+        UpdateClientDevices = <any> 'UpdateClientDevices',
+        EnrollClientDevices = <any> 'EnrollClientDevices',
+        AssignClientDevices = <any> 'AssignClientDevices',
         CreateAppStoreAppConfiguration = <any> 'CreateAppStoreAppConfiguration',
         ViewAppStoreAppConfiguration = <any> 'ViewAppStoreAppConfiguration',
         UpdateAppStoreAppConfiguration = <any> 'UpdateAppStoreAppConfiguration',
@@ -5928,6 +5932,184 @@ export class ChargebackDetails {
 
     static getAttributeTypeMap() {
         return ChargebackDetails.attributeTypeMap;
+    }
+}
+
+/**
+* Client Device
+*/
+export class ClientDevice {
+    /**
+    * Device Model
+    */
+    'DeviceModel'?: string;
+    /**
+    * Device Id
+    */
+    'DeviceId'?: string;
+    /**
+    * Device Name
+    */
+    'DeviceName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeviceModel",
+            "baseName": "DeviceModel",
+            "type": "string"
+        },
+        {
+            "name": "DeviceId",
+            "baseName": "DeviceId",
+            "type": "string"
+        },
+        {
+            "name": "DeviceName",
+            "baseName": "DeviceName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ClientDevice.attributeTypeMap;
+    }
+}
+
+/**
+* Assign enrolled device to AppId
+*/
+export class ClientDeviceAssignEnrolledDevice {
+    /**
+    * Device Model
+    */
+    'DeviceModel'?: string;
+    /**
+    * Pin Code
+    */
+    'PinCode'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeviceModel",
+            "baseName": "DeviceModel",
+            "type": "string"
+        },
+        {
+            "name": "PinCode",
+            "baseName": "PinCode",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ClientDeviceAssignEnrolledDevice.attributeTypeMap;
+    }
+}
+
+/**
+* Enroll a client device
+*/
+export class ClientDeviceEnroll {
+    /**
+    * Device model
+    */
+    'DeviceModel'?: string;
+    /**
+    * Device Id
+    */
+    'DeviceId'?: string;
+    /**
+    * Device Name
+    */
+    'DeviceName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeviceModel",
+            "baseName": "DeviceModel",
+            "type": "string"
+        },
+        {
+            "name": "DeviceId",
+            "baseName": "DeviceId",
+            "type": "string"
+        },
+        {
+            "name": "DeviceName",
+            "baseName": "DeviceName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ClientDeviceEnroll.attributeTypeMap;
+    }
+}
+
+/**
+* Device enrollment result
+*/
+export class ClientDeviceEnrollmentResult {
+    /**
+    * PIN Code for assigning
+    */
+    'PinCode'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PinCode",
+            "baseName": "PinCode",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ClientDeviceEnrollmentResult.attributeTypeMap;
+    }
+}
+
+/**
+* Client Device summary (header fields)
+*/
+export class ClientDeviceSummary {
+    /**
+    * Device Model
+    */
+    'DeviceModel'?: string;
+    /**
+    * Device Id
+    */
+    'DeviceId'?: string;
+    /**
+    * Device Name
+    */
+    'DeviceName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeviceModel",
+            "baseName": "DeviceModel",
+            "type": "string"
+        },
+        {
+            "name": "DeviceId",
+            "baseName": "DeviceId",
+            "type": "string"
+        },
+        {
+            "name": "DeviceName",
+            "baseName": "DeviceName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ClientDeviceSummary.attributeTypeMap;
     }
 }
 
@@ -31144,6 +31326,29 @@ export class RestApiArrayResultChannel {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultClientDeviceSummary {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<ClientDeviceSummary>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<ClientDeviceSummary>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultClientDeviceSummary.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultCountryWithAccountFieldsDefinitions {
     /**
     * Generic data object.
@@ -34206,6 +34411,52 @@ export class RestApiResultChannel {
 
     static getAttributeTypeMap() {
         return RestApiResultChannel.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultClientDevice {
+    /**
+    * Generic data object.
+    */
+    'Data': ClientDevice;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "ClientDevice"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultClientDevice.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultClientDeviceEnrollmentResult {
+    /**
+    * Generic data object.
+    */
+    'Data': ClientDeviceEnrollmentResult;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "ClientDeviceEnrollmentResult"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultClientDeviceEnrollmentResult.attributeTypeMap;
     }
 }
 
@@ -49074,6 +49325,11 @@ let typeMap: {[index: string]: any} = {
     "Channel": Channel,
     "ChannelStoreMapping": ChannelStoreMapping,
     "ChargebackDetails": ChargebackDetails,
+    "ClientDevice": ClientDevice,
+    "ClientDeviceAssignEnrolledDevice": ClientDeviceAssignEnrolledDevice,
+    "ClientDeviceEnroll": ClientDeviceEnroll,
+    "ClientDeviceEnrollmentResult": ClientDeviceEnrollmentResult,
+    "ClientDeviceSummary": ClientDeviceSummary,
     "ConfiguredStore": ConfiguredStore,
     "Contact": Contact,
     "Coordinates": Coordinates,
@@ -49377,6 +49633,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultBankAccountSummary": RestApiArrayResultBankAccountSummary,
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
     "RestApiArrayResultChannel": RestApiArrayResultChannel,
+    "RestApiArrayResultClientDeviceSummary": RestApiArrayResultClientDeviceSummary,
     "RestApiArrayResultCountryWithAccountFieldsDefinitions": RestApiArrayResultCountryWithAccountFieldsDefinitions,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
     "RestApiArrayResultDriver": RestApiArrayResultDriver,
@@ -49474,6 +49731,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultCardReader": RestApiResultCardReader,
     "RestApiResultCatalogItem": RestApiResultCatalogItem,
     "RestApiResultChannel": RestApiResultChannel,
+    "RestApiResultClientDevice": RestApiResultClientDevice,
+    "RestApiResultClientDeviceEnrollmentResult": RestApiResultClientDeviceEnrollmentResult,
     "RestApiResultCoordinates": RestApiResultCoordinates,
     "RestApiResultCountryFormResponse": RestApiResultCountryFormResponse,
     "RestApiResultCreatedMenuSectionItems": RestApiResultCreatedMenuSectionItems,
@@ -59708,6 +59967,322 @@ export class DeliveryZoneApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultDeliveryZone");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum DeviceApiApiKeys {
+}
+
+export class DeviceApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: DeviceApiApiKeys, value: string) {
+        (this.authentications as any)[DeviceApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Assign device to AppId. Device must have been enrolled before
+     * @param appId App Id
+     * @param assignDeviceRequest Assign request
+     * @param {*} [options] Override http request options.
+     */
+    public assignDevice (appId: string, assignDeviceRequest: ClientDeviceAssignEnrolledDevice, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultClientDeviceEnrollmentResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/devices/assign'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling assignDevice.');
+        }
+
+        // verify required parameter 'assignDeviceRequest' is not null or undefined
+        if (assignDeviceRequest === null || assignDeviceRequest === undefined) {
+            throw new Error('Required parameter assignDeviceRequest was null or undefined when calling assignDevice.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(assignDeviceRequest, "ClientDeviceAssignEnrolledDevice")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultClientDeviceEnrollmentResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultClientDeviceEnrollmentResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Enroll a new device - this returns a PIN code for actually assigning it later
+     * @param appId App Id - not for the device, only for permission checking
+     * @param deviceEnrollmentRequest Request object for enrolling device
+     * @param {*} [options] Override http request options.
+     */
+    public enrollDevice (appId: string, deviceEnrollmentRequest: ClientDeviceEnroll, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultClientDeviceEnrollmentResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/devices/enroll'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling enrollDevice.');
+        }
+
+        // verify required parameter 'deviceEnrollmentRequest' is not null or undefined
+        if (deviceEnrollmentRequest === null || deviceEnrollmentRequest === undefined) {
+            throw new Error('Required parameter deviceEnrollmentRequest was null or undefined when calling enrollDevice.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(deviceEnrollmentRequest, "ClientDeviceEnroll")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultClientDeviceEnrollmentResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultClientDeviceEnrollmentResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get details for a device by model and deviceid
+     * @param appId App Id
+     * @param deviceModel Device Model
+     * @param deviceId Device Id
+     * @param {*} [options] Override http request options.
+     */
+    public getDeviceDetails (appId: string, deviceModel: string, deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultClientDevice;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/devices/device/{deviceModel}/{deviceId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'deviceModel' + '}', encodeURIComponent(String(deviceModel)))
+            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getDeviceDetails.');
+        }
+
+        // verify required parameter 'deviceModel' is not null or undefined
+        if (deviceModel === null || deviceModel === undefined) {
+            throw new Error('Required parameter deviceModel was null or undefined when calling getDeviceDetails.');
+        }
+
+        // verify required parameter 'deviceId' is not null or undefined
+        if (deviceId === null || deviceId === undefined) {
+            throw new Error('Required parameter deviceId was null or undefined when calling getDeviceDetails.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultClientDevice;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultClientDevice");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Search devices by AppId and optionally storeId
+     * @param appId App Id
+     * @param storeId Store Id (optional)
+     * @param deviceModel Device Model (optional)
+     * @param {*} [options] Override http request options.
+     */
+    public searchDevices (appId: string, storeId?: number, deviceModel?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultClientDeviceSummary;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/devices/search'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling searchDevices.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
+        }
+
+        if (deviceModel !== undefined) {
+            localVarQueryParameters['deviceModel'] = ObjectSerializer.serialize(deviceModel, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultClientDeviceSummary;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultClientDeviceSummary");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
