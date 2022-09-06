@@ -26747,6 +26747,10 @@ export class OwnerEntityConfigurations {
 */
 export class PasswordResetModel {
     /**
+    * Token Id
+    */
+    'TokenId'?: string;
+    /**
     * Email address
     */
     'Email'?: string;
@@ -26766,6 +26770,11 @@ export class PasswordResetModel {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "TokenId",
+            "baseName": "TokenId",
+            "type": "string"
+        },
         {
             "name": "Email",
             "baseName": "Email",
