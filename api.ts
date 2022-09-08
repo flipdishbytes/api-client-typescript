@@ -7666,6 +7666,7 @@ export namespace CreateMetafieldDefinition {
         Menu = <any> 'Menu'
     }
     export enum ValueTypeEnum {
+        Boolean = <any> 'Boolean',
         Json = <any> 'Json',
         SingleLineString = <any> 'SingleLineString',
         MultiLineString = <any> 'MultiLineString'
@@ -22408,6 +22409,7 @@ export namespace MetafieldDefinition {
         Menu = <any> 'Menu'
     }
     export enum ValueTypeEnum {
+        Boolean = <any> 'Boolean',
         Json = <any> 'Json',
         SingleLineString = <any> 'SingleLineString',
         MultiLineString = <any> 'MultiLineString'
@@ -22501,6 +22503,7 @@ export namespace MetafieldDefinitionRecommendation {
         Menu = <any> 'Menu'
     }
     export enum ValueTypeEnum {
+        Boolean = <any> 'Boolean',
         Json = <any> 'Json',
         SingleLineString = <any> 'SingleLineString',
         MultiLineString = <any> 'MultiLineString'
