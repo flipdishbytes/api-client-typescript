@@ -10559,6 +10559,10 @@ export class EventSearchResult {
     */
     'OrderDeliveryTrackingStatusUpdatedEvent'?: Array<OrderDeliveryTrackingStatusUpdatedEvent>;
     /**
+    * Order Batch published event
+    */
+    'OrderBatchPublishedEvent'?: Array<OrderBatchPublishedEvent>;
+    /**
     * Order created events
     */
     'OrderCreatedEvent'?: Array<OrderCreatedEvent>;
@@ -11096,6 +11100,11 @@ export class EventSearchResult {
             "name": "OrderDeliveryTrackingStatusUpdatedEvent",
             "baseName": "OrderDeliveryTrackingStatusUpdatedEvent",
             "type": "Array<OrderDeliveryTrackingStatusUpdatedEvent>"
+        },
+        {
+            "name": "OrderBatchPublishedEvent",
+            "baseName": "OrderBatchPublishedEvent",
+            "type": "Array<OrderBatchPublishedEvent>"
         },
         {
             "name": "OrderCreatedEvent",
@@ -24029,6 +24038,92 @@ export class OrderBatchItem {
 
     static getAttributeTypeMap() {
         return OrderBatchItem.attributeTypeMap;
+    }
+}
+
+/**
+* Order Batch Published Event
+*/
+export class OrderBatchPublishedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Order Batch Id
+    */
+    'BatchId'?: number;
+    /**
+    * Store id the order batch belogs to
+    */
+    'StoreId'?: number;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "BatchId",
+            "baseName": "BatchId",
+            "type": "number"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderBatchPublishedEvent.attributeTypeMap;
     }
 }
 
@@ -49561,6 +49656,7 @@ let typeMap: {[index: string]: any} = {
     "OrderBatch": OrderBatch,
     "OrderBatchDetails": OrderBatchDetails,
     "OrderBatchItem": OrderBatchItem,
+    "OrderBatchPublishedEvent": OrderBatchPublishedEvent,
     "OrderBatchingConfiguration": OrderBatchingConfiguration,
     "OrderCapacityConfigUpdatedEvent": OrderCapacityConfigUpdatedEvent,
     "OrderCreatedEvent": OrderCreatedEvent,
