@@ -24136,6 +24136,10 @@ export class OrderBatchingConfiguration {
     */
     'BatchIntervalInMinutes'?: number;
     /**
+    * Batch sending interval in seconds
+    */
+    'BatchIntervalInSeconds'?: number;
+    /**
     * OrderBatching is enabled or not
     */
     'IsEnabled'?: boolean;
@@ -24146,6 +24150,11 @@ export class OrderBatchingConfiguration {
         {
             "name": "BatchIntervalInMinutes",
             "baseName": "BatchIntervalInMinutes",
+            "type": "number"
+        },
+        {
+            "name": "BatchIntervalInSeconds",
+            "baseName": "BatchIntervalInSeconds",
             "type": "number"
         },
         {
@@ -37573,6 +37582,10 @@ export class SetOrderBatchingConfiguration {
     */
     'BatchIntervalInMinutes'?: number;
     /**
+    * Batch sending interval in seconds
+    */
+    'BatchIntervalInSeconds'?: number;
+    /**
     * OrderBatching is enabled or not
     */
     'Enabled'?: boolean;
@@ -37583,6 +37596,11 @@ export class SetOrderBatchingConfiguration {
         {
             "name": "BatchIntervalInMinutes",
             "baseName": "BatchIntervalInMinutes",
+            "type": "number"
+        },
+        {
+            "name": "BatchIntervalInSeconds",
+            "baseName": "BatchIntervalInSeconds",
             "type": "number"
         },
         {
