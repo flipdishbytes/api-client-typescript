@@ -1289,6 +1289,7 @@ export namespace App {
         UpdateClientDevices = <any> 'UpdateClientDevices',
         EnrollClientDevices = <any> 'EnrollClientDevices',
         AssignClientDevices = <any> 'AssignClientDevices',
+        ViewClientAuditLogs = <any> 'ViewClientAuditLogs',
         CreateAppStoreAppConfiguration = <any> 'CreateAppStoreAppConfiguration',
         ViewAppStoreAppConfiguration = <any> 'ViewAppStoreAppConfiguration',
         UpdateAppStoreAppConfiguration = <any> 'UpdateAppStoreAppConfiguration',
@@ -11062,6 +11063,14 @@ export class EventSearchResult {
     * Service Charge Updated Event
     */
     'StoreServiceChargeUpdatedEvent'?: Array<StoreServiceChargeUpdatedEvent>;
+    /**
+    * Mobile Submission Status Updated Event
+    */
+    'MobileAppsSubmissionStatusUpdatedEvent'?: Array<MobileAppsSubmissionStatusUpdatedEvent>;
+    /**
+    * Mobile Submission Updated Event
+    */
+    'MobileAppsSubmissionUpdatedEvent'?: Array<MobileAppsSubmissionUpdatedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -11730,6 +11739,16 @@ export class EventSearchResult {
             "name": "StoreServiceChargeUpdatedEvent",
             "baseName": "StoreServiceChargeUpdatedEvent",
             "type": "Array<StoreServiceChargeUpdatedEvent>"
+        },
+        {
+            "name": "MobileAppsSubmissionStatusUpdatedEvent",
+            "baseName": "MobileAppsSubmissionStatusUpdatedEvent",
+            "type": "Array<MobileAppsSubmissionStatusUpdatedEvent>"
+        },
+        {
+            "name": "MobileAppsSubmissionUpdatedEvent",
+            "baseName": "MobileAppsSubmissionUpdatedEvent",
+            "type": "Array<MobileAppsSubmissionUpdatedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -22916,6 +22935,187 @@ export namespace MobileAppsSubmissionStatus {
         Published = <any> 'Published'
     }
 }
+/**
+* Mobile Apps event
+*/
+export class MobileAppsSubmissionStatusUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * User who has created the item
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Mobile Apps Submission Status
+    */
+    'MobileAppsSubmissionStatus'?: MobileAppsSubmissionStatus;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "MobileAppsSubmissionStatus",
+            "baseName": "MobileAppsSubmissionStatus",
+            "type": "MobileAppsSubmissionStatus"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MobileAppsSubmissionStatusUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Mobile Apps event
+*/
+export class MobileAppsSubmissionUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * User who has created the item
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MobileAppsSubmissionUpdatedEvent.attributeTypeMap;
+    }
+}
+
 /**
 * Model base
 */
@@ -49661,6 +49861,8 @@ let typeMap: {[index: string]: any} = {
     "MobileAppsSubmission": MobileAppsSubmission,
     "MobileAppsSubmissionDetails": MobileAppsSubmissionDetails,
     "MobileAppsSubmissionStatus": MobileAppsSubmissionStatus,
+    "MobileAppsSubmissionStatusUpdatedEvent": MobileAppsSubmissionStatusUpdatedEvent,
+    "MobileAppsSubmissionUpdatedEvent": MobileAppsSubmissionUpdatedEvent,
     "ModelBase": ModelBase,
     "NextStatusWithOrderType": NextStatusWithOrderType,
     "OAuthApp": OAuthApp,
