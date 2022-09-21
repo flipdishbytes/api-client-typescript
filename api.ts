@@ -24332,10 +24332,6 @@ export class OrderBatchPublishedEvent {
 */
 export class OrderBatchingConfiguration {
     /**
-    * Batch sending interval in minutes
-    */
-    'BatchIntervalInMinutes'?: number;
-    /**
     * Batch sending interval in seconds
     */
     'BatchIntervalInSeconds'?: number;
@@ -24347,11 +24343,6 @@ export class OrderBatchingConfiguration {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "BatchIntervalInMinutes",
-            "baseName": "BatchIntervalInMinutes",
-            "type": "number"
-        },
         {
             "name": "BatchIntervalInSeconds",
             "baseName": "BatchIntervalInSeconds",
@@ -37778,10 +37769,6 @@ export class ServiceCharge {
 */
 export class SetOrderBatchingConfiguration {
     /**
-    * Batch sending interval in minutes
-    */
-    'BatchIntervalInMinutes'?: number;
-    /**
     * Batch sending interval in seconds
     */
     'BatchIntervalInSeconds'?: number;
@@ -37793,11 +37780,6 @@ export class SetOrderBatchingConfiguration {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "BatchIntervalInMinutes",
-            "baseName": "BatchIntervalInMinutes",
-            "type": "number"
-        },
         {
             "name": "BatchIntervalInSeconds",
             "baseName": "BatchIntervalInSeconds",
