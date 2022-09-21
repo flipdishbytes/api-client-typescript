@@ -72372,7 +72372,7 @@ export class MobileAppsApi {
      * @param platformType 
      * @param {*} [options] Override http request options.
      */
-    public publish (appId: string, submissionId: number, platformType: 'None' | 'Android' | 'IOS', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRestApiIntegerResult;  }> {
+    public publish (appId: string, submissionId: number, platformType?: 'None' | 'Android' | 'IOS', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRestApiIntegerResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission/{submissionId}/publish'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'submissionId' + '}', encodeURIComponent(String(submissionId)));
@@ -72388,11 +72388,6 @@ export class MobileAppsApi {
         // verify required parameter 'submissionId' is not null or undefined
         if (submissionId === null || submissionId === undefined) {
             throw new Error('Required parameter submissionId was null or undefined when calling publish.');
-        }
-
-        // verify required parameter 'platformType' is not null or undefined
-        if (platformType === null || platformType === undefined) {
-            throw new Error('Required parameter platformType was null or undefined when calling publish.');
         }
 
         if (platformType !== undefined) {
@@ -72574,7 +72569,7 @@ export class MobileAppsApi {
      * @param platformType 
      * @param {*} [options] Override http request options.
      */
-    public unpublish (appId: string, submissionId: number, platformType: 'None' | 'Android' | 'IOS', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }> {
+    public unpublish (appId: string, submissionId: number, platformType?: 'None' | 'Android' | 'IOS', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/mobileapps/{appId}/submission/{submissionId}/unpublish'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'submissionId' + '}', encodeURIComponent(String(submissionId)));
@@ -72590,11 +72585,6 @@ export class MobileAppsApi {
         // verify required parameter 'submissionId' is not null or undefined
         if (submissionId === null || submissionId === undefined) {
             throw new Error('Required parameter submissionId was null or undefined when calling unpublish.');
-        }
-
-        // verify required parameter 'platformType' is not null or undefined
-        if (platformType === null || platformType === undefined) {
-            throw new Error('Required parameter platformType was null or undefined when calling unpublish.');
         }
 
         if (platformType !== undefined) {
