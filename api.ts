@@ -82800,7 +82800,7 @@ export class VouchersApi {
      * @summary [PRIVATE API] Updates voucher
      * @param voucherId Id of the voucher
      * @param voucher Updated details for the voucher
-     * @param storeId 
+     * @param storeId List of store ids associated
      * @param percentValue Percent voucher value (can have 1 of 3)
      * @param lumpValue Lump voucher value (can have 1 of 3)
      * @param freeItemId Free Item Id (can have 1 of 3)
