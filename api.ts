@@ -24258,6 +24258,10 @@ export class OrderBatchPublishedEvent {
     */
     'StoreId'?: number;
     /**
+    * Orders' ids on the batch
+    */
+    'OrderIds'?: Array<number>;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -24295,6 +24299,11 @@ export class OrderBatchPublishedEvent {
             "name": "StoreId",
             "baseName": "StoreId",
             "type": "number"
+        },
+        {
+            "name": "OrderIds",
+            "baseName": "OrderIds",
+            "type": "Array<number>"
         },
         {
             "name": "FlipdishEventId",
