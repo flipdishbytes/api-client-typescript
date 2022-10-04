@@ -23559,9 +23559,9 @@ export class Order {
     */
     'FulfillmentStatus'?: OrderFulfillmentStatusBase;
     /**
-    * OrderBatch info. This property is not populated in the API
+    * OrderBatch information
     */
-    'OrderBatchInfo'?: OrderBatchDetails;
+    'OrderBatchInfo'?: OrderBatchSummary;
     /**
     * Order identifier
     */
@@ -23781,7 +23781,7 @@ export class Order {
         {
             "name": "OrderBatchInfo",
             "baseName": "OrderBatchInfo",
-            "type": "OrderBatchDetails"
+            "type": "OrderBatchSummary"
         },
         {
             "name": "OrderId",
@@ -24115,9 +24115,13 @@ export class OrderAcceptedEvent {
 }
 
 /**
-* Order batch
+* Order batch detailed information
 */
 export class OrderBatch {
+    /**
+    * Orders' ids on the batch
+    */
+    'OrderIds'?: Array<number>;
     /**
     * Order batch id
     */
@@ -24134,14 +24138,15 @@ export class OrderBatch {
     * If the batch is already published
     */
     'IsPublished'?: boolean;
-    /**
-    * Orders' ids on the batch
-    */
-    'OrderIds'?: Array<number>;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrderIds",
+            "baseName": "OrderIds",
+            "type": "Array<number>"
+        },
         {
             "name": "Id",
             "baseName": "Id",
@@ -24161,106 +24166,10 @@ export class OrderBatch {
             "name": "IsPublished",
             "baseName": "IsPublished",
             "type": "boolean"
-        },
-        {
-            "name": "OrderIds",
-            "baseName": "OrderIds",
-            "type": "Array<number>"
         }    ];
 
     static getAttributeTypeMap() {
         return OrderBatch.attributeTypeMap;
-    }
-}
-
-/**
-* Order batch info
-*/
-export class OrderBatchDetails {
-    /**
-    * Order batch id
-    */
-    'OrderBatchId'?: number;
-    /**
-    * Order batch 6-sign human readable code
-    */
-    'DisplayCode'?: string;
-    /**
-    * Batch creation date and time
-    */
-    'CreateTime'?: Date;
-    /**
-    * If the batch is already published
-    */
-    'IsPublished'?: boolean;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "OrderBatchId",
-            "baseName": "OrderBatchId",
-            "type": "number"
-        },
-        {
-            "name": "DisplayCode",
-            "baseName": "DisplayCode",
-            "type": "string"
-        },
-        {
-            "name": "CreateTime",
-            "baseName": "CreateTime",
-            "type": "Date"
-        },
-        {
-            "name": "IsPublished",
-            "baseName": "IsPublished",
-            "type": "boolean"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return OrderBatchDetails.attributeTypeMap;
-    }
-}
-
-/**
-* Represents order batches
-*/
-export class OrderBatchItem {
-    /**
-    * Unique identifier
-    */
-    'BatchId'?: number;
-    /**
-    * Creation date
-    */
-    'CreatedAt'?: Date;
-    /**
-    * Is dispatched
-    */
-    'IsPublished'?: boolean;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "BatchId",
-            "baseName": "BatchId",
-            "type": "number"
-        },
-        {
-            "name": "CreatedAt",
-            "baseName": "CreatedAt",
-            "type": "Date"
-        },
-        {
-            "name": "IsPublished",
-            "baseName": "IsPublished",
-            "type": "boolean"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return OrderBatchItem.attributeTypeMap;
     }
 }
 
@@ -24275,7 +24184,7 @@ export class OrderBatchPublishedEvent {
     /**
     * Order Batch Id
     */
-    'BatchId'?: number;
+    'OrderBatchId'?: number;
     /**
     * Store id the order batch belogs to
     */
@@ -24314,8 +24223,8 @@ export class OrderBatchPublishedEvent {
             "type": "string"
         },
         {
-            "name": "BatchId",
-            "baseName": "BatchId",
+            "name": "OrderBatchId",
+            "baseName": "OrderBatchId",
             "type": "number"
         },
         {
@@ -24356,6 +24265,56 @@ export class OrderBatchPublishedEvent {
 
     static getAttributeTypeMap() {
         return OrderBatchPublishedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Order batch info
+*/
+export class OrderBatchSummary {
+    /**
+    * Order batch id
+    */
+    'Id'?: number;
+    /**
+    * Order batch 6-sign human readable code
+    */
+    'DisplayCode'?: string;
+    /**
+    * Batch creation date and time
+    */
+    'CreateTime'?: Date;
+    /**
+    * If the batch is already published
+    */
+    'IsPublished'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "DisplayCode",
+            "baseName": "DisplayCode",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "IsPublished",
+            "baseName": "IsPublished",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderBatchSummary.attributeTypeMap;
     }
 }
 
@@ -26472,6 +26431,10 @@ export class OrderSummary {
     * DropOffLocation selected for this order
     */
     'OrderDropOffLocation'?: OrderDropOffLocation;
+    /**
+    * OrderBatch information
+    */
+    'OrderBatchInfo'?: OrderBatchSummary;
 
     static discriminator: string | undefined = undefined;
 
@@ -26605,6 +26568,11 @@ export class OrderSummary {
             "name": "OrderDropOffLocation",
             "baseName": "OrderDropOffLocation",
             "type": "OrderDropOffLocation"
+        },
+        {
+            "name": "OrderBatchInfo",
+            "baseName": "OrderBatchInfo",
+            "type": "OrderBatchSummary"
         }    ];
 
     static getAttributeTypeMap() {
@@ -32288,11 +32256,11 @@ export class RestApiArrayResultOauthClientRedirectUri {
 /**
 * Rest api array result
 */
-export class RestApiArrayResultOrderBatchItem {
+export class RestApiArrayResultOrderBatchSummary {
     /**
     * Generic data object.
     */
-    'Data': Array<OrderBatchItem>;
+    'Data': Array<OrderBatchSummary>;
 
     static discriminator: string | undefined = undefined;
 
@@ -32300,11 +32268,11 @@ export class RestApiArrayResultOrderBatchItem {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "Array<OrderBatchItem>"
+            "type": "Array<OrderBatchSummary>"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiArrayResultOrderBatchItem.attributeTypeMap;
+        return RestApiArrayResultOrderBatchSummary.attributeTypeMap;
     }
 }
 
@@ -49912,9 +49880,8 @@ let typeMap: {[index: string]: any} = {
     "Order": Order,
     "OrderAcceptedEvent": OrderAcceptedEvent,
     "OrderBatch": OrderBatch,
-    "OrderBatchDetails": OrderBatchDetails,
-    "OrderBatchItem": OrderBatchItem,
     "OrderBatchPublishedEvent": OrderBatchPublishedEvent,
+    "OrderBatchSummary": OrderBatchSummary,
     "OrderBatchingConfiguration": OrderBatchingConfiguration,
     "OrderCapacityConfigUpdatedEvent": OrderCapacityConfigUpdatedEvent,
     "OrderCreatedEvent": OrderCreatedEvent,
@@ -50029,7 +49996,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultMobileAppsStatistics": RestApiArrayResultMobileAppsStatistics,
     "RestApiArrayResultOAuthApp": RestApiArrayResultOAuthApp,
     "RestApiArrayResultOauthClientRedirectUri": RestApiArrayResultOauthClientRedirectUri,
-    "RestApiArrayResultOrderBatchItem": RestApiArrayResultOrderBatchItem,
+    "RestApiArrayResultOrderBatchSummary": RestApiArrayResultOrderBatchSummary,
     "RestApiArrayResultOrderFulfillmentStatus": RestApiArrayResultOrderFulfillmentStatus,
     "RestApiArrayResultPayoutSummary": RestApiArrayResultPayoutSummary,
     "RestApiArrayResultPendingMenuChangesSummaries": RestApiArrayResultPendingMenuChangesSummaries,
@@ -74264,7 +74231,7 @@ export class OrderBatchesApi {
      * @param createdTo End date for retrieving the entries
      * @param {*} [options] Override http request options.
      */
-    public getAllOrderBatches (appId: string, storeId: number, createdFrom?: Date, createdTo?: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOrderBatchItem;  }> {
+    public getAllOrderBatches (appId: string, storeId: number, createdFrom?: Date, createdTo?: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOrderBatchSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/order-batches'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
@@ -74314,12 +74281,12 @@ export class OrderBatchesApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOrderBatchItem;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOrderBatchSummary;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultOrderBatchItem");
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultOrderBatchSummary");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -74334,14 +74301,14 @@ export class OrderBatchesApi {
      * @summary Returns the order batch details
      * @param appId App Id
      * @param storeId Store Id
-     * @param batchId Order Batch Id
+     * @param orderBatchId Order Batch Id
      * @param {*} [options] Override http request options.
      */
-    public getOrderBatch (appId: string, storeId: number, batchId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderBatch;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/order-batches/{batchId}'
+    public getOrderBatch (appId: string, storeId: number, orderBatchId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderBatch;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/order-batches/{orderBatchId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
-            .replace('{' + 'batchId' + '}', encodeURIComponent(String(batchId)));
+            .replace('{' + 'orderBatchId' + '}', encodeURIComponent(String(orderBatchId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -74356,9 +74323,9 @@ export class OrderBatchesApi {
             throw new Error('Required parameter storeId was null or undefined when calling getOrderBatch.');
         }
 
-        // verify required parameter 'batchId' is not null or undefined
-        if (batchId === null || batchId === undefined) {
-            throw new Error('Required parameter batchId was null or undefined when calling getOrderBatch.');
+        // verify required parameter 'orderBatchId' is not null or undefined
+        if (orderBatchId === null || orderBatchId === undefined) {
+            throw new Error('Required parameter orderBatchId was null or undefined when calling getOrderBatch.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
