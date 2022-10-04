@@ -8190,6 +8190,29 @@ export class CreditNoteDetails {
     }
 }
 
+/**
+* Menu Items for Cross-Sell
+*/
+export class CrossSellMenuItems {
+    /**
+    * Menu Item Id's
+    */
+    'MenuItemIds'?: Array<number>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuItemIds",
+            "baseName": "MenuItemIds",
+            "type": "Array<number>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CrossSellMenuItems.attributeTypeMap;
+    }
+}
+
 export class CspReport {
     'Document_uri'?: string;
     'Referrer'?: string;
@@ -34850,6 +34873,29 @@ export class RestApiResultCreatedMenuSectionItems {
 /**
 * Rest api result
 */
+export class RestApiResultCrossSellMenuItems {
+    /**
+    * Generic data object.
+    */
+    'Data': CrossSellMenuItems;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "CrossSellMenuItems"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultCrossSellMenuItems.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultCustomer {
     /**
     * Generic data object.
@@ -49678,6 +49724,7 @@ let typeMap: {[index: string]: any} = {
     "CreateVoucher": CreateVoucher,
     "CreatedMenuSectionItems": CreatedMenuSectionItems,
     "CreditNoteDetails": CreditNoteDetails,
+    "CrossSellMenuItems": CrossSellMenuItems,
     "CspReport": CspReport,
     "CspReportRequest": CspReportRequest,
     "CurrencyData": CurrencyData,
@@ -50058,6 +50105,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultCoordinates": RestApiResultCoordinates,
     "RestApiResultCountryFormResponse": RestApiResultCountryFormResponse,
     "RestApiResultCreatedMenuSectionItems": RestApiResultCreatedMenuSectionItems,
+    "RestApiResultCrossSellMenuItems": RestApiResultCrossSellMenuItems,
     "RestApiResultCustomer": RestApiResultCustomer,
     "RestApiResultDeliveryZone": RestApiResultDeliveryZone,
     "RestApiResultDnsRecordInformation": RestApiResultDnsRecordInformation,
@@ -59450,6 +59498,143 @@ export class ContentSecurityPolicyApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum CrossSellApiApiKeys {
+}
+
+export class CrossSellApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: CrossSellApiApiKeys, value: string) {
+        (this.authentications as any)[CrossSellApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * Can be called by any flipdish kiosk  [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get all Menu items by MenuId for cross sells
+     * @param menuId Requested MenuId
+     * @param menuItemId Selected Menu items
+     * @param limit Set the limit of items returned
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getCrossSellMenuItems (menuId: number, menuItemId: Array<number>, limit: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCrossSellMenuItems;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/crossSell/menuItems'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling getCrossSellMenuItems.');
+        }
+
+        // verify required parameter 'menuItemId' is not null or undefined
+        if (menuItemId === null || menuItemId === undefined) {
+            throw new Error('Required parameter menuItemId was null or undefined when calling getCrossSellMenuItems.');
+        }
+
+        // verify required parameter 'limit' is not null or undefined
+        if (limit === null || limit === undefined) {
+            throw new Error('Required parameter limit was null or undefined when calling getCrossSellMenuItems.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getCrossSellMenuItems.');
+        }
+
+        if (menuId !== undefined) {
+            localVarQueryParameters['menuId'] = ObjectSerializer.serialize(menuId, "number");
+        }
+
+        if (menuItemId !== undefined) {
+            localVarQueryParameters['menuItemId'] = ObjectSerializer.serialize(menuItemId, "Array<number>");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCrossSellMenuItems;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultCrossSellMenuItems");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
