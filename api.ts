@@ -59530,10 +59530,11 @@ export class CrossSellApi {
      * @param menuId Requested MenuId
      * @param menuItemId Selected Menu items
      * @param limit Set the limit of items returned
+     * @param totalValue Get the total cost of items in the basket
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getCrossSellMenuItems (menuId: number, menuItemId: Array<number>, limit: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCrossSellMenuItems;  }> {
+    public getCrossSellMenuItems (menuId: number, menuItemId: Array<number>, limit: number, totalValue: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCrossSellMenuItems;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/crossSell/menuItems'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -59555,6 +59556,11 @@ export class CrossSellApi {
             throw new Error('Required parameter limit was null or undefined when calling getCrossSellMenuItems.');
         }
 
+        // verify required parameter 'totalValue' is not null or undefined
+        if (totalValue === null || totalValue === undefined) {
+            throw new Error('Required parameter totalValue was null or undefined when calling getCrossSellMenuItems.');
+        }
+
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getCrossSellMenuItems.');
@@ -59570,6 +59576,10 @@ export class CrossSellApi {
 
         if (limit !== undefined) {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (totalValue !== undefined) {
+            localVarQueryParameters['totalValue'] = ObjectSerializer.serialize(totalValue, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
