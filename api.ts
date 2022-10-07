@@ -51512,7 +51512,7 @@ export class AddressApi {
     /**
      * 
      * @summary Maps a Google Address Object to the values of the dynamic form associated with the address country and returns the dynamic form.
-     * @param googleAddress A Google address object, as it is retuned from the maps API.
+     * @param googleAddress A Google address object, as it is returned from the maps API.
      * @param language (Optional) ISO culture info code, e.g.: en-IE, the default is en-US.
      * @param {*} [options] Override http request options.
      */
