@@ -32256,11 +32256,11 @@ export class RestApiArrayResultOauthClientRedirectUri {
 /**
 * Rest api array result
 */
-export class RestApiArrayResultOrderBatchSummary {
+export class RestApiArrayResultOrderBatch {
     /**
     * Generic data object.
     */
-    'Data': Array<OrderBatchSummary>;
+    'Data': Array<OrderBatch>;
 
     static discriminator: string | undefined = undefined;
 
@@ -32268,11 +32268,11 @@ export class RestApiArrayResultOrderBatchSummary {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "Array<OrderBatchSummary>"
+            "type": "Array<OrderBatch>"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiArrayResultOrderBatchSummary.attributeTypeMap;
+        return RestApiArrayResultOrderBatch.attributeTypeMap;
     }
 }
 
@@ -49996,7 +49996,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultMobileAppsStatistics": RestApiArrayResultMobileAppsStatistics,
     "RestApiArrayResultOAuthApp": RestApiArrayResultOAuthApp,
     "RestApiArrayResultOauthClientRedirectUri": RestApiArrayResultOauthClientRedirectUri,
-    "RestApiArrayResultOrderBatchSummary": RestApiArrayResultOrderBatchSummary,
+    "RestApiArrayResultOrderBatch": RestApiArrayResultOrderBatch,
     "RestApiArrayResultOrderFulfillmentStatus": RestApiArrayResultOrderFulfillmentStatus,
     "RestApiArrayResultPayoutSummary": RestApiArrayResultPayoutSummary,
     "RestApiArrayResultPendingMenuChangesSummaries": RestApiArrayResultPendingMenuChangesSummaries,
@@ -74236,15 +74236,14 @@ export class OrderBatchesApi {
      * Entries are sorted by date, from the most recent. At most 100 entries are returned.
      * @summary Returns order batches
      * @param appId App Id
-     * @param storeId Store Id
+     * @param storeIds List of store Ids
      * @param createdFrom Start date for retrieving the entries
      * @param createdTo End date for retrieving the entries
      * @param {*} [options] Override http request options.
      */
-    public getAllOrderBatches (appId: string, storeId: number, createdFrom?: Date, createdTo?: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOrderBatchSummary;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/order-batches'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+    public getAllOrderBatches (appId: string, storeIds?: Array<number>, createdFrom?: Date, createdTo?: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOrderBatch;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/order-batches'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -74254,9 +74253,8 @@ export class OrderBatchesApi {
             throw new Error('Required parameter appId was null or undefined when calling getAllOrderBatches.');
         }
 
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getAllOrderBatches.');
+        if (storeIds !== undefined) {
+            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
         }
 
         if (createdFrom !== undefined) {
@@ -74291,12 +74289,12 @@ export class OrderBatchesApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOrderBatchSummary;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOrderBatch;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultOrderBatchSummary");
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultOrderBatch");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -74310,14 +74308,12 @@ export class OrderBatchesApi {
      * 
      * @summary Returns the order batch details
      * @param appId App Id
-     * @param storeId Store Id
      * @param orderBatchId Order Batch Id
      * @param {*} [options] Override http request options.
      */
-    public getOrderBatch (appId: string, storeId: number, orderBatchId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderBatch;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/order-batches/{orderBatchId}'
+    public getOrderBatch (appId: string, orderBatchId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderBatch;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/order-batches/{orderBatchId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'orderBatchId' + '}', encodeURIComponent(String(orderBatchId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -74326,11 +74322,6 @@ export class OrderBatchesApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getOrderBatch.');
-        }
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getOrderBatch.');
         }
 
         // verify required parameter 'orderBatchId' is not null or undefined
