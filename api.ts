@@ -75140,9 +75140,10 @@ export class OrdersApi {
      * @param limit Requested page limit
      * @param orderByRequestedForTime 
      * @param channels 
+     * @param orderIds Filter by the given orders
      * @param {*} [options] Override http request options.
      */
-    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, orderByRequestedForTime?: boolean, channels?: Array<'Unknown' | 'Ios' | 'Android' | 'Web' | 'Kiosk' | 'Pos' | 'TelephoneCall' | 'Sms' | 'PwaAndroid' | 'PwaIos' | 'Google'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
+    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, orderByRequestedForTime?: boolean, channels?: Array<'Unknown' | 'Ios' | 'Android' | 'Web' | 'Kiosk' | 'Pos' | 'TelephoneCall' | 'Sms' | 'PwaAndroid' | 'PwaIos' | 'Google'>, orderIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/orders/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -75180,6 +75181,10 @@ export class OrdersApi {
 
         if (channels !== undefined) {
             localVarQueryParameters['channels'] = ObjectSerializer.serialize(channels, "Array<'Unknown' | 'Ios' | 'Android' | 'Web' | 'Kiosk' | 'Pos' | 'TelephoneCall' | 'Sms' | 'PwaAndroid' | 'PwaIos' | 'Google'>");
+        }
+
+        if (orderIds !== undefined) {
+            localVarQueryParameters['orderIds'] = ObjectSerializer.serialize(orderIds, "Array<number>");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
