@@ -6315,7 +6315,7 @@ export class CountryWithAccountFieldsDefinitions {
 */
 export class CreateAccountModel {
     /**
-    * Email addres
+    * Email address
     */
     'Email': string;
     /**
@@ -6334,6 +6334,10 @@ export class CreateAccountModel {
     * Campaign ID
     */
     'Cid'?: string;
+    /**
+    * Google Recaptcha Token
+    */
+    'RecaptchaToken'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -6361,6 +6365,11 @@ export class CreateAccountModel {
         {
             "name": "Cid",
             "baseName": "Cid",
+            "type": "string"
+        },
+        {
+            "name": "RecaptchaToken",
+            "baseName": "RecaptchaToken",
             "type": "string"
         }    ];
 
