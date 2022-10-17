@@ -31379,6 +31379,10 @@ export class RequestPasswordResetModel {
     * Email address
     */
     'Email'?: string;
+    /**
+    * Google Recaptcha Token
+    */
+    'RecaptchaToken'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -31386,6 +31390,11 @@ export class RequestPasswordResetModel {
         {
             "name": "Email",
             "baseName": "Email",
+            "type": "string"
+        },
+        {
+            "name": "RecaptchaToken",
+            "baseName": "RecaptchaToken",
             "type": "string"
         }    ];
 
