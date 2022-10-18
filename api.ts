@@ -12268,7 +12268,8 @@ export namespace Field {
         DateTime = <any> 'DateTime',
         Time = <any> 'Time',
         Select = <any> 'Select',
-        Boolean = <any> 'Boolean'
+        Boolean = <any> 'Boolean',
+        ActionButton = <any> 'ActionButton'
     }
 }
 /**
