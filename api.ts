@@ -11789,6 +11789,95 @@ export class EventSearchResult {
 }
 
 /**
+* Execute Configuration
+*/
+export class ExecuteConfigurationActionRequest {
+    /**
+    * Key - of field triggering the action
+    */
+    'Key'?: string;
+    /**
+    * Action for element
+    */
+    'Action'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Key",
+            "baseName": "Key",
+            "type": "string"
+        },
+        {
+            "name": "Action",
+            "baseName": "Action",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ExecuteConfigurationActionRequest.attributeTypeMap;
+    }
+}
+
+/**
+* Result of configuration action execution
+*/
+export class ExecuteConfigurationActionResult {
+    /**
+    * Error message to display to the user (if not empty)
+    */
+    'ErrorMessage'?: string;
+    /**
+    * Information message to display to the user (if not empty)
+    */
+    'InfoMessage'?: string;
+    /**
+    * Redirect user to URL (if not empty)
+    */
+    'RedirectUrl'?: string;
+    /**
+    * Redirect target
+    */
+    'RedirectTarget'?: ExecuteConfigurationActionResult.RedirectTargetEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ErrorMessage",
+            "baseName": "ErrorMessage",
+            "type": "string"
+        },
+        {
+            "name": "InfoMessage",
+            "baseName": "InfoMessage",
+            "type": "string"
+        },
+        {
+            "name": "RedirectUrl",
+            "baseName": "RedirectUrl",
+            "type": "string"
+        },
+        {
+            "name": "RedirectTarget",
+            "baseName": "RedirectTarget",
+            "type": "ExecuteConfigurationActionResult.RedirectTargetEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ExecuteConfigurationActionResult.attributeTypeMap;
+    }
+}
+
+export namespace ExecuteConfigurationActionResult {
+    export enum RedirectTargetEnum {
+        Default = <any> 'Default',
+        NewWindow = <any> 'NewWindow',
+        Popup = <any> 'Popup'
+    }
+}
+/**
 * External event
 */
 export class ExternalStoreAuditLog {
@@ -49444,6 +49533,7 @@ let enumsMap: {[index: string]: any} = {
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
         "CustomerDeliveryTrackingOrder.CurrencyEnum": CustomerDeliveryTrackingOrder.CurrencyEnum,
         "DriverStore.PresenceEnum": DriverStore.PresenceEnum,
+        "ExecuteConfigurationActionResult.RedirectTargetEnum": ExecuteConfigurationActionResult.RedirectTargetEnum,
         "Field.FieldTypeEnum": Field.FieldTypeEnum,
         "FulfillmentInfo.DispatchTypeEnum": FulfillmentInfo.DispatchTypeEnum,
         "FulfillmentStatesConfiguration.StoreSelectorTypeEnum": FulfillmentStatesConfiguration.StoreSelectorTypeEnum,
@@ -49746,6 +49836,8 @@ let typeMap: {[index: string]: any} = {
     "EmvTerminal": EmvTerminal,
     "EmvTerminalWithAssignments": EmvTerminalWithAssignments,
     "EventSearchResult": EventSearchResult,
+    "ExecuteConfigurationActionRequest": ExecuteConfigurationActionRequest,
+    "ExecuteConfigurationActionResult": ExecuteConfigurationActionResult,
     "ExternalStoreAuditLog": ExternalStoreAuditLog,
     "ExternalStoreEvent": ExternalStoreEvent,
     "FeeSummary": FeeSummary,
@@ -52329,6 +52421,63 @@ export class AppStoreConfigurationsApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
+     * 
+     * @summary Process the OAuth response code (bounce back redirect from external OAuth provider after successful authentication)  the query string will contain state and code
+     * @param appStoreAppId 
+     * @param {*} [options] Override http request options.
+     */
+    public appStoreConfigurationsAppStoreHandleOauthResponseCode (appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/appstore/oauthresponse/{appStoreAppId}/responsecode'
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling appStoreConfigurationsAppStoreHandleOauthResponseCode.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * [BETA - this endpoint is under development, do not use it in your production system] This adds an Application to a Whitelabel that can later be configured to specific stores
      * @summary Create App store app configuration
      * @param appId App id
@@ -52454,6 +52603,84 @@ export class AppStoreConfigurationsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Execute configuration action on a configuration item (eg. handle button press)
+     * @param appId App Id
+     * @param appStoreAppId AppStore App Id
+     * @param configId AppStore App configuration Id
+     * @param executeConfigurationActionRequest Action request details
+     * @param {*} [options] Override http request options.
+     */
+    public executeConfigurationAction (appId: string, appStoreAppId: string, configId: string, executeConfigurationActionRequest: ExecuteConfigurationActionRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: ExecuteConfigurationActionResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/config/{configId}/action'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)))
+            .replace('{' + 'configId' + '}', encodeURIComponent(String(configId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling executeConfigurationAction.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling executeConfigurationAction.');
+        }
+
+        // verify required parameter 'configId' is not null or undefined
+        if (configId === null || configId === undefined) {
+            throw new Error('Required parameter configId was null or undefined when calling executeConfigurationAction.');
+        }
+
+        // verify required parameter 'executeConfigurationActionRequest' is not null or undefined
+        if (executeConfigurationActionRequest === null || executeConfigurationActionRequest === undefined) {
+            throw new Error('Required parameter executeConfigurationActionRequest was null or undefined when calling executeConfigurationAction.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(executeConfigurationActionRequest, "ExecuteConfigurationActionRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: ExecuteConfigurationActionResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "ExecuteConfigurationActionResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
