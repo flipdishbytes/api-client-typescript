@@ -45683,6 +45683,29 @@ export class UpdateAppStoreAppConfiguration {
 }
 
 /**
+* Update configuration values for the specified settings only
+*/
+export class UpdateAppStoreAppConfigurationValuesBatch {
+    /**
+    * Settings to update
+    */
+    'Settings'?: Array<Setting>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Settings",
+            "baseName": "Settings",
+            "type": "Array<Setting>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateAppStoreAppConfigurationValuesBatch.attributeTypeMap;
+    }
+}
+
+/**
 * App store app configuration webhook event
 */
 export class UpdateAppStoreAppConfigurationWebhookDTO {
@@ -50360,6 +50383,7 @@ let typeMap: {[index: string]: any} = {
     "UnRegisterCardReaderRequest": UnRegisterCardReaderRequest,
     "UpdateAppStoreApp": UpdateAppStoreApp,
     "UpdateAppStoreAppConfiguration": UpdateAppStoreAppConfiguration,
+    "UpdateAppStoreAppConfigurationValuesBatch": UpdateAppStoreAppConfigurationValuesBatch,
     "UpdateAppStoreAppConfigurationWebhookDTO": UpdateAppStoreAppConfigurationWebhookDTO,
     "UpdateCatalogGroupReference": UpdateCatalogGroupReference,
     "UpdateCatalogItem": UpdateCatalogItem,
@@ -52932,6 +52956,83 @@ export class AppStoreConfigurationsApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(updateAppStoreAppConfiguration, "UpdateAppStoreAppConfiguration")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Update AppStore App Configuration values, specified settings only
+     * @param appId 
+     * @param appStoreAppId 
+     * @param configId 
+     * @param updateAppStoreAppConfigurationValues 
+     * @param {*} [options] Override http request options.
+     */
+    public updateAppStoreConfigSettingValues (appId: string, appStoreAppId: string, configId: string, updateAppStoreAppConfigurationValues: UpdateAppStoreAppConfigurationValuesBatch, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/config/{configId}/updatesettings'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)))
+            .replace('{' + 'configId' + '}', encodeURIComponent(String(configId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateAppStoreConfigSettingValues.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling updateAppStoreConfigSettingValues.');
+        }
+
+        // verify required parameter 'configId' is not null or undefined
+        if (configId === null || configId === undefined) {
+            throw new Error('Required parameter configId was null or undefined when calling updateAppStoreConfigSettingValues.');
+        }
+
+        // verify required parameter 'updateAppStoreAppConfigurationValues' is not null or undefined
+        if (updateAppStoreAppConfigurationValues === null || updateAppStoreAppConfigurationValues === undefined) {
+            throw new Error('Required parameter updateAppStoreAppConfigurationValues was null or undefined when calling updateAppStoreConfigSettingValues.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(updateAppStoreAppConfigurationValues, "UpdateAppStoreAppConfigurationValuesBatch")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
