@@ -27558,6 +27558,10 @@ export class Payout {
     * Payout closing balance
     */
     'ClosingBalance'?: number;
+    /**
+    * Amount of sales through PayGreen (restaurant vouchers)
+    */
+    'PayGreenSalesAmount'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -27730,6 +27734,11 @@ export class Payout {
         {
             "name": "ClosingBalance",
             "baseName": "ClosingBalance",
+            "type": "number"
+        },
+        {
+            "name": "PayGreenSalesAmount",
+            "baseName": "PayGreenSalesAmount",
             "type": "number"
         }    ];
 
@@ -37527,6 +37536,14 @@ export class RevenueAdjustmentsDetails {
     */
     'RefundsCount'?: number;
     /**
+    * PayGreen sales
+    */
+    'PayGreenSalesAmount'?: number;
+    /**
+    * PayGreen processing fees charged to end-user
+    */
+    'PayGreenProcessingFees'?: number;
+    /**
     * Total revenue adjustments
     */
     'TotalOnlineRevenueAdjustments'?: number;
@@ -37552,6 +37569,16 @@ export class RevenueAdjustmentsDetails {
         {
             "name": "RefundsCount",
             "baseName": "RefundsCount",
+            "type": "number"
+        },
+        {
+            "name": "PayGreenSalesAmount",
+            "baseName": "PayGreenSalesAmount",
+            "type": "number"
+        },
+        {
+            "name": "PayGreenProcessingFees",
+            "baseName": "PayGreenProcessingFees",
             "type": "number"
         },
         {
