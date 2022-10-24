@@ -1351,6 +1351,10 @@ export class AppCompliance {
     * Type of compliance.  This controls if the Flipdish websites and apps display cookie consent banners and adjust cookies to be inline with various regulations.   You should set this correctly based on your region.
     */
     'ComplianceType'?: AppCompliance.ComplianceTypeEnum;
+    /**
+    * For EU countries, we should not allow to change the option to “Default banner”, but all other countries should be able to do so.
+    */
+    'AllowDisablingOfGdpr'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -1364,6 +1368,11 @@ export class AppCompliance {
             "name": "ComplianceType",
             "baseName": "ComplianceType",
             "type": "AppCompliance.ComplianceTypeEnum"
+        },
+        {
+            "name": "AllowDisablingOfGdpr",
+            "baseName": "AllowDisablingOfGdpr",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
