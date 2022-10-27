@@ -7951,10 +7951,6 @@ export class CreateVoucher {
     */
     'VoucherType'?: CreateVoucher.VoucherTypeEnum;
     /**
-    * Stores that this voucher applies to
-    */
-    'Stores'?: Array<number>;
-    /**
     * Add item details
     */
     'AddItemDetails'?: AddItemDetails;
@@ -7978,6 +7974,10 @@ export class CreateVoucher {
     * Voucher Description (Visible on printout)
     */
     'Description'?: string;
+    /**
+    * Stores that this voucher applies to
+    */
+    'Stores'?: Array<number>;
     /**
     * Valid on orders on or above
     */
@@ -8044,11 +8044,6 @@ export class CreateVoucher {
             "type": "CreateVoucher.VoucherTypeEnum"
         },
         {
-            "name": "Stores",
-            "baseName": "Stores",
-            "type": "Array<number>"
-        },
-        {
             "name": "AddItemDetails",
             "baseName": "AddItemDetails",
             "type": "AddItemDetails"
@@ -8077,6 +8072,11 @@ export class CreateVoucher {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
+        },
+        {
+            "name": "Stores",
+            "baseName": "Stores",
+            "type": "Array<number>"
         },
         {
             "name": "ValidOnOrdersOver",
@@ -47229,10 +47229,6 @@ export class Voucher {
     /**
     * Stores that this voucher applies to
     */
-    'Stores'?: Array<number>;
-    /**
-    * Stores that this voucher applies to
-    */
     'StoreNames'?: Array<string>;
     /**
     * Add item details
@@ -47258,6 +47254,10 @@ export class Voucher {
     * Voucher Description (Visible on printout)
     */
     'Description'?: string;
+    /**
+    * Stores that this voucher applies to
+    */
+    'Stores'?: Array<number>;
     /**
     * Valid on orders on or above
     */
@@ -47344,11 +47344,6 @@ export class Voucher {
             "type": "Voucher.CurrencyEnum"
         },
         {
-            "name": "Stores",
-            "baseName": "Stores",
-            "type": "Array<number>"
-        },
-        {
             "name": "StoreNames",
             "baseName": "StoreNames",
             "type": "Array<string>"
@@ -47382,6 +47377,11 @@ export class Voucher {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
+        },
+        {
+            "name": "Stores",
+            "baseName": "Stores",
+            "type": "Array<number>"
         },
         {
             "name": "ValidOnOrdersOver",
@@ -47611,6 +47611,10 @@ export class VoucherBase {
     */
     'Description'?: string;
     /**
+    * Stores that this voucher applies to
+    */
+    'Stores'?: Array<number>;
+    /**
     * Valid on orders on or above
     */
     'ValidOnOrdersOver'?: number;
@@ -47679,6 +47683,11 @@ export class VoucherBase {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
+        },
+        {
+            "name": "Stores",
+            "baseName": "Stores",
+            "type": "Array<number>"
         },
         {
             "name": "ValidOnOrdersOver",
@@ -48257,10 +48266,6 @@ export class VoucherWithStats {
     /**
     * Stores that this voucher applies to
     */
-    'Stores'?: Array<number>;
-    /**
-    * Stores that this voucher applies to
-    */
     'StoreNames'?: Array<string>;
     /**
     * Add item details
@@ -48286,6 +48291,10 @@ export class VoucherWithStats {
     * Voucher Description (Visible on printout)
     */
     'Description'?: string;
+    /**
+    * Stores that this voucher applies to
+    */
+    'Stores'?: Array<number>;
     /**
     * Valid on orders on or above
     */
@@ -48397,11 +48406,6 @@ export class VoucherWithStats {
             "type": "VoucherWithStats.CurrencyEnum"
         },
         {
-            "name": "Stores",
-            "baseName": "Stores",
-            "type": "Array<number>"
-        },
-        {
             "name": "StoreNames",
             "baseName": "StoreNames",
             "type": "Array<string>"
@@ -48435,6 +48439,11 @@ export class VoucherWithStats {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
+        },
+        {
+            "name": "Stores",
+            "baseName": "Stores",
+            "type": "Array<number>"
         },
         {
             "name": "ValidOnOrdersOver",
@@ -50567,55 +50576,6 @@ export class AccountsApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
-    }
-    /**
-     * 
-     * @summary [PRIVATE API] Temporary endpoint to return recaptcha FF
-     * @param {*} [options] Override http request options.
-     */
-    public accountsIsRecaptchaOn (options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/accounts/recaptcha/check';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
     }
     /**
      * 
@@ -83350,7 +83310,7 @@ export class VouchersApi {
      * @summary [PRIVATE API] Updates voucher
      * @param voucherId Id of the voucher
      * @param voucher Updated details for the voucher
-     * @param storeId List of store ids associated
+     * @param storeId List of store ids associated. Not needed if Stores are passed in the request body. Has preference over the request body stores. Kept for backwards compatibility.
      * @param percentValue Percent voucher value (can have 1 of 3)
      * @param lumpValue Lump voucher value (can have 1 of 3)
      * @param freeItemId Free Item Id (can have 1 of 3)
