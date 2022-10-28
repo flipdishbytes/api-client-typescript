@@ -12301,6 +12301,10 @@ export class Field {
     * Field Type
     */
     'FieldType': Field.FieldTypeEnum;
+    /**
+    * Is this field only editable by Flipdish?
+    */
+    'IsFlipdishRestricted'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -12349,6 +12353,11 @@ export class Field {
             "name": "FieldType",
             "baseName": "FieldType",
             "type": "Field.FieldTypeEnum"
+        },
+        {
+            "name": "IsFlipdishRestricted",
+            "baseName": "IsFlipdishRestricted",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
