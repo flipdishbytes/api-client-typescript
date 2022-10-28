@@ -59583,8 +59583,9 @@ export class ChannelsStoreMappingApi {
     }
     /**
      * 
-     * @param appId 
-     * @param channelId 
+     * @summary Gets the relationship between Flipdish Store and Channel Store
+     * @param appId Flipdish App Name Id
+     * @param channelId Flipdish Channel ID
      * @param {*} [options] Override http request options.
      */
     public channelsGetStoreChannelStoreMapping (appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreChannelStoreMapping;  }> {
@@ -59649,9 +59650,10 @@ export class ChannelsStoreMappingApi {
     }
     /**
      * 
-     * @param appId 
-     * @param channelId 
-     * @param stores 
+     * @summary Sets the relationship between Flipdish Store and Channel Store
+     * @param appId Flipdish App Name Id
+     * @param channelId Flipdish Channel ID
+     * @param stores Flipdish and Channel Store configuration
      * @param {*} [options] Override http request options.
      */
     public channelsSetStoreChannelStoreMapping (appId: string, channelId: number, stores: Array<ChannelStoreMapping>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreChannelStoreMapping;  }> {
