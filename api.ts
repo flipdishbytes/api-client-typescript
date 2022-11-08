@@ -83458,7 +83458,7 @@ export class WebhooksApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public craeteWebhookSubscription (oauthAppId: string, webhookSubscription: WebhookSubscription, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }> {
+    public createWebhookSubscription (oauthAppId: string, webhookSubscription: WebhookSubscription, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiIntegerResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/webhooks/{oauthAppId}/subscriptions'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -83468,17 +83468,17 @@ export class WebhooksApi {
 
         // verify required parameter 'oauthAppId' is not null or undefined
         if (oauthAppId === null || oauthAppId === undefined) {
-            throw new Error('Required parameter oauthAppId was null or undefined when calling craeteWebhookSubscription.');
+            throw new Error('Required parameter oauthAppId was null or undefined when calling createWebhookSubscription.');
         }
 
         // verify required parameter 'webhookSubscription' is not null or undefined
         if (webhookSubscription === null || webhookSubscription === undefined) {
-            throw new Error('Required parameter webhookSubscription was null or undefined when calling craeteWebhookSubscription.');
+            throw new Error('Required parameter webhookSubscription was null or undefined when calling createWebhookSubscription.');
         }
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling craeteWebhookSubscription.');
+            throw new Error('Required parameter appId was null or undefined when calling createWebhookSubscription.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
