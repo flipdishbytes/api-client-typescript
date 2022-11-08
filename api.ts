@@ -3156,6 +3156,101 @@ export namespace BankAccount {
 /**
 * 
 */
+export class BankAccountAssignedEvent {
+    /**
+    * The assigned bank account
+    */
+    'BankAccount'?: BankAccount;
+    /**
+    * Event description
+    */
+    'Description'?: string;
+    /**
+    * Updated by user
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "BankAccount",
+            "baseName": "BankAccount",
+            "type": "BankAccount"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BankAccountAssignedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* 
+*/
 export class BankAccountCreate {
     /**
     * Address lf the bank
@@ -10931,7 +11026,7 @@ export class EventSearchResult {
     /**
     * Bank account assigned event
     */
-    'BankAccountAssignedEvent'?: Array<BankAccountDeletedEvent>;
+    'BankAccountAssignedEvent'?: Array<BankAccountAssignedEvent>;
     /**
     * Hydra assigned event
     */
@@ -11564,7 +11659,7 @@ export class EventSearchResult {
         {
             "name": "BankAccountAssignedEvent",
             "baseName": "BankAccountAssignedEvent",
-            "type": "Array<BankAccountDeletedEvent>"
+            "type": "Array<BankAccountAssignedEvent>"
         },
         {
             "name": "HydraAssignedEvent",
@@ -49813,6 +49908,7 @@ let typeMap: {[index: string]: any} = {
     "AuditLogFieldChangeInformation": AuditLogFieldChangeInformation,
     "BalanceDetails": BalanceDetails,
     "BankAccount": BankAccount,
+    "BankAccountAssignedEvent": BankAccountAssignedEvent,
     "BankAccountCreate": BankAccountCreate,
     "BankAccountCreatedEvent": BankAccountCreatedEvent,
     "BankAccountDeletedEvent": BankAccountDeletedEvent,
