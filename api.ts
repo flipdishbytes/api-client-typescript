@@ -15155,6 +15155,29 @@ export class IndexPageBase {
 }
 
 /**
+* Intercom user hash
+*/
+export class IntercomUserHash {
+    /**
+    * User hash
+    */
+    'UserHash'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "UserHash",
+            "baseName": "UserHash",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return IntercomUserHash.attributeTypeMap;
+    }
+}
+
+/**
 * Job Address
 */
 export class JobAddress {
@@ -35370,6 +35393,29 @@ export class RestApiResultIndexPageBase {
 /**
 * Rest api result
 */
+export class RestApiResultIntercomUserHash {
+    /**
+    * Generic data object.
+    */
+    'Data': IntercomUserHash;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "IntercomUserHash"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultIntercomUserHash.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultJobResponse {
     /**
     * Generic data object.
@@ -50054,6 +50100,7 @@ let typeMap: {[index: string]: any} = {
     "HydraUnAssignedEvent": HydraUnAssignedEvent,
     "IndexPage": IndexPage,
     "IndexPageBase": IndexPageBase,
+    "IntercomUserHash": IntercomUserHash,
     "JobAddress": JobAddress,
     "JobCancellation": JobCancellation,
     "JobContact": JobContact,
@@ -50369,6 +50416,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultHydraStatus": RestApiResultHydraStatus,
     "RestApiResultIndexPage": RestApiResultIndexPage,
     "RestApiResultIndexPageBase": RestApiResultIndexPageBase,
+    "RestApiResultIntercomUserHash": RestApiResultIntercomUserHash,
     "RestApiResultJobResponse": RestApiResultJobResponse,
     "RestApiResultKioskCashSetting": RestApiResultKioskCashSetting,
     "RestApiResultKioskIotConnectionParameters": RestApiResultKioskIotConnectionParameters,
@@ -65660,6 +65708,105 @@ export class HydraApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum IntercomApiApiKeys {
+}
+
+export class IntercomApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: IntercomApiApiKeys, value: string) {
+        (this.authentications as any)[IntercomApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param {*} [options] Override http request options.
+     */
+    public userHash (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultIntercomUserHash;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/intercom/userHash';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultIntercomUserHash;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultIntercomUserHash");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
