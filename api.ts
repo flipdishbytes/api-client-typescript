@@ -12592,6 +12592,41 @@ export class FieldGroup {
     }
 }
 
+export class FirebaseApp {
+    'WhitelabelId'?: number;
+    'PackageId'?: string;
+    'FirebaseAppId'?: string;
+    'FirebaseProjectId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "WhitelabelId",
+            "baseName": "WhitelabelId",
+            "type": "number"
+        },
+        {
+            "name": "PackageId",
+            "baseName": "PackageId",
+            "type": "string"
+        },
+        {
+            "name": "FirebaseAppId",
+            "baseName": "FirebaseAppId",
+            "type": "string"
+        },
+        {
+            "name": "FirebaseProjectId",
+            "baseName": "FirebaseProjectId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FirebaseApp.attributeTypeMap;
+    }
+}
+
 /**
 * Base Event
 */
@@ -50081,6 +50116,7 @@ let typeMap: {[index: string]: any} = {
     "Field": Field,
     "FieldChangeInformation": FieldChangeInformation,
     "FieldGroup": FieldGroup,
+    "FirebaseApp": FirebaseApp,
     "FlipdishEventBase": FlipdishEventBase,
     "FlipdishFeesDetails": FlipdishFeesDetails,
     "FulfillentStatusActionItem": FulfillentStatusActionItem,
@@ -63249,6 +63285,168 @@ export class FilesApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "string");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum FirebaseAppsApiApiKeys {
+}
+
+export class FirebaseAppsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: FirebaseAppsApiApiKeys, value: string) {
+        (this.authentications as any)[FirebaseAppsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param firebaseApp 
+     * @param {*} [options] Override http request options.
+     */
+    public firebaseAppsAddFirebaseApp (firebaseApp: FirebaseApp, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/FirebaseApp';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'firebaseApp' is not null or undefined
+        if (firebaseApp === null || firebaseApp === undefined) {
+            throw new Error('Required parameter firebaseApp was null or undefined when calling firebaseAppsAddFirebaseApp.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(firebaseApp, "FirebaseApp")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param whitelabelId 
+     * @param {*} [options] Override http request options.
+     */
+    public firebaseAppsGetFirebaseApp (whitelabelId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/FirebaseApp/{whitelabelId}'
+            .replace('{' + 'whitelabelId' + '}', encodeURIComponent(String(whitelabelId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'whitelabelId' is not null or undefined
+        if (whitelabelId === null || whitelabelId === undefined) {
+            throw new Error('Required parameter whitelabelId was null or undefined when calling firebaseAppsGetFirebaseApp.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
