@@ -13116,10 +13116,6 @@ export class FulfillmentStatusConfigurationItem {
     * Whether state should fire off a notification to the customer
     */
     'Communication'?: boolean;
-    /**
-    * Integer for ordering results in choices (eg. dropdowns)
-    */
-    'VisualOrder'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -13193,11 +13189,6 @@ export class FulfillmentStatusConfigurationItem {
             "name": "Communication",
             "baseName": "Communication",
             "type": "boolean"
-        },
-        {
-            "name": "VisualOrder",
-            "baseName": "VisualOrder",
-            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
