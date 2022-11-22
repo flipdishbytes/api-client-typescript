@@ -40987,6 +40987,14 @@ export class StoreFeeConfig {
     */
     'PercentFeeTips'?: number;
     /**
+    * Gets or sets the percent fee tips for collection.
+    */
+    'PercentFeeTipsCollection'?: number;
+    /**
+    * Gets or sets the percent fee tips for delivery.
+    */
+    'PercentFeeTipsDelivery'?: number;
+    /**
     * Gets or sets the tax rate percent.
     */
     'TaxRatePercent'?: number;
@@ -41150,6 +41158,16 @@ export class StoreFeeConfig {
         {
             "name": "PercentFeeTips",
             "baseName": "PercentFeeTips",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeTipsCollection",
+            "baseName": "PercentFeeTipsCollection",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeTipsDelivery",
+            "baseName": "PercentFeeTipsDelivery",
             "type": "number"
         },
         {
