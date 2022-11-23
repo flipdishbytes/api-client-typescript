@@ -63396,7 +63396,7 @@ export class FirebaseAppsApi {
      * @param whitelabelId 
      * @param {*} [options] Override http request options.
      */
-    public firebaseAppsGetFirebaseApp (whitelabelId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public firebaseAppsGetFirebaseApp (whitelabelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/FirebaseApp/{whitelabelId}'
             .replace('{' + 'whitelabelId' + '}', encodeURIComponent(String(whitelabelId)));
         let localVarQueryParameters: any = {};
