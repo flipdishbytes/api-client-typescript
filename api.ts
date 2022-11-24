@@ -41072,6 +41072,14 @@ export class StoreFeeConfig {
     * Gets or sets the fixed fee cash orders ingest.
     */
     'FixedFeeCashOrdersIngest'?: number;
+    /**
+    * Gets or sets the percent fee for delivery orders.
+    */
+    'PercentFeeDelivery'?: number;
+    /**
+    * Gets or sets the fixed fee for delivery orders.
+    */
+    'FixedFeeDelivery'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -41259,6 +41267,16 @@ export class StoreFeeConfig {
         {
             "name": "FixedFeeCashOrdersIngest",
             "baseName": "FixedFeeCashOrdersIngest",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeDelivery",
+            "baseName": "PercentFeeDelivery",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeDelivery",
+            "baseName": "FixedFeeDelivery",
             "type": "number"
         }    ];
 
@@ -78742,6 +78760,244 @@ export class RestaurantVouchersPayGreenApi {
         });
     }
 }
+export enum StoreFeeConfigsApiApiKeys {
+}
+
+export class StoreFeeConfigsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: StoreFeeConfigsApiApiKeys, value: string) {
+        (this.authentications as any)[StoreFeeConfigsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Get processing fee configs by store identifier
+     * @param storeId Store identifier
+     * @param appNameId App Name Id(Not used, still here for compatability reasons)
+     * @param {*} [options] Override http request options.
+     */
+    public getProcessingFeeConfigsByStoreId (storeId: number, appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getProcessingFeeConfigsByStoreId.');
+        }
+
+        if (appNameId !== undefined) {
+            localVarQueryParameters['appNameId'] = ObjectSerializer.serialize(appNameId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultProcessingFeeConfig");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get processing fee configs by store identifier and paymentAccountType
+     * @param storeId Store identifier
+     * @param paymentAccountType 
+     * @param appNameId App Name Id(Not used, still here for compatability reasons)
+     * @param {*} [options] Override http request options.
+     */
+    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: 'Card' | 'Cash' | 'Ideal' | 'Bancontact' | 'Giropay' | 'Eps' | 'Emv' | 'PayPal' | 'PayGreen', appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs/{paymentAccountType}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'paymentAccountType' + '}', encodeURIComponent(String(paymentAccountType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getProcessingFeeConfigsByStoreIdAndPaymentAccountType.');
+        }
+
+        // verify required parameter 'paymentAccountType' is not null or undefined
+        if (paymentAccountType === null || paymentAccountType === undefined) {
+            throw new Error('Required parameter paymentAccountType was null or undefined when calling getProcessingFeeConfigsByStoreIdAndPaymentAccountType.');
+        }
+
+        if (appNameId !== undefined) {
+            localVarQueryParameters['appNameId'] = ObjectSerializer.serialize(appNameId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultProcessingFeeConfig");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get Store feeConfig
+     * @param storeId Store identifier
+     * @param {*} [options] Override http request options.
+     */
+    public getStoreFeeConfig (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: StoreFeeConfig;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/feeConfig'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getStoreFeeConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: StoreFeeConfig;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "StoreFeeConfig");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
 export enum StoreGroupsApiApiKeys {
 }
 
@@ -80310,137 +80566,6 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get processing fee configs by store identifier
-     * @param storeId Store identifier
-     * @param appNameId App Name Id(Not used, still here for compatability reasons)
-     * @param {*} [options] Override http request options.
-     */
-    public getProcessingFeeConfigsByStoreId (storeId: number, appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs'
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getProcessingFeeConfigsByStoreId.');
-        }
-
-        if (appNameId !== undefined) {
-            localVarQueryParameters['appNameId'] = ObjectSerializer.serialize(appNameId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultProcessingFeeConfig");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Get processing fee configs by store identifier
-     * @param storeId Store identifier
-     * @param paymentAccountType 
-     * @param appNameId App Name Id(Not used, still here for compatability reasons)
-     * @param {*} [options] Override http request options.
-     */
-    public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: 'Card' | 'Cash' | 'Ideal' | 'Bancontact' | 'Giropay' | 'Eps' | 'Emv' | 'PayPal' | 'PayGreen', appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/processingfeeconfigs/{paymentAccountType}'
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
-            .replace('{' + 'paymentAccountType' + '}', encodeURIComponent(String(paymentAccountType)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getProcessingFeeConfigsByStoreIdAndPaymentAccountType.');
-        }
-
-        // verify required parameter 'paymentAccountType' is not null or undefined
-        if (paymentAccountType === null || paymentAccountType === undefined) {
-            throw new Error('Required parameter paymentAccountType was null or undefined when calling getProcessingFeeConfigsByStoreIdAndPaymentAccountType.');
-        }
-
-        if (appNameId !== undefined) {
-            localVarQueryParameters['appNameId'] = ObjectSerializer.serialize(appNameId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultProcessingFeeConfig");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @summary Get store by identifier
      * @param storeId Store identifier
      * @param {*} [options] Override http request options.
@@ -80487,63 +80612,6 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultStore");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @summary Retrieve Store feeConfig
-     * @param storeId Store identifier
-     * @param {*} [options] Override http request options.
-     */
-    public getStoreFeeConfig (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: StoreFeeConfig;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/feeConfig'
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getStoreFeeConfig.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: StoreFeeConfig;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "StoreFeeConfig");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
