@@ -12869,6 +12869,10 @@ export class FulfillmentStatesConfiguration {
     */
     'States'?: Array<FulfillmentStatusConfigurationItem>;
     /**
+    * Enable automatic transitions
+    */
+    'AutomaticTransitionsEnabled'?: boolean;
+    /**
     * AppId
     */
     'AppId'?: string;
@@ -12896,6 +12900,11 @@ export class FulfillmentStatesConfiguration {
             "name": "States",
             "baseName": "States",
             "type": "Array<FulfillmentStatusConfigurationItem>"
+        },
+        {
+            "name": "AutomaticTransitionsEnabled",
+            "baseName": "AutomaticTransitionsEnabled",
+            "type": "boolean"
         },
         {
             "name": "AppId",
@@ -46180,6 +46189,10 @@ export class UpdateFulfillmentStatesConfiguration {
     */
     'States'?: Array<FulfillmentStatusConfigurationItem>;
     /**
+    * Enable automatic transitions
+    */
+    'AutomaticTransitionsEnabled'?: boolean;
+    /**
     * Name
     */
     'Name'?: string;
@@ -46201,6 +46214,11 @@ export class UpdateFulfillmentStatesConfiguration {
             "name": "States",
             "baseName": "States",
             "type": "Array<FulfillmentStatusConfigurationItem>"
+        },
+        {
+            "name": "AutomaticTransitionsEnabled",
+            "baseName": "AutomaticTransitionsEnabled",
+            "type": "boolean"
         },
         {
             "name": "Name",
