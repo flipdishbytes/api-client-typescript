@@ -41081,6 +41081,14 @@ export class StoreFeeConfig {
     * Gets or sets the fixed fee cash orders ingest.
     */
     'FixedFeeCashOrdersIngest'?: number;
+    /**
+    * Gets or sets the percent fee for delivery orders.
+    */
+    'PercentFeeDelivery'?: number;
+    /**
+    * Gets or sets the fixed fee for delivery orders.
+    */
+    'FixedFeeDelivery'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -41268,6 +41276,16 @@ export class StoreFeeConfig {
         {
             "name": "FixedFeeCashOrdersIngest",
             "baseName": "FixedFeeCashOrdersIngest",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeDelivery",
+            "baseName": "PercentFeeDelivery",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeDelivery",
+            "baseName": "FixedFeeDelivery",
             "type": "number"
         }    ];
 
