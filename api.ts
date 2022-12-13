@@ -13125,6 +13125,10 @@ export class FulfillmentStatusConfigurationItem {
     * Whether state should fire off a notification to the customer
     */
     'Communication'?: boolean;
+    /**
+    * Image (image filename, relative, not absolute URL)
+    */
+    'Image'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -13198,6 +13202,11 @@ export class FulfillmentStatusConfigurationItem {
             "name": "Communication",
             "baseName": "Communication",
             "type": "boolean"
+        },
+        {
+            "name": "Image",
+            "baseName": "Image",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
