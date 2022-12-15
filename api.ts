@@ -5131,11 +5131,11 @@ export class CatalogGroupCreatedEvent {
 }
 
 /**
-* Reference to an existing {Flipdish.PublicModels.V1.Catalog.Groups.Group}
+* Reference to an existing {Flipdish.Menus.PublicModels.V1.Catalog.Groups.Group}
 */
 export class CatalogGroupReference {
     /**
-    * Details of the referenced {Flipdish.PublicModels.V1.Catalog.Items.CatalogItem}
+    * Details of the referenced {Flipdish.Menus.PublicModels.V1.Catalog.Items.CatalogItem}
     */
     'Group'?: Group;
     /**
@@ -6684,7 +6684,7 @@ export namespace CreateAppStoreApp {
     }
 }
 /**
-* Information to create a reference to a {Flipdish.PublicModels.V1.Catalog.Groups.Group}
+* Information to create a reference to a {Flipdish.Menus.PublicModels.V1.Catalog.Groups.Group}
 */
 export class CreateCatalogGroupReference {
     /**
@@ -7688,7 +7688,7 @@ export class CreateMetadata {
 }
 
 /**
-* Information to create a {Flipdish.PublicModels.V1.Metafields.MetafieldDefinition}
+* Information to create a {Flipdish.Metafields.PublicModels.V1.MetafieldDefinition}
 */
 export class CreateMetafieldDefinition {
     /**
@@ -7696,7 +7696,7 @@ export class CreateMetafieldDefinition {
     */
     'IsReadOnly'?: boolean;
     /**
-    * The Metafield will extend the specified {Flipdish.PublicModels.V1.Metafields.MetafieldDefinitionBase.OwnerEntity}
+    * The Metafield will extend the specified {Flipdish.Metafields.PublicModels.V1.MetafieldDefinitionBase.OwnerEntity}
     */
     'OwnerEntity'?: CreateMetafieldDefinition.OwnerEntityEnum;
     /**
@@ -7927,7 +7927,7 @@ export namespace CreateProduct {
     }
 }
 /**
-* Information to create a reference to a {Flipdish.PublicModels.V1.Catalog.Product}
+* Information to create a reference to a {Flipdish.Menus.PublicModels.V1.Catalog.Product}
 */
 export class CreateProductReference {
     /**
@@ -13584,11 +13584,11 @@ export namespace Group {
     }
 }
 /**
-* Reference to an existing {Flipdish.PublicModels.V1.Catalog.Groups.Group}
+* Reference to an existing {Flipdish.Menus.PublicModels.V1.Catalog.Groups.Group}
 */
 export class GroupReference {
     /**
-    * Details of the referenced {Flipdish.PublicModels.V1.Catalog.Products.GroupReference.Group}
+    * Details of the referenced {Flipdish.Menus.PublicModels.V1.Catalog.Products.GroupReference.Group}
     */
     'Group'?: Group;
     /**
@@ -22655,7 +22655,7 @@ export class MetafieldDefinition {
     */
     'IsReadOnly'?: boolean;
     /**
-    * The Metafield will extend the specified {Flipdish.PublicModels.V1.Metafields.MetafieldDefinitionBase.OwnerEntity}
+    * The Metafield will extend the specified {Flipdish.Metafields.PublicModels.V1.MetafieldDefinitionBase.OwnerEntity}
     */
     'OwnerEntity'?: MetafieldDefinition.OwnerEntityEnum;
     /**
@@ -22754,7 +22754,7 @@ export namespace MetafieldDefinition {
 */
 export class MetafieldDefinitionRecommendation {
     /**
-    * The Metafield will extend the specified {Flipdish.PublicModels.V1.Metafields.MetafieldDefinitionBase.OwnerEntity}
+    * The Metafield will extend the specified {Flipdish.Metafields.PublicModels.V1.MetafieldDefinitionBase.OwnerEntity}
     */
     'OwnerEntity'?: MetafieldDefinitionRecommendation.OwnerEntityEnum;
     /**
@@ -27256,7 +27256,7 @@ export class OtherChargesDetails {
 }
 
 /**
-* OwnerEntity information to configure its {Flipdish.PublicModels.V1.Metafields.MetafieldDefinition}s
+* OwnerEntity information to configure its {Flipdish.Metafields.PublicModels.V1.MetafieldDefinition}s
 */
 export class OwnerEntityConfiguration {
     /**
@@ -30918,11 +30918,11 @@ export namespace Product {
 */
 export class ProductReference {
     /**
-    * Details of the referenced {Flipdish.PublicModels.V1.Catalog.Groups.ProductReference.Product}
+    * Details of the referenced {Flipdish.Menus.PublicModels.V1.Catalog.Groups.ProductReference.Product}
     */
     'Item'?: Product;
     /**
-    * Details of the referenced {Flipdish.PublicModels.V1.Catalog.Groups.ProductReference.Product}
+    * Details of the referenced {Flipdish.Menus.PublicModels.V1.Catalog.Groups.ProductReference.Product}
     */
     'Product'?: Product;
     /**
@@ -46022,7 +46022,7 @@ export class UpdateAppStoreAppConfigurationWebhookDTO {
 }
 
 /**
-* Data to update a {Flipdish.PublicModels.V1.Catalog.Items.CatalogGroupReference}
+* Data to update a {Flipdish.Menus.PublicModels.V1.Catalog.Items.CatalogGroupReference}
 */
 export class UpdateCatalogGroupReference {
     /**
@@ -46352,7 +46352,7 @@ export class UpdateGroup {
 }
 
 /**
-* Data to update a {Flipdish.PublicModels.V1.Catalog.Products.GroupReference}
+* Data to update a {Flipdish.Menus.PublicModels.V1.Catalog.Products.GroupReference}
 */
 export class UpdateGroupReference {
     /**
@@ -46430,7 +46430,7 @@ export class UpdateLocationArea {
 }
 
 /**
-* Information to update a {Flipdish.PublicModels.V1.Metafields.MetafieldDefinition}
+* Information to update a {Flipdish.Metafields.PublicModels.V1.MetafieldDefinition}
 */
 export class UpdateMetafieldDefinition {
     /**
@@ -46674,7 +46674,7 @@ export class UpdateProduct {
 }
 
 /**
-* Data to update a {Flipdish.PublicModels.V1.Catalog.Groups.UpdateProductReference}
+* Data to update a {Flipdish.Menus.PublicModels.V1.Catalog.Groups.UpdateProductReference}
 */
 export class UpdateProductReference {
     /**
