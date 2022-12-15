@@ -31630,11 +31630,15 @@ export class RequestLoginPinModel {
 /**
 * Request login PIN response
 */
-export class RequestLoginPinResposne {
+export class RequestLoginPinResponse {
     /**
     * Login PIN sent via email to user
     */
     'LoginPinSentViaEmail'?: boolean;
+    /**
+    * All flipdishers must login via Okta
+    */
+    'ForceOktaLogin'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -31643,10 +31647,15 @@ export class RequestLoginPinResposne {
             "name": "LoginPinSentViaEmail",
             "baseName": "LoginPinSentViaEmail",
             "type": "boolean"
+        },
+        {
+            "name": "ForceOktaLogin",
+            "baseName": "ForceOktaLogin",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
-        return RequestLoginPinResposne.attributeTypeMap;
+        return RequestLoginPinResponse.attributeTypeMap;
     }
 }
 
@@ -50377,7 +50386,7 @@ let typeMap: {[index: string]: any} = {
     "Refund": Refund,
     "Reject": Reject,
     "RequestLoginPinModel": RequestLoginPinModel,
-    "RequestLoginPinResposne": RequestLoginPinResposne,
+    "RequestLoginPinResponse": RequestLoginPinResponse,
     "RequestPasswordResetModel": RequestPasswordResetModel,
     "RequestPasswordResetPinResponse": RequestPasswordResetPinResponse,
     "Response": Response,
@@ -51209,8 +51218,57 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Login with username and password
-     * @param loginModel Login model
+     * @summary Login with SSO token
+     * @param {*} [options] Override http request options.
+     */
+    public loginSso (options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts/login/sso';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Login with email and pin
+     * @param loginModel Login with pin model
      * @param {*} [options] Override http request options.
      */
     public loginWithPin (loginModel: LoginWithPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -51433,7 +51491,7 @@ export class AccountsApi {
      * @param requestLoginPinRequest Request login PIN request
      * @param {*} [options] Override http request options.
      */
-    public requestLoginPin (requestLoginPinRequest: RequestLoginPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RequestLoginPinResposne;  }> {
+    public requestLoginPin (requestLoginPinRequest: RequestLoginPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RequestLoginPinResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/pin';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -51469,12 +51527,12 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RequestLoginPinResposne;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RequestLoginPinResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RequestLoginPinResposne");
+                    body = ObjectSerializer.deserialize(body, "RequestLoginPinResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
