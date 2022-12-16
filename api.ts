@@ -23695,6 +23695,29 @@ export class ObjectDisplayOrder {
 }
 
 /**
+* Okta Portal Feature Flag Value
+*/
+export class OktaPortalFeatureFlag {
+    /**
+    * Feature flag backend_portal_enableOktaWebApi value
+    */
+    'OktaPortalEnabled'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OktaPortalEnabled",
+            "baseName": "OktaPortalEnabled",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OktaPortalFeatureFlag.attributeTypeMap;
+    }
+}
+
+/**
 * Model for updating the onboarding config
 */
 export class OnboardingConfigUpdate {
@@ -36038,6 +36061,29 @@ export class RestApiResultOauthClientRedirectUri {
 
     static getAttributeTypeMap() {
         return RestApiResultOauthClientRedirectUri.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultOktaPortalFeatureFlag {
+    /**
+    * Generic data object.
+    */
+    'Data': OktaPortalFeatureFlag;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "OktaPortalFeatureFlag"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultOktaPortalFeatureFlag.attributeTypeMap;
     }
 }
 
@@ -50305,6 +50351,7 @@ let typeMap: {[index: string]: any} = {
     "OAuthTokenModel": OAuthTokenModel,
     "OauthClientRedirectUri": OauthClientRedirectUri,
     "ObjectDisplayOrder": ObjectDisplayOrder,
+    "OktaPortalFeatureFlag": OktaPortalFeatureFlag,
     "OnboardingConfigUpdate": OnboardingConfigUpdate,
     "OnboardingItemUpdate": OnboardingItemUpdate,
     "Order": Order,
@@ -50541,6 +50588,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultModelBase": RestApiResultModelBase,
     "RestApiResultOAuthApp": RestApiResultOAuthApp,
     "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
+    "RestApiResultOktaPortalFeatureFlag": RestApiResultOktaPortalFeatureFlag,
     "RestApiResultOrder": RestApiResultOrder,
     "RestApiResultOrderBatch": RestApiResultOrderBatch,
     "RestApiResultOrderBatchingConfiguration": RestApiResultOrderBatchingConfiguration,
@@ -64444,6 +64492,56 @@ export class HomeApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultHomeStatistics");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary [PRIVATE API] Get Okta Portal feature flag value
+     * @param {*} [options] Override http request options.
+     */
+    public getOktaPortalFeatureFlag (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOktaPortalFeatureFlag;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/home/okta-portal';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOktaPortalFeatureFlag;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultOktaPortalFeatureFlag");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
