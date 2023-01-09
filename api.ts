@@ -41153,6 +41153,14 @@ export class StoreFeeConfig {
     * Gets or sets the fixed fee for delivery orders.
     */
     'FixedFeeDelivery'?: number;
+    /**
+    * Gets or sets the percent fee for POS transactions.
+    */
+    'PercentFeeCardPosTransaction'?: number;
+    /**
+    * Gets or sets the fixed fee for POS transactions.
+    */
+    'FixedFeeCardPosTransaction'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -41350,6 +41358,16 @@ export class StoreFeeConfig {
         {
             "name": "FixedFeeDelivery",
             "baseName": "FixedFeeDelivery",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCardPosTransaction",
+            "baseName": "PercentFeeCardPosTransaction",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCardPosTransaction",
+            "baseName": "FixedFeeCardPosTransaction",
             "type": "number"
         }    ];
 
@@ -65376,7 +65394,7 @@ export class HydraApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get the status of Cash Payment Methon on Kisok
+     * @summary Get the status of Cash Payment Method on Kiosk
      * @param appId 
      * @param deviceId 
      * @param {*} [options] Override http request options.
@@ -66051,7 +66069,7 @@ export class HydraApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Update the Cash Payment Methon Visiability on Kisok
+     * @summary Update the Cash Payment Method Visibility on Kiosk
      * @param appId 
      * @param deviceId 
      * @param isCashEnabled 
