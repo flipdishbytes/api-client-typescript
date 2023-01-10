@@ -6843,7 +6843,7 @@ export class CreateFullMenu {
     */
     'ImageUrl'?: string;
     /**
-    * Menu sections (startes, main etc)
+    * Menu sections (starters, main etc)
     */
     'MenuSections'?: Array<CreateFullMenuSection>;
     /**
@@ -46293,6 +46293,10 @@ export class UpdateFulfillmentStatesConfiguration {
     */
     'AutomaticTransitionsEnabled'?: boolean;
     /**
+    * Set to true if a system configuration template is to be updated (permissions also needed)
+    */
+    'OverwriteSystemTemplate'?: boolean;
+    /**
     * Name
     */
     'Name'?: string;
@@ -46318,6 +46322,11 @@ export class UpdateFulfillmentStatesConfiguration {
         {
             "name": "AutomaticTransitionsEnabled",
             "baseName": "AutomaticTransitionsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "OverwriteSystemTemplate",
+            "baseName": "OverwriteSystemTemplate",
             "type": "boolean"
         },
         {
