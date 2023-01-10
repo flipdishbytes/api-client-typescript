@@ -6831,6 +6831,72 @@ export namespace CreateCatalogItem {
     }
 }
 /**
+* Create fulfillment states configuration
+*/
+export class CreateFulfillmentStatesConfiguration {
+    /**
+    * Stores id's
+    */
+    'StoreIds'?: Array<number>;
+    /**
+    * Store Selector Type
+    */
+    'StoreSelectorType'?: CreateFulfillmentStatesConfiguration.StoreSelectorTypeEnum;
+    /**
+    * Settings
+    */
+    'States'?: Array<FulfillmentStatusConfigurationItem>;
+    /**
+    * Enable automatic transitions
+    */
+    'AutomaticTransitionsEnabled'?: boolean;
+    /**
+    * Name
+    */
+    'Name'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreIds",
+            "baseName": "StoreIds",
+            "type": "Array<number>"
+        },
+        {
+            "name": "StoreSelectorType",
+            "baseName": "StoreSelectorType",
+            "type": "CreateFulfillmentStatesConfiguration.StoreSelectorTypeEnum"
+        },
+        {
+            "name": "States",
+            "baseName": "States",
+            "type": "Array<FulfillmentStatusConfigurationItem>"
+        },
+        {
+            "name": "AutomaticTransitionsEnabled",
+            "baseName": "AutomaticTransitionsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateFulfillmentStatesConfiguration.attributeTypeMap;
+    }
+}
+
+export namespace CreateFulfillmentStatesConfiguration {
+    export enum StoreSelectorTypeEnum {
+        None = <any> 'None',
+        Single = <any> 'Single',
+        Multiple = <any> 'Multiple'
+    }
+}
+/**
 * Create menu object
 */
 export class CreateFullMenu {
@@ -12944,29 +13010,6 @@ export namespace FulfillmentStatesConfiguration {
         Multiple = <any> 'Multiple'
     }
 }
-/**
-* Fulfillment States Configuration Create Base
-*/
-export class FulfillmentStatesConfigurationCreateBase {
-    /**
-    * Name
-    */
-    'Name'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return FulfillmentStatesConfigurationCreateBase.attributeTypeMap;
-    }
-}
-
 /**
 * App store app configuration header information
 */
@@ -46277,6 +46320,10 @@ export class UpdateDriverProfileModel {
 */
 export class UpdateFulfillmentStatesConfiguration {
     /**
+    * Set to true if a system configuration template is to be updated (permissions also needed)
+    */
+    'OverwriteSystemTemplate'?: boolean;
+    /**
     * Stores id's
     */
     'StoreIds'?: Array<number>;
@@ -46293,10 +46340,6 @@ export class UpdateFulfillmentStatesConfiguration {
     */
     'AutomaticTransitionsEnabled'?: boolean;
     /**
-    * Set to true if a system configuration template is to be updated (permissions also needed)
-    */
-    'OverwriteSystemTemplate'?: boolean;
-    /**
     * Name
     */
     'Name'?: string;
@@ -46304,6 +46347,11 @@ export class UpdateFulfillmentStatesConfiguration {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OverwriteSystemTemplate",
+            "baseName": "OverwriteSystemTemplate",
+            "type": "boolean"
+        },
         {
             "name": "StoreIds",
             "baseName": "StoreIds",
@@ -46322,11 +46370,6 @@ export class UpdateFulfillmentStatesConfiguration {
         {
             "name": "AutomaticTransitionsEnabled",
             "baseName": "AutomaticTransitionsEnabled",
-            "type": "boolean"
-        },
-        {
-            "name": "OverwriteSystemTemplate",
-            "baseName": "OverwriteSystemTemplate",
             "type": "boolean"
         },
         {
@@ -49904,6 +49947,7 @@ let enumsMap: {[index: string]: any} = {
         "CreateAppStoreApp.CountriesEnum": CreateAppStoreApp.CountriesEnum,
         "CreateCatalogGroupReference.GroupTypeEnum": CreateCatalogGroupReference.GroupTypeEnum,
         "CreateCatalogItem.ItemTypeEnum": CreateCatalogItem.ItemTypeEnum,
+        "CreateFulfillmentStatesConfiguration.StoreSelectorTypeEnum": CreateFulfillmentStatesConfiguration.StoreSelectorTypeEnum,
         "CreateFullMenu.MenuSectionBehaviourEnum": CreateFullMenu.MenuSectionBehaviourEnum,
         "CreateFullMenu.TaxTypeEnum": CreateFullMenu.TaxTypeEnum,
         "CreateFullMenuItemOptionSet.CellLayoutTypeEnum": CreateFullMenuItemOptionSet.CellLayoutTypeEnum,
@@ -50171,6 +50215,7 @@ let typeMap: {[index: string]: any} = {
     "CreateAppStoreApp": CreateAppStoreApp,
     "CreateCatalogGroupReference": CreateCatalogGroupReference,
     "CreateCatalogItem": CreateCatalogItem,
+    "CreateFulfillmentStatesConfiguration": CreateFulfillmentStatesConfiguration,
     "CreateFullMenu": CreateFullMenu,
     "CreateFullMenuItemOptionSet": CreateFullMenuItemOptionSet,
     "CreateFullMenuItemOptionSetItem": CreateFullMenuItemOptionSetItem,
@@ -50240,7 +50285,6 @@ let typeMap: {[index: string]: any} = {
     "FulfillentStatusActionItem": FulfillentStatusActionItem,
     "FulfillmentInfo": FulfillmentInfo,
     "FulfillmentStatesConfiguration": FulfillmentStatesConfiguration,
-    "FulfillmentStatesConfigurationCreateBase": FulfillmentStatesConfigurationCreateBase,
     "FulfillmentStatesConfigurationSummary": FulfillmentStatesConfigurationSummary,
     "FulfillmentStatesConfiguredStore": FulfillmentStatesConfiguredStore,
     "FulfillmentStatusConfigurationItem": FulfillmentStatusConfigurationItem,
@@ -63682,7 +63726,7 @@ export class FulfillmentStateConfigurationApi {
      * @param fulfillmentStateConfiguration Fulfillment state configuration
      * @param {*} [options] Override http request options.
      */
-    public createFulfillmentStatesConfig (appId: string, fulfillmentStateConfiguration: FulfillmentStatesConfigurationCreateBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFulfillmentStatesConfiguration;  }> {
+    public createFulfillmentStatesConfig (appId: string, fulfillmentStateConfiguration: CreateFulfillmentStatesConfiguration, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFulfillmentStatesConfiguration;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/fulfillment/configuration/states'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -63710,7 +63754,7 @@ export class FulfillmentStateConfigurationApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(fulfillmentStateConfiguration, "FulfillmentStatesConfigurationCreateBase")
+            body: ObjectSerializer.serialize(fulfillmentStateConfiguration, "CreateFulfillmentStatesConfiguration")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -63826,6 +63870,63 @@ export class FulfillmentStateConfigurationApi {
         // verify required parameter 'configId' is not null or undefined
         if (configId === null || configId === undefined) {
             throw new Error('Required parameter configId was null or undefined when calling getFulfillmentStatesConfiguration.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: FulfillmentStatesConfiguration;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "FulfillmentStatesConfiguration");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get fulfillment configuration template
+     * @param appId App id
+     * @param {*} [options] Override http request options.
+     */
+    public getFulfillmentStatesConfigurationTemplate (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: FulfillmentStatesConfiguration;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/fulfillment/configuration/states_template'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getFulfillmentStatesConfigurationTemplate.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
