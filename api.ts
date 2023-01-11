@@ -22242,6 +22242,10 @@ export class MenuSummary {
     */
     'VersionNumber'?: number;
     /**
+    * Menu Url
+    */
+    'MenuUrl'?: string;
+    /**
     * Name of Menu, only shown in portal
     */
     'Name'?: string;
@@ -22271,6 +22275,11 @@ export class MenuSummary {
             "name": "VersionNumber",
             "baseName": "VersionNumber",
             "type": "number"
+        },
+        {
+            "name": "MenuUrl",
+            "baseName": "MenuUrl",
+            "type": "string"
         },
         {
             "name": "Name",
