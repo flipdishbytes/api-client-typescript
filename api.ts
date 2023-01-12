@@ -13011,7 +13011,7 @@ export namespace FulfillmentStatesConfiguration {
     }
 }
 /**
-* App store app configuration header information
+* Fulfillment configuration header information
 */
 export class FulfillmentStatesConfigurationSummary {
     /**
@@ -63860,7 +63860,7 @@ export class FulfillmentStateConfigurationApi {
      * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get fulfillment configuration
      * @param appId App id
-     * @param configId App store app configuration id
+     * @param configId Fulfillment configuration id
      * @param {*} [options] Override http request options.
      */
     public getFulfillmentStatesConfiguration (appId: string, configId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: FulfillmentStatesConfiguration;  }> {
