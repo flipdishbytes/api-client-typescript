@@ -1006,6 +1006,10 @@ export class App {
     */
     'MapSouthWest'?: Coordinates;
     /**
+    * Key to be passed with Google Maps requests
+    */
+    'GoogleMapsApiKeyWeb'?: string;
+    /**
     * App name.   This is used in various places on the Apple App Store, Google Play Store, mobile apps and websites.
     */
     'Name'?: string;
@@ -1097,6 +1101,11 @@ export class App {
             "name": "MapSouthWest",
             "baseName": "MapSouthWest",
             "type": "Coordinates"
+        },
+        {
+            "name": "GoogleMapsApiKeyWeb",
+            "baseName": "GoogleMapsApiKeyWeb",
+            "type": "string"
         },
         {
             "name": "Name",
