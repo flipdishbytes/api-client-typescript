@@ -32982,6 +32982,29 @@ export class RestApiArrayResultStoreStatistics {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultSubscriptionSummary {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<SubscriptionSummary>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<SubscriptionSummary>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultSubscriptionSummary.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultSupportedCountry {
     /**
     * Generic data object.
@@ -44990,6 +45013,29 @@ export class StuartSettingsTransportPrices {
 }
 
 /**
+* Subscription Summary
+*/
+export class SubscriptionSummary {
+    /**
+    * The subscription identifier
+    */
+    'SubscriptionId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "SubscriptionId",
+            "baseName": "SubscriptionId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SubscriptionSummary.attributeTypeMap;
+    }
+}
+
+/**
 * Describes a supported country
 */
 export class SupportedCountry {
@@ -50568,6 +50614,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultStoreChannelStoreMapping": RestApiArrayResultStoreChannelStoreMapping,
     "RestApiArrayResultStoreListItem": RestApiArrayResultStoreListItem,
     "RestApiArrayResultStoreStatistics": RestApiArrayResultStoreStatistics,
+    "RestApiArrayResultSubscriptionSummary": RestApiArrayResultSubscriptionSummary,
     "RestApiArrayResultSupportedCountry": RestApiArrayResultSupportedCountry,
     "RestApiArrayResultTeammate": RestApiArrayResultTeammate,
     "RestApiArrayResultVoucherDataPoint": RestApiArrayResultVoucherDataPoint,
@@ -50794,6 +50841,7 @@ let typeMap: {[index: string]: any} = {
     "StripeTerminalPrivateKey": StripeTerminalPrivateKey,
     "StuartSettings": StuartSettings,
     "StuartSettingsTransportPrices": StuartSettingsTransportPrices,
+    "SubscriptionSummary": SubscriptionSummary,
     "SupportedCountry": SupportedCountry,
     "Teammate": Teammate,
     "TeammateBase": TeammateBase,
@@ -82903,6 +82951,123 @@ export class StuartApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum SubscriptionsApiApiKeys {
+}
+
+export class SubscriptionsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: SubscriptionsApiApiKeys, value: string) {
+        (this.authentications as any)[SubscriptionsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get list of subscriptions for an App
+     * @param appId Order Id
+     * @param storeId Store id to filter subscriptions (optional)
+     * @param {*} [options] Override http request options.
+     */
+    public getSubscriptionsForApp (appId: string, storeId: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSubscriptionSummary;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/subscriptions'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getSubscriptionsForApp.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getSubscriptionsForApp.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSubscriptionSummary;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultSubscriptionSummary");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
