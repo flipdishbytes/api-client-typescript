@@ -1308,7 +1308,8 @@ export namespace App {
         ViewPayGreenWhiteLabelConfiguration = <any> 'ViewPayGreenWhiteLabelConfiguration',
         CreatePayGreenWhiteLabelConfiguration = <any> 'CreatePayGreenWhiteLabelConfiguration',
         UpdatePayGreenWhiteLabelConfiguration = <any> 'UpdatePayGreenWhiteLabelConfiguration',
-        UpdatePayGreenStoreConfiguration = <any> 'UpdatePayGreenStoreConfiguration'
+        UpdatePayGreenStoreConfiguration = <any> 'UpdatePayGreenStoreConfiguration',
+        ViewSubscriptions = <any> 'ViewSubscriptions'
     }
     export enum ApplicationCategoryEnum {
         Restaurant = <any> 'Restaurant',
@@ -36956,6 +36957,29 @@ export class RestApiResultStuartSettings {
 /**
 * Rest api result
 */
+export class RestApiResultSubscription {
+    /**
+    * Generic data object.
+    */
+    'Data': Subscription;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Subscription"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultSubscription.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultTeammate {
     /**
     * Generic data object.
@@ -45022,6 +45046,29 @@ export class StuartSettingsTransportPrices {
 }
 
 /**
+* Subscription
+*/
+export class Subscription {
+    /**
+    * The subscription identifier
+    */
+    'SubscriptionId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "SubscriptionId",
+            "baseName": "SubscriptionId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Subscription.attributeTypeMap;
+    }
+}
+
+/**
 * Subscription Summary
 */
 export class SubscriptionSummary {
@@ -50759,6 +50806,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultStripeTerminalLocation": RestApiResultStripeTerminalLocation,
     "RestApiResultStripeTerminalPrivateKey": RestApiResultStripeTerminalPrivateKey,
     "RestApiResultStuartSettings": RestApiResultStuartSettings,
+    "RestApiResultSubscription": RestApiResultSubscription,
     "RestApiResultTeammate": RestApiResultTeammate,
     "RestApiResultTelemetrySeriesResult": RestApiResultTelemetrySeriesResult,
     "RestApiResultTipConfiguration": RestApiResultTipConfiguration,
@@ -50850,6 +50898,7 @@ let typeMap: {[index: string]: any} = {
     "StripeTerminalPrivateKey": StripeTerminalPrivateKey,
     "StuartSettings": StuartSettings,
     "StuartSettingsTransportPrices": StuartSettingsTransportPrices,
+    "Subscription": Subscription,
     "SubscriptionSummary": SubscriptionSummary,
     "SupportedCountry": SupportedCountry,
     "Teammate": Teammate,
@@ -83021,8 +83070,72 @@ export class SubscriptionsApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get subscription by id
+     * @param appId App Id
+     * @param subscriptionId Subscription Id
+     * @param {*} [options] Override http request options.
+     */
+    public getSubscriptionById (appId: string, subscriptionId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/subscriptions/{subscriptionId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getSubscriptionById.');
+        }
+
+        // verify required parameter 'subscriptionId' is not null or undefined
+        if (subscriptionId === null || subscriptionId === undefined) {
+            throw new Error('Required parameter subscriptionId was null or undefined when calling getSubscriptionById.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultSubscription");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get list of subscriptions for an App
-     * @param appId Order Id
+     * @param appId App Id
      * @param storeId Store id to filter subscriptions (optional)
      * @param {*} [options] Override http request options.
      */
