@@ -11283,6 +11283,10 @@ export class EventSearchResult {
     * Mobile Submission Updated Event
     */
     'MobileAppsSubmissionUpdatedEvent'?: Array<MobileAppsSubmissionUpdatedEvent>;
+    /**
+    * Store Fee Config Updated Event
+    */
+    'StoreFeeConfigUpdatedEvent'?: Array<StoreFeeConfigUpdatedEvent>;
 
     static discriminator: string | undefined = undefined;
 
@@ -11961,6 +11965,11 @@ export class EventSearchResult {
             "name": "MobileAppsSubmissionUpdatedEvent",
             "baseName": "MobileAppsSubmissionUpdatedEvent",
             "type": "Array<MobileAppsSubmissionUpdatedEvent>"
+        },
+        {
+            "name": "StoreFeeConfigUpdatedEvent",
+            "baseName": "StoreFeeConfigUpdatedEvent",
+            "type": "Array<StoreFeeConfigUpdatedEvent>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -41485,6 +41494,128 @@ export class StoreFeeConfig {
 }
 
 /**
+* Fee Config Updated Event
+*/
+export class StoreFeeConfigUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * Store group Id
+    */
+    'StoreGroupId'?: number;
+    /**
+    * User which updated this store address
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Diff between before and after
+    */
+    'Changes'?: string;
+    /**
+    * Store fee config
+    */
+    'StoreFeeConfig'?: StoreFeeConfig;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreGroupId",
+            "baseName": "StoreGroupId",
+            "type": "number"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Changes",
+            "baseName": "Changes",
+            "type": "string"
+        },
+        {
+            "name": "StoreFeeConfig",
+            "baseName": "StoreFeeConfig",
+            "type": "StoreFeeConfig"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreFeeConfigUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Store Group
 */
 export class StoreGroup {
@@ -50858,6 +50989,7 @@ let typeMap: {[index: string]: any} = {
     "StoreDeletedEvent": StoreDeletedEvent,
     "StoreEndOfDayReport": StoreEndOfDayReport,
     "StoreFeeConfig": StoreFeeConfig,
+    "StoreFeeConfigUpdatedEvent": StoreFeeConfigUpdatedEvent,
     "StoreGroup": StoreGroup,
     "StoreGroupBase": StoreGroupBase,
     "StoreGroupCreatedEvent": StoreGroupCreatedEvent,
