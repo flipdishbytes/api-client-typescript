@@ -33001,6 +33001,29 @@ export class RestApiArrayResultStoreStatistics {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultStripeCustomConnectedAccount {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<StripeCustomConnectedAccount>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<StripeCustomConnectedAccount>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultStripeCustomConnectedAccount.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultSubscriptionSummary {
     /**
     * Generic data object.
@@ -44924,6 +44947,88 @@ export namespace StripeConnectedAccountInfo {
     }
 }
 /**
+* Flipdish Stripe Custom Connected Account associated to the Store
+*/
+export class StripeCustomConnectedAccount {
+    /**
+    * Physical Restaurant Id
+    */
+    'StoreId'?: number;
+    /**
+    * Stripe's own connected account identifier
+    */
+    'StripeId'?: string;
+    /**
+    * Card payments capability status (Inactive, Pending, Active, Unrequested)
+    */
+    'CardPaymentsStatus'?: StripeCustomConnectedAccount.CardPaymentsStatusEnum;
+    /**
+    * Transfers capability status (Inactive, Pending, Active, Unrequested)
+    */
+    'TransfersStatus'?: StripeCustomConnectedAccount.TransfersStatusEnum;
+    /**
+    * Current status of the account
+    */
+    'AccountStatus'?: StripeCustomConnectedAccount.AccountStatusEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StripeId",
+            "baseName": "StripeId",
+            "type": "string"
+        },
+        {
+            "name": "CardPaymentsStatus",
+            "baseName": "CardPaymentsStatus",
+            "type": "StripeCustomConnectedAccount.CardPaymentsStatusEnum"
+        },
+        {
+            "name": "TransfersStatus",
+            "baseName": "TransfersStatus",
+            "type": "StripeCustomConnectedAccount.TransfersStatusEnum"
+        },
+        {
+            "name": "AccountStatus",
+            "baseName": "AccountStatus",
+            "type": "StripeCustomConnectedAccount.AccountStatusEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StripeCustomConnectedAccount.attributeTypeMap;
+    }
+}
+
+export namespace StripeCustomConnectedAccount {
+    export enum CardPaymentsStatusEnum {
+        Inactive = <any> 'Inactive',
+        Pending = <any> 'Pending',
+        Active = <any> 'Active',
+        Unrequested = <any> 'Unrequested'
+    }
+    export enum TransfersStatusEnum {
+        Inactive = <any> 'Inactive',
+        Pending = <any> 'Pending',
+        Active = <any> 'Active',
+        Unrequested = <any> 'Unrequested'
+    }
+    export enum AccountStatusEnum {
+        Disabled = <any> 'Disabled',
+        Enabled = <any> 'Enabled',
+        AdditionalInformationRequired = <any> 'AdditionalInformationRequired',
+        PendingVerification = <any> 'PendingVerification',
+        Unverified = <any> 'Unverified',
+        Rejected = <any> 'Rejected',
+        UpdateExternalAccount = <any> 'UpdateExternalAccount'
+    }
+}
+/**
 * Stripe Terminal Connection Token
 */
 export class StripeTerminalConnectionToken {
@@ -50338,6 +50443,9 @@ let enumsMap: {[index: string]: any} = {
         "StripeConnectedAccountInfo.AccountStatusEnum": StripeConnectedAccountInfo.AccountStatusEnum,
         "StripeConnectedAccountInfo.CardPaymentStatusEnum": StripeConnectedAccountInfo.CardPaymentStatusEnum,
         "StripeConnectedAccountInfo.PayoutScheduleIntervalEnum": StripeConnectedAccountInfo.PayoutScheduleIntervalEnum,
+        "StripeCustomConnectedAccount.CardPaymentsStatusEnum": StripeCustomConnectedAccount.CardPaymentsStatusEnum,
+        "StripeCustomConnectedAccount.TransfersStatusEnum": StripeCustomConnectedAccount.TransfersStatusEnum,
+        "StripeCustomConnectedAccount.AccountStatusEnum": StripeCustomConnectedAccount.AccountStatusEnum,
         "StuartSettings.PackageTypeEnum": StuartSettings.PackageTypeEnum,
         "StuartSettings.TransportTypeEnum": StuartSettings.TransportTypeEnum,
         "SupportedCountry.AddressLayoutEnum": SupportedCountry.AddressLayoutEnum,
@@ -50801,6 +50909,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultStoreChannelStoreMapping": RestApiArrayResultStoreChannelStoreMapping,
     "RestApiArrayResultStoreListItem": RestApiArrayResultStoreListItem,
     "RestApiArrayResultStoreStatistics": RestApiArrayResultStoreStatistics,
+    "RestApiArrayResultStripeCustomConnectedAccount": RestApiArrayResultStripeCustomConnectedAccount,
     "RestApiArrayResultSubscriptionSummary": RestApiArrayResultSubscriptionSummary,
     "RestApiArrayResultSupportedCountry": RestApiArrayResultSupportedCountry,
     "RestApiArrayResultTeammate": RestApiArrayResultTeammate,
@@ -51025,6 +51134,7 @@ let typeMap: {[index: string]: any} = {
     "StripeAccountLinkRequest": StripeAccountLinkRequest,
     "StripeConnectedAccount": StripeConnectedAccount,
     "StripeConnectedAccountInfo": StripeConnectedAccountInfo,
+    "StripeCustomConnectedAccount": StripeCustomConnectedAccount,
     "StripeTerminalConnectionToken": StripeTerminalConnectionToken,
     "StripeTerminalLocation": StripeTerminalLocation,
     "StripeTerminalPrivateKey": StripeTerminalPrivateKey,
@@ -82383,6 +82493,70 @@ export class StripeCustomConnectApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultStripeConnectedAccount");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Gets a list of stripe custom connect ids information
+     * @param storeId 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getCustomConnect (storeId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStripeCustomConnectedAccount;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/{storeId}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getCustomConnect.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getCustomConnect.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStripeCustomConnectedAccount;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultStripeCustomConnectedAccount");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
