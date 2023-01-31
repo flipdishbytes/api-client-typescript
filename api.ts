@@ -45288,7 +45288,15 @@ export class Subscription {
     /**
     * The subscription identifier
     */
-    'SubscriptionId'?: string;
+    'SubscriptionId': string;
+    /**
+    * Status
+    */
+    'Status': Subscription.StatusEnum;
+    /**
+    * Currency
+    */
+    'Currency': Subscription.CurrencyEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -45297,6 +45305,16 @@ export class Subscription {
             "name": "SubscriptionId",
             "baseName": "SubscriptionId",
             "type": "string"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "Subscription.StatusEnum"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "Subscription.CurrencyEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -45304,6 +45322,132 @@ export class Subscription {
     }
 }
 
+export namespace Subscription {
+    export enum StatusEnum {
+        Incomplete = <any> 'incomplete',
+        IncompleteExpired = <any> 'incomplete_expired',
+        Trialing = <any> 'trialing',
+        Active = <any> 'active',
+        PastDue = <any> 'past_due',
+        Canceled = <any> 'canceled',
+        Unpaid = <any> 'unpaid'
+    }
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD',
+        BMD = <any> 'BMD'
+    }
+}
 /**
 * Subscription Summary
 */
@@ -45311,7 +45455,15 @@ export class SubscriptionSummary {
     /**
     * The subscription identifier
     */
-    'SubscriptionId'?: string;
+    'SubscriptionId': string;
+    /**
+    * Status
+    */
+    'Status': SubscriptionSummary.StatusEnum;
+    /**
+    * Currency
+    */
+    'Currency': SubscriptionSummary.CurrencyEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -45320,6 +45472,16 @@ export class SubscriptionSummary {
             "name": "SubscriptionId",
             "baseName": "SubscriptionId",
             "type": "string"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "SubscriptionSummary.StatusEnum"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "SubscriptionSummary.CurrencyEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -45327,6 +45489,132 @@ export class SubscriptionSummary {
     }
 }
 
+export namespace SubscriptionSummary {
+    export enum StatusEnum {
+        Incomplete = <any> 'incomplete',
+        IncompleteExpired = <any> 'incomplete_expired',
+        Trialing = <any> 'trialing',
+        Active = <any> 'active',
+        PastDue = <any> 'past_due',
+        Canceled = <any> 'canceled',
+        Unpaid = <any> 'unpaid'
+    }
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD',
+        BMD = <any> 'BMD'
+    }
+}
 /**
 * Describes a supported country
 */
@@ -50448,6 +50736,10 @@ let enumsMap: {[index: string]: any} = {
         "StripeCustomConnectedAccount.AccountStatusEnum": StripeCustomConnectedAccount.AccountStatusEnum,
         "StuartSettings.PackageTypeEnum": StuartSettings.PackageTypeEnum,
         "StuartSettings.TransportTypeEnum": StuartSettings.TransportTypeEnum,
+        "Subscription.StatusEnum": Subscription.StatusEnum,
+        "Subscription.CurrencyEnum": Subscription.CurrencyEnum,
+        "SubscriptionSummary.StatusEnum": SubscriptionSummary.StatusEnum,
+        "SubscriptionSummary.CurrencyEnum": SubscriptionSummary.CurrencyEnum,
         "SupportedCountry.AddressLayoutEnum": SupportedCountry.AddressLayoutEnum,
         "SupportedCountry.PostCodeTypeEnum": SupportedCountry.PostCodeTypeEnum,
         "SupportedCountry.SupportRegionEnum": SupportedCountry.SupportRegionEnum,
