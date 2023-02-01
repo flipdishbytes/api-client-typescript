@@ -1701,6 +1701,10 @@ export class AppStoreApp {
     */
     'Support'?: AppStoreAppSupportInfo;
     /**
+    * Action URL for external functions, used for handling Portal configuration action buttons
+    */
+    'ExternalFunctionActionUrl'?: string;
+    /**
     * Name
     */
     'Name': string;
@@ -1792,6 +1796,11 @@ export class AppStoreApp {
             "name": "Support",
             "baseName": "Support",
             "type": "AppStoreAppSupportInfo"
+        },
+        {
+            "name": "ExternalFunctionActionUrl",
+            "baseName": "ExternalFunctionActionUrl",
+            "type": "string"
         },
         {
             "name": "Name",
@@ -1963,6 +1972,10 @@ export class AppStoreAppConfiguration {
     */
     'Support'?: AppStoreAppSupportInfo;
     /**
+    * Action URL for external functions, used for handling Portal configuration action buttons
+    */
+    'ExternalFunctionActionUrl'?: string;
+    /**
     * Name
     */
     'Name': string;
@@ -2075,6 +2088,11 @@ export class AppStoreAppConfiguration {
             "name": "Support",
             "baseName": "Support",
             "type": "AppStoreAppSupportInfo"
+        },
+        {
+            "name": "ExternalFunctionActionUrl",
+            "baseName": "ExternalFunctionActionUrl",
+            "type": "string"
         },
         {
             "name": "Name",
@@ -6533,6 +6551,10 @@ export class CreateAppStoreApp {
     */
     'Support'?: AppStoreAppSupportInfo;
     /**
+    * Action URL for external functions, used for handling Portal configuration action buttons
+    */
+    'ExternalFunctionActionUrl'?: string;
+    /**
     * Name
     */
     'Name': string;
@@ -6604,6 +6626,11 @@ export class CreateAppStoreApp {
             "name": "Support",
             "baseName": "Support",
             "type": "AppStoreAppSupportInfo"
+        },
+        {
+            "name": "ExternalFunctionActionUrl",
+            "baseName": "ExternalFunctionActionUrl",
+            "type": "string"
         },
         {
             "name": "Name",
@@ -46534,6 +46561,10 @@ export class UpdateAppStoreApp {
     */
     'Support'?: AppStoreAppSupportInfo;
     /**
+    * Action URL for external functions, used for handling Portal configuration action buttons
+    */
+    'ExternalFunctionActionUrl'?: string;
+    /**
     * Name
     */
     'Name': string;
@@ -46605,6 +46636,11 @@ export class UpdateAppStoreApp {
             "name": "Support",
             "baseName": "Support",
             "type": "AppStoreAppSupportInfo"
+        },
+        {
+            "name": "ExternalFunctionActionUrl",
+            "baseName": "ExternalFunctionActionUrl",
+            "type": "string"
         },
         {
             "name": "Name",
