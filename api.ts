@@ -45297,6 +45297,14 @@ export class Subscription {
     * Currency
     */
     'Currency': Subscription.CurrencyEnum;
+    /**
+    * Next invoice amount
+    */
+    'NextInvoiceAmount'?: number;
+    /**
+    * Next invoice billing date
+    */
+    'NextInvoiceBillingDate'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -45315,6 +45323,16 @@ export class Subscription {
             "name": "Currency",
             "baseName": "Currency",
             "type": "Subscription.CurrencyEnum"
+        },
+        {
+            "name": "NextInvoiceAmount",
+            "baseName": "NextInvoiceAmount",
+            "type": "number"
+        },
+        {
+            "name": "NextInvoiceBillingDate",
+            "baseName": "NextInvoiceBillingDate",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
@@ -45464,6 +45482,14 @@ export class SubscriptionSummary {
     * Currency
     */
     'Currency': SubscriptionSummary.CurrencyEnum;
+    /**
+    * Next invoice amount
+    */
+    'NextInvoiceAmount'?: number;
+    /**
+    * Next invoice billing date
+    */
+    'NextInvoiceBillingDate'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -45482,6 +45508,16 @@ export class SubscriptionSummary {
             "name": "Currency",
             "baseName": "Currency",
             "type": "SubscriptionSummary.CurrencyEnum"
+        },
+        {
+            "name": "NextInvoiceAmount",
+            "baseName": "NextInvoiceAmount",
+            "type": "number"
+        },
+        {
+            "name": "NextInvoiceBillingDate",
+            "baseName": "NextInvoiceBillingDate",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
