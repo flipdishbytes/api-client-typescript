@@ -1705,6 +1705,10 @@ export class AppStoreApp {
     */
     'ExternalFunctionActionUrl'?: string;
     /**
+    * Signing key for external function action calls
+    */
+    'ExternalFunctionSignatureKey'?: string;
+    /**
     * Name
     */
     'Name': string;
@@ -1800,6 +1804,11 @@ export class AppStoreApp {
         {
             "name": "ExternalFunctionActionUrl",
             "baseName": "ExternalFunctionActionUrl",
+            "type": "string"
+        },
+        {
+            "name": "ExternalFunctionSignatureKey",
+            "baseName": "ExternalFunctionSignatureKey",
             "type": "string"
         },
         {
@@ -1976,6 +1985,10 @@ export class AppStoreAppConfiguration {
     */
     'ExternalFunctionActionUrl'?: string;
     /**
+    * Signing key for external function action calls
+    */
+    'ExternalFunctionSignatureKey'?: string;
+    /**
     * Name
     */
     'Name': string;
@@ -2092,6 +2105,11 @@ export class AppStoreAppConfiguration {
         {
             "name": "ExternalFunctionActionUrl",
             "baseName": "ExternalFunctionActionUrl",
+            "type": "string"
+        },
+        {
+            "name": "ExternalFunctionSignatureKey",
+            "baseName": "ExternalFunctionSignatureKey",
             "type": "string"
         },
         {
@@ -6555,6 +6573,10 @@ export class CreateAppStoreApp {
     */
     'ExternalFunctionActionUrl'?: string;
     /**
+    * Signing key for external function action calls
+    */
+    'ExternalFunctionSignatureKey'?: string;
+    /**
     * Name
     */
     'Name': string;
@@ -6630,6 +6652,11 @@ export class CreateAppStoreApp {
         {
             "name": "ExternalFunctionActionUrl",
             "baseName": "ExternalFunctionActionUrl",
+            "type": "string"
+        },
+        {
+            "name": "ExternalFunctionSignatureKey",
+            "baseName": "ExternalFunctionSignatureKey",
             "type": "string"
         },
         {
@@ -46565,6 +46592,10 @@ export class UpdateAppStoreApp {
     */
     'ExternalFunctionActionUrl'?: string;
     /**
+    * Signing key for external function action calls
+    */
+    'ExternalFunctionSignatureKey'?: string;
+    /**
     * Name
     */
     'Name': string;
@@ -46640,6 +46671,11 @@ export class UpdateAppStoreApp {
         {
             "name": "ExternalFunctionActionUrl",
             "baseName": "ExternalFunctionActionUrl",
+            "type": "string"
+        },
+        {
+            "name": "ExternalFunctionSignatureKey",
+            "baseName": "ExternalFunctionSignatureKey",
             "type": "string"
         },
         {
