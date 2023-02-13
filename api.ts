@@ -45343,6 +45343,7 @@ export class Subscription {
     * The subscription identifier
     */
     'SubscriptionId': string;
+    'Name': string;
     /**
     * Status
     */
@@ -45366,6 +45367,11 @@ export class Subscription {
         {
             "name": "SubscriptionId",
             "baseName": "SubscriptionId",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
@@ -45528,6 +45534,7 @@ export class SubscriptionSummary {
     * The subscription identifier
     */
     'SubscriptionId': string;
+    'Name': string;
     /**
     * Status
     */
@@ -45551,6 +45558,11 @@ export class SubscriptionSummary {
         {
             "name": "SubscriptionId",
             "baseName": "SubscriptionId",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
             "type": "string"
         },
         {
