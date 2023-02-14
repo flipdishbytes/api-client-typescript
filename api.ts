@@ -73834,8 +73834,7 @@ export class MetafieldDefinitionsApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Create a Metafield Definition
+     * 
      * @param appId 
      * @param ownerEntity 
      * @param createMetafieldDefinition 
@@ -73905,8 +73904,7 @@ export class MetafieldDefinitionsApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get a Metafield Definition for the specified owner entity and key.
+     * 
      * @param appId 
      * @param ownerEntity 
      * @param key 
@@ -73976,8 +73974,7 @@ export class MetafieldDefinitionsApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get Metafield Definitions for the specified owner entity.
+     * 
      * @param appId 
      * @param ownerEntity 
      * @param searchTerm 
@@ -74055,8 +74052,7 @@ export class MetafieldDefinitionsApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get OwnerEntity Configurations which contain information to manage Metafield Definitions
+     * 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -74112,8 +74108,7 @@ export class MetafieldDefinitionsApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get OwnerEntity Definition Recommendations
+     * 
      * @param appId 
      * @param ownerEntity 
      * @param searchTerm 
@@ -74191,8 +74186,7 @@ export class MetafieldDefinitionsApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Update a Metafield Definition
+     * 
      * @param appId 
      * @param ownerEntity 
      * @param key 
