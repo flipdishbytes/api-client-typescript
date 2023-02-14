@@ -45360,6 +45360,10 @@ export class Subscription {
     * Next invoice billing date
     */
     'NextInvoiceBillingDate'?: Date;
+    /**
+    * User
+    */
+    'User'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -45393,6 +45397,11 @@ export class Subscription {
             "name": "NextInvoiceBillingDate",
             "baseName": "NextInvoiceBillingDate",
             "type": "Date"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -45551,6 +45560,10 @@ export class SubscriptionSummary {
     * Next invoice billing date
     */
     'NextInvoiceBillingDate'?: Date;
+    /**
+    * User
+    */
+    'User'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -45584,6 +45597,11 @@ export class SubscriptionSummary {
             "name": "NextInvoiceBillingDate",
             "baseName": "NextInvoiceBillingDate",
             "type": "Date"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -65400,7 +65418,7 @@ export class HomeApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get Okta Portal feature flag value
+     * @summary [PRIVATE API] Get Azure KeyVault OktaApiPortalLoginRequired
      * @param {*} [options] Override http request options.
      */
     public getOktaPortalFeatureFlag (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOktaPortalFeatureFlag;  }> {
