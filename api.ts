@@ -45381,7 +45381,11 @@ export class Subscription {
     /**
     * User
     */
-    'User'?: string;
+    'User': string;
+    /**
+    * Default payment description
+    */
+    'DefaultPaymentDescription': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -45419,6 +45423,11 @@ export class Subscription {
         {
             "name": "User",
             "baseName": "User",
+            "type": "string"
+        },
+        {
+            "name": "DefaultPaymentDescription",
+            "baseName": "DefaultPaymentDescription",
             "type": "string"
         }    ];
 
@@ -45581,7 +45590,11 @@ export class SubscriptionSummary {
     /**
     * User
     */
-    'User'?: string;
+    'User': string;
+    /**
+    * Default payment description
+    */
+    'DefaultPaymentDescription': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -45619,6 +45632,11 @@ export class SubscriptionSummary {
         {
             "name": "User",
             "baseName": "User",
+            "type": "string"
+        },
+        {
+            "name": "DefaultPaymentDescription",
+            "baseName": "DefaultPaymentDescription",
             "type": "string"
         }    ];
 
