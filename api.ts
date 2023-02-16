@@ -54552,6 +54552,69 @@ export class AppStoreDeveloperApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get external function action signing key for app
+     * @param oauthAppId OAuth App identifier
+     * @param appStoreAppId App store app id
+     * @param {*} [options] Override http request options.
+     */
+    public getExternalFunctionSigningKey (oauthAppId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oauthAppId}/appstore/apps/{appStoreAppId}/external_function_signing_key'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling getExternalFunctionSigningKey.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling getExternalFunctionSigningKey.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Update App store app
      * @param oauthAppId OAuth App identifier
      * @param appStoreAppId App store app id
