@@ -3575,6 +3575,10 @@ export class BankAccountCreatedEvent {
     */
     'BankAccount'?: BankAccount;
     /**
+    * Updated by user
+    */
+    'User'?: UserEventInfo;
+    /**
     * The event name
     */
     'EventName'?: string;
@@ -3606,6 +3610,11 @@ export class BankAccountCreatedEvent {
             "name": "BankAccount",
             "baseName": "BankAccount",
             "type": "BankAccount"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "EventName",
@@ -3652,6 +3661,10 @@ export class BankAccountDeletedEvent {
     */
     'BankAccount'?: BankAccount;
     /**
+    * Updated by user
+    */
+    'User'?: UserEventInfo;
+    /**
     * The event name
     */
     'EventName'?: string;
@@ -3683,6 +3696,11 @@ export class BankAccountDeletedEvent {
             "name": "BankAccount",
             "baseName": "BankAccount",
             "type": "BankAccount"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "EventName",
@@ -4309,6 +4327,10 @@ export class BankAccountUpdatedEvent {
     */
     'BankAccount'?: BankAccount;
     /**
+    * Updated by user
+    */
+    'User'?: UserEventInfo;
+    /**
     * The event name
     */
     'EventName'?: string;
@@ -4340,6 +4362,11 @@ export class BankAccountUpdatedEvent {
             "name": "BankAccount",
             "baseName": "BankAccount",
             "type": "BankAccount"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "EventName",
