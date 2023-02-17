@@ -12874,6 +12874,10 @@ export class FlipdishFeesDetails {
     */
     'CashSalesFees'?: number;
     /**
+    * Fees of POS sales
+    */
+    'PosSalesFees'?: number;
+    /**
     * Total online and cash sales
     */
     'TotalSalesFees'?: number;
@@ -12885,6 +12889,10 @@ export class FlipdishFeesDetails {
     * Fees on refunds for cash sales
     */
     'CashSalesRefundedFees'?: number;
+    /**
+    * Fees on refunds for POS sales
+    */
+    'PosSalesRefundedFees'?: number;
     /**
     * VAT on sales fees
     */
@@ -12908,6 +12916,11 @@ export class FlipdishFeesDetails {
             "type": "number"
         },
         {
+            "name": "PosSalesFees",
+            "baseName": "PosSalesFees",
+            "type": "number"
+        },
+        {
             "name": "TotalSalesFees",
             "baseName": "TotalSalesFees",
             "type": "number"
@@ -12920,6 +12933,11 @@ export class FlipdishFeesDetails {
         {
             "name": "CashSalesRefundedFees",
             "baseName": "CashSalesRefundedFees",
+            "type": "number"
+        },
+        {
+            "name": "PosSalesRefundedFees",
+            "baseName": "PosSalesRefundedFees",
             "type": "number"
         },
         {
