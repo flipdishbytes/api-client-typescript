@@ -19224,6 +19224,10 @@ export class Menu {
     */
     'TaxRates'?: Array<MenuTaxRate>;
     /**
+    * Identifier of App the menu is attached to
+    */
+    'AppId'?: string;
+    /**
     * Display menu section link on UI
     */
     'DisplaySectionLinks'?: boolean;
@@ -19283,6 +19287,11 @@ export class Menu {
             "name": "TaxRates",
             "baseName": "TaxRates",
             "type": "Array<MenuTaxRate>"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         },
         {
             "name": "DisplaySectionLinks",
