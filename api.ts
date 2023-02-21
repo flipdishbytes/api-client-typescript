@@ -38030,6 +38030,10 @@ export class RevenueAdjustmentsDetails {
     */
     'OnlineSalesRefundedAmount'?: number;
     /**
+    * POS Online sales refunds
+    */
+    'PosSalesRefundedAmount'?: number;
+    /**
     * Cash sales refunds
     */
     'CashSalesRefundedAmount'?: number;
@@ -38060,6 +38064,11 @@ export class RevenueAdjustmentsDetails {
         {
             "name": "OnlineSalesRefundedAmount",
             "baseName": "OnlineSalesRefundedAmount",
+            "type": "number"
+        },
+        {
+            "name": "PosSalesRefundedAmount",
+            "baseName": "PosSalesRefundedAmount",
             "type": "number"
         },
         {
@@ -84099,10 +84108,9 @@ export class SubscriptionsApi {
      * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get list of subscriptions for an App
      * @param appId App Id
-     * @param storeId Store id to filter subscriptions (optional)
      * @param {*} [options] Override http request options.
      */
-    public getSubscriptionsForApp (appId: string, storeId: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSubscriptionSummary;  }> {
+    public getSubscriptionsForApp (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSubscriptionSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/subscriptions'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -84112,15 +84120,6 @@ export class SubscriptionsApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getSubscriptionsForApp.');
-        }
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getSubscriptionsForApp.');
-        }
-
-        if (storeId !== undefined) {
-            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
