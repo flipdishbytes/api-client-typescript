@@ -84106,6 +84106,70 @@ export class SubscriptionsApi {
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get list of invoices for a subscription by id
+     * @param appId App Id
+     * @param subscriptionId Subscription Id
+     * @param {*} [options] Override http request options.
+     */
+    public getSubscriptionInvoices (appId: string, subscriptionId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/subscriptions/{subscriptionId}/invoices'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getSubscriptionInvoices.');
+        }
+
+        // verify required parameter 'subscriptionId' is not null or undefined
+        if (subscriptionId === null || subscriptionId === undefined) {
+            throw new Error('Required parameter subscriptionId was null or undefined when calling getSubscriptionInvoices.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultSubscription");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get list of subscriptions for an App
      * @param appId App Id
      * @param {*} [options] Override http request options.
