@@ -15383,6 +15383,207 @@ export class IntercomUserHash {
 }
 
 /**
+* Invoice
+*/
+export class Invoice {
+    /**
+    * The invoice identifier
+    */
+    'InvoiceId': string;
+    /**
+    * Invoice number
+    */
+    'Number': string;
+    /**
+    * Total
+    */
+    'Total'?: number;
+    /**
+    * Currency
+    */
+    'Currency': Invoice.CurrencyEnum;
+    /**
+    * Status
+    */
+    'Status': Invoice.StatusEnum;
+    /**
+    * Due Date
+    */
+    'DueDate'?: Date;
+    /**
+    * Pdf Link
+    */
+    'PdfLink': string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "InvoiceId",
+            "baseName": "InvoiceId",
+            "type": "string"
+        },
+        {
+            "name": "Number",
+            "baseName": "Number",
+            "type": "string"
+        },
+        {
+            "name": "Total",
+            "baseName": "Total",
+            "type": "number"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "Invoice.CurrencyEnum"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "Invoice.StatusEnum"
+        },
+        {
+            "name": "DueDate",
+            "baseName": "DueDate",
+            "type": "Date"
+        },
+        {
+            "name": "PdfLink",
+            "baseName": "PdfLink",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Invoice.attributeTypeMap;
+    }
+}
+
+export namespace Invoice {
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD',
+        BMD = <any> 'BMD'
+    }
+    export enum StatusEnum {
+        Draft = <any> 'draft',
+        Open = <any> 'open',
+        Paid = <any> 'paid',
+        Uncollectible = <any> 'uncollectible',
+        Void = <any> 'void'
+    }
+}
+/**
 * Job Address
 */
 export class JobAddress {
@@ -33743,6 +33944,56 @@ export class RestApiPaginationResultHydraDeviceDetails {
 /**
 * Rest api pagination result
 */
+export class RestApiPaginationResultInvoice {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<Invoice>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<Invoice>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultInvoice.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultMetafieldDefinition {
     /**
     * Current page index
@@ -50853,6 +51104,8 @@ let enumsMap: {[index: string]: any} = {
         "HydraDeviceDetails.DeviceTypeEnum": HydraDeviceDetails.DeviceTypeEnum,
         "HydraDeviceDetails.StatusEnum": HydraDeviceDetails.StatusEnum,
         "HydraStatus.UserTypeEnum": HydraStatus.UserTypeEnum,
+        "Invoice.CurrencyEnum": Invoice.CurrencyEnum,
+        "Invoice.StatusEnum": Invoice.StatusEnum,
         "KioskBluetoothInstallUpdateInitiateEvent.BluetoothTerminalTypeEnum": KioskBluetoothInstallUpdateInitiateEvent.BluetoothTerminalTypeEnum,
         "KioskBluetoothPairingModeEvent.BluetoothTerminalTypeEnum": KioskBluetoothPairingModeEvent.BluetoothTerminalTypeEnum,
         "KioskBluetoothTerminalCancelUpdateEvent.BluetoothTerminalTypeEnum": KioskBluetoothTerminalCancelUpdateEvent.BluetoothTerminalTypeEnum,
@@ -51196,6 +51449,7 @@ let typeMap: {[index: string]: any} = {
     "IndexPage": IndexPage,
     "IndexPageBase": IndexPageBase,
     "IntercomUserHash": IntercomUserHash,
+    "Invoice": Invoice,
     "JobAddress": JobAddress,
     "JobCancellation": JobCancellation,
     "JobContact": JobContact,
@@ -51455,6 +51709,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultGroup": RestApiPaginationResultGroup,
     "RestApiPaginationResultHttpRequestAndResponseLog": RestApiPaginationResultHttpRequestAndResponseLog,
     "RestApiPaginationResultHydraDeviceDetails": RestApiPaginationResultHydraDeviceDetails,
+    "RestApiPaginationResultInvoice": RestApiPaginationResultInvoice,
     "RestApiPaginationResultMetafieldDefinition": RestApiPaginationResultMetafieldDefinition,
     "RestApiPaginationResultMetafieldDefinitionRecommendation": RestApiPaginationResultMetafieldDefinitionRecommendation,
     "RestApiPaginationResultOAuthTokenModel": RestApiPaginationResultOAuthTokenModel,
@@ -84105,13 +84360,15 @@ export class SubscriptionsApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
+     * [BETA - this endpoint is under development, do not use it in your production system] Due to the nature of this request, page will always remain as 0.
      * @summary Get list of invoices for a subscription by id
      * @param appId App Id
      * @param subscriptionId Subscription Id
+     * @param limit Limit of invoices to return
+     * @param startingAfterId Id for use in pagination. This defines your last known invoice in the list. For instance, if you make a list request and receive 10 invoices, last invoice ends with in_xxx, your subsequent call should include startingAfterId&#x3D;in_xxx in order to fetch the next page of the invoices list.
      * @param {*} [options] Override http request options.
      */
-    public getSubscriptionInvoices (appId: string, subscriptionId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }> {
+    public getSubscriptionInvoices (appId: string, subscriptionId: string, limit?: number, startingAfterId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultInvoice;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/subscriptions/{subscriptionId}/invoices'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
@@ -84127,6 +84384,14 @@ export class SubscriptionsApi {
         // verify required parameter 'subscriptionId' is not null or undefined
         if (subscriptionId === null || subscriptionId === undefined) {
             throw new Error('Required parameter subscriptionId was null or undefined when calling getSubscriptionInvoices.');
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (startingAfterId !== undefined) {
+            localVarQueryParameters['startingAfterId'] = ObjectSerializer.serialize(startingAfterId, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -84153,12 +84418,12 @@ export class SubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultInvoice;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultSubscription");
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultInvoice");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
