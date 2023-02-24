@@ -27117,6 +27117,7 @@ export class OrderSummary {
     * OrderBatch information
     */
     'OrderBatchInfo'?: OrderBatchSummary;
+    'DeliveryLocation'?: DeliveryLocation;
 
     static discriminator: string | undefined = undefined;
 
@@ -27255,6 +27256,11 @@ export class OrderSummary {
             "name": "OrderBatchInfo",
             "baseName": "OrderBatchInfo",
             "type": "OrderBatchSummary"
+        },
+        {
+            "name": "DeliveryLocation",
+            "baseName": "DeliveryLocation",
+            "type": "DeliveryLocation"
         }    ];
 
     static getAttributeTypeMap() {
@@ -84437,9 +84443,10 @@ export class SubscriptionsApi {
      * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get list of subscriptions for an App
      * @param appId App Id
+     * @param excludeNotOwnedSubscriptions Exclude not owned subscriptions. Set to true to only view your subscriptions
      * @param {*} [options] Override http request options.
      */
-    public getSubscriptionsForApp (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSubscriptionSummary;  }> {
+    public getSubscriptionsForApp (appId: string, excludeNotOwnedSubscriptions?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSubscriptionSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/subscriptions'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -84449,6 +84456,10 @@ export class SubscriptionsApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getSubscriptionsForApp.');
+        }
+
+        if (excludeNotOwnedSubscriptions !== undefined) {
+            localVarQueryParameters['excludeNotOwnedSubscriptions'] = ObjectSerializer.serialize(excludeNotOwnedSubscriptions, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
