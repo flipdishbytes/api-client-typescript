@@ -37390,6 +37390,29 @@ export class RestApiResultStuartSettings {
 /**
 * Rest api result
 */
+export class RestApiResultSubscription {
+    /**
+    * Generic data object.
+    */
+    'Data': Subscription;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Subscription"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultSubscription.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultTeammate {
     /**
     * Generic data object.
@@ -51849,6 +51872,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultStripeTerminalLocation": RestApiResultStripeTerminalLocation,
     "RestApiResultStripeTerminalPrivateKey": RestApiResultStripeTerminalPrivateKey,
     "RestApiResultStuartSettings": RestApiResultStuartSettings,
+    "RestApiResultSubscription": RestApiResultSubscription,
     "RestApiResultTeammate": RestApiResultTeammate,
     "RestApiResultTelemetrySeriesResult": RestApiResultTelemetrySeriesResult,
     "RestApiResultTipConfiguration": RestApiResultTipConfiguration,
@@ -84320,7 +84344,7 @@ export class SubscriptionsApi {
      * @param subscriptionId Subscription Id
      * @param {*} [options] Override http request options.
      */
-    public getSubscriptionById (appId: string, subscriptionId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: Subscription;  }> {
+    public getSubscriptionById (appId: string, subscriptionId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/subscriptions/{subscriptionId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
@@ -84362,12 +84386,12 @@ export class SubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Subscription;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Subscription");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultSubscription");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
