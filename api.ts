@@ -15416,6 +15416,10 @@ export class Invoice {
     */
     'Status': Invoice.StatusEnum;
     /**
+    * The subscription identifier
+    */
+    'SubscriptionId'?: string;
+    /**
     * Due Date
     */
     'DueDate'?: Date;
@@ -15451,6 +15455,11 @@ export class Invoice {
             "name": "Status",
             "baseName": "Status",
             "type": "Invoice.StatusEnum"
+        },
+        {
+            "name": "SubscriptionId",
+            "baseName": "SubscriptionId",
+            "type": "string"
         },
         {
             "name": "DueDate",
@@ -33588,6 +33597,56 @@ export class RestApiEventSearchPaginationResult {
 }
 
 /**
+* Rest api finance search pagination result
+*/
+export class RestApiFinanceSearchPaginationResultInvoice {
+    /**
+    * Next page
+    */
+    'NextPage': string;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<Invoice>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "NextPage",
+            "baseName": "NextPage",
+            "type": "string"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<Invoice>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiFinanceSearchPaginationResultInvoice.attributeTypeMap;
+    }
+}
+
+/**
 * Rest Api Forbidden Result
 */
 export class RestApiForbiddenResult {
@@ -33980,56 +34039,6 @@ export class RestApiPaginationResultHydraDeviceDetails {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultHydraDeviceDetails.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api pagination result
-*/
-export class RestApiPaginationResultInvoice {
-    /**
-    * Current page index
-    */
-    'Page': number;
-    /**
-    * Current page size
-    */
-    'Limit': number;
-    /**
-    * Total record count
-    */
-    'TotalRecordCount': number;
-    /**
-    * Generic data object.
-    */
-    'Data': Array<Invoice>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Page",
-            "baseName": "Page",
-            "type": "number"
-        },
-        {
-            "name": "Limit",
-            "baseName": "Limit",
-            "type": "number"
-        },
-        {
-            "name": "TotalRecordCount",
-            "baseName": "TotalRecordCount",
-            "type": "number"
-        },
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Array<Invoice>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiPaginationResultInvoice.attributeTypeMap;
     }
 }
 
@@ -51742,6 +51751,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiDefaultResponse": RestApiDefaultResponse,
     "RestApiErrorResult": RestApiErrorResult,
     "RestApiEventSearchPaginationResult": RestApiEventSearchPaginationResult,
+    "RestApiFinanceSearchPaginationResultInvoice": RestApiFinanceSearchPaginationResultInvoice,
     "RestApiForbiddenResult": RestApiForbiddenResult,
     "RestApiIntegerResult": RestApiIntegerResult,
     "RestApiPaginationResultApp": RestApiPaginationResultApp,
@@ -51751,7 +51761,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultGroup": RestApiPaginationResultGroup,
     "RestApiPaginationResultHttpRequestAndResponseLog": RestApiPaginationResultHttpRequestAndResponseLog,
     "RestApiPaginationResultHydraDeviceDetails": RestApiPaginationResultHydraDeviceDetails,
-    "RestApiPaginationResultInvoice": RestApiPaginationResultInvoice,
     "RestApiPaginationResultMetafieldDefinition": RestApiPaginationResultMetafieldDefinition,
     "RestApiPaginationResultMetafieldDefinitionRecommendation": RestApiPaginationResultMetafieldDefinitionRecommendation,
     "RestApiPaginationResultOAuthTokenModel": RestApiPaginationResultOAuthTokenModel,
@@ -67669,6 +67678,128 @@ export class IntercomApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultIntercomUserHash");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum InvoicesApiApiKeys {
+}
+
+export class InvoicesApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: InvoicesApiApiKeys, value: string) {
+        (this.authentications as any)[InvoicesApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * [BETA - this endpoint is under development, do not use it in your production system] Due to the nature of this request, page will always remain as 0.
+     * @summary Get list of invoices
+     * @param appId App Id
+     * @param subscriptionId Subscription Id (optional)
+     * @param limit Limit of invoices to return
+     * @param pageId Id for use in pagination. Use the next_page value returned in a previous response to request subsequent results. Do not include this on the first call
+     * @param {*} [options] Override http request options.
+     */
+    public getInvoices (appId: string, subscriptionId?: string, limit?: number, pageId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/invoices'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getInvoices.');
+        }
+
+        if (subscriptionId !== undefined) {
+            localVarQueryParameters['subscriptionId'] = ObjectSerializer.serialize(subscriptionId, "string");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (pageId !== undefined) {
+            localVarQueryParameters['pageId'] = ObjectSerializer.serialize(pageId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiFinanceSearchPaginationResultInvoice");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -84392,80 +84523,6 @@ export class SubscriptionsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultSubscription");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * [BETA - this endpoint is under development, do not use it in your production system] Due to the nature of this request, page will always remain as 0.
-     * @summary Get list of invoices for a subscription by id
-     * @param appId App Id
-     * @param subscriptionId Subscription Id
-     * @param limit Limit of invoices to return
-     * @param startingAfterId Id for use in pagination. This defines your last known invoice in the list. For instance, if you make a list request and receive 10 invoices, last invoice ends with in_xxx, your subsequent call should include startingAfterId&#x3D;in_xxx in order to fetch the next page of the invoices list.
-     * @param {*} [options] Override http request options.
-     */
-    public getSubscriptionInvoices (appId: string, subscriptionId: string, limit?: number, startingAfterId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultInvoice;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/subscriptions/{subscriptionId}/invoices'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getSubscriptionInvoices.');
-        }
-
-        // verify required parameter 'subscriptionId' is not null or undefined
-        if (subscriptionId === null || subscriptionId === undefined) {
-            throw new Error('Required parameter subscriptionId was null or undefined when calling getSubscriptionInvoices.');
-        }
-
-        if (limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
-        }
-
-        if (startingAfterId !== undefined) {
-            localVarQueryParameters['startingAfterId'] = ObjectSerializer.serialize(startingAfterId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultInvoice;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultInvoice");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
