@@ -67738,7 +67738,7 @@ export class InvoicesApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system] Due to the nature of this request, page will always remain as 0.
+     * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get list of invoices
      * @param appId App Id
      * @param subscriptionId Subscription Id (optional)
