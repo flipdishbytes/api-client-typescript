@@ -38801,6 +38801,10 @@ export class SetPasswordWithPinModel {
     * New Password
     */
     'NewPassword': string;
+    /**
+    * Google Recaptcha Token
+    */
+    'RecaptchaToken'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -38813,6 +38817,11 @@ export class SetPasswordWithPinModel {
         {
             "name": "NewPassword",
             "baseName": "NewPassword",
+            "type": "string"
+        },
+        {
+            "name": "RecaptchaToken",
+            "baseName": "RecaptchaToken",
             "type": "string"
         }    ];
 
