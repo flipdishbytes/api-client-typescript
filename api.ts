@@ -45732,6 +45732,10 @@ export class StuartSettingsTransportPrices {
 */
 export class Subscription {
     /**
+    * Products
+    */
+    'Products': Array<SubscriptionProduct>;
+    /**
     * The subscription identifier
     */
     'SubscriptionId': string;
@@ -45764,6 +45768,11 @@ export class Subscription {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Products",
+            "baseName": "Products",
+            "type": "Array<SubscriptionProduct>"
+        },
         {
             "name": "SubscriptionId",
             "baseName": "SubscriptionId",
@@ -45934,6 +45943,82 @@ export namespace Subscription {
         MOP = <any> 'MOP',
         TWD = <any> 'TWD',
         BMD = <any> 'BMD'
+    }
+}
+/**
+* Product
+*/
+export class SubscriptionProduct {
+    /**
+    * Product Identifier
+    */
+    'ProductId': string;
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Quantity
+    */
+    'Quantity': number;
+    /**
+    * Price Per Unit
+    */
+    'PricePerUnit'?: number;
+    /**
+    * Price Total
+    */
+    'PriceTotal'?: number;
+    /**
+    * Payment Frequency
+    */
+    'PaymentFrequency': SubscriptionProduct.PaymentFrequencyEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ProductId",
+            "baseName": "ProductId",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Quantity",
+            "baseName": "Quantity",
+            "type": "number"
+        },
+        {
+            "name": "PricePerUnit",
+            "baseName": "PricePerUnit",
+            "type": "number"
+        },
+        {
+            "name": "PriceTotal",
+            "baseName": "PriceTotal",
+            "type": "number"
+        },
+        {
+            "name": "PaymentFrequency",
+            "baseName": "PaymentFrequency",
+            "type": "SubscriptionProduct.PaymentFrequencyEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SubscriptionProduct.attributeTypeMap;
+    }
+}
+
+export namespace SubscriptionProduct {
+    export enum PaymentFrequencyEnum {
+        Day = <any> 'day',
+        Week = <any> 'week',
+        Month = <any> 'month',
+        Year = <any> 'year'
     }
 }
 /**
@@ -51288,6 +51373,7 @@ let enumsMap: {[index: string]: any} = {
         "StuartSettings.TransportTypeEnum": StuartSettings.TransportTypeEnum,
         "Subscription.StatusEnum": Subscription.StatusEnum,
         "Subscription.CurrencyEnum": Subscription.CurrencyEnum,
+        "SubscriptionProduct.PaymentFrequencyEnum": SubscriptionProduct.PaymentFrequencyEnum,
         "SubscriptionSummary.StatusEnum": SubscriptionSummary.StatusEnum,
         "SubscriptionSummary.CurrencyEnum": SubscriptionSummary.CurrencyEnum,
         "SupportedCountry.AddressLayoutEnum": SupportedCountry.AddressLayoutEnum,
@@ -51985,6 +52071,7 @@ let typeMap: {[index: string]: any} = {
     "StuartSettings": StuartSettings,
     "StuartSettingsTransportPrices": StuartSettingsTransportPrices,
     "Subscription": Subscription,
+    "SubscriptionProduct": SubscriptionProduct,
     "SubscriptionSummary": SubscriptionSummary,
     "SupportedCountry": SupportedCountry,
     "Teammate": Teammate,
