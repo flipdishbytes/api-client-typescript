@@ -67840,9 +67840,10 @@ export class InvoicesApi {
      * @param subscriptionId Subscription Id (optional)
      * @param limit Limit of invoices to return
      * @param pageId Id for use in pagination. Use the next_page value returned in a previous response to request subsequent results. Do not include this on the first call
+     * @param excludeNotOwnedInvoices Exclude not owned invoices. Set to true to only view your invoices
      * @param {*} [options] Override http request options.
      */
-    public getInvoices (appId: string, subscriptionId?: string, limit?: number, pageId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }> {
+    public getInvoices (appId: string, subscriptionId?: string, limit?: number, pageId?: string, excludeNotOwnedInvoices?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/invoices'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -67864,6 +67865,10 @@ export class InvoicesApi {
 
         if (pageId !== undefined) {
             localVarQueryParameters['pageId'] = ObjectSerializer.serialize(pageId, "string");
+        }
+
+        if (excludeNotOwnedInvoices !== undefined) {
+            localVarQueryParameters['excludeNotOwnedInvoices'] = ObjectSerializer.serialize(excludeNotOwnedInvoices, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
