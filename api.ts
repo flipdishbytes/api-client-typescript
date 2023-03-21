@@ -15602,6 +15602,106 @@ export namespace Invoice {
     }
 }
 /**
+* Invoice Item
+*/
+export class InvoiceItem {
+    /**
+    * Description
+    */
+    'Description': string;
+    /**
+    * Quantity
+    */
+    'Quantity': number;
+    /**
+    * Unit Amount Excluding Tax
+    */
+    'UnitAmountExcludingTax': number;
+    /**
+    * Tax
+    */
+    'Tax': number;
+    /**
+    * Amount
+    */
+    'Amount': number;
+    /**
+    * Period
+    */
+    'Period': InvoicePeriod;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Quantity",
+            "baseName": "Quantity",
+            "type": "number"
+        },
+        {
+            "name": "UnitAmountExcludingTax",
+            "baseName": "UnitAmountExcludingTax",
+            "type": "number"
+        },
+        {
+            "name": "Tax",
+            "baseName": "Tax",
+            "type": "number"
+        },
+        {
+            "name": "Amount",
+            "baseName": "Amount",
+            "type": "number"
+        },
+        {
+            "name": "Period",
+            "baseName": "Period",
+            "type": "InvoicePeriod"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return InvoiceItem.attributeTypeMap;
+    }
+}
+
+/**
+* Invoice Period
+*/
+export class InvoicePeriod {
+    /**
+    * Start
+    */
+    'Start'?: Date;
+    /**
+    * End
+    */
+    'End'?: Date;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Start",
+            "baseName": "Start",
+            "type": "Date"
+        },
+        {
+            "name": "End",
+            "baseName": "End",
+            "type": "Date"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return InvoicePeriod.attributeTypeMap;
+    }
+}
+
+/**
 * Job Address
 */
 export class JobAddress {
@@ -17588,7 +17688,7 @@ export class LastPaymentError {
     */
     'Code'?: string;
     /**
-    * For card errors resulting from a card issuer decline, a short string indicating the card issuer’s reason for the decline if they provide one.
+    * For card errors resulting from a card issuer decline, a short string indicating the card issuers reason for the decline if they provide one.
     */
     'DeclineCode'?: string;
     /**
@@ -45736,6 +45836,10 @@ export class Subscription {
     */
     'Products': Array<SubscriptionProduct>;
     /**
+    * Upcoming invoice items
+    */
+    'UpcomingInvoiceItems': Array<InvoiceItem>;
+    /**
     * The subscription identifier
     */
     'SubscriptionId': string;
@@ -45772,6 +45876,11 @@ export class Subscription {
             "name": "Products",
             "baseName": "Products",
             "type": "Array<SubscriptionProduct>"
+        },
+        {
+            "name": "UpcomingInvoiceItems",
+            "baseName": "UpcomingInvoiceItems",
+            "type": "Array<InvoiceItem>"
         },
         {
             "name": "SubscriptionId",
@@ -51637,6 +51746,8 @@ let typeMap: {[index: string]: any} = {
     "IndexPageBase": IndexPageBase,
     "IntercomUserHash": IntercomUserHash,
     "Invoice": Invoice,
+    "InvoiceItem": InvoiceItem,
+    "InvoicePeriod": InvoicePeriod,
     "JobAddress": JobAddress,
     "JobCancellation": JobCancellation,
     "JobContact": JobContact,
