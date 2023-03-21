@@ -45973,6 +45973,10 @@ export class SubscriptionProduct {
     * Payment Frequency
     */
     'PaymentFrequency': SubscriptionProduct.PaymentFrequencyEnum;
+    /**
+    * Stores
+    */
+    'Stores'?: Array<SubscriptionStore>;
 
     static discriminator: string | undefined = undefined;
 
@@ -46006,6 +46010,11 @@ export class SubscriptionProduct {
             "name": "PaymentFrequency",
             "baseName": "PaymentFrequency",
             "type": "SubscriptionProduct.PaymentFrequencyEnum"
+        },
+        {
+            "name": "Stores",
+            "baseName": "Stores",
+            "type": "Array<SubscriptionStore>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -46021,6 +46030,38 @@ export namespace SubscriptionProduct {
         Year = <any> 'year'
     }
 }
+/**
+* Subscription Store
+*/
+export class SubscriptionStore {
+    /**
+    * Store Id
+    */
+    'Id'?: number;
+    /**
+    * Name
+    */
+    'Name': string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SubscriptionStore.attributeTypeMap;
+    }
+}
+
 /**
 * Subscription Summary
 */
@@ -52072,6 +52113,7 @@ let typeMap: {[index: string]: any} = {
     "StuartSettingsTransportPrices": StuartSettingsTransportPrices,
     "Subscription": Subscription,
     "SubscriptionProduct": SubscriptionProduct,
+    "SubscriptionStore": SubscriptionStore,
     "SubscriptionSummary": SubscriptionSummary,
     "SupportedCountry": SupportedCountry,
     "Teammate": Teammate,
@@ -67838,12 +67880,14 @@ export class InvoicesApi {
      * @summary Get list of invoices
      * @param appId App Id
      * @param subscriptionId Subscription Id (optional)
-     * @param limit Limit of invoices to return
-     * @param pageId Id for use in pagination. Use the next_page value returned in a previous response to request subsequent results. Do not include this on the first call
-     * @param excludeNotOwnedInvoices Exclude not owned invoices. Set to true to only view your invoices
+     * @param limit Limit of invoices to return (optional)
+     * @param pageId Id for use in pagination. Use the next_page value returned in a previous response to request subsequent results. Do not include this on the first call (optional)
+     * @param excludeNotOwnedInvoices Exclude not owned invoices. Set to true to only view your invoices (optional)
+     * @param dateFrom Filter starting from this date (optional)
+     * @param dateTo Filter ending from this date (optional)
      * @param {*} [options] Override http request options.
      */
-    public getInvoices (appId: string, subscriptionId?: string, limit?: number, pageId?: string, excludeNotOwnedInvoices?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }> {
+    public getInvoices (appId: string, subscriptionId?: string, limit?: number, pageId?: string, excludeNotOwnedInvoices?: boolean, dateFrom?: Date, dateTo?: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/invoices'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -67869,6 +67913,14 @@ export class InvoicesApi {
 
         if (excludeNotOwnedInvoices !== undefined) {
             localVarQueryParameters['excludeNotOwnedInvoices'] = ObjectSerializer.serialize(excludeNotOwnedInvoices, "boolean");
+        }
+
+        if (dateFrom !== undefined) {
+            localVarQueryParameters['dateFrom'] = ObjectSerializer.serialize(dateFrom, "Date");
+        }
+
+        if (dateTo !== undefined) {
+            localVarQueryParameters['dateTo'] = ObjectSerializer.serialize(dateTo, "Date");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
