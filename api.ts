@@ -1303,6 +1303,7 @@ export namespace App {
         ViewAppStoreAppConfiguration = <any> 'ViewAppStoreAppConfiguration',
         UpdateAppStoreAppConfiguration = <any> 'UpdateAppStoreAppConfiguration',
         DeleteAppStoreAppConfiguration = <any> 'DeleteAppStoreAppConfiguration',
+        UpdateAppStoreAppConfigurationSettings = <any> 'UpdateAppStoreAppConfigurationSettings',
         ViewSalesChannels = <any> 'ViewSalesChannels',
         EditSalesChannels = <any> 'EditSalesChannels',
         ViewPayGreenWhiteLabelConfiguration = <any> 'ViewPayGreenWhiteLabelConfiguration',
@@ -17688,7 +17689,7 @@ export class LastPaymentError {
     */
     'Code'?: string;
     /**
-    * For card errors resulting from a card issuer decline, a short string indicating the card issuers reason for the decline if they provide one.
+    * For card errors resulting from a card issuer decline, a short string indicating the card issuer’s reason for the decline if they provide one.
     */
     'DeclineCode'?: string;
     /**
