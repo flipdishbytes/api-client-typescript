@@ -46147,7 +46147,7 @@ export class SubscriptionStore {
     /**
     * Store Id
     */
-    'Id'?: number;
+    'Id': number;
     /**
     * Name
     */
@@ -84802,9 +84802,10 @@ export class SubscriptionsApi {
      * @summary Get list of subscriptions for an App
      * @param appId App Id
      * @param excludeNotOwnedSubscriptions Exclude not owned subscriptions. Set to true to only view your subscriptions
+     * @param storeId Store Ids
      * @param {*} [options] Override http request options.
      */
-    public getSubscriptionsForApp (appId: string, excludeNotOwnedSubscriptions?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSubscriptionSummary;  }> {
+    public getSubscriptionsForApp (appId: string, excludeNotOwnedSubscriptions?: boolean, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSubscriptionSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/subscriptions'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -84818,6 +84819,10 @@ export class SubscriptionsApi {
 
         if (excludeNotOwnedSubscriptions !== undefined) {
             localVarQueryParameters['excludeNotOwnedSubscriptions'] = ObjectSerializer.serialize(excludeNotOwnedSubscriptions, "boolean");
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
