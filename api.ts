@@ -67997,9 +67997,10 @@ export class InvoicesApi {
      * @param excludeNotOwnedInvoices Exclude not owned invoices. Set to true to only view your invoices (optional)
      * @param dateFrom Filter starting from this date (optional)
      * @param dateTo Filter ending from this date (optional)
+     * @param invoiceNumber Invoice number (optional)
      * @param {*} [options] Override http request options.
      */
-    public getInvoices (appId: string, subscriptionId?: string, limit?: number, pageId?: string, excludeNotOwnedInvoices?: boolean, dateFrom?: Date, dateTo?: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }> {
+    public getInvoices (appId: string, subscriptionId?: string, limit?: number, pageId?: string, excludeNotOwnedInvoices?: boolean, dateFrom?: Date, dateTo?: Date, invoiceNumber?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/invoices'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -68033,6 +68034,10 @@ export class InvoicesApi {
 
         if (dateTo !== undefined) {
             localVarQueryParameters['dateTo'] = ObjectSerializer.serialize(dateTo, "Date");
+        }
+
+        if (invoiceNumber !== undefined) {
+            localVarQueryParameters['invoiceNumber'] = ObjectSerializer.serialize(invoiceNumber, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
