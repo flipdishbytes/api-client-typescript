@@ -67998,9 +67998,10 @@ export class InvoicesApi {
      * @param dateFrom Filter starting from this date (optional)
      * @param dateTo Filter ending from this date (optional)
      * @param invoiceNumber Invoice number (optional)
+     * @param storeId Store Ids (optional)
      * @param {*} [options] Override http request options.
      */
-    public getInvoices (appId: string, subscriptionId?: string, limit?: number, pageId?: string, excludeNotOwnedInvoices?: boolean, dateFrom?: Date, dateTo?: Date, invoiceNumber?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }> {
+    public getInvoices (appId: string, subscriptionId?: string, limit?: number, pageId?: string, excludeNotOwnedInvoices?: boolean, dateFrom?: Date, dateTo?: Date, invoiceNumber?: string, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/invoices'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -68038,6 +68039,10 @@ export class InvoicesApi {
 
         if (invoiceNumber !== undefined) {
             localVarQueryParameters['invoiceNumber'] = ObjectSerializer.serialize(invoiceNumber, "string");
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -84806,8 +84811,8 @@ export class SubscriptionsApi {
      * [BETA - this endpoint is under development, do not use it in your production system]
      * @summary Get list of subscriptions for an App
      * @param appId App Id
-     * @param excludeNotOwnedSubscriptions Exclude not owned subscriptions. Set to true to only view your subscriptions
-     * @param storeId Store Ids
+     * @param excludeNotOwnedSubscriptions Exclude not owned subscriptions. Set to true to only view your subscriptions (optional)
+     * @param storeId Store Ids (optional)
      * @param {*} [options] Override http request options.
      */
     public getSubscriptionsForApp (appId: string, excludeNotOwnedSubscriptions?: boolean, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSubscriptionSummary;  }> {
