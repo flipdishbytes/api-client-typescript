@@ -15421,9 +15421,13 @@ export class Invoice {
     */
     'SubscriptionId'?: string;
     /**
-    * Due Date
+    * Paid At
     */
-    'DueDate'?: Date;
+    'PaidAt'?: Date;
+    /**
+    * Finalised At
+    */
+    'FinalisedAt'?: Date;
     /**
     * Pdf Link
     */
@@ -15463,8 +15467,13 @@ export class Invoice {
             "type": "string"
         },
         {
-            "name": "DueDate",
-            "baseName": "DueDate",
+            "name": "PaidAt",
+            "baseName": "PaidAt",
+            "type": "Date"
+        },
+        {
+            "name": "FinalisedAt",
+            "baseName": "FinalisedAt",
             "type": "Date"
         },
         {
