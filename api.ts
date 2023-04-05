@@ -45904,7 +45904,7 @@ export class Subscription {
     /**
     * Default payment description
     */
-    'DefaultPaymentDescription': string;
+    'DefaultPaymentDescription'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -46240,7 +46240,7 @@ export class SubscriptionSummary {
     /**
     * Default payment description
     */
-    'DefaultPaymentDescription': string;
+    'DefaultPaymentDescription'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -55942,9 +55942,10 @@ export class AppsApi {
      * @param appId Application identifier.
      * @param hostname The new Hostname.
      * @param isEmbed Will the website be embedded
+     * @param isNextGenWeb Enables the NextGen web editor
      * @param {*} [options] Override http request options.
      */
-    public setAppHostname (appId: string, hostname: string, isEmbed?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public setAppHostname (appId: string, hostname: string, isEmbed?: boolean, isNextGenWeb?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/hostname'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -55967,6 +55968,10 @@ export class AppsApi {
 
         if (isEmbed !== undefined) {
             localVarQueryParameters['isEmbed'] = ObjectSerializer.serialize(isEmbed, "boolean");
+        }
+
+        if (isNextGenWeb !== undefined) {
+            localVarQueryParameters['isNextGenWeb'] = ObjectSerializer.serialize(isNextGenWeb, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
