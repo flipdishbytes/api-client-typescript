@@ -64309,6 +64309,7 @@ export class EventsApi {
     /**
      * 
      * @summary Get customer events  For technical reasons, the number of records returned is limited to 100.
+     * @param appId 
      * @param customerId Customer identifier identifier
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
@@ -64328,12 +64329,18 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getCustomerEvents (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeIdList?: Array<number>, storeGroupId?: number, userId?: number, menuId?: number, campaignId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/events/customer/{customerId}'
+    public getCustomerEvents (appId: string, customerId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeIdList?: Array<number>, storeGroupId?: number, userId?: number, menuId?: number, campaignId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/events/customer/{customerId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'customerId' + '}', encodeURIComponent(String(customerId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getCustomerEvents.');
+        }
 
         // verify required parameter 'customerId' is not null or undefined
         if (customerId === null || customerId === undefined) {
@@ -64446,6 +64453,7 @@ export class EventsApi {
     /**
      * 
      * @summary Get events  For technical reasons, the number of records returned is limited to 100.
+     * @param appId 
      * @param whiteLabelId White Label Id
      * @param customerId Customer Id
      * @param limit The maximum elements to return
@@ -64466,11 +64474,17 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getEvents (whiteLabelId?: number, customerId?: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeIdList?: Array<number>, storeGroupId?: number, userId?: number, menuId?: number, campaignId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/events';
+    public getEvents (appId: string, whiteLabelId?: number, customerId?: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeIdList?: Array<number>, storeGroupId?: number, userId?: number, menuId?: number, campaignId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/events'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getEvents.');
+        }
 
         if (whiteLabelId !== undefined) {
             localVarQueryParameters['whiteLabelId'] = ObjectSerializer.serialize(whiteLabelId, "number");
@@ -64587,11 +64601,13 @@ export class EventsApi {
      * 
      * @summary Get event by Id  For technical reasons, the number of records returned is limited to 100.
      * @param eventId Event identifier (Guid)
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getEventsById (eventId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: EventSearchResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/events/{eventId}'
-            .replace('{' + 'eventId' + '}', encodeURIComponent(String(eventId)));
+    public getEventsById (eventId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: EventSearchResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/events/{eventId}'
+            .replace('{' + 'eventId' + '}', encodeURIComponent(String(eventId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -64599,6 +64615,11 @@ export class EventsApi {
         // verify required parameter 'eventId' is not null or undefined
         if (eventId === null || eventId === undefined) {
             throw new Error('Required parameter eventId was null or undefined when calling getEventsById.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getEventsById.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -64643,6 +64664,7 @@ export class EventsApi {
     /**
      * 
      * @summary Get menu events  For technical reasons, the number of records returned is limited to 100.
+     * @param appId 
      * @param menuId Menu Identifier
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
@@ -64662,12 +64684,18 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getMenuEvents (menuId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeIdList?: Array<number>, storeGroupId?: number, userId?: number, menuId2?: number, campaignId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/events/menu/{menuId}'
+    public getMenuEvents (appId: string, menuId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeIdList?: Array<number>, storeGroupId?: number, userId?: number, menuId2?: number, campaignId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/events/menu/{menuId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getMenuEvents.');
+        }
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -64780,6 +64808,7 @@ export class EventsApi {
     /**
      * 
      * @summary Get order events  For technical reasons, the number of records returned is limited to 100.
+     * @param appId 
      * @param orderId Order identifier
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
@@ -64799,12 +64828,18 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getOrderEvents (orderId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId2?: number, storeId?: number, storeIdList?: Array<number>, storeGroupId?: number, userId?: number, menuId?: number, campaignId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/events/order/{orderId}'
+    public getOrderEvents (appId: string, orderId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId2?: number, storeId?: number, storeIdList?: Array<number>, storeGroupId?: number, userId?: number, menuId?: number, campaignId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/events/order/{orderId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getOrderEvents.');
+        }
 
         // verify required parameter 'orderId' is not null or undefined
         if (orderId === null || orderId === undefined) {
@@ -64917,6 +64952,7 @@ export class EventsApi {
     /**
      * 
      * @summary Get order events by customer  For technical reasons, the number of records returned is limited to 100.
+     * @param appId 
      * @param customerId Customer identifier
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
@@ -64936,11 +64972,17 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getOrderEventsByCustomer (customerId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeIdList?: Array<number>, storeGroupId?: number, userId?: number, menuId?: number, campaignId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/events/order';
+    public getOrderEventsByCustomer (appId: string, customerId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeIdList?: Array<number>, storeGroupId?: number, userId?: number, menuId?: number, campaignId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/events/order'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getOrderEventsByCustomer.');
+        }
 
         // verify required parameter 'customerId' is not null or undefined
         if (customerId === null || customerId === undefined) {
@@ -65057,6 +65099,7 @@ export class EventsApi {
     /**
      * 
      * @summary Get store events  For technical reasons, the number of records returned is limited to 100.
+     * @param appId 
      * @param storeId Id of the store
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
@@ -65076,12 +65119,18 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getStoreEvents (storeId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId2?: number, storeIdList?: Array<number>, storeGroupId?: number, userId?: number, menuId?: number, campaignId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/events/store/{storeId}'
+    public getStoreEvents (appId: string, storeId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId2?: number, storeIdList?: Array<number>, storeGroupId?: number, userId?: number, menuId?: number, campaignId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/events/store/{storeId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getStoreEvents.');
+        }
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
@@ -65194,6 +65243,7 @@ export class EventsApi {
     /**
      * 
      * @summary Get user events  For technical reasons, the number of records returned is limited to 100.
+     * @param appId 
      * @param userId User identifier
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
@@ -65213,12 +65263,18 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getUserEvents (userId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeIdList?: Array<number>, storeGroupId?: number, userId2?: number, menuId?: number, campaignId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/events/user/{userId}'
+    public getUserEvents (appId: string, userId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeIdList?: Array<number>, storeGroupId?: number, userId2?: number, menuId?: number, campaignId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/events/user/{userId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getUserEvents.');
+        }
 
         // verify required parameter 'userId' is not null or undefined
         if (userId === null || userId === undefined) {
@@ -65331,6 +65387,7 @@ export class EventsApi {
     /**
      * 
      * @summary Get WhiteLabel events  For technical reasons, the number of records returned is limited to 100.
+     * @param appId 
      * @param whitelabelId White Label Identifier
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
@@ -65350,12 +65407,18 @@ export class EventsApi {
      * @param flipdishEventId Unique Identifier of Event, if this is specified, all other criteria are ignored.
      * @param {*} [options] Override http request options.
      */
-    public getWhiteLabelEvents (whitelabelId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeIdList?: Array<number>, storeGroupId?: number, userId?: number, menuId?: number, campaignId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/events/whitelabel/{whitelabelId}'
+    public getWhiteLabelEvents (appId: string, whitelabelId: number, limit?: number, page?: number, start?: Date, end?: Date, orderId?: number, storeId?: number, storeIdList?: Array<number>, storeGroupId?: number, userId?: number, menuId?: number, campaignId?: number, userEmail?: string, userName?: string, voucherCode?: string, eventType?: Array<string>, flipdishEventId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiEventSearchPaginationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/events/whitelabel/{whitelabelId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'whitelabelId' + '}', encodeURIComponent(String(whitelabelId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getWhiteLabelEvents.');
+        }
 
         // verify required parameter 'whitelabelId' is not null or undefined
         if (whitelabelId === null || whitelabelId === undefined) {
