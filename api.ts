@@ -13430,6 +13430,59 @@ export class GeoPointRequest {
     }
 }
 
+export class GetReceiptByOrderIdQueryResponse {
+    'PreviousOrder'?: PreviousOrder;
+    'TsRequestedForLocal'?: Date;
+    'TsOrderPlacedLocal'?: Date;
+    'LogoUrl'?: string;
+    'Address'?: string;
+    'VatNumber'?: string;
+    'PaymentMethodDescription'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PreviousOrder",
+            "baseName": "PreviousOrder",
+            "type": "PreviousOrder"
+        },
+        {
+            "name": "TsRequestedForLocal",
+            "baseName": "TsRequestedForLocal",
+            "type": "Date"
+        },
+        {
+            "name": "TsOrderPlacedLocal",
+            "baseName": "TsOrderPlacedLocal",
+            "type": "Date"
+        },
+        {
+            "name": "LogoUrl",
+            "baseName": "LogoUrl",
+            "type": "string"
+        },
+        {
+            "name": "Address",
+            "baseName": "Address",
+            "type": "string"
+        },
+        {
+            "name": "VatNumber",
+            "baseName": "VatNumber",
+            "type": "string"
+        },
+        {
+            "name": "PaymentMethodDescription",
+            "baseName": "PaymentMethodDescription",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GetReceiptByOrderIdQueryResponse.attributeTypeMap;
+    }
+}
+
 export class GoogleAddress {
     'Results'?: Array<GoogleAddressResult>;
     'Result'?: GoogleAddressResult;
@@ -30774,6 +30827,324 @@ export class PredefinedAnswer {
     }
 }
 
+export class PreviousOrder {
+    'DeliveryType'?: string;
+    'DeliveryLocationAddressString'?: string;
+    'PaymentAccountType'?: string;
+    'OrderId'?: number;
+    'RestaurantName'?: string;
+    'LocalOrderId'?: string;
+    'TableServiceCategory'?: string;
+    'PickupLocationOptionValue'?: string;
+    'CustomerName'?: string;
+    'PhoneNumberInternationalFormatString'?: string;
+    'DeliveryInstructions'?: string;
+    'Currency'?: PreviousOrder.CurrencyEnum;
+    'ProcessingFee'?: number;
+    'ServiceChargePercentage'?: number;
+    'ServiceChargeAmount'?: number;
+    'TipAmount'?: number;
+    'DeliveryAmount'?: number;
+    'TotalTax'?: number;
+    'TotalAmount'?: number;
+    'Items'?: Array<PreviousOrderItem>;
+    'TaxRates'?: Array<TaxRate>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeliveryType",
+            "baseName": "DeliveryType",
+            "type": "string"
+        },
+        {
+            "name": "DeliveryLocationAddressString",
+            "baseName": "DeliveryLocationAddressString",
+            "type": "string"
+        },
+        {
+            "name": "PaymentAccountType",
+            "baseName": "PaymentAccountType",
+            "type": "string"
+        },
+        {
+            "name": "OrderId",
+            "baseName": "OrderId",
+            "type": "number"
+        },
+        {
+            "name": "RestaurantName",
+            "baseName": "RestaurantName",
+            "type": "string"
+        },
+        {
+            "name": "LocalOrderId",
+            "baseName": "LocalOrderId",
+            "type": "string"
+        },
+        {
+            "name": "TableServiceCategory",
+            "baseName": "TableServiceCategory",
+            "type": "string"
+        },
+        {
+            "name": "PickupLocationOptionValue",
+            "baseName": "PickupLocationOptionValue",
+            "type": "string"
+        },
+        {
+            "name": "CustomerName",
+            "baseName": "CustomerName",
+            "type": "string"
+        },
+        {
+            "name": "PhoneNumberInternationalFormatString",
+            "baseName": "PhoneNumberInternationalFormatString",
+            "type": "string"
+        },
+        {
+            "name": "DeliveryInstructions",
+            "baseName": "DeliveryInstructions",
+            "type": "string"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "PreviousOrder.CurrencyEnum"
+        },
+        {
+            "name": "ProcessingFee",
+            "baseName": "ProcessingFee",
+            "type": "number"
+        },
+        {
+            "name": "ServiceChargePercentage",
+            "baseName": "ServiceChargePercentage",
+            "type": "number"
+        },
+        {
+            "name": "ServiceChargeAmount",
+            "baseName": "ServiceChargeAmount",
+            "type": "number"
+        },
+        {
+            "name": "TipAmount",
+            "baseName": "TipAmount",
+            "type": "number"
+        },
+        {
+            "name": "DeliveryAmount",
+            "baseName": "DeliveryAmount",
+            "type": "number"
+        },
+        {
+            "name": "TotalTax",
+            "baseName": "TotalTax",
+            "type": "number"
+        },
+        {
+            "name": "TotalAmount",
+            "baseName": "TotalAmount",
+            "type": "number"
+        },
+        {
+            "name": "Items",
+            "baseName": "Items",
+            "type": "Array<PreviousOrderItem>"
+        },
+        {
+            "name": "TaxRates",
+            "baseName": "TaxRates",
+            "type": "Array<TaxRate>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PreviousOrder.attributeTypeMap;
+    }
+}
+
+export namespace PreviousOrder {
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD',
+        BMD = <any> 'BMD'
+    }
+}
+export class PreviousOrderItem {
+    'MenuSectionDisplayOrder'?: number;
+    'MenuSectionName'?: string;
+    'Name'?: string;
+    'PriceIncludingOptionSetItems'?: number;
+    'TaxAmount'?: number;
+    'PreviousOrderItemOptions'?: Array<PreviousOrderItemOption>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuSectionDisplayOrder",
+            "baseName": "MenuSectionDisplayOrder",
+            "type": "number"
+        },
+        {
+            "name": "MenuSectionName",
+            "baseName": "MenuSectionName",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "PriceIncludingOptionSetItems",
+            "baseName": "PriceIncludingOptionSetItems",
+            "type": "number"
+        },
+        {
+            "name": "TaxAmount",
+            "baseName": "TaxAmount",
+            "type": "number"
+        },
+        {
+            "name": "PreviousOrderItemOptions",
+            "baseName": "PreviousOrderItemOptions",
+            "type": "Array<PreviousOrderItemOption>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PreviousOrderItem.attributeTypeMap;
+    }
+}
+
+export class PreviousOrderItemOption {
+    'Name'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PreviousOrderItemOption.attributeTypeMap;
+    }
+}
+
 /**
 * Defines a price
 */
@@ -46538,6 +46909,35 @@ export namespace SupportedCountry {
         Benelux = <any> 'Benelux'
     }
 }
+export class TaxRate {
+    'Name'?: string;
+    'Percentage'?: number;
+    'Total'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Percentage",
+            "baseName": "Percentage",
+            "type": "number"
+        },
+        {
+            "name": "Total",
+            "baseName": "Total",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return TaxRate.attributeTypeMap;
+    }
+}
+
 /**
 * 
 */
@@ -51527,6 +51927,7 @@ let enumsMap: {[index: string]: any} = {
         "PayoutSummary.CurrencyEnum": PayoutSummary.CurrencyEnum,
         "PhoneCall.CallStatusEnum": PhoneCall.CallStatusEnum,
         "PreOrderConfig.PreOrderTimeDisplayTypeEnum": PreOrderConfig.PreOrderTimeDisplayTypeEnum,
+        "PreviousOrder.CurrencyEnum": PreviousOrder.CurrencyEnum,
         "ProcessingFeeConfig.PaymentAccountTypeEnum": ProcessingFeeConfig.PaymentAccountTypeEnum,
         "Product.ProductTypeEnum": Product.ProductTypeEnum,
         "ProductReference.ProductTypeEnum": ProductReference.ProductTypeEnum,
@@ -51754,6 +52155,7 @@ let typeMap: {[index: string]: any} = {
     "FulfillmentStatesConfiguredStore": FulfillmentStatesConfiguredStore,
     "FulfillmentStatusConfigurationItem": FulfillmentStatusConfigurationItem,
     "GeoPointRequest": GeoPointRequest,
+    "GetReceiptByOrderIdQueryResponse": GetReceiptByOrderIdQueryResponse,
     "GoogleAddress": GoogleAddress,
     "GoogleAddressComponent": GoogleAddressComponent,
     "GoogleAddressResult": GoogleAddressResult,
@@ -51950,6 +52352,9 @@ let typeMap: {[index: string]: any} = {
     "PreOrderConfig": PreOrderConfig,
     "PreOrderTime": PreOrderTime,
     "PredefinedAnswer": PredefinedAnswer,
+    "PreviousOrder": PreviousOrder,
+    "PreviousOrderItem": PreviousOrderItem,
+    "PreviousOrderItemOption": PreviousOrderItemOption,
     "Price": Price,
     "Printer": Printer,
     "PrinterAssignedToStoreEvent": PrinterAssignedToStoreEvent,
@@ -52264,6 +52669,7 @@ let typeMap: {[index: string]: any} = {
     "SubscriptionStore": SubscriptionStore,
     "SubscriptionSummary": SubscriptionSummary,
     "SupportedCountry": SupportedCountry,
+    "TaxRate": TaxRate,
     "Teammate": Teammate,
     "TeammateBase": TeammateBase,
     "TeammateDeletedEvent": TeammateDeletedEvent,
@@ -80261,6 +80667,113 @@ export class PushNotificationsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultPushNotificationResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum ReceiptsApiApiKeys {
+}
+
+export class ReceiptsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: ReceiptsApiApiKeys, value: string) {
+        (this.authentications as any)[ReceiptsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Returns all receipt information for a given orderId
+     * @param orderId 
+     * @param {*} [options] Override http request options.
+     */
+    public getReceipt (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: GetReceiptByOrderIdQueryResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/receipts/{orderId}'
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orderId' is not null or undefined
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling getReceipt.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: GetReceiptByOrderIdQueryResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "GetReceiptByOrderIdQueryResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
