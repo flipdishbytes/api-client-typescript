@@ -2869,6 +2869,10 @@ export class AppUpdatedEvent {
     */
     'User'?: UserEventInfo;
     /**
+    * App - Whitelabel config
+    */
+    'App'?: App;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -2921,6 +2925,11 @@ export class AppUpdatedEvent {
             "name": "User",
             "baseName": "User",
             "type": "UserEventInfo"
+        },
+        {
+            "name": "App",
+            "baseName": "App",
+            "type": "App"
         },
         {
             "name": "FlipdishEventId",
