@@ -30033,6 +30033,10 @@ export class PayoutStore {
     * Period opening and closing balance
     */
     'Balance'?: BalanceDetails;
+    /**
+    * Breakdown of POS charges
+    */
+    'PosRevenue'?: PosRevenueDetails;
 
     static discriminator: string | undefined = undefined;
 
@@ -30086,6 +30090,11 @@ export class PayoutStore {
             "name": "Balance",
             "baseName": "Balance",
             "type": "BalanceDetails"
+        },
+        {
+            "name": "PosRevenue",
+            "baseName": "PosRevenue",
+            "type": "PosRevenueDetails"
         }    ];
 
     static getAttributeTypeMap() {
@@ -30658,6 +30667,38 @@ export class PhoneCallStartedEvent {
 
     static getAttributeTypeMap() {
         return PhoneCallStartedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Breakdown of POS charges
+*/
+export class PosRevenueDetails {
+    /**
+    * POS sale amount for the store
+    */
+    'PosSalesAmount'?: number;
+    /**
+    * POS sale tips for the store
+    */
+    'PosSalesTips'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PosSalesAmount",
+            "baseName": "PosSalesAmount",
+            "type": "number"
+        },
+        {
+            "name": "PosSalesTips",
+            "baseName": "PosSalesTips",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PosRevenueDetails.attributeTypeMap;
     }
 }
 
@@ -52358,6 +52399,7 @@ let typeMap: {[index: string]: any} = {
     "PhoneCall": PhoneCall,
     "PhoneCallEndedEvent": PhoneCallEndedEvent,
     "PhoneCallStartedEvent": PhoneCallStartedEvent,
+    "PosRevenueDetails": PosRevenueDetails,
     "PreOrderConfig": PreOrderConfig,
     "PreOrderTime": PreOrderTime,
     "PredefinedAnswer": PredefinedAnswer,
