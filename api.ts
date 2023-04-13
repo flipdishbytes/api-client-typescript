@@ -15684,11 +15684,11 @@ export namespace Invoice {
         BMD = <any> 'BMD'
     }
     export enum StatusEnum {
-        Draft = <any> 'draft',
-        Open = <any> 'open',
-        Paid = <any> 'paid',
-        Uncollectible = <any> 'uncollectible',
-        Void = <any> 'void'
+        Draft = <any> 'Draft',
+        Open = <any> 'Open',
+        Paid = <any> 'Paid',
+        UnCollectible = <any> 'UnCollectible',
+        Void = <any> 'Void'
     }
 }
 /**
@@ -46388,13 +46388,13 @@ export class Subscription {
 
 export namespace Subscription {
     export enum StatusEnum {
-        Incomplete = <any> 'incomplete',
-        IncompleteExpired = <any> 'incomplete_expired',
-        Trialing = <any> 'trialing',
-        Active = <any> 'active',
-        PastDue = <any> 'past_due',
-        Canceled = <any> 'canceled',
-        Unpaid = <any> 'unpaid'
+        Incomplete = <any> 'Incomplete',
+        IncompleteExpired = <any> 'IncompleteExpired',
+        Trialing = <any> 'Trialing',
+        Active = <any> 'Active',
+        PastDue = <any> 'PastDue',
+        Canceled = <any> 'Canceled',
+        Unpaid = <any> 'Unpaid'
     }
     export enum CurrencyEnum {
         EUR = <any> 'EUR',
@@ -46714,13 +46714,13 @@ export class SubscriptionSummary {
 
 export namespace SubscriptionSummary {
     export enum StatusEnum {
-        Incomplete = <any> 'incomplete',
-        IncompleteExpired = <any> 'incomplete_expired',
-        Trialing = <any> 'trialing',
-        Active = <any> 'active',
-        PastDue = <any> 'past_due',
-        Canceled = <any> 'canceled',
-        Unpaid = <any> 'unpaid'
+        Incomplete = <any> 'Incomplete',
+        IncompleteExpired = <any> 'IncompleteExpired',
+        Trialing = <any> 'Trialing',
+        Active = <any> 'Active',
+        PastDue = <any> 'PastDue',
+        Canceled = <any> 'Canceled',
+        Unpaid = <any> 'Unpaid'
     }
     export enum CurrencyEnum {
         EUR = <any> 'EUR',
