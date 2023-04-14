@@ -30679,9 +30679,17 @@ export class PosRevenueDetails {
     */
     'PosSalesAmount'?: number;
     /**
+    * POS sale Tax for the store
+    */
+    'PosSalesTax'?: number;
+    /**
     * POS sale tips for the store
     */
     'PosSalesTips'?: number;
+    /**
+    * POS Total Revenue for the store
+    */
+    'TotalPosRevenue'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -30692,8 +30700,18 @@ export class PosRevenueDetails {
             "type": "number"
         },
         {
+            "name": "PosSalesTax",
+            "baseName": "PosSalesTax",
+            "type": "number"
+        },
+        {
             "name": "PosSalesTips",
             "baseName": "PosSalesTips",
+            "type": "number"
+        },
+        {
+            "name": "TotalPosRevenue",
+            "baseName": "TotalPosRevenue",
             "type": "number"
         }    ];
 
@@ -30899,6 +30917,7 @@ export class PreviousOrder {
     'TotalAmount'?: number;
     'Items'?: Array<PreviousOrderItem>;
     'TaxRates'?: Array<TaxRate>;
+    'WhiteLabelId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -31007,6 +31026,11 @@ export class PreviousOrder {
             "name": "TaxRates",
             "baseName": "TaxRates",
             "type": "Array<TaxRate>"
+        },
+        {
+            "name": "WhiteLabelId",
+            "baseName": "WhiteLabelId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
