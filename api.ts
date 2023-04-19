@@ -56694,6 +56694,83 @@ export class AppsApi {
     }
     /**
      * 
+     * @summary Toggle Next Gen Web
+     * @param appId 
+     * @param hostname 
+     * @param isNextGenWeb 
+     * @param {*} [options] Override http request options.
+     */
+    public toggleNextGenWeb (appId: string, hostname: string, isNextGenWeb: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/nextgenweb'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling toggleNextGenWeb.');
+        }
+
+        // verify required parameter 'hostname' is not null or undefined
+        if (hostname === null || hostname === undefined) {
+            throw new Error('Required parameter hostname was null or undefined when calling toggleNextGenWeb.');
+        }
+
+        // verify required parameter 'isNextGenWeb' is not null or undefined
+        if (isNextGenWeb === null || isNextGenWeb === undefined) {
+            throw new Error('Required parameter isNextGenWeb was null or undefined when calling toggleNextGenWeb.');
+        }
+
+        if (hostname !== undefined) {
+            localVarQueryParameters['hostname'] = ObjectSerializer.serialize(hostname, "string");
+        }
+
+        if (isNextGenWeb !== undefined) {
+            localVarQueryParameters['isNextGenWeb'] = ObjectSerializer.serialize(isNextGenWeb, "boolean");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Set the application logo \\ icon
      * @param appId Application identifier
      * @param Image App Logo
