@@ -56697,10 +56697,11 @@ export class AppsApi {
      * @summary Toggle Next Gen Web
      * @param appId 
      * @param hostname 
+     * @param vanityUrl 
      * @param isNextGenWeb 
      * @param {*} [options] Override http request options.
      */
-    public toggleNextGenWeb (appId: string, hostname: string, isNextGenWeb: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public toggleNextGenWeb (appId: string, hostname: string, vanityUrl: string, isNextGenWeb: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/nextgenweb'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -56717,6 +56718,11 @@ export class AppsApi {
             throw new Error('Required parameter hostname was null or undefined when calling toggleNextGenWeb.');
         }
 
+        // verify required parameter 'vanityUrl' is not null or undefined
+        if (vanityUrl === null || vanityUrl === undefined) {
+            throw new Error('Required parameter vanityUrl was null or undefined when calling toggleNextGenWeb.');
+        }
+
         // verify required parameter 'isNextGenWeb' is not null or undefined
         if (isNextGenWeb === null || isNextGenWeb === undefined) {
             throw new Error('Required parameter isNextGenWeb was null or undefined when calling toggleNextGenWeb.');
@@ -56724,6 +56730,10 @@ export class AppsApi {
 
         if (hostname !== undefined) {
             localVarQueryParameters['hostname'] = ObjectSerializer.serialize(hostname, "string");
+        }
+
+        if (vanityUrl !== undefined) {
+            localVarQueryParameters['vanityUrl'] = ObjectSerializer.serialize(vanityUrl, "string");
         }
 
         if (isNextGenWeb !== undefined) {
