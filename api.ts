@@ -46320,7 +46320,7 @@ export class Subscription {
     /**
     * Upcoming invoice items
     */
-    'UpcomingInvoiceItems': Array<InvoiceItem>;
+    'UpcomingInvoiceItems'?: Array<InvoiceItem>;
     /**
     * The subscription identifier
     */
@@ -46350,6 +46350,10 @@ export class Subscription {
     * Default payment description
     */
     'DefaultPaymentDescription'?: string;
+    /**
+    * Cancellation Date
+    */
+    'CancellationDate'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -46403,6 +46407,11 @@ export class Subscription {
             "name": "DefaultPaymentDescription",
             "baseName": "DefaultPaymentDescription",
             "type": "string"
+        },
+        {
+            "name": "CancellationDate",
+            "baseName": "CancellationDate",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
@@ -46686,6 +46695,10 @@ export class SubscriptionSummary {
     * Default payment description
     */
     'DefaultPaymentDescription'?: string;
+    /**
+    * Cancellation Date
+    */
+    'CancellationDate'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -46729,6 +46742,11 @@ export class SubscriptionSummary {
             "name": "DefaultPaymentDescription",
             "baseName": "DefaultPaymentDescription",
             "type": "string"
+        },
+        {
+            "name": "CancellationDate",
+            "baseName": "CancellationDate",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
@@ -85627,7 +85645,7 @@ export class SubscriptionsApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
+     * [BETA - this endpoint is under development, do not use it in your production system] Full list of subscriptions returned. No need for pagination
      * @summary Get list of subscriptions for an App
      * @param appId App Id
      * @param excludeNotOwnedSubscriptions Exclude not owned subscriptions. Set to true to only view your subscriptions (optional)
