@@ -1185,6 +1185,7 @@ export namespace App {
         UpdateOrdersRefund = <any> 'UpdateOrdersRefund',
         UpdateOrdersDispatch = <any> 'UpdateOrdersDispatch',
         ViewStores = <any> 'ViewStores',
+        CreateStores = <any> 'CreateStores',
         EditStores = <any> 'EditStores',
         ViewStoresOpeningHours = <any> 'ViewStoresOpeningHours',
         UpdateStoresOpenForCollectionOrDelivery = <any> 'UpdateStoresOpenForCollectionOrDelivery',
