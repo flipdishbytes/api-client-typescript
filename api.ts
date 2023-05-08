@@ -37927,29 +37927,6 @@ export class RestApiResultStripeTerminalLocation {
 /**
 * Rest api result
 */
-export class RestApiResultStripeTerminalPrivateKey {
-    /**
-    * Generic data object.
-    */
-    'Data': StripeTerminalPrivateKey;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "StripeTerminalPrivateKey"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiResultStripeTerminalPrivateKey.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api result
-*/
 export class RestApiResultStuartSettings {
     /**
     * Generic data object.
@@ -46122,38 +46099,6 @@ export class StripeTerminalLocation {
 }
 
 /**
-* Stripe Terminal Private Key
-*/
-export class StripeTerminalPrivateKey {
-    /**
-    * Registered location of the terminal
-    */
-    'Location'?: string;
-    /**
-    * Secret used to pass to stripe to attach terminal
-    */
-    'Secret'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Location",
-            "baseName": "Location",
-            "type": "string"
-        },
-        {
-            "name": "Secret",
-            "baseName": "Secret",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return StripeTerminalPrivateKey.attributeTypeMap;
-    }
-}
-
-/**
 * Stuart settings
 */
 export class StuartSettings {
@@ -52680,7 +52625,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultStripeConnectedAccount": RestApiResultStripeConnectedAccount,
     "RestApiResultStripeTerminalConnectionToken": RestApiResultStripeTerminalConnectionToken,
     "RestApiResultStripeTerminalLocation": RestApiResultStripeTerminalLocation,
-    "RestApiResultStripeTerminalPrivateKey": RestApiResultStripeTerminalPrivateKey,
     "RestApiResultStuartSettings": RestApiResultStuartSettings,
     "RestApiResultSubscription": RestApiResultSubscription,
     "RestApiResultTeammate": RestApiResultTeammate,
@@ -52773,7 +52717,6 @@ let typeMap: {[index: string]: any} = {
     "StripeCustomConnectedAccount": StripeCustomConnectedAccount,
     "StripeTerminalConnectionToken": StripeTerminalConnectionToken,
     "StripeTerminalLocation": StripeTerminalLocation,
-    "StripeTerminalPrivateKey": StripeTerminalPrivateKey,
     "StuartSettings": StuartSettings,
     "StuartSettingsTransportPrices": StuartSettingsTransportPrices,
     "Subscription": Subscription,
@@ -58611,63 +58554,6 @@ export class CardReadersApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
-    }
-    /**
-     * Can only be called by Kiosk  [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get Authorization Key for Stripe Terminal
-     * @param appId 
-     * @param {*} [options] Override http request options.
-     */
-    public authorizeStripeTerminal (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeTerminalPrivateKey;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/stripeterminal/authorize'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling authorizeStripeTerminal.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStripeTerminalPrivateKey;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultStripeTerminalPrivateKey");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
     }
     /**
      * [BETA - this endpoint is under development, do not use it in your production system]
