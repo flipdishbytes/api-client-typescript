@@ -43205,6 +43205,14 @@ export class StoreGroupDeletedEvent {
 */
 export class StoreGroupExtended {
     /**
+    * Delivery Menu Message
+    */
+    'DeliveryMenuMessage'?: string;
+    /**
+    * Pickup Menu Message
+    */
+    'PickupMenuMessage'?: string;
+    /**
     * Total Amount of Stores
     */
     'TotalStores'?: number;
@@ -43240,6 +43248,16 @@ export class StoreGroupExtended {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeliveryMenuMessage",
+            "baseName": "DeliveryMenuMessage",
+            "type": "string"
+        },
+        {
+            "name": "PickupMenuMessage",
+            "baseName": "PickupMenuMessage",
+            "type": "string"
+        },
         {
             "name": "TotalStores",
             "baseName": "TotalStores",
@@ -81993,6 +82011,75 @@ export class StoreGroupsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param storeGroupId 
+     * @param deliveryType 
+     * @param menuMessage 
+     * @param {*} [options] Override http request options.
+     */
+    public setMenuMessagePerDeliveryType (storeGroupId: number, deliveryType: 'Delivery' | 'Pickup', menuMessage: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/storegroups/{storeGroupId}/{deliveryType}/MenuMessagePerDeliveryType'
+            .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)))
+            .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeGroupId' is not null or undefined
+        if (storeGroupId === null || storeGroupId === undefined) {
+            throw new Error('Required parameter storeGroupId was null or undefined when calling setMenuMessagePerDeliveryType.');
+        }
+
+        // verify required parameter 'deliveryType' is not null or undefined
+        if (deliveryType === null || deliveryType === undefined) {
+            throw new Error('Required parameter deliveryType was null or undefined when calling setMenuMessagePerDeliveryType.');
+        }
+
+        // verify required parameter 'menuMessage' is not null or undefined
+        if (menuMessage === null || menuMessage === undefined) {
+            throw new Error('Required parameter menuMessage was null or undefined when calling setMenuMessagePerDeliveryType.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(menuMessage, "string")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
