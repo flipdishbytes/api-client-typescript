@@ -52889,9 +52889,8 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Answer a signup question
-     * @param signupStepAction Signup step action
-     * @param answerId Identifier of the answer
+     * @param signupStepAction 
+     * @param answerId 
      * @param {*} [options] Override http request options.
      */
     public answerSignUpQuestion (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription', answerId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -52952,8 +52951,7 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Change password
-     * @param changePasswordModel Change password model
+     * @param changePasswordModel 
      * @param {*} [options] Override http request options.
      */
     public changePassword (changePasswordModel: ChangePasswordModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -53008,8 +53006,7 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Change password
-     * @param changePasswordModel Change password model
+     * @param changePasswordModel 
      * @param {*} [options] Override http request options.
      */
     public changePasswordWithPin (changePasswordModel: SetPasswordWithPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -53064,8 +53061,7 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Create account with email address and store name
-     * @param createAccountModel Create account model
+     * @param createAccountModel 
      * @param {*} [options] Override http request options.
      */
     public createAccount (createAccountModel: CreateAccountModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -53120,7 +53116,6 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Gets the current account detail
      * @param {*} [options] Override http request options.
      */
     public getAccountDetails (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAccountDetail;  }> {
@@ -53170,7 +53165,6 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get timezones localised to users language
      * @param {*} [options] Override http request options.
      */
     public getLocalisedTimeZones (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLocalisedTimeZone;  }> {
@@ -53220,8 +53214,7 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Login with username and password
-     * @param loginModel Login model
+     * @param loginModel 
      * @param {*} [options] Override http request options.
      */
     public login (loginModel: LoginModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -53276,7 +53269,6 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Login with SSO token
      * @param {*} [options] Override http request options.
      */
     public loginSso (options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -53325,8 +53317,7 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Login with email and pin
-     * @param loginModel Login with pin model
+     * @param loginModel 
      * @param {*} [options] Override http request options.
      */
     public loginWithPin (loginModel: LoginWithPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -53381,7 +53372,6 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Log out. It removes Flipdish authorization Cookie.
      * @param {*} [options] Override http request options.
      */
     public logout (options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -53430,8 +53420,7 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Reset password with token.
-     * @param passwordResetModel Password reset model
+     * @param passwordResetModel 
      * @param {*} [options] Override http request options.
      */
     public passwordResetWithToken (passwordResetModel: PasswordResetModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -53486,8 +53475,7 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Validate recaptcha from flipdish portal
-     * @param token Request token
+     * @param token 
      * @param {*} [options] Override http request options.
      */
     public recaptchaValidate (token: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -53545,8 +53533,7 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Request login PIN. The server sends the PIN to the email address.
-     * @param requestLoginPinRequest Request login PIN request
+     * @param requestLoginPinRequest 
      * @param {*} [options] Override http request options.
      */
     public requestLoginPin (requestLoginPinRequest: RequestLoginPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RequestLoginPinResponse;  }> {
@@ -53602,8 +53589,7 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Request password reset. Flipdish system will send a token via email.
-     * @param requestPasswordResetModel Request password reset model
+     * @param requestPasswordResetModel 
      * @param {*} [options] Override http request options.
      */
     public requestPasswordReset (requestPasswordResetModel: RequestPasswordResetModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -53658,7 +53644,6 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Request Password Reset PIN. The server sends the PIN to the email address.
      * @param requestPasswordResetRequest 
      * @param {*} [options] Override http request options.
      */
@@ -53715,8 +53700,7 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Skip a signup question
-     * @param signupStepAction Signup step action
+     * @param signupStepAction 
      * @param {*} [options] Override http request options.
      */
     public skipSignupStep (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -53771,8 +53755,7 @@ export class AccountsApi {
     }
     /**
      * 
-     * @summary Update account with name and language
-     * @param updateAccountModel Update account model
+     * @param updateAccountModel 
      * @param {*} [options] Override http request options.
      */
     public updateAccount (updateAccountModel: AccountDetailBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -53877,9 +53860,8 @@ export class AddressApi {
     }
     /**
      * 
-     * @summary Provides a dyamic form definition based for the country of the given appId, with labels localized using the provided language.
-     * @param appId Application (WhiteLabel) Id (WhiteLabelId or AppNameId).
-     * @param language (Optional) ISO culture info code, e.g.: en-IE, the default is en-US.
+     * @param appId 
+     * @param language 
      * @param {*} [options] Override http request options.
      */
     public formByApp (appId: string, language?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAddressFormResponse;  }> {
@@ -53939,9 +53921,8 @@ export class AddressApi {
     }
     /**
      * 
-     * @summary Provides a dyamic form definition for the given country code, with labels localized using the provided language.
-     * @param countryCode The 2 letter ISO country code, e.g.: IE.
-     * @param language (Optional) ISO culture info code, e.g.: en-IE, the default is en-US.
+     * @param countryCode 
+     * @param language 
      * @param {*} [options] Override http request options.
      */
     public formByCountry (countryCode: string, language?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAddressFormResponse;  }> {
@@ -54001,9 +53982,8 @@ export class AddressApi {
     }
     /**
      * 
-     * @summary Maps a Google Address Object to the values of the dynamic form associated with the address country and returns the dynamic form.
-     * @param googleAddress A Google address object, as it is returned from the maps API.
-     * @param language (Optional) ISO culture info code, e.g.: en-IE, the default is en-US.
+     * @param googleAddress 
+     * @param language 
      * @param {*} [options] Override http request options.
      */
     public formatGoogleAddress (googleAddress: GoogleAddress, language?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAddressFormResponse;  }> {
@@ -54063,7 +54043,6 @@ export class AddressApi {
     }
     /**
      * 
-     * @summary Retuns a list of localised countries
      * @param language 
      * @param {*} [options] Override http request options.
      */
@@ -54168,8 +54147,7 @@ export class ApmApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Returns true if APM is enabled on at least one store in an application
-     * @param appId App Id
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getApmStatus (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApmStatus;  }> {
@@ -54225,9 +54203,8 @@ export class ApmApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get Basic Statistics
-     * @param appId App Id
-     * @param storeId List of stores to search by
+     * @param appId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getBasicStatistics (appId: string, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApmStatistics;  }> {
@@ -54287,9 +54264,8 @@ export class ApmApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get Calendar statistics
-     * @param appId App Id
-     * @param storeId List of stores to search by
+     * @param appId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getCalendarWeekStatistics (appId: string, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmHourlyDataPoint;  }> {
@@ -54349,11 +54325,10 @@ export class ApmApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get Calls Statistics
-     * @param appId App Id
-     * @param aggregateDataBy Aggregate data by day \\ week
-     * @param dataPointLimit Amount of data points per request
-     * @param storeId List of stores to search by
+     * @param appId 
+     * @param aggregateDataBy 
+     * @param dataPointLimit 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getCallsStatistics (appId: string, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmDataPoint;  }> {
@@ -54423,11 +54398,10 @@ export class ApmApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get Order Statistics (Value of Orders)
-     * @param appId App Id
-     * @param aggregateDataBy Aggregate data by day \\ week
-     * @param dataPointLimit Amount of data points per request
-     * @param storeId List of stores to search by
+     * @param appId 
+     * @param aggregateDataBy 
+     * @param dataPointLimit 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getOrderStatistics (appId: string, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultApmCurrencyDataPoint;  }> {
@@ -54497,11 +54471,10 @@ export class ApmApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get paginated APM call list
-     * @param appId App Id
-     * @param page Requested page index
-     * @param limit Requested page limit
-     * @param storeId List of stores to search by
+     * @param appId 
+     * @param page 
+     * @param limit 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getPaginatedCallList (appId: string, page?: number, limit?: number, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPhoneCall;  }> {
@@ -54618,9 +54591,8 @@ export class AppStoreApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * App store app must be verified or you are the owner [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get App store app
-     * @param appStoreAppId App store app id
+     * 
+     * @param appStoreAppId 
      * @param {*} [options] Override http request options.
      */
     public getAppStoreApp (appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: AppStoreApp;  }> {
@@ -54675,12 +54647,11 @@ export class AppStoreApi {
         });
     }
     /**
-     * Only returns verified applications [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get list of App store app summaries
-     * @param search Query App store app name
-     * @param page Requested page index
-     * @param limit Requested page limit
-     * @param excludeNotOwned Exclude App store apps that user is not the owner off
+     * 
+     * @param search 
+     * @param page 
+     * @param limit 
+     * @param excludeNotOwned 
      * @param {*} [options] Override http request options.
      */
     public getAppStoreApps (search: string, page?: number, limit?: number, excludeNotOwned?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultAppStoreAppSummary;  }> {
@@ -54801,7 +54772,6 @@ export class AppStoreConfigurationsApi {
     }
     /**
      * 
-     * @summary Process the OAuth response code (bounce back redirect from external OAuth provider after successful authentication)  the query string will contain state and code
      * @param appStoreAppId 
      * @param {*} [options] Override http request options.
      */
@@ -54857,10 +54827,9 @@ export class AppStoreConfigurationsApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system] This adds an Application to a Whitelabel that can later be configured to specific stores
-     * @summary Create App store app configuration
-     * @param appId App id
-     * @param appStoreAppId App store app id
+     * 
+     * @param appId 
+     * @param appStoreAppId 
      * @param {*} [options] Override http request options.
      */
     public createAppStoreConfig (appId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreAppConfiguration;  }> {
@@ -54921,11 +54890,10 @@ export class AppStoreConfigurationsApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Delete App store app configuration
-     * @param appId App id
-     * @param appStoreAppId App store app id
-     * @param configId App store app configuration id
+     * 
+     * @param appId 
+     * @param appStoreAppId 
+     * @param configId 
      * @param {*} [options] Override http request options.
      */
     public deleteAppStoreConfig (appId: string, appStoreAppId: string, configId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
@@ -54993,11 +54961,10 @@ export class AppStoreConfigurationsApi {
     }
     /**
      * 
-     * @summary Execute configuration action on a configuration item (eg. handle button press)
-     * @param appId App Id
-     * @param appStoreAppId AppStore App Id
-     * @param configId AppStore App configuration Id
-     * @param executeConfigurationActionRequest Action request details
+     * @param appId 
+     * @param appStoreAppId 
+     * @param configId 
+     * @param executeConfigurationActionRequest 
      * @param {*} [options] Override http request options.
      */
     public executeConfigurationAction (appId: string, appStoreAppId: string, configId: string, executeConfigurationActionRequest: ExecuteConfigurationActionRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: ExecuteConfigurationActionResult;  }> {
@@ -55070,11 +55037,10 @@ export class AppStoreConfigurationsApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get App store app configuration
-     * @param appId App id
-     * @param appStoreAppId App store app id
-     * @param configId App store app configuration id
+     * 
+     * @param appId 
+     * @param appStoreAppId 
+     * @param configId 
      * @param {*} [options] Override http request options.
      */
     public getAppStoreConfig (appId: string, appStoreAppId: string, configId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: AppStoreAppConfiguration;  }> {
@@ -55141,10 +55107,9 @@ export class AppStoreConfigurationsApi {
         });
     }
     /**
-     * [ALPHA - this endpoint is not ready to be consumed]
-     * @summary Get list of App store app configurations for one App store app
-     * @param appId App id
-     * @param appStoreAppId App store app id
+     * 
+     * @param appId 
+     * @param appStoreAppId 
      * @param {*} [options] Override http request options.
      */
     public getConfiguredAppSingleApp (appId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppStoreAppConfigurationSummary;  }> {
@@ -55205,9 +55170,8 @@ export class AppStoreConfigurationsApi {
         });
     }
     /**
-     * [ALPHA - this endpoint is not ready to be consumed]
-     * @summary Get list of App store apps which have been configured
-     * @param appId App id
+     * 
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getConfiguredApps (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppStoreAppConfigurationHeader;  }> {
@@ -55262,12 +55226,11 @@ export class AppStoreConfigurationsApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Update App store app configuration
-     * @param appId App id
-     * @param appStoreAppId App store app id
-     * @param configId App store app configuration id
-     * @param updateAppStoreAppConfiguration Update App store app configuration
+     * 
+     * @param appId 
+     * @param appStoreAppId 
+     * @param configId 
+     * @param updateAppStoreAppConfiguration 
      * @param {*} [options] Override http request options.
      */
     public updateAppStoreConfig (appId: string, appStoreAppId: string, configId: string, updateAppStoreAppConfiguration: UpdateAppStoreAppConfiguration, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -55339,8 +55302,7 @@ export class AppStoreConfigurationsApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Update AppStore App Configuration values, specified settings only
+     * 
      * @param appId 
      * @param appStoreAppId 
      * @param configId 
@@ -55466,11 +55428,10 @@ export class AppStoreDeveloperApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system][Note: Only Flipdish staff can verify apps]
-     * @summary Update App store app verification
-     * @param oauthAppId OAuth App identifier
-     * @param appStoreAppId App store app id
-     * @param verificationStatus New verification status
+     * 
+     * @param oauthAppId 
+     * @param appStoreAppId 
+     * @param verificationStatus 
      * @param {*} [options] Override http request options.
      */
     public appVerificationUpdate (oauthAppId: string, appStoreAppId: string, verificationStatus: 'Draft' | 'Submitted' | 'Verified', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -55539,10 +55500,9 @@ export class AppStoreDeveloperApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Create App store app
-     * @param oauthAppId OAuth App identifier
-     * @param createAppStoreApp App store app
+     * 
+     * @param oauthAppId 
+     * @param createAppStoreApp 
      * @param {*} [options] Override http request options.
      */
     public createAppStoreApp (oauthAppId: string, createAppStoreApp: CreateAppStoreApp, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreApp;  }> {
@@ -55603,10 +55563,9 @@ export class AppStoreDeveloperApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Delete App store app
-     * @param oauthAppId OAuth App identifier
-     * @param appStoreAppId App store app id
+     * 
+     * @param oauthAppId 
+     * @param appStoreAppId 
      * @param {*} [options] Override http request options.
      */
     public deleteAppStoreApp (oauthAppId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
@@ -55667,10 +55626,9 @@ export class AppStoreDeveloperApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get external function action signing key for app
-     * @param oauthAppId OAuth App identifier
-     * @param appStoreAppId App store app id
+     * 
+     * @param oauthAppId 
+     * @param appStoreAppId 
      * @param {*} [options] Override http request options.
      */
     public getExternalFunctionSigningKey (oauthAppId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -55730,11 +55688,10 @@ export class AppStoreDeveloperApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Update App store app
-     * @param oauthAppId OAuth App identifier
-     * @param appStoreAppId App store app id
-     * @param appStoreApp Update App store app
+     * 
+     * @param oauthAppId 
+     * @param appStoreAppId 
+     * @param appStoreApp 
      * @param {*} [options] Override http request options.
      */
     public updateAppStoreApp (oauthAppId: string, appStoreAppId: string, appStoreApp: UpdateAppStoreApp, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -55801,9 +55758,8 @@ export class AppStoreDeveloperApi {
     }
     /**
      * 
-     * @summary Upload the App store app logo \\ icon
-     * @param oauthAppId OAuth App identifier
-     * @param appStoreAppId App store app id
+     * @param oauthAppId 
+     * @param appStoreAppId 
      * @param Image App Store App Logo
      * @param {*} [options] Override http request options.
      */
@@ -55925,8 +55881,7 @@ export class AppsApi {
     }
     /**
      * 
-     * @summary Get the application configuration
-     * @param appId Application identifier
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getApp (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }> {
@@ -55981,9 +55936,8 @@ export class AppsApi {
         });
     }
     /**
-     * A domain might be ready but still need 10 minutes to work properly because of HAProxy.
-     * @summary Get the application hostname DNS delegation states for A and CNAME records.
-     * @param appId Application identifier.
+     * 
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getAppHostnameStatus (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDnsRecordInformation;  }> {
@@ -56039,7 +55993,6 @@ export class AppsApi {
     }
     /**
      * 
-     * @summary Get Apps
      * @param nameFilter 
      * @param page 
      * @param limit 
@@ -56104,8 +56057,7 @@ export class AppsApi {
     }
     /**
      * 
-     * @summary Get the application compliance configuration
-     * @param appId Application identifier
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getCompliance (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppCompliance;  }> {
@@ -56161,8 +56113,7 @@ export class AppsApi {
     }
     /**
      * 
-     * @summary Get panacea vanity url. This sets the URL which the Panacea website is available at. ie. my.flipdish.com/[vanityurl]
-     * @param appId Application identifier.
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getPanaceaVanityUrl (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
@@ -56218,7 +56169,6 @@ export class AppsApi {
     }
     /**
      * 
-     * @summary Get all supported countries.
      * @param {*} [options] Override http request options.
      */
     public getSupportedCountries (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSupportedCountry;  }> {
@@ -56267,9 +56217,8 @@ export class AppsApi {
         });
     }
     /**
-     * Minimum length of 3 characters
-     * @summary Is panacea vanity url available
-     * @param vanityUrl Vanity url to check
+     * 
+     * @param vanityUrl 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -56335,9 +56284,8 @@ export class AppsApi {
     }
     /**
      * 
-     * @summary Set the application configuration
-     * @param appId Application identifier
-     * @param appConfigUpdate Changes to the configuration
+     * @param appId 
+     * @param appConfigUpdate 
      * @param {*} [options] Override http request options.
      */
     public setAppConfig (appId: string, appConfigUpdate: AppConfigUpdateModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }> {
@@ -56398,12 +56346,11 @@ export class AppsApi {
         });
     }
     /**
-     * If no subdomain is specified in {hostname} 'www' will be prepended.
-     * @summary Set the application hostname.
-     * @param appId Application identifier.
-     * @param hostname The new Hostname.
-     * @param isEmbed Will the website be embedded
-     * @param isNextGenWeb Enables the NextGen web editor
+     * 
+     * @param appId 
+     * @param hostname 
+     * @param isEmbed 
+     * @param isNextGenWeb 
      * @param {*} [options] Override http request options.
      */
     public setAppHostname (appId: string, hostname: string, isEmbed?: boolean, isNextGenWeb?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
@@ -56476,9 +56423,8 @@ export class AppsApi {
     }
     /**
      * 
-     * @summary Set the application languages
-     * @param appId Application identifier
-     * @param languages New list of languages
+     * @param appId 
+     * @param languages 
      * @param {*} [options] Override http request options.
      */
     public setAppLanguages (appId: string, languages: Array<Language>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }> {
@@ -56540,9 +56486,8 @@ export class AppsApi {
     }
     /**
      * 
-     * @summary Set the application compliance configuration
-     * @param appId Application identifier
-     * @param complianceType Compliance type
+     * @param appId 
+     * @param complianceType 
      * @param {*} [options] Override http request options.
      */
     public setCompliance (appId: string, complianceType: 'Default' | 'GdprCompliance', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppCompliance;  }> {
@@ -56606,10 +56551,9 @@ export class AppsApi {
         });
     }
     /**
-     * Minimum length of 3 characters
-     * @summary Set panacea vanity url
-     * @param appId Application identifier.
-     * @param vanityUrl Vanity url
+     * 
+     * @param appId 
+     * @param vanityUrl 
      * @param {*} [options] Override http request options.
      */
     public setPanaceaVanityUrl (appId: string, vanityUrl: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
@@ -56674,7 +56618,6 @@ export class AppsApi {
     }
     /**
      * 
-     * @summary Toggle Next Gen Web
      * @param appId 
      * @param hostname 
      * @param vanityUrl 
@@ -56761,8 +56704,7 @@ export class AppsApi {
     }
     /**
      * 
-     * @summary Set the application logo \\ icon
-     * @param appId Application identifier
+     * @param appId 
      * @param Image App Logo
      * @param {*} [options] Override http request options.
      */
@@ -56877,8 +56819,7 @@ export class AuditLogsApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Create an order audit log event
+     * 
      * @param orderId 
      * @param externalEventCreate 
      * @param {*} [options] Override http request options.
@@ -56940,8 +56881,7 @@ export class AuditLogsApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Create a store audit log event
+     * 
      * @param storeId 
      * @param externalEventCreate 
      * @param {*} [options] Override http request options.
@@ -57054,11 +56994,10 @@ export class AuthorizationTokensApi {
     }
     /**
      * 
-     * @summary Get authorization tokens
-     * @param oauthAppId Client identifier
+     * @param oauthAppId 
      * @param appId 
-     * @param page Requested page number
-     * @param limit Requested page limit
+     * @param page 
+     * @param limit 
      * @param {*} [options] Override http request options.
      */
     public getAuthorizationTokens (oauthAppId: string, appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOAuthTokenModel;  }> {
@@ -57128,8 +57067,7 @@ export class AuthorizationTokensApi {
     }
     /**
      * 
-     * @summary Revoke token
-     * @param key Token identifier key
+     * @param key 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -57241,10 +57179,9 @@ export class BankAccountApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Attach Bank Account to Store
-     * @param appId App Name
-     * @param bankAccountId Id of account to be updated
-     * @param storeId Store to be attached to Bank account
+     * @param appId 
+     * @param bankAccountId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public attachBankAccountToStore (appId: string, bankAccountId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -57311,9 +57248,8 @@ export class BankAccountApi {
     }
     /**
      * 
-     * @summary Create a new Bank Account and attach to this App
-     * @param appId App Name
-     * @param account Account to be created
+     * @param appId 
+     * @param account 
      * @param {*} [options] Override http request options.
      */
     public createBankAccount (appId: string, account: BankAccountCreate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
@@ -57375,9 +57311,8 @@ export class BankAccountApi {
     }
     /**
      * 
-     * @summary Delete BankAccount
-     * @param appId App Name
-     * @param bankAccountId Id of account to be marked as deleted
+     * @param appId 
+     * @param bankAccountId 
      * @param {*} [options] Override http request options.
      */
     public deleteBankAccount (appId: string, bankAccountId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -57438,8 +57373,7 @@ export class BankAccountApi {
     }
     /**
      * 
-     * @summary Get BankAccount Detail by Id
-     * @param bankAccountId Id of account
+     * @param bankAccountId 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -57502,8 +57436,7 @@ export class BankAccountApi {
     }
     /**
      * 
-     * @summary Get List of BankAccounts for WL
-     * @param appId App Name
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getBankAccounts (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultBankAccountSummary;  }> {
@@ -57559,7 +57492,6 @@ export class BankAccountApi {
     }
     /**
      * 
-     * @summary Get bank account fields definitions
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -57616,7 +57548,6 @@ export class BankAccountApi {
     }
     /**
      * 
-     * @summary Get bank account fields definitions
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -57673,10 +57604,9 @@ export class BankAccountApi {
     }
     /**
      * 
-     * @summary Update BankAccount
-     * @param appId App Name
-     * @param bankAccountId Id of account to be updated
-     * @param account Details to update account with
+     * @param appId 
+     * @param bankAccountId 
+     * @param account 
      * @param {*} [options] Override http request options.
      */
     public updateBankAccount (appId: string, bankAccountId: number, account: BankAccountCreate, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -57743,11 +57673,10 @@ export class BankAccountApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Update State of Bank Account
-     * @param appId App Name
-     * @param bankAccountId Id of account to be updated
-     * @param state New state
-     * @param reason Reason for state change, Mandatory for rejections
+     * @param appId 
+     * @param bankAccountId 
+     * @param state 
+     * @param reason 
      * @param {*} [options] Override http request options.
      */
     public updateBankAccountState (appId: string, bankAccountId: number, state: string, reason: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -57870,9 +57799,8 @@ export class CampaignsApi {
     }
     /**
      * 
-     * @summary Creates loyalty campaign
-     * @param appId App Name Id
-     * @param campaign Loyalty campaign details
+     * @param appId 
+     * @param campaign 
      * @param {*} [options] Override http request options.
      */
     public createLoyaltyCampaign (appId: string, campaign: LoyaltyCampaignBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLoyaltyCampaign;  }> {
@@ -57934,9 +57862,8 @@ export class CampaignsApi {
     }
     /**
      * 
-     * @summary Creates retention campaign
-     * @param appId App Name Id
-     * @param campaign Retention campaign details
+     * @param appId 
+     * @param campaign 
      * @param {*} [options] Override http request options.
      */
     public createRetentionCampaign (appId: string, campaign: RetentionCampaignBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRetentionCampaign;  }> {
@@ -57998,8 +57925,7 @@ export class CampaignsApi {
     }
     /**
      * 
-     * @summary Gets loyalty campaigns for app
-     * @param appId App Name Id
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getLoyaltyCampaignsForApp (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLoyaltyCampaign;  }> {
@@ -58055,9 +57981,8 @@ export class CampaignsApi {
     }
     /**
      * 
-     * @summary Gets loyalty campaigns for store
-     * @param appId App Name Id
-     * @param storeId Store Id
+     * @param appId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getLoyaltyCampaignsForStore (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLoyaltyCampaign;  }> {
@@ -58119,8 +58044,7 @@ export class CampaignsApi {
     }
     /**
      * 
-     * @summary Gets retention campaigns for app
-     * @param appId App Name Id
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getRetentionCampaignsForApp (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRetentionCampaign;  }> {
@@ -58176,9 +58100,8 @@ export class CampaignsApi {
     }
     /**
      * 
-     * @summary Gets retention campaigns for store
-     * @param appId App Name Id
-     * @param storeId Store Id
+     * @param appId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getRetentionCampaignsForStore (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRetentionCampaign;  }> {
@@ -58240,8 +58163,7 @@ export class CampaignsApi {
     }
     /**
      * 
-     * @summary Gets list of stores for app
-     * @param appId App Name Id
+     * @param appId 
      * @param onlyPublished 
      * @param {*} [options] Override http request options.
      */
@@ -58302,9 +58224,8 @@ export class CampaignsApi {
     }
     /**
      * 
-     * @summary Deletes a campaign
-     * @param appId App Name Id
-     * @param campaignId Campaign Id
+     * @param appId 
+     * @param campaignId 
      * @param {*} [options] Override http request options.
      */
     public removeCampaign (appId: string, campaignId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -58365,10 +58286,9 @@ export class CampaignsApi {
     }
     /**
      * 
-     * @summary Updates loyalty campaign
-     * @param appId App Name Id
-     * @param campaignId Loyalty campaign Id
-     * @param campaign Loyalty campaign details
+     * @param appId 
+     * @param campaignId 
+     * @param campaign 
      * @param {*} [options] Override http request options.
      */
     public updateLoyaltyCampaign (appId: string, campaignId: number, campaign: LoyaltyCampaignBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLoyaltyCampaign;  }> {
@@ -58436,10 +58356,9 @@ export class CampaignsApi {
     }
     /**
      * 
-     * @summary Updates retention campaign
-     * @param appId App Name Id
-     * @param campaignId Retention campaign Id
-     * @param campaign Retention campaign details
+     * @param appId 
+     * @param campaignId 
+     * @param campaign 
      * @param {*} [options] Override http request options.
      */
     public updateRetentionCampaign (appId: string, campaignId: number, campaign: RetentionCampaignBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRetentionCampaign;  }> {
@@ -58556,8 +58475,7 @@ export class CardReadersApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Cancel currently initiated install update for bluetooth terminal
+     * 
      * @param appId 
      * @param deviceId 
      * @param terminalType 
@@ -58626,8 +58544,7 @@ export class CardReadersApi {
         });
     }
     /**
-     * Can only be called by Kiosk
-     * @summary Cancel terminals action
+     * 
      * @param readerId 
      * @param appId 
      * @param {*} [options] Override http request options.
@@ -58690,8 +58607,7 @@ export class CardReadersApi {
         });
     }
     /**
-     * Can only be called by Kiosk
-     * @summary Get reader
+     * 
      * @param readerId 
      * @param appId 
      * @param {*} [options] Override http request options.
@@ -58754,8 +58670,7 @@ export class CardReadersApi {
         });
     }
     /**
-     * Can only be called by Kiosk  [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get Location ID for Stripe Terminal
+     * 
      * @param geoPointRequest 
      * @param appId 
      * @param {*} [options] Override http request options.
@@ -58818,8 +58733,7 @@ export class CardReadersApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get the status of the bluetooth terminal
+     * 
      * @param appId 
      * @param deviceId 
      * @param {*} [options] Override http request options.
@@ -58882,8 +58796,7 @@ export class CardReadersApi {
         });
     }
     /**
-     * Can only be called by Kiosk
-     * @summary Get Connection Token For a Stripe Terminal
+     * 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -58939,8 +58852,7 @@ export class CardReadersApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Trigger check for Bluetooth device update on Kiosk
+     * 
      * @param appId 
      * @param deviceId 
      * @param terminalType 
@@ -59009,8 +58921,7 @@ export class CardReadersApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Initiate stripe terminal pairing mode
+     * 
      * @param appId 
      * @param deviceId 
      * @param terminalType 
@@ -59079,8 +58990,7 @@ export class CardReadersApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Initiate Kiosk Update Install for bluetooth terminal
+     * 
      * @param appId 
      * @param deviceId 
      * @param terminalType 
@@ -59149,8 +59059,7 @@ export class CardReadersApi {
         });
     }
     /**
-     * Can only be called by Kiosk  [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Initiate Stripe terminal to Process Payment Intent
+     * 
      * @param request 
      * @param readerId 
      * @param appId 
@@ -59283,8 +59192,7 @@ export class CardReadersApi {
         });
     }
     /**
-     * Can only be called by Kiosk
-     * @summary Un-register terminal by deleting it from stripe
+     * 
      * @param request 
      * @param appId 
      * @param {*} [options] Override http request options.
@@ -59347,8 +59255,7 @@ export class CardReadersApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Unpair the currently paired stripe terminal
+     * 
      * @param appId 
      * @param deviceId 
      * @param {*} [options] Override http request options.
@@ -61194,9 +61101,8 @@ export class ChannelsApi {
     }
     /**
      * 
-     * @summary Assign a given AppId to a Sales Channel
-     * @param appId Application Id (AppNameIdxxx)
-     * @param channelId Channel Id (123, 456)
+     * @param appId 
+     * @param channelId 
      * @param {*} [options] Override http request options.
      */
     public assignAppIdToSalesChannel (appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -61258,10 +61164,9 @@ export class ChannelsApi {
     }
     /**
      * 
-     * @summary Assign a Store to a Sales Channel
-     * @param storeId Store Id (123, 456)
-     * @param appId AppId (AppNameIdxxx)
-     * @param channelId Channel Id (123, 456)
+     * @param storeId 
+     * @param appId 
+     * @param channelId 
      * @param {*} [options] Override http request options.
      */
     public assignStoreToChannel (storeId: number, appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -61335,10 +61240,9 @@ export class ChannelsApi {
     }
     /**
      * 
-     * @summary Attachs the specified store to the given sales channel.
-     * @param appId Application Id (AppNameId)
-     * @param channelId Type of sales channel (Android, IOS, Web, etc.)
-     * @param storeId Store Id (Phyisical Restaurant) to attach.
+     * @param appId 
+     * @param channelId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public attachStoreToSalesChannel (appId: string, channelId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -61406,9 +61310,8 @@ export class ChannelsApi {
     }
     /**
      * 
-     * @summary Detaches all the stores from the given sales channel.
-     * @param appId Application Id (AppNameId)
-     * @param channelId Type of sales channel (Android, IOS, Web, etc.)
+     * @param appId 
+     * @param channelId 
      * @param {*} [options] Override http request options.
      */
     public detachAllStoresFromSalesChannel (appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -61470,10 +61373,9 @@ export class ChannelsApi {
     }
     /**
      * 
-     * @summary Detaches the specified store from the given sales channel.
-     * @param appId Application Id (AppNameId)
-     * @param channelId Type of sales channel (Android, IOS, Web, etc.)
-     * @param storeId Store Id (Phyisical Restaurant) to detach.
+     * @param appId 
+     * @param channelId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public detachStoreFromSalesChannel (appId: string, channelId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -61541,8 +61443,7 @@ export class ChannelsApi {
     }
     /**
      * 
-     * @summary Returns a list of sales channels that are assigned to a given AppId
-     * @param appId Application Id (AppNameIdxxx)
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getAssignedChannels (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultChannel;  }> {
@@ -61598,8 +61499,7 @@ export class ChannelsApi {
     }
     /**
      * 
-     * @summary Returns a list of sales channels that are not yet assigned to a given AppId
-     * @param appId Application Id (AppNameIdxxx)
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getAvailableChannels (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultChannel;  }> {
@@ -61655,9 +61555,8 @@ export class ChannelsApi {
     }
     /**
      * 
-     * @summary Returns a Sales Channel by Id.
-     * @param id ChannelId
-     * @param appId AppId
+     * @param id 
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getChannel (id: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultChannel;  }> {
@@ -61719,7 +61618,6 @@ export class ChannelsApi {
     }
     /**
      * 
-     * @summary Returns a list of enabled Channels
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -61776,9 +61674,8 @@ export class ChannelsApi {
     }
     /**
      * 
-     * @summary Returns a list of stores of an AppId that are assigned to a given Sales Channel
-     * @param appId Application Id (AppNameId)
-     * @param channelId Sales channel (Android, IOS, Web, etc.)
+     * @param appId 
+     * @param channelId 
      * @param {*} [options] Override http request options.
      */
     public getStoresAssignedToChannel (appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreChannelAssignment;  }> {
@@ -61840,9 +61737,8 @@ export class ChannelsApi {
     }
     /**
      * 
-     * @summary Returns a list of store ids attached to the given channel type for the specified app.
-     * @param appId Application Id (AppNameId)
-     * @param channelId Type of sales channel (Android, IOS, Web, etc.)
+     * @param appId 
+     * @param channelId 
      * @param {*} [options] Override http request options.
      */
     public getStoresBySalesChannel (appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: Response;  }> {
@@ -61904,10 +61800,9 @@ export class ChannelsApi {
     }
     /**
      * 
-     * @summary Unassign a Store from a Sales Channel
-     * @param storeId Store Id (123, 456)
-     * @param appId AppId (AppNameIdxxx)
-     * @param channelId Channel Id (123, 456)
+     * @param storeId 
+     * @param appId 
+     * @param channelId 
      * @param {*} [options] Override http request options.
      */
     public unassignStoreFromChannel (storeId: number, appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -62031,9 +61926,8 @@ export class ChannelsStoreMappingApi {
     }
     /**
      * 
-     * @summary Gets the relationship between Flipdish Store and Channel Store
-     * @param appId Flipdish App Name Id
-     * @param channelId Flipdish Channel ID
+     * @param appId 
+     * @param channelId 
      * @param {*} [options] Override http request options.
      */
     public channelsGetStoreChannelStoreMapping (appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreChannelStoreMapping;  }> {
@@ -62098,10 +61992,9 @@ export class ChannelsStoreMappingApi {
     }
     /**
      * 
-     * @summary Sets the relationship between Flipdish Store and Channel Store
-     * @param appId Flipdish App Name Id
-     * @param channelId Flipdish Channel ID
-     * @param stores Flipdish and Channel Store configuration
+     * @param appId 
+     * @param channelId 
+     * @param stores 
      * @param {*} [options] Override http request options.
      */
     public channelsSetStoreChannelStoreMapping (appId: string, channelId: number, stores: Array<ChannelStoreMapping>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreChannelStoreMapping;  }> {
@@ -62327,12 +62220,11 @@ export class CrossSellApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * Can be called by any flipdish kiosk  [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get all Menu items by MenuId for cross sells
-     * @param menuId Requested MenuId
-     * @param menuItemId Selected Menu items
-     * @param limit Set the limit of items returned
-     * @param totalValue Get the total cost of items in the basket
+     * 
+     * @param menuId 
+     * @param menuItemId 
+     * @param limit 
+     * @param totalValue 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -62475,9 +62367,8 @@ export class CustomersApi {
     }
     /**
      * 
-     * @summary Get customer of an app by Id
-     * @param appId App Name Id
-     * @param customerId Customer Id
+     * @param appId 
+     * @param customerId 
      * @param {*} [options] Override http request options.
      */
     public getCustomerById (appId: string, customerId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCustomer;  }> {
@@ -62539,10 +62430,9 @@ export class CustomersApi {
     }
     /**
      * 
-     * @summary Update customer of an app by Id
-     * @param appId App Name Id
-     * @param customerId Customer Id
-     * @param updateCustomer Updated customer information
+     * @param appId 
+     * @param customerId 
+     * @param updateCustomer 
      * @param {*} [options] Override http request options.
      */
     public updateCustomerById (appId: string, customerId: number, updateCustomer: CustomerUpdateModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCustomer;  }> {
@@ -62660,10 +62550,9 @@ export class DeliveryTrackingApi {
     }
     /**
      * 
-     * @summary [PRIVATE] Assign driver to order
-     * @param appId Application identifier
-     * @param orderId Order Id
-     * @param driverId Driver Id
+     * @param appId 
+     * @param orderId 
+     * @param driverId 
      * @param {*} [options] Override http request options.
      */
     public assignDriverToOrder (appId: string, orderId: number, driverId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -62730,10 +62619,9 @@ export class DeliveryTrackingApi {
     }
     /**
      * 
-     * @summary Assign driver to multiple orders
-     * @param appId Application identifier
-     * @param driverId Driver Id
-     * @param orderIdAndSequenceNumbers Array of object containing OrderId and Sequence
+     * @param appId 
+     * @param driverId 
+     * @param orderIdAndSequenceNumbers 
      * @param {*} [options] Override http request options.
      */
     public assignDriverToOrders (appId: string, driverId: number, orderIdAndSequenceNumbers: Array<OrderIdAndSequenceNumber>, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -62800,12 +62688,11 @@ export class DeliveryTrackingApi {
     }
     /**
      * 
-     * @summary [PRIVATE] Get drivers by App
-     * @param appId Application identifier
-     * @param name Driver&#39;s username
-     * @param phoneNumber Driver&#39;s phone number
-     * @param storeId Store Id
-     * @param presence Offline/Online
+     * @param appId 
+     * @param name 
+     * @param phoneNumber 
+     * @param storeId 
+     * @param presence 
      * @param {*} [options] Override http request options.
      */
     public getDrivers (appId: string, name?: string, phoneNumber?: string, storeId?: number, presence?: 'Offline' | 'Online', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDriver;  }> {
@@ -62877,9 +62764,8 @@ export class DeliveryTrackingApi {
     }
     /**
      * 
-     * @summary [PRIVATE] Invite driver
-     * @param appId Application identifier
-     * @param driverInvitation Driver invitation model
+     * @param appId 
+     * @param driverInvitation 
      * @param {*} [options] Override http request options.
      */
     public inviteDriverToApp (appId: string, driverInvitation: DriverInvitation, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDriver;  }> {
@@ -62941,9 +62827,8 @@ export class DeliveryTrackingApi {
     }
     /**
      * 
-     * @summary [PRIVATE] Unassign driver from app
-     * @param appId Application identifier
-     * @param driverId Driver Id
+     * @param appId 
+     * @param driverId 
      * @param {*} [options] Override http request options.
      */
     public removeDriverFromApp (appId: string, driverId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -63004,9 +62889,8 @@ export class DeliveryTrackingApi {
     }
     /**
      * 
-     * @summary [PRIVATE] Unassign driver from order
-     * @param appId Application identifier
-     * @param orderId Order Id
+     * @param appId 
+     * @param orderId 
      * @param {*} [options] Override http request options.
      */
     public unassignDriverFromOrder (appId: string, orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -63117,9 +63001,8 @@ export class DeliveryZoneApi {
     }
     /**
      * 
-     * @summary Adds a delivery zone to the store id
-     * @param storeId Store Id to which the delivery zone will be added
-     * @param deliveryZoneBase Optional delivery zone, if not supplied will create a default zone
+     * @param storeId 
+     * @param deliveryZoneBase 
      * @param {*} [options] Override http request options.
      */
     public addDeliveryZone (storeId: number, deliveryZoneBase: DeliveryZoneBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDeliveryZone;  }> {
@@ -63181,8 +63064,7 @@ export class DeliveryZoneApi {
     }
     /**
      * 
-     * @summary Get all the delivery zones associated with a store
-     * @param storeId Store Id to which the delivery zones are associated
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getDeliveryZones (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDeliveryZone;  }> {
@@ -63238,9 +63120,8 @@ export class DeliveryZoneApi {
     }
     /**
      * 
-     * @summary Removes the existing delivery zone
-     * @param storeId Store Id to which the delivery zone belongs
-     * @param deliveryZoneId Delivery zone id to be removed
+     * @param storeId 
+     * @param deliveryZoneId 
      * @param {*} [options] Override http request options.
      */
     public removeDeliveryZone (storeId: number, deliveryZoneId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -63301,10 +63182,9 @@ export class DeliveryZoneApi {
     }
     /**
      * 
-     * @summary Updates the existing delivery zone
-     * @param storeId Store Id to which the delivery zone belongs
-     * @param deliveryZoneId Delivery zone id to be updated
-     * @param deliveryZone Delta of delivery zone parameters that need to be changed
+     * @param storeId 
+     * @param deliveryZoneId 
+     * @param deliveryZone 
      * @param {*} [options] Override http request options.
      */
     public updateDeliveryZone (storeId: number, deliveryZoneId: number, deliveryZone: DeliveryZoneBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDeliveryZone;  }> {
@@ -63421,10 +63301,9 @@ export class DeviceApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Assign device to AppId. Device must have been enrolled before
-     * @param appId App Id
-     * @param assignDeviceRequest Assign request
+     * 
+     * @param appId 
+     * @param assignDeviceRequest 
      * @param {*} [options] Override http request options.
      */
     public assignDevice (appId: string, assignDeviceRequest: ClientDeviceAssignEnrolledDevice, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultClientDeviceEnrollmentResult;  }> {
@@ -63485,10 +63364,9 @@ export class DeviceApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Enroll a new device - this returns a PIN code for actually assigning it later
-     * @param appId App Id - not for the device, only for permission checking
-     * @param deviceEnrollmentRequest Request object for enrolling device
+     * 
+     * @param appId 
+     * @param deviceEnrollmentRequest 
      * @param {*} [options] Override http request options.
      */
     public enrollDevice (appId: string, deviceEnrollmentRequest: ClientDeviceEnroll, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultClientDeviceEnrollmentResult;  }> {
@@ -63549,11 +63427,10 @@ export class DeviceApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get details for a device by model and deviceid
-     * @param appId App Id
-     * @param deviceModel Device Model
-     * @param deviceId Device Id
+     * 
+     * @param appId 
+     * @param deviceModel 
+     * @param deviceId 
      * @param {*} [options] Override http request options.
      */
     public getDeviceDetails (appId: string, deviceModel: string, deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultClientDevice;  }> {
@@ -63620,11 +63497,10 @@ export class DeviceApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Search devices by AppId and optionally storeId
-     * @param appId App Id
-     * @param storeId Store Id (optional)
-     * @param deviceModel Device Model (optional)
+     * 
+     * @param appId 
+     * @param storeId 
+     * @param deviceModel 
      * @param {*} [options] Override http request options.
      */
     public searchDevices (appId: string, storeId?: number, deviceModel?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultClientDeviceSummary;  }> {
@@ -63738,7 +63614,6 @@ export class DriversApi {
     }
     /**
      * 
-     * @summary Add driver token
      * @param updateDriverToken 
      * @param {*} [options] Override http request options.
      */
@@ -63794,7 +63669,6 @@ export class DriversApi {
     }
     /**
      * 
-     * @summary Delete driver profile image
      * @param {*} [options] Override http request options.
      */
     public deleteDriverProfileImage (options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -63843,8 +63717,7 @@ export class DriversApi {
     }
     /**
      * 
-     * @summary [PRIVATE] Login with phone number and pin
-     * @param driverLoginModel Driver request login code model
+     * @param driverLoginModel 
      * @param {*} [options] Override http request options.
      */
     public driverLogin (driverLoginModel: DriverLoginModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -63899,8 +63772,7 @@ export class DriversApi {
     }
     /**
      * 
-     * @summary [PRIVATE] Request an SMS to be sent to the driver with their login code
-     * @param driverRequestLoginPinModel Driver request login code model
+     * @param driverRequestLoginPinModel 
      * @param {*} [options] Override http request options.
      */
     public driverRequestLoginCodeSms (driverRequestLoginPinModel: DriverRequestLoginPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -63955,7 +63827,6 @@ export class DriversApi {
     }
     /**
      * 
-     * @summary Get driver profile
      * @param {*} [options] Override http request options.
      */
     public getDriverProfile (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDriver;  }> {
@@ -64005,7 +63876,6 @@ export class DriversApi {
     }
     /**
      * 
-     * @summary Get stores for driver
      * @param {*} [options] Override http request options.
      */
     public getStoresForDriver (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDriverStore;  }> {
@@ -64055,7 +63925,6 @@ export class DriversApi {
     }
     /**
      * 
-     * @summary Delete driver token
      * @param removeDriverToken 
      * @param {*} [options] Override http request options.
      */
@@ -64173,7 +64042,6 @@ export class DriversApi {
     }
     /**
      * 
-     * @summary Set driver profile image and returns it's url
      * @param {*} [options] Override http request options.
      */
     public setDriverProfileImage (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
@@ -64222,9 +64090,8 @@ export class DriversApi {
         });
     }
     /**
-     * ...
-     * @summary Change delivery tracking status and return the updated status.
-     * @param orderId Order identifier
+     * 
+     * @param orderId 
      * @param deliveryTrackingStatus 
      * @param {*} [options] Override http request options.
      */
@@ -64287,8 +64154,7 @@ export class DriversApi {
     }
     /**
      * 
-     * @summary Update driver profile
-     * @param updateDriverProfile Update the driver profile (i.e Name)
+     * @param updateDriverProfile 
      * @param {*} [options] Override http request options.
      */
     public updateDriverProfile (updateDriverProfile: UpdateDriverProfileModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -64393,9 +64259,8 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get customer events  For technical reasons, the number of records returned is limited to 100.
      * @param appId 
-     * @param customerId Customer identifier identifier
+     * @param customerId 
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
      * @param start Start date
@@ -64537,10 +64402,9 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get events  For technical reasons, the number of records returned is limited to 100.
      * @param appId 
-     * @param whiteLabelId White Label Id
-     * @param customerId Customer Id
+     * @param whiteLabelId 
+     * @param customerId 
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
      * @param start Start date
@@ -64684,8 +64548,7 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get event by Id  For technical reasons, the number of records returned is limited to 100.
-     * @param eventId Event identifier (Guid)
+     * @param eventId 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -64748,9 +64611,8 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get menu events  For technical reasons, the number of records returned is limited to 100.
      * @param appId 
-     * @param menuId Menu Identifier
+     * @param menuId 
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
      * @param start Start date
@@ -64892,9 +64754,8 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get order events  For technical reasons, the number of records returned is limited to 100.
      * @param appId 
-     * @param orderId Order identifier
+     * @param orderId 
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
      * @param start Start date
@@ -65036,9 +64897,8 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get order events by customer  For technical reasons, the number of records returned is limited to 100.
      * @param appId 
-     * @param customerId Customer identifier
+     * @param customerId 
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
      * @param start Start date
@@ -65183,9 +65043,8 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get store events  For technical reasons, the number of records returned is limited to 100.
      * @param appId 
-     * @param storeId Id of the store
+     * @param storeId 
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
      * @param start Start date
@@ -65327,9 +65186,8 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get user events  For technical reasons, the number of records returned is limited to 100.
      * @param appId 
-     * @param userId User identifier
+     * @param userId 
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
      * @param start Start date
@@ -65471,9 +65329,8 @@ export class EventsApi {
     }
     /**
      * 
-     * @summary Get WhiteLabel events  For technical reasons, the number of records returned is limited to 100.
      * @param appId 
-     * @param whitelabelId White Label Identifier
+     * @param whitelabelId 
      * @param limit The maximum elements to return
      * @param page The index of the page to return, starting by 1
      * @param start Start date
@@ -65665,7 +65522,6 @@ export class FilesApi {
     }
     /**
      * 
-     * @summary Get file from storage
      * @param appId 
      * @param fileId 
      * @param {*} [options] Override http request options.
@@ -65940,10 +65796,9 @@ export class FulfillmentStateConfigurationApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Create fulfillment configuration
-     * @param appId App id
-     * @param fulfillmentStateConfiguration Fulfillment state configuration
+     * 
+     * @param appId 
+     * @param fulfillmentStateConfiguration 
      * @param {*} [options] Override http request options.
      */
     public createFulfillmentStatesConfig (appId: string, fulfillmentStateConfiguration: CreateFulfillmentStatesConfiguration, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFulfillmentStatesConfiguration;  }> {
@@ -66004,10 +65859,9 @@ export class FulfillmentStateConfigurationApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Delete fulfillment states configuration
-     * @param appId App id
-     * @param configId Fulfillment states configuration id
+     * 
+     * @param appId 
+     * @param configId 
      * @param {*} [options] Override http request options.
      */
     public deleteFulfillmentStatesConfig (appId: string, configId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
@@ -66068,10 +65922,9 @@ export class FulfillmentStateConfigurationApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get fulfillment configuration
-     * @param appId App id
-     * @param configId Fulfillment configuration id
+     * 
+     * @param appId 
+     * @param configId 
      * @param {*} [options] Override http request options.
      */
     public getFulfillmentStatesConfiguration (appId: string, configId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: FulfillmentStatesConfiguration;  }> {
@@ -66132,9 +65985,8 @@ export class FulfillmentStateConfigurationApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get fulfillment configuration template
-     * @param appId App id
+     * 
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getFulfillmentStatesConfigurationTemplate (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: FulfillmentStatesConfiguration;  }> {
@@ -66189,9 +66041,8 @@ export class FulfillmentStateConfigurationApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary List fulfillment configurations for AppId
-     * @param appId App id
+     * 
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public searchFulfillmentStatesConfigurations (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultFulfillmentStatesConfigurationSummary;  }> {
@@ -66246,11 +66097,10 @@ export class FulfillmentStateConfigurationApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Update fulfillment configuration
-     * @param appId App id
-     * @param configId Fulfillment states configuration id
-     * @param updateFulfillmentStatesConfiguration Update fulfillment states configuration
+     * 
+     * @param appId 
+     * @param configId 
+     * @param updateFulfillmentStatesConfiguration 
      * @param {*} [options] Override http request options.
      */
     public updateFulfillmentStatesConfig (appId: string, configId: string, updateFulfillmentStatesConfiguration: UpdateFulfillmentStatesConfiguration, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -66613,9 +66463,8 @@ export class HomeApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Complete Home Action
-     * @param appId App Name Id
-     * @param homeActionId Id of the action
+     * @param appId 
+     * @param homeActionId 
      * @param isDismissed 
      * @param {*} [options] Override http request options.
      */
@@ -66687,7 +66536,6 @@ export class HomeApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Complete Home Action
      * @param {*} [options] Override http request options.
      */
     public dismissOldPortalAction (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -66737,8 +66585,7 @@ export class HomeApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get Home Actions
-     * @param appId App Name Id
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getHomeActions (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultHomeAction;  }> {
@@ -66794,8 +66641,7 @@ export class HomeApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get Home Statistics
-     * @param appId App Name Id
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getHomeStatistics (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHomeStatistics;  }> {
@@ -66851,7 +66697,6 @@ export class HomeApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get Azure KeyVault OktaApiPortalLoginRequired
      * @param {*} [options] Override http request options.
      */
     public getOktaPortalFeatureFlag (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOktaPortalFeatureFlag;  }> {
@@ -66951,14 +66796,13 @@ export class HttpRequestResponseLogsApi {
     }
     /**
      * 
-     * @summary Get API interaction logs
-     * @param start Start date time
-     * @param end End date time
+     * @param start 
+     * @param end 
      * @param appId 
-     * @param filterByUserId User id (optional)
-     * @param guid Id of the log
-     * @param page Page number
-     * @param limit Page size
+     * @param filterByUserId 
+     * @param guid 
+     * @param page 
+     * @param limit 
      * @param {*} [options] Override http request options.
      */
     public getLogs (start: Date, end: Date, appId: string, filterByUserId?: number, guid?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultHttpRequestAndResponseLog;  }> {
@@ -67098,7 +66942,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary Assign an EMV terminal to a kiosk
      * @param appId 
      * @param hydraConfigId 
      * @param emvTerminalId 
@@ -67168,7 +67011,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary [Private]
      * @param appId 
      * @param storeId 
      * @param deviceId 
@@ -67239,7 +67081,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary [Private]
      * @param appId 
      * @param deviceId 
      * @param storeId 
@@ -67372,7 +67213,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary [Private]
      * @param appId 
      * @param deviceId 
      * @param storeId 
@@ -67443,7 +67283,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary [Private]
      * @param appId 
      * @param deviceType 
      * @param deviceId 
@@ -67514,7 +67353,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary [Private]
      * @param appId 
      * @param deviceType 
      * @param pageIndex 
@@ -67603,7 +67441,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary [Private]
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -67660,7 +67497,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary [Private]
      * @param orderId 
      * @param appId 
      * @param {*} [options] Override http request options.
@@ -67723,8 +67559,7 @@ export class HydraApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get the status of Cash Payment Method on Kiosk
+     * 
      * @param appId 
      * @param deviceId 
      * @param {*} [options] Override http request options.
@@ -67837,7 +67672,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary [Private]
      * @param {*} [options] Override http request options.
      */
     public getSettings (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraConfig;  }> {
@@ -67887,7 +67721,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary [Private]
      * @param appId 
      * @param emv 
      * @param {*} [options] Override http request options.
@@ -67951,7 +67784,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary [Private]
      * @param appId 
      * @param id 
      * @param {*} [options] Override http request options.
@@ -68015,7 +67847,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary [Private]
      * @param appId 
      * @param storeId 
      * @param deviceId 
@@ -68086,7 +67917,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary List EMV terminals belonging to the given AppNameId
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -68143,7 +67973,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary [Private]
      * @param deviceId 
      * @param hydraUserType 
      * @param serialNumber 
@@ -68209,7 +68038,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary [Private]
      * @param appId 
      * @param hydraRegistration 
      * @param {*} [options] Override http request options.
@@ -68273,7 +68101,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary [Private]
      * @param appId 
      * @param deviceId 
      * @param {*} [options] Override http request options.
@@ -68336,7 +68163,6 @@ export class HydraApi {
     }
     /**
      * 
-     * @summary Unassign the currently assigned EMV terminal from a kiosk
      * @param appId 
      * @param hydraConfigId 
      * @param {*} [options] Override http request options.
@@ -68398,8 +68224,7 @@ export class HydraApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Update the Cash Payment Method Visibility on Kiosk
+     * 
      * @param appId 
      * @param deviceId 
      * @param isCashEnabled 
@@ -68623,17 +68448,16 @@ export class InvoicesApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get list of invoices
-     * @param appId App Id
-     * @param subscriptionId Subscription Id (optional)
-     * @param limit Limit of invoices to return (optional)
-     * @param pageId Id for use in pagination. Use the next_page value returned in a previous response to request subsequent results. Do not include this on the first call (optional)
-     * @param excludeNotOwnedInvoices Exclude not owned invoices. Set to true to only view your invoices (optional)
-     * @param dateFrom Filter starting from this date (optional)
-     * @param dateTo Filter ending from this date (optional)
-     * @param invoiceNumber Invoice number (optional)
-     * @param storeId Store Ids (optional)
+     * 
+     * @param appId 
+     * @param subscriptionId 
+     * @param limit 
+     * @param pageId 
+     * @param excludeNotOwnedInvoices 
+     * @param dateFrom 
+     * @param dateTo 
+     * @param invoiceNumber 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getInvoices (appId: string, subscriptionId?: string, limit?: number, pageId?: string, excludeNotOwnedInvoices?: boolean, dateFrom?: Date, dateTo?: Date, invoiceNumber?: string, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }> {
@@ -68770,8 +68594,7 @@ export class KioskIotApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get the IoT connection parameters for telemetry and commands  No input parameters since authenticated hydra user defines context
+     * 
      * @param {*} [options] Override http request options.
      */
     public getKioskIotConnection (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultKioskIotConnectionParameters;  }> {
@@ -68820,8 +68643,7 @@ export class KioskIotApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get the IoT time series values for a given Kiosk Id, properties and time range
+     * 
      * @param appId 
      * @param queryParams 
      * @param {*} [options] Override http request options.
@@ -68935,9 +68757,8 @@ export class KioskStoreSettingsApi {
     }
     /**
      * 
-     * @summary Get all kiosk settings associated with a store
-     * @param storeId Store identifier
-     * @param appId App Name Id
+     * @param storeId 
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getAllKioskSettingsForStore (storeId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreKioskSettings;  }> {
@@ -68999,7 +68820,6 @@ export class KioskStoreSettingsApi {
     }
     /**
      * 
-     * @summary [For Kiosk use only] Get all stores connected to a Kiosk
      * @param {*} [options] Override http request options.
      */
     public getAllStoreSettingsForKioskHydra (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultKioskStoreSettings;  }> {
@@ -69400,11 +69220,10 @@ export class LocationApi {
     }
     /**
      * 
-     * @summary Create a Location i.e: Table, Hotel Room, Car park space
-     * @param createLocationInput Input data for creating the Location
-     * @param locationAreaId Id of the Location area where the Location belongs
-     * @param appId AppId i.e: (fd1234)
-     * @param storeId Id of the Store
+     * @param createLocationInput 
+     * @param locationAreaId 
+     * @param appId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public createLocation (createLocationInput: Array<CreateLocation>, locationAreaId: number, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -69478,11 +69297,10 @@ export class LocationApi {
     }
     /**
      * 
-     * @summary Set a Location as deleted
-     * @param locationId Id of the Location that will be moved
-     * @param locationAreaId Id of the Location Area that the Location belong
-     * @param appId AppId i.e: (fd1234)
-     * @param storeId Id of the Store
+     * @param locationId 
+     * @param locationAreaId 
+     * @param appId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public deleteLocation (locationId: number, locationAreaId: number, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -69556,12 +69374,11 @@ export class LocationApi {
     }
     /**
      * 
-     * @summary Set or unset External Location Id on a Location
-     * @param locationId Id of the Location that will be mapped
-     * @param locationAreaId Id of the Location Area that the Location belong
-     * @param appId AppId i.e: (fd1234)
-     * @param storeId Id of the Store
-     * @param externalLocationId External Id to be mapped to the location
+     * @param locationId 
+     * @param locationAreaId 
+     * @param appId 
+     * @param storeId 
+     * @param externalLocationId 
      * @param {*} [options] Override http request options.
      */
     public mapLocationToExternalId (locationId: number, locationAreaId: number, appId: string, storeId: number, externalLocationId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMappedLocation;  }> {
@@ -69639,12 +69456,11 @@ export class LocationApi {
     }
     /**
      * 
-     * @summary Move a Location to a different location Area
-     * @param locationId Id of the Location that will be moved
-     * @param locationAreaId Id of the new Location area that it should be moved to
-     * @param newLocationAreaId Id of the new Location area that it should be moved to
-     * @param appId AppId i.e: (fd1234)
-     * @param storeId Id of the Store
+     * @param locationId 
+     * @param locationAreaId 
+     * @param newLocationAreaId 
+     * @param appId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public moveLocation (locationId: number, locationAreaId: number, newLocationAreaId: number, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -69727,12 +69543,11 @@ export class LocationApi {
     }
     /**
      * 
-     * @summary Update a Location i.e: Table, Hotel Room, Car park space
-     * @param updateLocationInput Input data for updating the Location
-     * @param locationAreaId Id of the Location area where the Location belongs
-     * @param locationId Id of the Location to be updated
-     * @param appId AppId i.e: (fd1234)
-     * @param storeId Id of the Store
+     * @param updateLocationInput 
+     * @param locationAreaId 
+     * @param locationId 
+     * @param appId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public updateLocation (updateLocationInput: CreateLocation, locationAreaId: number, locationId: number, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLocationAreaLocation;  }> {
@@ -69862,10 +69677,9 @@ export class LocationAreasApi {
     }
     /**
      * 
-     * @summary Create a Location Area, i.e: Room, Floor, Parking lot
-     * @param locationAreaInput Input data for creating the Location Area
-     * @param appId AppId i.e: (fd1234)
-     * @param storeId Id of the Store
+     * @param locationAreaInput 
+     * @param appId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public createLocationArea (locationAreaInput: CreateLocationArea, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -69933,10 +69747,9 @@ export class LocationAreasApi {
     }
     /**
      * 
-     * @summary Retrieve a Location Area
-     * @param locationAreaId Id of the Location Area
-     * @param appId AppId i.e: (fd1234)
-     * @param storeId Id of the Store
+     * @param locationAreaId 
+     * @param appId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getLocationArea (locationAreaId: number, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLocationAreaWithLocations;  }> {
@@ -70004,9 +69817,8 @@ export class LocationAreasApi {
     }
     /**
      * 
-     * @summary Retrieve all Location Areas for a Store
-     * @param appId AppId i.e: (fd1234)
-     * @param storeId Id of the Store
+     * @param appId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getLocationAreasForStore (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLocationAreaWithLocations;  }> {
@@ -70068,10 +69880,9 @@ export class LocationAreasApi {
     }
     /**
      * 
-     * @summary Update a Location Area, i.e: Room, Floor, Car park space
-     * @param locationAreaInput Input data for updating the Location Area
-     * @param appId AppId i.e: (fd1234)
-     * @param storeId Id of the Store
+     * @param locationAreaInput 
+     * @param appId 
+     * @param storeId 
      * @param locationAreaId 
      * @param {*} [options] Override http request options.
      */
@@ -70196,7 +70007,6 @@ export class LookerDashboardApi {
     }
     /**
      * 
-     * @summary Get all dashboards
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -70302,10 +70112,9 @@ export class LookerSingleSignOnApi {
     }
     /**
      * 
-     * @summary Get the generic single sign on embed URL for Looker dashboards
-     * @param appId AppNameId
-     * @param embedPath Embed URL of the dashboard
-     * @param filters Filters that will be passed to the dashboard
+     * @param appId 
+     * @param embedPath 
+     * @param filters 
      * @param {*} [options] Override http request options.
      */
     public getSSOEndpoint (appId: string, embedPath: string, filters?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: DashboardEmbed;  }> {
@@ -75894,7 +75703,6 @@ export class MobileAppsApi {
     }
     /**
      * 
-     * @summary Get sales channel configuration
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -75951,7 +75759,6 @@ export class MobileAppsApi {
     }
     /**
      * 
-     * @summary Get statistics mobile apps
      * @param appId 
      * @param platformTypes 
      * @param {*} [options] Override http request options.
@@ -76018,7 +75825,6 @@ export class MobileAppsApi {
     }
     /**
      * 
-     * @summary Get submission details mobile apps
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -76075,7 +75881,6 @@ export class MobileAppsApi {
     }
     /**
      * 
-     * @summary Get submission status mobile apps
      * @param appId 
      * @param submissionId 
      * @param {*} [options] Override http request options.
@@ -76139,7 +75944,6 @@ export class MobileAppsApi {
     }
     /**
      * 
-     * @summary Publish mobile apps
      * @param appId 
      * @param submissionId 
      * @param platformType 
@@ -76208,7 +76012,6 @@ export class MobileAppsApi {
     }
     /**
      * 
-     * @summary Re-submission form mobile apps
      * @param appId 
      * @param mobileAppsSubmission 
      * @param {*} [options] Override http request options.
@@ -76272,7 +76075,6 @@ export class MobileAppsApi {
     }
     /**
      * 
-     * @summary Submission form mobile apps
      * @param appId 
      * @param mobileAppsSubmission 
      * @param {*} [options] Override http request options.
@@ -76336,7 +76138,6 @@ export class MobileAppsApi {
     }
     /**
      * 
-     * @summary Unpublish mobile apps
      * @param appId 
      * @param submissionId 
      * @param platformType 
@@ -76405,7 +76206,6 @@ export class MobileAppsApi {
     }
     /**
      * 
-     * @summary Update the application sales channel configuration
      * @param appId 
      * @param appConfigSalesChannel 
      * @param {*} [options] Override http request options.
@@ -76469,7 +76269,6 @@ export class MobileAppsApi {
     }
     /**
      * 
-     * @summary Update submission status
      * @param appId 
      * @param submissionId 
      * @param updateSubmissionStatus 
@@ -76540,7 +76339,6 @@ export class MobileAppsApi {
     }
     /**
      * 
-     * @summary Upload image mobile apps
      * @param appId 
      * @param Image Mobile Apps image
      * @param {*} [options] Override http request options.
@@ -76658,9 +76456,8 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Create OAuth App redirect uri
-     * @param oauthAppId OAuth App identifier
-     * @param uri Redirect uri
+     * @param oauthAppId 
+     * @param uri 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -76729,8 +76526,7 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Create OAuth App
-     * @param oAuthApp OAuth App
+     * @param oAuthApp 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -76792,8 +76588,7 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Delete OAuth App
-     * @param oauthAppId OAuth App identifier
+     * @param oauthAppId 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -76855,7 +76650,6 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Get all OAuth Apps
      * @param appId 
      * @param oauthAppName 
      * @param {*} [options] Override http request options.
@@ -76917,8 +76711,7 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Get OAuth App by identifier
-     * @param oauthAppId OAuth App identifier
+     * @param oauthAppId 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -76981,8 +76774,7 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Get OAuth App secret key
-     * @param oauthAppId OAuth App identifier
+     * @param oauthAppId 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -77045,8 +76837,7 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Get OAuth access token for App
-     * @param oauthAppId OAuth App identifier
+     * @param oauthAppId 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -77109,8 +76900,7 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Get OAuth App redirect uris
-     * @param oauthAppId OAuth App identifier
+     * @param oauthAppId 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -77229,9 +77019,8 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Delete OAuth App redirect uri
-     * @param oauthAppId OAuth App identifier
-     * @param uriId Redirect uri identifier
+     * @param oauthAppId 
+     * @param uriId 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -77299,9 +77088,8 @@ export class OAuthClientsApi {
     }
     /**
      * 
-     * @summary Update OAuth App
-     * @param oauthAppId OAuth App identifier
-     * @param oAuthApp OAuth App
+     * @param oauthAppId 
+     * @param oAuthApp 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -77727,12 +77515,11 @@ export class OrderBatchesApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * Entries are sorted by date, from the most recent. At most 100 entries are returned.
-     * @summary Returns order batches
-     * @param appId App Id
-     * @param storeIds List of store Ids
-     * @param createdFrom Start date for retrieving the entries
-     * @param createdTo End date for retrieving the entries
+     * 
+     * @param appId 
+     * @param storeIds 
+     * @param createdFrom 
+     * @param createdTo 
      * @param {*} [options] Override http request options.
      */
     public getAllOrderBatches (appId: string, storeIds?: Array<number>, createdFrom?: Date, createdTo?: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOrderBatch;  }> {
@@ -77800,9 +77587,8 @@ export class OrderBatchesApi {
     }
     /**
      * 
-     * @summary Returns the order batch details
-     * @param appId App Id
-     * @param orderBatchId Order Batch Id
+     * @param appId 
+     * @param orderBatchId 
      * @param {*} [options] Override http request options.
      */
     public getOrderBatch (appId: string, orderBatchId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderBatch;  }> {
@@ -77914,8 +77700,7 @@ export class OrderBatchingConfigurationApi {
     }
     /**
      * 
-     * @summary Returns order batching configuration for a specific store
-     * @param storeId Store Id
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public get (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderBatchingConfiguration;  }> {
@@ -77971,9 +77756,8 @@ export class OrderBatchingConfigurationApi {
     }
     /**
      * 
-     * @summary Sets order batching configuration for a specific store
-     * @param storeId Store Id
-     * @param setOrderBatchingConfiguration SetOrderBatchingConfiguration
+     * @param storeId 
+     * @param setOrderBatchingConfiguration 
      * @param {*} [options] Override http request options.
      */
     public post (storeId: number, setOrderBatchingConfiguration: SetOrderBatchingConfiguration, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -78083,8 +77867,7 @@ export class OrderIngestApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * [ALPHA - this endpoint is under internal development, it is not available just yet to use in your production system]
-     * @summary Provides an ability to ingest a 3rd party order into Flipdish ecosystem
+     * 
      * @param order 
      * @param appNameId 
      * @param {*} [options] Override http request options.
@@ -78197,10 +77980,9 @@ export class OrdersApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * To accept an order, you create an `accept` object and send it to Flipdish API using HTTP POST method. `Id` path parameter identifies the order.
-     * @summary Accept order
-     * @param id Order identifier
-     * @param acceptObject Order accept parameters (eg: EstimatedMinutesForDelivery)
+     * 
+     * @param id 
+     * @param acceptObject 
      * @param {*} [options] Override http request options.
      */
     public acceptOrder (id: number, acceptObject: Accept, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -78260,9 +78042,8 @@ export class OrdersApi {
         });
     }
     /**
-     * To dispatch an order send a POST request with `Id` path parameter which identifies the order.
-     * @summary Dispatch order
-     * @param id Order identifier
+     * 
+     * @param id 
      * @param {*} [options] Override http request options.
      */
     public dispatchOrder (id: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -78316,9 +78097,8 @@ export class OrdersApi {
         });
     }
     /**
-     * Returns an orders delivery information. This would be used to display the latest known delivery information on a screen.
-     * @summary Get order delivery information
-     * @param orderId Flipdish Order Id
+     * 
+     * @param orderId 
      * @param {*} [options] Override http request options.
      */
     public getDeliveryInformation (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderDeliveryInformation;  }> {
@@ -78373,9 +78153,8 @@ export class OrdersApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system] Returns an order's fulfillment state.
-     * @summary Get order fulfillment state
-     * @param orderId Flipdish Order Id
+     * 
+     * @param orderId 
      * @param {*} [options] Override http request options.
      */
     public getFulfillmentState (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderFulfillmentStatus;  }> {
@@ -78430,9 +78209,8 @@ export class OrdersApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system] Returns an order's fulfillment status and details about possible states.
-     * @summary Get order fulfillment state with actionable details like default next state
-     * @param orderId Flipdish Order Id
+     * 
+     * @param orderId 
      * @param {*} [options] Override http request options.
      */
     public getFulfillmentStatusWithDetailsAndActions (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderFulfillmentStatusWithConfigurationActions;  }> {
@@ -78488,8 +78266,7 @@ export class OrdersApi {
     }
     /**
      * 
-     * @summary Get order by ID
-     * @param id Order identifier
+     * @param id 
      * @param {*} [options] Override http request options.
      */
     public getOrderById (id: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrder;  }> {
@@ -78545,13 +78322,12 @@ export class OrdersApi {
     }
     /**
      * 
-     * @summary Get orders by filter
-     * @param physicalRestaurantId Physical restaurant identifiers
-     * @param state Order states
-     * @param from Order has been placed after this parameter value
-     * @param to Order has been placed before this parameter value
-     * @param page Requested page number
-     * @param limit Requested page limit
+     * @param physicalRestaurantId 
+     * @param state 
+     * @param from 
+     * @param to 
+     * @param page 
+     * @param limit 
      * @param {*} [options] Override http request options.
      */
     public getOrders (physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, from?: Date, to?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrder;  }> {
@@ -78625,18 +78401,17 @@ export class OrdersApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get summary of orders by filter
-     * @param appId App Name Id
-     * @param searchQuery Query string
-     * @param physicalRestaurantId Physical restaurant identifiers
-     * @param state Order states
-     * @param page Requested page number
-     * @param limit Requested page limit
+     * @param appId 
+     * @param searchQuery 
+     * @param physicalRestaurantId 
+     * @param state 
+     * @param page 
+     * @param limit 
      * @param orderByRequestedForTime 
      * @param channels 
-     * @param orderIds Filter by the given orders
-     * @param from Filter by date from
-     * @param to Filter by date to
+     * @param orderIds 
+     * @param from 
+     * @param to 
      * @param {*} [options] Override http request options.
      */
     public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, orderByRequestedForTime?: boolean, channels?: Array<'Unknown' | 'Ios' | 'Android' | 'Web' | 'Kiosk' | 'Pos' | 'TelephoneCall' | 'Sms' | 'PwaAndroid' | 'PwaIos' | 'Google'>, orderIds?: Array<number>, from?: Date, to?: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
@@ -78731,9 +78506,8 @@ export class OrdersApi {
         });
     }
     /**
-     * To refund an order, you create a `refund` object and send it to Flipdish API using HTTP POST method. `Id` path parameter identifies the order.
-     * @summary Refund order
-     * @param id Order identifier
+     * 
+     * @param id 
      * @param refundObject 
      * @param {*} [options] Override http request options.
      */
@@ -78794,9 +78568,8 @@ export class OrdersApi {
         });
     }
     /**
-     * To reject an order, you create a `reject` object and send it to Flipdish API using HTTP POST method. `Id` path parameter identifies the order.
-     * @summary Reject order
-     * @param id Order identifier
+     * 
+     * @param id 
      * @param rejectObject 
      * @param {*} [options] Override http request options.
      */
@@ -78857,10 +78630,9 @@ export class OrdersApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system] Returns fulfillment status for list of orders.
-     * @summary Get fulfillment status for a list of orders
-     * @param appId App Id
-     * @param orderIds Flipdish Order Id list, comma separated
+     * 
+     * @param appId 
+     * @param orderIds 
      * @param {*} [options] Override http request options.
      */
     public searchFulfillmentStatuses (appId: string, orderIds: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOrderFulfillmentStatus;  }> {
@@ -78924,10 +78696,9 @@ export class OrdersApi {
         });
     }
     /**
-     * Returns an order's delivery information. This would be used to display the latest known delivery information on a screen.
-     * @summary Add/update delivery-related information to an order
-     * @param orderId Flipdish Order Id
-     * @param deliveryInformation Delivery Information
+     * 
+     * @param orderId 
+     * @param deliveryInformation 
      * @param {*} [options] Override http request options.
      */
     public updateDeliveryInformation (orderId: number, deliveryInformation: OrderDeliveryInformationBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -78987,10 +78758,9 @@ export class OrdersApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system] Updates an order's fulfillment states.
-     * @summary Update fulfillment status information to an order
-     * @param orderId Flipdish Order Id
-     * @param fulfillmentStatusRequest Fulfillment Status
+     * 
+     * @param orderId 
+     * @param fulfillmentStatusRequest 
      * @param {*} [options] Override http request options.
      */
     public updateFulfillmentState (orderId: number, fulfillmentStatusRequest: OrderFulfillmentStatusUpdate, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -79101,8 +78871,7 @@ export class PaymentIntentsApi {
     }
     /**
      * 
-     * @summary Returns stripe payment intent for a given id
-     * @param paymentIntentId Stripe payment intent identifier
+     * @param paymentIntentId 
      * @param {*} [options] Override http request options.
      */
     public getPaymentIntent (paymentIntentId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPaymentIntent;  }> {
@@ -79208,8 +78977,7 @@ export class PaymentsApi {
     }
     /**
      * 
-     * @summary Returns payment refund information related to the order with the order id
-     * @param orderId Order identifier
+     * @param orderId 
      * @param {*} [options] Override http request options.
      */
     public getOrderPaymentInformation (orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderPaymentInformation;  }> {
@@ -79315,7 +79083,6 @@ export class PayoutsApi {
     }
     /**
      * 
-     * @summary Get Payout details broken down by Store
      * @param appId 
      * @param bankAccountId 
      * @param payoutId 
@@ -79386,7 +79153,6 @@ export class PayoutsApi {
     }
     /**
      * 
-     * @summary Get list of payout's chargebacks
      * @param appId 
      * @param bankAccountId 
      * @param payoutId 
@@ -79472,7 +79238,6 @@ export class PayoutsApi {
     }
     /**
      * 
-     * @summary Get list of payout's orders
      * @param appId 
      * @param bankAccountId 
      * @param payoutId 
@@ -79558,7 +79323,6 @@ export class PayoutsApi {
     }
     /**
      * 
-     * @summary Get list of payout's other charges
      * @param appId 
      * @param bankAccountId 
      * @param payoutId 
@@ -79644,7 +79408,6 @@ export class PayoutsApi {
     }
     /**
      * 
-     * @summary Get list of payout's refunds
      * @param appId 
      * @param bankAccountId 
      * @param payoutId 
@@ -79729,8 +79492,7 @@ export class PayoutsApi {
         });
     }
     /**
-     * BETA - this endpoint is under development, do not use it in your production system
-     * @summary Get list of payout summaries
+     * 
      * @param appId 
      * @param startDate 
      * @param endDate 
@@ -79806,8 +79568,7 @@ export class PayoutsApi {
         });
     }
     /**
-     * BETA - this endpoint is under development, do not use it in your production system
-     * @summary Get list of payouts
+     * 
      * @param appId 
      * @param startDate 
      * @param endDate 
@@ -79944,7 +79705,6 @@ export class PayoutsExportApi {
     }
     /**
      * 
-     * @summary Export a list of payout's chargebacks as CSV
      * @param appId 
      * @param bankAccountId 
      * @param payoutId 
@@ -80020,7 +79780,6 @@ export class PayoutsExportApi {
     }
     /**
      * 
-     * @summary Export a list of payout's orders as CSV
      * @param appId 
      * @param bankAccountId 
      * @param payoutId 
@@ -80096,7 +79855,6 @@ export class PayoutsExportApi {
     }
     /**
      * 
-     * @summary Export a list of payout's other charges as CSV
      * @param appId 
      * @param bankAccountId 
      * @param payoutId 
@@ -80172,7 +79930,6 @@ export class PayoutsExportApi {
     }
     /**
      * 
-     * @summary Export a list of payout's refunds as CSV
      * @param appId 
      * @param bankAccountId 
      * @param payoutId 
@@ -80248,7 +80005,6 @@ export class PayoutsExportApi {
     }
     /**
      * 
-     * @summary Export payout's details as CSV
      * @param appId 
      * @param bankAccountId 
      * @param payoutId 
@@ -80324,7 +80080,6 @@ export class PayoutsExportApi {
     }
     /**
      * 
-     * @summary Export payouts as CSV
      * @param appId 
      * @param startDate 
      * @param endDate 
@@ -80451,8 +80206,7 @@ export class ProcessingFeeConfigsApi {
     }
     /**
      * 
-     * @summary Get processing fee configs by store identifiers
-     * @param storeIds Store identifiers
+     * @param storeIds 
      * @param {*} [options] Override http request options.
      */
     public getProcessingFeeConfigsByStoreIds (storeIds: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }> {
@@ -80561,9 +80315,8 @@ export class PushNotificationsApi {
     }
     /**
      * 
-     * @summary [PRIVATE] Push notification to cutomers
      * @param appId 
-     * @param scheduledPushNotificationId ID of Scheduled push notifiaction to delete
+     * @param scheduledPushNotificationId 
      * @param {*} [options] Override http request options.
      */
     public deletePushNotification (appId: string, scheduledPushNotificationId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -80624,7 +80377,6 @@ export class PushNotificationsApi {
     }
     /**
      * 
-     * @summary [PRIVATE] Push notification to cutomers
      * @param appId 
      * @param page 
      * @param limit 
@@ -80691,9 +80443,8 @@ export class PushNotificationsApi {
     }
     /**
      * 
-     * @summary [PRIVATE] Push notification to cutomers
-     * @param appId Application Id
-     * @param notification Notification to send
+     * @param appId 
+     * @param notification 
      * @param {*} [options] Override http request options.
      */
     public schedulePushNotification (appId: string, notification: PushNotificationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPushNotificationResponse;  }> {
@@ -80755,10 +80506,9 @@ export class PushNotificationsApi {
     }
     /**
      * 
-     * @summary [PRIVATE] Update the push notification
-     * @param appId Application Id
-     * @param scheduledPushNotificationId Notification Id
-     * @param notification Notification to send
+     * @param appId 
+     * @param scheduledPushNotificationId 
+     * @param notification 
      * @param {*} [options] Override http request options.
      */
     public updatePushNotification (appId: string, scheduledPushNotificationId: number, notification: PushNotificationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPushNotificationResponse;  }> {
@@ -80876,7 +80626,6 @@ export class ReceiptsApi {
     }
     /**
      * 
-     * @summary Returns all receipt information for a given orderId
      * @param orderId 
      * @param {*} [options] Override http request options.
      */
@@ -81600,9 +81349,8 @@ export class StoreGroupsApi {
     }
     /**
      * 
-     * @summary Creates a Store Group  It will be attached to an existing App
-     * @param appNameId App Name Id
-     * @param storeGroup Store group definition
+     * @param appNameId 
+     * @param storeGroup 
      * @param {*} [options] Override http request options.
      */
     public createStoreGroup (appNameId: string, storeGroup: StoreGroupBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroup;  }> {
@@ -81664,8 +81412,7 @@ export class StoreGroupsApi {
     }
     /**
      * 
-     * @summary Returns a Store Groups
-     * @param storeGroupId Store Group Id
+     * @param storeGroupId 
      * @param {*} [options] Override http request options.
      */
     public getStoreGroup (storeGroupId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroup;  }> {
@@ -81721,11 +81468,10 @@ export class StoreGroupsApi {
     }
     /**
      * 
-     * @summary Returns a paginated list of Store Groups
-     * @param appNameId App Name Id
-     * @param searchQuery Search query
-     * @param page Requested page index
-     * @param limit Requested page limit
+     * @param appNameId 
+     * @param searchQuery 
+     * @param page 
+     * @param limit 
      * @param {*} [options] Override http request options.
      */
     public getStoreGroups (appNameId: string, searchQuery?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreGroup;  }> {
@@ -81793,11 +81539,10 @@ export class StoreGroupsApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Returns a paginated list of Extended Store Groups
-     * @param appNameId App Name Id
-     * @param searchQuery Search query
-     * @param page Requested page index
-     * @param limit Requested page limit
+     * @param appNameId 
+     * @param searchQuery 
+     * @param page 
+     * @param limit 
      * @param groupingRadius 
      * @param {*} [options] Override http request options.
      */
@@ -81870,8 +81615,7 @@ export class StoreGroupsApi {
     }
     /**
      * 
-     * @summary Deletes a Store Group  Can only remove a store group if there is no stores attached to the group
-     * @param storeGroupId Store Group Id
+     * @param storeGroupId 
      * @param {*} [options] Override http request options.
      */
     public removeStoreGroup (storeGroupId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -81995,9 +81739,8 @@ export class StoreGroupsApi {
     }
     /**
      * 
-     * @summary Updates Store Group
-     * @param storeGroupId Store Group Id
-     * @param storeGroup Store Group Delta
+     * @param storeGroupId 
+     * @param storeGroup 
      * @param {*} [options] Override http request options.
      */
     public updateStoreGroup (storeGroupId: number, storeGroup: StoreGroupBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreGroupBase;  }> {
@@ -82109,10 +81852,9 @@ export class StoreOrderCapacityApi {
     }
     /**
      * 
-     * @summary Get store's order capacity configuration
-     * @param appId App Name Id
-     * @param storeId Store Id
-     * @param deliveryType Delivery / Pickup
+     * @param appId 
+     * @param storeId 
+     * @param deliveryType 
      * @param {*} [options] Override http request options.
      */
     public getStoreOrderCapacity (appId: string, storeId: number, deliveryType: 'Delivery' | 'Pickup', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreOrderCapacityConfig;  }> {
@@ -82180,10 +81922,9 @@ export class StoreOrderCapacityApi {
     }
     /**
      * 
-     * @summary Create or update a store's order capacity configuration
-     * @param storeId Store identifier
-     * @param deliveryType Delivery / Pickup
-     * @param newOrderCapacityConfig new order capacity configuration
+     * @param storeId 
+     * @param deliveryType 
+     * @param newOrderCapacityConfig 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -82310,8 +82051,7 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Archive store
-     * @param storeId Store identifier
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public archiveStore (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -82366,9 +82106,8 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Assign Menu to Store
-     * @param storeId Store identifier
-     * @param menuId Id of Menu to assign to store
+     * @param storeId 
+     * @param menuId 
      * @param {*} [options] Override http request options.
      */
     public assignMenu (storeId: number, menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
@@ -82430,9 +82169,8 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Clone store with store clone settings
-     * @param storeId Store identifier
-     * @param settings Settings for cloning the store
+     * @param storeId 
+     * @param settings 
      * @param {*} [options] Override http request options.
      */
     public cloneStore (storeId: number, settings: StoreCloneSettings, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
@@ -82494,9 +82232,8 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Configure Store Service Charge; Idempotent Operation
-     * @param storeId Store identifier
-     * @param serviceCharge Service charge
+     * @param storeId 
+     * @param serviceCharge 
      * @param {*} [options] Override http request options.
      */
     public configureStoreServiceCharge (storeId: number, serviceCharge: ServiceCharge, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultServiceCharge;  }> {
@@ -82558,9 +82295,8 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Create Business Hours Override for a store
-     * @param storeId Store identifier
-     * @param businessHoursOverride Business Hours Override
+     * @param storeId 
+     * @param businessHoursOverride 
      * @param {*} [options] Override http request options.
      */
     public createBusinessHoursOverrideByStoreId (storeId: number, businessHoursOverride: BusinessHoursOverrideBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursOverride;  }> {
@@ -82622,9 +82358,8 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Create store with Store Group identifier
-     * @param storeGroupId Store Group identifier
-     * @param store Store
+     * @param storeGroupId 
+     * @param store 
      * @param {*} [options] Override http request options.
      */
     public createStore (storeGroupId: number, store: StoreCreateBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
@@ -82689,7 +82424,6 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Delete Business Hours Override for a store
      * @param storeId 
      * @param businessHoursOverrideId 
      * @param {*} [options] Override http request options.
@@ -82753,8 +82487,7 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get Stores Bank Account Id
-     * @param storeId Store identifier
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getBankAccountForStore (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAssignedBankAccount;  }> {
@@ -82810,9 +82543,8 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get Business hours
-     * @param storeId Store identifier
-     * @param deliveryType Delivery type
+     * @param storeId 
+     * @param deliveryType 
      * @param {*} [options] Override http request options.
      */
     public getBusinessHours (storeId: number, deliveryType: 'Delivery' | 'Pickup', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultBusinessHoursPeriod;  }> {
@@ -82874,11 +82606,10 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get business hours overrides by store identifier
-     * @param storeId Store identifier
-     * @param after Return results that ended after this datetime. Default value is the current datetime.
-     * @param page Requested page index
-     * @param limit Requested page limit
+     * @param storeId 
+     * @param after 
+     * @param page 
+     * @param limit 
      * @param {*} [options] Override http request options.
      */
     public getBusinessHoursOverrideByStoreId (storeId: number, after?: Date, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultBusinessHoursOverride;  }> {
@@ -82946,9 +82677,8 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get store end of day report
-     * @param storeId Store identifier
-     * @param date Store identifier
+     * @param storeId 
+     * @param date 
      * @param {*} [options] Override http request options.
      */
     public getEndOfDayReport (storeId: number, date?: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreEndOfDayReport;  }> {
@@ -83008,9 +82738,8 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get the pre order config for a store, by type
-     * @param storeId Store identifier
-     * @param deliveryType \&quot;delivery\&quot; or \&quot;pickup\&quot;
+     * @param storeId 
+     * @param deliveryType 
      * @param {*} [options] Override http request options.
      */
     public getPreOrderConfig (storeId: number, deliveryType: 'Delivery' | 'Pickup', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPreOrderConfig;  }> {
@@ -83072,9 +82801,8 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get the Preview times of the pre-order configuration
-     * @param storeId Store identifier
-     * @param deliveryType \&quot;delivery\&quot; or \&quot;pickup\&quot;
+     * @param storeId 
+     * @param deliveryType 
      * @param preOrderConfig_leadTimeMinutes Lead Time in Minutes
      * @param preOrderConfig_intervalMinutes Interval in minutes
      * @param preOrderConfig_maxOrderAheadDays Max Days to order ahead
@@ -83186,9 +82914,8 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get processing fee configs by store identifier
-     * @param storeId Store identifier
-     * @param appNameId App Name Id(Not used, still here for compatability reasons)
+     * @param storeId 
+     * @param appNameId 
      * @param {*} [options] Override http request options.
      */
     public getProcessingFeeConfigsByStoreId (storeId: number, appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultProcessingFeeConfig;  }> {
@@ -83248,10 +82975,9 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get processing fee configs by store identifier
-     * @param storeId Store identifier
+     * @param storeId 
      * @param paymentAccountType 
-     * @param appNameId App Name Id(Not used, still here for compatability reasons)
+     * @param appNameId 
      * @param {*} [options] Override http request options.
      */
     public getProcessingFeeConfigsByStoreIdAndPaymentAccountType (storeId: number, paymentAccountType: 'Card' | 'Cash' | 'Ideal' | 'Bancontact' | 'Giropay' | 'Eps' | 'Emv' | 'PayPal' | 'PayGreen', appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultProcessingFeeConfig;  }> {
@@ -83317,8 +83043,7 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get store by identifier
-     * @param storeId Store identifier
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getStoreById (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
@@ -83374,8 +83099,7 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Retrieve Store feeConfig
-     * @param storeId Store identifier
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getStoreFeeConfig (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: StoreFeeConfig;  }> {
@@ -83431,8 +83155,7 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get all stores by app name id
-     * @param appId App Name Id
+     * @param appId 
      * @param storeNameQuery 
      * @param page 
      * @param limit 
@@ -83503,9 +83226,8 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get stores statistics by app name id and storeIds
-     * @param appId App Name Id
-     * @param storeId Store Ids
+     * @param appId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getStoreNetSales (appId: string, storeId: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreStatistics;  }> {
@@ -83570,8 +83292,7 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Retrieve Store Service Charge
-     * @param storeId Store identifier
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getStoreServiceCharge (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: ServiceCharge;  }> {
@@ -83627,11 +83348,10 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get all stores, excluding archived ones
-     * @param searchQuery Search query
-     * @param page Requested page index
-     * @param limit Requested page limit
-     * @param storeGroupId Store Group Id
+     * @param searchQuery 
+     * @param page 
+     * @param limit 
+     * @param storeGroupId 
      * @param {*} [options] Override http request options.
      */
     public getStores (searchQuery?: string, page?: number, limit?: number, storeGroupId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }> {
@@ -83697,11 +83417,10 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get all stores by app name id
-     * @param appId App Name Id
-     * @param searchQuery Search query
-     * @param page Requested page index
-     * @param limit Requested page limit
+     * @param appId 
+     * @param searchQuery 
+     * @param page 
+     * @param limit 
      * @param {*} [options] Override http request options.
      */
     public getStoresByAppId (appId: string, searchQuery?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }> {
@@ -83769,11 +83488,10 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Get store validation by storeIds
-     * @param storeId Store identifier
+     * @param storeId 
      * @param appId 
-     * @param page Requested page index
-     * @param limit Requested page limit
+     * @param page 
+     * @param limit 
      * @param {*} [options] Override http request options.
      */
     public getStoresByStoreIdWithValidations (storeId: Array<number>, appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreValidationConfig;  }> {
@@ -83846,8 +83564,7 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Publish store
-     * @param storeId Store identifier
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public publishStore (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -83902,10 +83619,9 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Set Business hours
-     * @param storeId Store identifier
-     * @param deliveryType Delivery type
-     * @param businessHoursPeriod Business Hours Period
+     * @param storeId 
+     * @param deliveryType 
+     * @param businessHoursPeriod 
      * @param {*} [options] Override http request options.
      */
     public setBusinessHours (storeId: number, deliveryType: 'Delivery' | 'Pickup', businessHoursPeriod: BusinessHoursPeriodBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBusinessHoursPeriod;  }> {
@@ -83973,10 +83689,9 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary UPDATE pre order config for a store, by type
-     * @param storeId Store identifier
-     * @param deliveryType \&quot;delivery\&quot; or \&quot;pickup\&quot;
-     * @param enabled Update pre order config values
+     * @param storeId 
+     * @param deliveryType 
+     * @param enabled 
      * @param {*} [options] Override http request options.
      */
     public setPreOrdeEnabled (storeId: number, deliveryType: 'Delivery' | 'Pickup', enabled: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
@@ -84047,8 +83762,7 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Unpublish store
-     * @param storeId Store identifier
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public unpublishStore (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -84103,10 +83817,9 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary UPDATE pre order config for a store, by type
-     * @param storeId Store identifier
-     * @param deliveryType \&quot;delivery\&quot; or \&quot;pickup\&quot;
-     * @param preOrderConfig Update pre order config values
+     * @param storeId 
+     * @param deliveryType 
+     * @param preOrderConfig 
      * @param {*} [options] Override http request options.
      */
     public updatePreOrderConfig (storeId: number, deliveryType: 'Delivery' | 'Pickup', preOrderConfig: PreOrderConfig, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
@@ -84174,9 +83887,8 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Update store by identifier
-     * @param storeId Store Group identifier
-     * @param store Store
+     * @param storeId 
+     * @param store 
      * @param {*} [options] Override http request options.
      */
     public updateStore (storeId: number, store: StoreBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
@@ -84238,9 +83950,8 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Update store address
-     * @param storeId Store identifier
-     * @param storeAddress Store address
+     * @param storeId 
+     * @param storeAddress 
      * @param {*} [options] Override http request options.
      */
     public updateStoreAddress (storeId: number, storeAddress: StoreAddressBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStoreAddress;  }> {
@@ -84302,10 +84013,9 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Update store address coordinates
-     * @param storeId Store identifier
-     * @param coordinates Store address coordinates
-     * @param appNameId App Name Id(Not used, still here for compatability reasons)
+     * @param storeId 
+     * @param coordinates 
+     * @param appNameId 
      * @param {*} [options] Override http request options.
      */
     public updateStoreAddressCoordinates (storeId: number, coordinates: Coordinates, appNameId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCoordinates;  }> {
@@ -84371,9 +84081,8 @@ export class StoresApi {
     }
     /**
      * 
-     * @summary Update store address
-     * @param storeId Store identifier
-     * @param address Store address
+     * @param storeId 
+     * @param address 
      * @param {*} [options] Override http request options.
      */
     public updateStoreAddressForm (storeId: number, address: StoreAddressForm, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -84485,9 +84194,8 @@ export class StripeCustomConnectApi {
     }
     /**
      * 
-     * @summary Create a new Bank Account and Stripe connected account
-     * @param appId App Name
-     * @param account Account to be created
+     * @param appId 
+     * @param account 
      * @param {*} [options] Override http request options.
      */
     public createBankAccountAndConnectedAccount (appId: string, account: BankAccountCreate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
@@ -84549,9 +84257,8 @@ export class StripeCustomConnectApi {
     }
     /**
      * 
-     * @summary Create or update a Stripe connected account associated with the bank account of bankAccountId
-     * @param appId App Name Id
-     * @param bankAccountId Bank Account Id
+     * @param appId 
+     * @param bankAccountId 
      * @param {*} [options] Override http request options.
      */
     public createStripeConnectedAccount (appId: string, bankAccountId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
@@ -84613,9 +84320,8 @@ export class StripeCustomConnectApi {
     }
     /**
      * 
-     * @summary Gets a single-use Stripe URL for the given account
-     * @param appId App Name
-     * @param stripeConnectedAccountId Stripe Connected Account Id
+     * @param appId 
+     * @param stripeConnectedAccountId 
      * @param stripeAccountLinkRequest 
      * @param {*} [options] Override http request options.
      */
@@ -84684,7 +84390,6 @@ export class StripeCustomConnectApi {
     }
     /**
      * 
-     * @summary Gets a list of stripe custom connect ids information
      * @param storeId 
      * @param appId 
      * @param {*} [options] Override http request options.
@@ -84748,7 +84453,6 @@ export class StripeCustomConnectApi {
     }
     /**
      * 
-     * @summary Gets the current verification status of the given connected account
      * @param appId 
      * @param stripeConnectedAccountId 
      * @param {*} [options] Override http request options.
@@ -84815,10 +84519,9 @@ export class StripeCustomConnectApi {
     }
     /**
      * 
-     * @summary Update bank account's BusinessType and create a Stripe Connected Account
-     * @param appId App Name
-     * @param bankAccountId Bank Account Id
-     * @param businessType Bank Account business type
+     * @param appId 
+     * @param bankAccountId 
+     * @param businessType 
      * @param {*} [options] Override http request options.
      */
     public setBankAccountBusinessType (appId: string, bankAccountId: number, businessType: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
@@ -84952,10 +84655,9 @@ export class StripeCustomConnectApi {
     }
     /**
      * 
-     * @summary Update bank account details
-     * @param appId App Name Id
-     * @param bankAccountId Bank Account Id
-     * @param updateRequest fields to be updated
+     * @param appId 
+     * @param bankAccountId 
+     * @param updateRequest 
      * @param {*} [options] Override http request options.
      */
     public updateBankAccountDetails (appId: string, bankAccountId: number, updateRequest: BankAccountDetailsUpdateRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStripeConnectedAccount;  }> {
@@ -85023,7 +84725,6 @@ export class StripeCustomConnectApi {
     }
     /**
      * 
-     * @summary Update Stripe Connection Account's payout schedule
      * @param appId 
      * @param stripeConnectedAccountId 
      * @param interval 
@@ -85144,8 +84845,7 @@ export class StripeCustomConnectAdminApi {
     }
     /**
      * 
-     * @summary Create a new Bank Account and Stripe connected account
-     * @param accounts Accounts to be initialized in stripe
+     * @param accounts 
      * @param {*} [options] Override http request options.
      */
     public initializeBankAccountConnectedAccount (accounts: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
@@ -85251,9 +84951,8 @@ export class StuartApi {
     }
     /**
      * 
-     * @summary Cancel a stuart job
-     * @param jobId Stuart job identifier
-     * @param storeId Store identifier
+     * @param jobId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public stuartCancelJob (jobId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -85318,9 +85017,8 @@ export class StuartApi {
     }
     /**
      * 
-     * @summary Get start job details
-     * @param jobId Stuart job identifier
-     * @param storeId Store identifier
+     * @param jobId 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public stuartGetJob (jobId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultJobResponse;  }> {
@@ -85385,8 +85083,7 @@ export class StuartApi {
     }
     /**
      * 
-     * @summary Get stuart settings for a store
-     * @param storeId Store Identifier
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public stuartGetStuartSettings (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStuartSettings;  }> {
@@ -85442,9 +85139,8 @@ export class StuartApi {
     }
     /**
      * 
-     * @summary Set stuart settings for a store
-     * @param storeId Store Identifier
-     * @param stuartSettings Stuart settings model
+     * @param storeId 
+     * @param stuartSettings 
      * @param {*} [options] Override http request options.
      */
     public stuartPostStuartSettings (storeId: number, stuartSettings: StuartSettings, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -85555,10 +85251,9 @@ export class SubscriptionsApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get subscription by id
-     * @param appId App Id
-     * @param subscriptionId Subscription Id
+     * 
+     * @param appId 
+     * @param subscriptionId 
      * @param {*} [options] Override http request options.
      */
     public getSubscriptionById (appId: string, subscriptionId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSubscription;  }> {
@@ -85619,11 +85314,10 @@ export class SubscriptionsApi {
         });
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system] Full list of subscriptions returned. No need for pagination
-     * @summary Get list of subscriptions for an App
-     * @param appId App Id
-     * @param excludeNotOwnedSubscriptions Exclude not owned subscriptions. Set to true to only view your subscriptions (optional)
-     * @param storeId Store Ids (optional)
+     * 
+     * @param appId 
+     * @param excludeNotOwnedSubscriptions 
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public getSubscriptionsForApp (appId: string, excludeNotOwnedSubscriptions?: boolean, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSubscriptionSummary;  }> {
@@ -85737,9 +85431,8 @@ export class TeammatesApi {
     }
     /**
      * 
-     * @summary Create teammate and send an invite.
-     * @param appId Application identifier
-     * @param teammate teammate model
+     * @param appId 
+     * @param teammate 
      * @param {*} [options] Override http request options.
      */
     public createTeammate (appId: string, teammate: CreateTeammate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
@@ -85801,7 +85494,6 @@ export class TeammatesApi {
     }
     /**
      * 
-     * @summary Delete teammate
      * @param appId 
      * @param id 
      * @param {*} [options] Override http request options.
@@ -85864,7 +85556,6 @@ export class TeammatesApi {
     }
     /**
      * 
-     * @summary Get a teammates by email address
      * @param appId 
      * @param id 
      * @param {*} [options] Override http request options.
@@ -85928,7 +85619,6 @@ export class TeammatesApi {
     }
     /**
      * 
-     * @summary Get all teammates
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -85985,7 +85675,6 @@ export class TeammatesApi {
     }
     /**
      * 
-     * @summary Redeem one-time code from invitation
      * @param otc 
      * @param appId 
      * @param {*} [options] Override http request options.
@@ -86049,10 +85738,9 @@ export class TeammatesApi {
     }
     /**
      * 
-     * @summary Update teammates (this method does not support Deltas!)
-     * @param appId Application identifier
-     * @param id teammate identifier
-     * @param teammate teammate model
+     * @param appId 
+     * @param id 
+     * @param teammate 
      * @param {*} [options] Override http request options.
      */
     public updateTeammate (appId: string, id: string, teammate: TeammateBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
@@ -86169,8 +85857,7 @@ export class TerminalIotApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * [BETA - this endpoint is under development, do not use it in your production system]
-     * @summary Get the IoT connection parameters for telemetry and commands  No input parameters since authenticated hydra user defines context
+     * 
      * @param {*} [options] Override http request options.
      */
     public getTerminalIotConnection (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultKioskIotConnectionParameters;  }> {
@@ -86270,8 +85957,7 @@ export class TipsApi {
     }
     /**
      * 
-     * @summary Returns current tip configuration for a store
-     * @param storeId Store Id
+     * @param storeId 
      * @param {*} [options] Override http request options.
      */
     public tipConfigGet (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultTipConfiguration;  }> {
@@ -86327,9 +86013,8 @@ export class TipsApi {
     }
     /**
      * 
-     * @summary Update or insert current tip configuration for a store
-     * @param storeId Store Id
-     * @param updateConfig Update Configuration
+     * @param storeId 
+     * @param updateConfig 
      * @param {*} [options] Override http request options.
      */
     public tipConfigUpsert (storeId: number, updateConfig: UpdateTipConfiguration, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultTipConfiguration;  }> {
@@ -86504,7 +86189,6 @@ export class UsersApi {
     }
     /**
      * 
-     * @summary Get role names
      * @param {*} [options] Override http request options.
      */
     public getRoles (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
@@ -86604,9 +86288,8 @@ export class VouchersApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Create voucher
-     * @param appId App Name Id
-     * @param voucher Voucher Details
+     * @param appId 
+     * @param voucher 
      * @param {*} [options] Override http request options.
      */
     public createVoucher (appId: string, voucher: CreateVoucher, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
@@ -86668,8 +86351,7 @@ export class VouchersApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get voucher by identifier
-     * @param voucherId Id of the voucher
+     * @param voucherId 
      * @param {*} [options] Override http request options.
      */
     public getVoucherById (voucherId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
@@ -86725,10 +86407,9 @@ export class VouchersApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get voucher stats by identifier
-     * @param voucherId Id of the voucher
-     * @param aggregateDataBy Aggregate data by day \\ week \\ month
-     * @param dataPointLimit Amount of data points per request
+     * @param voucherId 
+     * @param aggregateDataBy 
+     * @param dataPointLimit 
      * @param {*} [options] Override http request options.
      */
     public getVoucherStatsById (voucherId: number, aggregateDataBy: 'Daily' | 'Weekly' | 'Monthly', dataPointLimit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultVoucherDataPoint;  }> {
@@ -86797,15 +86478,14 @@ export class VouchersApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Get vouchers summaries for App Id
-     * @param appId Application Id
-     * @param pageIndex Page Number
-     * @param pageSize Page Size
-     * @param searchCodes Search by Voucher Code\\s
-     * @param statusSearch Search by Status
-     * @param typeSearch Search by Type
-     * @param subTypeSearch Search by Sub Type
-     * @param storeIds Search by Store Ids
+     * @param appId 
+     * @param pageIndex 
+     * @param pageSize 
+     * @param searchCodes 
+     * @param statusSearch 
+     * @param typeSearch 
+     * @param subTypeSearch 
+     * @param storeIds 
      * @param {*} [options] Override http request options.
      */
     public getVouchers (appId: string, pageIndex?: number, pageSize?: number, searchCodes?: Array<string>, statusSearch?: Array<'Valid' | 'NotYetValid' | 'Expired' | 'Used' | 'Disabled'>, typeSearch?: Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote'>, subTypeSearch?: Array<'None' | 'SignUp' | 'Loyalty' | 'Loyalty25' | 'Retention' | 'SecondaryRetention' | 'Custom'>, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherSummary;  }> {
@@ -86889,13 +86569,12 @@ export class VouchersApi {
     }
     /**
      * 
-     * @summary [PRIVATE API] Updates voucher
-     * @param voucherId Id of the voucher
-     * @param voucher Updated details for the voucher
-     * @param storeId List of store ids associated. Not needed if Stores are passed in the request body. Has preference over the request body stores. Kept for backwards compatibility.
-     * @param percentValue Percent voucher value (can have 1 of 3)
-     * @param lumpValue Lump voucher value (can have 1 of 3)
-     * @param freeItemId Free Item Id (can have 1 of 3)
+     * @param voucherId 
+     * @param voucher 
+     * @param storeId 
+     * @param percentValue 
+     * @param lumpValue 
+     * @param freeItemId 
      * @param {*} [options] Override http request options.
      */
     public updateVoucher (voucherId: number, voucher: VoucherBase, storeId?: Array<number>, percentValue?: number, lumpValue?: number, freeItemId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
@@ -87023,9 +86702,8 @@ export class WebhooksApi {
     }
     /**
      * 
-     * @summary Create a webhook subscription for you Oauth App
-     * @param oauthAppId Oauth App identifier
-     * @param webhookSubscription Webhook subscription object
+     * @param oauthAppId 
+     * @param webhookSubscription 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -87094,10 +86772,9 @@ export class WebhooksApi {
     }
     /**
      * 
-     * @summary Add event name to your webhook subscription
-     * @param oauthAppId Oauth App identifier
-     * @param webhookSubscriptionId Webhook subscription identifier
-     * @param eventName Webhook subscription event name
+     * @param oauthAppId 
+     * @param webhookSubscriptionId 
+     * @param eventName 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -87171,9 +86848,8 @@ export class WebhooksApi {
     }
     /**
      * 
-     * @summary Delete you webhook subscription
-     * @param oauthAppId Oauth App identifier
-     * @param webhookSubscriptionId Webhook subscription identifier
+     * @param oauthAppId 
+     * @param webhookSubscriptionId 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -87241,10 +86917,9 @@ export class WebhooksApi {
     }
     /**
      * 
-     * @summary Remove event name to your webhook subscription
-     * @param oauthAppId Oauth App identifier
-     * @param webhookSubscriptionId Webhook subscription identifier
-     * @param eventName Webhook subscription event name
+     * @param oauthAppId 
+     * @param webhookSubscriptionId 
+     * @param eventName 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -87318,7 +86993,6 @@ export class WebhooksApi {
     }
     /**
      * 
-     * @summary Get all webhook subscription event names
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -87375,9 +87049,8 @@ export class WebhooksApi {
     }
     /**
      * 
-     * @summary Get your webhook subscriptions selected event names
-     * @param oauthAppId Oauth App identifier
-     * @param webhookSubscriptionId Webhook subscription identifier
+     * @param oauthAppId 
+     * @param webhookSubscriptionId 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -87446,7 +87119,6 @@ export class WebhooksApi {
     }
     /**
      * 
-     * @summary Get a sample event from a webhook subscription
      * @param eventName 
      * @param appId 
      * @param oauthAppId 
@@ -87529,14 +87201,13 @@ export class WebhooksApi {
     }
     /**
      * 
-     * @summary Get logs for your webhook subscription
-     * @param oauthAppId Oauth App identifier
-     * @param webhookSubscriptionId Webhook subscription identifier
-     * @param start Start time
-     * @param end End time
+     * @param oauthAppId 
+     * @param webhookSubscriptionId 
+     * @param start 
+     * @param end 
      * @param appId 
-     * @param page Page number
-     * @param limit Page size
+     * @param page 
+     * @param limit 
      * @param {*} [options] Override http request options.
      */
     public getWebhookLogs (oauthAppId: string, webhookSubscriptionId: number, start: Date, end: Date, appId: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultWebhookLog;  }> {
@@ -87630,8 +87301,7 @@ export class WebhooksApi {
     }
     /**
      * 
-     * @summary Get all webhook subscriptions by your Oauth App id
-     * @param oauthAppId Oauth App identifier
+     * @param oauthAppId 
      * @param appId 
      * @param page 
      * @param limit 
@@ -87704,10 +87374,9 @@ export class WebhooksApi {
     }
     /**
      * 
-     * @summary Update a webhook subscription object
-     * @param oauthAppId Oauth App identifier
-     * @param webhookSubscriptionId Webhook subscription identifier
-     * @param webhookSubscription Webhook subscription object
+     * @param oauthAppId 
+     * @param webhookSubscriptionId 
+     * @param webhookSubscription 
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -87831,9 +87500,8 @@ export class WebsiteApi {
     }
     /**
      * 
-     * @summary Add a testimonial
-     * @param appId Application identifier
-     * @param testimonial Testimonial to be added
+     * @param appId 
+     * @param testimonial 
      * @param {*} [options] Override http request options.
      */
     public addTestimonial (appId: string, testimonial: WebsiteTestimonialBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteTestimonial;  }> {
@@ -87895,9 +87563,8 @@ export class WebsiteApi {
     }
     /**
      * 
-     * @summary Delete a testimonial
-     * @param appId Application identifier
-     * @param testimonialId Id of the testimonial to delete
+     * @param appId 
+     * @param testimonialId 
      * @param {*} [options] Override http request options.
      */
     public deleteTestimonial (appId: string, testimonialId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -87958,9 +87625,8 @@ export class WebsiteApi {
     }
     /**
      * 
-     * @summary Delete Website Image
-     * @param appId Application identifier
-     * @param imageId Id of the image
+     * @param appId 
+     * @param imageId 
      * @param {*} [options] Override http request options.
      */
     public deleteWebsiteImage (appId: string, imageId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -88021,10 +87687,9 @@ export class WebsiteApi {
     }
     /**
      * 
-     * @summary Edit a testimonial
-     * @param appId Application identifier
-     * @param testimonialId Id of the testimonial to edit
-     * @param testimonial New values of the testimonial
+     * @param appId 
+     * @param testimonialId 
+     * @param testimonial 
      * @param {*} [options] Override http request options.
      */
     public editTestimonial (appId: string, testimonialId: number, testimonial: WebsiteTestimonialBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWebsiteTestimonial;  }> {
@@ -88092,8 +87757,7 @@ export class WebsiteApi {
     }
     /**
      * 
-     * @summary Get Index Configuration
-     * @param appId Application identifier
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public getIndexConfiguration (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultIndexPage;  }> {
@@ -88149,9 +87813,8 @@ export class WebsiteApi {
     }
     /**
      * 
-     * @summary Set Index Configuration
-     * @param appId Application identifier
-     * @param indexPage New index page definition
+     * @param appId 
+     * @param indexPage 
      * @param {*} [options] Override http request options.
      */
     public setIndexConfiguration (appId: string, indexPage: IndexPageBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultIndexPageBase;  }> {
@@ -88213,9 +87876,8 @@ export class WebsiteApi {
     }
     /**
      * 
-     * @summary Upload Website Image
-     * @param appId Application identifier
-     * @param imageLocation Section for which to upload the image
+     * @param appId 
+     * @param imageLocation 
      * @param Image App Logo
      * @param {*} [options] Override http request options.
      */
@@ -88288,7 +87950,6 @@ export class WebsiteApi {
     }
     /**
      * 
-     * @summary Triggers a Check DNS Process
      * @param appId 
      * @param {*} [options] Override http request options.
      */
