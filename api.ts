@@ -1655,10 +1655,6 @@ export class AppStoreApp {
     */
     'Id': string;
     /**
-    * Internal
-    */
-    'Internal': boolean;
-    /**
     * Application verification status
     */
     'VerificationStatus': AppStoreApp.VerificationStatusEnum;
@@ -1670,6 +1666,10 @@ export class AppStoreApp {
     * OAuth App identifier
     */
     'OAuthAppId': string;
+    /**
+    * Internal
+    */
+    'Internal': boolean;
     /**
     * Details
     */
@@ -1748,11 +1748,6 @@ export class AppStoreApp {
             "type": "string"
         },
         {
-            "name": "Internal",
-            "baseName": "Internal",
-            "type": "boolean"
-        },
-        {
             "name": "VerificationStatus",
             "baseName": "VerificationStatus",
             "type": "AppStoreApp.VerificationStatusEnum"
@@ -1766,6 +1761,11 @@ export class AppStoreApp {
             "name": "OAuthAppId",
             "baseName": "OAuthAppId",
             "type": "string"
+        },
+        {
+            "name": "Internal",
+            "baseName": "Internal",
+            "type": "boolean"
         },
         {
             "name": "Details",
@@ -1956,6 +1956,10 @@ export class AppStoreAppConfiguration {
     */
     'OAuthAppId': string;
     /**
+    * Internal
+    */
+    'Internal': boolean;
+    /**
     * Details
     */
     'Details': string;
@@ -2067,6 +2071,11 @@ export class AppStoreAppConfiguration {
             "name": "OAuthAppId",
             "baseName": "OAuthAppId",
             "type": "string"
+        },
+        {
+            "name": "Internal",
+            "baseName": "Internal",
+            "type": "boolean"
         },
         {
             "name": "Details",
