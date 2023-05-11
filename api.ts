@@ -1655,6 +1655,10 @@ export class AppStoreApp {
     */
     'Id': string;
     /**
+    * Internal
+    */
+    'Internal': boolean;
+    /**
     * Application verification status
     */
     'VerificationStatus': AppStoreApp.VerificationStatusEnum;
@@ -1742,6 +1746,11 @@ export class AppStoreApp {
             "name": "Id",
             "baseName": "Id",
             "type": "string"
+        },
+        {
+            "name": "Internal",
+            "baseName": "Internal",
+            "type": "boolean"
         },
         {
             "name": "VerificationStatus",
@@ -2284,11 +2293,15 @@ export class AppStoreAppConfigurationSummary {
     /**
     * Configuration type
     */
-    'ConfigurationType'?: AppStoreAppConfigurationSummary.ConfigurationTypeEnum;
+    'ConfigurationType': AppStoreAppConfigurationSummary.ConfigurationTypeEnum;
     /**
     * Store selector type
     */
-    'StoreSelectorType'?: AppStoreAppConfigurationSummary.StoreSelectorTypeEnum;
+    'StoreSelectorType': AppStoreAppConfigurationSummary.StoreSelectorTypeEnum;
+    /**
+    * Internal
+    */
+    'Internal': boolean;
     /**
     * Unique App store app id
     */
@@ -2344,6 +2357,11 @@ export class AppStoreAppConfigurationSummary {
             "type": "AppStoreAppConfigurationSummary.StoreSelectorTypeEnum"
         },
         {
+            "name": "Internal",
+            "baseName": "Internal",
+            "type": "boolean"
+        },
+        {
             "name": "AppStoreAppId",
             "baseName": "AppStoreAppId",
             "type": "string"
@@ -2392,7 +2410,7 @@ export class AppStoreAppSummary {
     /**
     * Unique App store app id
     */
-    'Id'?: string;
+    'Id': string;
     /**
     * Application verification status
     */
@@ -2401,6 +2419,10 @@ export class AppStoreAppSummary {
     * Logo
     */
     'Logo'?: string;
+    /**
+    * Internal
+    */
+    'Internal': boolean;
     /**
     * Name
     */
@@ -2443,6 +2465,11 @@ export class AppStoreAppSummary {
             "name": "Logo",
             "baseName": "Logo",
             "type": "string"
+        },
+        {
+            "name": "Internal",
+            "baseName": "Internal",
+            "type": "boolean"
         },
         {
             "name": "Name",
