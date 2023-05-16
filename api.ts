@@ -10226,115 +10226,6 @@ export class DnsVerifiedEvent {
 }
 
 /**
-* 
-*/
-export class Driver {
-    /**
-    * User Id
-    */
-    'UserId'?: number;
-    /**
-    * User Name
-    */
-    'UserName'?: string;
-    /**
-    * User Phone Number
-    */
-    'UserPhoneNumber'?: string;
-    /**
-    * 
-    */
-    'Stores'?: Array<DriverStore>;
-    /**
-    * Profile image url
-    */
-    'ProfileImageUrl'?: string;
-    /**
-    * Driver Key
-    */
-    'DriverKey'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "UserId",
-            "baseName": "UserId",
-            "type": "number"
-        },
-        {
-            "name": "UserName",
-            "baseName": "UserName",
-            "type": "string"
-        },
-        {
-            "name": "UserPhoneNumber",
-            "baseName": "UserPhoneNumber",
-            "type": "string"
-        },
-        {
-            "name": "Stores",
-            "baseName": "Stores",
-            "type": "Array<DriverStore>"
-        },
-        {
-            "name": "ProfileImageUrl",
-            "baseName": "ProfileImageUrl",
-            "type": "string"
-        },
-        {
-            "name": "DriverKey",
-            "baseName": "DriverKey",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Driver.attributeTypeMap;
-    }
-}
-
-/**
-* 
-*/
-export class DriverInvitation {
-    /**
-    * Phone number
-    */
-    'PhoneNumber'?: string;
-    /**
-    * Driver's name
-    */
-    'Name'?: string;
-    /**
-    * Assigned store IDs
-    */
-    'StoreIds'?: Array<number>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "PhoneNumber",
-            "baseName": "PhoneNumber",
-            "type": "string"
-        },
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "StoreIds",
-            "baseName": "StoreIds",
-            "type": "Array<number>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return DriverInvitation.attributeTypeMap;
-    }
-}
-
-/**
 * Driver Login model
 */
 export class DriverLoginModel {
@@ -10389,53 +10280,6 @@ export class DriverRequestLoginPinModel {
     }
 }
 
-/**
-* 
-*/
-export class DriverStore {
-    /**
-    * Store identifier
-    */
-    'StoreId'?: number;
-    /**
-    * Store name
-    */
-    'StoreName'?: string;
-    /**
-    * Presence
-    */
-    'Presence'?: DriverStore.PresenceEnum;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "StoreId",
-            "baseName": "StoreId",
-            "type": "number"
-        },
-        {
-            "name": "StoreName",
-            "baseName": "StoreName",
-            "type": "string"
-        },
-        {
-            "name": "Presence",
-            "baseName": "Presence",
-            "type": "DriverStore.PresenceEnum"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return DriverStore.attributeTypeMap;
-    }
-}
-
-export namespace DriverStore {
-    export enum PresenceEnum {
-        Offline = <any> 'Offline',
-        Online = <any> 'Online'
-    }
-}
 export class DynamicFormField {
     'Identifier'?: string;
     'Label'?: string;
@@ -26272,38 +26116,6 @@ export class OrderFulfillmentStatusWithConfigurationActions {
 }
 
 /**
-* 
-*/
-export class OrderIdAndSequenceNumber {
-    /**
-    * Order identifier
-    */
-    'OrderId'?: number;
-    /**
-    * Sequence for delivery
-    */
-    'Sequence'?: number;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "OrderId",
-            "baseName": "OrderId",
-            "type": "number"
-        },
-        {
-            "name": "Sequence",
-            "baseName": "Sequence",
-            "type": "number"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return OrderIdAndSequenceNumber.attributeTypeMap;
-    }
-}
-
-/**
 * Generic model for ingesting external orders from   3rd parties into the system
 */
 export class OrderIngestSubmitOrderRequest {
@@ -33074,52 +32886,6 @@ export class RestApiArrayResultDeliveryZone {
 /**
 * Rest api array result
 */
-export class RestApiArrayResultDriver {
-    /**
-    * Generic data object.
-    */
-    'Data': Array<Driver>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Array<Driver>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiArrayResultDriver.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api array result
-*/
-export class RestApiArrayResultDriverStore {
-    /**
-    * Generic data object.
-    */
-    'Data': Array<DriverStore>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Array<DriverStore>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiArrayResultDriverStore.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api array result
-*/
 export class RestApiArrayResultEmvTerminalWithAssignments {
     /**
     * Generic data object.
@@ -36393,29 +36159,6 @@ export class RestApiResultDnsRecordInformation {
 
     static getAttributeTypeMap() {
         return RestApiResultDnsRecordInformation.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api result
-*/
-export class RestApiResultDriver {
-    /**
-    * Generic data object.
-    */
-    'Data': Driver;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Driver"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiResultDriver.attributeTypeMap;
     }
 }
 
@@ -51912,7 +51655,6 @@ let enumsMap: {[index: string]: any} = {
         "CreateVoucher.VoucherTypeEnum": CreateVoucher.VoucherTypeEnum,
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
         "CustomerDeliveryTrackingOrder.CurrencyEnum": CustomerDeliveryTrackingOrder.CurrencyEnum,
-        "DriverStore.PresenceEnum": DriverStore.PresenceEnum,
         "ExecuteConfigurationActionResult.RedirectTargetEnum": ExecuteConfigurationActionResult.RedirectTargetEnum,
         "Field.FieldTypeEnum": Field.FieldTypeEnum,
         "FulfillmentInfo.DispatchTypeEnum": FulfillmentInfo.DispatchTypeEnum,
@@ -52216,11 +51958,8 @@ let typeMap: {[index: string]: any} = {
     "DeviceSettings": DeviceSettings,
     "DnsRecordInformation": DnsRecordInformation,
     "DnsVerifiedEvent": DnsVerifiedEvent,
-    "Driver": Driver,
-    "DriverInvitation": DriverInvitation,
     "DriverLoginModel": DriverLoginModel,
     "DriverRequestLoginPinModel": DriverRequestLoginPinModel,
-    "DriverStore": DriverStore,
     "DynamicFormField": DynamicFormField,
     "DynamicFormFieldOption": DynamicFormFieldOption,
     "DynamicFormRule": DynamicFormRule,
@@ -52406,7 +52145,6 @@ let typeMap: {[index: string]: any} = {
     "OrderFulfillmentStatusUpdate": OrderFulfillmentStatusUpdate,
     "OrderFulfillmentStatusUpdatedEvent": OrderFulfillmentStatusUpdatedEvent,
     "OrderFulfillmentStatusWithConfigurationActions": OrderFulfillmentStatusWithConfigurationActions,
-    "OrderIdAndSequenceNumber": OrderIdAndSequenceNumber,
     "OrderIngestSubmitOrderRequest": OrderIngestSubmitOrderRequest,
     "OrderIngestSubmitOrderResponse": OrderIngestSubmitOrderResponse,
     "OrderItem": OrderItem,
@@ -52486,8 +52224,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultClientDeviceSummary": RestApiArrayResultClientDeviceSummary,
     "RestApiArrayResultCountryWithAccountFieldsDefinitions": RestApiArrayResultCountryWithAccountFieldsDefinitions,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
-    "RestApiArrayResultDriver": RestApiArrayResultDriver,
-    "RestApiArrayResultDriverStore": RestApiArrayResultDriverStore,
     "RestApiArrayResultEmvTerminalWithAssignments": RestApiArrayResultEmvTerminalWithAssignments,
     "RestApiArrayResultFulfillmentStatesConfigurationSummary": RestApiArrayResultFulfillmentStatesConfigurationSummary,
     "RestApiArrayResultHomeAction": RestApiArrayResultHomeAction,
@@ -52593,7 +52329,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultCustomer": RestApiResultCustomer,
     "RestApiResultDeliveryZone": RestApiResultDeliveryZone,
     "RestApiResultDnsRecordInformation": RestApiResultDnsRecordInformation,
-    "RestApiResultDriver": RestApiResultDriver,
     "RestApiResultFulfillmentStatesConfiguration": RestApiResultFulfillmentStatesConfiguration,
     "RestApiResultGroup": RestApiResultGroup,
     "RestApiResultHomeStatistics": RestApiResultHomeStatistics,
@@ -62535,457 +62270,6 @@ export class CustomersApi {
         });
     }
 }
-export enum DeliveryTrackingApiApiKeys {
-}
-
-export class DeliveryTrackingApi {
-    protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
-    protected _useQuerystring : boolean = false;
-
-    protected authentications = {
-        'default': <Authentication>new VoidAuth(),
-        'oauth2': new OAuth(),
-    }
-
-    constructor(basePath?: string);
-    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
-        if (password) {
-            if (basePath) {
-                this.basePath = basePath;
-            }
-        } else {
-            if (basePathOrUsername) {
-                this.basePath = basePathOrUsername
-            }
-        }
-    }
-
-    set useQuerystring(value: boolean) {
-        this._useQuerystring = value;
-    }
-
-    set basePath(basePath: string) {
-        this._basePath = basePath;
-    }
-
-    get basePath() {
-        return this._basePath;
-    }
-
-    public setDefaultAuthentication(auth: Authentication) {
-	this.authentications.default = auth;
-    }
-
-    public setApiKey(key: DeliveryTrackingApiApiKeys, value: string) {
-        (this.authentications as any)[DeliveryTrackingApiApiKeys[key]].apiKey = value;
-    }
-
-    set accessToken(token: string) {
-        this.authentications.oauth2.accessToken = token;
-    }
-    /**
-     * 
-     * @param appId 
-     * @param orderId 
-     * @param driverId 
-     * @param {*} [options] Override http request options.
-     */
-    public assignDriverToOrder (appId: string, orderId: number, driverId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/drivers/{driverId}/orders/{orderId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)))
-            .replace('{' + 'driverId' + '}', encodeURIComponent(String(driverId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling assignDriverToOrder.');
-        }
-
-        // verify required parameter 'orderId' is not null or undefined
-        if (orderId === null || orderId === undefined) {
-            throw new Error('Required parameter orderId was null or undefined when calling assignDriverToOrder.');
-        }
-
-        // verify required parameter 'driverId' is not null or undefined
-        if (driverId === null || driverId === undefined) {
-            throw new Error('Required parameter driverId was null or undefined when calling assignDriverToOrder.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param driverId 
-     * @param orderIdAndSequenceNumbers 
-     * @param {*} [options] Override http request options.
-     */
-    public assignDriverToOrders (appId: string, driverId: number, orderIdAndSequenceNumbers: Array<OrderIdAndSequenceNumber>, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/drivers/{driverId}/orders'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'driverId' + '}', encodeURIComponent(String(driverId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling assignDriverToOrders.');
-        }
-
-        // verify required parameter 'driverId' is not null or undefined
-        if (driverId === null || driverId === undefined) {
-            throw new Error('Required parameter driverId was null or undefined when calling assignDriverToOrders.');
-        }
-
-        // verify required parameter 'orderIdAndSequenceNumbers' is not null or undefined
-        if (orderIdAndSequenceNumbers === null || orderIdAndSequenceNumbers === undefined) {
-            throw new Error('Required parameter orderIdAndSequenceNumbers was null or undefined when calling assignDriverToOrders.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(orderIdAndSequenceNumbers, "Array<OrderIdAndSequenceNumber>")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param name 
-     * @param phoneNumber 
-     * @param storeId 
-     * @param presence 
-     * @param {*} [options] Override http request options.
-     */
-    public getDrivers (appId: string, name?: string, phoneNumber?: string, storeId?: number, presence?: 'Offline' | 'Online', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDriver;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/drivers'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getDrivers.');
-        }
-
-        if (name !== undefined) {
-            localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "string");
-        }
-
-        if (phoneNumber !== undefined) {
-            localVarQueryParameters['phoneNumber'] = ObjectSerializer.serialize(phoneNumber, "string");
-        }
-
-        if (storeId !== undefined) {
-            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
-        }
-
-        if (presence !== undefined) {
-            localVarQueryParameters['presence'] = ObjectSerializer.serialize(presence, "'Offline' | 'Online'");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDriver;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultDriver");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param driverInvitation 
-     * @param {*} [options] Override http request options.
-     */
-    public inviteDriverToApp (appId: string, driverInvitation: DriverInvitation, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDriver;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/drivers'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling inviteDriverToApp.');
-        }
-
-        // verify required parameter 'driverInvitation' is not null or undefined
-        if (driverInvitation === null || driverInvitation === undefined) {
-            throw new Error('Required parameter driverInvitation was null or undefined when calling inviteDriverToApp.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(driverInvitation, "DriverInvitation")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultDriver;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultDriver");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param driverId 
-     * @param {*} [options] Override http request options.
-     */
-    public removeDriverFromApp (appId: string, driverId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/drivers/{driverId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'driverId' + '}', encodeURIComponent(String(driverId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling removeDriverFromApp.');
-        }
-
-        // verify required parameter 'driverId' is not null or undefined
-        if (driverId === null || driverId === undefined) {
-            throw new Error('Required parameter driverId was null or undefined when calling removeDriverFromApp.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param orderId 
-     * @param {*} [options] Override http request options.
-     */
-    public unassignDriverFromOrder (appId: string, orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/orders/{orderId}/driver'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling unassignDriverFromOrder.');
-        }
-
-        // verify required parameter 'orderId' is not null or undefined
-        if (orderId === null || orderId === undefined) {
-            throw new Error('Required parameter orderId was null or undefined when calling unassignDriverFromOrder.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-}
 export enum DeliveryZoneApiApiKeys {
 }
 
@@ -63653,7 +62937,7 @@ export class DriversApi {
      * @param updateDriverToken 
      * @param {*} [options] Override http request options.
      */
-    public addDriverNotificationToken (updateDriverToken: UpdateDriverNotificationToken, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public driversAddDriverNotificationToken (updateDriverToken: UpdateDriverNotificationToken, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/token';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -63661,7 +62945,7 @@ export class DriversApi {
 
         // verify required parameter 'updateDriverToken' is not null or undefined
         if (updateDriverToken === null || updateDriverToken === undefined) {
-            throw new Error('Required parameter updateDriverToken was null or undefined when calling addDriverNotificationToken.');
+            throw new Error('Required parameter updateDriverToken was null or undefined when calling driversAddDriverNotificationToken.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -63689,11 +62973,12 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -63707,7 +62992,7 @@ export class DriversApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public deleteDriverProfileImage (options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public driversDeleteDriverProfileImage (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/profile/image';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -63737,11 +63022,12 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -63756,7 +63042,7 @@ export class DriversApi {
      * @param driverLoginModel 
      * @param {*} [options] Override http request options.
      */
-    public driverLogin (driverLoginModel: DriverLoginModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public driversDriverLogin (driverLoginModel: DriverLoginModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/login';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -63764,7 +63050,7 @@ export class DriversApi {
 
         // verify required parameter 'driverLoginModel' is not null or undefined
         if (driverLoginModel === null || driverLoginModel === undefined) {
-            throw new Error('Required parameter driverLoginModel was null or undefined when calling driverLogin.');
+            throw new Error('Required parameter driverLoginModel was null or undefined when calling driversDriverLogin.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -63792,11 +63078,12 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -63811,7 +63098,7 @@ export class DriversApi {
      * @param driverRequestLoginPinModel 
      * @param {*} [options] Override http request options.
      */
-    public driverRequestLoginCodeSms (driverRequestLoginPinModel: DriverRequestLoginPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public driversDriverRequestLoginCodeSms (driverRequestLoginPinModel: DriverRequestLoginPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/pin';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -63819,7 +63106,7 @@ export class DriversApi {
 
         // verify required parameter 'driverRequestLoginPinModel' is not null or undefined
         if (driverRequestLoginPinModel === null || driverRequestLoginPinModel === undefined) {
-            throw new Error('Required parameter driverRequestLoginPinModel was null or undefined when calling driverRequestLoginCodeSms.');
+            throw new Error('Required parameter driverRequestLoginPinModel was null or undefined when calling driversDriverRequestLoginCodeSms.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -63847,11 +63134,12 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -63865,7 +63153,7 @@ export class DriversApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public getDriverProfile (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultDriver;  }> {
+    public driversGetDriverProfile (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/profile';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -63895,12 +63183,12 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultDriver;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultDriver");
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -63914,7 +63202,7 @@ export class DriversApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public getStoresForDriver (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDriverStore;  }> {
+    public driversGetStoresForDriver (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/assignedstores';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -63944,12 +63232,12 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultDriverStore;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultDriverStore");
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -63964,7 +63252,7 @@ export class DriversApi {
      * @param removeDriverToken 
      * @param {*} [options] Override http request options.
      */
-    public removeDriverNotificationToken (removeDriverToken: UpdateDriverNotificationToken, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public driversRemoveDriverNotificationToken (removeDriverToken: UpdateDriverNotificationToken, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/token';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -63972,7 +63260,7 @@ export class DriversApi {
 
         // verify required parameter 'removeDriverToken' is not null or undefined
         if (removeDriverToken === null || removeDriverToken === undefined) {
-            throw new Error('Required parameter removeDriverToken was null or undefined when calling removeDriverNotificationToken.');
+            throw new Error('Required parameter removeDriverToken was null or undefined when calling driversRemoveDriverNotificationToken.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -64000,11 +63288,12 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -64020,7 +63309,7 @@ export class DriversApi {
      * @param presence 
      * @param {*} [options] Override http request options.
      */
-    public setDriverPresenceForStore (storeId: number, presence: 'Offline' | 'Online', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public driversSetDriverPresenceForStore (storeId: number, presence: 'Offline' | 'Online', options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/stores/{storeId}/presence/{presence}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'presence' + '}', encodeURIComponent(String(presence)));
@@ -64030,12 +63319,12 @@ export class DriversApi {
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling setDriverPresenceForStore.');
+            throw new Error('Required parameter storeId was null or undefined when calling driversSetDriverPresenceForStore.');
         }
 
         // verify required parameter 'presence' is not null or undefined
         if (presence === null || presence === undefined) {
-            throw new Error('Required parameter presence was null or undefined when calling setDriverPresenceForStore.');
+            throw new Error('Required parameter presence was null or undefined when calling driversSetDriverPresenceForStore.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -64062,11 +63351,12 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -64080,7 +63370,7 @@ export class DriversApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public setDriverProfileImage (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public driversSetDriverProfileImage (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/profile/image';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -64110,12 +63400,12 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -64131,7 +63421,7 @@ export class DriversApi {
      * @param deliveryTrackingStatus 
      * @param {*} [options] Override http request options.
      */
-    public updateDeliveryTrackingStatus (orderId: number, deliveryTrackingStatus: 'Unassigned' | 'Unaccepted' | 'Accepted' | 'Carrying' | 'OnTheWay' | 'ArrivedAtLocation' | 'Delivered' | 'CannotDeliver', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public driversUpdateDeliveryTrackingStatus (orderId: number, deliveryTrackingStatus: 'Unassigned' | 'Unaccepted' | 'Accepted' | 'Carrying' | 'OnTheWay' | 'ArrivedAtLocation' | 'Delivered' | 'CannotDeliver', options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/tracking/{deliveryTrackingStatus}'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)))
             .replace('{' + 'deliveryTrackingStatus' + '}', encodeURIComponent(String(deliveryTrackingStatus)));
@@ -64141,12 +63431,12 @@ export class DriversApi {
 
         // verify required parameter 'orderId' is not null or undefined
         if (orderId === null || orderId === undefined) {
-            throw new Error('Required parameter orderId was null or undefined when calling updateDeliveryTrackingStatus.');
+            throw new Error('Required parameter orderId was null or undefined when calling driversUpdateDeliveryTrackingStatus.');
         }
 
         // verify required parameter 'deliveryTrackingStatus' is not null or undefined
         if (deliveryTrackingStatus === null || deliveryTrackingStatus === undefined) {
-            throw new Error('Required parameter deliveryTrackingStatus was null or undefined when calling updateDeliveryTrackingStatus.');
+            throw new Error('Required parameter deliveryTrackingStatus was null or undefined when calling driversUpdateDeliveryTrackingStatus.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -64173,12 +63463,12 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -64193,7 +63483,7 @@ export class DriversApi {
      * @param updateDriverProfile 
      * @param {*} [options] Override http request options.
      */
-    public updateDriverProfile (updateDriverProfile: UpdateDriverProfileModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public driversUpdateDriverProfile (updateDriverProfile: UpdateDriverProfileModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/profile';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -64201,7 +63491,7 @@ export class DriversApi {
 
         // verify required parameter 'updateDriverProfile' is not null or undefined
         if (updateDriverProfile === null || updateDriverProfile === undefined) {
-            throw new Error('Required parameter updateDriverProfile was null or undefined when calling updateDriverProfile.');
+            throw new Error('Required parameter updateDriverProfile was null or undefined when calling driversUpdateDriverProfile.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -64229,11 +63519,12 @@ export class DriversApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
