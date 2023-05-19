@@ -1216,7 +1216,6 @@ export namespace App {
         EditMenuImage = <any> 'EditMenuImage',
         ViewVouchers = <any> 'ViewVouchers',
         EditVouchers = <any> 'EditVouchers',
-        UpdateVouchersExtendDisable = <any> 'UpdateVouchersExtendDisable',
         ViewWebsiteContent = <any> 'ViewWebsiteContent',
         EditWebsiteContent = <any> 'EditWebsiteContent',
         ViewWebsiteDnsVerified = <any> 'ViewWebsiteDnsVerified',
@@ -15572,6 +15571,38 @@ export namespace Invoice {
         Void = <any> 'Void'
     }
 }
+/**
+* Invoice Discount
+*/
+export class InvoiceDiscount {
+    /**
+    * Name
+    */
+    'Name': string;
+    /**
+    * Amount
+    */
+    'Amount': number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Amount",
+            "baseName": "Amount",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return InvoiceDiscount.attributeTypeMap;
+    }
+}
+
 /**
 * Invoice Item
 */
@@ -46065,6 +46096,10 @@ export class Subscription {
     */
     'UpcomingInvoiceItems'?: Array<InvoiceItem>;
     /**
+    * Upcoming invoice discounts
+    */
+    'UpcomingInvoiceDiscounts'?: Array<InvoiceDiscount>;
+    /**
     * The subscription identifier
     */
     'SubscriptionId': string;
@@ -46110,6 +46145,11 @@ export class Subscription {
             "name": "UpcomingInvoiceItems",
             "baseName": "UpcomingInvoiceItems",
             "type": "Array<InvoiceItem>"
+        },
+        {
+            "name": "UpcomingInvoiceDiscounts",
+            "baseName": "UpcomingInvoiceDiscounts",
+            "type": "Array<InvoiceDiscount>"
         },
         {
             "name": "SubscriptionId",
@@ -52016,6 +52056,7 @@ let typeMap: {[index: string]: any} = {
     "IndexPageBase": IndexPageBase,
     "IntercomUserHash": IntercomUserHash,
     "Invoice": Invoice,
+    "InvoiceDiscount": InvoiceDiscount,
     "InvoiceItem": InvoiceItem,
     "InvoicePeriod": InvoicePeriod,
     "JobAddress": JobAddress,
