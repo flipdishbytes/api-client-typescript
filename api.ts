@@ -56162,10 +56162,9 @@ export class AppsApi {
      * @param appId 
      * @param hostname 
      * @param isEmbed 
-     * @param isNextGenWeb 
      * @param {*} [options] Override http request options.
      */
-    public setAppHostname (appId: string, hostname: string, isEmbed?: boolean, isNextGenWeb?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public setAppHostname (appId: string, hostname: string, isEmbed?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/hostname'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -56188,10 +56187,6 @@ export class AppsApi {
 
         if (isEmbed !== undefined) {
             localVarQueryParameters['isEmbed'] = ObjectSerializer.serialize(isEmbed, "boolean");
-        }
-
-        if (isNextGenWeb !== undefined) {
-            localVarQueryParameters['isNextGenWeb'] = ObjectSerializer.serialize(isNextGenWeb, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
