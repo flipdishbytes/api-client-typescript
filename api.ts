@@ -46532,6 +46532,14 @@ export class Subscription {
     */
     'Products': Array<SubscriptionProduct>;
     /**
+    * Next invoice amount
+    */
+    'NextInvoiceAmount'?: number;
+    /**
+    * Next invoice billing date
+    */
+    'NextInvoiceBillingDate'?: Date;
+    /**
     * Upcoming invoice items
     */
     'UpcomingInvoiceItems'?: Array<InvoiceItem>;
@@ -46539,6 +46547,10 @@ export class Subscription {
     * Upcoming invoice discounts
     */
     'UpcomingInvoiceDiscounts'?: Array<InvoiceDiscount>;
+    /**
+    * Upcoming invoice
+    */
+    'UpcomingInvoice'?: UpcomingInvoice;
     /**
     * The subscription identifier
     */
@@ -46552,14 +46564,6 @@ export class Subscription {
     * Currency
     */
     'Currency': Subscription.CurrencyEnum;
-    /**
-    * Next invoice amount
-    */
-    'NextInvoiceAmount'?: number;
-    /**
-    * Next invoice billing date
-    */
-    'NextInvoiceBillingDate'?: Date;
     /**
     * User
     */
@@ -46582,6 +46586,16 @@ export class Subscription {
             "type": "Array<SubscriptionProduct>"
         },
         {
+            "name": "NextInvoiceAmount",
+            "baseName": "NextInvoiceAmount",
+            "type": "number"
+        },
+        {
+            "name": "NextInvoiceBillingDate",
+            "baseName": "NextInvoiceBillingDate",
+            "type": "Date"
+        },
+        {
             "name": "UpcomingInvoiceItems",
             "baseName": "UpcomingInvoiceItems",
             "type": "Array<InvoiceItem>"
@@ -46590,6 +46604,11 @@ export class Subscription {
             "name": "UpcomingInvoiceDiscounts",
             "baseName": "UpcomingInvoiceDiscounts",
             "type": "Array<InvoiceDiscount>"
+        },
+        {
+            "name": "UpcomingInvoice",
+            "baseName": "UpcomingInvoice",
+            "type": "UpcomingInvoice"
         },
         {
             "name": "SubscriptionId",
@@ -46610,16 +46629,6 @@ export class Subscription {
             "name": "Currency",
             "baseName": "Currency",
             "type": "Subscription.CurrencyEnum"
-        },
-        {
-            "name": "NextInvoiceAmount",
-            "baseName": "NextInvoiceAmount",
-            "type": "number"
-        },
-        {
-            "name": "NextInvoiceBillingDate",
-            "baseName": "NextInvoiceBillingDate",
-            "type": "Date"
         },
         {
             "name": "User",
@@ -46890,6 +46899,14 @@ export class SubscriptionStore {
 */
 export class SubscriptionSummary {
     /**
+    * Next invoice amount
+    */
+    'NextInvoiceAmount'?: number;
+    /**
+    * Next invoice billing date
+    */
+    'NextInvoiceBillingDate'?: Date;
+    /**
     * The subscription identifier
     */
     'SubscriptionId': string;
@@ -46902,14 +46919,6 @@ export class SubscriptionSummary {
     * Currency
     */
     'Currency': SubscriptionSummary.CurrencyEnum;
-    /**
-    * Next invoice amount
-    */
-    'NextInvoiceAmount'?: number;
-    /**
-    * Next invoice billing date
-    */
-    'NextInvoiceBillingDate'?: Date;
     /**
     * User
     */
@@ -46926,6 +46935,16 @@ export class SubscriptionSummary {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "NextInvoiceAmount",
+            "baseName": "NextInvoiceAmount",
+            "type": "number"
+        },
+        {
+            "name": "NextInvoiceBillingDate",
+            "baseName": "NextInvoiceBillingDate",
+            "type": "Date"
+        },
         {
             "name": "SubscriptionId",
             "baseName": "SubscriptionId",
@@ -46945,16 +46964,6 @@ export class SubscriptionSummary {
             "name": "Currency",
             "baseName": "Currency",
             "type": "SubscriptionSummary.CurrencyEnum"
-        },
-        {
-            "name": "NextInvoiceAmount",
-            "baseName": "NextInvoiceAmount",
-            "type": "number"
-        },
-        {
-            "name": "NextInvoiceBillingDate",
-            "baseName": "NextInvoiceBillingDate",
-            "type": "Date"
         },
         {
             "name": "User",
@@ -47971,6 +47980,89 @@ export class UnRegisterCardReaderRequest {
 
     static getAttributeTypeMap() {
         return UnRegisterCardReaderRequest.attributeTypeMap;
+    }
+}
+
+export class UpcomingInvoice {
+    /**
+    * Amount
+    */
+    'Amount'?: number;
+    /**
+    * Next billing date
+    */
+    'NextBillingDate'?: Date;
+    /**
+    * Subtotal
+    */
+    'Subtotal': number;
+    /**
+    * Total excluding tax
+    */
+    'TotalExcludingTax'?: number;
+    /**
+    * Amount due
+    */
+    'AmountDue': number;
+    /**
+    * Tax
+    */
+    'Tax': number;
+    /**
+    * Items
+    */
+    'Items'?: Array<InvoiceItem>;
+    /**
+    * Discounts
+    */
+    'Discounts'?: Array<InvoiceDiscount>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Amount",
+            "baseName": "Amount",
+            "type": "number"
+        },
+        {
+            "name": "NextBillingDate",
+            "baseName": "NextBillingDate",
+            "type": "Date"
+        },
+        {
+            "name": "Subtotal",
+            "baseName": "Subtotal",
+            "type": "number"
+        },
+        {
+            "name": "TotalExcludingTax",
+            "baseName": "TotalExcludingTax",
+            "type": "number"
+        },
+        {
+            "name": "AmountDue",
+            "baseName": "AmountDue",
+            "type": "number"
+        },
+        {
+            "name": "Tax",
+            "baseName": "Tax",
+            "type": "number"
+        },
+        {
+            "name": "Items",
+            "baseName": "Items",
+            "type": "Array<InvoiceItem>"
+        },
+        {
+            "name": "Discounts",
+            "baseName": "Discounts",
+            "type": "Array<InvoiceDiscount>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpcomingInvoice.attributeTypeMap;
     }
 }
 
@@ -53002,6 +53094,7 @@ let typeMap: {[index: string]: any} = {
     "TelemetrySeriesResult": TelemetrySeriesResult,
     "TipConfiguration": TipConfiguration,
     "UnRegisterCardReaderRequest": UnRegisterCardReaderRequest,
+    "UpcomingInvoice": UpcomingInvoice,
     "UpdateAppStoreApp": UpdateAppStoreApp,
     "UpdateAppStoreAppConfiguration": UpdateAppStoreAppConfiguration,
     "UpdateAppStoreAppConfigurationValuesBatch": UpdateAppStoreAppConfigurationValuesBatch,
