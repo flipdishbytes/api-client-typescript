@@ -1022,6 +1022,10 @@ export class App {
     */
     'MainColor'?: string;
     /**
+    * Primary colour used on the Kiosk
+    */
+    'KioskPrimaryColour'?: string;
+    /**
     * Application Category
     */
     'ApplicationCategory'?: App.ApplicationCategoryEnum;
@@ -1120,6 +1124,11 @@ export class App {
         {
             "name": "MainColor",
             "baseName": "MainColor",
+            "type": "string"
+        },
+        {
+            "name": "KioskPrimaryColour",
+            "baseName": "KioskPrimaryColour",
             "type": "string"
         },
         {
@@ -1483,6 +1492,10 @@ export class AppConfigUpdateModel {
     */
     'MainColor'?: string;
     /**
+    * Primary colour used on the Kiosk
+    */
+    'KioskPrimaryColour'?: string;
+    /**
     * Application Category
     */
     'ApplicationCategory'?: AppConfigUpdateModel.ApplicationCategoryEnum;
@@ -1511,6 +1524,11 @@ export class AppConfigUpdateModel {
         {
             "name": "MainColor",
             "baseName": "MainColor",
+            "type": "string"
+        },
+        {
+            "name": "KioskPrimaryColour",
+            "baseName": "KioskPrimaryColour",
             "type": "string"
         },
         {
