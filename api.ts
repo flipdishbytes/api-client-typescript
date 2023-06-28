@@ -1755,6 +1755,10 @@ export class AppStoreApp {
     */
     'ExternalFunctionSignatureKey'?: string;
     /**
+    * Is Paid
+    */
+    'IsPaid'?: boolean;
+    /**
     * Name
     */
     'Name': string;
@@ -1861,6 +1865,11 @@ export class AppStoreApp {
             "name": "ExternalFunctionSignatureKey",
             "baseName": "ExternalFunctionSignatureKey",
             "type": "string"
+        },
+        {
+            "name": "IsPaid",
+            "baseName": "IsPaid",
+            "type": "boolean"
         },
         {
             "name": "Name",
@@ -2044,6 +2053,10 @@ export class AppStoreAppConfiguration {
     */
     'ExternalFunctionSignatureKey'?: string;
     /**
+    * Is Paid
+    */
+    'IsPaid'?: boolean;
+    /**
     * Name
     */
     'Name': string;
@@ -2171,6 +2184,11 @@ export class AppStoreAppConfiguration {
             "name": "ExternalFunctionSignatureKey",
             "baseName": "ExternalFunctionSignatureKey",
             "type": "string"
+        },
+        {
+            "name": "IsPaid",
+            "baseName": "IsPaid",
+            "type": "boolean"
         },
         {
             "name": "Name",
@@ -6787,6 +6805,10 @@ export class CreateAppStoreApp {
     */
     'ExternalFunctionSignatureKey'?: string;
     /**
+    * Is Paid
+    */
+    'IsPaid'?: boolean;
+    /**
     * Name
     */
     'Name': string;
@@ -6868,6 +6890,11 @@ export class CreateAppStoreApp {
             "name": "ExternalFunctionSignatureKey",
             "baseName": "ExternalFunctionSignatureKey",
             "type": "string"
+        },
+        {
+            "name": "IsPaid",
+            "baseName": "IsPaid",
+            "type": "boolean"
         },
         {
             "name": "Name",
@@ -48220,6 +48247,10 @@ export class UpdateAppStoreApp {
     */
     'ExternalFunctionSignatureKey'?: string;
     /**
+    * Is Paid
+    */
+    'IsPaid'?: boolean;
+    /**
     * Name
     */
     'Name': string;
@@ -48301,6 +48332,11 @@ export class UpdateAppStoreApp {
             "name": "ExternalFunctionSignatureKey",
             "baseName": "ExternalFunctionSignatureKey",
             "type": "string"
+        },
+        {
+            "name": "IsPaid",
+            "baseName": "IsPaid",
+            "type": "boolean"
         },
         {
             "name": "Name",
@@ -48501,6 +48537,29 @@ export class UpdateAppStoreAppConfigurationWebhookDTO {
 
     static getAttributeTypeMap() {
         return UpdateAppStoreAppConfigurationWebhookDTO.attributeTypeMap;
+    }
+}
+
+/**
+* Update App store app external product id
+*/
+export class UpdateAppStoreAppExternalProduct {
+    /**
+    * The external product id
+    */
+    'ExternalProductId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ExternalProductId",
+            "baseName": "ExternalProductId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateAppStoreAppExternalProduct.attributeTypeMap;
     }
 }
 
@@ -53207,6 +53266,7 @@ let typeMap: {[index: string]: any} = {
     "UpdateAppStoreAppConfiguration": UpdateAppStoreAppConfiguration,
     "UpdateAppStoreAppConfigurationValuesBatch": UpdateAppStoreAppConfigurationValuesBatch,
     "UpdateAppStoreAppConfigurationWebhookDTO": UpdateAppStoreAppConfigurationWebhookDTO,
+    "UpdateAppStoreAppExternalProduct": UpdateAppStoreAppExternalProduct,
     "UpdateCatalogGroupReference": UpdateCatalogGroupReference,
     "UpdateCatalogItem": UpdateCatalogItem,
     "UpdateDriverNotificationToken": UpdateDriverNotificationToken,
@@ -56161,6 +56221,68 @@ export class AppStoreDeveloperApi {
      * @param appStoreAppId 
      * @param {*} [options] Override http request options.
      */
+    public getAppExternalProduct (oauthAppId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oauthAppId}/appstore/apps/{appStoreAppId}/external_product'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling getAppExternalProduct.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling getAppExternalProduct.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param oauthAppId 
+     * @param appStoreAppId 
+     * @param {*} [options] Override http request options.
+     */
     public getExternalFunctionSigningKey (oauthAppId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oauthAppId}/appstore/apps/{appStoreAppId}/external_function_signing_key'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
@@ -56259,6 +56381,75 @@ export class AppStoreDeveloperApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(appStoreApp, "UpdateAppStoreApp")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param oauthAppId 
+     * @param appStoreAppId 
+     * @param appStoreAppExternalProduct 
+     * @param {*} [options] Override http request options.
+     */
+    public updateExternalProduct (oauthAppId: string, appStoreAppId: string, appStoreAppExternalProduct: UpdateAppStoreAppExternalProduct, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oauthAppId}/appstore/apps/{appStoreAppId}/external_product'
+            .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'oauthAppId' is not null or undefined
+        if (oauthAppId === null || oauthAppId === undefined) {
+            throw new Error('Required parameter oauthAppId was null or undefined when calling updateExternalProduct.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling updateExternalProduct.');
+        }
+
+        // verify required parameter 'appStoreAppExternalProduct' is not null or undefined
+        if (appStoreAppExternalProduct === null || appStoreAppExternalProduct === undefined) {
+            throw new Error('Required parameter appStoreAppExternalProduct was null or undefined when calling updateExternalProduct.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(appStoreAppExternalProduct, "UpdateAppStoreAppExternalProduct")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
