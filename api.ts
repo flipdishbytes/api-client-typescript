@@ -1584,6 +1584,10 @@ export class AppCreatedEvent {
     */
     'User'?: UserEventInfo;
     /**
+    * SalesForce Opportunity Id
+    */
+    'OpportunityId'?: string;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -1631,6 +1635,11 @@ export class AppCreatedEvent {
             "name": "User",
             "baseName": "User",
             "type": "UserEventInfo"
+        },
+        {
+            "name": "OpportunityId",
+            "baseName": "OpportunityId",
+            "type": "string"
         },
         {
             "name": "FlipdishEventId",
@@ -6984,6 +6993,47 @@ export namespace CreateAppStoreApp {
         NZ = <any> 'NZ'
     }
 }
+/**
+* Basic attributes for creating an account
+*/
+export class CreateBasicAccountModel {
+    /**
+    * Store name
+    */
+    'StoreName': string;
+    /**
+    * LanguageId
+    */
+    'LanguageId'?: string;
+    /**
+    * Salesforce Opportunity ID
+    */
+    'OpportunityId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreName",
+            "baseName": "StoreName",
+            "type": "string"
+        },
+        {
+            "name": "LanguageId",
+            "baseName": "LanguageId",
+            "type": "string"
+        },
+        {
+            "name": "OpportunityId",
+            "baseName": "OpportunityId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateBasicAccountModel.attributeTypeMap;
+    }
+}
+
 /**
 * Information to create a reference to a {Flipdish.Menus.PublicModels.V1.Catalog.Groups.Group}
 */
@@ -52658,6 +52708,7 @@ let typeMap: {[index: string]: any} = {
     "CountryWithAccountFieldsDefinitions": CountryWithAccountFieldsDefinitions,
     "CreateAccountModel": CreateAccountModel,
     "CreateAppStoreApp": CreateAppStoreApp,
+    "CreateBasicAccountModel": CreateBasicAccountModel,
     "CreateCatalogGroupReference": CreateCatalogGroupReference,
     "CreateCatalogItem": CreateCatalogItem,
     "CreateFulfillmentStatesConfiguration": CreateFulfillmentStatesConfiguration,
@@ -53632,6 +53683,62 @@ export class AccountsApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param basicAccountModel 
+     * @param {*} [options] Override http request options.
+     */
+    public createBasicAccount (basicAccountModel: CreateBasicAccountModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/accounts/basic-account';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'basicAccountModel' is not null or undefined
+        if (basicAccountModel === null || basicAccountModel === undefined) {
+            throw new Error('Required parameter basicAccountModel was null or undefined when calling createBasicAccount.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(basicAccountModel, "CreateBasicAccountModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "string");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
