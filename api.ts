@@ -14606,9 +14606,13 @@ export class HydraDeviceDetails {
     */
     'HydraConfigId'?: number;
     /**
-    * Device Id or Serial Number
+    * Device Id
     */
     'DeviceId'?: string;
+    /**
+    * Serial Number
+    */
+    'SerialNumber'?: string;
     /**
     * Type of the device
     */
@@ -14657,6 +14661,11 @@ export class HydraDeviceDetails {
         {
             "name": "DeviceId",
             "baseName": "DeviceId",
+            "type": "string"
+        },
+        {
+            "name": "SerialNumber",
+            "baseName": "SerialNumber",
             "type": "string"
         },
         {
