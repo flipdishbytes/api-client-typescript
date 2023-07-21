@@ -27215,6 +27215,29 @@ export class OrderItemOption {
 }
 
 /**
+* A list of orders.
+*/
+export class OrderList {
+    /**
+    * A list of orders.
+    */
+    'Orders'?: Array<OrderReference>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Orders",
+            "baseName": "Orders",
+            "type": "Array<OrderReference>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderList.attributeTypeMap;
+    }
+}
+
+/**
 * Order Payment Information
 */
 export class OrderPaymentInformation {
@@ -27338,6 +27361,29 @@ export class OrderRatingUpdatedEvent {
 
     static getAttributeTypeMap() {
         return OrderRatingUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* A reference to an order.
+*/
+export class OrderReference {
+    /**
+    * The ID of the order.
+    */
+    'OrderId'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrderId",
+            "baseName": "OrderId",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderReference.attributeTypeMap;
     }
 }
 
@@ -52959,8 +53005,10 @@ let typeMap: {[index: string]: any} = {
     "OrderItem": OrderItem,
     "OrderItemDm": OrderItemDm,
     "OrderItemOption": OrderItemOption,
+    "OrderList": OrderList,
     "OrderPaymentInformation": OrderPaymentInformation,
     "OrderRatingUpdatedEvent": OrderRatingUpdatedEvent,
+    "OrderReference": OrderReference,
     "OrderRefundedEvent": OrderRefundedEvent,
     "OrderRejectedEvent": OrderRejectedEvent,
     "OrderSummary": OrderSummary,
@@ -79477,6 +79525,67 @@ export class OrdersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultOrderSummary");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param storeId 
+     * @param {*} [options] Override http request options.
+     */
+    public getReadyToProcess (appId: string, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: OrderList;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/orders/ready_to_process'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getReadyToProcess.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: OrderList;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "OrderList");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
