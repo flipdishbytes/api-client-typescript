@@ -1673,6 +1673,38 @@ export class AppCreatedEvent {
 }
 
 /**
+* App lookup model
+*/
+export class AppLookup {
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Sales force opportunity id
+    */
+    'OpportunityId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OpportunityId",
+            "baseName": "OpportunityId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppLookup.attributeTypeMap;
+    }
+}
+
+/**
 * Whitelabel salesforce references
 */
 export class AppSalesforceReferences {
@@ -52701,6 +52733,7 @@ let typeMap: {[index: string]: any} = {
     "AppConfigSalesChannel": AppConfigSalesChannel,
     "AppConfigUpdateModel": AppConfigUpdateModel,
     "AppCreatedEvent": AppCreatedEvent,
+    "AppLookup": AppLookup,
     "AppSalesforceReferences": AppSalesforceReferences,
     "AppStoreApp": AppStoreApp,
     "AppStoreAppConfiguration": AppStoreAppConfiguration,
@@ -57214,6 +57247,62 @@ export class AppsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param whitelabelId 
+     * @param {*} [options] Override http request options.
+     */
+    public lookupByWhitelabelId (whitelabelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: AppLookup;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/{whitelabelId}/lookup'
+            .replace('{' + 'whitelabelId' + '}', encodeURIComponent(String(whitelabelId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'whitelabelId' is not null or undefined
+        if (whitelabelId === null || whitelabelId === undefined) {
+            throw new Error('Required parameter whitelabelId was null or undefined when calling lookupByWhitelabelId.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: AppLookup;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "AppLookup");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
