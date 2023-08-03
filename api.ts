@@ -17806,6 +17806,29 @@ export class KioskIotConnectionParameters {
 }
 
 /**
+* Kiosk level settings
+*/
+export class KioskSettings {
+    /**
+    * Hide logo from front page
+    */
+    'HideLogoFromFrontPage'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "HideLogoFromFrontPage",
+            "baseName": "HideLogoFromFrontPage",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return KioskSettings.attributeTypeMap;
+    }
+}
+
+/**
 * Details of a kiosks store settings
 */
 export class KioskStoreSettings {
@@ -37022,6 +37045,29 @@ export class RestApiResultKioskIotConnectionParameters {
 /**
 * Rest api result
 */
+export class RestApiResultKioskSettings {
+    /**
+    * Generic data object.
+    */
+    'Data': KioskSettings;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "KioskSettings"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultKioskSettings.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultKioskStoreSettings {
     /**
     * Generic data object.
@@ -52927,6 +52973,7 @@ let typeMap: {[index: string]: any} = {
     "KioskCashPaymentSettings": KioskCashPaymentSettings,
     "KioskCashSetting": KioskCashSetting,
     "KioskIotConnectionParameters": KioskIotConnectionParameters,
+    "KioskSettings": KioskSettings,
     "KioskStoreSettings": KioskStoreSettings,
     "KioskTerminalActionStateChangedEvent": KioskTerminalActionStateChangedEvent,
     "Language": Language,
@@ -53233,6 +53280,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultJobResponse": RestApiResultJobResponse,
     "RestApiResultKioskCashSetting": RestApiResultKioskCashSetting,
     "RestApiResultKioskIotConnectionParameters": RestApiResultKioskIotConnectionParameters,
+    "RestApiResultKioskSettings": RestApiResultKioskSettings,
     "RestApiResultKioskStoreSettings": RestApiResultKioskStoreSettings,
     "RestApiResultLightspeedSettings": RestApiResultLightspeedSettings,
     "RestApiResultLocationArea": RestApiResultLocationArea,
@@ -68741,6 +68789,69 @@ export class HydraApi {
     }
     /**
      * 
+     * @param appId 
+     * @param deviceId 
+     * @param {*} [options] Override http request options.
+     */
+    public getKioskSettings (appId: string, deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultKioskSettings;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/kiosksettings/{deviceId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getKioskSettings.');
+        }
+
+        // verify required parameter 'deviceId' is not null or undefined
+        if (deviceId === null || deviceId === undefined) {
+            throw new Error('Required parameter deviceId was null or undefined when calling getKioskSettings.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultKioskSettings;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultKioskSettings");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @param {*} [options] Override http request options.
      */
     public getRegistration (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }> {
@@ -69389,6 +69500,75 @@ export class HydraApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param deviceId 
+     * @param settings 
+     * @param {*} [options] Override http request options.
+     */
+    public updateKioskSettings (appId: string, deviceId: string, settings: KioskSettings, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/kiosksettings/{deviceId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateKioskSettings.');
+        }
+
+        // verify required parameter 'deviceId' is not null or undefined
+        if (deviceId === null || deviceId === undefined) {
+            throw new Error('Required parameter deviceId was null or undefined when calling updateKioskSettings.');
+        }
+
+        // verify required parameter 'settings' is not null or undefined
+        if (settings === null || settings === undefined) {
+            throw new Error('Required parameter settings was null or undefined when calling updateKioskSettings.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(settings, "KioskSettings")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
