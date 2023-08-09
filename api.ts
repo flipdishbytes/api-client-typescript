@@ -42736,6 +42736,14 @@ export class StoreFeeConfig {
     * Gets or sets the fixed fee for POS transactions.
     */
     'FixedFeeCardPosTransaction'?: number;
+    /**
+    * Additional percentage fee charged on orders submitted through Order With Google
+    */
+    'PercentFeeOrderWithGoogle'?: number;
+    /**
+    * Additional fixed fee charged on orders submitted through Order With Google
+    */
+    'FixedFeeOrderWithGoogle'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -42943,6 +42951,16 @@ export class StoreFeeConfig {
         {
             "name": "FixedFeeCardPosTransaction",
             "baseName": "FixedFeeCardPosTransaction",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeOrderWithGoogle",
+            "baseName": "PercentFeeOrderWithGoogle",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeOrderWithGoogle",
+            "baseName": "FixedFeeOrderWithGoogle",
             "type": "number"
         }    ];
 
