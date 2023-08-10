@@ -22228,10 +22228,6 @@ export class MenuSectionDeletedEvent {
 */
 export class MenuSectionItem {
     /**
-    * Menu item identifier. This ID may change at any time. Use `PublicId` if you need a permanent reference to the item.
-    */
-    'MenuItemId'?: number;
-    /**
     * Actual price - the minimum price possible when all required option set items prices are included.
     */
     'ActualPrice'?: number;
@@ -22311,15 +22307,14 @@ export class MenuSectionItem {
     * Image url
     */
     'ImageUrl'?: string;
+    /**
+    * Menu Item Id
+    */
+    'MenuItemId'?: number;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "MenuItemId",
-            "baseName": "MenuItemId",
-            "type": "number"
-        },
         {
             "name": "ActualPrice",
             "baseName": "ActualPrice",
@@ -22419,6 +22414,11 @@ export class MenuSectionItem {
             "name": "ImageUrl",
             "baseName": "ImageUrl",
             "type": "string"
+        },
+        {
+            "name": "MenuItemId",
+            "baseName": "MenuItemId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
