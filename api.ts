@@ -1034,6 +1034,10 @@ export class App {
     */
     'IsPanaceaEnabled'?: boolean;
     /**
+    * In case of IsPanaceaEnabled is true, the app can be accessed via https://my.flipdish.com/{PanaceaVanityUrl}
+    */
+    'PanaceaVanityUrl'?: string;
+    /**
     * Cookie Consent Prompt Enabled
     */
     'CookieConsentPromptEnabled'?: boolean;
@@ -1140,6 +1144,11 @@ export class App {
             "name": "IsPanaceaEnabled",
             "baseName": "IsPanaceaEnabled",
             "type": "boolean"
+        },
+        {
+            "name": "PanaceaVanityUrl",
+            "baseName": "PanaceaVanityUrl",
+            "type": "string"
         },
         {
             "name": "CookieConsentPromptEnabled",
@@ -1504,6 +1513,10 @@ export class AppConfigUpdateModel {
     */
     'IsPanaceaEnabled'?: boolean;
     /**
+    * In case of IsPanaceaEnabled is true, the app can be accessed via https://my.flipdish.com/{PanaceaVanityUrl}
+    */
+    'PanaceaVanityUrl'?: string;
+    /**
     * Cookie Consent Prompt Enabled
     */
     'CookieConsentPromptEnabled'?: boolean;
@@ -1540,6 +1553,11 @@ export class AppConfigUpdateModel {
             "name": "IsPanaceaEnabled",
             "baseName": "IsPanaceaEnabled",
             "type": "boolean"
+        },
+        {
+            "name": "PanaceaVanityUrl",
+            "baseName": "PanaceaVanityUrl",
+            "type": "string"
         },
         {
             "name": "CookieConsentPromptEnabled",
