@@ -629,6 +629,35 @@ export class AllMetadataResult {
     }
 }
 
+export class Allergen {
+    /**
+    * Name of the allergen
+    */
+    'Name'?: string;
+    /**
+    * Url to the icon for the allergen
+    */
+    'IconUrl'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "IconUrl",
+            "baseName": "IconUrl",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Allergen.attributeTypeMap;
+    }
+}
+
 /**
 * Client Analytics event
 */
@@ -16040,6 +16069,23 @@ export class InvoicePeriod {
     }
 }
 
+export class ItemNutritionInfoAddUpdateModel {
+    'Labels'?: Array<NutritionInfoItemAddUpdateLabelModel>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Labels",
+            "baseName": "Labels",
+            "type": "Array<NutritionInfoItemAddUpdateLabelModel>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ItemNutritionInfoAddUpdateModel.attributeTypeMap;
+    }
+}
+
 /**
 * Job Address
 */
@@ -21685,6 +21731,44 @@ export class MenuItemOptionSetUpdatedEvent {
     }
 }
 
+export class MenuNutritionInfoHeader {
+    /**
+    * Menu Id
+    */
+    'MenuId'?: number;
+    /**
+    * Nutrition information version guid (generated every time the nutrition information is updated)
+    */
+    'NutritionInfoVersionGuid'?: string;
+    /**
+    * Absolute URL of the nutrition information json file
+    */
+    'AbsoluteUrl'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "NutritionInfoVersionGuid",
+            "baseName": "NutritionInfoVersionGuid",
+            "type": "string"
+        },
+        {
+            "name": "AbsoluteUrl",
+            "baseName": "AbsoluteUrl",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuNutritionInfoHeader.attributeTypeMap;
+    }
+}
+
 /**
 * Collection of Display Orders for a Menu Object (Menu Section / Menu Items / Option Sets etc)
 */
@@ -24269,6 +24353,172 @@ export namespace NextStatusWithOrderType {
         DineIn = <any> 'DineIn'
     }
 }
+/**
+* Menu Nutrition Information
+*/
+export class NutritionInfo {
+    /**
+    * Version of the nutrition information model
+    */
+    'Version'?: string;
+    /**
+    * List of menu item nutrition infos
+    */
+    'MenuItems'?: Array<NutritionInfoMenuItem>;
+    /**
+    * List of menu item option set nutrition infos
+    */
+    'MenuItemOptionSetItems'?: Array<NutritionInfoMenuOptionSetItem>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Version",
+            "baseName": "Version",
+            "type": "string"
+        },
+        {
+            "name": "MenuItems",
+            "baseName": "MenuItems",
+            "type": "Array<NutritionInfoMenuItem>"
+        },
+        {
+            "name": "MenuItemOptionSetItems",
+            "baseName": "MenuItemOptionSetItems",
+            "type": "Array<NutritionInfoMenuOptionSetItem>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return NutritionInfo.attributeTypeMap;
+    }
+}
+
+export class NutritionInfoItemAddUpdateLabelModel {
+    'Name'?: string;
+    'Values'?: Array<string>;
+    'IconUrl'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Values",
+            "baseName": "Values",
+            "type": "Array<string>"
+        },
+        {
+            "name": "IconUrl",
+            "baseName": "IconUrl",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return NutritionInfoItemAddUpdateLabelModel.attributeTypeMap;
+    }
+}
+
+export class NutritionInfoLabel {
+    /**
+    * Name of the allergen / ingredient
+    */
+    'Name'?: string;
+    /**
+    * Optional list of values for the allergen / ingredient
+    */
+    'Values'?: Array<string>;
+    /**
+    * Url to the icon for the allergen / ingredient
+    */
+    'IconUrl'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Values",
+            "baseName": "Values",
+            "type": "Array<string>"
+        },
+        {
+            "name": "IconUrl",
+            "baseName": "IconUrl",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return NutritionInfoLabel.attributeTypeMap;
+    }
+}
+
+export class NutritionInfoMenuItem {
+    /**
+    * Menu item public id
+    */
+    'PublicId'?: string;
+    /**
+    * List of Nutrition Info Labels for this menu item
+    */
+    'Labels'?: Array<NutritionInfoLabel>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PublicId",
+            "baseName": "PublicId",
+            "type": "string"
+        },
+        {
+            "name": "Labels",
+            "baseName": "Labels",
+            "type": "Array<NutritionInfoLabel>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return NutritionInfoMenuItem.attributeTypeMap;
+    }
+}
+
+export class NutritionInfoMenuOptionSetItem {
+    /**
+    * Menu item option set item public id
+    */
+    'PublicId'?: string;
+    /**
+    * List of Nutrition Info Labels for this menu item option set item
+    */
+    'Labels'?: Array<NutritionInfoLabel>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PublicId",
+            "baseName": "PublicId",
+            "type": "string"
+        },
+        {
+            "name": "Labels",
+            "baseName": "Labels",
+            "type": "Array<NutritionInfoLabel>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return NutritionInfoMenuOptionSetItem.attributeTypeMap;
+    }
+}
+
 /**
 * Oauth client (also knowns as 'app')
 */
@@ -33168,6 +33418,29 @@ export class RestApiArrayResultAllMetadataResult {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultAllergen {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<Allergen>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<Allergen>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultAllergen.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultApmCurrencyDataPoint {
     /**
     * Generic data object.
@@ -37206,6 +37479,29 @@ export class RestApiResultMenuItemOptionSetItem {
 /**
 * Rest api result
 */
+export class RestApiResultMenuNutritionInfoHeader {
+    /**
+    * Generic data object.
+    */
+    'Data': MenuNutritionInfoHeader;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "MenuNutritionInfoHeader"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultMenuNutritionInfoHeader.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultMenuSection {
     /**
     * Generic data object.
@@ -37430,6 +37726,29 @@ export class RestApiResultModelBase {
 
     static getAttributeTypeMap() {
         return RestApiResultModelBase.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultNutritionInfo {
+    /**
+    * Generic data object.
+    */
+    'Data': NutritionInfo;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "NutritionInfo"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultNutritionInfo.attributeTypeMap;
     }
 }
 
@@ -52552,6 +52871,7 @@ let typeMap: {[index: string]: any} = {
     "AddressFormDisplayFormat": AddressFormDisplayFormat,
     "AddressFormResponse": AddressFormResponse,
     "AllMetadataResult": AllMetadataResult,
+    "Allergen": Allergen,
     "AnalyticsClientEvent": AnalyticsClientEvent,
     "ApmCurrencyDataPoint": ApmCurrencyDataPoint,
     "ApmDataPoint": ApmDataPoint,
@@ -52736,6 +53056,7 @@ let typeMap: {[index: string]: any} = {
     "InvoiceDiscount": InvoiceDiscount,
     "InvoiceItem": InvoiceItem,
     "InvoicePeriod": InvoicePeriod,
+    "ItemNutritionInfoAddUpdateModel": ItemNutritionInfoAddUpdateModel,
     "JobAddress": JobAddress,
     "JobCancellation": JobCancellation,
     "JobContact": JobContact,
@@ -52804,6 +53125,7 @@ let typeMap: {[index: string]: any} = {
     "MenuItemOptionSetItemDeletedEvent": MenuItemOptionSetItemDeletedEvent,
     "MenuItemOptionSetItemUpdatedEvent": MenuItemOptionSetItemUpdatedEvent,
     "MenuItemOptionSetUpdatedEvent": MenuItemOptionSetUpdatedEvent,
+    "MenuNutritionInfoHeader": MenuNutritionInfoHeader,
     "MenuObjectDisplayOrders": MenuObjectDisplayOrders,
     "MenuSection": MenuSection,
     "MenuSectionAvailability": MenuSectionAvailability,
@@ -52836,6 +53158,11 @@ let typeMap: {[index: string]: any} = {
     "MobileAppsSubmissionUpdatedEvent": MobileAppsSubmissionUpdatedEvent,
     "ModelBase": ModelBase,
     "NextStatusWithOrderType": NextStatusWithOrderType,
+    "NutritionInfo": NutritionInfo,
+    "NutritionInfoItemAddUpdateLabelModel": NutritionInfoItemAddUpdateLabelModel,
+    "NutritionInfoLabel": NutritionInfoLabel,
+    "NutritionInfoMenuItem": NutritionInfoMenuItem,
+    "NutritionInfoMenuOptionSetItem": NutritionInfoMenuOptionSetItem,
     "OAuthApp": OAuthApp,
     "OAuthTokenModel": OAuthTokenModel,
     "OauthClientRedirectUri": OauthClientRedirectUri,
@@ -52934,6 +53261,7 @@ let typeMap: {[index: string]: any} = {
     "RequestPasswordResetPinResponse": RequestPasswordResetPinResponse,
     "Response": Response,
     "RestApiArrayResultAllMetadataResult": RestApiArrayResultAllMetadataResult,
+    "RestApiArrayResultAllergen": RestApiArrayResultAllergen,
     "RestApiArrayResultApmCurrencyDataPoint": RestApiArrayResultApmCurrencyDataPoint,
     "RestApiArrayResultApmDataPoint": RestApiArrayResultApmDataPoint,
     "RestApiArrayResultApmHourlyDataPoint": RestApiArrayResultApmHourlyDataPoint,
@@ -53072,6 +53400,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultMenu": RestApiResultMenu,
     "RestApiResultMenuItemOptionSet": RestApiResultMenuItemOptionSet,
     "RestApiResultMenuItemOptionSetItem": RestApiResultMenuItemOptionSetItem,
+    "RestApiResultMenuNutritionInfoHeader": RestApiResultMenuNutritionInfoHeader,
     "RestApiResultMenuSection": RestApiResultMenuSection,
     "RestApiResultMenuSectionAvailability": RestApiResultMenuSectionAvailability,
     "RestApiResultMenuSectionItem": RestApiResultMenuSectionItem,
@@ -53082,6 +53411,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultMobileAppsSubmissionDetails": RestApiResultMobileAppsSubmissionDetails,
     "RestApiResultMobileAppsSubmissionStatus": RestApiResultMobileAppsSubmissionStatus,
     "RestApiResultModelBase": RestApiResultModelBase,
+    "RestApiResultNutritionInfo": RestApiResultNutritionInfo,
     "RestApiResultOAuthApp": RestApiResultOAuthApp,
     "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
     "RestApiResultOktaPortalFeatureFlag": RestApiResultOktaPortalFeatureFlag,
@@ -76049,6 +76379,426 @@ export class MenusApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "number");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum MenusNutritionInfoApiApiKeys {
+}
+
+export class MenusNutritionInfoApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: MenusNutritionInfoApiApiKeys, value: string) {
+        (this.authentications as any)[MenusNutritionInfoApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @summary Add or update menuitem nutrition info by menu item's publicId
+     * @param menuId Menu identifier
+     * @param publicId Menu item&#39;s publicId
+     * @param addOrUpdateModel 
+     * @param {*} [options] Override http request options.
+     */
+    public addOrUpdateMenuItemNutritionInfo (menuId: number, publicId: string, addOrUpdateModel: ItemNutritionInfoAddUpdateModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuNutritionInfoHeader;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuItem/{publicId}/nutrition'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'publicId' + '}', encodeURIComponent(String(publicId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling addOrUpdateMenuItemNutritionInfo.');
+        }
+
+        // verify required parameter 'publicId' is not null or undefined
+        if (publicId === null || publicId === undefined) {
+            throw new Error('Required parameter publicId was null or undefined when calling addOrUpdateMenuItemNutritionInfo.');
+        }
+
+        // verify required parameter 'addOrUpdateModel' is not null or undefined
+        if (addOrUpdateModel === null || addOrUpdateModel === undefined) {
+            throw new Error('Required parameter addOrUpdateModel was null or undefined when calling addOrUpdateMenuItemNutritionInfo.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(addOrUpdateModel, "ItemNutritionInfoAddUpdateModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuNutritionInfoHeader;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMenuNutritionInfoHeader");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Add or update menuitem optionsetitem nutrition info its publicId
+     * @param menuId Menu identifier
+     * @param publicId Menu item&#39;s publicId
+     * @param addOrUpdateModel 
+     * @param {*} [options] Override http request options.
+     */
+    public addOrUpdateMenuItemOptionSetItemNutritionInfo (menuId: number, publicId: string, addOrUpdateModel: ItemNutritionInfoAddUpdateModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuNutritionInfoHeader;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuItemOption/{publicId}/nutrition'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'publicId' + '}', encodeURIComponent(String(publicId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling addOrUpdateMenuItemOptionSetItemNutritionInfo.');
+        }
+
+        // verify required parameter 'publicId' is not null or undefined
+        if (publicId === null || publicId === undefined) {
+            throw new Error('Required parameter publicId was null or undefined when calling addOrUpdateMenuItemOptionSetItemNutritionInfo.');
+        }
+
+        // verify required parameter 'addOrUpdateModel' is not null or undefined
+        if (addOrUpdateModel === null || addOrUpdateModel === undefined) {
+            throw new Error('Required parameter addOrUpdateModel was null or undefined when calling addOrUpdateMenuItemOptionSetItemNutritionInfo.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(addOrUpdateModel, "ItemNutritionInfoAddUpdateModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuNutritionInfoHeader;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMenuNutritionInfoHeader");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Add or update menu nutrition by identifier
+     * @param menuId Menu identifier
+     * @param {*} [options] Override http request options.
+     */
+    public addOrUpdateMenuNutritionInfoByMenuId (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuNutritionInfoHeader;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/nutrition'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling addOrUpdateMenuNutritionInfoByMenuId.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuNutritionInfoHeader;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMenuNutritionInfoHeader");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Delete menu nutrition information by menuId
+     * @param menuId Menu identifier
+     * @param {*} [options] Override http request options.
+     */
+    public deleteMenuNutritionInfoByMenuId (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/nutrition'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling deleteMenuNutritionInfoByMenuId.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get allergens
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getAllergens (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAllergen;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/menus/nutrition/allergens'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAllergens.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAllergen;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultAllergen");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get menu nutrition by menuId
+     * @param menuId Menu identifier
+     * @param {*} [options] Override http request options.
+     */
+    public getMenuNutritionInfoByMenuId (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultNutritionInfo;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/nutrition'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling getMenuNutritionInfoByMenuId.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultNutritionInfo;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultNutritionInfo");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
