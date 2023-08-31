@@ -25385,6 +25385,10 @@ export class OrderAcceptedEvent {
     */
     'OrderAcceptedTime'?: Date;
     /**
+    * User who has accepted the order
+    */
+    'User'?: UserEventInfo;
+    /**
     * Order
     */
     'Order'?: Order;
@@ -25426,6 +25430,11 @@ export class OrderAcceptedEvent {
             "name": "OrderAcceptedTime",
             "baseName": "OrderAcceptedTime",
             "type": "Date"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "Order",
@@ -27663,6 +27672,10 @@ export class OrderRefundedEvent {
     */
     'Description'?: string;
     /**
+    * User who has refunded the order
+    */
+    'User'?: UserEventInfo;
+    /**
     * Order
     */
     'Order'?: Order;
@@ -27704,6 +27717,11 @@ export class OrderRefundedEvent {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "Order",
@@ -27762,6 +27780,10 @@ export class OrderRejectedEvent {
     */
     'Reason'?: string;
     /**
+    * User who has rejected the order
+    */
+    'User'?: UserEventInfo;
+    /**
     * Order
     */
     'Order'?: Order;
@@ -27808,6 +27830,11 @@ export class OrderRejectedEvent {
             "name": "Reason",
             "baseName": "Reason",
             "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "Order",
