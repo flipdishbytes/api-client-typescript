@@ -46450,6 +46450,10 @@ export class StripeConnectedAccountInfo {
     * Payouts Schedule Interval
     */
     'PayoutScheduleInterval'?: StripeConnectedAccountInfo.PayoutScheduleIntervalEnum;
+    /**
+    * Flag indicating if payouts are paused
+    */
+    'PayoutsPaused'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -46473,6 +46477,11 @@ export class StripeConnectedAccountInfo {
             "name": "PayoutScheduleInterval",
             "baseName": "PayoutScheduleInterval",
             "type": "StripeConnectedAccountInfo.PayoutScheduleIntervalEnum"
+        },
+        {
+            "name": "PayoutsPaused",
+            "baseName": "PayoutsPaused",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
