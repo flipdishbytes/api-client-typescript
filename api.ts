@@ -8290,6 +8290,7 @@ export namespace CreateMetafieldDefinition {
 export class CreateOrderRequest {
     'LegacyOrderDm'?: OrderDm;
     'PhoneNumber'?: string;
+    'CustomerName'?: string;
     'DeliveryLocation'?: DeliveryLocation;
 
     static discriminator: string | undefined = undefined;
@@ -8303,6 +8304,11 @@ export class CreateOrderRequest {
         {
             "name": "PhoneNumber",
             "baseName": "PhoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "CustomerName",
+            "baseName": "CustomerName",
             "type": "string"
         },
         {
