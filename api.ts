@@ -47037,6 +47037,10 @@ export class Subscription {
     /**
     * Cancellation Date
     */
+    'CancellationRequestDate'?: Date;
+    /**
+    * Cancel Date
+    */
     'CancellationDate'?: Date;
 
     static discriminator: string | undefined = undefined;
@@ -47101,6 +47105,11 @@ export class Subscription {
             "name": "DefaultPaymentDescription",
             "baseName": "DefaultPaymentDescription",
             "type": "string"
+        },
+        {
+            "name": "CancellationRequestDate",
+            "baseName": "CancellationRequestDate",
+            "type": "Date"
         },
         {
             "name": "CancellationDate",
@@ -47392,6 +47401,10 @@ export class SubscriptionSummary {
     /**
     * Cancellation Date
     */
+    'CancellationRequestDate'?: Date;
+    /**
+    * Cancel Date
+    */
     'CancellationDate'?: Date;
 
     static discriminator: string | undefined = undefined;
@@ -47436,6 +47449,11 @@ export class SubscriptionSummary {
             "name": "DefaultPaymentDescription",
             "baseName": "DefaultPaymentDescription",
             "type": "string"
+        },
+        {
+            "name": "CancellationRequestDate",
+            "baseName": "CancellationRequestDate",
+            "type": "Date"
         },
         {
             "name": "CancellationDate",
