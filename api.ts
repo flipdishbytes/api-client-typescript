@@ -18072,6 +18072,38 @@ export class LastPaymentError {
 }
 
 /**
+* 
+*/
+export class LeadTime {
+    /**
+    * 
+    */
+    'DispatchType': string;
+    /**
+    * 
+    */
+    'LeadTimeMinutes': number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DispatchType",
+            "baseName": "DispatchType",
+            "type": "string"
+        },
+        {
+            "name": "LeadTimeMinutes",
+            "baseName": "LeadTimeMinutes",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LeadTime.attributeTypeMap;
+    }
+}
+
+/**
 * Ligthspeed store settings
 */
 export class LightspeedSettings {
@@ -27486,6 +27518,29 @@ export class OrderItemOption {
 
     static getAttributeTypeMap() {
         return OrderItemOption.attributeTypeMap;
+    }
+}
+
+/**
+* When orders are accepted, and no lead time is specified by the operator, this is the lead time that will be  applied to the order.
+*/
+export class OrderLeadTimes {
+    /**
+    * Mapping from the type of order to, to the default lead time that will be applied to those orders.  The lead time is an integer number of minutes.
+    */
+    'LeadTimeMinutes'?: { [key: string]: number; };
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LeadTimeMinutes",
+            "baseName": "LeadTimeMinutes",
+            "type": "{ [key: string]: number; }"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return OrderLeadTimes.attributeTypeMap;
     }
 }
 
@@ -53143,6 +53198,7 @@ let typeMap: {[index: string]: any} = {
     "KioskTerminalActionStateChangedEvent": KioskTerminalActionStateChangedEvent,
     "Language": Language,
     "LastPaymentError": LastPaymentError,
+    "LeadTime": LeadTime,
     "LightspeedSettings": LightspeedSettings,
     "LineItem": LineItem,
     "LineItemOption": LineItemOption,
@@ -53256,6 +53312,7 @@ let typeMap: {[index: string]: any} = {
     "OrderItem": OrderItem,
     "OrderItemDm": OrderItemDm,
     "OrderItemOption": OrderItemOption,
+    "OrderLeadTimes": OrderLeadTimes,
     "OrderList": OrderList,
     "OrderPaymentInformation": OrderPaymentInformation,
     "OrderRatingUpdatedEvent": OrderRatingUpdatedEvent,
@@ -85160,6 +85217,62 @@ export class StoresApi {
     }
     /**
      * 
+     * @param storeId 
+     * @param {*} [options] Override http request options.
+     */
+    public getStoreLeadTimes (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: OrderLeadTimes;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/leadTimes'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getStoreLeadTimes.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: OrderLeadTimes;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "OrderLeadTimes");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @param appId 
      * @param storeId 
      * @param {*} [options] Override http request options.
@@ -85685,6 +85798,69 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestApiDefaultResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param storeId 
+     * @param leadTime 
+     * @param {*} [options] Override http request options.
+     */
+    public setStoreLeadTimes (storeId: number, leadTime: LeadTime, options: any = {}) : Promise<{ response: http.IncomingMessage; body: OrderLeadTimes;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/leadTimes'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling setStoreLeadTimes.');
+        }
+
+        // verify required parameter 'leadTime' is not null or undefined
+        if (leadTime === null || leadTime === undefined) {
+            throw new Error('Required parameter leadTime was null or undefined when calling setStoreLeadTimes.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(leadTime, "LeadTime")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: OrderLeadTimes;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "OrderLeadTimes");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
