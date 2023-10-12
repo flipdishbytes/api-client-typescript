@@ -14262,6 +14262,41 @@ export class HomeStatistics {
     }
 }
 
+export class HttpPostedFileBase {
+    'ContentLength'?: number;
+    'ContentType'?: string;
+    'FileName'?: string;
+    'InputStream'?: Stream;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ContentLength",
+            "baseName": "ContentLength",
+            "type": "number"
+        },
+        {
+            "name": "ContentType",
+            "baseName": "ContentType",
+            "type": "string"
+        },
+        {
+            "name": "FileName",
+            "baseName": "FileName",
+            "type": "string"
+        },
+        {
+            "name": "InputStream",
+            "baseName": "InputStream",
+            "type": "Stream"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HttpPostedFileBase.attributeTypeMap;
+    }
+}
+
 /**
 * Http Request and Response Log
 */
@@ -23489,6 +23524,53 @@ export class MenuUploadedEvent {
 
     static getAttributeTypeMap() {
         return MenuUploadedEvent.attributeTypeMap;
+    }
+}
+
+export class MenuZone {
+    'MenuZoneId'?: number;
+    'MenuId'?: number;
+    'Name'?: string;
+    'Description'?: string;
+    'ImageName'?: string;
+    'DisplayOrder'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "MenuZoneId",
+            "baseName": "MenuZoneId",
+            "type": "number"
+        },
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "ImageName",
+            "baseName": "ImageName",
+            "type": "string"
+        },
+        {
+            "name": "DisplayOrder",
+            "baseName": "DisplayOrder",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuZone.attributeTypeMap;
     }
 }
 
@@ -34197,6 +34279,29 @@ export class RestApiArrayResultMenuTaxDetails {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultMenuZone {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<MenuZone>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<MenuZone>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultMenuZone.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultMetadata {
     /**
     * Generic data object.
@@ -37654,6 +37759,29 @@ export class RestApiResultMenuSectionItem {
 
     static getAttributeTypeMap() {
         return RestApiResultMenuSectionItem.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultMenuZone {
+    /**
+    * Generic data object.
+    */
+    'Data': MenuZone;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "MenuZone"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultMenuZone.attributeTypeMap;
     }
 }
 
@@ -46368,6 +46496,65 @@ export class StoreValidationConfig {
     }
 }
 
+export class Stream {
+    'CanRead'?: boolean;
+    'CanSeek'?: boolean;
+    'CanTimeout'?: boolean;
+    'CanWrite'?: boolean;
+    'Length'?: number;
+    'Position'?: number;
+    'ReadTimeout'?: number;
+    'WriteTimeout'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "CanRead",
+            "baseName": "CanRead",
+            "type": "boolean"
+        },
+        {
+            "name": "CanSeek",
+            "baseName": "CanSeek",
+            "type": "boolean"
+        },
+        {
+            "name": "CanTimeout",
+            "baseName": "CanTimeout",
+            "type": "boolean"
+        },
+        {
+            "name": "CanWrite",
+            "baseName": "CanWrite",
+            "type": "boolean"
+        },
+        {
+            "name": "Length",
+            "baseName": "Length",
+            "type": "number"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "ReadTimeout",
+            "baseName": "ReadTimeout",
+            "type": "number"
+        },
+        {
+            "name": "WriteTimeout",
+            "baseName": "WriteTimeout",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Stream.attributeTypeMap;
+    }
+}
+
 /**
 * Represents a request for Stripe account link creation
 */
@@ -53152,6 +53339,7 @@ let typeMap: {[index: string]: any} = {
     "GroupedCoordinates": GroupedCoordinates,
     "HomeAction": HomeAction,
     "HomeStatistics": HomeStatistics,
+    "HttpPostedFileBase": HttpPostedFileBase,
     "HttpRequestAndResponseLog": HttpRequestAndResponseLog,
     "HydraAssignedEvent": HydraAssignedEvent,
     "HydraConfig": HydraConfig,
@@ -53262,6 +53450,7 @@ let typeMap: {[index: string]: any} = {
     "MenuTaxRate": MenuTaxRate,
     "MenuUpdatedEvent": MenuUpdatedEvent,
     "MenuUploadedEvent": MenuUploadedEvent,
+    "MenuZone": MenuZone,
     "Metadata": Metadata,
     "Metafield": Metafield,
     "MetafieldDefinition": MetafieldDefinition,
@@ -53409,6 +53598,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultMenuStoreNames": RestApiArrayResultMenuStoreNames,
     "RestApiArrayResultMenuSummary": RestApiArrayResultMenuSummary,
     "RestApiArrayResultMenuTaxDetails": RestApiArrayResultMenuTaxDetails,
+    "RestApiArrayResultMenuZone": RestApiArrayResultMenuZone,
     "RestApiArrayResultMetadata": RestApiArrayResultMetadata,
     "RestApiArrayResultMobileAppsStatistics": RestApiArrayResultMobileAppsStatistics,
     "RestApiArrayResultOAuthApp": RestApiArrayResultOAuthApp,
@@ -53522,6 +53712,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultMenuSection": RestApiResultMenuSection,
     "RestApiResultMenuSectionAvailability": RestApiResultMenuSectionAvailability,
     "RestApiResultMenuSectionItem": RestApiResultMenuSectionItem,
+    "RestApiResultMenuZone": RestApiResultMenuZone,
     "RestApiResultMetadata": RestApiResultMetadata,
     "RestApiResultMetafieldDefinition": RestApiResultMetafieldDefinition,
     "RestApiResultMobileAppsImage": RestApiResultMobileAppsImage,
@@ -53649,6 +53840,7 @@ let typeMap: {[index: string]: any} = {
     "StoreUnpublishedEvent": StoreUnpublishedEvent,
     "StoreUpdatedEvent": StoreUpdatedEvent,
     "StoreValidationConfig": StoreValidationConfig,
+    "Stream": Stream,
     "StripeAccountLinkRequest": StripeAccountLinkRequest,
     "StripeConnectedAccount": StripeConnectedAccount,
     "StripeConnectedAccountInfo": StripeConnectedAccountInfo,
@@ -74685,6 +74877,776 @@ export class MenuSectionsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum MenuZonesApiApiKeys {
+}
+
+export class MenuZonesApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: MenuZonesApiApiKeys, value: string) {
+        (this.authentications as any)[MenuZonesApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param menuId 
+     * @param menuZone 
+     * @param {*} [options] Override http request options.
+     */
+    public addMenuZone (menuId: number, menuZone: MenuZone, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuZone;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling addMenuZone.');
+        }
+
+        // verify required parameter 'menuZone' is not null or undefined
+        if (menuZone === null || menuZone === undefined) {
+            throw new Error('Required parameter menuZone was null or undefined when calling addMenuZone.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(menuZone, "MenuZone")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuZone;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMenuZone");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param menuZoneId 
+     * @param menuId 
+     * @param {*} [options] Override http request options.
+     */
+    public deleteMenuZone (menuZoneId: number, menuId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones/{menuZoneId}'
+            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)))
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuZoneId' is not null or undefined
+        if (menuZoneId === null || menuZoneId === undefined) {
+            throw new Error('Required parameter menuZoneId was null or undefined when calling deleteMenuZone.');
+        }
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling deleteMenuZone.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param menuZoneId 
+     * @param menuZoneI2 
+     * @param menuId 
+     * @param {*} [options] Override http request options.
+     */
+    public flipMenuZones (menuZoneId: number, menuZoneI2: number, menuId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones/{menuZoneId}/flip/{menuZoneI2}'
+            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)))
+            .replace('{' + 'menuZoneI2' + '}', encodeURIComponent(String(menuZoneI2)))
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuZoneId' is not null or undefined
+        if (menuZoneId === null || menuZoneId === undefined) {
+            throw new Error('Required parameter menuZoneId was null or undefined when calling flipMenuZones.');
+        }
+
+        // verify required parameter 'menuZoneI2' is not null or undefined
+        if (menuZoneI2 === null || menuZoneI2 === undefined) {
+            throw new Error('Required parameter menuZoneI2 was null or undefined when calling flipMenuZones.');
+        }
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling flipMenuZones.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param menuId 
+     * @param menuZoneId 
+     * @param {*} [options] Override http request options.
+     */
+    public getMenuZone (menuId: number, menuZoneId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuZone;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones/{menuZoneId}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling getMenuZone.');
+        }
+
+        // verify required parameter 'menuZoneId' is not null or undefined
+        if (menuZoneId === null || menuZoneId === undefined) {
+            throw new Error('Required parameter menuZoneId was null or undefined when calling getMenuZone.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMenuZone;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMenuZone");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param menuId 
+     * @param {*} [options] Override http request options.
+     */
+    public getMenuZonesForMenu (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuZone;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling getMenuZonesForMenu.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuZone;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuZone");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param menuZoneId 
+     * @param description 
+     * @param menuId 
+     * @param {*} [options] Override http request options.
+     */
+    public setMenuSectionMenuZone (menuZoneId: number, description: string, menuId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones/{menuZoneId}/description'
+            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)))
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuZoneId' is not null or undefined
+        if (menuZoneId === null || menuZoneId === undefined) {
+            throw new Error('Required parameter menuZoneId was null or undefined when calling setMenuSectionMenuZone.');
+        }
+
+        // verify required parameter 'description' is not null or undefined
+        if (description === null || description === undefined) {
+            throw new Error('Required parameter description was null or undefined when calling setMenuSectionMenuZone.');
+        }
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling setMenuSectionMenuZone.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(description, "string")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param menuZoneId 
+     * @param menuSectionId 
+     * @param menuId 
+     * @param {*} [options] Override http request options.
+     */
+    public setMenuSectionMenuZone_1 (menuZoneId: number, menuSectionId: number, menuId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones/{menuZoneId}/section/{menuSectionId}'
+            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)))
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuZoneId' is not null or undefined
+        if (menuZoneId === null || menuZoneId === undefined) {
+            throw new Error('Required parameter menuZoneId was null or undefined when calling setMenuSectionMenuZone_1.');
+        }
+
+        // verify required parameter 'menuSectionId' is not null or undefined
+        if (menuSectionId === null || menuSectionId === undefined) {
+            throw new Error('Required parameter menuSectionId was null or undefined when calling setMenuSectionMenuZone_1.');
+        }
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling setMenuSectionMenuZone_1.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param menuZoneId 
+     * @param menuZoneName 
+     * @param menuId 
+     * @param {*} [options] Override http request options.
+     */
+    public setMenuZoneName (menuZoneId: number, menuZoneName: string, menuId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones/{menuZoneId}/name/{menuZoneName}'
+            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)))
+            .replace('{' + 'menuZoneName' + '}', encodeURIComponent(String(menuZoneName)))
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuZoneId' is not null or undefined
+        if (menuZoneId === null || menuZoneId === undefined) {
+            throw new Error('Required parameter menuZoneId was null or undefined when calling setMenuZoneName.');
+        }
+
+        // verify required parameter 'menuZoneName' is not null or undefined
+        if (menuZoneName === null || menuZoneName === undefined) {
+            throw new Error('Required parameter menuZoneName was null or undefined when calling setMenuZoneName.');
+        }
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling setMenuZoneName.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param menuId 
+     * @param menuZoneId 
+     * @param menuZone 
+     * @param {*} [options] Override http request options.
+     */
+    public updateMenuZone (menuId: number, menuZoneId: number, menuZone: MenuZone, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones/{menuZoneId}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling updateMenuZone.');
+        }
+
+        // verify required parameter 'menuZoneId' is not null or undefined
+        if (menuZoneId === null || menuZoneId === undefined) {
+            throw new Error('Required parameter menuZoneId was null or undefined when calling updateMenuZone.');
+        }
+
+        // verify required parameter 'menuZone' is not null or undefined
+        if (menuZone === null || menuZone === undefined) {
+            throw new Error('Required parameter menuZone was null or undefined when calling updateMenuZone.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(menuZone, "MenuZone")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param menuZoneId 
+     * @param file 
+     * @param menuId 
+     * @param {*} [options] Override http request options.
+     */
+    public uploadMenuZoneImage (menuZoneId: number, file: Array<HttpPostedFileBase>, menuId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones/{menuZoneId}/image'
+            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)))
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuZoneId' is not null or undefined
+        if (menuZoneId === null || menuZoneId === undefined) {
+            throw new Error('Required parameter menuZoneId was null or undefined when calling uploadMenuZoneImage.');
+        }
+
+        // verify required parameter 'file' is not null or undefined
+        if (file === null || file === undefined) {
+            throw new Error('Required parameter file was null or undefined when calling uploadMenuZoneImage.');
+        }
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling uploadMenuZoneImage.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(file, "Array<HttpPostedFileBase>")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param menuZoneId 
+     * @param menuId 
+     * @param {*} [options] Override http request options.
+     */
+    public uploadMenuZoneImage_2 (menuZoneId: number, menuId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones/{menuZoneId}/image'
+            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)))
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuZoneId' is not null or undefined
+        if (menuZoneId === null || menuZoneId === undefined) {
+            throw new Error('Required parameter menuZoneId was null or undefined when calling uploadMenuZoneImage_2.');
+        }
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling uploadMenuZoneImage_2.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
