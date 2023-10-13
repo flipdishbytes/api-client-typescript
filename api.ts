@@ -26320,6 +26320,14 @@ export class OrderDeliveryTrackingStatusUpdatedEvent {
     */
     'Order'?: Order;
     /**
+    * Delivery integration name
+    */
+    'DeliveryIntegrationName'?: string;
+    /**
+    * Delivery error message (optional)
+    */
+    'DeliveryErrorMessage'?: string;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -26357,6 +26365,16 @@ export class OrderDeliveryTrackingStatusUpdatedEvent {
             "name": "Order",
             "baseName": "Order",
             "type": "Order"
+        },
+        {
+            "name": "DeliveryIntegrationName",
+            "baseName": "DeliveryIntegrationName",
+            "type": "string"
+        },
+        {
+            "name": "DeliveryErrorMessage",
+            "baseName": "DeliveryErrorMessage",
+            "type": "string"
         },
         {
             "name": "FlipdishEventId",
@@ -34693,6 +34711,29 @@ export class RestApiArrayResultStoreChannelStoreMapping {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultStoreDeliveryZoneFeeConfig {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<StoreDeliveryZoneFeeConfig>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<StoreDeliveryZoneFeeConfig>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultStoreDeliveryZoneFeeConfig.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultStoreListItem {
     /**
     * Generic data object.
@@ -42621,6 +42662,38 @@ export class StoreDeletedEvent {
 
     static getAttributeTypeMap() {
         return StoreDeletedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Store delivery zone fee config
+*/
+export class StoreDeliveryZoneFeeConfig {
+    /**
+    * ID of the delivery zone this fee corresponds to
+    */
+    'DeliveryZoneId'?: number;
+    /**
+    * Fee for delivery within this zone
+    */
+    'Fee'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeliveryZoneId",
+            "baseName": "DeliveryZoneId",
+            "type": "number"
+        },
+        {
+            "name": "Fee",
+            "baseName": "Fee",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreDeliveryZoneFeeConfig.attributeTypeMap;
     }
 }
 
@@ -53616,6 +53689,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultRetentionCampaign": RestApiArrayResultRetentionCampaign,
     "RestApiArrayResultStoreChannelAssignment": RestApiArrayResultStoreChannelAssignment,
     "RestApiArrayResultStoreChannelStoreMapping": RestApiArrayResultStoreChannelStoreMapping,
+    "RestApiArrayResultStoreDeliveryZoneFeeConfig": RestApiArrayResultStoreDeliveryZoneFeeConfig,
     "RestApiArrayResultStoreListItem": RestApiArrayResultStoreListItem,
     "RestApiArrayResultStoreStatistics": RestApiArrayResultStoreStatistics,
     "RestApiArrayResultStripeCustomConnectedAccount": RestApiArrayResultStripeCustomConnectedAccount,
@@ -53807,6 +53881,7 @@ let typeMap: {[index: string]: any} = {
     "StoreCreatedEvent": StoreCreatedEvent,
     "StoreDataPoint": StoreDataPoint,
     "StoreDeletedEvent": StoreDeletedEvent,
+    "StoreDeliveryZoneFeeConfig": StoreDeliveryZoneFeeConfig,
     "StoreEndOfDayReport": StoreEndOfDayReport,
     "StoreFeeConfig": StoreFeeConfig,
     "StoreFeeConfigUpdatedEvent": StoreFeeConfigUpdatedEvent,
@@ -86066,6 +86141,62 @@ export class StoresApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
+    public getStoreDeliveryFeeConfig (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreDeliveryZoneFeeConfig;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/feeConfig/deliveryZones'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getStoreDeliveryFeeConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreDeliveryZoneFeeConfig;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultStoreDeliveryZoneFeeConfig");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param storeId 
+     * @param {*} [options] Override http request options.
+     */
     public getStoreFeeConfig (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: StoreFeeConfig;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/feeConfig'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
@@ -86610,6 +86741,68 @@ export class StoresApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param storeId 
+     * @param configs 
+     * @param {*} [options] Override http request options.
+     */
+    public putStoreDeliveryFeeConfig (storeId: number, configs: Array<StoreDeliveryZoneFeeConfig>, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/feeConfig/deliveryZones'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling putStoreDeliveryFeeConfig.');
+        }
+
+        // verify required parameter 'configs' is not null or undefined
+        if (configs === null || configs === undefined) {
+            throw new Error('Required parameter configs was null or undefined when calling putStoreDeliveryFeeConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(configs, "Array<StoreDeliveryZoneFeeConfig>")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
