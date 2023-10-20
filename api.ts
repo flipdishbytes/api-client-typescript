@@ -89860,9 +89860,10 @@ export class VouchersApi {
      * @param percentValue 
      * @param lumpValue 
      * @param freeItemId 
+     * @param maxDiscountAmount 
      * @param {*} [options] Override http request options.
      */
-    public updateVoucher (voucherId: number, voucher: VoucherBase, storeId?: Array<number>, percentValue?: number, lumpValue?: number, freeItemId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
+    public updateVoucher (voucherId: number, voucher: VoucherBase, storeId?: Array<number>, percentValue?: number, lumpValue?: number, freeItemId?: number, maxDiscountAmount?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
         let localVarQueryParameters: any = {};
@@ -89893,6 +89894,10 @@ export class VouchersApi {
 
         if (freeItemId !== undefined) {
             localVarQueryParameters['freeItemId'] = ObjectSerializer.serialize(freeItemId, "number");
+        }
+
+        if (maxDiscountAmount !== undefined) {
+            localVarQueryParameters['maxDiscountAmount'] = ObjectSerializer.serialize(maxDiscountAmount, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
