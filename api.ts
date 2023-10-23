@@ -22368,6 +22368,10 @@ export class MenuSectionItem {
     */
     'TaxValue'?: number;
     /**
+    * If true, the item is excluded from voucher discount calculations
+    */
+    'ExcludeFromVoucherDiscounting'?: boolean;
+    /**
     * List of metadata
     */
     'Metadata'?: Array<CreateMetadata>;
@@ -22461,6 +22465,11 @@ export class MenuSectionItem {
             "name": "TaxValue",
             "baseName": "TaxValue",
             "type": "number"
+        },
+        {
+            "name": "ExcludeFromVoucherDiscounting",
+            "baseName": "ExcludeFromVoucherDiscounting",
+            "type": "boolean"
         },
         {
             "name": "Metadata",
