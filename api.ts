@@ -1632,9 +1632,9 @@ export class AppCreatedEvent {
     */
     'User'?: UserEventInfo;
     /**
-    * SalesForce Opportunity Id
+    * Salesforce Account Id
     */
-    'OpportunityId'?: string;
+    'AccountId'?: string;
     /**
     * The identitfier of the event
     */
@@ -1685,8 +1685,8 @@ export class AppCreatedEvent {
             "type": "UserEventInfo"
         },
         {
-            "name": "OpportunityId",
-            "baseName": "OpportunityId",
+            "name": "AccountId",
+            "baseName": "AccountId",
             "type": "string"
         },
         {
@@ -1729,9 +1729,13 @@ export class AppLookup {
     */
     'AppId'?: string;
     /**
-    * Sales force opportunity id
+    * Salesforce opportunity id
     */
     'OpportunityId'?: string;
+    /**
+    * Salesforce account id
+    */
+    'AccountId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1744,6 +1748,11 @@ export class AppLookup {
         {
             "name": "OpportunityId",
             "baseName": "OpportunityId",
+            "type": "string"
+        },
+        {
+            "name": "AccountId",
+            "baseName": "AccountId",
             "type": "string"
         }    ];
 
@@ -1760,6 +1769,10 @@ export class AppSalesforceReferences {
     * Salesforce opportunity id
     */
     'OpportunityId'?: string;
+    /**
+    * Salesforce account id
+    */
+    'AccountId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1767,6 +1780,11 @@ export class AppSalesforceReferences {
         {
             "name": "OpportunityId",
             "baseName": "OpportunityId",
+            "type": "string"
+        },
+        {
+            "name": "AccountId",
+            "baseName": "AccountId",
             "type": "string"
         }    ];
 
@@ -7089,6 +7107,10 @@ export class CreateBasicAccountModel {
     * Salesforce Opportunity ID
     */
     'OpportunityId'?: string;
+    /**
+    * Salesforce Account Id
+    */
+    'AccountId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -7106,6 +7128,11 @@ export class CreateBasicAccountModel {
         {
             "name": "OpportunityId",
             "baseName": "OpportunityId",
+            "type": "string"
+        },
+        {
+            "name": "AccountId",
+            "baseName": "AccountId",
             "type": "string"
         }    ];
 
