@@ -10651,6 +10651,7 @@ export class DynamicFormField {
     'Mapping'?: { [key: string]: string; };
     'Modifiers'?: Array<string>;
     'Value'?: any;
+    'Scopes'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -10689,6 +10690,11 @@ export class DynamicFormField {
             "name": "Value",
             "baseName": "Value",
             "type": "any"
+        },
+        {
+            "name": "Scopes",
+            "baseName": "Scopes",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
