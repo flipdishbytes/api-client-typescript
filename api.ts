@@ -631,9 +631,17 @@ export class AllMetadataResult {
 
 export class Allergen {
     /**
-    * Name of the allergen
+    * A unique identifier for the allergen
+    */
+    'AllergenId'?: string;
+    /**
+    * English Name of the allergen
     */
     'Name'?: string;
+    /**
+    * Localized name of the allergen
+    */
+    'LocalizedName'?: string;
     /**
     * Url to the icon for the allergen
     */
@@ -643,8 +651,18 @@ export class Allergen {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "AllergenId",
+            "baseName": "AllergenId",
+            "type": "string"
+        },
+        {
             "name": "Name",
             "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "LocalizedName",
+            "baseName": "LocalizedName",
             "type": "string"
         },
         {
@@ -78091,9 +78109,10 @@ export class MenusNutritionInfoApi {
      * 
      * @summary Get allergens
      * @param appId 
+     * @param languageId 
      * @param {*} [options] Override http request options.
      */
-    public getAllergens (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAllergen;  }> {
+    public getAllergens (appId: string, languageId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAllergen;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/menus/nutrition/allergens'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -78103,6 +78122,15 @@ export class MenusNutritionInfoApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getAllergens.');
+        }
+
+        // verify required parameter 'languageId' is not null or undefined
+        if (languageId === null || languageId === undefined) {
+            throw new Error('Required parameter languageId was null or undefined when calling getAllergens.');
+        }
+
+        if (languageId !== undefined) {
+            localVarQueryParameters['languageId'] = ObjectSerializer.serialize(languageId, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
