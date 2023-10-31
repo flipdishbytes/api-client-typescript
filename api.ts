@@ -18162,11 +18162,11 @@ export class LastPaymentError {
 */
 export class LeadTime {
     /**
-    * 
+    * There are two valid values for this field - `collection` and `delivery`.
     */
     'DispatchType': string;
     /**
-    * 
+    * This must be a positive integer.
     */
     'LeadTimeMinutes': number;
 
@@ -38312,6 +38312,29 @@ export class RestApiResultOrderIngestSubmitOrderResponse {
 /**
 * Rest api result
 */
+export class RestApiResultOrderLeadTimes {
+    /**
+    * Generic data object.
+    */
+    'Data': OrderLeadTimes;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "OrderLeadTimes"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultOrderLeadTimes.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultOrderPaymentInformation {
     /**
     * Generic data object.
@@ -53874,6 +53897,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultOrderFulfillmentStatus": RestApiResultOrderFulfillmentStatus,
     "RestApiResultOrderFulfillmentStatusWithConfigurationActions": RestApiResultOrderFulfillmentStatusWithConfigurationActions,
     "RestApiResultOrderIngestSubmitOrderResponse": RestApiResultOrderIngestSubmitOrderResponse,
+    "RestApiResultOrderLeadTimes": RestApiResultOrderLeadTimes,
     "RestApiResultOrderPaymentInformation": RestApiResultOrderPaymentInformation,
     "RestApiResultPaymentIntent": RestApiResultPaymentIntent,
     "RestApiResultPaymentTerminalDetails": RestApiResultPaymentTerminalDetails,
@@ -86403,7 +86427,7 @@ export class StoresApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
-    public getStoreLeadTimes (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: OrderLeadTimes;  }> {
+    public getStoreLeadTimes (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderLeadTimes;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/leadTimes'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -86439,12 +86463,12 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: OrderLeadTimes;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOrderLeadTimes;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "OrderLeadTimes");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultOrderLeadTimes");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -87058,7 +87082,7 @@ export class StoresApi {
      * @param leadTime 
      * @param {*} [options] Override http request options.
      */
-    public setStoreLeadTimes (storeId: number, leadTime: LeadTime, options: any = {}) : Promise<{ response: http.IncomingMessage; body: OrderLeadTimes;  }> {
+    public setStoreLeadTimes (storeId: number, leadTime: LeadTime, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderLeadTimes;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/leadTimes'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -87100,12 +87124,12 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: OrderLeadTimes;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOrderLeadTimes;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "OrderLeadTimes");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultOrderLeadTimes");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
