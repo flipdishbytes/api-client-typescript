@@ -7824,6 +7824,10 @@ export class CreateFullMenuSectionItem {
     * Menu Item Id
     */
     'MenuItemId'?: number;
+    /**
+    * If true, the item is excluded from voucher discount calculations
+    */
+    'ExcludeFromVoucherDiscounting'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -7902,6 +7906,11 @@ export class CreateFullMenuSectionItem {
             "name": "MenuItemId",
             "baseName": "MenuItemId",
             "type": "number"
+        },
+        {
+            "name": "ExcludeFromVoucherDiscounting",
+            "baseName": "ExcludeFromVoucherDiscounting",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -22664,6 +22673,10 @@ export class MenuSectionItemBase {
     * Menu Item Id
     */
     'MenuItemId'?: number;
+    /**
+    * If true, the item is excluded from voucher discount calculations
+    */
+    'ExcludeFromVoucherDiscounting'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -22727,6 +22740,11 @@ export class MenuSectionItemBase {
             "name": "MenuItemId",
             "baseName": "MenuItemId",
             "type": "number"
+        },
+        {
+            "name": "ExcludeFromVoucherDiscounting",
+            "baseName": "ExcludeFromVoucherDiscounting",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
