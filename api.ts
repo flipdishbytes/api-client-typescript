@@ -78154,7 +78154,7 @@ export class MenusNutritionInfoApi {
      * @param languageId 
      * @param {*} [options] Override http request options.
      */
-    public getAllergens (appId: string, languageId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAllergen;  }> {
+    public getAllergens (appId: string, languageId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAllergen;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/menus/nutrition/allergens'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -78164,11 +78164,6 @@ export class MenusNutritionInfoApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getAllergens.');
-        }
-
-        // verify required parameter 'languageId' is not null or undefined
-        if (languageId === null || languageId === undefined) {
-            throw new Error('Required parameter languageId was null or undefined when calling getAllergens.');
         }
 
         if (languageId !== undefined) {
