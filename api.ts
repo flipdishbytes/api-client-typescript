@@ -25221,6 +25221,10 @@ export class Order {
     * Unique, 6 character long alpha numeric code for tracking.
     */
     'OrderTrackingCode'?: string;
+    /**
+    * Delivery area identifier
+    */
+    'DeliveryFeeAreaId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -25469,6 +25473,11 @@ export class Order {
             "name": "OrderTrackingCode",
             "baseName": "OrderTrackingCode",
             "type": "string"
+        },
+        {
+            "name": "DeliveryFeeAreaId",
+            "baseName": "DeliveryFeeAreaId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
