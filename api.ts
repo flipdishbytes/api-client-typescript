@@ -492,38 +492,6 @@ export class AccountFieldsDefinitions {
     }
 }
 
-/**
-* Add item details
-*/
-export class AddItemDetails {
-    /**
-    * Promotional Item Id
-    */
-    'PromotionalItemId'?: number;
-    /**
-    * Promotional Item Name
-    */
-    'PromotionalItemName'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "PromotionalItemId",
-            "baseName": "PromotionalItemId",
-            "type": "number"
-        },
-        {
-            "name": "PromotionalItemName",
-            "baseName": "PromotionalItemName",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AddItemDetails.attributeTypeMap;
-    }
-}
-
 export class AddressFormDisplayFormat {
     'OneLine'?: string;
     'TwoLines'?: Array<string>;
@@ -8560,6 +8528,38 @@ export namespace CreateProductReference {
     }
 }
 /**
+* Create Promotion
+*/
+export class CreatePromotion {
+    /**
+    * Promotion Name
+    */
+    'Name'?: string;
+    /**
+    * Promotion Menu Item Awards
+    */
+    'MenuItemPublicIds'?: Array<string>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "MenuItemPublicIds",
+            "baseName": "MenuItemPublicIds",
+            "type": "Array<string>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreatePromotion.attributeTypeMap;
+    }
+}
+
+/**
 * 
 */
 export class CreateTeammate {
@@ -8624,7 +8624,7 @@ export namespace CreateTeammate {
     }
 }
 /**
-* Voucher
+* Create Voucher
 */
 export class CreateVoucher {
     /**
@@ -8632,9 +8632,9 @@ export class CreateVoucher {
     */
     'VoucherType'?: CreateVoucher.VoucherTypeEnum;
     /**
-    * Add item details
+    * Create Promotion details
     */
-    'AddItemDetails'?: AddItemDetails;
+    'Promotion'?: CreatePromotion;
     /**
     * Credit note details
     */
@@ -8725,9 +8725,9 @@ export class CreateVoucher {
             "type": "CreateVoucher.VoucherTypeEnum"
         },
         {
-            "name": "AddItemDetails",
-            "baseName": "AddItemDetails",
-            "type": "AddItemDetails"
+            "name": "Promotion",
+            "baseName": "Promotion",
+            "type": "CreatePromotion"
         },
         {
             "name": "CreditNoteDetails",
@@ -32925,6 +32925,79 @@ export namespace ProductReference {
     }
 }
 /**
+* Promotion
+*/
+export class PromotionAward {
+    /**
+    * Promotion Award Id
+    */
+    'PromotionAwardId'?: number;
+    /**
+    * The public id of the menu item that will be awarded
+    */
+    'MenuItemPublicId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PromotionAwardId",
+            "baseName": "PromotionAwardId",
+            "type": "number"
+        },
+        {
+            "name": "MenuItemPublicId",
+            "baseName": "MenuItemPublicId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PromotionAward.attributeTypeMap;
+    }
+}
+
+/**
+* Promotion
+*/
+export class PromotionDetails {
+    /**
+    * Promotion Id
+    */
+    'PromotionId'?: number;
+    /**
+    * The name of the promotion
+    */
+    'Name'?: string;
+    /**
+    * The items that this promotion will award
+    */
+    'PromotionAwards'?: Array<PromotionAward>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PromotionId",
+            "baseName": "PromotionId",
+            "type": "number"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "PromotionAwards",
+            "baseName": "PromotionAwards",
+            "type": "Array<PromotionAward>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PromotionDetails.attributeTypeMap;
+    }
+}
+
+/**
 * Publish Menu Changes
 */
 export class PublishMenuChanges {
@@ -50145,6 +50218,200 @@ export class UpdateTipConfiguration {
 }
 
 /**
+* Update Voucher
+*/
+export class UpdateVoucher {
+    /**
+    * Promotion ID to update
+    */
+    'PromotionId'?: number;
+    /**
+    * The updated name of the promotion
+    */
+    'PromotionName'?: string;
+    /**
+    * The updated menu items that the promotion awards
+    */
+    'PromotionAwardMenuItemPublicIds'?: Array<string>;
+    /**
+    * Voucher Code
+    */
+    'Code'?: string;
+    /**
+    * Voucher Description (Visible on printout)
+    */
+    'Description'?: string;
+    /**
+    * Stores that this voucher applies to
+    */
+    'Stores'?: Array<number>;
+    /**
+    * Valid on orders on or above
+    */
+    'ValidOnOrdersOver'?: number;
+    /**
+    * Takes priority
+    */
+    'TakesPriority'?: boolean;
+    /**
+    * Is voucher enabled
+    */
+    'IsEnabled'?: boolean;
+    /**
+    * Is voucher automatically applied
+    */
+    'IsAutomaticallyApplied'?: boolean;
+    /**
+    * Include delivery fees
+    */
+    'IncludeDeliveryFee'?: boolean;
+    /**
+    * Valid for delivery orders
+    */
+    'IsValidForDeliveryOrders'?: boolean;
+    /**
+    * Valid for pickup orders
+    */
+    'IsValidForPickupOrders'?: boolean;
+    /**
+    * Valid for orders payed online
+    */
+    'IsValidForOrdersPayedOnline'?: boolean;
+    /**
+    * Valid for orders payed in cash
+    */
+    'IsValidForOrdersPayedByCash'?: boolean;
+    /**
+    * Valid only on the first order by the customer
+    */
+    'IsValidForFirstOrderOnly'?: boolean;
+    /**
+    * Valid once per customer
+    */
+    'IsValidOncePerCustomer'?: boolean;
+    /**
+    * Valid only once, by any customer (once used cannot be used again by any other customer)
+    */
+    'IsValidOnlyOnce'?: boolean;
+    /**
+    * Voucher Starts On (Time in UTC)
+    */
+    'StartDate'?: Date;
+    /**
+    * Voucher Expires On (Time in UTC)
+    */
+    'ExpiryDate'?: Date;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PromotionId",
+            "baseName": "PromotionId",
+            "type": "number"
+        },
+        {
+            "name": "PromotionName",
+            "baseName": "PromotionName",
+            "type": "string"
+        },
+        {
+            "name": "PromotionAwardMenuItemPublicIds",
+            "baseName": "PromotionAwardMenuItemPublicIds",
+            "type": "Array<string>"
+        },
+        {
+            "name": "Code",
+            "baseName": "Code",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Stores",
+            "baseName": "Stores",
+            "type": "Array<number>"
+        },
+        {
+            "name": "ValidOnOrdersOver",
+            "baseName": "ValidOnOrdersOver",
+            "type": "number"
+        },
+        {
+            "name": "TakesPriority",
+            "baseName": "TakesPriority",
+            "type": "boolean"
+        },
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "IsAutomaticallyApplied",
+            "baseName": "IsAutomaticallyApplied",
+            "type": "boolean"
+        },
+        {
+            "name": "IncludeDeliveryFee",
+            "baseName": "IncludeDeliveryFee",
+            "type": "boolean"
+        },
+        {
+            "name": "IsValidForDeliveryOrders",
+            "baseName": "IsValidForDeliveryOrders",
+            "type": "boolean"
+        },
+        {
+            "name": "IsValidForPickupOrders",
+            "baseName": "IsValidForPickupOrders",
+            "type": "boolean"
+        },
+        {
+            "name": "IsValidForOrdersPayedOnline",
+            "baseName": "IsValidForOrdersPayedOnline",
+            "type": "boolean"
+        },
+        {
+            "name": "IsValidForOrdersPayedByCash",
+            "baseName": "IsValidForOrdersPayedByCash",
+            "type": "boolean"
+        },
+        {
+            "name": "IsValidForFirstOrderOnly",
+            "baseName": "IsValidForFirstOrderOnly",
+            "type": "boolean"
+        },
+        {
+            "name": "IsValidOncePerCustomer",
+            "baseName": "IsValidOncePerCustomer",
+            "type": "boolean"
+        },
+        {
+            "name": "IsValidOnlyOnce",
+            "baseName": "IsValidOnlyOnce",
+            "type": "boolean"
+        },
+        {
+            "name": "StartDate",
+            "baseName": "StartDate",
+            "type": "Date"
+        },
+        {
+            "name": "ExpiryDate",
+            "baseName": "ExpiryDate",
+            "type": "Date"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateVoucher.attributeTypeMap;
+    }
+}
+
+/**
 * User answered signup questions event
 */
 export class UserAnsweredSignupQuestionsEvent {
@@ -50803,9 +51070,9 @@ export class Voucher {
     */
     'StoreNames'?: Array<string>;
     /**
-    * Add item details
+    * Promotion details
     */
-    'AddItemDetails'?: AddItemDetails;
+    'PromotionDetails'?: PromotionDetails;
     /**
     * Credit note details
     */
@@ -50921,9 +51188,9 @@ export class Voucher {
             "type": "Array<string>"
         },
         {
-            "name": "AddItemDetails",
-            "baseName": "AddItemDetails",
-            "type": "AddItemDetails"
+            "name": "PromotionDetails",
+            "baseName": "PromotionDetails",
+            "type": "PromotionDetails"
         },
         {
             "name": "CreditNoteDetails",
@@ -51170,173 +51437,6 @@ export namespace Voucher {
         BMD = <any> 'BMD'
     }
 }
-/**
-* Voucher Base
-*/
-export class VoucherBase {
-    /**
-    * Voucher Code
-    */
-    'Code'?: string;
-    /**
-    * Voucher Description (Visible on printout)
-    */
-    'Description'?: string;
-    /**
-    * Stores that this voucher applies to
-    */
-    'Stores'?: Array<number>;
-    /**
-    * Valid on orders on or above
-    */
-    'ValidOnOrdersOver'?: number;
-    /**
-    * Takes priority
-    */
-    'TakesPriority'?: boolean;
-    /**
-    * Is voucher enabled
-    */
-    'IsEnabled'?: boolean;
-    /**
-    * Is voucher automatically applied
-    */
-    'IsAutomaticallyApplied'?: boolean;
-    /**
-    * Include delivery fees
-    */
-    'IncludeDeliveryFee'?: boolean;
-    /**
-    * Valid for delivery orders
-    */
-    'IsValidForDeliveryOrders'?: boolean;
-    /**
-    * Valid for pickup orders
-    */
-    'IsValidForPickupOrders'?: boolean;
-    /**
-    * Valid for orders payed online
-    */
-    'IsValidForOrdersPayedOnline'?: boolean;
-    /**
-    * Valid for orders payed in cash
-    */
-    'IsValidForOrdersPayedByCash'?: boolean;
-    /**
-    * Valid only on the first order by the customer
-    */
-    'IsValidForFirstOrderOnly'?: boolean;
-    /**
-    * Valid once per customer
-    */
-    'IsValidOncePerCustomer'?: boolean;
-    /**
-    * Valid only once, by any customer (once used cannot be used again by any other customer)
-    */
-    'IsValidOnlyOnce'?: boolean;
-    /**
-    * Voucher Starts On (Time in UTC)
-    */
-    'StartDate'?: Date;
-    /**
-    * Voucher Expires On (Time in UTC)
-    */
-    'ExpiryDate'?: Date;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Code",
-            "baseName": "Code",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "Stores",
-            "baseName": "Stores",
-            "type": "Array<number>"
-        },
-        {
-            "name": "ValidOnOrdersOver",
-            "baseName": "ValidOnOrdersOver",
-            "type": "number"
-        },
-        {
-            "name": "TakesPriority",
-            "baseName": "TakesPriority",
-            "type": "boolean"
-        },
-        {
-            "name": "IsEnabled",
-            "baseName": "IsEnabled",
-            "type": "boolean"
-        },
-        {
-            "name": "IsAutomaticallyApplied",
-            "baseName": "IsAutomaticallyApplied",
-            "type": "boolean"
-        },
-        {
-            "name": "IncludeDeliveryFee",
-            "baseName": "IncludeDeliveryFee",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForDeliveryOrders",
-            "baseName": "IsValidForDeliveryOrders",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForPickupOrders",
-            "baseName": "IsValidForPickupOrders",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForOrdersPayedOnline",
-            "baseName": "IsValidForOrdersPayedOnline",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForOrdersPayedByCash",
-            "baseName": "IsValidForOrdersPayedByCash",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidForFirstOrderOnly",
-            "baseName": "IsValidForFirstOrderOnly",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidOncePerCustomer",
-            "baseName": "IsValidOncePerCustomer",
-            "type": "boolean"
-        },
-        {
-            "name": "IsValidOnlyOnce",
-            "baseName": "IsValidOnlyOnce",
-            "type": "boolean"
-        },
-        {
-            "name": "StartDate",
-            "baseName": "StartDate",
-            "type": "Date"
-        },
-        {
-            "name": "ExpiryDate",
-            "baseName": "ExpiryDate",
-            "type": "Date"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return VoucherBase.attributeTypeMap;
-    }
-}
-
 /**
 * Voucher Created Event
 */
@@ -51840,9 +51940,9 @@ export class VoucherWithStats {
     */
     'StoreNames'?: Array<string>;
     /**
-    * Add item details
+    * Promotion details
     */
-    'AddItemDetails'?: AddItemDetails;
+    'PromotionDetails'?: PromotionDetails;
     /**
     * Credit note details
     */
@@ -51983,9 +52083,9 @@ export class VoucherWithStats {
             "type": "Array<string>"
         },
         {
-            "name": "AddItemDetails",
-            "baseName": "AddItemDetails",
-            "type": "AddItemDetails"
+            "name": "PromotionDetails",
+            "baseName": "PromotionDetails",
+            "type": "PromotionDetails"
         },
         {
             "name": "CreditNoteDetails",
@@ -53362,7 +53462,6 @@ let typeMap: {[index: string]: any} = {
     "AccountFieldDefinition": AccountFieldDefinition,
     "AccountFieldKeyValuePair": AccountFieldKeyValuePair,
     "AccountFieldsDefinitions": AccountFieldsDefinitions,
-    "AddItemDetails": AddItemDetails,
     "AddressFormDisplayFormat": AddressFormDisplayFormat,
     "AddressFormResponse": AddressFormResponse,
     "AllMetadataResult": AllMetadataResult,
@@ -53463,6 +53562,7 @@ let typeMap: {[index: string]: any} = {
     "CreatePayGreenConfigurationRequest": CreatePayGreenConfigurationRequest,
     "CreateProduct": CreateProduct,
     "CreateProductReference": CreateProductReference,
+    "CreatePromotion": CreatePromotion,
     "CreateTeammate": CreateTeammate,
     "CreateVoucher": CreateVoucher,
     "CreatedMenuSectionItems": CreatedMenuSectionItems,
@@ -53743,6 +53843,8 @@ let typeMap: {[index: string]: any} = {
     "ProcessingFeeConfig": ProcessingFeeConfig,
     "Product": Product,
     "ProductReference": ProductReference,
+    "PromotionAward": PromotionAward,
+    "PromotionDetails": PromotionDetails,
     "PublishMenuChanges": PublishMenuChanges,
     "PushNotificationDeletedEvent": PushNotificationDeletedEvent,
     "PushNotificationRequest": PushNotificationRequest,
@@ -54084,6 +54186,7 @@ let typeMap: {[index: string]: any} = {
     "UpdateProductReference": UpdateProductReference,
     "UpdateStorePayGreenConfigurationRequest": UpdateStorePayGreenConfigurationRequest,
     "UpdateTipConfiguration": UpdateTipConfiguration,
+    "UpdateVoucher": UpdateVoucher,
     "UserAnsweredSignupQuestionsEvent": UserAnsweredSignupQuestionsEvent,
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
@@ -54094,7 +54197,6 @@ let typeMap: {[index: string]: any} = {
     "ValidValue": ValidValue,
     "ValidationErrorResult": ValidationErrorResult,
     "Voucher": Voucher,
-    "VoucherBase": VoucherBase,
     "VoucherCreatedEvent": VoucherCreatedEvent,
     "VoucherDataPoint": VoucherDataPoint,
     "VoucherDeletedEvent": VoucherDeletedEvent,
@@ -89975,11 +90077,10 @@ export class VouchersApi {
      * @param storeId 
      * @param percentValue 
      * @param lumpValue 
-     * @param freeItemId 
      * @param maxDiscountAmount 
      * @param {*} [options] Override http request options.
      */
-    public updateVoucher (voucherId: number, voucher: VoucherBase, storeId?: Array<number>, percentValue?: number, lumpValue?: number, freeItemId?: number, maxDiscountAmount?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
+    public updateVoucher (voucherId: number, voucher: UpdateVoucher, storeId?: Array<number>, percentValue?: number, lumpValue?: number, maxDiscountAmount?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucherWithStats;  }> {
         const localVarPath = this.basePath + '/api/v1.0/vouchers/{voucherId}'
             .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
         let localVarQueryParameters: any = {};
@@ -90008,10 +90109,6 @@ export class VouchersApi {
             localVarQueryParameters['lumpValue'] = ObjectSerializer.serialize(lumpValue, "number");
         }
 
-        if (freeItemId !== undefined) {
-            localVarQueryParameters['freeItemId'] = ObjectSerializer.serialize(freeItemId, "number");
-        }
-
         if (maxDiscountAmount !== undefined) {
             localVarQueryParameters['maxDiscountAmount'] = ObjectSerializer.serialize(maxDiscountAmount, "number");
         }
@@ -90027,7 +90124,7 @@ export class VouchersApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(voucher, "VoucherBase")
+            body: ObjectSerializer.serialize(voucher, "UpdateVoucher")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
