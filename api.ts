@@ -2636,6 +2636,10 @@ export class AppStoreAppSummary {
     */
     'Id': string;
     /**
+    * Same as Id for compatibility on portal.  Will be removed once portal is updated to read the Id field
+    */
+    'AppStoreAppId'?: string;
+    /**
     * Application verification status
     */
     'VerificationStatus': AppStoreAppSummary.VerificationStatusEnum;
@@ -2678,6 +2682,11 @@ export class AppStoreAppSummary {
         {
             "name": "Id",
             "baseName": "Id",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreAppId",
+            "baseName": "AppStoreAppId",
             "type": "string"
         },
         {
@@ -80470,9 +80479,10 @@ export class OnboardingApi {
      * 
      * @param appId 
      * @param storeId 
+     * @param milestoneId 
      * @param {*} [options] Override http request options.
      */
-    public onboardingGetOnboardingItems (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public onboardingGetOnboardingItems (appId: string, storeId: number, milestoneId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/clients/{appId}/onboarding/stores/{storeId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
@@ -80488,6 +80498,10 @@ export class OnboardingApi {
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
             throw new Error('Required parameter storeId was null or undefined when calling onboardingGetOnboardingItems.');
+        }
+
+        if (milestoneId !== undefined) {
+            localVarQueryParameters['milestoneId'] = ObjectSerializer.serialize(milestoneId, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
