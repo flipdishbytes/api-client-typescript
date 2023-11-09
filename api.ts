@@ -1187,6 +1187,7 @@ export namespace App {
         StoreStaff = <any> 'StoreStaff',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger',
+        Onboarding = <any> 'Onboarding',
         Support = <any> 'Support'
     }
     export enum AppResourceSetEnum {
@@ -1205,6 +1206,7 @@ export namespace App {
         CreateTeammateStoreReadAccess = <any> 'CreateTeammateStoreReadAccess',
         CreateTeammateFinanceManager = <any> 'CreateTeammateFinanceManager',
         CreateTeammateIntegrator = <any> 'CreateTeammateIntegrator',
+        CreateTeammateOnboarding = <any> 'CreateTeammateOnboarding',
         ViewApmConfigurations = <any> 'ViewApmConfigurations',
         EditApmConfigurations = <any> 'EditApmConfigurations',
         ViewCampaignsConfigurations = <any> 'ViewCampaignsConfigurations',
@@ -2372,65 +2374,6 @@ export namespace AppStoreAppConfiguration {
     }
 }
 /**
-* App store app configuration header information
-*/
-export class AppStoreAppConfigurationHeader {
-    /**
-    * Unique App store app id
-    */
-    'AppStoreAppId': string;
-    /**
-    * Name of Appstore app
-    */
-    'Name': string;
-    /**
-    * Description
-    */
-    'Description': string;
-    /**
-    * Logo
-    */
-    'Logo'?: string;
-    /**
-    * Developer name
-    */
-    'DeveloperName'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "AppStoreAppId",
-            "baseName": "AppStoreAppId",
-            "type": "string"
-        },
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "Logo",
-            "baseName": "Logo",
-            "type": "string"
-        },
-        {
-            "name": "DeveloperName",
-            "baseName": "DeveloperName",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AppStoreAppConfigurationHeader.attributeTypeMap;
-    }
-}
-
-/**
 * App store app configuration summary information
 */
 export class AppStoreAppConfigurationSummary {
@@ -2636,10 +2579,6 @@ export class AppStoreAppSummary {
     */
     'Id': string;
     /**
-    * Same as Id for compatibility on portal.  Will be removed once portal is updated to read the Id field
-    */
-    'AppStoreAppId'?: string;
-    /**
     * Application verification status
     */
     'VerificationStatus': AppStoreAppSummary.VerificationStatusEnum;
@@ -2682,11 +2621,6 @@ export class AppStoreAppSummary {
         {
             "name": "Id",
             "baseName": "Id",
-            "type": "string"
-        },
-        {
-            "name": "AppStoreAppId",
-            "baseName": "AppStoreAppId",
             "type": "string"
         },
         {
@@ -8629,6 +8563,7 @@ export namespace CreateTeammate {
         StoreStaff = <any> 'StoreStaff',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger',
+        Onboarding = <any> 'Onboarding',
         Support = <any> 'Support'
     }
 }
@@ -33877,29 +33812,6 @@ export class RestApiArrayResultApmHourlyDataPoint {
 /**
 * Rest api array result
 */
-export class RestApiArrayResultAppStoreAppConfigurationHeader {
-    /**
-    * Generic data object.
-    */
-    'Data': Array<AppStoreAppConfigurationHeader>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Array<AppStoreAppConfigurationHeader>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiArrayResultAppStoreAppConfigurationHeader.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api array result
-*/
 export class RestApiArrayResultAppStoreAppConfigurationSummary {
     /**
     * Generic data object.
@@ -33917,6 +33829,29 @@ export class RestApiArrayResultAppStoreAppConfigurationSummary {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultAppStoreAppConfigurationSummary.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultAppStoreAppSummary {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<AppStoreAppSummary>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<AppStoreAppSummary>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultAppStoreAppSummary.attributeTypeMap;
     }
 }
 
@@ -48369,6 +48304,7 @@ export namespace Teammate {
         StoreStaff = <any> 'StoreStaff',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger',
+        Onboarding = <any> 'Onboarding',
         Support = <any> 'Support'
     }
 }
@@ -48424,6 +48360,7 @@ export namespace TeammateBase {
         StoreStaff = <any> 'StoreStaff',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger',
+        Onboarding = <any> 'Onboarding',
         Support = <any> 'Support'
     }
 }
@@ -53491,7 +53428,6 @@ let typeMap: {[index: string]: any} = {
     "AppSalesforceReferences": AppSalesforceReferences,
     "AppStoreApp": AppStoreApp,
     "AppStoreAppConfiguration": AppStoreAppConfiguration,
-    "AppStoreAppConfigurationHeader": AppStoreAppConfigurationHeader,
     "AppStoreAppConfigurationSummary": AppStoreAppConfigurationSummary,
     "AppStoreAppConfigurationsWithSubscriptions": AppStoreAppConfigurationsWithSubscriptions,
     "AppStoreAppSubscriptionSummary": AppStoreAppSubscriptionSummary,
@@ -53875,8 +53811,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultApmCurrencyDataPoint": RestApiArrayResultApmCurrencyDataPoint,
     "RestApiArrayResultApmDataPoint": RestApiArrayResultApmDataPoint,
     "RestApiArrayResultApmHourlyDataPoint": RestApiArrayResultApmHourlyDataPoint,
-    "RestApiArrayResultAppStoreAppConfigurationHeader": RestApiArrayResultAppStoreAppConfigurationHeader,
     "RestApiArrayResultAppStoreAppConfigurationSummary": RestApiArrayResultAppStoreAppConfigurationSummary,
+    "RestApiArrayResultAppStoreAppSummary": RestApiArrayResultAppStoreAppSummary,
     "RestApiArrayResultBankAccountSummary": RestApiArrayResultBankAccountSummary,
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
     "RestApiArrayResultChannel": RestApiArrayResultChannel,
@@ -56733,7 +56669,7 @@ export class AppStoreConfigurationsApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getConfiguredApps (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppStoreAppConfigurationHeader;  }> {
+    public getConfiguredApps (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppStoreAppSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -56769,12 +56705,12 @@ export class AppStoreConfigurationsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppStoreAppConfigurationHeader;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppStoreAppSummary;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultAppStoreAppConfigurationHeader");
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultAppStoreAppSummary");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
