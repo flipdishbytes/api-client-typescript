@@ -30209,11 +30209,21 @@ export class PayoutOrder {
     * Order flat fee amount excluding VAT
     */
     'FlatFeeExcludingVat'?: number;
+    /**
+    * Order flat fee amount excluding VAT
+    */
     'FlatFeeExcludingVAT'?: number;
+    /**
+    * Order flat fee amount including VAT
+    */
+    'FlatFeeIncludingVat'?: number;
     /**
     * Order percentage fee excluding VAT
     */
     'PercentageFeeExcludingVat'?: number;
+    /**
+    * Order percentage fee excluding VAT
+    */
     'PercentageFeeExcludingVAT'?: number;
     /**
     * Order VAT amount
@@ -30305,6 +30315,11 @@ export class PayoutOrder {
         {
             "name": "FlatFeeExcludingVAT",
             "baseName": "FlatFeeExcludingVAT",
+            "type": "number"
+        },
+        {
+            "name": "FlatFeeIncludingVat",
+            "baseName": "FlatFeeIncludingVat",
             "type": "number"
         },
         {
