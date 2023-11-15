@@ -25039,6 +25039,9 @@ export class OnboardingConfigUpdate {
     * Gets or sets whether onboarding is enabled
     */
     'IsEnabled'?: boolean;
+    /**
+    * Gets or sets whether welcome screen is enabled
+    */
     'IsWelcomeScreenEnabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
