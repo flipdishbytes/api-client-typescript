@@ -82077,7 +82077,7 @@ export class OrdersApi {
      * @param to 
      * @param {*} [options] Override http request options.
      */
-    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, orderByRequestedForTime?: boolean, channels?: Array<'Unknown' | 'Ios' | 'Android' | 'Web' | 'Kiosk' | 'Pos' | 'TelephoneCall' | 'Sms' | 'PwaAndroid' | 'PwaIos' | 'Google'>, orderIds?: Array<number>, from?: Date, to?: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
+    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, orderByRequestedForTime?: boolean, channels?: Array<'Unknown' | 'Ios' | 'Android' | 'Web' | 'Kiosk' | 'Pos' | 'TelephoneCall' | 'Sms' | 'PwaAndroid' | 'PwaIos' | 'Google' | 'Photon'>, orderIds?: Array<number>, from?: Date, to?: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/orders/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -82114,7 +82114,7 @@ export class OrdersApi {
         }
 
         if (channels !== undefined) {
-            localVarQueryParameters['channels'] = ObjectSerializer.serialize(channels, "Array<'Unknown' | 'Ios' | 'Android' | 'Web' | 'Kiosk' | 'Pos' | 'TelephoneCall' | 'Sms' | 'PwaAndroid' | 'PwaIos' | 'Google'>");
+            localVarQueryParameters['channels'] = ObjectSerializer.serialize(channels, "Array<'Unknown' | 'Ios' | 'Android' | 'Web' | 'Kiosk' | 'Pos' | 'TelephoneCall' | 'Sms' | 'PwaAndroid' | 'PwaIos' | 'Google' | 'Photon'>");
         }
 
         if (orderIds !== undefined) {
