@@ -19332,6 +19332,10 @@ export class LoyaltyCampaign {
     */
     'Stores'?: Array<StoreCampaignStartTime>;
     /**
+    * Permanent reference to the item.
+    */
+    'PublicId'?: string;
+    /**
     * Number of orders customer needs to make, before receiving voucher
     */
     'OrdersBeforeReceivingVoucher'?: number;
@@ -19389,6 +19393,11 @@ export class LoyaltyCampaign {
             "name": "Stores",
             "baseName": "Stores",
             "type": "Array<StoreCampaignStartTime>"
+        },
+        {
+            "name": "PublicId",
+            "baseName": "PublicId",
+            "type": "string"
         },
         {
             "name": "OrdersBeforeReceivingVoucher",
@@ -39572,6 +39581,10 @@ export class RetentionCampaign {
     */
     'Stores'?: Array<StoreCampaignStartTime>;
     /**
+    * Permanent reference to the item.
+    */
+    'PublicId'?: string;
+    /**
     * Time in minutes, after which customer will receive retention voucher if he/she does not order
     */
     'NotifyCustomerAfterMinutes'?: number;
@@ -39625,6 +39638,11 @@ export class RetentionCampaign {
             "name": "Stores",
             "baseName": "Stores",
             "type": "Array<StoreCampaignStartTime>"
+        },
+        {
+            "name": "PublicId",
+            "baseName": "PublicId",
+            "type": "string"
         },
         {
             "name": "NotifyCustomerAfterMinutes",
