@@ -1213,6 +1213,7 @@ export namespace App {
         CreateCampaignsConfigurations = <any> 'CreateCampaignsConfigurations',
         UpdateCampaignsConfigurations = <any> 'UpdateCampaignsConfigurations',
         DeleteCampaignsConfigurations = <any> 'DeleteCampaignsConfigurations',
+        StampLoyaltyCardAgainstCampaignsConfigurations = <any> 'StampLoyaltyCardAgainstCampaignsConfigurations',
         ViewDevelopersSettings = <any> 'ViewDevelopersSettings',
         EditDevelopersSettings = <any> 'EditDevelopersSettings',
         ViewOrders = <any> 'ViewOrders',
