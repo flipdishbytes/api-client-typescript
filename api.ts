@@ -1296,6 +1296,7 @@ export namespace App {
         ViewKioskTelemetry = <any> 'ViewKioskTelemetry',
         ViewCustomers = <any> 'ViewCustomers',
         EditCustomers = <any> 'EditCustomers',
+        CreateCustomers = <any> 'CreateCustomers',
         CreateCatalogElements = <any> 'CreateCatalogElements',
         UpdateCatalogElements = <any> 'UpdateCatalogElements',
         ViewCatalogElements = <any> 'ViewCatalogElements',
@@ -9364,6 +9365,62 @@ export class CustomerConsentUpdatedEvent {
     }
 }
 
+/**
+* Defines a customer create model
+*/
+export class CustomerCreateModel {
+    /**
+    * Customer Phone Number
+    */
+    'PhoneNumber'?: string;
+    /**
+    * Customer AppType
+    */
+    'AppType'?: CustomerCreateModel.AppTypeEnum;
+    /**
+    * Customer Name
+    */
+    'Name'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PhoneNumber",
+            "baseName": "PhoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "AppType",
+            "baseName": "AppType",
+            "type": "CustomerCreateModel.AppTypeEnum"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CustomerCreateModel.attributeTypeMap;
+    }
+}
+
+export namespace CustomerCreateModel {
+    export enum AppTypeEnum {
+        Unknown = <any> 'Unknown',
+        Ios = <any> 'Ios',
+        Android = <any> 'Android',
+        Web = <any> 'Web',
+        Kiosk = <any> 'Kiosk',
+        Pos = <any> 'Pos',
+        TelephoneCall = <any> 'TelephoneCall',
+        Sms = <any> 'Sms',
+        PwaAndroid = <any> 'PwaAndroid',
+        PwaIos = <any> 'PwaIos',
+        Google = <any> 'Google'
+    }
+}
 /**
 * Customer created event
 */
@@ -53696,6 +53753,7 @@ let enumsMap: {[index: string]: any} = {
         "CreateVoucher.VoucherTypeEnum": CreateVoucher.VoucherTypeEnum,
         "CreateVoucher.ChannelRestrictionsEnum": CreateVoucher.ChannelRestrictionsEnum,
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
+        "CustomerCreateModel.AppTypeEnum": CustomerCreateModel.AppTypeEnum,
         "CustomerDeliveryTrackingOrder.CurrencyEnum": CustomerDeliveryTrackingOrder.CurrencyEnum,
         "DuringOrderPromotionOptionsDm.DuringOrderPromotionTypeEnum": DuringOrderPromotionOptionsDm.DuringOrderPromotionTypeEnum,
         "ExecuteConfigurationActionResult.RedirectTargetEnum": ExecuteConfigurationActionResult.RedirectTargetEnum,
@@ -54002,6 +54060,7 @@ let typeMap: {[index: string]: any} = {
     "CurrencyData": CurrencyData,
     "Customer": Customer,
     "CustomerConsentUpdatedEvent": CustomerConsentUpdatedEvent,
+    "CustomerCreateModel": CustomerCreateModel,
     "CustomerCreatedEvent": CustomerCreatedEvent,
     "CustomerDeliveryTrackingOrder": CustomerDeliveryTrackingOrder,
     "CustomerDeliveryTrackingOrderLine": CustomerDeliveryTrackingOrderLine,
@@ -65273,6 +65332,69 @@ export class CustomersApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param appId 
+     * @param customerCreateModel 
+     * @param {*} [options] Override http request options.
+     */
+    public createCustomer (appId: string, customerCreateModel: CustomerCreateModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCustomer;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customers'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createCustomer.');
+        }
+
+        // verify required parameter 'customerCreateModel' is not null or undefined
+        if (customerCreateModel === null || customerCreateModel === undefined) {
+            throw new Error('Required parameter customerCreateModel was null or undefined when calling createCustomer.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(customerCreateModel, "CustomerCreateModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCustomer;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultCustomer");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
     }
     /**
      * 
