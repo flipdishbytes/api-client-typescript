@@ -3064,6 +3064,55 @@ export class AppStoreConfigUpdatedEvent {
 }
 
 /**
+* Subscription change job can be longer running, this contains job information
+*/
+export class AppStoreSubscriptionChangeJobStatusResponse {
+    /**
+    * Subscription change job id
+    */
+    'SubscriptionChangeJobId'?: string;
+    /**
+    * Job Status
+    */
+    'Status'?: AppStoreSubscriptionChangeJobStatusResponse.StatusEnum;
+    /**
+    * Error message (if any)
+    */
+    'ErrorMessage'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "SubscriptionChangeJobId",
+            "baseName": "SubscriptionChangeJobId",
+            "type": "string"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "AppStoreSubscriptionChangeJobStatusResponse.StatusEnum"
+        },
+        {
+            "name": "ErrorMessage",
+            "baseName": "ErrorMessage",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppStoreSubscriptionChangeJobStatusResponse.attributeTypeMap;
+    }
+}
+
+export namespace AppStoreSubscriptionChangeJobStatusResponse {
+    export enum StatusEnum {
+        None = <any> 'None',
+        InProgress = <any> 'InProgress',
+        Completed = <any> 'Completed',
+        Error = <any> 'Error'
+    }
+}
+/**
 * Subscription list item
 */
 export class AppStoreSubscriptionItem {
@@ -37356,6 +37405,29 @@ export class RestApiResultAppStoreAppConfigurationsWithSubscriptions {
 /**
 * Rest api result
 */
+export class RestApiResultAppStoreSubscriptionChangeJobStatusResponse {
+    /**
+    * Generic data object.
+    */
+    'Data': AppStoreSubscriptionChangeJobStatusResponse;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "AppStoreSubscriptionChangeJobStatusResponse"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultAppStoreSubscriptionChangeJobStatusResponse.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultAppStoreSubscriptionJobResponse {
     /**
     * Generic data object.
@@ -53707,6 +53779,7 @@ let enumsMap: {[index: string]: any} = {
         "AppStoreAppSummary.VerificationStatusEnum": AppStoreAppSummary.VerificationStatusEnum,
         "AppStoreAppSummary.CategoriesEnum": AppStoreAppSummary.CategoriesEnum,
         "AppStoreAppSummary.CountriesEnum": AppStoreAppSummary.CountriesEnum,
+        "AppStoreSubscriptionChangeJobStatusResponse.StatusEnum": AppStoreSubscriptionChangeJobStatusResponse.StatusEnum,
         "BankAccount.AccountStateEnum": BankAccount.AccountStateEnum,
         "BankAccountCreate.CurrencyCodeEnum": BankAccountCreate.CurrencyCodeEnum,
         "BankAccountCreate.BusinessTypeEnum": BankAccountCreate.BusinessTypeEnum,
@@ -53976,6 +54049,7 @@ let typeMap: {[index: string]: any} = {
     "AppStoreConfigCreatedEvent": AppStoreConfigCreatedEvent,
     "AppStoreConfigDeletedEvent": AppStoreConfigDeletedEvent,
     "AppStoreConfigUpdatedEvent": AppStoreConfigUpdatedEvent,
+    "AppStoreSubscriptionChangeJobStatusResponse": AppStoreSubscriptionChangeJobStatusResponse,
     "AppStoreSubscriptionItem": AppStoreSubscriptionItem,
     "AppStoreSubscriptionJobResponse": AppStoreSubscriptionJobResponse,
     "AppUpdatedEvent": AppUpdatedEvent,
@@ -54458,6 +54532,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultAppStoreApp": RestApiResultAppStoreApp,
     "RestApiResultAppStoreAppConfiguration": RestApiResultAppStoreAppConfiguration,
     "RestApiResultAppStoreAppConfigurationsWithSubscriptions": RestApiResultAppStoreAppConfigurationsWithSubscriptions,
+    "RestApiResultAppStoreSubscriptionChangeJobStatusResponse": RestApiResultAppStoreSubscriptionChangeJobStatusResponse,
     "RestApiResultAppStoreSubscriptionJobResponse": RestApiResultAppStoreSubscriptionJobResponse,
     "RestApiResultAssignedBankAccount": RestApiResultAssignedBankAccount,
     "RestApiResultBankAccountDetail": RestApiResultBankAccountDetail,
@@ -58250,6 +58325,76 @@ export class AppStoreSubscriptionsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param appStoreAppId 
+     * @param jobId 
+     * @param {*} [options] Override http request options.
+     */
+    public getAppStoreSubscriptionChangeJobStatus (appId: string, appStoreAppId: string, jobId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreSubscriptionChangeJobStatusResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/subscriptions/jobs/{jobId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)))
+            .replace('{' + 'jobId' + '}', encodeURIComponent(String(jobId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAppStoreSubscriptionChangeJobStatus.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling getAppStoreSubscriptionChangeJobStatus.');
+        }
+
+        // verify required parameter 'jobId' is not null or undefined
+        if (jobId === null || jobId === undefined) {
+            throw new Error('Required parameter jobId was null or undefined when calling getAppStoreSubscriptionChangeJobStatus.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreSubscriptionChangeJobStatusResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreSubscriptionChangeJobStatusResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
