@@ -13409,14 +13409,6 @@ export class FlipdishFeesDetails {
     * Total fees
     */
     'TotalFees'?: number;
-    /**
-    * Delivery fees
-    */
-    'DeliveryFees'?: number;
-    /**
-    * Tip fees
-    */
-    'TipFees'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -13464,16 +13456,6 @@ export class FlipdishFeesDetails {
         {
             "name": "TotalFees",
             "baseName": "TotalFees",
-            "type": "number"
-        },
-        {
-            "name": "DeliveryFees",
-            "baseName": "DeliveryFees",
-            "type": "number"
-        },
-        {
-            "name": "TipFees",
-            "baseName": "TipFees",
             "type": "number"
         }    ];
 
@@ -29549,14 +29531,6 @@ export class Payout {
     */
     'PosSalesFees'?: number;
     /**
-    * Delivery fees
-    */
-    'DeliveryFees'?: number;
-    /**
-    * Tip fees
-    */
-    'TipFees'?: number;
-    /**
     * Payout online sales refunded amount
     */
     'OnlineSalesRefundedAmount'?: number;
@@ -29730,16 +29704,6 @@ export class Payout {
         {
             "name": "PosSalesFees",
             "baseName": "PosSalesFees",
-            "type": "number"
-        },
-        {
-            "name": "DeliveryFees",
-            "baseName": "DeliveryFees",
-            "type": "number"
-        },
-        {
-            "name": "TipFees",
-            "baseName": "TipFees",
             "type": "number"
         },
         {
