@@ -29602,6 +29602,18 @@ export class Payout {
     * Amount of sales through PayGreen (restaurant vouchers)
     */
     'PayGreenSalesAmount'?: number;
+    /**
+    * Third party integration delivery fee
+    */
+    'DeliveryIntegrationFee'?: number;
+    /**
+    * Third party integration delivery tip fee
+    */
+    'DeliveryIntegrationTipFee'?: number;
+    /**
+    * Total third party integration fees
+    */
+    'TotalThirdPartyFees'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -29794,6 +29806,21 @@ export class Payout {
         {
             "name": "PayGreenSalesAmount",
             "baseName": "PayGreenSalesAmount",
+            "type": "number"
+        },
+        {
+            "name": "DeliveryIntegrationFee",
+            "baseName": "DeliveryIntegrationFee",
+            "type": "number"
+        },
+        {
+            "name": "DeliveryIntegrationTipFee",
+            "baseName": "DeliveryIntegrationTipFee",
+            "type": "number"
+        },
+        {
+            "name": "TotalThirdPartyFees",
+            "baseName": "TotalThirdPartyFees",
             "type": "number"
         }    ];
 
@@ -31283,6 +31310,10 @@ export class PayoutStore {
     * Breakdown of POS charges
     */
     'PosRevenue'?: PosRevenueDetails;
+    /**
+    * Third party integration fees
+    */
+    'ThirdPartyFees'?: ThirdPartyFeesDetails;
 
     static discriminator: string | undefined = undefined;
 
@@ -31341,6 +31372,11 @@ export class PayoutStore {
             "name": "PosRevenue",
             "baseName": "PosRevenue",
             "type": "PosRevenueDetails"
+        },
+        {
+            "name": "ThirdPartyFees",
+            "baseName": "ThirdPartyFees",
+            "type": "ThirdPartyFeesDetails"
         }    ];
 
     static getAttributeTypeMap() {
@@ -49302,6 +49338,47 @@ export class TelemetrySeriesResult {
 }
 
 /**
+* Breakdown of third party integration fees
+*/
+export class ThirdPartyFeesDetails {
+    /**
+    * Third party integration delivery fee
+    */
+    'DeliveryIntegrationFee'?: number;
+    /**
+    * Third party integration delivery tip fee
+    */
+    'DeliveryTipFee'?: number;
+    /**
+    * Total third party integration fees
+    */
+    'TotalThirdPartyFees'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeliveryIntegrationFee",
+            "baseName": "DeliveryIntegrationFee",
+            "type": "number"
+        },
+        {
+            "name": "DeliveryTipFee",
+            "baseName": "DeliveryTipFee",
+            "type": "number"
+        },
+        {
+            "name": "TotalThirdPartyFees",
+            "baseName": "TotalThirdPartyFees",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ThirdPartyFeesDetails.attributeTypeMap;
+    }
+}
+
+/**
 * Describes the configuration of tipping
 */
 export class TipConfiguration {
@@ -54697,6 +54774,7 @@ let typeMap: {[index: string]: any} = {
     "TelemetrySeriesProperty": TelemetrySeriesProperty,
     "TelemetrySeriesQueryParameters": TelemetrySeriesQueryParameters,
     "TelemetrySeriesResult": TelemetrySeriesResult,
+    "ThirdPartyFeesDetails": ThirdPartyFeesDetails,
     "TipConfiguration": TipConfiguration,
     "UnRegisterCardReaderRequest": UnRegisterCardReaderRequest,
     "UpcomingInvoice": UpcomingInvoice,
