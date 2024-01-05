@@ -28991,6 +28991,10 @@ export class OrderTipUpdatedEvent {
 */
 export class OrderVoucherSummary {
     /**
+    * Voucher ID
+    */
+    'VoucherId'?: number;
+    /**
     * Voucher name
     */
     'Name'?: string;
@@ -29018,6 +29022,11 @@ export class OrderVoucherSummary {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "VoucherId",
+            "baseName": "VoucherId",
+            "type": "number"
+        },
         {
             "name": "Name",
             "baseName": "Name",
@@ -58313,7 +58322,7 @@ export class AppStoreSubscriptionsApi {
      * @param subscriptionId 
      * @param {*} [options] Override http request options.
      */
-    public deleteAppSubscription (appId: string, appStoreAppId: string, subscriptionId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public deleteAppSubscription (appId: string, appStoreAppId: string, subscriptionId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreSubscriptionJobResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/subscriptions/{subscriptionId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)))
@@ -58361,12 +58370,12 @@ export class AppStoreSubscriptionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreSubscriptionJobResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreSubscriptionJobResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
