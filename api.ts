@@ -2546,6 +2546,10 @@ export class AppStoreAppConfigurationsWithSubscriptions {
     * Configurations for the AppId for the AppStoreApp
     */
     'Configurations'?: Array<AppStoreAppConfigurationSummary>;
+    /**
+    * Prices
+    */
+    'Prices'?: Array<SubscriptionProductPriceInfo>;
 
     static discriminator: string | undefined = undefined;
 
@@ -2559,6 +2563,11 @@ export class AppStoreAppConfigurationsWithSubscriptions {
             "name": "Configurations",
             "baseName": "Configurations",
             "type": "Array<AppStoreAppConfigurationSummary>"
+        },
+        {
+            "name": "Prices",
+            "baseName": "Prices",
+            "type": "Array<SubscriptionProductPriceInfo>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -3112,6 +3121,92 @@ export namespace AppStoreSubscriptionChangeJobStatusResponse {
         Error = <any> 'Error'
     }
 }
+/**
+* Subscription change job status updated event
+*/
+export class AppStoreSubscriptionChangeJobUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * App Store Id
+    */
+    'AppStoreAppId'?: string;
+    /**
+    * Status
+    */
+    'Status'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreAppId",
+            "baseName": "AppStoreAppId",
+            "type": "string"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppStoreSubscriptionChangeJobUpdatedEvent.attributeTypeMap;
+    }
+}
+
 /**
 * Subscription list item
 */
@@ -11817,6 +11912,10 @@ export class EventSearchResult {
     */
     'AppStoreConfigDeletedEvent'?: Array<AppStoreConfigDeletedEvent>;
     /**
+    * App Store Subscription Change Job Updated
+    */
+    'AppStoreSubscriptionChangeJobUpdatedEvent'?: Array<AppStoreSubscriptionChangeJobUpdatedEvent>;
+    /**
     * Catalog Item Created
     */
     'CatalogItemCreatedEvent'?: Array<CatalogItemCreatedEvent>;
@@ -12484,6 +12583,11 @@ export class EventSearchResult {
             "name": "AppStoreConfigDeletedEvent",
             "baseName": "AppStoreConfigDeletedEvent",
             "type": "Array<AppStoreConfigDeletedEvent>"
+        },
+        {
+            "name": "AppStoreSubscriptionChangeJobUpdatedEvent",
+            "baseName": "AppStoreSubscriptionChangeJobUpdatedEvent",
+            "type": "Array<AppStoreSubscriptionChangeJobUpdatedEvent>"
         },
         {
             "name": "CatalogItemCreatedEvent",
@@ -48324,6 +48428,53 @@ export namespace SubscriptionProduct {
     }
 }
 /**
+* Price info
+*/
+export class SubscriptionProductPriceInfo {
+    /**
+    * Price amount
+    */
+    'Amount'?: number;
+    /**
+    * Currency code
+    */
+    'Currency'?: string;
+    /**
+    * Scope (eg. per store or per whitelabel)
+    */
+    'Scope'?: SubscriptionProductPriceInfo.ScopeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Amount",
+            "baseName": "Amount",
+            "type": "number"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "string"
+        },
+        {
+            "name": "Scope",
+            "baseName": "Scope",
+            "type": "SubscriptionProductPriceInfo.ScopeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SubscriptionProductPriceInfo.attributeTypeMap;
+    }
+}
+
+export namespace SubscriptionProductPriceInfo {
+    export enum ScopeEnum {
+        Store = <any> 'Store',
+        Whitelabel = <any> 'Whitelabel'
+    }
+}
+/**
 * Subscription Store
 */
 export class SubscriptionStore {
@@ -54024,6 +54175,7 @@ let enumsMap: {[index: string]: any} = {
         "Subscription.StatusEnum": Subscription.StatusEnum,
         "Subscription.CurrencyEnum": Subscription.CurrencyEnum,
         "SubscriptionProduct.PaymentFrequencyEnum": SubscriptionProduct.PaymentFrequencyEnum,
+        "SubscriptionProductPriceInfo.ScopeEnum": SubscriptionProductPriceInfo.ScopeEnum,
         "SubscriptionSummary.StatusEnum": SubscriptionSummary.StatusEnum,
         "SubscriptionSummary.CurrencyEnum": SubscriptionSummary.CurrencyEnum,
         "SupportedCountry.AddressLayoutEnum": SupportedCountry.AddressLayoutEnum,
@@ -54100,6 +54252,7 @@ let typeMap: {[index: string]: any} = {
     "AppStoreConfigDeletedEvent": AppStoreConfigDeletedEvent,
     "AppStoreConfigUpdatedEvent": AppStoreConfigUpdatedEvent,
     "AppStoreSubscriptionChangeJobStatusResponse": AppStoreSubscriptionChangeJobStatusResponse,
+    "AppStoreSubscriptionChangeJobUpdatedEvent": AppStoreSubscriptionChangeJobUpdatedEvent,
     "AppStoreSubscriptionItem": AppStoreSubscriptionItem,
     "AppStoreSubscriptionJobResponse": AppStoreSubscriptionJobResponse,
     "AppUpdatedEvent": AppUpdatedEvent,
@@ -54770,6 +54923,7 @@ let typeMap: {[index: string]: any} = {
     "SubmitOrderResponseDm": SubmitOrderResponseDm,
     "Subscription": Subscription,
     "SubscriptionProduct": SubscriptionProduct,
+    "SubscriptionProductPriceInfo": SubscriptionProductPriceInfo,
     "SubscriptionStore": SubscriptionStore,
     "SubscriptionSummary": SubscriptionSummary,
     "SupportedCountry": SupportedCountry,
