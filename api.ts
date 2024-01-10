@@ -51131,6 +51131,47 @@ export namespace UpdateVoucher {
     }
 }
 /**
+* Update Voucher Usage
+*/
+export class UpdateVoucherUsage {
+    /**
+    * Flag indicating whether the voucher is used
+    */
+    'IsUsed'?: boolean;
+    /**
+    * Indicates Customer that used the voucher.
+    */
+    'UsedByCustomerId'?: number;
+    /**
+    * An opaque string, to ensure idempotency. This allows for safely retrying requests without accidentally performing the same stamp operation twice.   This will typically contain the the ID of the sale order.
+    */
+    'TransactionKey'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "IsUsed",
+            "baseName": "IsUsed",
+            "type": "boolean"
+        },
+        {
+            "name": "UsedByCustomerId",
+            "baseName": "UsedByCustomerId",
+            "type": "number"
+        },
+        {
+            "name": "TransactionKey",
+            "baseName": "TransactionKey",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateVoucherUsage.attributeTypeMap;
+    }
+}
+
+/**
 * User answered signup questions event
 */
 export class UserAnsweredSignupQuestionsEvent {
@@ -54963,6 +55004,7 @@ let typeMap: {[index: string]: any} = {
     "UpdateStorePayGreenConfigurationRequest": UpdateStorePayGreenConfigurationRequest,
     "UpdateTipConfiguration": UpdateTipConfiguration,
     "UpdateVoucher": UpdateVoucher,
+    "UpdateVoucherUsage": UpdateVoucherUsage,
     "UserAnsweredSignupQuestionsEvent": UserAnsweredSignupQuestionsEvent,
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
@@ -91730,6 +91772,75 @@ export class VouchersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultVoucherWithStats");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param voucherId 
+     * @param voucherUsage 
+     * @param {*} [options] Override http request options.
+     */
+    public updateVoucherUsage (appId: string, voucherId: number, voucherUsage: UpdateVoucherUsage, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/vouchers/{voucherId}/usage'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateVoucherUsage.');
+        }
+
+        // verify required parameter 'voucherId' is not null or undefined
+        if (voucherId === null || voucherId === undefined) {
+            throw new Error('Required parameter voucherId was null or undefined when calling updateVoucherUsage.');
+        }
+
+        // verify required parameter 'voucherUsage' is not null or undefined
+        if (voucherUsage === null || voucherUsage === undefined) {
+            throw new Error('Required parameter voucherUsage was null or undefined when calling updateVoucherUsage.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(voucherUsage, "UpdateVoucherUsage")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
