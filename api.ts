@@ -500,6 +500,10 @@ export class AddAppStoreSubscriptionRequest {
     * Store ids to update
     */
     'StoreIds'?: Array<number>;
+    /**
+    * Email (for subscription setup) - optional, only required for admin access
+    */
+    'SubscriptionAccountEmail'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -508,6 +512,11 @@ export class AddAppStoreSubscriptionRequest {
             "name": "StoreIds",
             "baseName": "StoreIds",
             "type": "Array<number>"
+        },
+        {
+            "name": "SubscriptionAccountEmail",
+            "baseName": "SubscriptionAccountEmail",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -2576,6 +2585,29 @@ export class AppStoreAppConfigurationsWithSubscriptions {
 }
 
 /**
+* Subscription account
+*/
+export class AppStoreAppSubscriptionAccount {
+    /**
+    * Email of the account user
+    */
+    'Email'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Email",
+            "baseName": "Email",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppStoreAppSubscriptionAccount.attributeTypeMap;
+    }
+}
+
+/**
 * App store subscription information
 */
 export class AppStoreAppSubscriptionSummary {
@@ -2591,6 +2623,10 @@ export class AppStoreAppSubscriptionSummary {
     * Is client setup for subscriptions
     */
     'SubscriptionAccountIsSetupForClient'?: boolean;
+    /**
+    * Available accounts for subscriptions (only if requesting user has enough permissions to see the list, otherwise empty list or null)
+    */
+    'SubscriptionAccounts'?: Array<AppStoreAppSubscriptionAccount>;
 
     static discriminator: string | undefined = undefined;
 
@@ -2609,6 +2645,11 @@ export class AppStoreAppSubscriptionSummary {
             "name": "SubscriptionAccountIsSetupForClient",
             "baseName": "SubscriptionAccountIsSetupForClient",
             "type": "boolean"
+        },
+        {
+            "name": "SubscriptionAccounts",
+            "baseName": "SubscriptionAccounts",
+            "type": "Array<AppStoreAppSubscriptionAccount>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -54301,6 +54342,7 @@ let typeMap: {[index: string]: any} = {
     "AppStoreAppConfiguration": AppStoreAppConfiguration,
     "AppStoreAppConfigurationSummary": AppStoreAppConfigurationSummary,
     "AppStoreAppConfigurationsWithSubscriptions": AppStoreAppConfigurationsWithSubscriptions,
+    "AppStoreAppSubscriptionAccount": AppStoreAppSubscriptionAccount,
     "AppStoreAppSubscriptionSummary": AppStoreAppSubscriptionSummary,
     "AppStoreAppSummary": AppStoreAppSummary,
     "AppStoreAppSupportInfo": AppStoreAppSupportInfo,
