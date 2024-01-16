@@ -53954,6 +53954,10 @@ export class WebsiteUpdatedEvent {
 */
 export class WebsiteVanityUrlUpdatedEvent {
     /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
     * Description
     */
     'Description'?: string;
@@ -53965,10 +53969,6 @@ export class WebsiteVanityUrlUpdatedEvent {
     * New vanity url
     */
     'VanityUrl'?: string;
-    /**
-    * The event name
-    */
-    'EventName'?: string;
     /**
     * The identitfier of the event
     */
@@ -53994,6 +53994,11 @@ export class WebsiteVanityUrlUpdatedEvent {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
             "name": "Description",
             "baseName": "Description",
             "type": "string"
@@ -54006,11 +54011,6 @@ export class WebsiteVanityUrlUpdatedEvent {
         {
             "name": "VanityUrl",
             "baseName": "VanityUrl",
-            "type": "string"
-        },
-        {
-            "name": "EventName",
-            "baseName": "EventName",
             "type": "string"
         },
         {
