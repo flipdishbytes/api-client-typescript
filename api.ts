@@ -635,10 +635,6 @@ export class Allergen {
     */
     'AllergenId'?: string;
     /**
-    * English Name of the allergen
-    */
-    'Name'?: string;
-    /**
     * Localized name of the allergen
     */
     'LocalizedName'?: string;
@@ -653,11 +649,6 @@ export class Allergen {
         {
             "name": "AllergenId",
             "baseName": "AllergenId",
-            "type": "string"
-        },
-        {
-            "name": "Name",
-            "baseName": "Name",
             "type": "string"
         },
         {
