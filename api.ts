@@ -11733,6 +11733,10 @@ export class EventSearchResult {
     */
     'PhoneCallEndedEvent'?: Array<PhoneCallEndedEvent>;
     /**
+    * Telephony config updated event
+    */
+    'TelephonyConfigUpdatedEvent'?: Array<TelephonyConfigUpdatedEvent>;
+    /**
     * Loyalty campaign created event
     */
     'LoyaltyCampaignCreatedEvent'?: Array<LoyaltyCampaignCreatedEvent>;
@@ -12349,6 +12353,11 @@ export class EventSearchResult {
             "name": "PhoneCallEndedEvent",
             "baseName": "PhoneCallEndedEvent",
             "type": "Array<PhoneCallEndedEvent>"
+        },
+        {
+            "name": "TelephonyConfigUpdatedEvent",
+            "baseName": "TelephonyConfigUpdatedEvent",
+            "type": "Array<TelephonyConfigUpdatedEvent>"
         },
         {
             "name": "LoyaltyCampaignCreatedEvent",
@@ -49545,6 +49554,196 @@ export class TelemetrySeriesResult {
 }
 
 /**
+* Phone call
+*/
+export class TelephonyConfig {
+    /**
+    * ID of the phone call
+    */
+    'TelephonyConfigId'?: number;
+    /**
+    * APM enabled flag
+    */
+    'ApmEnabled'?: boolean;
+    /**
+    * Consent enabled flag
+    */
+    'ConsentEnabled'?: boolean;
+    /**
+    * APM phone number of the store
+    */
+    'PhoneNumber'?: string;
+    /**
+    * Send app link SMS flag
+    */
+    'SendAppLinkSms'?: boolean;
+    /**
+    * Use custom app link SMS message flag
+    */
+    'UseCustomAppLinkSmsMessage'?: boolean;
+    /**
+    * Use custom voice message flag
+    */
+    'UseCustomVoiceMessage'?: boolean;
+    /**
+    * App link SMS message
+    */
+    'AppLinkSmsMessage'?: string;
+    /**
+    * Amount of days to resend APM message
+    */
+    'ResendApmMessageAfterDays'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "TelephonyConfigId",
+            "baseName": "TelephonyConfigId",
+            "type": "number"
+        },
+        {
+            "name": "ApmEnabled",
+            "baseName": "ApmEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "ConsentEnabled",
+            "baseName": "ConsentEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "PhoneNumber",
+            "baseName": "PhoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "SendAppLinkSms",
+            "baseName": "SendAppLinkSms",
+            "type": "boolean"
+        },
+        {
+            "name": "UseCustomAppLinkSmsMessage",
+            "baseName": "UseCustomAppLinkSmsMessage",
+            "type": "boolean"
+        },
+        {
+            "name": "UseCustomVoiceMessage",
+            "baseName": "UseCustomVoiceMessage",
+            "type": "boolean"
+        },
+        {
+            "name": "AppLinkSmsMessage",
+            "baseName": "AppLinkSmsMessage",
+            "type": "string"
+        },
+        {
+            "name": "ResendApmMessageAfterDays",
+            "baseName": "ResendApmMessageAfterDays",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return TelephonyConfig.attributeTypeMap;
+    }
+}
+
+/**
+* Telephony Config Updated Event
+*/
+export class TelephonyConfigUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * The telephony config
+    */
+    'TelephonyConfig'?: TelephonyConfig;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "TelephonyConfig",
+            "baseName": "TelephonyConfig",
+            "type": "TelephonyConfig"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return TelephonyConfigUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Breakdown of third party integration fees
 */
 export class ThirdPartyFeesDetails {
@@ -55026,6 +55225,8 @@ let typeMap: {[index: string]: any} = {
     "TelemetrySeriesProperty": TelemetrySeriesProperty,
     "TelemetrySeriesQueryParameters": TelemetrySeriesQueryParameters,
     "TelemetrySeriesResult": TelemetrySeriesResult,
+    "TelephonyConfig": TelephonyConfig,
+    "TelephonyConfigUpdatedEvent": TelephonyConfigUpdatedEvent,
     "ThirdPartyFeesDetails": ThirdPartyFeesDetails,
     "TipConfiguration": TipConfiguration,
     "UnRegisterCardReaderRequest": UnRegisterCardReaderRequest,
