@@ -11609,6 +11609,10 @@ export class EventSearchResult {
     */
     'MenuCreatedEvent'?: Array<MenuCreatedEvent>;
     /**
+    * Menu async creation completed events
+    */
+    'MenuAsyncCreationCompletedEvent'?: Array<MenuAsyncCreationCompletedEvent>;
+    /**
     * Menu updated events
     */
     'MenuUpdatedEvent'?: Array<MenuUpdatedEvent>;
@@ -12198,6 +12202,11 @@ export class EventSearchResult {
             "name": "MenuCreatedEvent",
             "baseName": "MenuCreatedEvent",
             "type": "Array<MenuCreatedEvent>"
+        },
+        {
+            "name": "MenuAsyncCreationCompletedEvent",
+            "baseName": "MenuAsyncCreationCompletedEvent",
+            "type": "Array<MenuAsyncCreationCompletedEvent>"
         },
         {
             "name": "MenuUpdatedEvent",
@@ -20486,6 +20495,101 @@ export namespace Menu {
         ExcludedFromBasePrice = <any> 'ExcludedFromBasePrice'
     }
 }
+/**
+* Menu async creation completed event
+*/
+export class MenuAsyncCreationCompletedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * User who has created the menu
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The menu
+    */
+    'Menu'?: Menu;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "Menu",
+            "baseName": "Menu",
+            "type": "Menu"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MenuAsyncCreationCompletedEvent.attributeTypeMap;
+    }
+}
+
 /**
 * Menu base
 */
@@ -54756,6 +54860,7 @@ let typeMap: {[index: string]: any} = {
     "MappedLocation": MappedLocation,
     "MaskedPhoneNumber": MaskedPhoneNumber,
     "Menu": Menu,
+    "MenuAsyncCreationCompletedEvent": MenuAsyncCreationCompletedEvent,
     "MenuBase": MenuBase,
     "MenuBulkEditEvent": MenuBulkEditEvent,
     "MenuCatalogItem": MenuCatalogItem,
