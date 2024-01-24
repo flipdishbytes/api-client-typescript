@@ -83553,9 +83553,10 @@ export class OrdersApi {
      * @param orderIds 
      * @param from 
      * @param to 
+     * @param logSql 
      * @param {*} [options] Override http request options.
      */
-    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, orderByRequestedForTime?: boolean, channels?: Array<'Unknown' | 'Ios' | 'Android' | 'Web' | 'Kiosk' | 'Pos' | 'TelephoneCall' | 'Sms' | 'PwaAndroid' | 'PwaIos' | 'Google' | 'Photon'>, orderIds?: Array<number>, from?: Date, to?: Date, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
+    public getOrdersSummary (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, orderByRequestedForTime?: boolean, channels?: Array<'Unknown' | 'Ios' | 'Android' | 'Web' | 'Kiosk' | 'Pos' | 'TelephoneCall' | 'Sms' | 'PwaAndroid' | 'PwaIos' | 'Google' | 'Photon'>, orderIds?: Array<number>, from?: Date, to?: Date, logSql?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/orders/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -83605,6 +83606,121 @@ export class OrdersApi {
 
         if (to !== undefined) {
             localVarQueryParameters['to'] = ObjectSerializer.serialize(to, "Date");
+        }
+
+        if (logSql !== undefined) {
+            localVarQueryParameters['logSql'] = ObjectSerializer.serialize(logSql, "boolean");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultOrderSummary");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param searchQuery 
+     * @param physicalRestaurantId 
+     * @param state 
+     * @param page 
+     * @param limit 
+     * @param orderByRequestedForTime 
+     * @param channels 
+     * @param orderIds 
+     * @param from 
+     * @param to 
+     * @param logSql 
+     * @param {*} [options] Override http request options.
+     */
+    public getOrdersSummaryNew (appId: string, searchQuery?: string, physicalRestaurantId?: Array<number>, state?: Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>, page?: number, limit?: number, orderByRequestedForTime?: boolean, channels?: Array<'Unknown' | 'Ios' | 'Android' | 'Web' | 'Kiosk' | 'Pos' | 'TelephoneCall' | 'Sms' | 'PwaAndroid' | 'PwaIos' | 'Google' | 'Photon'>, orderIds?: Array<number>, from?: Date, to?: Date, logSql?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultOrderSummary;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/orders/summariesNew'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getOrdersSummaryNew.');
+        }
+
+        if (searchQuery !== undefined) {
+            localVarQueryParameters['searchQuery'] = ObjectSerializer.serialize(searchQuery, "string");
+        }
+
+        if (physicalRestaurantId !== undefined) {
+            localVarQueryParameters['physicalRestaurantId'] = ObjectSerializer.serialize(physicalRestaurantId, "Array<number>");
+        }
+
+        if (state !== undefined) {
+            localVarQueryParameters['state'] = ObjectSerializer.serialize(state, "Array<'Created' | 'PlacedCanBeCancelled' | 'ReadyToProcess' | 'AcceptedByRestaurant' | 'Dispatched' | 'Delivered' | 'Cancelled' | 'ManualReview' | 'RejectedByStore' | 'RejectedByFlipdish' | 'RejectedAutomatically' | 'RejectedAfterBeingAccepted' | 'AcceptedAndRefunded'>");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (orderByRequestedForTime !== undefined) {
+            localVarQueryParameters['orderByRequestedForTime'] = ObjectSerializer.serialize(orderByRequestedForTime, "boolean");
+        }
+
+        if (channels !== undefined) {
+            localVarQueryParameters['channels'] = ObjectSerializer.serialize(channels, "Array<'Unknown' | 'Ios' | 'Android' | 'Web' | 'Kiosk' | 'Pos' | 'TelephoneCall' | 'Sms' | 'PwaAndroid' | 'PwaIos' | 'Google' | 'Photon'>");
+        }
+
+        if (orderIds !== undefined) {
+            localVarQueryParameters['orderIds'] = ObjectSerializer.serialize(orderIds, "Array<number>");
+        }
+
+        if (from !== undefined) {
+            localVarQueryParameters['from'] = ObjectSerializer.serialize(from, "Date");
+        }
+
+        if (to !== undefined) {
+            localVarQueryParameters['to'] = ObjectSerializer.serialize(to, "Date");
+        }
+
+        if (logSql !== undefined) {
+            localVarQueryParameters['logSql'] = ObjectSerializer.serialize(logSql, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
