@@ -27174,6 +27174,7 @@ export class OrderDm {
     'RequestedDeliveryOrPickupTimeUtc'?: Date;
     'TipAmount'?: number;
     'DeliveryLocationId'?: number;
+    'VoucherCode'?: string;
     'OrderItemVms'?: Array<OrderItemDm>;
     'VirtualRestaurantId'?: number;
     'PhysicalRestaurantId'?: number;
@@ -27209,6 +27210,11 @@ export class OrderDm {
             "name": "DeliveryLocationId",
             "baseName": "DeliveryLocationId",
             "type": "number"
+        },
+        {
+            "name": "VoucherCode",
+            "baseName": "VoucherCode",
+            "type": "string"
         },
         {
             "name": "OrderItemVms",
