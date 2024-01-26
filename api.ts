@@ -7797,6 +7797,10 @@ export class CreateFullMenuItemOptionSetItem {
     */
     'Price'?: number;
     /**
+    * An optional fee that can be added to the price of the item.
+    */
+    'DepositReturnFee'?: number;
+    /**
     * Is available
     */
     'IsAvailable'?: boolean;
@@ -7844,6 +7848,11 @@ export class CreateFullMenuItemOptionSetItem {
         {
             "name": "Price",
             "baseName": "Price",
+            "type": "number"
+        },
+        {
+            "name": "DepositReturnFee",
+            "baseName": "DepositReturnFee",
             "type": "number"
         },
         {
@@ -8008,6 +8017,10 @@ export class CreateFullMenuSectionItem {
     */
     'Price'?: number;
     /**
+    * An optional fee that can be added to the price of the item.
+    */
+    'DepositReturnFee'?: number;
+    /**
     * Display order
     */
     'DisplayOrder'?: number;
@@ -8080,6 +8093,11 @@ export class CreateFullMenuSectionItem {
         {
             "name": "Price",
             "baseName": "Price",
+            "type": "number"
+        },
+        {
+            "name": "DepositReturnFee",
+            "baseName": "DepositReturnFee",
             "type": "number"
         },
         {
@@ -21739,6 +21757,10 @@ export class MenuItemOptionSetItem {
     */
     'Price'?: number;
     /**
+    * An optional fee that can be added to the price of the item.
+    */
+    'DepositReturnFee'?: number;
+    /**
     * Is available
     */
     'IsAvailable'?: boolean;
@@ -21809,6 +21831,11 @@ export class MenuItemOptionSetItem {
             "type": "number"
         },
         {
+            "name": "DepositReturnFee",
+            "baseName": "DepositReturnFee",
+            "type": "number"
+        },
+        {
             "name": "IsAvailable",
             "baseName": "IsAvailable",
             "type": "boolean"
@@ -21855,6 +21882,10 @@ export class MenuItemOptionSetItemBase {
     */
     'Price'?: number;
     /**
+    * An optional fee that can be added to the price of the item.
+    */
+    'DepositReturnFee'?: number;
+    /**
     * Is available
     */
     'IsAvailable'?: boolean;
@@ -21882,6 +21913,11 @@ export class MenuItemOptionSetItemBase {
         {
             "name": "Price",
             "baseName": "Price",
+            "type": "number"
+        },
+        {
+            "name": "DepositReturnFee",
+            "baseName": "DepositReturnFee",
             "type": "number"
         },
         {
@@ -22925,6 +22961,10 @@ export class MenuSectionItem {
     */
     'Price'?: number;
     /**
+    * An optional fee that can be added to the price of the item.
+    */
+    'DepositReturnFee'?: number;
+    /**
     * Display order
     */
     'DisplayOrder'?: number;
@@ -23031,6 +23071,11 @@ export class MenuSectionItem {
             "type": "number"
         },
         {
+            "name": "DepositReturnFee",
+            "baseName": "DepositReturnFee",
+            "type": "number"
+        },
+        {
             "name": "DisplayOrder",
             "baseName": "DisplayOrder",
             "type": "number"
@@ -23111,6 +23156,10 @@ export class MenuSectionItemBase {
     */
     'Price'?: number;
     /**
+    * An optional fee that can be added to the price of the item.
+    */
+    'DepositReturnFee'?: number;
+    /**
     * Display order
     */
     'DisplayOrder'?: number;
@@ -23168,6 +23217,11 @@ export class MenuSectionItemBase {
         {
             "name": "Price",
             "baseName": "Price",
+            "type": "number"
+        },
+        {
+            "name": "DepositReturnFee",
+            "baseName": "DepositReturnFee",
             "type": "number"
         },
         {
