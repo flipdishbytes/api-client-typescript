@@ -9427,6 +9427,10 @@ export class Customer {
     */
     'RegistrationDate'?: Date;
     /**
+    * Phone Number in international format
+    */
+    'PhoneNumber'?: string;
+    /**
     * Customer can place cash orders
     */
     'CashOrdersEnabled'?: boolean;
@@ -9451,6 +9455,11 @@ export class Customer {
             "name": "RegistrationDate",
             "baseName": "RegistrationDate",
             "type": "Date"
+        },
+        {
+            "name": "PhoneNumber",
+            "baseName": "PhoneNumber",
+            "type": "string"
         },
         {
             "name": "CashOrdersEnabled",
