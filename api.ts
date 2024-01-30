@@ -41738,6 +41738,10 @@ export class Store {
     */
     'FraudPreventionStrategy'?: string;
     /**
+    * Store's app ids
+    */
+    'AppIds'?: Array<string>;
+    /**
     * Phone number
     */
     'PhoneNumber'?: string;
@@ -41951,6 +41955,11 @@ export class Store {
             "name": "FraudPreventionStrategy",
             "baseName": "FraudPreventionStrategy",
             "type": "string"
+        },
+        {
+            "name": "AppIds",
+            "baseName": "AppIds",
+            "type": "Array<string>"
         },
         {
             "name": "PhoneNumber",
