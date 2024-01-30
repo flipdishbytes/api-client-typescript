@@ -1339,6 +1339,7 @@ export namespace App {
         CreateExternalAuditLogEvents = <any> 'CreateExternalAuditLogEvents',
         ViewCatalogAuditLogs = <any> 'ViewCatalogAuditLogs',
         ViewOrderFulfillmentAuditLogs = <any> 'ViewOrderFulfillmentAuditLogs',
+        ViewChannelAuditLogs = <any> 'ViewChannelAuditLogs',
         SendPushNotificationToCustomer = <any> 'SendPushNotificationToCustomer',
         InviteDriverToApp = <any> 'InviteDriverToApp',
         GetDriverForApp = <any> 'GetDriverForApp',
@@ -6573,6 +6574,101 @@ export class ChannelStoreMapping {
 }
 
 /**
+* Channel Stores Updated Event
+*/
+export class ChannelStoresUpdatedEvent {
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * ID of the channel
+    */
+    'ChannelId'?: number;
+    /**
+    * List of store ids
+    */
+    'StoreIds'?: Array<number>;
+    /**
+    * User info
+    */
+    'User'?: UserEventInfo;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "ChannelId",
+            "baseName": "ChannelId",
+            "type": "number"
+        },
+        {
+            "name": "StoreIds",
+            "baseName": "StoreIds",
+            "type": "Array<number>"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ChannelStoresUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Chargebacks breakdown
 */
 export class ChargebackDetails {
@@ -11768,6 +11864,10 @@ export class EventSearchResult {
     */
     'TelephonyConfigUpdatedEvent'?: Array<TelephonyConfigUpdatedEvent>;
     /**
+    * Channel stores updated event
+    */
+    'ChannelStoresUpdatedEvent'?: Array<ChannelStoresUpdatedEvent>;
+    /**
     * Loyalty campaign created event
     */
     'LoyaltyCampaignCreatedEvent'?: Array<LoyaltyCampaignCreatedEvent>;
@@ -12394,6 +12494,11 @@ export class EventSearchResult {
             "name": "TelephonyConfigUpdatedEvent",
             "baseName": "TelephonyConfigUpdatedEvent",
             "type": "Array<TelephonyConfigUpdatedEvent>"
+        },
+        {
+            "name": "ChannelStoresUpdatedEvent",
+            "baseName": "ChannelStoresUpdatedEvent",
+            "type": "Array<ChannelStoresUpdatedEvent>"
         },
         {
             "name": "LoyaltyCampaignCreatedEvent",
@@ -28172,6 +28277,10 @@ export class OrderItem {
     * Is available
     */
     'IsAvailable'?: boolean;
+    /**
+    * Deposit return fee
+    */
+    'DepositReturnFee'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -28235,6 +28344,11 @@ export class OrderItem {
             "name": "IsAvailable",
             "baseName": "IsAvailable",
             "type": "boolean"
+        },
+        {
+            "name": "DepositReturnFee",
+            "baseName": "DepositReturnFee",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -28307,6 +28421,10 @@ export class OrderItemOption {
     * Menu item option set display order
     */
     'MenuItemOptionSetDisplayOrder'?: number;
+    /**
+    * Deposit return fee
+    */
+    'DepositReturnFee'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -28349,6 +28467,11 @@ export class OrderItemOption {
         {
             "name": "MenuItemOptionSetDisplayOrder",
             "baseName": "MenuItemOptionSetDisplayOrder",
+            "type": "number"
+        },
+        {
+            "name": "DepositReturnFee",
+            "baseName": "DepositReturnFee",
             "type": "number"
         }    ];
 
@@ -54761,6 +54884,7 @@ let typeMap: {[index: string]: any} = {
     "ChangePasswordModel": ChangePasswordModel,
     "Channel": Channel,
     "ChannelStoreMapping": ChannelStoreMapping,
+    "ChannelStoresUpdatedEvent": ChannelStoresUpdatedEvent,
     "ChargebackDetails": ChargebackDetails,
     "ClientDevice": ClientDevice,
     "ClientDeviceAssignEnrolledDevice": ClientDeviceAssignEnrolledDevice,
