@@ -77916,8 +77916,8 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @summary Create a new menu asynchronously. You must listen to the webhook menu.async_creation.completed to know when the menu is ready.
+     * You must listen to the webhook menu.async_creation.completed to know when the menu is ready
+     * @summary Create a new menu asynchronously
      * @param appId App id
      * @param menu Menu
      * @param {*} [options] Override http request options.
@@ -77980,10 +77980,10 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @summary Create a new menu. If request body is empty, the system will create a menu with default items.
+     * [DEPRECATED] - Please use the async version as this endpoint may timeout for large menus
+     * @summary Create a new menu
      * @param appId App identifier
-     * @param menu Menu
+     * @param menu Menu. If empty the system will create a menu with default items
      * @param {*} [options] Override http request options.
      */
     public createNewMenuForApp (appId: string, menu: CreateFullMenu, options: any = {}) : Promise<{ response: http.IncomingMessage; body: number;  }> {
