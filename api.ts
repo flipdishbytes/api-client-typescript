@@ -10883,6 +10883,35 @@ export class DeliveryZoneUpdatedEvent {
     }
 }
 
+export class DepositReturnFeesSummary {
+    'Count'?: number;
+    'Fee'?: number;
+    'Total'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Count",
+            "baseName": "Count",
+            "type": "number"
+        },
+        {
+            "name": "Fee",
+            "baseName": "Fee",
+            "type": "number"
+        },
+        {
+            "name": "Total",
+            "baseName": "Total",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DepositReturnFeesSummary.attributeTypeMap;
+    }
+}
+
 /**
 * Device settings for Hydra
 */
@@ -14225,6 +14254,7 @@ export class GeoPointRequest {
 
 export class GetReceiptByOrderIdQueryResponse {
     'PreviousOrder'?: PreviousOrder;
+    'DepositReturnFeesSummary'?: Array<DepositReturnFeesSummary>;
     'TsRequestedForLocal'?: Date;
     'TsOrderPlacedLocal'?: Date;
     'LogoUrl'?: string;
@@ -14239,6 +14269,11 @@ export class GetReceiptByOrderIdQueryResponse {
             "name": "PreviousOrder",
             "baseName": "PreviousOrder",
             "type": "PreviousOrder"
+        },
+        {
+            "name": "DepositReturnFeesSummary",
+            "baseName": "DepositReturnFeesSummary",
+            "type": "Array<DepositReturnFeesSummary>"
         },
         {
             "name": "TsRequestedForLocal",
@@ -32663,6 +32698,7 @@ export class PreviousOrder {
     'ServiceChargeAmount'?: number;
     'TipAmount'?: number;
     'DeliveryAmount'?: number;
+    'DepositReturnFeeAmount'?: number;
     'TotalTax'?: number;
     'TotalAmount'?: number;
     'Items'?: Array<PreviousOrderItem>;
@@ -32755,6 +32791,11 @@ export class PreviousOrder {
         {
             "name": "DeliveryAmount",
             "baseName": "DeliveryAmount",
+            "type": "number"
+        },
+        {
+            "name": "DepositReturnFeeAmount",
+            "baseName": "DepositReturnFeeAmount",
             "type": "number"
         },
         {
@@ -32910,6 +32951,7 @@ export class PreviousOrderItem {
     'MenuSectionName'?: string;
     'Name'?: string;
     'PriceIncludingOptionSetItems'?: number;
+    'DepositReturnFee'?: number;
     'TaxAmount'?: number;
     'PreviousOrderItemOptions'?: Array<PreviousOrderItemOption>;
 
@@ -32937,6 +32979,11 @@ export class PreviousOrderItem {
             "type": "number"
         },
         {
+            "name": "DepositReturnFee",
+            "baseName": "DepositReturnFee",
+            "type": "number"
+        },
+        {
             "name": "TaxAmount",
             "baseName": "TaxAmount",
             "type": "number"
@@ -32954,6 +33001,7 @@ export class PreviousOrderItem {
 
 export class PreviousOrderItemOption {
     'Name'?: string;
+    'DepositReturnFee'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -32962,6 +33010,11 @@ export class PreviousOrderItemOption {
             "name": "Name",
             "baseName": "Name",
             "type": "string"
+        },
+        {
+            "name": "DepositReturnFee",
+            "baseName": "DepositReturnFee",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -54945,6 +54998,7 @@ let typeMap: {[index: string]: any} = {
     "DeliveryZoneCreatedEvent": DeliveryZoneCreatedEvent,
     "DeliveryZoneDeletedEvent": DeliveryZoneDeletedEvent,
     "DeliveryZoneUpdatedEvent": DeliveryZoneUpdatedEvent,
+    "DepositReturnFeesSummary": DepositReturnFeesSummary,
     "DeviceSettings": DeviceSettings,
     "DnsRecordInformation": DnsRecordInformation,
     "DnsVerifiedEvent": DnsVerifiedEvent,
