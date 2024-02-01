@@ -30108,6 +30108,18 @@ export class Payout {
     * Total third party integration fees
     */
     'TotalThirdPartyFees'?: number;
+    /**
+    * POS sales amount
+    */
+    'PosSalesAmount'?: number;
+    /**
+    * POS sales tax
+    */
+    'PosSalesTax'?: number;
+    /**
+    * Tips on POS sales
+    */
+    'TipsOnPosSales'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -30315,6 +30327,21 @@ export class Payout {
         {
             "name": "TotalThirdPartyFees",
             "baseName": "TotalThirdPartyFees",
+            "type": "number"
+        },
+        {
+            "name": "PosSalesAmount",
+            "baseName": "PosSalesAmount",
+            "type": "number"
+        },
+        {
+            "name": "PosSalesTax",
+            "baseName": "PosSalesTax",
+            "type": "number"
+        },
+        {
+            "name": "TipsOnPosSales",
+            "baseName": "TipsOnPosSales",
             "type": "number"
         }    ];
 
