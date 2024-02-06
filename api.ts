@@ -5364,35 +5364,6 @@ export class CampaignStatistics {
     }
 }
 
-export class CancellationToken {
-    'IsCancellationRequested'?: boolean;
-    'CanBeCanceled'?: boolean;
-    'WaitHandle'?: WaitHandle;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "IsCancellationRequested",
-            "baseName": "IsCancellationRequested",
-            "type": "boolean"
-        },
-        {
-            "name": "CanBeCanceled",
-            "baseName": "CanBeCanceled",
-            "type": "boolean"
-        },
-        {
-            "name": "WaitHandle",
-            "baseName": "WaitHandle",
-            "type": "WaitHandle"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return CancellationToken.attributeTypeMap;
-    }
-}
-
 /**
 * Card reader
 */
@@ -41216,29 +41187,6 @@ export class RevenueDetail {
     }
 }
 
-export class SafeWaitHandle {
-    'IsInvalid'?: boolean;
-    'IsClosed'?: boolean;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "IsInvalid",
-            "baseName": "IsInvalid",
-            "type": "boolean"
-        },
-        {
-            "name": "IsClosed",
-            "baseName": "IsClosed",
-            "type": "boolean"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return SafeWaitHandle.attributeTypeMap;
-    }
-}
-
 /**
 * Search Criteria for Audit Logs
 */
@@ -53809,29 +53757,6 @@ export namespace VoucherWithStats {
         Google = <any> 'Google'
     }
 }
-export class WaitHandle {
-    'Handle'?: any;
-    'SafeWaitHandle'?: SafeWaitHandle;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Handle",
-            "baseName": "Handle",
-            "type": "any"
-        },
-        {
-            "name": "SafeWaitHandle",
-            "baseName": "SafeWaitHandle",
-            "type": "SafeWaitHandle"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return WaitHandle.attributeTypeMap;
-    }
-}
-
 /**
 * Sample payload of a webhook event
 */
@@ -55022,7 +54947,6 @@ let typeMap: {[index: string]: any} = {
     "BusinessHoursPeriod": BusinessHoursPeriod,
     "BusinessHoursPeriodBase": BusinessHoursPeriodBase,
     "CampaignStatistics": CampaignStatistics,
-    "CancellationToken": CancellationToken,
     "CardReader": CardReader,
     "CardReaderRegistrationRequest": CardReaderRegistrationRequest,
     "Cart": Cart,
@@ -55601,7 +55525,6 @@ let typeMap: {[index: string]: any} = {
     "RetentionCampaignUpdatedEvent": RetentionCampaignUpdatedEvent,
     "RevenueAdjustmentsDetails": RevenueAdjustmentsDetails,
     "RevenueDetail": RevenueDetail,
-    "SafeWaitHandle": SafeWaitHandle,
     "SearchCriteria": SearchCriteria,
     "ServiceCharge": ServiceCharge,
     "SetOrderBatchingConfiguration": SetOrderBatchingConfiguration,
@@ -55735,7 +55658,6 @@ let typeMap: {[index: string]: any} = {
     "VoucherSummary": VoucherSummary,
     "VoucherUpdatedEvent": VoucherUpdatedEvent,
     "VoucherWithStats": VoucherWithStats,
-    "WaitHandle": WaitHandle,
     "WebhookEventSample": WebhookEventSample,
     "WebhookLog": WebhookLog,
     "WebhookSubscription": WebhookSubscription,
@@ -61760,69 +61682,6 @@ export class CampaignsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultRetentionCampaign");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param campaignPublicId 
-     * @param {*} [options] Override http request options.
-     */
-    public fetchLoyaltyCampaignByPublicId (appId: string, campaignPublicId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLoyaltyCampaign;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/campaigns/loyalty/publicId/{campaignPublicId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'campaignPublicId' + '}', encodeURIComponent(String(campaignPublicId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling fetchLoyaltyCampaignByPublicId.');
-        }
-
-        // verify required parameter 'campaignPublicId' is not null or undefined
-        if (campaignPublicId === null || campaignPublicId === undefined) {
-            throw new Error('Required parameter campaignPublicId was null or undefined when calling fetchLoyaltyCampaignByPublicId.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultLoyaltyCampaign;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultLoyaltyCampaign");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
