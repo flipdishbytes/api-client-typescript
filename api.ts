@@ -19929,6 +19929,10 @@ export class LoyaltyCampaign {
     * Ids of stores this campaign applies to
     */
     'StoreIds'?: Array<number>;
+    /**
+    * The app that this campaign belongs to.
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -20002,6 +20006,11 @@ export class LoyaltyCampaign {
             "name": "StoreIds",
             "baseName": "StoreIds",
             "type": "Array<number>"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -20053,6 +20062,10 @@ export class LoyaltyCampaignBase {
     * Ids of stores this campaign applies to
     */
     'StoreIds'?: Array<number>;
+    /**
+    * The app that this campaign belongs to.
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -20106,6 +20119,11 @@ export class LoyaltyCampaignBase {
             "name": "StoreIds",
             "baseName": "StoreIds",
             "type": "Array<number>"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -40488,6 +40506,10 @@ export class RetentionCampaign {
     * Ids of stores this campaign applies to
     */
     'StoreIds'?: Array<number>;
+    /**
+    * The app that this campaign belongs to.
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -40556,6 +40578,11 @@ export class RetentionCampaign {
             "name": "StoreIds",
             "baseName": "StoreIds",
             "type": "Array<number>"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -40603,6 +40630,10 @@ export class RetentionCampaignBase {
     * Ids of stores this campaign applies to
     */
     'StoreIds'?: Array<number>;
+    /**
+    * The app that this campaign belongs to.
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -40651,6 +40682,11 @@ export class RetentionCampaignBase {
             "name": "StoreIds",
             "baseName": "StoreIds",
             "type": "Array<number>"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
