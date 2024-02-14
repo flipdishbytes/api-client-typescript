@@ -58758,7 +58758,7 @@ export class AppStoreDeveloperApi {
      * @param appStoreAppId 
      * @param {*} [options] Override http request options.
      */
-    public getExternalFunctionSigningKey (oauthAppId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiErrorResult;  }> {
+    public getExternalFunctionSigningKey (oauthAppId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oauthAppId}/appstore/apps/{appStoreAppId}/external_function_signing_key'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
@@ -58800,12 +58800,12 @@ export class AppStoreDeveloperApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiErrorResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiErrorResult");
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
