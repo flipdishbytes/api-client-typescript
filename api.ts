@@ -38399,6 +38399,29 @@ export class RestApiResultDnsRecordInformation {
 /**
 * Rest api result
 */
+export class RestApiResultExecuteConfigurationActionResult {
+    /**
+    * Generic data object.
+    */
+    'Data': ExecuteConfigurationActionResult;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "ExecuteConfigurationActionResult"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultExecuteConfigurationActionResult.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultFulfillmentStatesConfiguration {
     /**
     * Generic data object.
@@ -55466,6 +55489,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultCustomer": RestApiResultCustomer,
     "RestApiResultDeliveryZone": RestApiResultDeliveryZone,
     "RestApiResultDnsRecordInformation": RestApiResultDnsRecordInformation,
+    "RestApiResultExecuteConfigurationActionResult": RestApiResultExecuteConfigurationActionResult,
     "RestApiResultFulfillmentStatesConfiguration": RestApiResultFulfillmentStatesConfiguration,
     "RestApiResultGroup": RestApiResultGroup,
     "RestApiResultHomeStatistics": RestApiResultHomeStatistics,
@@ -57573,7 +57597,7 @@ export class AppStoreApi {
      * @param appStoreAppId 
      * @param {*} [options] Override http request options.
      */
-    public getAppStoreApp (appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: AppStoreApp;  }> {
+    public getAppStoreApp (appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreApp;  }> {
         const localVarPath = this.basePath + '/api/v1.0/appstore/apps/{appStoreAppId}'
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
         let localVarQueryParameters: any = {};
@@ -57609,12 +57633,12 @@ export class AppStoreApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: AppStoreApp;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreApp;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "AppStoreApp");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreApp");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -57945,7 +57969,7 @@ export class AppStoreConfigurationsApi {
      * @param executeConfigurationActionRequest 
      * @param {*} [options] Override http request options.
      */
-    public executeConfigurationAction (appId: string, appStoreAppId: string, configId: string, executeConfigurationActionRequest: ExecuteConfigurationActionRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: ExecuteConfigurationActionResult;  }> {
+    public executeConfigurationAction (appId: string, appStoreAppId: string, configId: string, executeConfigurationActionRequest: ExecuteConfigurationActionRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultExecuteConfigurationActionResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/config/{configId}/action'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)))
@@ -57999,12 +58023,12 @@ export class AppStoreConfigurationsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: ExecuteConfigurationActionResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultExecuteConfigurationActionResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "ExecuteConfigurationActionResult");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultExecuteConfigurationActionResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -58021,7 +58045,7 @@ export class AppStoreConfigurationsApi {
      * @param configId 
      * @param {*} [options] Override http request options.
      */
-    public getAppStoreConfig (appId: string, appStoreAppId: string, configId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: AppStoreAppConfiguration;  }> {
+    public getAppStoreConfig (appId: string, appStoreAppId: string, configId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreAppConfiguration;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/config/{configId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)))
@@ -58069,12 +58093,12 @@ export class AppStoreConfigurationsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: AppStoreAppConfiguration;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreAppConfiguration;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "AppStoreAppConfiguration");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreAppConfiguration");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -58734,7 +58758,7 @@ export class AppStoreDeveloperApi {
      * @param appStoreAppId 
      * @param {*} [options] Override http request options.
      */
-    public getExternalFunctionSigningKey (oauthAppId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public getExternalFunctionSigningKey (oauthAppId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiErrorResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/oauthclients/{oauthAppId}/appstore/apps/{appStoreAppId}/external_function_signing_key'
             .replace('{' + 'oauthAppId' + '}', encodeURIComponent(String(oauthAppId)))
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
@@ -58776,11 +58800,12 @@ export class AppStoreDeveloperApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiErrorResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiErrorResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
