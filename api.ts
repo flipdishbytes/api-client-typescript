@@ -1289,6 +1289,7 @@ export namespace App {
         VerifyBankAccounts = <any> 'VerifyBankAccounts',
         ViewServiceChargeConfigurations = <any> 'ViewServiceChargeConfigurations',
         EditServiceChargeConfigurations = <any> 'EditServiceChargeConfigurations',
+        EditStoreDeliveryZoneFees = <any> 'EditStoreDeliveryZoneFees',
         ViewHydraConfig = <any> 'ViewHydraConfig',
         UpdateHydraConfigManage = <any> 'UpdateHydraConfigManage',
         InitiateBluetoothPairingMode = <any> 'InitiateBluetoothPairingMode',
@@ -43971,6 +43972,29 @@ export class StoreDeliveryZoneFeeConfig {
 }
 
 /**
+* Request to update store delivery zone fee config
+*/
+export class StoreDeliveryZoneFeeConfigUpdateRequest {
+    /**
+    * Delivery zone fees to update
+    */
+    'DeliveryZoneFees'?: Array<StoreDeliveryZoneFeeConfig>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeliveryZoneFees",
+            "baseName": "DeliveryZoneFees",
+            "type": "Array<StoreDeliveryZoneFeeConfig>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreDeliveryZoneFeeConfigUpdateRequest.attributeTypeMap;
+    }
+}
+
+/**
 * Store end of day report
 */
 export class StoreEndOfDayReport {
@@ -55613,6 +55637,7 @@ let typeMap: {[index: string]: any} = {
     "StoreDataPoint": StoreDataPoint,
     "StoreDeletedEvent": StoreDeletedEvent,
     "StoreDeliveryZoneFeeConfig": StoreDeliveryZoneFeeConfig,
+    "StoreDeliveryZoneFeeConfigUpdateRequest": StoreDeliveryZoneFeeConfigUpdateRequest,
     "StoreEndOfDayReport": StoreEndOfDayReport,
     "StoreFeeConfig": StoreFeeConfig,
     "StoreFeeConfigUpdatedEvent": StoreFeeConfigUpdatedEvent,
@@ -89677,10 +89702,10 @@ export class StoresApi {
     /**
      * 
      * @param storeId 
-     * @param configs 
+     * @param feeConfigUpdateRequest 
      * @param {*} [options] Override http request options.
      */
-    public putStoreDeliveryFeeConfig (storeId: number, configs: Array<StoreDeliveryZoneFeeConfig>, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public putStoreDeliveryFeeConfig (storeId: number, feeConfigUpdateRequest: StoreDeliveryZoneFeeConfigUpdateRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/feeConfig/deliveryZones'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -89692,9 +89717,9 @@ export class StoresApi {
             throw new Error('Required parameter storeId was null or undefined when calling putStoreDeliveryFeeConfig.');
         }
 
-        // verify required parameter 'configs' is not null or undefined
-        if (configs === null || configs === undefined) {
-            throw new Error('Required parameter configs was null or undefined when calling putStoreDeliveryFeeConfig.');
+        // verify required parameter 'feeConfigUpdateRequest' is not null or undefined
+        if (feeConfigUpdateRequest === null || feeConfigUpdateRequest === undefined) {
+            throw new Error('Required parameter feeConfigUpdateRequest was null or undefined when calling putStoreDeliveryFeeConfig.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -89708,7 +89733,7 @@ export class StoresApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(configs, "Array<StoreDeliveryZoneFeeConfig>")
+            body: ObjectSerializer.serialize(feeConfigUpdateRequest, "StoreDeliveryZoneFeeConfigUpdateRequest")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
