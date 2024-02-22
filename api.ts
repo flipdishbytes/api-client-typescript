@@ -57620,9 +57620,10 @@ export class AppStoreApi {
     /**
      * 
      * @param appStoreAppId 
+     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getAppStoreApp (appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreApp;  }> {
+    public getAppStoreApp (appStoreAppId: string, appId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreApp;  }> {
         const localVarPath = this.basePath + '/api/v1.0/appstore/apps/{appStoreAppId}'
             .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
         let localVarQueryParameters: any = {};
@@ -57632,6 +57633,10 @@ export class AppStoreApi {
         // verify required parameter 'appStoreAppId' is not null or undefined
         if (appStoreAppId === null || appStoreAppId === undefined) {
             throw new Error('Required parameter appStoreAppId was null or undefined when calling getAppStoreApp.');
+        }
+
+        if (appId !== undefined) {
+            localVarQueryParameters['appId'] = ObjectSerializer.serialize(appId, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
