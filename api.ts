@@ -492,17 +492,8 @@ export class AccountFieldsDefinitions {
     }
 }
 
-/**
-* Add subscription
-*/
 export class AddAppStoreSubscriptionRequest {
-    /**
-    * Store ids to update
-    */
     'StoreIds'?: Array<number>;
-    /**
-    * Email (for subscription setup) - optional, only required for admin access
-    */
     'SubscriptionAccountEmail'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -1811,101 +1802,29 @@ export class AppSalesforceReferences {
     }
 }
 
-/**
-* App store app
-*/
 export class AppStoreApp {
-    /**
-    * Unique App store app id
-    */
     'Id': string;
-    /**
-    * Application verification status
-    */
     'VerificationStatus': AppStoreApp.VerificationStatusEnum;
-    /**
-    * Logo
-    */
     'Logo'?: string;
-    /**
-    * OAuth App identifier
-    */
     'OAuthAppId': string;
-    /**
-    * Internal
-    */
     'Internal': boolean;
-    /**
-    * Details
-    */
     'Details': string;
-    /**
-    * Configuration type  <example>External link</example><example>Flipdish hosted</example>
-    */
     'ConfigurationType': AppStoreApp.ConfigurationTypeEnum;
-    /**
-    * Store selector type
-    */
     'StoreSelectorType': AppStoreApp.StoreSelectorTypeEnum;
-    /**
-    * Field groups
-    */
     'FieldGroups'?: Array<FieldGroup>;
-    /**
-    * Setup instructions
-    */
     'SetupInstructions'?: string;
-    /**
-    * External setup link
-    */
     'ExternalSetupLink'?: string;
-    /**
-    * Teammate app access level
-    */
     'TeammateAppAccessLevel'?: AppStoreApp.TeammateAppAccessLevelEnum;
-    /**
-    * Permissions type
-    */
     'PermissionsType': AppStoreApp.PermissionsTypeEnum;
-    /**
-    * Support information
-    */
     'Support'?: AppStoreAppSupportInfo;
-    /**
-    * Action URL for external functions, used for handling Portal configuration action buttons
-    */
     'ExternalFunctionActionUrl'?: string;
-    /**
-    * Signing key for external function action calls
-    */
     'ExternalFunctionSignatureKey'?: string;
-    /**
-    * Is Paid
-    */
     'IsPaid'?: boolean;
-    /**
-    * Name
-    */
     'Name': string;
-    /**
-    * Description
-    */
     'Description': string;
-    /**
-    * Is application enabled
-    */
     'IsEnabled'?: boolean;
-    /**
-    * Categories
-    */
     'Categories': Array<AppStoreApp.CategoriesEnum>;
-    /**
-    * Countries
-    */
     'Countries': Array<AppStoreApp.CountriesEnum>;
-    /**
-    * Developer Name
-    */
     'DeveloperName'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -2089,117 +2008,33 @@ export namespace AppStoreApp {
         NZ = <any> 'NZ'
     }
 }
-/**
-* App store app configurations
-*/
 export class AppStoreAppConfiguration {
-    /**
-    * Unique App store app configuration id
-    */
     'Id': string;
-    /**
-    * App id
-    */
     'AppId': string;
-    /**
-    * App store app id
-    */
     'AppStoreAppId': string;
-    /**
-    * Is enabled
-    */
     'IsEnabled': boolean;
-    /**
-    * Stores id's
-    */
     'StoreIds'?: Array<number>;
-    /**
-    * Settings
-    */
     'Settings'?: Array<Setting>;
-    /**
-    * Application verification status
-    */
     'VerificationStatus': AppStoreAppConfiguration.VerificationStatusEnum;
-    /**
-    * Logo
-    */
     'Logo'?: string;
-    /**
-    * OAuth App identifier
-    */
     'OAuthAppId': string;
-    /**
-    * Internal
-    */
     'Internal': boolean;
-    /**
-    * Details
-    */
     'Details': string;
-    /**
-    * Configuration type  <example>External link</example><example>Flipdish hosted</example>
-    */
     'ConfigurationType': AppStoreAppConfiguration.ConfigurationTypeEnum;
-    /**
-    * Store selector type
-    */
     'StoreSelectorType': AppStoreAppConfiguration.StoreSelectorTypeEnum;
-    /**
-    * Field groups
-    */
     'FieldGroups'?: Array<FieldGroup>;
-    /**
-    * Setup instructions
-    */
     'SetupInstructions'?: string;
-    /**
-    * External setup link
-    */
     'ExternalSetupLink'?: string;
-    /**
-    * Teammate app access level
-    */
     'TeammateAppAccessLevel'?: AppStoreAppConfiguration.TeammateAppAccessLevelEnum;
-    /**
-    * Permissions type
-    */
     'PermissionsType': AppStoreAppConfiguration.PermissionsTypeEnum;
-    /**
-    * Support information
-    */
     'Support'?: AppStoreAppSupportInfo;
-    /**
-    * Action URL for external functions, used for handling Portal configuration action buttons
-    */
     'ExternalFunctionActionUrl'?: string;
-    /**
-    * Signing key for external function action calls
-    */
     'ExternalFunctionSignatureKey'?: string;
-    /**
-    * Is Paid
-    */
     'IsPaid'?: boolean;
-    /**
-    * Name
-    */
     'Name': string;
-    /**
-    * Description
-    */
     'Description': string;
-    /**
-    * Categories
-    */
     'Categories': Array<AppStoreAppConfiguration.CategoriesEnum>;
-    /**
-    * Countries
-    */
     'Countries': Array<AppStoreAppConfiguration.CountriesEnum>;
-    /**
-    * Developer Name
-    */
     'DeveloperName'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -2403,57 +2238,18 @@ export namespace AppStoreAppConfiguration {
         NZ = <any> 'NZ'
     }
 }
-/**
-* App store app configuration summary information
-*/
 export class AppStoreAppConfigurationSummary {
-    /**
-    * Unique App store app configuration id
-    */
     'Id': string;
-    /**
-    * App Id
-    */
     'AppId': string;
-    /**
-    * Is enabled
-    */
     'IsEnabled': boolean;
-    /**
-    * List of stores
-    */
     'Stores': Array<ConfiguredStore>;
-    /**
-    * Configuration type
-    */
     'ConfigurationType': AppStoreAppConfigurationSummary.ConfigurationTypeEnum;
-    /**
-    * Store selector type
-    */
     'StoreSelectorType': AppStoreAppConfigurationSummary.StoreSelectorTypeEnum;
-    /**
-    * Internal
-    */
     'Internal': boolean;
-    /**
-    * Unique App store app id
-    */
     'AppStoreAppId': string;
-    /**
-    * Name of Appstore app
-    */
     'Name': string;
-    /**
-    * Description
-    */
     'Description': string;
-    /**
-    * Logo
-    */
     'Logo'?: string;
-    /**
-    * Developer name
-    */
     'DeveloperName'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -2536,21 +2332,9 @@ export namespace AppStoreAppConfigurationSummary {
         Multiple = <any> 'Multiple'
     }
 }
-/**
-* App store configurations for a given AppId
-*/
 export class AppStoreAppConfigurationsWithSubscriptions {
-    /**
-    * Subscription information for the AppId for the AppStoreApp
-    */
     'Subscription'?: AppStoreAppSubscriptionSummary;
-    /**
-    * Configurations for the AppId for the AppStoreApp
-    */
     'Configurations'?: Array<AppStoreAppConfigurationSummary>;
-    /**
-    * Prices
-    */
     'Prices'?: Array<SubscriptionProductPriceInfo>;
 
     static discriminator: string | undefined = undefined;
@@ -2577,13 +2361,7 @@ export class AppStoreAppConfigurationsWithSubscriptions {
     }
 }
 
-/**
-* Subscription account
-*/
 export class AppStoreAppSubscriptionAccount {
-    /**
-    * Email of the account user
-    */
     'Email'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -2600,25 +2378,10 @@ export class AppStoreAppSubscriptionAccount {
     }
 }
 
-/**
-* App store subscription information
-*/
 export class AppStoreAppSubscriptionSummary {
-    /**
-    * Total subscriptions (per the AppId subscription setup)
-    */
     'TotalSubscriptions'?: number;
-    /**
-    * Number of subscriptions configured and enabled
-    */
     'UsedSubscriptions'?: number;
-    /**
-    * Is client setup for subscriptions
-    */
     'SubscriptionAccountIsSetupForClient'?: boolean;
-    /**
-    * Available accounts for subscriptions (only if requesting user has enough permissions to see the list, otherwise empty list or null)
-    */
     'SubscriptionAccounts'?: Array<AppStoreAppSubscriptionAccount>;
 
     static discriminator: string | undefined = undefined;
@@ -2650,49 +2413,16 @@ export class AppStoreAppSubscriptionSummary {
     }
 }
 
-/**
-* App store app summary information
-*/
 export class AppStoreAppSummary {
-    /**
-    * Unique App store app id
-    */
     'Id': string;
-    /**
-    * Application verification status
-    */
     'VerificationStatus': AppStoreAppSummary.VerificationStatusEnum;
-    /**
-    * Logo
-    */
     'Logo'?: string;
-    /**
-    * Internal
-    */
     'Internal': boolean;
-    /**
-    * Name
-    */
     'Name': string;
-    /**
-    * Description
-    */
     'Description': string;
-    /**
-    * Is application enabled
-    */
     'IsEnabled'?: boolean;
-    /**
-    * Categories
-    */
     'Categories': Array<AppStoreAppSummary.CategoriesEnum>;
-    /**
-    * Countries
-    */
     'Countries': Array<AppStoreAppSummary.CountriesEnum>;
-    /**
-    * Developer Name
-    */
     'DeveloperName'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -2789,33 +2519,12 @@ export namespace AppStoreAppSummary {
         NZ = <any> 'NZ'
     }
 }
-/**
-* App store app support information
-*/
 export class AppStoreAppSupportInfo {
-    /**
-    * Privacy policy url
-    */
     'PrivacyPolicy'?: string;
-    /**
-    * Terms of use url
-    */
     'TermsOfUse'?: string;
-    /**
-    * Company website url
-    */
     'CompanyWebsite'?: string;
-    /**
-    * Learn more url
-    */
     'LearnMore'?: string;
-    /**
-    * Installation message
-    */
     'InstallationMessage'?: string;
-    /**
-    * Support email
-    */
     'SupportEmail'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -3115,21 +2824,9 @@ export class AppStoreConfigUpdatedEvent {
     }
 }
 
-/**
-* Subscription change job can be longer running, this contains job information
-*/
 export class AppStoreSubscriptionChangeJobStatusResponse {
-    /**
-    * Subscription change job id
-    */
     'SubscriptionChangeJobId'?: string;
-    /**
-    * Job Status
-    */
     'Status'?: AppStoreSubscriptionChangeJobStatusResponse.StatusEnum;
-    /**
-    * Error message (if any)
-    */
     'ErrorMessage'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -3250,33 +2947,12 @@ export class AppStoreSubscriptionChangeJobUpdatedEvent {
     }
 }
 
-/**
-* Subscription list item
-*/
 export class AppStoreSubscriptionItem {
-    /**
-    * ExternalSubscriptionId
-    */
     'ExternalSubscriptionId'?: string;
-    /**
-    * StoreIds
-    */
     'StoreIds'?: Array<number>;
-    /**
-    * UserId
-    */
     'UserId'?: number;
-    /**
-    * UserEmail
-    */
     'UserEmail'?: string;
-    /**
-    * Status
-    */
     'Status'?: string;
-    /**
-    * SubscriptionChangeJobId
-    */
     'SubscriptionChangeJobId'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -3318,13 +2994,7 @@ export class AppStoreSubscriptionItem {
     }
 }
 
-/**
-* Subscription change job can be longer running, this contains job information
-*/
 export class AppStoreSubscriptionJobResponse {
-    /**
-    * Subscription change job id
-    */
     'SubscriptionChangeJobId'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -6906,17 +6576,8 @@ export class ClientDeviceSummary {
     }
 }
 
-/**
-* Configured stores
-*/
 export class ConfiguredStore {
-    /**
-    * Store id
-    */
     'StoreId'?: number;
-    /**
-    * Name of store
-    */
     'Name'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -7193,81 +6854,24 @@ export class CreateAccountModel {
     }
 }
 
-/**
-* Create App store app
-*/
 export class CreateAppStoreApp {
-    /**
-    * Details
-    */
     'Details': string;
-    /**
-    * Configuration type  <example>External link</example><example>Flipdish hosted</example>
-    */
     'ConfigurationType': CreateAppStoreApp.ConfigurationTypeEnum;
-    /**
-    * Store selector type
-    */
     'StoreSelectorType': CreateAppStoreApp.StoreSelectorTypeEnum;
-    /**
-    * Field groups
-    */
     'FieldGroups'?: Array<FieldGroup>;
-    /**
-    * Setup instructions
-    */
     'SetupInstructions'?: string;
-    /**
-    * External setup link
-    */
     'ExternalSetupLink'?: string;
-    /**
-    * Teammate app access level
-    */
     'TeammateAppAccessLevel'?: CreateAppStoreApp.TeammateAppAccessLevelEnum;
-    /**
-    * Permissions type
-    */
     'PermissionsType': CreateAppStoreApp.PermissionsTypeEnum;
-    /**
-    * Support information
-    */
     'Support'?: AppStoreAppSupportInfo;
-    /**
-    * Action URL for external functions, used for handling Portal configuration action buttons
-    */
     'ExternalFunctionActionUrl'?: string;
-    /**
-    * Signing key for external function action calls
-    */
     'ExternalFunctionSignatureKey'?: string;
-    /**
-    * Is Paid
-    */
     'IsPaid'?: boolean;
-    /**
-    * Name
-    */
     'Name': string;
-    /**
-    * Description
-    */
     'Description': string;
-    /**
-    * Is application enabled
-    */
     'IsEnabled'?: boolean;
-    /**
-    * Categories
-    */
     'Categories': Array<CreateAppStoreApp.CategoriesEnum>;
-    /**
-    * Countries
-    */
     'Countries': Array<CreateAppStoreApp.CountriesEnum>;
-    /**
-    * Developer Name
-    */
     'DeveloperName'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -12891,17 +12495,8 @@ export class EventSearchResult {
     }
 }
 
-/**
-* Execute Configuration
-*/
 export class ExecuteConfigurationActionRequest {
-    /**
-    * Key - of field triggering the action
-    */
     'Key'?: string;
-    /**
-    * Action for element
-    */
     'Action'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -12923,25 +12518,10 @@ export class ExecuteConfigurationActionRequest {
     }
 }
 
-/**
-* Result of configuration action execution
-*/
 export class ExecuteConfigurationActionResult {
-    /**
-    * Error message to display to the user (if not empty)
-    */
     'ErrorMessage'?: string;
-    /**
-    * Information message to display to the user (if not empty)
-    */
     'InfoMessage'?: string;
-    /**
-    * Redirect user to URL (if not empty)
-    */
     'RedirectUrl'?: string;
-    /**
-    * Redirect target
-    */
     'RedirectTarget'?: ExecuteConfigurationActionResult.RedirectTargetEnum;
 
     static discriminator: string | undefined = undefined;
@@ -13355,49 +12935,16 @@ export class FeeSummary {
     }
 }
 
-/**
-* Field
-*/
 export class Field {
-    /**
-    * Name
-    */
     'Name': string;
-    /**
-    * Description
-    */
     'Description': string;
-    /**
-    * Key
-    */
     'Key': string;
-    /**
-    * Tooltip
-    */
     'Tooltip'?: string;
-    /**
-    * Position
-    */
     'Position': number;
-    /**
-    * Default Value
-    */
     'DefaultValue'?: string;
-    /**
-    * Valid Values  <remarks>Used typically for dropdown/select</remarks>
-    */
     'ValidValues'?: Array<ValidValue>;
-    /**
-    * Validation Regex
-    */
     'ValidationRegex'?: string;
-    /**
-    * Field Type
-    */
     'FieldType': Field.FieldTypeEnum;
-    /**
-    * Is this field only editable by Flipdish?
-    */
     'IsFlipdishRestricted'?: boolean;
 
     static discriminator: string | undefined = undefined;
@@ -13532,29 +13079,11 @@ export class FieldChangeInformation {
     }
 }
 
-/**
-* Field group
-*/
 export class FieldGroup {
-    /**
-    * Name
-    */
     'Name': string;
-    /**
-    * Description
-    */
     'Description'?: string;
-    /**
-    * Tooltip  <remarks>Displays on text hover</remarks>
-    */
     'Tooltip'?: string;
-    /**
-    * Position  <remarks>Position order in the field groups to display</remarks>
-    */
     'Position': number;
-    /**
-    * Fields
-    */
     'Fields'?: Array<Field>;
 
     static discriminator: string | undefined = undefined;
@@ -41546,17 +41075,8 @@ export class SetPasswordWithPinModel {
     }
 }
 
-/**
-* Setting
-*/
 export class Setting {
-    /**
-    * Key
-    */
     'Key'?: string;
-    /**
-    * Value
-    */
     'Value'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -48951,21 +48471,9 @@ export namespace SubscriptionProduct {
         Year = <any> 'year'
     }
 }
-/**
-* Price info
-*/
 export class SubscriptionProductPriceInfo {
-    /**
-    * Price amount
-    */
     'Amount'?: number;
-    /**
-    * Currency code
-    */
     'Currency'?: string;
-    /**
-    * Scope (eg. per store or per whitelabel)
-    */
     'Scope'?: SubscriptionProductPriceInfo.ScopeEnum;
 
     static discriminator: string | undefined = undefined;
@@ -50444,81 +49952,24 @@ export class UpcomingInvoice {
     }
 }
 
-/**
-* Update App store app
-*/
 export class UpdateAppStoreApp {
-    /**
-    * Details
-    */
     'Details': string;
-    /**
-    * Configuration type  <example>External link</example><example>Flipdish hosted</example>
-    */
     'ConfigurationType': UpdateAppStoreApp.ConfigurationTypeEnum;
-    /**
-    * Store selector type
-    */
     'StoreSelectorType': UpdateAppStoreApp.StoreSelectorTypeEnum;
-    /**
-    * Field groups
-    */
     'FieldGroups'?: Array<FieldGroup>;
-    /**
-    * Setup instructions
-    */
     'SetupInstructions'?: string;
-    /**
-    * External setup link
-    */
     'ExternalSetupLink'?: string;
-    /**
-    * Teammate app access level
-    */
     'TeammateAppAccessLevel'?: UpdateAppStoreApp.TeammateAppAccessLevelEnum;
-    /**
-    * Permissions type
-    */
     'PermissionsType': UpdateAppStoreApp.PermissionsTypeEnum;
-    /**
-    * Support information
-    */
     'Support'?: AppStoreAppSupportInfo;
-    /**
-    * Action URL for external functions, used for handling Portal configuration action buttons
-    */
     'ExternalFunctionActionUrl'?: string;
-    /**
-    * Signing key for external function action calls
-    */
     'ExternalFunctionSignatureKey'?: string;
-    /**
-    * Is Paid
-    */
     'IsPaid'?: boolean;
-    /**
-    * Name
-    */
     'Name': string;
-    /**
-    * Description
-    */
     'Description': string;
-    /**
-    * Is application enabled
-    */
     'IsEnabled'?: boolean;
-    /**
-    * Categories
-    */
     'Categories': Array<UpdateAppStoreApp.CategoriesEnum>;
-    /**
-    * Countries
-    */
     'Countries': Array<UpdateAppStoreApp.CountriesEnum>;
-    /**
-    * Developer Name
-    */
     'DeveloperName'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -50672,21 +50123,9 @@ export namespace UpdateAppStoreApp {
         NZ = <any> 'NZ'
     }
 }
-/**
-* Update App store app configuration
-*/
 export class UpdateAppStoreAppConfiguration {
-    /**
-    * Is enabled
-    */
     'IsEnabled': boolean;
-    /**
-    * Stores id's
-    */
     'StoreIds'?: Array<number>;
-    /**
-    * Settings
-    */
     'Settings'?: Array<Setting>;
 
     static discriminator: string | undefined = undefined;
@@ -50713,13 +50152,7 @@ export class UpdateAppStoreAppConfiguration {
     }
 }
 
-/**
-* Update configuration values for the specified settings only
-*/
 export class UpdateAppStoreAppConfigurationValuesBatch {
-    /**
-    * Settings to update
-    */
     'Settings'?: Array<Setting>;
 
     static discriminator: string | undefined = undefined;
@@ -50736,25 +50169,10 @@ export class UpdateAppStoreAppConfigurationValuesBatch {
     }
 }
 
-/**
-* App store app configuration webhook event
-*/
 export class UpdateAppStoreAppConfigurationWebhookDTO {
-    /**
-    * Unique App store app configuration id
-    */
     'Id': string;
-    /**
-    * Is enabled
-    */
     'IsEnabled': boolean;
-    /**
-    * Store id's
-    */
     'StoreIds'?: Array<number>;
-    /**
-    * Settings
-    */
     'Settings'?: Array<Setting>;
 
     static discriminator: string | undefined = undefined;
@@ -50786,13 +50204,7 @@ export class UpdateAppStoreAppConfigurationWebhookDTO {
     }
 }
 
-/**
-* Update App store app external product id
-*/
 export class UpdateAppStoreAppExternalProduct {
-    /**
-    * The external product id
-    */
     'ExternalProductId'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -50809,13 +50221,7 @@ export class UpdateAppStoreAppExternalProduct {
     }
 }
 
-/**
-* Update subscription
-*/
 export class UpdateAppStoreSubscriptionRequest {
-    /**
-    * Store ids to update
-    */
     'StoreIds'?: Array<number>;
 
     static discriminator: string | undefined = undefined;
@@ -52451,17 +51857,8 @@ export class UserUpdatedEvent {
     }
 }
 
-/**
-* Valid Value
-*/
 export class ValidValue {
-    /**
-    * Code
-    */
     'Code': string;
-    /**
-    * Name
-    */
     'Name': string;
 
     static discriminator: string | undefined = undefined;
