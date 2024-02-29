@@ -8686,6 +8686,14 @@ export class CreateVoucher {
     * Limit the channels this voucher can be used on
     */
     'ChannelRestrictions'?: Array<CreateVoucher.ChannelRestrictionsEnum>;
+    /**
+    * Voucher Subtype
+    */
+    'VoucherSubType'?: CreateVoucher.VoucherSubTypeEnum;
+    /**
+    * Customer UserID
+    */
+    'CustomerId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -8804,6 +8812,16 @@ export class CreateVoucher {
             "name": "ChannelRestrictions",
             "baseName": "ChannelRestrictions",
             "type": "Array<CreateVoucher.ChannelRestrictionsEnum>"
+        },
+        {
+            "name": "VoucherSubType",
+            "baseName": "VoucherSubType",
+            "type": "CreateVoucher.VoucherSubTypeEnum"
+        },
+        {
+            "name": "CustomerId",
+            "baseName": "CustomerId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -8825,6 +8843,15 @@ export namespace CreateVoucher {
         Kiosk = <any> 'Kiosk',
         Pos = <any> 'Pos',
         Google = <any> 'Google'
+    }
+    export enum VoucherSubTypeEnum {
+        None = <any> 'None',
+        SignUp = <any> 'SignUp',
+        Loyalty = <any> 'Loyalty',
+        Loyalty25 = <any> 'Loyalty25',
+        Retention = <any> 'Retention',
+        SecondaryRetention = <any> 'SecondaryRetention',
+        Custom = <any> 'Custom'
     }
 }
 /**
@@ -51125,6 +51152,14 @@ export class UpdateVoucher {
     * Limit the channels this voucher can be used on
     */
     'ChannelRestrictions'?: Array<UpdateVoucher.ChannelRestrictionsEnum>;
+    /**
+    * Voucher Subtype
+    */
+    'VoucherSubType'?: UpdateVoucher.VoucherSubTypeEnum;
+    /**
+    * Customer UserID
+    */
+    'CustomerId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -51233,6 +51268,16 @@ export class UpdateVoucher {
             "name": "ChannelRestrictions",
             "baseName": "ChannelRestrictions",
             "type": "Array<UpdateVoucher.ChannelRestrictionsEnum>"
+        },
+        {
+            "name": "VoucherSubType",
+            "baseName": "VoucherSubType",
+            "type": "UpdateVoucher.VoucherSubTypeEnum"
+        },
+        {
+            "name": "CustomerId",
+            "baseName": "CustomerId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -51248,6 +51293,15 @@ export namespace UpdateVoucher {
         Kiosk = <any> 'Kiosk',
         Pos = <any> 'Pos',
         Google = <any> 'Google'
+    }
+    export enum VoucherSubTypeEnum {
+        None = <any> 'None',
+        SignUp = <any> 'SignUp',
+        Loyalty = <any> 'Loyalty',
+        Loyalty25 = <any> 'Loyalty25',
+        Retention = <any> 'Retention',
+        SecondaryRetention = <any> 'SecondaryRetention',
+        Custom = <any> 'Custom'
     }
 }
 /**
@@ -51929,10 +51983,6 @@ export class Voucher {
     */
     'VoucherType'?: Voucher.VoucherTypeEnum;
     /**
-    * Voucher Sub Type
-    */
-    'VoucherSubType'?: Voucher.VoucherSubTypeEnum;
-    /**
     * Currency of the voucher
     */
     'Currency'?: Voucher.CurrencyEnum;
@@ -52028,6 +52078,14 @@ export class Voucher {
     * Limit the channels this voucher can be used on
     */
     'ChannelRestrictions'?: Array<Voucher.ChannelRestrictionsEnum>;
+    /**
+    * Voucher Subtype
+    */
+    'VoucherSubType'?: Voucher.VoucherSubTypeEnum;
+    /**
+    * Customer UserID
+    */
+    'CustomerId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -52046,11 +52104,6 @@ export class Voucher {
             "name": "VoucherType",
             "baseName": "VoucherType",
             "type": "Voucher.VoucherTypeEnum"
-        },
-        {
-            "name": "VoucherSubType",
-            "baseName": "VoucherSubType",
-            "type": "Voucher.VoucherSubTypeEnum"
         },
         {
             "name": "Currency",
@@ -52171,6 +52224,16 @@ export class Voucher {
             "name": "ChannelRestrictions",
             "baseName": "ChannelRestrictions",
             "type": "Array<Voucher.ChannelRestrictionsEnum>"
+        },
+        {
+            "name": "VoucherSubType",
+            "baseName": "VoucherSubType",
+            "type": "Voucher.VoucherSubTypeEnum"
+        },
+        {
+            "name": "CustomerId",
+            "baseName": "CustomerId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -52191,15 +52254,6 @@ export namespace Voucher {
         LumpDiscount = <any> 'LumpDiscount',
         AddItem = <any> 'AddItem',
         CreditNote = <any> 'CreditNote'
-    }
-    export enum VoucherSubTypeEnum {
-        None = <any> 'None',
-        SignUp = <any> 'SignUp',
-        Loyalty = <any> 'Loyalty',
-        Loyalty25 = <any> 'Loyalty25',
-        Retention = <any> 'Retention',
-        SecondaryRetention = <any> 'SecondaryRetention',
-        Custom = <any> 'Custom'
     }
     export enum CurrencyEnum {
         EUR = <any> 'EUR',
@@ -52323,6 +52377,15 @@ export namespace Voucher {
         Kiosk = <any> 'Kiosk',
         Pos = <any> 'Pos',
         Google = <any> 'Google'
+    }
+    export enum VoucherSubTypeEnum {
+        None = <any> 'None',
+        SignUp = <any> 'SignUp',
+        Loyalty = <any> 'Loyalty',
+        Loyalty25 = <any> 'Loyalty25',
+        Retention = <any> 'Retention',
+        SecondaryRetention = <any> 'SecondaryRetention',
+        Custom = <any> 'Custom'
     }
 }
 /**
@@ -52816,10 +52879,6 @@ export class VoucherWithStats {
     */
     'VoucherType'?: VoucherWithStats.VoucherTypeEnum;
     /**
-    * Voucher Sub Type
-    */
-    'VoucherSubType'?: VoucherWithStats.VoucherSubTypeEnum;
-    /**
     * Currency of the voucher
     */
     'Currency'?: VoucherWithStats.CurrencyEnum;
@@ -52915,6 +52974,14 @@ export class VoucherWithStats {
     * Limit the channels this voucher can be used on
     */
     'ChannelRestrictions'?: Array<VoucherWithStats.ChannelRestrictionsEnum>;
+    /**
+    * Voucher Subtype
+    */
+    'VoucherSubType'?: VoucherWithStats.VoucherSubTypeEnum;
+    /**
+    * Customer UserID
+    */
+    'CustomerId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -52958,11 +53025,6 @@ export class VoucherWithStats {
             "name": "VoucherType",
             "baseName": "VoucherType",
             "type": "VoucherWithStats.VoucherTypeEnum"
-        },
-        {
-            "name": "VoucherSubType",
-            "baseName": "VoucherSubType",
-            "type": "VoucherWithStats.VoucherSubTypeEnum"
         },
         {
             "name": "Currency",
@@ -53083,6 +53145,16 @@ export class VoucherWithStats {
             "name": "ChannelRestrictions",
             "baseName": "ChannelRestrictions",
             "type": "Array<VoucherWithStats.ChannelRestrictionsEnum>"
+        },
+        {
+            "name": "VoucherSubType",
+            "baseName": "VoucherSubType",
+            "type": "VoucherWithStats.VoucherSubTypeEnum"
+        },
+        {
+            "name": "CustomerId",
+            "baseName": "CustomerId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -53103,15 +53175,6 @@ export namespace VoucherWithStats {
         LumpDiscount = <any> 'LumpDiscount',
         AddItem = <any> 'AddItem',
         CreditNote = <any> 'CreditNote'
-    }
-    export enum VoucherSubTypeEnum {
-        None = <any> 'None',
-        SignUp = <any> 'SignUp',
-        Loyalty = <any> 'Loyalty',
-        Loyalty25 = <any> 'Loyalty25',
-        Retention = <any> 'Retention',
-        SecondaryRetention = <any> 'SecondaryRetention',
-        Custom = <any> 'Custom'
     }
     export enum CurrencyEnum {
         EUR = <any> 'EUR',
@@ -53235,6 +53298,15 @@ export namespace VoucherWithStats {
         Kiosk = <any> 'Kiosk',
         Pos = <any> 'Pos',
         Google = <any> 'Google'
+    }
+    export enum VoucherSubTypeEnum {
+        None = <any> 'None',
+        SignUp = <any> 'SignUp',
+        Loyalty = <any> 'Loyalty',
+        Loyalty25 = <any> 'Loyalty25',
+        Retention = <any> 'Retention',
+        SecondaryRetention = <any> 'SecondaryRetention',
+        Custom = <any> 'Custom'
     }
 }
 /**
@@ -54178,6 +54250,7 @@ let enumsMap: {[index: string]: any} = {
         "CreateTeammate.AppAccessLevelEnum": CreateTeammate.AppAccessLevelEnum,
         "CreateVoucher.VoucherTypeEnum": CreateVoucher.VoucherTypeEnum,
         "CreateVoucher.ChannelRestrictionsEnum": CreateVoucher.ChannelRestrictionsEnum,
+        "CreateVoucher.VoucherSubTypeEnum": CreateVoucher.VoucherSubTypeEnum,
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
         "CustomerCreateModel.AppTypeEnum": CustomerCreateModel.AppTypeEnum,
         "CustomerDeliveryTrackingOrder.CurrencyEnum": CustomerDeliveryTrackingOrder.CurrencyEnum,
@@ -54351,19 +54424,20 @@ let enumsMap: {[index: string]: any} = {
         "UpdateMobileAppsSubmissionStatus.UpdateStatusEnum": UpdateMobileAppsSubmissionStatus.UpdateStatusEnum,
         "UpdateProductReference.ProductTypeEnum": UpdateProductReference.ProductTypeEnum,
         "UpdateVoucher.ChannelRestrictionsEnum": UpdateVoucher.ChannelRestrictionsEnum,
+        "UpdateVoucher.VoucherSubTypeEnum": UpdateVoucher.VoucherSubTypeEnum,
         "Voucher.StatusEnum": Voucher.StatusEnum,
         "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
-        "Voucher.VoucherSubTypeEnum": Voucher.VoucherSubTypeEnum,
         "Voucher.CurrencyEnum": Voucher.CurrencyEnum,
         "Voucher.ChannelRestrictionsEnum": Voucher.ChannelRestrictionsEnum,
+        "Voucher.VoucherSubTypeEnum": Voucher.VoucherSubTypeEnum,
         "VoucherSummary.StatusEnum": VoucherSummary.StatusEnum,
         "VoucherSummary.VoucherTypeEnum": VoucherSummary.VoucherTypeEnum,
         "VoucherSummary.VoucherSubTypeEnum": VoucherSummary.VoucherSubTypeEnum,
         "VoucherWithStats.StatusEnum": VoucherWithStats.StatusEnum,
         "VoucherWithStats.VoucherTypeEnum": VoucherWithStats.VoucherTypeEnum,
-        "VoucherWithStats.VoucherSubTypeEnum": VoucherWithStats.VoucherSubTypeEnum,
         "VoucherWithStats.CurrencyEnum": VoucherWithStats.CurrencyEnum,
         "VoucherWithStats.ChannelRestrictionsEnum": VoucherWithStats.ChannelRestrictionsEnum,
+        "VoucherWithStats.VoucherSubTypeEnum": VoucherWithStats.VoucherSubTypeEnum,
         "WebsiteImage.ImageLocationEnum": WebsiteImage.ImageLocationEnum,
 }
 
