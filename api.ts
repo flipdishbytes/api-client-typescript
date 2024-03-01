@@ -47560,6 +47560,10 @@ export class StripeConnectedAccount {
     * Current status of the account
     */
     'AccountStatus'?: StripeConnectedAccount.AccountStatusEnum;
+    /**
+    * Payouts Enabled status
+    */
+    'PayoutsEnabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -47593,6 +47597,11 @@ export class StripeConnectedAccount {
             "name": "AccountStatus",
             "baseName": "AccountStatus",
             "type": "StripeConnectedAccount.AccountStatusEnum"
+        },
+        {
+            "name": "PayoutsEnabled",
+            "baseName": "PayoutsEnabled",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -47644,6 +47653,10 @@ export class StripeConnectedAccountInfo {
     */
     'PayoutScheduleInterval'?: StripeConnectedAccountInfo.PayoutScheduleIntervalEnum;
     /**
+    * Payouts Enabled status
+    */
+    'PayoutsEnabled'?: boolean;
+    /**
     * Flag indicating if payouts are paused
     */
     'PayoutsPaused'?: boolean;
@@ -47670,6 +47683,11 @@ export class StripeConnectedAccountInfo {
             "name": "PayoutScheduleInterval",
             "baseName": "PayoutScheduleInterval",
             "type": "StripeConnectedAccountInfo.PayoutScheduleIntervalEnum"
+        },
+        {
+            "name": "PayoutsEnabled",
+            "baseName": "PayoutsEnabled",
+            "type": "boolean"
         },
         {
             "name": "PayoutsPaused",
