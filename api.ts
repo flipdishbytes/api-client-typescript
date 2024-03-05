@@ -14280,6 +14280,29 @@ export class GroupedCoordinates {
 }
 
 /**
+* Has Payment Method Response
+*/
+export class HasPaymentMethodResponse {
+    /**
+    * Has Payment Method
+    */
+    'HasPaymentMethod': boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "HasPaymentMethod",
+            "baseName": "HasPaymentMethod",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HasPaymentMethodResponse.attributeTypeMap;
+    }
+}
+
+/**
 * 
 */
 export class HomeAction {
@@ -38025,6 +38048,29 @@ export class RestApiResultGroup {
 /**
 * Rest api result
 */
+export class RestApiResultHasPaymentMethodResponse {
+    /**
+    * Generic data object.
+    */
+    'Data': HasPaymentMethodResponse;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "HasPaymentMethodResponse"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultHasPaymentMethodResponse.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultHomeStatistics {
     /**
     * Generic data object.
@@ -54641,6 +54687,7 @@ let typeMap: {[index: string]: any} = {
     "Group": Group,
     "GroupReference": GroupReference,
     "GroupedCoordinates": GroupedCoordinates,
+    "HasPaymentMethodResponse": HasPaymentMethodResponse,
     "HomeAction": HomeAction,
     "HomeStatistics": HomeStatistics,
     "HttpPostedFileBase": HttpPostedFileBase,
@@ -55005,6 +55052,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultExecuteConfigurationActionResult": RestApiResultExecuteConfigurationActionResult,
     "RestApiResultFulfillmentStatesConfiguration": RestApiResultFulfillmentStatesConfiguration,
     "RestApiResultGroup": RestApiResultGroup,
+    "RestApiResultHasPaymentMethodResponse": RestApiResultHasPaymentMethodResponse,
     "RestApiResultHomeStatistics": RestApiResultHomeStatistics,
     "RestApiResultHydraConfig": RestApiResultHydraConfig,
     "RestApiResultHydraDeviceDetails": RestApiResultHydraDeviceDetails,
@@ -91191,6 +91239,67 @@ export class SubscriptionsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultSubscriptionSummary");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param email 
+     * @param {*} [options] Override http request options.
+     */
+    public hasCustomerGotPaymentMethodOnFile (appId: string, email?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHasPaymentMethodResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/subscriptions/hasPaymentMethod'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling hasCustomerGotPaymentMethodOnFile.');
+        }
+
+        if (email !== undefined) {
+            localVarQueryParameters['email'] = ObjectSerializer.serialize(email, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHasPaymentMethodResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultHasPaymentMethodResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
