@@ -31340,6 +31340,681 @@ export namespace PayoutRefund {
         Online = <any> 'Online'
     }
 }
+export class PayoutReport3Details {
+    'Amount'?: number;
+    'Summary'?: PayoutReport3DetailsSummary;
+    'Revenue'?: PayoutReport3DetailsRevenue;
+    'FlipdishFees'?: PayoutReport3DetailsFlipdishFees;
+    'Adjustments'?: PayoutReport3DetailsAdjustments;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Amount",
+            "baseName": "Amount",
+            "type": "number"
+        },
+        {
+            "name": "Summary",
+            "baseName": "Summary",
+            "type": "PayoutReport3DetailsSummary"
+        },
+        {
+            "name": "Revenue",
+            "baseName": "Revenue",
+            "type": "PayoutReport3DetailsRevenue"
+        },
+        {
+            "name": "FlipdishFees",
+            "baseName": "FlipdishFees",
+            "type": "PayoutReport3DetailsFlipdishFees"
+        },
+        {
+            "name": "Adjustments",
+            "baseName": "Adjustments",
+            "type": "PayoutReport3DetailsAdjustments"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutReport3Details.attributeTypeMap;
+    }
+}
+
+export class PayoutReport3DetailsAdjustments {
+    'OpeningBalance'?: number;
+    'RefundsOnCardOrders'?: number;
+    'RefundsOnCashOrders'?: number;
+    'CashCustomerFees'?: number;
+    'Chargebacks'?: number;
+    'OtherTransactions'?: number;
+    'ClosingBalance'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OpeningBalance",
+            "baseName": "OpeningBalance",
+            "type": "number"
+        },
+        {
+            "name": "RefundsOnCardOrders",
+            "baseName": "RefundsOnCardOrders",
+            "type": "number"
+        },
+        {
+            "name": "RefundsOnCashOrders",
+            "baseName": "RefundsOnCashOrders",
+            "type": "number"
+        },
+        {
+            "name": "CashCustomerFees",
+            "baseName": "CashCustomerFees",
+            "type": "number"
+        },
+        {
+            "name": "Chargebacks",
+            "baseName": "Chargebacks",
+            "type": "number"
+        },
+        {
+            "name": "OtherTransactions",
+            "baseName": "OtherTransactions",
+            "type": "number"
+        },
+        {
+            "name": "ClosingBalance",
+            "baseName": "ClosingBalance",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutReport3DetailsAdjustments.attributeTypeMap;
+    }
+}
+
+export class PayoutReport3DetailsFlipdishFees {
+    'WebAndAppCash'?: number;
+    'WebAndAppCard'?: number;
+    'KioskCash'?: number;
+    'KioskCard'?: number;
+    'QropCash'?: number;
+    'QropCard'?: number;
+    'PosCard'?: number;
+    'PosCardOnFlipdishOrders'?: number;
+    'OtherIntegrationFees'?: number;
+    'Vat'?: number;
+    'Total'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "WebAndAppCash",
+            "baseName": "WebAndAppCash",
+            "type": "number"
+        },
+        {
+            "name": "WebAndAppCard",
+            "baseName": "WebAndAppCard",
+            "type": "number"
+        },
+        {
+            "name": "KioskCash",
+            "baseName": "KioskCash",
+            "type": "number"
+        },
+        {
+            "name": "KioskCard",
+            "baseName": "KioskCard",
+            "type": "number"
+        },
+        {
+            "name": "QropCash",
+            "baseName": "QropCash",
+            "type": "number"
+        },
+        {
+            "name": "QropCard",
+            "baseName": "QropCard",
+            "type": "number"
+        },
+        {
+            "name": "PosCard",
+            "baseName": "PosCard",
+            "type": "number"
+        },
+        {
+            "name": "PosCardOnFlipdishOrders",
+            "baseName": "PosCardOnFlipdishOrders",
+            "type": "number"
+        },
+        {
+            "name": "OtherIntegrationFees",
+            "baseName": "OtherIntegrationFees",
+            "type": "number"
+        },
+        {
+            "name": "Vat",
+            "baseName": "Vat",
+            "type": "number"
+        },
+        {
+            "name": "Total",
+            "baseName": "Total",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutReport3DetailsFlipdishFees.attributeTypeMap;
+    }
+}
+
+export class PayoutReport3DetailsRevenue {
+    'GrossSales'?: PayoutReport3DetailsSalesLine;
+    'DeliveryCharges'?: PayoutReport3DetailsSalesLine;
+    'OtherCharges'?: PayoutReport3DetailsSalesLine;
+    'Tips'?: PayoutReport3DetailsSalesLine;
+    'TotalNetSales'?: PayoutReport3DetailsSalesLine;
+    'TotalRevenue'?: PayoutReport3DetailsSalesLine;
+    'RevenueForFeeCalculations'?: PayoutReport3DetailsSalesLine;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "GrossSales",
+            "baseName": "GrossSales",
+            "type": "PayoutReport3DetailsSalesLine"
+        },
+        {
+            "name": "DeliveryCharges",
+            "baseName": "DeliveryCharges",
+            "type": "PayoutReport3DetailsSalesLine"
+        },
+        {
+            "name": "OtherCharges",
+            "baseName": "OtherCharges",
+            "type": "PayoutReport3DetailsSalesLine"
+        },
+        {
+            "name": "Tips",
+            "baseName": "Tips",
+            "type": "PayoutReport3DetailsSalesLine"
+        },
+        {
+            "name": "TotalNetSales",
+            "baseName": "TotalNetSales",
+            "type": "PayoutReport3DetailsSalesLine"
+        },
+        {
+            "name": "TotalRevenue",
+            "baseName": "TotalRevenue",
+            "type": "PayoutReport3DetailsSalesLine"
+        },
+        {
+            "name": "RevenueForFeeCalculations",
+            "baseName": "RevenueForFeeCalculations",
+            "type": "PayoutReport3DetailsSalesLine"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutReport3DetailsRevenue.attributeTypeMap;
+    }
+}
+
+export class PayoutReport3DetailsSalesLine {
+    'Online'?: number;
+    'Pos'?: number;
+    'Other'?: number;
+    'Total'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Online",
+            "baseName": "Online",
+            "type": "number"
+        },
+        {
+            "name": "Pos",
+            "baseName": "Pos",
+            "type": "number"
+        },
+        {
+            "name": "Other",
+            "baseName": "Other",
+            "type": "number"
+        },
+        {
+            "name": "Total",
+            "baseName": "Total",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutReport3DetailsSalesLine.attributeTypeMap;
+    }
+}
+
+export class PayoutReport3DetailsSummary {
+    'Revenue'?: number;
+    'RevenueForFeeCalculations'?: number;
+    'FlipdishFees'?: number;
+    'Adjustments'?: number;
+    'Total'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Revenue",
+            "baseName": "Revenue",
+            "type": "number"
+        },
+        {
+            "name": "RevenueForFeeCalculations",
+            "baseName": "RevenueForFeeCalculations",
+            "type": "number"
+        },
+        {
+            "name": "FlipdishFees",
+            "baseName": "FlipdishFees",
+            "type": "number"
+        },
+        {
+            "name": "Adjustments",
+            "baseName": "Adjustments",
+            "type": "number"
+        },
+        {
+            "name": "Total",
+            "baseName": "Total",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutReport3DetailsSummary.attributeTypeMap;
+    }
+}
+
+export class PayoutReport3Overview {
+    'PayoutReport3OverviewHeader'?: PayoutReport3OverviewHeader;
+    'PayoutStores'?: Array<PayoutReport3Store>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PayoutReport3OverviewHeader",
+            "baseName": "PayoutReport3OverviewHeader",
+            "type": "PayoutReport3OverviewHeader"
+        },
+        {
+            "name": "PayoutStores",
+            "baseName": "PayoutStores",
+            "type": "Array<PayoutReport3Store>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutReport3Overview.attributeTypeMap;
+    }
+}
+
+export class PayoutReport3OverviewHeader {
+    'PayoutId'?: number;
+    'BankAccountId'?: number;
+    'AccountName'?: string;
+    'PayoutStatus'?: string;
+    'CreatedDate'?: Date;
+    'PeriodStartTime'?: Date;
+    'PeriodEndTime'?: Date;
+    'DestinationBank'?: string;
+    'DestinationAccount'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PayoutId",
+            "baseName": "PayoutId",
+            "type": "number"
+        },
+        {
+            "name": "BankAccountId",
+            "baseName": "BankAccountId",
+            "type": "number"
+        },
+        {
+            "name": "AccountName",
+            "baseName": "AccountName",
+            "type": "string"
+        },
+        {
+            "name": "PayoutStatus",
+            "baseName": "PayoutStatus",
+            "type": "string"
+        },
+        {
+            "name": "CreatedDate",
+            "baseName": "CreatedDate",
+            "type": "Date"
+        },
+        {
+            "name": "PeriodStartTime",
+            "baseName": "PeriodStartTime",
+            "type": "Date"
+        },
+        {
+            "name": "PeriodEndTime",
+            "baseName": "PeriodEndTime",
+            "type": "Date"
+        },
+        {
+            "name": "DestinationBank",
+            "baseName": "DestinationBank",
+            "type": "string"
+        },
+        {
+            "name": "DestinationAccount",
+            "baseName": "DestinationAccount",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutReport3OverviewHeader.attributeTypeMap;
+    }
+}
+
+export class PayoutReport3PayoutOrder {
+    'OrderId'?: number;
+    'PayoutId'?: number;
+    'OrderDate'?: Date;
+    'OrderType'?: PayoutReport3PayoutOrder.OrderTypeEnum;
+    'OrderCurrency'?: PayoutReport3PayoutOrder.OrderCurrencyEnum;
+    'Sales'?: number;
+    'SalesTax'?: number;
+    'DeliveryCharges'?: number;
+    'Tips'?: number;
+    'Voucher'?: number;
+    'FlatFeeExcludingVat'?: number;
+    'FlatFeeExcludingVAT'?: number;
+    'FlatFeeIncludingVat'?: number;
+    'PercentageFeeExcludingVat'?: number;
+    'PercentageFeeExcludingVAT'?: number;
+    'Vat'?: number;
+    'TotalFees'?: number;
+    'CashFeeChargedToCustomer'?: number;
+    'NetSales'?: number;
+    'StoreId'?: number;
+    'ServiceChargeAmount'?: number;
+    'ServiceChargePercentage'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrderId",
+            "baseName": "OrderId",
+            "type": "number"
+        },
+        {
+            "name": "PayoutId",
+            "baseName": "PayoutId",
+            "type": "number"
+        },
+        {
+            "name": "OrderDate",
+            "baseName": "OrderDate",
+            "type": "Date"
+        },
+        {
+            "name": "OrderType",
+            "baseName": "OrderType",
+            "type": "PayoutReport3PayoutOrder.OrderTypeEnum"
+        },
+        {
+            "name": "OrderCurrency",
+            "baseName": "OrderCurrency",
+            "type": "PayoutReport3PayoutOrder.OrderCurrencyEnum"
+        },
+        {
+            "name": "Sales",
+            "baseName": "Sales",
+            "type": "number"
+        },
+        {
+            "name": "SalesTax",
+            "baseName": "SalesTax",
+            "type": "number"
+        },
+        {
+            "name": "DeliveryCharges",
+            "baseName": "DeliveryCharges",
+            "type": "number"
+        },
+        {
+            "name": "Tips",
+            "baseName": "Tips",
+            "type": "number"
+        },
+        {
+            "name": "Voucher",
+            "baseName": "Voucher",
+            "type": "number"
+        },
+        {
+            "name": "FlatFeeExcludingVat",
+            "baseName": "FlatFeeExcludingVat",
+            "type": "number"
+        },
+        {
+            "name": "FlatFeeExcludingVAT",
+            "baseName": "FlatFeeExcludingVAT",
+            "type": "number"
+        },
+        {
+            "name": "FlatFeeIncludingVat",
+            "baseName": "FlatFeeIncludingVat",
+            "type": "number"
+        },
+        {
+            "name": "PercentageFeeExcludingVat",
+            "baseName": "PercentageFeeExcludingVat",
+            "type": "number"
+        },
+        {
+            "name": "PercentageFeeExcludingVAT",
+            "baseName": "PercentageFeeExcludingVAT",
+            "type": "number"
+        },
+        {
+            "name": "Vat",
+            "baseName": "Vat",
+            "type": "number"
+        },
+        {
+            "name": "TotalFees",
+            "baseName": "TotalFees",
+            "type": "number"
+        },
+        {
+            "name": "CashFeeChargedToCustomer",
+            "baseName": "CashFeeChargedToCustomer",
+            "type": "number"
+        },
+        {
+            "name": "NetSales",
+            "baseName": "NetSales",
+            "type": "number"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "ServiceChargeAmount",
+            "baseName": "ServiceChargeAmount",
+            "type": "number"
+        },
+        {
+            "name": "ServiceChargePercentage",
+            "baseName": "ServiceChargePercentage",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutReport3PayoutOrder.attributeTypeMap;
+    }
+}
+
+export namespace PayoutReport3PayoutOrder {
+    export enum OrderTypeEnum {
+        Cash = <any> 'Cash',
+        Online = <any> 'Online'
+    }
+    export enum OrderCurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD',
+        BMD = <any> 'BMD'
+    }
+}
+export class PayoutReport3Store {
+    'StoreId'?: number;
+    'StoreName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreName",
+            "baseName": "StoreName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutReport3Store.attributeTypeMap;
+    }
+}
+
 /**
 * Payout Request ids for filtering on Payouts
 */
@@ -36666,6 +37341,56 @@ export class RestApiPaginationResultPayoutRefund {
 /**
 * Rest api pagination result
 */
+export class RestApiPaginationResultPayoutReport3PayoutOrder {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<PayoutReport3PayoutOrder>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<PayoutReport3PayoutOrder>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultPayoutReport3PayoutOrder.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultPendingMenuChanges {
     /**
     * Current page index
@@ -39169,6 +39894,52 @@ export class RestApiResultPaymentTerminalTransactionDetails {
 
     static getAttributeTypeMap() {
         return RestApiResultPaymentTerminalTransactionDetails.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultPayoutReport3Details {
+    /**
+    * Generic data object.
+    */
+    'Data': PayoutReport3Details;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "PayoutReport3Details"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultPayoutReport3Details.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultPayoutReport3Overview {
+    /**
+    * Generic data object.
+    */
+    'Data': PayoutReport3Overview;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "PayoutReport3Overview"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultPayoutReport3Overview.attributeTypeMap;
     }
 }
 
@@ -54423,6 +55194,8 @@ let enumsMap: {[index: string]: any} = {
         "PayoutOtherCharge.ChargeTypeEnum": PayoutOtherCharge.ChargeTypeEnum,
         "PayoutRefund.OrderCurrencyEnum": PayoutRefund.OrderCurrencyEnum,
         "PayoutRefund.OrderTypeEnum": PayoutRefund.OrderTypeEnum,
+        "PayoutReport3PayoutOrder.OrderTypeEnum": PayoutReport3PayoutOrder.OrderTypeEnum,
+        "PayoutReport3PayoutOrder.OrderCurrencyEnum": PayoutReport3PayoutOrder.OrderCurrencyEnum,
         "PayoutRequestIds.StatesEnum": PayoutRequestIds.StatesEnum,
         "PayoutSummary.PayoutStatusEnum": PayoutSummary.PayoutStatusEnum,
         "PayoutSummary.CurrencyEnum": PayoutSummary.CurrencyEnum,
@@ -54881,6 +55654,16 @@ let typeMap: {[index: string]: any} = {
     "PayoutOrder": PayoutOrder,
     "PayoutOtherCharge": PayoutOtherCharge,
     "PayoutRefund": PayoutRefund,
+    "PayoutReport3Details": PayoutReport3Details,
+    "PayoutReport3DetailsAdjustments": PayoutReport3DetailsAdjustments,
+    "PayoutReport3DetailsFlipdishFees": PayoutReport3DetailsFlipdishFees,
+    "PayoutReport3DetailsRevenue": PayoutReport3DetailsRevenue,
+    "PayoutReport3DetailsSalesLine": PayoutReport3DetailsSalesLine,
+    "PayoutReport3DetailsSummary": PayoutReport3DetailsSummary,
+    "PayoutReport3Overview": PayoutReport3Overview,
+    "PayoutReport3OverviewHeader": PayoutReport3OverviewHeader,
+    "PayoutReport3PayoutOrder": PayoutReport3PayoutOrder,
+    "PayoutReport3Store": PayoutReport3Store,
     "PayoutRequestIds": PayoutRequestIds,
     "PayoutStore": PayoutStore,
     "PayoutSummary": PayoutSummary,
@@ -55006,6 +55789,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultPayoutOrder": RestApiPaginationResultPayoutOrder,
     "RestApiPaginationResultPayoutOtherCharge": RestApiPaginationResultPayoutOtherCharge,
     "RestApiPaginationResultPayoutRefund": RestApiPaginationResultPayoutRefund,
+    "RestApiPaginationResultPayoutReport3PayoutOrder": RestApiPaginationResultPayoutReport3PayoutOrder,
     "RestApiPaginationResultPendingMenuChanges": RestApiPaginationResultPendingMenuChanges,
     "RestApiPaginationResultPhoneCall": RestApiPaginationResultPhoneCall,
     "RestApiPaginationResultProduct": RestApiPaginationResultProduct,
@@ -55101,6 +55885,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultPaymentIntent": RestApiResultPaymentIntent,
     "RestApiResultPaymentTerminalDetails": RestApiResultPaymentTerminalDetails,
     "RestApiResultPaymentTerminalTransactionDetails": RestApiResultPaymentTerminalTransactionDetails,
+    "RestApiResultPayoutReport3Details": RestApiResultPayoutReport3Details,
+    "RestApiResultPayoutReport3Overview": RestApiResultPayoutReport3Overview,
     "RestApiResultPreOrderConfig": RestApiResultPreOrderConfig,
     "RestApiResultProcessingFeeConfig": RestApiResultProcessingFeeConfig,
     "RestApiResultProduct": RestApiResultProduct,
@@ -84598,10 +85384,11 @@ export class PayoutReportsApi {
      * @param appId 
      * @param bankAccountId 
      * @param payoutId 
+     * @param storeIds 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutReport3 (appId: string, bankAccountId: number, payoutId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}'
+    public getPayoutReport3Details (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPayoutReport3Details;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/details'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
             .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
@@ -84611,17 +85398,21 @@ export class PayoutReportsApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getPayoutReport3.');
+            throw new Error('Required parameter appId was null or undefined when calling getPayoutReport3Details.');
         }
 
         // verify required parameter 'bankAccountId' is not null or undefined
         if (bankAccountId === null || bankAccountId === undefined) {
-            throw new Error('Required parameter bankAccountId was null or undefined when calling getPayoutReport3.');
+            throw new Error('Required parameter bankAccountId was null or undefined when calling getPayoutReport3Details.');
         }
 
         // verify required parameter 'payoutId' is not null or undefined
         if (payoutId === null || payoutId === undefined) {
-            throw new Error('Required parameter payoutId was null or undefined when calling getPayoutReport3.');
+            throw new Error('Required parameter payoutId was null or undefined when calling getPayoutReport3Details.');
+        }
+
+        if (storeIds !== undefined) {
+            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -84648,12 +85439,157 @@ export class PayoutReportsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPayoutReport3Details;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultPayoutReport3Details");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param bankAccountId 
+     * @param payoutId 
+     * @param storeIds 
+     * @param {*} [options] Override http request options.
+     */
+    public getPayoutReport3Orders (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutReport3PayoutOrder;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/orders'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
+            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getPayoutReport3Orders.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling getPayoutReport3Orders.');
+        }
+
+        // verify required parameter 'payoutId' is not null or undefined
+        if (payoutId === null || payoutId === undefined) {
+            throw new Error('Required parameter payoutId was null or undefined when calling getPayoutReport3Orders.');
+        }
+
+        if (storeIds !== undefined) {
+            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutReport3PayoutOrder;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultPayoutReport3PayoutOrder");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param bankAccountId 
+     * @param payoutId 
+     * @param {*} [options] Override http request options.
+     */
+    public getPayoutReport3Overview (appId: string, bankAccountId: number, payoutId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPayoutReport3Overview;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/overview'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
+            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getPayoutReport3Overview.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling getPayoutReport3Overview.');
+        }
+
+        // verify required parameter 'payoutId' is not null or undefined
+        if (payoutId === null || payoutId === undefined) {
+            throw new Error('Required parameter payoutId was null or undefined when calling getPayoutReport3Overview.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPayoutReport3Overview;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultPayoutReport3Overview");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
