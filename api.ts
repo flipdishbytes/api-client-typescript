@@ -20281,6 +20281,10 @@ export class MenuAsyncCreationCompletedEvent {
     */
     'Menu'?: Menu;
     /**
+    * Flag indicating if the menu creation was successful
+    */
+    'Success'?: boolean;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -20323,6 +20327,11 @@ export class MenuAsyncCreationCompletedEvent {
             "name": "Menu",
             "baseName": "Menu",
             "type": "Menu"
+        },
+        {
+            "name": "Success",
+            "baseName": "Success",
+            "type": "boolean"
         },
         {
             "name": "FlipdishEventId",
