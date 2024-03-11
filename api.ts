@@ -48390,6 +48390,10 @@ export class StripeConnectedAccount {
     * Payouts Enabled status
     */
     'PayoutsEnabled'?: boolean;
+    /**
+    * Payments Enabled status
+    */
+    'PaymentsEnabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -48427,6 +48431,11 @@ export class StripeConnectedAccount {
         {
             "name": "PayoutsEnabled",
             "baseName": "PayoutsEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "PaymentsEnabled",
+            "baseName": "PaymentsEnabled",
             "type": "boolean"
         }    ];
 
@@ -48486,6 +48495,10 @@ export class StripeConnectedAccountInfo {
     * Flag indicating if payouts are paused
     */
     'PayoutsPaused'?: boolean;
+    /**
+    * Flag indicating if payments are enabled
+    */
+    'PaymentsEnabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -48518,6 +48531,11 @@ export class StripeConnectedAccountInfo {
         {
             "name": "PayoutsPaused",
             "baseName": "PayoutsPaused",
+            "type": "boolean"
+        },
+        {
+            "name": "PaymentsEnabled",
+            "baseName": "PaymentsEnabled",
             "type": "boolean"
         }    ];
 
