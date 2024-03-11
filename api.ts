@@ -58034,9 +58034,10 @@ export class AppStoreApi {
      * @param page 
      * @param limit 
      * @param excludeNotOwned 
+     * @param showOnlyVerified 
      * @param {*} [options] Override http request options.
      */
-    public getAppStoreApps (search: string, page?: number, limit?: number, excludeNotOwned?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultAppStoreAppSummary;  }> {
+    public getAppStoreApps (search: string, page?: number, limit?: number, excludeNotOwned?: boolean, showOnlyVerified?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultAppStoreAppSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/appstore/apps';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -58061,6 +58062,10 @@ export class AppStoreApi {
 
         if (excludeNotOwned !== undefined) {
             localVarQueryParameters['excludeNotOwned'] = ObjectSerializer.serialize(excludeNotOwned, "boolean");
+        }
+
+        if (showOnlyVerified !== undefined) {
+            localVarQueryParameters['showOnlyVerified'] = ObjectSerializer.serialize(showOnlyVerified, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
