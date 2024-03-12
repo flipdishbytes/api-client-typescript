@@ -31682,6 +31682,7 @@ export class PayoutReport3OverviewHeader {
     'PeriodEndTime'?: Date;
     'DestinationBank'?: string;
     'DestinationAccount'?: string;
+    'Amount'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -31730,6 +31731,11 @@ export class PayoutReport3OverviewHeader {
             "name": "DestinationAccount",
             "baseName": "DestinationAccount",
             "type": "string"
+        },
+        {
+            "name": "Amount",
+            "baseName": "Amount",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
