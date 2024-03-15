@@ -31351,6 +31351,7 @@ export namespace PayoutRefund {
 }
 export class PayoutReport3Details {
     'Amount'?: number;
+    'Currency'?: string;
     'Summary'?: PayoutReport3DetailsSummary;
     'Revenue'?: PayoutReport3DetailsRevenue;
     'FlipdishFees'?: PayoutReport3DetailsFlipdishFees;
@@ -31363,6 +31364,11 @@ export class PayoutReport3Details {
             "name": "Amount",
             "baseName": "Amount",
             "type": "number"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "string"
         },
         {
             "name": "Summary",
@@ -31683,6 +31689,7 @@ export class PayoutReport3OverviewHeader {
     'DestinationBank'?: string;
     'DestinationAccount'?: string;
     'Amount'?: number;
+    'Currency'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -31736,6 +31743,11 @@ export class PayoutReport3OverviewHeader {
             "name": "Amount",
             "baseName": "Amount",
             "type": "number"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
