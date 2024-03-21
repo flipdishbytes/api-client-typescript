@@ -75208,7 +75208,7 @@ export class MenuOptionSetItemsApi {
     }
     /**
      * 
-     * @summary [Private API] Set Tax Rate on OptionSetItem
+     * @summary Set Tax Rate on OptionSetItem
      * @param menuId Menu identifier
      * @param menuSectionId 
      * @param menuSectionItemId 
@@ -75306,7 +75306,7 @@ export class MenuOptionSetItemsApi {
      * @param optionSetId Option set identifier
      * @param menuItemOptionSetItemId Option set item identifier
      * @param menuItemOptionSetItem Option set item (delta)
-     * @param undoAfter An optional time period, in hours, after which the hide-section operaton will be undone.
+     * @param undoAfter An optional time period, in hours, after which the hide-section operation will be undone.
      * @param {*} [options] Override http request options.
      */
     public updateMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase, undoAfter?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -76632,8 +76632,8 @@ export class MenuSectionItemsApi {
         });
     }
     /**
-     * 
-     * @summary [PRIVATE API]Move an Item within a menu
+     * [PRIVATE API]
+     * @summary [PRIVATE API] Move an Item within a menu
      * @param menuId Menu identifier
      * @param menuSectionId Section to put item in (will usually be original section)
      * @param menuSectionItemId ID of Item to be moved
@@ -76710,7 +76710,7 @@ export class MenuSectionItemsApi {
     }
     /**
      * 
-     * @summary [PRIVATE API]Move an Item within a menu
+     * @summary Set tax rate for menu item
      * @param menuId Menu identifier
      * @param menuSectionId Section to put item in (will usually be original section)
      * @param menuSectionItemId ID of Item to be moved
@@ -76792,7 +76792,7 @@ export class MenuSectionItemsApi {
      * @param menuSectionId Menu section identifier
      * @param menuSectionItemId Menu section item identifier
      * @param menuSectionItem Menu section item (delta)
-     * @param undoAfter An optional time period, in hours, after which the hide-section operaton will be undone.
+     * @param undoAfter An optional time period, in hours, after which the hide-section operation will be undone
      * @param {*} [options] Override http request options.
      */
     public updateMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, menuSectionItem: MenuSectionItemBase, undoAfter?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -77524,8 +77524,8 @@ export class MenuSectionsApi {
         });
     }
     /**
-     * 
-     * @summary Re-arrange Items within a Section
+     * [PRIVATE API]
+     * @summary [PRIVATE API] Re-arrange Items within a Section
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      * @param displayOrders Item Ids and their new display order
@@ -78575,8 +78575,8 @@ export class MenusApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * 
-     * @summary [PRIVATE API]Clone a menu, (without attaching stores)
+     * [PRIVATE API]
+     * @summary [PRIVATE API] Clone a menu, (without attaching stores)
      * @param menuId Menu identifier
      * @param newName Name of the new Menu
      * @param {*} [options] Override http request options.
@@ -78767,8 +78767,8 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @summary [PRIVATE API]Mark a Menu as Deleted
+     * [PRIVATE API]
+     * @summary [PRIVATE API] Mark a Menu as Deleted
      * @param menuId Menu Identifier
      * @param {*} [options] Override http request options.
      */
@@ -79156,7 +79156,7 @@ export class MenusApi {
      * @param key Metadata key
      * @param {*} [options] Override http request options.
      */
-    public getMenuItemMetadataByKey (menuId: number, storeId: number, menuItemId: number, key: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public getMenuItemMetadataByKey (menuId: number, storeId: number, menuItemId: number, key: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMetadata;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/menuitem/{menuItemId}/metadata/{key}/store/{storeId}'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -79210,11 +79210,12 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMetadata;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMetadata");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -79296,12 +79297,12 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @summary [PRIVATE API]Get Menus Name
+     * [PRIVATE API]
+     * @summary [PRIVATE API] Get Menus Name
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
-    public getMenuName (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public getMenuName (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/name'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
         let localVarQueryParameters: any = {};
@@ -79337,11 +79338,12 @@ export class MenusApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "string");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -79352,8 +79354,8 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @summary [PRIVATE API]Get menus store names
+     * [PRIVATE API]
+     * @summary [PRIVATE API] Get menus store names
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
@@ -79409,8 +79411,8 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @summary [PRIVATE API]Get menus tax details
+     * [PRIVATE API]
+     * @summary [PRIVATE API] Get menus tax details
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
@@ -79466,8 +79468,8 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @summary [PRIVATE API]Get menus by appId
+     * [PRIVATE API]
+     * @summary [PRIVATE API] Get menus by appId
      * @param appId Get Menus for this appId
      * @param {*} [options] Override http request options.
      */
@@ -79523,7 +79525,7 @@ export class MenusApi {
         });
     }
     /**
-     * 
+     * [PRIVATE API]
      * @summary [PRIVATE API]Get a Menus Checkpoints
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
@@ -79580,8 +79582,8 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @summary [PRIVATE API]Remove a Menus Tax Rate, can only remove a tax rate that does not have items/optionSetItems attached
+     * [PRIVATE API]
+     * @summary [PRIVATE API] Remove a Menus Tax Rate, can only remove a tax rate that does not have items/optionSetItems attached
      * @param menuId Menu identifier
      * @param taxId Id of Menu Tax to be removed
      * @param {*} [options] Override http request options.
@@ -79644,8 +79646,9 @@ export class MenusApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param isAvailable 
+     * @summary Get bulk show/hide menu items and option set items
+     * @param menuId Menu id
+     * @param isAvailable Is available flag
      * @param {*} [options] Override http request options.
      */
     public menusGetMenuBulkShowHide (menuId: number, isAvailable: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementListResponse;  }> {
@@ -79709,8 +79712,8 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @summary [PRIVATE API]Set if tax shows for a Menu
+     * [PRIVATE API]
+     * @summary [PRIVATE API] Set if tax shows for a Menu
      * @param menuId Menu identifier
      * @param show Boolean show or dont show tax (Exclusive tax type can only ever be TRUE)
      * @param {*} [options] Override http request options.
@@ -79772,8 +79775,8 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @summary [PRIVATE API]Re-arrange Sections within a Menu
+     * [PRIVATE API]
+     * @summary [PRIVATE API] Re-arrange Sections within a Menu
      * @param menuId Menu identifier
      * @param displayOrders Section Ids and their new display order
      * @param {*} [options] Override http request options.
@@ -79836,9 +79839,10 @@ export class MenusApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuElements 
-     * @param isAvailable 
+     * @summary Bulk show/hide menu items or option set items
+     * @param menuId Menu id
+     * @param menuElements Elements to be show/hide
+     * @param isAvailable Is available flag
      * @param {*} [options] Override http request options.
      */
     public menusShowHideBulkItems (menuId: number, menuElements: Array<MenuElementHide>, isAvailable: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementEditResponse;  }> {
@@ -79908,8 +79912,8 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @summary [PRIVATE API]Set the type of Tax on a Menu
+     * [PRIVATE API]
+     * @summary [PRIVATE API] Set the type of Tax on a Menu
      * @param menuId Menu identifier
      * @param type Type of Tax
      * @param {*} [options] Override http request options.
@@ -79971,10 +79975,10 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @summary [PRIVATE API]Add/Update a Tax Rate
+     * [PRIVATE API]
+     * @summary [PRIVATE API] Add/Update a Tax Rate
      * @param menuId Menu identifier
-     * @param taxRate Tax Rate to Add/Update
+     * @param taxRate Tax rate to add/update
      * @param {*} [options] Override http request options.
      */
     public menusUpsertTaxRate (menuId: number, taxRate: MenuTaxRate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: MenuTaxRate;  }> {
@@ -80035,8 +80039,8 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @summary [PRIVATE API]Restore a Menu to a checkpoint
+     * [PRIVATE API]
+     * @summary [PRIVATE API] Restore a Menu to a checkpoint
      * @param menuId Menu identifier
      * @param checkpointId Checkpoint to restore menu to
      * @param {*} [options] Override http request options.
@@ -80252,8 +80256,8 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @summary [PRIVATE API]Lock/Unlock a Menu for Editing
+     * [PRIVATE API]
+     * @summary [PRIVATE API] Lock/Unlock a Menu for Editing
      * @param menuId Menu identifier
      * @param locked True: Locks menu for editing, False: Unlocks for editing
      * @param {*} [options] Override http request options.
@@ -80315,8 +80319,8 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @summary [PRIVATE API]Set Menus Name
+     * [PRIVATE API]
+     * @summary [PRIVATE API] Set Menus Name
      * @param menuId Menu identifier
      * @param name Name to set for this Menu
      * @param {*} [options] Override http request options.
@@ -80381,7 +80385,7 @@ export class MenusApi {
      * 
      * @summary Update menu
      * @param menuId Menu identifier
-     * @param menu Menu (delta)
+     * @param menu Full menu data
      * @param {*} [options] Override http request options.
      */
     public updateMenu (menuId: number, menu: MenuBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
