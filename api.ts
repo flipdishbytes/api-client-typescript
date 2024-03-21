@@ -25484,10 +25484,6 @@ export class Order {
     */
     'Channel'?: Channel;
     /**
-    * Generated receipt code for an order
-    */
-    'ReceiptCode'?: string;
-    /**
     * DropOffLocation selected for this order
     */
     'OrderDropOffLocation'?: OrderDropOffLocation;
@@ -25615,6 +25611,10 @@ export class Order {
     * Delivery area identifier
     */
     'DeliveryFeeAreaId'?: number;
+    /**
+    * Code used to view the order's receipt
+    */
+    'ReceiptCode'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -25703,11 +25703,6 @@ export class Order {
             "name": "Channel",
             "baseName": "Channel",
             "type": "Channel"
-        },
-        {
-            "name": "ReceiptCode",
-            "baseName": "ReceiptCode",
-            "type": "string"
         },
         {
             "name": "OrderDropOffLocation",
@@ -25868,6 +25863,11 @@ export class Order {
             "name": "DeliveryFeeAreaId",
             "baseName": "DeliveryFeeAreaId",
             "type": "number"
+        },
+        {
+            "name": "ReceiptCode",
+            "baseName": "ReceiptCode",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
