@@ -31459,6 +31459,7 @@ export class PayoutReport3DetailsFlipdishFees {
     'PosCard'?: number;
     'PosCardOnFlipdishOrders'?: number;
     'OtherIntegrationFees'?: number;
+    'OtherIntegrationTips'?: number;
     'Vat'?: number;
     'Total'?: number;
 
@@ -31508,6 +31509,11 @@ export class PayoutReport3DetailsFlipdishFees {
         {
             "name": "OtherIntegrationFees",
             "baseName": "OtherIntegrationFees",
+            "type": "number"
+        },
+        {
+            "name": "OtherIntegrationTips",
+            "baseName": "OtherIntegrationTips",
             "type": "number"
         },
         {
