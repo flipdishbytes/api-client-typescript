@@ -8834,7 +8834,8 @@ export namespace CreateVoucher {
         PercentageDiscount = <any> 'PercentageDiscount',
         LumpDiscount = <any> 'LumpDiscount',
         AddItem = <any> 'AddItem',
-        CreditNote = <any> 'CreditNote'
+        CreditNote = <any> 'CreditNote',
+        FreeDelivery = <any> 'FreeDelivery'
     }
     export enum ChannelRestrictionsEnum {
         Ios = <any> 'Ios',
@@ -29160,7 +29161,8 @@ export namespace OrderVoucherSummary {
         PercentageDiscount = <any> 'PercentageDiscount',
         LumpDiscount = <any> 'LumpDiscount',
         AddItem = <any> 'AddItem',
-        CreditNote = <any> 'CreditNote'
+        CreditNote = <any> 'CreditNote',
+        FreeDelivery = <any> 'FreeDelivery'
     }
     export enum SubTypeEnum {
         None = <any> 'None',
@@ -53139,7 +53141,8 @@ export namespace Voucher {
         PercentageDiscount = <any> 'PercentageDiscount',
         LumpDiscount = <any> 'LumpDiscount',
         AddItem = <any> 'AddItem',
-        CreditNote = <any> 'CreditNote'
+        CreditNote = <any> 'CreditNote',
+        FreeDelivery = <any> 'FreeDelivery'
     }
     export enum CurrencyEnum {
         EUR = <any> 'EUR',
@@ -53612,7 +53615,8 @@ export namespace VoucherSummary {
         PercentageDiscount = <any> 'PercentageDiscount',
         LumpDiscount = <any> 'LumpDiscount',
         AddItem = <any> 'AddItem',
-        CreditNote = <any> 'CreditNote'
+        CreditNote = <any> 'CreditNote',
+        FreeDelivery = <any> 'FreeDelivery'
     }
     export enum VoucherSubTypeEnum {
         None = <any> 'None',
@@ -54060,7 +54064,8 @@ export namespace VoucherWithStats {
         PercentageDiscount = <any> 'PercentageDiscount',
         LumpDiscount = <any> 'LumpDiscount',
         AddItem = <any> 'AddItem',
-        CreditNote = <any> 'CreditNote'
+        CreditNote = <any> 'CreditNote',
+        FreeDelivery = <any> 'FreeDelivery'
     }
     export enum CurrencyEnum {
         EUR = <any> 'EUR',
@@ -93415,7 +93420,7 @@ export class VouchersApi {
      * @param channelRestrictions 
      * @param {*} [options] Override http request options.
      */
-    public getVouchers (appId: string, pageIndex?: number, pageSize?: number, searchCodes?: Array<string>, statusSearch?: Array<'Valid' | 'NotYetValid' | 'Expired' | 'Used' | 'Disabled'>, typeSearch?: Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote'>, subTypeSearch?: Array<'None' | 'SignUp' | 'Loyalty' | 'Loyalty25' | 'Retention' | 'SecondaryRetention' | 'Custom'>, storeIds?: Array<number>, channelRestrictions?: Array<'Ios' | 'Android' | 'Web' | 'Kiosk' | 'Pos' | 'Google'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherSummary;  }> {
+    public getVouchers (appId: string, pageIndex?: number, pageSize?: number, searchCodes?: Array<string>, statusSearch?: Array<'Valid' | 'NotYetValid' | 'Expired' | 'Used' | 'Disabled'>, typeSearch?: Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote' | 'FreeDelivery'>, subTypeSearch?: Array<'None' | 'SignUp' | 'Loyalty' | 'Loyalty25' | 'Retention' | 'SecondaryRetention' | 'Custom'>, storeIds?: Array<number>, channelRestrictions?: Array<'Ios' | 'Android' | 'Web' | 'Kiosk' | 'Pos' | 'Google'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultVoucherSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/vouchers/summaries'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -93444,7 +93449,7 @@ export class VouchersApi {
         }
 
         if (typeSearch !== undefined) {
-            localVarQueryParameters['typeSearch'] = ObjectSerializer.serialize(typeSearch, "Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote'>");
+            localVarQueryParameters['typeSearch'] = ObjectSerializer.serialize(typeSearch, "Array<'PercentageDiscount' | 'LumpDiscount' | 'AddItem' | 'CreditNote' | 'FreeDelivery'>");
         }
 
         if (subTypeSearch !== undefined) {
