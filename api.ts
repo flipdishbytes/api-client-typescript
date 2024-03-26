@@ -31784,6 +31784,7 @@ export class PayoutReport3PayoutOrder {
     'CashFeeChargedToCustomer'?: number;
     'NetSales'?: number;
     'StoreId'?: number;
+    'StoreName'?: string;
     'ServiceChargeAmount'?: number;
     'ServiceChargePercentage'?: number;
 
@@ -31889,6 +31890,11 @@ export class PayoutReport3PayoutOrder {
             "name": "StoreId",
             "baseName": "StoreId",
             "type": "number"
+        },
+        {
+            "name": "StoreName",
+            "baseName": "StoreName",
+            "type": "string"
         },
         {
             "name": "ServiceChargeAmount",
@@ -85525,9 +85531,11 @@ export class PayoutReportsApi {
      * @param bankAccountId 
      * @param payoutId 
      * @param storeIds 
+     * @param page 
+     * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutReport3Orders (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutReport3PayoutOrder;  }> {
+    public getPayoutReport3Orders (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutReport3PayoutOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/orders'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -85553,6 +85561,14 @@ export class PayoutReportsApi {
 
         if (storeIds !== undefined) {
             localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
