@@ -48226,6 +48226,9 @@ export class StoreValidationConfig {
     * Store identifier
     */
     'StoreId'?: number;
+    /**
+    * Name
+    */
     'Name'?: string;
     /**
     * Is Store Valid for Kiosk
@@ -48235,6 +48238,9 @@ export class StoreValidationConfig {
     * Store group Id
     */
     'StoreGroupId'?: number;
+    /**
+    * Store list of validations
+    */
     'ConfigValidation'?: StoreConfig;
 
     static discriminator: string | undefined = undefined;
