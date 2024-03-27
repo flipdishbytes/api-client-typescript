@@ -31627,6 +31627,7 @@ export class PayoutReport3DetailsSummary {
     'RevenueForFeeCalculations'?: number;
     'FlipdishFees'?: number;
     'Adjustments'?: number;
+    'ThirdPartyIntegrationFeesAndTips'?: number;
     'Total'?: number;
 
     static discriminator: string | undefined = undefined;
@@ -31650,6 +31651,11 @@ export class PayoutReport3DetailsSummary {
         {
             "name": "Adjustments",
             "baseName": "Adjustments",
+            "type": "number"
+        },
+        {
+            "name": "ThirdPartyIntegrationFeesAndTips",
+            "baseName": "ThirdPartyIntegrationFeesAndTips",
             "type": "number"
         },
         {
