@@ -31399,6 +31399,8 @@ export class PayoutReport3Details {
 }
 
 export class PayoutReport3DetailsAdjustments {
+    'OpeningBalanceDate'?: Date;
+    'ClosingBalanceDate'?: Date;
     'OpeningBalance'?: number;
     'RefundsOnCardOrders'?: number;
     'RefundsOnCashOrders'?: number;
@@ -31410,6 +31412,16 @@ export class PayoutReport3DetailsAdjustments {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OpeningBalanceDate",
+            "baseName": "OpeningBalanceDate",
+            "type": "Date"
+        },
+        {
+            "name": "ClosingBalanceDate",
+            "baseName": "ClosingBalanceDate",
+            "type": "Date"
+        },
         {
             "name": "OpeningBalance",
             "baseName": "OpeningBalance",
