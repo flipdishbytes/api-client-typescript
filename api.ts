@@ -31408,6 +31408,20 @@ export class PayoutReport3DetailsAdjustments {
     'Chargebacks'?: number;
     'OtherTransactions'?: number;
     'ClosingBalance'?: number;
+    'OpeningBalanceCredit'?: number;
+    'OpeningBalanceDebit'?: number;
+    'RefundsOnCardOrdersCredit'?: number;
+    'RefundsOnCardOrdersDebit'?: number;
+    'RefundsOnCashOrdersCredit'?: number;
+    'RefundsOnCashOrdersDebit'?: number;
+    'CashCustomerFeesCredit'?: number;
+    'CashCustomerFeesDebit'?: number;
+    'ChargebacksCredit'?: number;
+    'ChargebacksDebit'?: number;
+    'OtherTransactionsCredit'?: number;
+    'OtherTransactionsDebit'?: number;
+    'ClosingBalanceCredit'?: number;
+    'ClosingBalanceDebit'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -31455,6 +31469,76 @@ export class PayoutReport3DetailsAdjustments {
         {
             "name": "ClosingBalance",
             "baseName": "ClosingBalance",
+            "type": "number"
+        },
+        {
+            "name": "OpeningBalanceCredit",
+            "baseName": "OpeningBalanceCredit",
+            "type": "number"
+        },
+        {
+            "name": "OpeningBalanceDebit",
+            "baseName": "OpeningBalanceDebit",
+            "type": "number"
+        },
+        {
+            "name": "RefundsOnCardOrdersCredit",
+            "baseName": "RefundsOnCardOrdersCredit",
+            "type": "number"
+        },
+        {
+            "name": "RefundsOnCardOrdersDebit",
+            "baseName": "RefundsOnCardOrdersDebit",
+            "type": "number"
+        },
+        {
+            "name": "RefundsOnCashOrdersCredit",
+            "baseName": "RefundsOnCashOrdersCredit",
+            "type": "number"
+        },
+        {
+            "name": "RefundsOnCashOrdersDebit",
+            "baseName": "RefundsOnCashOrdersDebit",
+            "type": "number"
+        },
+        {
+            "name": "CashCustomerFeesCredit",
+            "baseName": "CashCustomerFeesCredit",
+            "type": "number"
+        },
+        {
+            "name": "CashCustomerFeesDebit",
+            "baseName": "CashCustomerFeesDebit",
+            "type": "number"
+        },
+        {
+            "name": "ChargebacksCredit",
+            "baseName": "ChargebacksCredit",
+            "type": "number"
+        },
+        {
+            "name": "ChargebacksDebit",
+            "baseName": "ChargebacksDebit",
+            "type": "number"
+        },
+        {
+            "name": "OtherTransactionsCredit",
+            "baseName": "OtherTransactionsCredit",
+            "type": "number"
+        },
+        {
+            "name": "OtherTransactionsDebit",
+            "baseName": "OtherTransactionsDebit",
+            "type": "number"
+        },
+        {
+            "name": "ClosingBalanceCredit",
+            "baseName": "ClosingBalanceCredit",
+            "type": "number"
+        },
+        {
+            "name": "ClosingBalanceDebit",
+            "baseName": "ClosingBalanceDebit",
             "type": "number"
         }    ];
 
@@ -31551,9 +31635,9 @@ export class PayoutReport3DetailsRevenue {
     'DeliveryCharges'?: PayoutReport3DetailsSalesLine;
     'OtherCharges'?: PayoutReport3DetailsSalesLine;
     'Tips'?: PayoutReport3DetailsSalesLine;
-    'TotalNetSales'?: PayoutReport3DetailsSalesLine;
     'TotalRevenue'?: PayoutReport3DetailsSalesLine;
     'RevenueForFeeCalculations'?: PayoutReport3DetailsSalesLine;
+    'DrsCharges'?: PayoutReport3DetailsSalesLine;
 
     static discriminator: string | undefined = undefined;
 
@@ -31579,11 +31663,6 @@ export class PayoutReport3DetailsRevenue {
             "type": "PayoutReport3DetailsSalesLine"
         },
         {
-            "name": "TotalNetSales",
-            "baseName": "TotalNetSales",
-            "type": "PayoutReport3DetailsSalesLine"
-        },
-        {
             "name": "TotalRevenue",
             "baseName": "TotalRevenue",
             "type": "PayoutReport3DetailsSalesLine"
@@ -31591,6 +31670,11 @@ export class PayoutReport3DetailsRevenue {
         {
             "name": "RevenueForFeeCalculations",
             "baseName": "RevenueForFeeCalculations",
+            "type": "PayoutReport3DetailsSalesLine"
+        },
+        {
+            "name": "DrsCharges",
+            "baseName": "DrsCharges",
             "type": "PayoutReport3DetailsSalesLine"
         }    ];
 
