@@ -76673,8 +76673,8 @@ export class MenuSectionItemsApi {
         });
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API] Move an Item within a menu
+     * 
+     * @summary Move an Item within a menu
      * @param menuId Menu identifier
      * @param menuSectionId Section to put item in (will usually be original section)
      * @param menuSectionItemId ID of Item to be moved
@@ -77565,8 +77565,8 @@ export class MenuSectionsApi {
         });
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API] Re-arrange Items within a Section
+     * 
+     * @summary Re-arrange Items within a Section
      * @param menuId Menu identifier
      * @param menuSectionId Menu section identifier
      * @param displayOrders Item Ids and their new display order
@@ -78616,8 +78616,8 @@ export class MenusApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API] Clone a menu, (without attaching stores)
+     * 
+     * @summary Clone a menu, (without attaching stores)
      * @param menuId Menu identifier
      * @param newName Name of the new Menu
      * @param {*} [options] Override http request options.
@@ -78808,8 +78808,8 @@ export class MenusApi {
         });
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API] Mark a Menu as Deleted
+     * 
+     * @summary Mark a Menu as Deleted
      * @param menuId Menu Identifier
      * @param {*} [options] Override http request options.
      */
@@ -79338,8 +79338,8 @@ export class MenusApi {
         });
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API] Get Menus Name
+     * 
+     * @summary Get Menus Name
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
@@ -79395,8 +79395,8 @@ export class MenusApi {
         });
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API] Get menus store names
+     * 
+     * @summary Get menus store names
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
@@ -79452,8 +79452,8 @@ export class MenusApi {
         });
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API] Get menus tax details
+     * 
+     * @summary Get menus tax details
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
@@ -79509,8 +79509,8 @@ export class MenusApi {
         });
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API] Get menus by appId
+     * 
+     * @summary Get menus by appId
      * @param appId Get Menus for this appId
      * @param {*} [options] Override http request options.
      */
@@ -79566,8 +79566,8 @@ export class MenusApi {
         });
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API]Get a Menus Checkpoints
+     * 
+     * @summary Get a Menus Checkpoints
      * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
@@ -79623,8 +79623,8 @@ export class MenusApi {
         });
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API] Remove a Menus Tax Rate, can only remove a tax rate that does not have items/optionSetItems attached
+     * 
+     * @summary Remove a Menus Tax Rate, can only remove a tax rate that does not have items/optionSetItems attached
      * @param menuId Menu identifier
      * @param taxId Id of Menu Tax to be removed
      * @param {*} [options] Override http request options.
@@ -79753,8 +79753,8 @@ export class MenusApi {
         });
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API] Set if tax shows for a Menu
+     * 
+     * @summary Set if tax shows for a Menu
      * @param menuId Menu identifier
      * @param show Boolean show or dont show tax (Exclusive tax type can only ever be TRUE)
      * @param {*} [options] Override http request options.
@@ -79816,8 +79816,8 @@ export class MenusApi {
         });
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API] Re-arrange Sections within a Menu
+     * 
+     * @summary Re-arrange Sections within a Menu
      * @param menuId Menu identifier
      * @param displayOrders Section Ids and their new display order
      * @param {*} [options] Override http request options.
@@ -79953,8 +79953,8 @@ export class MenusApi {
         });
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API] Set the type of Tax on a Menu
+     * 
+     * @summary Set the type of Tax on a Menu
      * @param menuId Menu identifier
      * @param type Type of Tax
      * @param {*} [options] Override http request options.
@@ -80016,8 +80016,8 @@ export class MenusApi {
         });
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API] Add/Update a Tax Rate
+     * 
+     * @summary Add/Update a Tax Rate
      * @param menuId Menu identifier
      * @param taxRate Tax rate to add/update
      * @param {*} [options] Override http request options.
@@ -80080,8 +80080,8 @@ export class MenusApi {
         });
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API] Restore a Menu to a checkpoint
+     * 
+     * @summary Restore a Menu to a checkpoint
      * @param menuId Menu identifier
      * @param checkpointId Checkpoint to restore menu to
      * @param {*} [options] Override http request options.
@@ -80297,8 +80297,8 @@ export class MenusApi {
         });
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API] Lock/Unlock a Menu for Editing
+     * 
+     * @summary Lock/Unlock a Menu for Editing
      * @param menuId Menu identifier
      * @param locked True: Locks menu for editing, False: Unlocks for editing
      * @param {*} [options] Override http request options.
@@ -80360,8 +80360,8 @@ export class MenusApi {
         });
     }
     /**
-     * [PRIVATE API]
-     * @summary [PRIVATE API] Set Menus Name
+     * 
+     * @summary Set Menus Name
      * @param menuId Menu identifier
      * @param name Name to set for this Menu
      * @param {*} [options] Override http request options.
