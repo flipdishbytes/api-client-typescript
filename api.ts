@@ -31876,19 +31876,8 @@ export class PayoutReport3PayoutOrder {
     'DeliveryCharges'?: number;
     'Tips'?: number;
     'Voucher'?: number;
-    'FlatFeeExcludingVat'?: number;
-    'FlatFeeExcludingVAT'?: number;
-    'FlatFeeIncludingVat'?: number;
-    'PercentageFeeExcludingVat'?: number;
-    'PercentageFeeExcludingVAT'?: number;
-    'Vat'?: number;
-    'TotalFees'?: number;
-    'CashFeeChargedToCustomer'?: number;
-    'NetSales'?: number;
     'StoreId'?: number;
     'StoreName'?: string;
-    'ServiceChargeAmount'?: number;
-    'ServiceChargePercentage'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -31944,51 +31933,6 @@ export class PayoutReport3PayoutOrder {
             "type": "number"
         },
         {
-            "name": "FlatFeeExcludingVat",
-            "baseName": "FlatFeeExcludingVat",
-            "type": "number"
-        },
-        {
-            "name": "FlatFeeExcludingVAT",
-            "baseName": "FlatFeeExcludingVAT",
-            "type": "number"
-        },
-        {
-            "name": "FlatFeeIncludingVat",
-            "baseName": "FlatFeeIncludingVat",
-            "type": "number"
-        },
-        {
-            "name": "PercentageFeeExcludingVat",
-            "baseName": "PercentageFeeExcludingVat",
-            "type": "number"
-        },
-        {
-            "name": "PercentageFeeExcludingVAT",
-            "baseName": "PercentageFeeExcludingVAT",
-            "type": "number"
-        },
-        {
-            "name": "Vat",
-            "baseName": "Vat",
-            "type": "number"
-        },
-        {
-            "name": "TotalFees",
-            "baseName": "TotalFees",
-            "type": "number"
-        },
-        {
-            "name": "CashFeeChargedToCustomer",
-            "baseName": "CashFeeChargedToCustomer",
-            "type": "number"
-        },
-        {
-            "name": "NetSales",
-            "baseName": "NetSales",
-            "type": "number"
-        },
-        {
             "name": "StoreId",
             "baseName": "StoreId",
             "type": "number"
@@ -31997,16 +31941,6 @@ export class PayoutReport3PayoutOrder {
             "name": "StoreName",
             "baseName": "StoreName",
             "type": "string"
-        },
-        {
-            "name": "ServiceChargeAmount",
-            "baseName": "ServiceChargeAmount",
-            "type": "number"
-        },
-        {
-            "name": "ServiceChargePercentage",
-            "baseName": "ServiceChargePercentage",
-            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -32017,7 +31951,7 @@ export class PayoutReport3PayoutOrder {
 export namespace PayoutReport3PayoutOrder {
     export enum OrderTypeEnum {
         Cash = <any> 'Cash',
-        Online = <any> 'Online'
+        Card = <any> 'Card'
     }
     export enum OrderCurrencyEnum {
         EUR = <any> 'EUR',
