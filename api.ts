@@ -31878,6 +31878,7 @@ export class PayoutReport3PayoutOrder {
     'Voucher'?: number;
     'StoreId'?: number;
     'StoreName'?: string;
+    'RefundChargebackType'?: PayoutReport3PayoutOrder.RefundChargebackTypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -31941,6 +31942,11 @@ export class PayoutReport3PayoutOrder {
             "name": "StoreName",
             "baseName": "StoreName",
             "type": "string"
+        },
+        {
+            "name": "RefundChargebackType",
+            "baseName": "RefundChargebackType",
+            "type": "PayoutReport3PayoutOrder.RefundChargebackTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -32067,6 +32073,10 @@ export namespace PayoutReport3PayoutOrder {
         MOP = <any> 'MOP',
         TWD = <any> 'TWD',
         BMD = <any> 'BMD'
+    }
+    export enum RefundChargebackTypeEnum {
+        Refund = <any> 'Refund',
+        Chargeback = <any> 'Chargeback'
     }
 }
 export class PayoutReport3Store {
@@ -55300,6 +55310,7 @@ let enumsMap: {[index: string]: any} = {
         "PayoutRefund.OrderTypeEnum": PayoutRefund.OrderTypeEnum,
         "PayoutReport3PayoutOrder.OrderTypeEnum": PayoutReport3PayoutOrder.OrderTypeEnum,
         "PayoutReport3PayoutOrder.OrderCurrencyEnum": PayoutReport3PayoutOrder.OrderCurrencyEnum,
+        "PayoutReport3PayoutOrder.RefundChargebackTypeEnum": PayoutReport3PayoutOrder.RefundChargebackTypeEnum,
         "PayoutRequestIds.StatesEnum": PayoutRequestIds.StatesEnum,
         "PayoutSummary.PayoutStatusEnum": PayoutSummary.PayoutStatusEnum,
         "PayoutSummary.CurrencyEnum": PayoutSummary.CurrencyEnum,
