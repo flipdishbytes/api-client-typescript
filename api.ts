@@ -8694,6 +8694,10 @@ export class CreateVoucher {
     * Customer UserID
     */
     'CustomerId'?: number;
+    /**
+    * Maximum number of times the voucher can be redeemed (used)
+    */
+    'MaxRedemptions'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -8821,6 +8825,11 @@ export class CreateVoucher {
         {
             "name": "CustomerId",
             "baseName": "CustomerId",
+            "type": "number"
+        },
+        {
+            "name": "MaxRedemptions",
+            "baseName": "MaxRedemptions",
             "type": "number"
         }    ];
 
@@ -52106,6 +52115,10 @@ export class UpdateVoucher {
     * Customer UserID
     */
     'CustomerId'?: number;
+    /**
+    * Maximum number of times the voucher can be redeemed (used)
+    */
+    'MaxRedemptions'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -52223,6 +52236,11 @@ export class UpdateVoucher {
         {
             "name": "CustomerId",
             "baseName": "CustomerId",
+            "type": "number"
+        },
+        {
+            "name": "MaxRedemptions",
+            "baseName": "MaxRedemptions",
             "type": "number"
         }    ];
 
@@ -53032,6 +53050,10 @@ export class Voucher {
     * Customer UserID
     */
     'CustomerId'?: number;
+    /**
+    * Maximum number of times the voucher can be redeemed (used)
+    */
+    'MaxRedemptions'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -53179,6 +53201,11 @@ export class Voucher {
         {
             "name": "CustomerId",
             "baseName": "CustomerId",
+            "type": "number"
+        },
+        {
+            "name": "MaxRedemptions",
+            "baseName": "MaxRedemptions",
             "type": "number"
         }    ];
 
@@ -53930,6 +53957,10 @@ export class VoucherWithStats {
     * Customer UserID
     */
     'CustomerId'?: number;
+    /**
+    * Maximum number of times the voucher can be redeemed (used)
+    */
+    'MaxRedemptions'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -54102,6 +54133,11 @@ export class VoucherWithStats {
         {
             "name": "CustomerId",
             "baseName": "CustomerId",
+            "type": "number"
+        },
+        {
+            "name": "MaxRedemptions",
+            "baseName": "MaxRedemptions",
             "type": "number"
         }    ];
 
@@ -85724,6 +85760,96 @@ export class PayoutReportsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultPayoutReport3Overview");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param bankAccountId 
+     * @param payoutId 
+     * @param startDate 
+     * @param endDate 
+     * @param payoutRequestIds_bankAccountIds List of bank account ids to search for
+     * @param payoutRequestIds_states List of {Flipdish.PublicModels.V1.Payouts.PayoutStatus} so search for
+     * @param {*} [options] Override http request options.
+     */
+    public payoutReport3ExportPayoutOnlineOrders (appId: string, bankAccountId: string, payoutId: string, startDate?: Date, endDate?: Date, payoutRequestIds_bankAccountIds?: Array<number>, payoutRequestIds_states?: Array<'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/export/onlineorders'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
+            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling payoutReport3ExportPayoutOnlineOrders.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling payoutReport3ExportPayoutOnlineOrders.');
+        }
+
+        // verify required parameter 'payoutId' is not null or undefined
+        if (payoutId === null || payoutId === undefined) {
+            throw new Error('Required parameter payoutId was null or undefined when calling payoutReport3ExportPayoutOnlineOrders.');
+        }
+
+        if (startDate !== undefined) {
+            localVarQueryParameters['startDate'] = ObjectSerializer.serialize(startDate, "Date");
+        }
+
+        if (endDate !== undefined) {
+            localVarQueryParameters['endDate'] = ObjectSerializer.serialize(endDate, "Date");
+        }
+
+        if (payoutRequestIds_bankAccountIds !== undefined) {
+            localVarQueryParameters['payoutRequestIds.bankAccountIds'] = ObjectSerializer.serialize(payoutRequestIds_bankAccountIds, "Array<number>");
+        }
+
+        if (payoutRequestIds_states !== undefined) {
+            localVarQueryParameters['payoutRequestIds.states'] = ObjectSerializer.serialize(payoutRequestIds_states, "Array<'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "string");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
