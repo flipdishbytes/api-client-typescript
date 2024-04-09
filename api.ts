@@ -31558,12 +31558,15 @@ export class PayoutReport3DetailsAdjustments {
 
 export class PayoutReport3DetailsFlipdishFees {
     'WebAndAppCash'?: number;
+    'WebAndAppCashRevenueExcludingTips'?: number;
     'WebAndAppCard'?: number;
+    'WebAndAppCardRevenueExcludingTips'?: number;
     'KioskCash'?: number;
     'KioskCard'?: number;
     'QropCash'?: number;
     'QropCard'?: number;
     'PosCard'?: number;
+    'PosCardRevenue'?: number;
     'PosCardOnFlipdishOrders'?: number;
     'OtherIntegrationFees'?: number;
     'OtherIntegrationTips'?: number;
@@ -31579,8 +31582,18 @@ export class PayoutReport3DetailsFlipdishFees {
             "type": "number"
         },
         {
+            "name": "WebAndAppCashRevenueExcludingTips",
+            "baseName": "WebAndAppCashRevenueExcludingTips",
+            "type": "number"
+        },
+        {
             "name": "WebAndAppCard",
             "baseName": "WebAndAppCard",
+            "type": "number"
+        },
+        {
+            "name": "WebAndAppCardRevenueExcludingTips",
+            "baseName": "WebAndAppCardRevenueExcludingTips",
             "type": "number"
         },
         {
@@ -31606,6 +31619,11 @@ export class PayoutReport3DetailsFlipdishFees {
         {
             "name": "PosCard",
             "baseName": "PosCard",
+            "type": "number"
+        },
+        {
+            "name": "PosCardRevenue",
+            "baseName": "PosCardRevenue",
             "type": "number"
         },
         {
