@@ -13157,6 +13157,52 @@ export class FieldGroup {
     }
 }
 
+export class FileCreationResult {
+    'FileId'?: string;
+    'Location'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "FileId",
+            "baseName": "FileId",
+            "type": "string"
+        },
+        {
+            "name": "Location",
+            "baseName": "Location",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FileCreationResult.attributeTypeMap;
+    }
+}
+
+/**
+* File Download Result
+*/
+export class FileDownloadResult {
+    /**
+    * URL of the file
+    */
+    'FileUrl'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "FileUrl",
+            "baseName": "FileUrl",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FileDownloadResult.attributeTypeMap;
+    }
+}
+
 export class FirebaseApp {
     'WhitelabelId'?: number;
     'PackageId'?: string;
@@ -38841,6 +38887,52 @@ export class RestApiResultExecuteConfigurationActionResult {
 /**
 * Rest api result
 */
+export class RestApiResultFileCreationResult {
+    /**
+    * Generic data object.
+    */
+    'Data': FileCreationResult;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "FileCreationResult"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultFileCreationResult.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultFileDownloadResult {
+    /**
+    * Generic data object.
+    */
+    'Data': FileDownloadResult;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "FileDownloadResult"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultFileDownloadResult.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultFulfillmentStatesConfiguration {
     /**
     * Generic data object.
@@ -55608,6 +55700,8 @@ let typeMap: {[index: string]: any} = {
     "Field": Field,
     "FieldChangeInformation": FieldChangeInformation,
     "FieldGroup": FieldGroup,
+    "FileCreationResult": FileCreationResult,
+    "FileDownloadResult": FileDownloadResult,
     "FirebaseApp": FirebaseApp,
     "FlipdishEventBase": FlipdishEventBase,
     "FlipdishFeesDetails": FlipdishFeesDetails,
@@ -56003,6 +56097,8 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultDeliveryZone": RestApiResultDeliveryZone,
     "RestApiResultDnsRecordInformation": RestApiResultDnsRecordInformation,
     "RestApiResultExecuteConfigurationActionResult": RestApiResultExecuteConfigurationActionResult,
+    "RestApiResultFileCreationResult": RestApiResultFileCreationResult,
+    "RestApiResultFileDownloadResult": RestApiResultFileDownloadResult,
     "RestApiResultFulfillmentStatesConfiguration": RestApiResultFulfillmentStatesConfiguration,
     "RestApiResultGroup": RestApiResultGroup,
     "RestApiResultHasPaymentMethodResponse": RestApiResultHasPaymentMethodResponse,
@@ -69906,7 +70002,7 @@ export class FilesApi {
      * @param fileId 
      * @param {*} [options] Override http request options.
      */
-    public downloadFile (appId: string, fileId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+    public downloadFile (appId: string, fileId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileDownloadResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/files/download/{fileId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'fileId' + '}', encodeURIComponent(String(fileId)));
@@ -69948,12 +70044,12 @@ export class FilesApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultFileDownloadResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "string");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultFileDownloadResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -85798,7 +85894,7 @@ export class PayoutReportsApi {
      * @param payoutRequestIds_states List of {Flipdish.PublicModels.V1.Payouts.PayoutStatus} so search for
      * @param {*} [options] Override http request options.
      */
-    public payoutReport3ExportPayoutOnlineOrders (appId: string, bankAccountId: string, payoutId: string, startDate?: Date, endDate?: Date, payoutRequestIds_bankAccountIds?: Array<number>, payoutRequestIds_states?: Array<'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+    public payoutReport3ExportPayoutOnlineOrders (appId: string, bankAccountId: string, payoutId: string, startDate?: Date, endDate?: Date, payoutRequestIds_bankAccountIds?: Array<number>, payoutRequestIds_states?: Array<'Pending' | 'InTransit' | 'Paid' | 'Failed' | 'Cancelled'>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/export/onlineorders'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -85862,12 +85958,12 @@ export class PayoutReportsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "string");
+                    body = ObjectSerializer.deserialize(body, "RestApiResultFileCreationResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
