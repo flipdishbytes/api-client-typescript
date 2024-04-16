@@ -48667,7 +48667,8 @@ export namespace StripeConnectedAccount {
         PendingVerification = <any> 'PendingVerification',
         Unverified = <any> 'Unverified',
         Rejected = <any> 'Rejected',
-        UpdateExternalAccount = <any> 'UpdateExternalAccount'
+        UpdateExternalAccount = <any> 'UpdateExternalAccount',
+        PlatformPaused = <any> 'PlatformPaused'
     }
 }
 /**
@@ -48755,7 +48756,8 @@ export namespace StripeConnectedAccountInfo {
         PendingVerification = <any> 'PendingVerification',
         Unverified = <any> 'Unverified',
         Rejected = <any> 'Rejected',
-        UpdateExternalAccount = <any> 'UpdateExternalAccount'
+        UpdateExternalAccount = <any> 'UpdateExternalAccount',
+        PlatformPaused = <any> 'PlatformPaused'
     }
     export enum CardPaymentStatusEnum {
         Inactive = <any> 'Inactive',
@@ -48849,7 +48851,8 @@ export namespace StripeCustomConnectedAccount {
         PendingVerification = <any> 'PendingVerification',
         Unverified = <any> 'Unverified',
         Rejected = <any> 'Rejected',
-        UpdateExternalAccount = <any> 'UpdateExternalAccount'
+        UpdateExternalAccount = <any> 'UpdateExternalAccount',
+        PlatformPaused = <any> 'PlatformPaused'
     }
 }
 /**
