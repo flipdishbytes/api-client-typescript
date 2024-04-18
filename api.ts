@@ -31463,20 +31463,6 @@ export class PayoutReport3DetailsAdjustments {
     'Chargebacks'?: number;
     'OtherTransactions'?: number;
     'ClosingBalance'?: number;
-    'OpeningBalanceCredit'?: number;
-    'OpeningBalanceDebit'?: number;
-    'RefundsOnCardOrdersCredit'?: number;
-    'RefundsOnCardOrdersDebit'?: number;
-    'RefundsOnCashOrdersCredit'?: number;
-    'RefundsOnCashOrdersDebit'?: number;
-    'CashCustomerFeesCredit'?: number;
-    'CashCustomerFeesDebit'?: number;
-    'ChargebacksCredit'?: number;
-    'ChargebacksDebit'?: number;
-    'OtherTransactionsCredit'?: number;
-    'OtherTransactionsDebit'?: number;
-    'ClosingBalanceCredit'?: number;
-    'ClosingBalanceDebit'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -31525,76 +31511,6 @@ export class PayoutReport3DetailsAdjustments {
             "name": "ClosingBalance",
             "baseName": "ClosingBalance",
             "type": "number"
-        },
-        {
-            "name": "OpeningBalanceCredit",
-            "baseName": "OpeningBalanceCredit",
-            "type": "number"
-        },
-        {
-            "name": "OpeningBalanceDebit",
-            "baseName": "OpeningBalanceDebit",
-            "type": "number"
-        },
-        {
-            "name": "RefundsOnCardOrdersCredit",
-            "baseName": "RefundsOnCardOrdersCredit",
-            "type": "number"
-        },
-        {
-            "name": "RefundsOnCardOrdersDebit",
-            "baseName": "RefundsOnCardOrdersDebit",
-            "type": "number"
-        },
-        {
-            "name": "RefundsOnCashOrdersCredit",
-            "baseName": "RefundsOnCashOrdersCredit",
-            "type": "number"
-        },
-        {
-            "name": "RefundsOnCashOrdersDebit",
-            "baseName": "RefundsOnCashOrdersDebit",
-            "type": "number"
-        },
-        {
-            "name": "CashCustomerFeesCredit",
-            "baseName": "CashCustomerFeesCredit",
-            "type": "number"
-        },
-        {
-            "name": "CashCustomerFeesDebit",
-            "baseName": "CashCustomerFeesDebit",
-            "type": "number"
-        },
-        {
-            "name": "ChargebacksCredit",
-            "baseName": "ChargebacksCredit",
-            "type": "number"
-        },
-        {
-            "name": "ChargebacksDebit",
-            "baseName": "ChargebacksDebit",
-            "type": "number"
-        },
-        {
-            "name": "OtherTransactionsCredit",
-            "baseName": "OtherTransactionsCredit",
-            "type": "number"
-        },
-        {
-            "name": "OtherTransactionsDebit",
-            "baseName": "OtherTransactionsDebit",
-            "type": "number"
-        },
-        {
-            "name": "ClosingBalanceCredit",
-            "baseName": "ClosingBalanceCredit",
-            "type": "number"
-        },
-        {
-            "name": "ClosingBalanceDebit",
-            "baseName": "ClosingBalanceDebit",
-            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -31604,9 +31520,9 @@ export class PayoutReport3DetailsAdjustments {
 
 export class PayoutReport3DetailsFlipdishFees {
     'WebAndAppCash'?: number;
-    'WebAndAppCashRevenueExcludingTips'?: number;
+    'WebAndAppCashRevenueIncludingTips'?: number;
     'WebAndAppCard'?: number;
-    'WebAndAppCardRevenueExcludingTips'?: number;
+    'WebAndAppCardRevenueIncludingTips'?: number;
     'KioskCash'?: number;
     'KioskCard'?: number;
     'QropCash'?: number;
@@ -31628,8 +31544,8 @@ export class PayoutReport3DetailsFlipdishFees {
             "type": "number"
         },
         {
-            "name": "WebAndAppCashRevenueExcludingTips",
-            "baseName": "WebAndAppCashRevenueExcludingTips",
+            "name": "WebAndAppCashRevenueIncludingTips",
+            "baseName": "WebAndAppCashRevenueIncludingTips",
             "type": "number"
         },
         {
@@ -31638,8 +31554,8 @@ export class PayoutReport3DetailsFlipdishFees {
             "type": "number"
         },
         {
-            "name": "WebAndAppCardRevenueExcludingTips",
-            "baseName": "WebAndAppCardRevenueExcludingTips",
+            "name": "WebAndAppCardRevenueIncludingTips",
+            "baseName": "WebAndAppCardRevenueIncludingTips",
             "type": "number"
         },
         {
