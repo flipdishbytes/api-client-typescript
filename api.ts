@@ -85924,6 +85924,81 @@ export class PayoutReportsApi {
      * @param appId 
      * @param bankAccountId 
      * @param payoutId 
+     * @param stores 
+     * @param {*} [options] Override http request options.
+     */
+    public payoutReport3ExportPayoutLedgerEntries (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/export/ledgerentries'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
+            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling payoutReport3ExportPayoutLedgerEntries.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling payoutReport3ExportPayoutLedgerEntries.');
+        }
+
+        // verify required parameter 'payoutId' is not null or undefined
+        if (payoutId === null || payoutId === undefined) {
+            throw new Error('Required parameter payoutId was null or undefined when calling payoutReport3ExportPayoutLedgerEntries.');
+        }
+
+        if (stores !== undefined) {
+            localVarQueryParameters['stores'] = ObjectSerializer.serialize(stores, "Array<number>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultFileCreationResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param bankAccountId 
+     * @param payoutId 
      * @param startDate 
      * @param endDate 
      * @param payoutRequestIds_bankAccountIds List of bank account ids to search for
