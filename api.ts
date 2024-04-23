@@ -31463,6 +31463,13 @@ export class PayoutReport3DetailsAdjustments {
     'Chargebacks'?: number;
     'OtherTransactions'?: number;
     'ClosingBalance'?: number;
+    'BalanceRepaid'?: number;
+    'RefundsOnCardOrdersBracketsAmount'?: number;
+    'RefundsOnCardOrdersBracketsOutOfAmount'?: number;
+    'RefundsOnCashOrdersBracketsAmount'?: number;
+    'RefundsOnCashOrdersBracketsOutOfAmount'?: number;
+    'CashCustomerFeesBracketsAmount'?: number;
+    'CashCustomerFeesBracketsOutOfAmount'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -31510,6 +31517,41 @@ export class PayoutReport3DetailsAdjustments {
         {
             "name": "ClosingBalance",
             "baseName": "ClosingBalance",
+            "type": "number"
+        },
+        {
+            "name": "BalanceRepaid",
+            "baseName": "BalanceRepaid",
+            "type": "number"
+        },
+        {
+            "name": "RefundsOnCardOrdersBracketsAmount",
+            "baseName": "RefundsOnCardOrdersBracketsAmount",
+            "type": "number"
+        },
+        {
+            "name": "RefundsOnCardOrdersBracketsOutOfAmount",
+            "baseName": "RefundsOnCardOrdersBracketsOutOfAmount",
+            "type": "number"
+        },
+        {
+            "name": "RefundsOnCashOrdersBracketsAmount",
+            "baseName": "RefundsOnCashOrdersBracketsAmount",
+            "type": "number"
+        },
+        {
+            "name": "RefundsOnCashOrdersBracketsOutOfAmount",
+            "baseName": "RefundsOnCashOrdersBracketsOutOfAmount",
+            "type": "number"
+        },
+        {
+            "name": "CashCustomerFeesBracketsAmount",
+            "baseName": "CashCustomerFeesBracketsAmount",
+            "type": "number"
+        },
+        {
+            "name": "CashCustomerFeesBracketsOutOfAmount",
+            "baseName": "CashCustomerFeesBracketsOutOfAmount",
             "type": "number"
         }    ];
 
