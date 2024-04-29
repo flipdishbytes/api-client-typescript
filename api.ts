@@ -92833,9 +92833,10 @@ export class SubscriptionsApi {
      * @param appId 
      * @param excludeNotOwnedSubscriptions 
      * @param storeId 
+     * @param excludeCancelledSubscriptions 
      * @param {*} [options] Override http request options.
      */
-    public getSubscriptionsForApp (appId: string, excludeNotOwnedSubscriptions?: boolean, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSubscriptionSummary;  }> {
+    public getSubscriptionsForApp (appId: string, excludeNotOwnedSubscriptions?: boolean, storeId?: Array<number>, excludeCancelledSubscriptions?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSubscriptionSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/subscriptions'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -92853,6 +92854,10 @@ export class SubscriptionsApi {
 
         if (storeId !== undefined) {
             localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
+        }
+
+        if (excludeCancelledSubscriptions !== undefined) {
+            localVarQueryParameters['excludeCancelledSubscriptions'] = ObjectSerializer.serialize(excludeCancelledSubscriptions, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
