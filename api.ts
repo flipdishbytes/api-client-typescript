@@ -18124,6 +18124,10 @@ export class KioskSettings {
     * Hide logo from front page
     */
     'HideLogoFromFrontPage'?: boolean;
+    /**
+    * 2 Column Menu Layout
+    */
+    'TwoColumnMenuLayout'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -18131,6 +18135,11 @@ export class KioskSettings {
         {
             "name": "HideLogoFromFrontPage",
             "baseName": "HideLogoFromFrontPage",
+            "type": "boolean"
+        },
+        {
+            "name": "TwoColumnMenuLayout",
+            "baseName": "TwoColumnMenuLayout",
             "type": "boolean"
         }    ];
 
@@ -31574,6 +31583,7 @@ export class PayoutReport3DetailsFlipdishFees {
     'PosCardOnFlipdishOrders'?: number;
     'OtherIntegrationFees'?: number;
     'OtherIntegrationTips'?: number;
+    'RefundedFeesOnRefundedSales'?: number;
     'Vat'?: number;
     'Total'?: number;
 
@@ -31643,6 +31653,11 @@ export class PayoutReport3DetailsFlipdishFees {
         {
             "name": "OtherIntegrationTips",
             "baseName": "OtherIntegrationTips",
+            "type": "number"
+        },
+        {
+            "name": "RefundedFeesOnRefundedSales",
+            "baseName": "RefundedFeesOnRefundedSales",
             "type": "number"
         },
         {
