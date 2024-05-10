@@ -31919,17 +31919,16 @@ export class PayoutReport3OverviewHeader {
 
 export class PayoutReport3PayoutOrder {
     'OrderId'?: number;
-    'PayoutId'?: number;
     'OrderDate'?: Date;
+    'StoreId'?: number;
+    'StoreName'?: string;
     'OrderType'?: PayoutReport3PayoutOrder.OrderTypeEnum;
-    'OrderCurrency'?: PayoutReport3PayoutOrder.OrderCurrencyEnum;
     'Sales'?: number;
     'SalesTax'?: number;
     'DeliveryCharges'?: number;
     'Tips'?: number;
     'Voucher'?: number;
-    'StoreId'?: number;
-    'StoreName'?: string;
+    'OrderCurrency'?: PayoutReport3PayoutOrder.OrderCurrencyEnum;
     'RefundChargebackType'?: PayoutReport3PayoutOrder.RefundChargebackTypeEnum;
 
     static discriminator: string | undefined = undefined;
@@ -31941,24 +31940,24 @@ export class PayoutReport3PayoutOrder {
             "type": "number"
         },
         {
-            "name": "PayoutId",
-            "baseName": "PayoutId",
-            "type": "number"
-        },
-        {
             "name": "OrderDate",
             "baseName": "OrderDate",
             "type": "Date"
         },
         {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreName",
+            "baseName": "StoreName",
+            "type": "string"
+        },
+        {
             "name": "OrderType",
             "baseName": "OrderType",
             "type": "PayoutReport3PayoutOrder.OrderTypeEnum"
-        },
-        {
-            "name": "OrderCurrency",
-            "baseName": "OrderCurrency",
-            "type": "PayoutReport3PayoutOrder.OrderCurrencyEnum"
         },
         {
             "name": "Sales",
@@ -31986,14 +31985,9 @@ export class PayoutReport3PayoutOrder {
             "type": "number"
         },
         {
-            "name": "StoreId",
-            "baseName": "StoreId",
-            "type": "number"
-        },
-        {
-            "name": "StoreName",
-            "baseName": "StoreName",
-            "type": "string"
+            "name": "OrderCurrency",
+            "baseName": "OrderCurrency",
+            "type": "PayoutReport3PayoutOrder.OrderCurrencyEnum"
         },
         {
             "name": "RefundChargebackType",
