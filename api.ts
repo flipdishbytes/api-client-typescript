@@ -42166,7 +42166,8 @@ export namespace SignupStep {
     export enum ActionEnum {
         Question = <any> 'Question',
         StoreLocation = <any> 'StoreLocation',
-        PaymentSubscription = <any> 'PaymentSubscription'
+        PaymentSubscription = <any> 'PaymentSubscription',
+        StoreName = <any> 'StoreName'
     }
 }
 /**
@@ -56428,7 +56429,7 @@ export class AccountsApi {
      * @param answerId 
      * @param {*} [options] Override http request options.
      */
-    public answerSignUpQuestion (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription', answerId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public answerSignUpQuestion (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription' | 'StoreName', answerId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/answer'
             .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
         let localVarQueryParameters: any = {};
@@ -57294,7 +57295,7 @@ export class AccountsApi {
      * @param signupStepAction 
      * @param {*} [options] Override http request options.
      */
-    public skipSignupStep (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public skipSignupStep (signupStepAction: 'Question' | 'StoreLocation' | 'PaymentSubscription' | 'StoreName', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/accounts/signupstep/{signupStepAction}/skip'
             .replace('{' + 'signupStepAction' + '}', encodeURIComponent(String(signupStepAction)));
         let localVarQueryParameters: any = {};
