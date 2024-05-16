@@ -31479,6 +31479,7 @@ export class PayoutReport3DetailsAdjustments {
     'RefundsOnCashOrdersBracketsOutOfAmount'?: number;
     'CashCustomerFeesBracketsAmount'?: number;
     'CashCustomerFeesBracketsOutOfAmount'?: number;
+    'BalanceChange'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -31561,6 +31562,11 @@ export class PayoutReport3DetailsAdjustments {
         {
             "name": "CashCustomerFeesBracketsOutOfAmount",
             "baseName": "CashCustomerFeesBracketsOutOfAmount",
+            "type": "number"
+        },
+        {
+            "name": "BalanceChange",
+            "baseName": "BalanceChange",
             "type": "number"
         }    ];
 
