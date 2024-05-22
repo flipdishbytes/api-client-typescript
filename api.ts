@@ -5035,6 +5035,35 @@ export class CampaignStatistics {
     }
 }
 
+export class CancellationToken {
+    'IsCancellationRequested'?: boolean;
+    'CanBeCanceled'?: boolean;
+    'WaitHandle'?: WaitHandle;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "IsCancellationRequested",
+            "baseName": "IsCancellationRequested",
+            "type": "boolean"
+        },
+        {
+            "name": "CanBeCanceled",
+            "baseName": "CanBeCanceled",
+            "type": "boolean"
+        },
+        {
+            "name": "WaitHandle",
+            "baseName": "WaitHandle",
+            "type": "WaitHandle"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CancellationToken.attributeTypeMap;
+    }
+}
+
 /**
 * Card reader
 */
@@ -6851,6 +6880,29 @@ export class CreateAccountModel {
 
     static getAttributeTypeMap() {
         return CreateAccountModel.attributeTypeMap;
+    }
+}
+
+/**
+* The parameters required to create a new app.
+*/
+export class CreateAppParameters {
+    /**
+    * The name of the brand that this app/white-label represents.
+    */
+    'Name'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateAppParameters.attributeTypeMap;
     }
 }
 
@@ -31480,6 +31532,8 @@ export class PayoutReport3DetailsAdjustments {
     'CashCustomerFeesBracketsAmount'?: number;
     'CashCustomerFeesBracketsOutOfAmount'?: number;
     'BalanceChange'?: number;
+    'PreviousPayoutId'?: number;
+    'NextPayoutId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -31567,6 +31621,16 @@ export class PayoutReport3DetailsAdjustments {
         {
             "name": "BalanceChange",
             "baseName": "BalanceChange",
+            "type": "number"
+        },
+        {
+            "name": "PreviousPayoutId",
+            "baseName": "PreviousPayoutId",
+            "type": "number"
+        },
+        {
+            "name": "NextPayoutId",
+            "baseName": "NextPayoutId",
             "type": "number"
         }    ];
 
@@ -41802,6 +41866,29 @@ export class RevenueDetail {
 
     static getAttributeTypeMap() {
         return RevenueDetail.attributeTypeMap;
+    }
+}
+
+export class SafeWaitHandle {
+    'IsInvalid'?: boolean;
+    'IsClosed'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "IsInvalid",
+            "baseName": "IsInvalid",
+            "type": "boolean"
+        },
+        {
+            "name": "IsClosed",
+            "baseName": "IsClosed",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SafeWaitHandle.attributeTypeMap;
     }
 }
 
@@ -54387,6 +54474,29 @@ export namespace VoucherWithStats {
         Custom = <any> 'Custom'
     }
 }
+export class WaitHandle {
+    'Handle'?: any;
+    'SafeWaitHandle'?: SafeWaitHandle;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Handle",
+            "baseName": "Handle",
+            "type": "any"
+        },
+        {
+            "name": "SafeWaitHandle",
+            "baseName": "SafeWaitHandle",
+            "type": "SafeWaitHandle"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WaitHandle.attributeTypeMap;
+    }
+}
+
 /**
 * Sample payload of a webhook event
 */
@@ -55582,6 +55692,7 @@ let typeMap: {[index: string]: any} = {
     "BusinessHoursPeriod": BusinessHoursPeriod,
     "BusinessHoursPeriodBase": BusinessHoursPeriodBase,
     "CampaignStatistics": CampaignStatistics,
+    "CancellationToken": CancellationToken,
     "CardReader": CardReader,
     "CardReaderRegistrationRequest": CardReaderRegistrationRequest,
     "Cart": Cart,
@@ -55613,6 +55724,7 @@ let typeMap: {[index: string]: any} = {
     "CountryFormResponse": CountryFormResponse,
     "CountryWithAccountFieldsDefinitions": CountryWithAccountFieldsDefinitions,
     "CreateAccountModel": CreateAccountModel,
+    "CreateAppParameters": CreateAppParameters,
     "CreateAppStoreApp": CreateAppStoreApp,
     "CreateBasicAccountModel": CreateBasicAccountModel,
     "CreateCatalogGroupReference": CreateCatalogGroupReference,
@@ -56180,6 +56292,7 @@ let typeMap: {[index: string]: any} = {
     "RetentionCampaignUpdatedEvent": RetentionCampaignUpdatedEvent,
     "RevenueAdjustmentsDetails": RevenueAdjustmentsDetails,
     "RevenueDetail": RevenueDetail,
+    "SafeWaitHandle": SafeWaitHandle,
     "SearchCriteria": SearchCriteria,
     "ServiceCharge": ServiceCharge,
     "SetOrderBatchingConfiguration": SetOrderBatchingConfiguration,
@@ -56314,6 +56427,7 @@ let typeMap: {[index: string]: any} = {
     "VoucherSummary": VoucherSummary,
     "VoucherUpdatedEvent": VoucherUpdatedEvent,
     "VoucherWithStats": VoucherWithStats,
+    "WaitHandle": WaitHandle,
     "WebhookEventSample": WebhookEventSample,
     "WebhookLog": WebhookLog,
     "WebhookSubscription": WebhookSubscription,
@@ -60081,6 +60195,62 @@ export class AppsApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param parameters 
+     * @param {*} [options] Override http request options.
+     */
+    public createApp (parameters: CreateAppParameters, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'parameters' is not null or undefined
+        if (parameters === null || parameters === undefined) {
+            throw new Error('Required parameter parameters was null or undefined when calling createApp.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(parameters, "CreateAppParameters")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
     }
     /**
      * 
