@@ -25478,6 +25478,10 @@ export class OnboardingConfigUpdate {
     * Gets or sets whether welcome screen is enabled
     */
     'IsWelcomeScreenEnabled'?: boolean;
+    /**
+    * Onboarding config type
+    */
+    'ConfigType'?: OnboardingConfigUpdate.ConfigTypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -25491,6 +25495,11 @@ export class OnboardingConfigUpdate {
             "name": "IsWelcomeScreenEnabled",
             "baseName": "IsWelcomeScreenEnabled",
             "type": "boolean"
+        },
+        {
+            "name": "ConfigType",
+            "baseName": "ConfigType",
+            "type": "OnboardingConfigUpdate.ConfigTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -25498,6 +25507,12 @@ export class OnboardingConfigUpdate {
     }
 }
 
+export namespace OnboardingConfigUpdate {
+    export enum ConfigTypeEnum {
+        Tutorial = <any> 'Tutorial',
+        OnboardingWizard = <any> 'OnboardingWizard'
+    }
+}
 /**
 * 
 */
@@ -55503,6 +55518,7 @@ let enumsMap: {[index: string]: any} = {
         "NextStatusWithOrderType.OrderTypeEnum": NextStatusWithOrderType.OrderTypeEnum,
         "OAuthApp.FlowEnum": OAuthApp.FlowEnum,
         "OAuthApp.RefreshTokenUsageEnum": OAuthApp.RefreshTokenUsageEnum,
+        "OnboardingConfigUpdate.ConfigTypeEnum": OnboardingConfigUpdate.ConfigTypeEnum,
         "OnboardingItemUpdate.StatusEnum": OnboardingItemUpdate.StatusEnum,
         "Order.DeliveryTypeEnum": Order.DeliveryTypeEnum,
         "Order.PickupLocationTypeEnum": Order.PickupLocationTypeEnum,
@@ -83763,6 +83779,62 @@ export class OnboardingApi {
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling onboardingGetOnboardingConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public onboardingGetOnboardingConfigs (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/clients/{appId}/onboarding/configs'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling onboardingGetOnboardingConfigs.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
