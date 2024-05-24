@@ -42206,6 +42206,55 @@ export class SetPasswordWithPinModel {
     }
 }
 
+export class SetVoucherValidityPeriodsSimplifiedRequest {
+    /**
+    * Days of week when the voucher is valid
+    */
+    'DaysOfWeek'?: Array<SetVoucherValidityPeriodsSimplifiedRequest.DaysOfWeekEnum>;
+    /**
+    * Start time of the day when the voucher is valid
+    */
+    'StartTime'?: string;
+    /**
+    * End time of the day when the voucher is valid.  If the end time is before the start time, the end time is assumed to be the next day.
+    */
+    'EndTime'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DaysOfWeek",
+            "baseName": "DaysOfWeek",
+            "type": "Array<SetVoucherValidityPeriodsSimplifiedRequest.DaysOfWeekEnum>"
+        },
+        {
+            "name": "StartTime",
+            "baseName": "StartTime",
+            "type": "string"
+        },
+        {
+            "name": "EndTime",
+            "baseName": "EndTime",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SetVoucherValidityPeriodsSimplifiedRequest.attributeTypeMap;
+    }
+}
+
+export namespace SetVoucherValidityPeriodsSimplifiedRequest {
+    export enum DaysOfWeekEnum {
+        Sunday = <any> 'Sunday',
+        Monday = <any> 'Monday',
+        Tuesday = <any> 'Tuesday',
+        Wednesday = <any> 'Wednesday',
+        Thursday = <any> 'Thursday',
+        Friday = <any> 'Friday',
+        Saturday = <any> 'Saturday'
+    }
+}
 export class Setting {
     'Key'?: string;
     'Value'?: string;
@@ -55578,6 +55627,7 @@ let enumsMap: {[index: string]: any} = {
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
         "RedeemInvitationResult.InvitationStatusEnum": RedeemInvitationResult.InvitationStatusEnum,
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
+        "SetVoucherValidityPeriodsSimplifiedRequest.DaysOfWeekEnum": SetVoucherValidityPeriodsSimplifiedRequest.DaysOfWeekEnum,
         "SignupStep.ActionEnum": SignupStep.ActionEnum,
         "StatisticsCurrencyDataPoint.CurrencyEnum": StatisticsCurrencyDataPoint.CurrencyEnum,
         "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
@@ -56313,6 +56363,7 @@ let typeMap: {[index: string]: any} = {
     "ServiceCharge": ServiceCharge,
     "SetOrderBatchingConfiguration": SetOrderBatchingConfiguration,
     "SetPasswordWithPinModel": SetPasswordWithPinModel,
+    "SetVoucherValidityPeriodsSimplifiedRequest": SetVoucherValidityPeriodsSimplifiedRequest,
     "Setting": Setting,
     "SignupStep": SignupStep,
     "SmsInfo": SmsInfo,
@@ -84010,6 +84061,76 @@ export class OnboardingApi {
     /**
      * 
      * @param appId 
+     * @param configId 
+     * @param configUpdate 
+     * @param {*} [options] Override http request options.
+     */
+    public onboardingUpdateOnboardingConfigById (appId: string, configId: number, configUpdate: OnboardingConfigUpdate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/clients/{appId}/onboarding/config/{configId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'configId' + '}', encodeURIComponent(String(configId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling onboardingUpdateOnboardingConfigById.');
+        }
+
+        // verify required parameter 'configId' is not null or undefined
+        if (configId === null || configId === undefined) {
+            throw new Error('Required parameter configId was null or undefined when calling onboardingUpdateOnboardingConfigById.');
+        }
+
+        // verify required parameter 'configUpdate' is not null or undefined
+        if (configUpdate === null || configUpdate === undefined) {
+            throw new Error('Required parameter configUpdate was null or undefined when calling onboardingUpdateOnboardingConfigById.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(configUpdate, "OnboardingConfigUpdate")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
      * @param storeId 
      * @param onboardingItemId 
      * @param itemUpdate 
@@ -94234,6 +94355,68 @@ export class VouchersApi {
     /**
      * 
      * @param appId 
+     * @param voucherId 
+     * @param {*} [options] Override http request options.
+     */
+    public getVoucherValidityPeriods (appId: string, voucherId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/vouchers/{voucherId}/validity-periods'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getVoucherValidityPeriods.');
+        }
+
+        // verify required parameter 'voucherId' is not null or undefined
+        if (voucherId === null || voucherId === undefined) {
+            throw new Error('Required parameter voucherId was null or undefined when calling getVoucherValidityPeriods.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
      * @param pageIndex 
      * @param pageSize 
      * @param searchCodes 
@@ -94318,6 +94501,75 @@ export class VouchersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultVoucherSummary");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param voucherId 
+     * @param request 
+     * @param {*} [options] Override http request options.
+     */
+    public setVoucherValidityPeriodsSimplified (appId: string, voucherId: number, request: SetVoucherValidityPeriodsSimplifiedRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/vouchers/{voucherId}/validity-periods-simplified'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'voucherId' + '}', encodeURIComponent(String(voucherId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling setVoucherValidityPeriodsSimplified.');
+        }
+
+        // verify required parameter 'voucherId' is not null or undefined
+        if (voucherId === null || voucherId === undefined) {
+            throw new Error('Required parameter voucherId was null or undefined when calling setVoucherValidityPeriodsSimplified.');
+        }
+
+        // verify required parameter 'request' is not null or undefined
+        if (request === null || request === undefined) {
+            throw new Error('Required parameter request was null or undefined when calling setVoucherValidityPeriodsSimplified.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(request, "SetVoucherValidityPeriodsSimplifiedRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
