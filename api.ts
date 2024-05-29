@@ -8739,6 +8739,10 @@ export class CreateVoucher {
     */
     'ChannelRestrictions'?: Array<CreateVoucher.ChannelRestrictionsEnum>;
     /**
+    * Periods in which the voucher is valid.  An empty list means the voucher is valid at all times.  When updating the voucher, if this is set to null, the validity periods won't be updated.
+    */
+    'ValidityPeriods'?: Array<ValidityPeriod>;
+    /**
     * Voucher Subtype
     */
     'VoucherSubType'?: CreateVoucher.VoucherSubTypeEnum;
@@ -8868,6 +8872,11 @@ export class CreateVoucher {
             "name": "ChannelRestrictions",
             "baseName": "ChannelRestrictions",
             "type": "Array<CreateVoucher.ChannelRestrictionsEnum>"
+        },
+        {
+            "name": "ValidityPeriods",
+            "baseName": "ValidityPeriods",
+            "type": "Array<ValidityPeriod>"
         },
         {
             "name": "VoucherSubType",
@@ -31660,7 +31669,9 @@ export class PayoutReport3DetailsFlipdishFees {
     'WebAndAppCard'?: number;
     'WebAndAppCardRevenueIncludingTips'?: number;
     'KioskCash'?: number;
+    'KioskCashRevenue'?: number;
     'KioskCard'?: number;
+    'KioskCardRevenue'?: number;
     'QropCash'?: number;
     'QropCard'?: number;
     'PosCard'?: number;
@@ -31701,8 +31712,18 @@ export class PayoutReport3DetailsFlipdishFees {
             "type": "number"
         },
         {
+            "name": "KioskCashRevenue",
+            "baseName": "KioskCashRevenue",
+            "type": "number"
+        },
+        {
             "name": "KioskCard",
             "baseName": "KioskCard",
+            "type": "number"
+        },
+        {
+            "name": "KioskCardRevenue",
+            "baseName": "KioskCardRevenue",
             "type": "number"
         },
         {
@@ -52352,6 +52373,10 @@ export class UpdateVoucher {
     */
     'ChannelRestrictions'?: Array<UpdateVoucher.ChannelRestrictionsEnum>;
     /**
+    * Periods in which the voucher is valid.  An empty list means the voucher is valid at all times.  When updating the voucher, if this is set to null, the validity periods won't be updated.
+    */
+    'ValidityPeriods'?: Array<ValidityPeriod>;
+    /**
     * Voucher Subtype
     */
     'VoucherSubType'?: UpdateVoucher.VoucherSubTypeEnum;
@@ -52471,6 +52496,11 @@ export class UpdateVoucher {
             "name": "ChannelRestrictions",
             "baseName": "ChannelRestrictions",
             "type": "Array<UpdateVoucher.ChannelRestrictionsEnum>"
+        },
+        {
+            "name": "ValidityPeriods",
+            "baseName": "ValidityPeriods",
+            "type": "Array<ValidityPeriod>"
         },
         {
             "name": "VoucherSubType",
@@ -53174,6 +53204,46 @@ export class ValidationErrorResult {
     }
 }
 
+export class ValidityPeriod {
+    'DayOfWeek'?: ValidityPeriod.DayOfWeekEnum;
+    'StartTime'?: string;
+    'EndTime'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DayOfWeek",
+            "baseName": "DayOfWeek",
+            "type": "ValidityPeriod.DayOfWeekEnum"
+        },
+        {
+            "name": "StartTime",
+            "baseName": "StartTime",
+            "type": "string"
+        },
+        {
+            "name": "EndTime",
+            "baseName": "EndTime",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ValidityPeriod.attributeTypeMap;
+    }
+}
+
+export namespace ValidityPeriod {
+    export enum DayOfWeekEnum {
+        Sunday = <any> 'Sunday',
+        Monday = <any> 'Monday',
+        Tuesday = <any> 'Tuesday',
+        Wednesday = <any> 'Wednesday',
+        Thursday = <any> 'Thursday',
+        Friday = <any> 'Friday',
+        Saturday = <any> 'Saturday'
+    }
+}
 /**
 * Voucher
 */
@@ -53286,6 +53356,10 @@ export class Voucher {
     * Limit the channels this voucher can be used on
     */
     'ChannelRestrictions'?: Array<Voucher.ChannelRestrictionsEnum>;
+    /**
+    * Periods in which the voucher is valid.  An empty list means the voucher is valid at all times.  When updating the voucher, if this is set to null, the validity periods won't be updated.
+    */
+    'ValidityPeriods'?: Array<ValidityPeriod>;
     /**
     * Voucher Subtype
     */
@@ -53436,6 +53510,11 @@ export class Voucher {
             "name": "ChannelRestrictions",
             "baseName": "ChannelRestrictions",
             "type": "Array<Voucher.ChannelRestrictionsEnum>"
+        },
+        {
+            "name": "ValidityPeriods",
+            "baseName": "ValidityPeriods",
+            "type": "Array<ValidityPeriod>"
         },
         {
             "name": "VoucherSubType",
@@ -54194,6 +54273,10 @@ export class VoucherWithStats {
     */
     'ChannelRestrictions'?: Array<VoucherWithStats.ChannelRestrictionsEnum>;
     /**
+    * Periods in which the voucher is valid.  An empty list means the voucher is valid at all times.  When updating the voucher, if this is set to null, the validity periods won't be updated.
+    */
+    'ValidityPeriods'?: Array<ValidityPeriod>;
+    /**
     * Voucher Subtype
     */
     'VoucherSubType'?: VoucherWithStats.VoucherSubTypeEnum;
@@ -54368,6 +54451,11 @@ export class VoucherWithStats {
             "name": "ChannelRestrictions",
             "baseName": "ChannelRestrictions",
             "type": "Array<VoucherWithStats.ChannelRestrictionsEnum>"
+        },
+        {
+            "name": "ValidityPeriods",
+            "baseName": "ValidityPeriods",
+            "type": "Array<ValidityPeriod>"
         },
         {
             "name": "VoucherSubType",
@@ -55682,6 +55770,7 @@ let enumsMap: {[index: string]: any} = {
         "UpdateProductReference.ProductTypeEnum": UpdateProductReference.ProductTypeEnum,
         "UpdateVoucher.ChannelRestrictionsEnum": UpdateVoucher.ChannelRestrictionsEnum,
         "UpdateVoucher.VoucherSubTypeEnum": UpdateVoucher.VoucherSubTypeEnum,
+        "ValidityPeriod.DayOfWeekEnum": ValidityPeriod.DayOfWeekEnum,
         "Voucher.StatusEnum": Voucher.StatusEnum,
         "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
         "Voucher.CurrencyEnum": Voucher.CurrencyEnum,
@@ -56487,6 +56576,7 @@ let typeMap: {[index: string]: any} = {
     "UserUpdatedEvent": UserUpdatedEvent,
     "ValidValue": ValidValue,
     "ValidationErrorResult": ValidationErrorResult,
+    "ValidityPeriod": ValidityPeriod,
     "Voucher": Voucher,
     "VoucherCreatedEvent": VoucherCreatedEvent,
     "VoucherDataPoint": VoucherDataPoint,
