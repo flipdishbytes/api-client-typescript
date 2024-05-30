@@ -42227,6 +42227,9 @@ export class SetPasswordWithPinModel {
     }
 }
 
+/**
+* Set the validity periods of a voucher.
+*/
 export class SetVoucherValidityPeriodsSimplifiedRequest {
     /**
     * Days of week when the voucher is valid
