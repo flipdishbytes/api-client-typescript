@@ -2361,6 +2361,29 @@ export class AppStoreAppConfigurationsWithSubscriptions {
     }
 }
 
+export class AppStoreAppEntitlements {
+    'EntitlementQuantity'?: number;
+    'CurrentUsage'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EntitlementQuantity",
+            "baseName": "EntitlementQuantity",
+            "type": "number"
+        },
+        {
+            "name": "CurrentUsage",
+            "baseName": "CurrentUsage",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppStoreAppEntitlements.attributeTypeMap;
+    }
+}
+
 export class AppStoreAppSubscriptionAccount {
     'Email'?: string;
 
@@ -38506,6 +38529,29 @@ export class RestApiResultAppStoreAppConfigurationsWithSubscriptions {
 /**
 * Rest api result
 */
+export class RestApiResultAppStoreAppEntitlements {
+    /**
+    * Generic data object.
+    */
+    'Data': AppStoreAppEntitlements;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "AppStoreAppEntitlements"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultAppStoreAppEntitlements.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultAppStoreSubscriptionChangeJobStatusResponse {
     /**
     * Generic data object.
@@ -55820,6 +55866,7 @@ let typeMap: {[index: string]: any} = {
     "AppStoreAppConfiguration": AppStoreAppConfiguration,
     "AppStoreAppConfigurationSummary": AppStoreAppConfigurationSummary,
     "AppStoreAppConfigurationsWithSubscriptions": AppStoreAppConfigurationsWithSubscriptions,
+    "AppStoreAppEntitlements": AppStoreAppEntitlements,
     "AppStoreAppSubscriptionAccount": AppStoreAppSubscriptionAccount,
     "AppStoreAppSubscriptionSummary": AppStoreAppSubscriptionSummary,
     "AppStoreAppSummary": AppStoreAppSummary,
@@ -56330,6 +56377,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultAppStoreApp": RestApiResultAppStoreApp,
     "RestApiResultAppStoreAppConfiguration": RestApiResultAppStoreAppConfiguration,
     "RestApiResultAppStoreAppConfigurationsWithSubscriptions": RestApiResultAppStoreAppConfigurationsWithSubscriptions,
+    "RestApiResultAppStoreAppEntitlements": RestApiResultAppStoreAppEntitlements,
     "RestApiResultAppStoreSubscriptionChangeJobStatusResponse": RestApiResultAppStoreSubscriptionChangeJobStatusResponse,
     "RestApiResultAppStoreSubscriptionJobResponse": RestApiResultAppStoreSubscriptionJobResponse,
     "RestApiResultAssignedBankAccount": RestApiResultAssignedBankAccount,
@@ -60087,6 +60135,69 @@ export class AppStoreSubscriptionsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreSubscriptionJobResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param appStoreAppId 
+     * @param {*} [options] Override http request options.
+     */
+    public getAppStoreAppEntitlements (appId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreAppEntitlements;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/entitlements'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAppStoreAppEntitlements.');
+        }
+
+        // verify required parameter 'appStoreAppId' is not null or undefined
+        if (appStoreAppId === null || appStoreAppId === undefined) {
+            throw new Error('Required parameter appStoreAppId was null or undefined when calling getAppStoreAppEntitlements.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreAppEntitlements;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreAppEntitlements");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
