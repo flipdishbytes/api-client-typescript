@@ -31972,6 +31972,7 @@ export class PayoutReport3Overview {
 export class PayoutReport3OverviewHeader {
     'PayoutId'?: number;
     'BankAccountId'?: number;
+    'IsManualPayout'?: boolean;
     'AccountName'?: string;
     'PayoutStatus'?: string;
     'CreatedDate'?: Date;
@@ -31994,6 +31995,11 @@ export class PayoutReport3OverviewHeader {
             "name": "BankAccountId",
             "baseName": "BankAccountId",
             "type": "number"
+        },
+        {
+            "name": "IsManualPayout",
+            "baseName": "IsManualPayout",
+            "type": "boolean"
         },
         {
             "name": "AccountName",
