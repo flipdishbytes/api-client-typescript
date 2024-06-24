@@ -1737,14 +1737,6 @@ export class AppLookup {
     * App id
     */
     'AppId'?: string;
-    /**
-    * Salesforce opportunity id
-    */
-    'OpportunityId'?: string;
-    /**
-    * Salesforce account id
-    */
-    'AccountId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1753,52 +1745,10 @@ export class AppLookup {
             "name": "AppId",
             "baseName": "AppId",
             "type": "string"
-        },
-        {
-            "name": "OpportunityId",
-            "baseName": "OpportunityId",
-            "type": "string"
-        },
-        {
-            "name": "AccountId",
-            "baseName": "AccountId",
-            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return AppLookup.attributeTypeMap;
-    }
-}
-
-/**
-* Whitelabel salesforce references
-*/
-export class AppSalesforceReferences {
-    /**
-    * Salesforce opportunity id
-    */
-    'OpportunityId'?: string;
-    /**
-    * Salesforce account id
-    */
-    'AccountId'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "OpportunityId",
-            "baseName": "OpportunityId",
-            "type": "string"
-        },
-        {
-            "name": "AccountId",
-            "baseName": "AccountId",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AppSalesforceReferences.attributeTypeMap;
     }
 }
 
@@ -7112,14 +7062,6 @@ export class CreateBasicAccountModel {
     * LanguageId
     */
     'LanguageId'?: string;
-    /**
-    * Salesforce Opportunity ID
-    */
-    'OpportunityId'?: string;
-    /**
-    * Salesforce Account Id
-    */
-    'AccountId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -7132,16 +7074,6 @@ export class CreateBasicAccountModel {
         {
             "name": "LanguageId",
             "baseName": "LanguageId",
-            "type": "string"
-        },
-        {
-            "name": "OpportunityId",
-            "baseName": "OpportunityId",
-            "type": "string"
-        },
-        {
-            "name": "AccountId",
-            "baseName": "AccountId",
             "type": "string"
         }    ];
 
@@ -55867,7 +55799,6 @@ let typeMap: {[index: string]: any} = {
     "AppConfigUpdateModel": AppConfigUpdateModel,
     "AppCreatedEvent": AppCreatedEvent,
     "AppLookup": AppLookup,
-    "AppSalesforceReferences": AppSalesforceReferences,
     "AppStoreApp": AppStoreApp,
     "AppStoreAppConfiguration": AppStoreAppConfiguration,
     "AppStoreAppConfigurationSummary": AppStoreAppConfigurationSummary,
@@ -60819,62 +60750,6 @@ export class AppsApi {
     }
     /**
      * 
-     * @param appId 
-     * @param {*} [options] Override http request options.
-     */
-    public getSalesforceReferences (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: AppSalesforceReferences;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/salesforcereferences'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getSalesforceReferences.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: AppSalesforceReferences;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "AppSalesforceReferences");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @param {*} [options] Override http request options.
      */
     public getSupportedCountries (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSupportedCountry;  }> {
@@ -61407,69 +61282,6 @@ export class AppsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param salesforceReferences 
-     * @param {*} [options] Override http request options.
-     */
-    public setSalesforceReferences (appId: string, salesforceReferences: AppSalesforceReferences, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/salesforcereferences'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling setSalesforceReferences.');
-        }
-
-        // verify required parameter 'salesforceReferences' is not null or undefined
-        if (salesforceReferences === null || salesforceReferences === undefined) {
-            throw new Error('Required parameter salesforceReferences was null or undefined when calling setSalesforceReferences.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(salesforceReferences, "AppSalesforceReferences")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
