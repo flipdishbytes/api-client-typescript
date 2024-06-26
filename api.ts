@@ -18110,6 +18110,38 @@ export class KioskCashPaymentSettings {
 }
 
 /**
+* Kiosk entitlements and usage
+*/
+export class KioskEntitlementsResult {
+    /**
+    * Number of kiosk devices entitled
+    */
+    'EntitledQuantity'?: number;
+    /**
+    * The quantity of entitlements that have been used
+    */
+    'UsedQuantity'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EntitledQuantity",
+            "baseName": "EntitledQuantity",
+            "type": "number"
+        },
+        {
+            "name": "UsedQuantity",
+            "baseName": "UsedQuantity",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return KioskEntitlementsResult.attributeTypeMap;
+    }
+}
+
+/**
 * Connection parameters to IoT
 */
 export class KioskIotConnectionParameters {
@@ -39249,6 +39281,29 @@ export class RestApiResultJobResponse {
 /**
 * Rest api result
 */
+export class RestApiResultKioskEntitlementsResult {
+    /**
+    * Generic data object.
+    */
+    'Data': KioskEntitlementsResult;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "KioskEntitlementsResult"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultKioskEntitlementsResult.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultKioskIotConnectionParameters {
     /**
     * Generic data object.
@@ -56006,6 +56061,7 @@ let typeMap: {[index: string]: any} = {
     "KioskBluetoothTerminalUpdatedEvent": KioskBluetoothTerminalUpdatedEvent,
     "KioskBluetoothUnpairingModeEvent": KioskBluetoothUnpairingModeEvent,
     "KioskCashPaymentSettings": KioskCashPaymentSettings,
+    "KioskEntitlementsResult": KioskEntitlementsResult,
     "KioskIotConnectionParameters": KioskIotConnectionParameters,
     "KioskSettings": KioskSettings,
     "KioskTerminalActionStateChangedEvent": KioskTerminalActionStateChangedEvent,
@@ -56348,6 +56404,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultIndexPageBase": RestApiResultIndexPageBase,
     "RestApiResultIntercomUserHash": RestApiResultIntercomUserHash,
     "RestApiResultJobResponse": RestApiResultJobResponse,
+    "RestApiResultKioskEntitlementsResult": RestApiResultKioskEntitlementsResult,
     "RestApiResultKioskIotConnectionParameters": RestApiResultKioskIotConnectionParameters,
     "RestApiResultKioskSettings": RestApiResultKioskSettings,
     "RestApiResultLightspeedSettings": RestApiResultLightspeedSettings,
@@ -73793,6 +73850,112 @@ export class InvoicesApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiFinanceSearchPaginationResultInvoice");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum KioskEntitlementsApiApiKeys {
+}
+
+export class KioskEntitlementsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: KioskEntitlementsApiApiKeys, value: string) {
+        (this.authentications as any)[KioskEntitlementsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public queryKioskEntitlements (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultKioskEntitlementsResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/kiosk/entitlements'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling queryKioskEntitlements.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultKioskEntitlementsResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultKioskEntitlementsResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
