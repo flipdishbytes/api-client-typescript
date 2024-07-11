@@ -31771,6 +31771,7 @@ export class PayoutReport3DetailsFlipdishFees {
 
 export class PayoutReport3DetailsRevenue {
     'GrossSales'?: PayoutReport3DetailsSalesLine;
+    'SalesTax'?: PayoutReport3DetailsSalesLine;
     'DeliveryCharges'?: PayoutReport3DetailsSalesLine;
     'OtherCharges'?: PayoutReport3DetailsSalesLine;
     'Tips'?: PayoutReport3DetailsSalesLine;
@@ -31784,6 +31785,11 @@ export class PayoutReport3DetailsRevenue {
         {
             "name": "GrossSales",
             "baseName": "GrossSales",
+            "type": "PayoutReport3DetailsSalesLine"
+        },
+        {
+            "name": "SalesTax",
+            "baseName": "SalesTax",
             "type": "PayoutReport3DetailsSalesLine"
         },
         {
