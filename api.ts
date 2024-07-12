@@ -6857,6 +6857,47 @@ export class CreateAccountModel {
 }
 
 /**
+* Create an App in an Organisation Request
+*/
+export class CreateAppInOrg {
+    /**
+    * Name
+    */
+    'Name'?: string;
+    /**
+    * Country in ISO 3166-1 alpha-2 standard
+    */
+    'CountryId'?: string;
+    /**
+    * Main color for the different sales channels
+    */
+    'MainColor'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "CountryId",
+            "baseName": "CountryId",
+            "type": "string"
+        },
+        {
+            "name": "MainColor",
+            "baseName": "MainColor",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateAppInOrg.attributeTypeMap;
+    }
+}
+
+/**
 * The parameters required to create a new app.
 */
 export class CreateAppParameters {
@@ -10102,6 +10143,10 @@ export class DeliveryZone {
     */
     'Id'?: number;
     /**
+    * Delivery Fee charged to store
+    */
+    'FeeChargedToStore'?: number;
+    /**
     * Delivery fee (will not be set below 0)
     */
     'DeliveryFee'?: number;
@@ -10124,6 +10169,11 @@ export class DeliveryZone {
         {
             "name": "Id",
             "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "FeeChargedToStore",
+            "baseName": "FeeChargedToStore",
             "type": "number"
         },
         {
@@ -55927,6 +55977,7 @@ let typeMap: {[index: string]: any} = {
     "CountryFormResponse": CountryFormResponse,
     "CountryWithAccountFieldsDefinitions": CountryWithAccountFieldsDefinitions,
     "CreateAccountModel": CreateAccountModel,
+    "CreateAppInOrg": CreateAppInOrg,
     "CreateAppParameters": CreateAppParameters,
     "CreateAppStoreApp": CreateAppStoreApp,
     "CreateBasicAccountModel": CreateBasicAccountModel,
@@ -60514,6 +60565,69 @@ export class AppsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param orgId 
+     * @param createAppInOrgRequest 
+     * @param {*} [options] Override http request options.
+     */
+    public createAppInOrg (orgId: string, createAppInOrgRequest: CreateAppInOrg, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/orgs/{orgId}/apps'
+            .replace('{' + 'orgId' + '}', encodeURIComponent(String(orgId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orgId' is not null or undefined
+        if (orgId === null || orgId === undefined) {
+            throw new Error('Required parameter orgId was null or undefined when calling createAppInOrg.');
+        }
+
+        // verify required parameter 'createAppInOrgRequest' is not null or undefined
+        if (createAppInOrgRequest === null || createAppInOrgRequest === undefined) {
+            throw new Error('Required parameter createAppInOrgRequest was null or undefined when calling createAppInOrg.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(createAppInOrgRequest, "CreateAppInOrg")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultApp");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
