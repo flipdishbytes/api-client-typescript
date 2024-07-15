@@ -34983,6 +34983,10 @@ export class RedeemInvitationResult {
     * Invitation status
     */
     'InvitationStatus'?: RedeemInvitationResult.InvitationStatusEnum;
+    /**
+    * Bool indicating if the user that redeemed the invitation is a new user
+    */
+    'IsNewUser'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -34996,6 +35000,11 @@ export class RedeemInvitationResult {
             "name": "InvitationStatus",
             "baseName": "InvitationStatus",
             "type": "RedeemInvitationResult.InvitationStatusEnum"
+        },
+        {
+            "name": "IsNewUser",
+            "baseName": "IsNewUser",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -71750,55 +71759,6 @@ export class HomeApi {
         if (isDismissed !== undefined) {
             localVarQueryParameters['isDismissed'] = ObjectSerializer.serialize(isDismissed, "boolean");
         }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "any");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param {*} [options] Override http request options.
-     */
-    public dismissOldPortalAction (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/home/dismissoldportalaction';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
