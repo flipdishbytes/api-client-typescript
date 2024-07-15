@@ -492,29 +492,6 @@ export class AccountFieldsDefinitions {
     }
 }
 
-export class AddAppStoreSubscriptionRequest {
-    'StoreIds'?: Array<number>;
-    'SubscriptionAccountEmail'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "StoreIds",
-            "baseName": "StoreIds",
-            "type": "Array<number>"
-        },
-        {
-            "name": "SubscriptionAccountEmail",
-            "baseName": "SubscriptionAccountEmail",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AddAppStoreSubscriptionRequest.attributeTypeMap;
-    }
-}
-
 export class AddressFormDisplayFormat {
     'OneLine'?: string;
     'TwoLines'?: Array<string>;
@@ -2797,43 +2774,6 @@ export class AppStoreConfigUpdatedEvent {
     }
 }
 
-export class AppStoreSubscriptionChangeJobStatusResponse {
-    'SubscriptionChangeJobId'?: string;
-    'Status'?: AppStoreSubscriptionChangeJobStatusResponse.StatusEnum;
-    'ErrorMessage'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "SubscriptionChangeJobId",
-            "baseName": "SubscriptionChangeJobId",
-            "type": "string"
-        },
-        {
-            "name": "Status",
-            "baseName": "Status",
-            "type": "AppStoreSubscriptionChangeJobStatusResponse.StatusEnum"
-        },
-        {
-            "name": "ErrorMessage",
-            "baseName": "ErrorMessage",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AppStoreSubscriptionChangeJobStatusResponse.attributeTypeMap;
-    }
-}
-
-export namespace AppStoreSubscriptionChangeJobStatusResponse {
-    export enum StatusEnum {
-        None = <any> 'None',
-        InProgress = <any> 'InProgress',
-        Completed = <any> 'Completed',
-        Error = <any> 'Error'
-    }
-}
 /**
 * Subscription change job status updated event
 */
@@ -2917,70 +2857,6 @@ export class AppStoreSubscriptionChangeJobUpdatedEvent {
 
     static getAttributeTypeMap() {
         return AppStoreSubscriptionChangeJobUpdatedEvent.attributeTypeMap;
-    }
-}
-
-export class AppStoreSubscriptionItem {
-    'ExternalSubscriptionId'?: string;
-    'StoreIds'?: Array<number>;
-    'UserId'?: number;
-    'UserEmail'?: string;
-    'Status'?: string;
-    'SubscriptionChangeJobId'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "ExternalSubscriptionId",
-            "baseName": "ExternalSubscriptionId",
-            "type": "string"
-        },
-        {
-            "name": "StoreIds",
-            "baseName": "StoreIds",
-            "type": "Array<number>"
-        },
-        {
-            "name": "UserId",
-            "baseName": "UserId",
-            "type": "number"
-        },
-        {
-            "name": "UserEmail",
-            "baseName": "UserEmail",
-            "type": "string"
-        },
-        {
-            "name": "Status",
-            "baseName": "Status",
-            "type": "string"
-        },
-        {
-            "name": "SubscriptionChangeJobId",
-            "baseName": "SubscriptionChangeJobId",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AppStoreSubscriptionItem.attributeTypeMap;
-    }
-}
-
-export class AppStoreSubscriptionJobResponse {
-    'SubscriptionChangeJobId'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "SubscriptionChangeJobId",
-            "baseName": "SubscriptionChangeJobId",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AppStoreSubscriptionJobResponse.attributeTypeMap;
     }
 }
 
@@ -35396,29 +35272,6 @@ export class RestApiArrayResultAppStoreAppSummary {
 /**
 * Rest api array result
 */
-export class RestApiArrayResultAppStoreSubscriptionItem {
-    /**
-    * Generic data object.
-    */
-    'Data': Array<AppStoreSubscriptionItem>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Array<AppStoreSubscriptionItem>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiArrayResultAppStoreSubscriptionItem.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api array result
-*/
 export class RestApiArrayResultBankAccountSummary {
     /**
     * Generic data object.
@@ -38581,52 +38434,6 @@ export class RestApiResultAppStoreAppEntitlements {
 
     static getAttributeTypeMap() {
         return RestApiResultAppStoreAppEntitlements.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api result
-*/
-export class RestApiResultAppStoreSubscriptionChangeJobStatusResponse {
-    /**
-    * Generic data object.
-    */
-    'Data': AppStoreSubscriptionChangeJobStatusResponse;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "AppStoreSubscriptionChangeJobStatusResponse"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiResultAppStoreSubscriptionChangeJobStatusResponse.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api result
-*/
-export class RestApiResultAppStoreSubscriptionJobResponse {
-    /**
-    * Generic data object.
-    */
-    'Data': AppStoreSubscriptionJobResponse;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "AppStoreSubscriptionJobResponse"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiResultAppStoreSubscriptionJobResponse.attributeTypeMap;
     }
 }
 
@@ -51575,23 +51382,6 @@ export class UpdateAppStoreAppExternalProduct {
     }
 }
 
-export class UpdateAppStoreSubscriptionRequest {
-    'StoreIds'?: Array<number>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "StoreIds",
-            "baseName": "StoreIds",
-            "type": "Array<number>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return UpdateAppStoreSubscriptionRequest.attributeTypeMap;
-    }
-}
-
 /**
 * Data to update a {Flipdish.Menus.PublicModels.V1.Catalog.Items.CatalogGroupReference}
 */
@@ -55651,7 +55441,6 @@ let enumsMap: {[index: string]: any} = {
         "AppStoreAppSummary.VerificationStatusEnum": AppStoreAppSummary.VerificationStatusEnum,
         "AppStoreAppSummary.CategoriesEnum": AppStoreAppSummary.CategoriesEnum,
         "AppStoreAppSummary.CountriesEnum": AppStoreAppSummary.CountriesEnum,
-        "AppStoreSubscriptionChangeJobStatusResponse.StatusEnum": AppStoreSubscriptionChangeJobStatusResponse.StatusEnum,
         "BankAccount.AccountStateEnum": BankAccount.AccountStateEnum,
         "BankAccountCreate.CurrencyCodeEnum": BankAccountCreate.CurrencyCodeEnum,
         "BankAccountCreate.BusinessTypeEnum": BankAccountCreate.BusinessTypeEnum,
@@ -55901,7 +55690,6 @@ let typeMap: {[index: string]: any} = {
     "AccountFieldDefinition": AccountFieldDefinition,
     "AccountFieldKeyValuePair": AccountFieldKeyValuePair,
     "AccountFieldsDefinitions": AccountFieldsDefinitions,
-    "AddAppStoreSubscriptionRequest": AddAppStoreSubscriptionRequest,
     "AddressFormDisplayFormat": AddressFormDisplayFormat,
     "AddressFormResponse": AddressFormResponse,
     "AllMetadataResult": AllMetadataResult,
@@ -55931,10 +55719,7 @@ let typeMap: {[index: string]: any} = {
     "AppStoreConfigCreatedEvent": AppStoreConfigCreatedEvent,
     "AppStoreConfigDeletedEvent": AppStoreConfigDeletedEvent,
     "AppStoreConfigUpdatedEvent": AppStoreConfigUpdatedEvent,
-    "AppStoreSubscriptionChangeJobStatusResponse": AppStoreSubscriptionChangeJobStatusResponse,
     "AppStoreSubscriptionChangeJobUpdatedEvent": AppStoreSubscriptionChangeJobUpdatedEvent,
-    "AppStoreSubscriptionItem": AppStoreSubscriptionItem,
-    "AppStoreSubscriptionJobResponse": AppStoreSubscriptionJobResponse,
     "AppUpdatedEvent": AppUpdatedEvent,
     "AssignedBankAccount": AssignedBankAccount,
     "AuditLogFieldChangeInformation": AuditLogFieldChangeInformation,
@@ -56337,7 +56122,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultApmHourlyDataPoint": RestApiArrayResultApmHourlyDataPoint,
     "RestApiArrayResultAppStoreAppConfigurationSummary": RestApiArrayResultAppStoreAppConfigurationSummary,
     "RestApiArrayResultAppStoreAppSummary": RestApiArrayResultAppStoreAppSummary,
-    "RestApiArrayResultAppStoreSubscriptionItem": RestApiArrayResultAppStoreSubscriptionItem,
     "RestApiArrayResultBankAccountSummary": RestApiArrayResultBankAccountSummary,
     "RestApiArrayResultBusinessHoursPeriod": RestApiArrayResultBusinessHoursPeriod,
     "RestApiArrayResultChannel": RestApiArrayResultChannel,
@@ -56437,8 +56221,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultAppStoreAppConfiguration": RestApiResultAppStoreAppConfiguration,
     "RestApiResultAppStoreAppConfigurationsWithSubscriptions": RestApiResultAppStoreAppConfigurationsWithSubscriptions,
     "RestApiResultAppStoreAppEntitlements": RestApiResultAppStoreAppEntitlements,
-    "RestApiResultAppStoreSubscriptionChangeJobStatusResponse": RestApiResultAppStoreSubscriptionChangeJobStatusResponse,
-    "RestApiResultAppStoreSubscriptionJobResponse": RestApiResultAppStoreSubscriptionJobResponse,
     "RestApiResultAssignedBankAccount": RestApiResultAssignedBankAccount,
     "RestApiResultBankAccountDetail": RestApiResultBankAccountDetail,
     "RestApiResultBluetoothTerminalStatus": RestApiResultBluetoothTerminalStatus,
@@ -56660,7 +56442,6 @@ let typeMap: {[index: string]: any} = {
     "UpdateAppStoreAppConfigurationValuesBatch": UpdateAppStoreAppConfigurationValuesBatch,
     "UpdateAppStoreAppConfigurationWebhookDTO": UpdateAppStoreAppConfigurationWebhookDTO,
     "UpdateAppStoreAppExternalProduct": UpdateAppStoreAppExternalProduct,
-    "UpdateAppStoreSubscriptionRequest": UpdateAppStoreSubscriptionRequest,
     "UpdateCatalogGroupReference": UpdateCatalogGroupReference,
     "UpdateCatalogItem": UpdateCatalogItem,
     "UpdateDriverNotificationToken": UpdateDriverNotificationToken,
@@ -60015,10 +59796,10 @@ export class AppStoreDeveloperApi {
         });
     }
 }
-export enum AppStoreSubscriptionsApiApiKeys {
+export enum AppStoreEntitlementsApiApiKeys {
 }
 
-export class AppStoreSubscriptionsApi {
+export class AppStoreEntitlementsApi {
     protected _basePath = defaultBasePath;
     protected defaultHeaders : any = {};
     protected _useQuerystring : boolean = false;
@@ -60057,152 +59838,12 @@ export class AppStoreSubscriptionsApi {
 	this.authentications.default = auth;
     }
 
-    public setApiKey(key: AppStoreSubscriptionsApiApiKeys, value: string) {
-        (this.authentications as any)[AppStoreSubscriptionsApiApiKeys[key]].apiKey = value;
+    public setApiKey(key: AppStoreEntitlementsApiApiKeys, value: string) {
+        (this.authentications as any)[AppStoreEntitlementsApiApiKeys[key]].apiKey = value;
     }
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
-    }
-    /**
-     * 
-     * @param appId 
-     * @param appStoreAppId 
-     * @param addAppStoreSubscriptionRequest 
-     * @param {*} [options] Override http request options.
-     */
-    public createAppStoreSubscription (appId: string, appStoreAppId: string, addAppStoreSubscriptionRequest: AddAppStoreSubscriptionRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreSubscriptionJobResponse;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/subscriptions'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling createAppStoreSubscription.');
-        }
-
-        // verify required parameter 'appStoreAppId' is not null or undefined
-        if (appStoreAppId === null || appStoreAppId === undefined) {
-            throw new Error('Required parameter appStoreAppId was null or undefined when calling createAppStoreSubscription.');
-        }
-
-        // verify required parameter 'addAppStoreSubscriptionRequest' is not null or undefined
-        if (addAppStoreSubscriptionRequest === null || addAppStoreSubscriptionRequest === undefined) {
-            throw new Error('Required parameter addAppStoreSubscriptionRequest was null or undefined when calling createAppStoreSubscription.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(addAppStoreSubscriptionRequest, "AddAppStoreSubscriptionRequest")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreSubscriptionJobResponse;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreSubscriptionJobResponse");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param appStoreAppId 
-     * @param subscriptionId 
-     * @param {*} [options] Override http request options.
-     */
-    public deleteAppSubscription (appId: string, appStoreAppId: string, subscriptionId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreSubscriptionJobResponse;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/subscriptions/{subscriptionId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)))
-            .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling deleteAppSubscription.');
-        }
-
-        // verify required parameter 'appStoreAppId' is not null or undefined
-        if (appStoreAppId === null || appStoreAppId === undefined) {
-            throw new Error('Required parameter appStoreAppId was null or undefined when calling deleteAppSubscription.');
-        }
-
-        // verify required parameter 'subscriptionId' is not null or undefined
-        if (subscriptionId === null || subscriptionId === undefined) {
-            throw new Error('Required parameter subscriptionId was null or undefined when calling deleteAppSubscription.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreSubscriptionJobResponse;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreSubscriptionJobResponse");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
     }
     /**
      * 
@@ -60258,216 +59899,6 @@ export class AppStoreSubscriptionsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreAppEntitlements");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param appStoreAppId 
-     * @param jobId 
-     * @param {*} [options] Override http request options.
-     */
-    public getAppStoreSubscriptionChangeJobStatus (appId: string, appStoreAppId: string, jobId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreSubscriptionChangeJobStatusResponse;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/subscriptions/jobs/{jobId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)))
-            .replace('{' + 'jobId' + '}', encodeURIComponent(String(jobId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getAppStoreSubscriptionChangeJobStatus.');
-        }
-
-        // verify required parameter 'appStoreAppId' is not null or undefined
-        if (appStoreAppId === null || appStoreAppId === undefined) {
-            throw new Error('Required parameter appStoreAppId was null or undefined when calling getAppStoreSubscriptionChangeJobStatus.');
-        }
-
-        // verify required parameter 'jobId' is not null or undefined
-        if (jobId === null || jobId === undefined) {
-            throw new Error('Required parameter jobId was null or undefined when calling getAppStoreSubscriptionChangeJobStatus.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreSubscriptionChangeJobStatusResponse;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreSubscriptionChangeJobStatusResponse");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param appStoreAppId 
-     * @param {*} [options] Override http request options.
-     */
-    public getAppStoreSubscriptions (appId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppStoreSubscriptionItem;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/subscriptions'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getAppStoreSubscriptions.');
-        }
-
-        // verify required parameter 'appStoreAppId' is not null or undefined
-        if (appStoreAppId === null || appStoreAppId === undefined) {
-            throw new Error('Required parameter appStoreAppId was null or undefined when calling getAppStoreSubscriptions.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultAppStoreSubscriptionItem;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultAppStoreSubscriptionItem");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param appStoreAppId 
-     * @param subscriptionId 
-     * @param updateAppStoreSubscriptionRequest 
-     * @param {*} [options] Override http request options.
-     */
-    public updateAppStoreSubscription (appId: string, appStoreAppId: string, subscriptionId: string, updateAppStoreSubscriptionRequest: UpdateAppStoreSubscriptionRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreSubscriptionJobResponse;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps/{appStoreAppId}/subscriptions/{subscriptionId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)))
-            .replace('{' + 'subscriptionId' + '}', encodeURIComponent(String(subscriptionId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling updateAppStoreSubscription.');
-        }
-
-        // verify required parameter 'appStoreAppId' is not null or undefined
-        if (appStoreAppId === null || appStoreAppId === undefined) {
-            throw new Error('Required parameter appStoreAppId was null or undefined when calling updateAppStoreSubscription.');
-        }
-
-        // verify required parameter 'subscriptionId' is not null or undefined
-        if (subscriptionId === null || subscriptionId === undefined) {
-            throw new Error('Required parameter subscriptionId was null or undefined when calling updateAppStoreSubscription.');
-        }
-
-        // verify required parameter 'updateAppStoreSubscriptionRequest' is not null or undefined
-        if (updateAppStoreSubscriptionRequest === null || updateAppStoreSubscriptionRequest === undefined) {
-            throw new Error('Required parameter updateAppStoreSubscriptionRequest was null or undefined when calling updateAppStoreSubscription.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(updateAppStoreSubscriptionRequest, "UpdateAppStoreSubscriptionRequest")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreSubscriptionJobResponse;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreSubscriptionJobResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
