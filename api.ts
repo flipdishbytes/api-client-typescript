@@ -89834,6 +89834,79 @@ export class StoresApi {
     }
     /**
      * 
+     * @param storeGroupId 
+     * @param propertyId 
+     * @param store 
+     * @param {*} [options] Override http request options.
+     */
+    public createStoreInProperty (storeGroupId: number, propertyId: string, store: StoreCreateBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/properties/{propertyId}/stores'
+            .replace('{' + 'propertyId' + '}', encodeURIComponent(String(propertyId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeGroupId' is not null or undefined
+        if (storeGroupId === null || storeGroupId === undefined) {
+            throw new Error('Required parameter storeGroupId was null or undefined when calling createStoreInProperty.');
+        }
+
+        // verify required parameter 'propertyId' is not null or undefined
+        if (propertyId === null || propertyId === undefined) {
+            throw new Error('Required parameter propertyId was null or undefined when calling createStoreInProperty.');
+        }
+
+        // verify required parameter 'store' is not null or undefined
+        if (store === null || store === undefined) {
+            throw new Error('Required parameter store was null or undefined when calling createStoreInProperty.');
+        }
+
+        if (storeGroupId !== undefined) {
+            localVarQueryParameters['storeGroupId'] = ObjectSerializer.serialize(storeGroupId, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(store, "StoreCreateBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultStore");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @param storeId 
      * @param businessHoursOverrideId 
      * @param {*} [options] Override http request options.
