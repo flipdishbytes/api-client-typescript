@@ -31595,6 +31595,7 @@ export class PayoutReport3DetailsFlipdishFees {
     'RefundedFeesOnRefundedSales'?: number;
     'Vat'?: number;
     'Total'?: number;
+    'ThirdPartyIntegrationFeesAndTips'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -31687,6 +31688,11 @@ export class PayoutReport3DetailsFlipdishFees {
         {
             "name": "Total",
             "baseName": "Total",
+            "type": "number"
+        },
+        {
+            "name": "ThirdPartyIntegrationFeesAndTips",
+            "baseName": "ThirdPartyIntegrationFeesAndTips",
             "type": "number"
         }    ];
 
