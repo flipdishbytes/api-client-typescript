@@ -2260,35 +2260,6 @@ export namespace AppStoreAppConfigurationSummary {
         Multiple = <any> 'Multiple'
     }
 }
-export class AppStoreAppConfigurationsWithSubscriptions {
-    'Subscription'?: AppStoreAppSubscriptionSummary;
-    'Configurations'?: Array<AppStoreAppConfigurationSummary>;
-    'Prices'?: Array<SubscriptionProductPriceInfo>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Subscription",
-            "baseName": "Subscription",
-            "type": "AppStoreAppSubscriptionSummary"
-        },
-        {
-            "name": "Configurations",
-            "baseName": "Configurations",
-            "type": "Array<AppStoreAppConfigurationSummary>"
-        },
-        {
-            "name": "Prices",
-            "baseName": "Prices",
-            "type": "Array<SubscriptionProductPriceInfo>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AppStoreAppConfigurationsWithSubscriptions.attributeTypeMap;
-    }
-}
-
 export class AppStoreAppEntitlements {
     'EntitlementQuantity'?: number;
     'CurrentUsage'?: number;
@@ -2309,58 +2280,6 @@ export class AppStoreAppEntitlements {
 
     static getAttributeTypeMap() {
         return AppStoreAppEntitlements.attributeTypeMap;
-    }
-}
-
-export class AppStoreAppSubscriptionAccount {
-    'Email'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Email",
-            "baseName": "Email",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AppStoreAppSubscriptionAccount.attributeTypeMap;
-    }
-}
-
-export class AppStoreAppSubscriptionSummary {
-    'TotalSubscriptions'?: number;
-    'UsedSubscriptions'?: number;
-    'SubscriptionAccountIsSetupForClient'?: boolean;
-    'SubscriptionAccounts'?: Array<AppStoreAppSubscriptionAccount>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "TotalSubscriptions",
-            "baseName": "TotalSubscriptions",
-            "type": "number"
-        },
-        {
-            "name": "UsedSubscriptions",
-            "baseName": "UsedSubscriptions",
-            "type": "number"
-        },
-        {
-            "name": "SubscriptionAccountIsSetupForClient",
-            "baseName": "SubscriptionAccountIsSetupForClient",
-            "type": "boolean"
-        },
-        {
-            "name": "SubscriptionAccounts",
-            "baseName": "SubscriptionAccounts",
-            "type": "Array<AppStoreAppSubscriptionAccount>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AppStoreAppSubscriptionSummary.attributeTypeMap;
     }
 }
 
@@ -38401,29 +38320,6 @@ export class RestApiResultAppStoreAppConfiguration {
 /**
 * Rest api result
 */
-export class RestApiResultAppStoreAppConfigurationsWithSubscriptions {
-    /**
-    * Generic data object.
-    */
-    'Data': AppStoreAppConfigurationsWithSubscriptions;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "AppStoreAppConfigurationsWithSubscriptions"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiResultAppStoreAppConfigurationsWithSubscriptions.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api result
-*/
 export class RestApiResultAppStoreAppEntitlements {
     /**
     * Generic data object.
@@ -49639,41 +49535,6 @@ export namespace SubscriptionProduct {
         Year = <any> 'year'
     }
 }
-export class SubscriptionProductPriceInfo {
-    'Amount'?: number;
-    'Currency'?: string;
-    'Scope'?: SubscriptionProductPriceInfo.ScopeEnum;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Amount",
-            "baseName": "Amount",
-            "type": "number"
-        },
-        {
-            "name": "Currency",
-            "baseName": "Currency",
-            "type": "string"
-        },
-        {
-            "name": "Scope",
-            "baseName": "Scope",
-            "type": "SubscriptionProductPriceInfo.ScopeEnum"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return SubscriptionProductPriceInfo.attributeTypeMap;
-    }
-}
-
-export namespace SubscriptionProductPriceInfo {
-    export enum ScopeEnum {
-        Store = <any> 'Store',
-        Whitelabel = <any> 'Whitelabel'
-    }
-}
 /**
 * Subscription Store
 */
@@ -55648,7 +55509,6 @@ let enumsMap: {[index: string]: any} = {
         "Subscription.StatusEnum": Subscription.StatusEnum,
         "Subscription.CurrencyEnum": Subscription.CurrencyEnum,
         "SubscriptionProduct.PaymentFrequencyEnum": SubscriptionProduct.PaymentFrequencyEnum,
-        "SubscriptionProductPriceInfo.ScopeEnum": SubscriptionProductPriceInfo.ScopeEnum,
         "SubscriptionSummary.StatusEnum": SubscriptionSummary.StatusEnum,
         "SubscriptionSummary.CurrencyEnum": SubscriptionSummary.CurrencyEnum,
         "SupportedCountry.AddressLayoutEnum": SupportedCountry.AddressLayoutEnum,
@@ -55717,10 +55577,7 @@ let typeMap: {[index: string]: any} = {
     "AppStoreApp": AppStoreApp,
     "AppStoreAppConfiguration": AppStoreAppConfiguration,
     "AppStoreAppConfigurationSummary": AppStoreAppConfigurationSummary,
-    "AppStoreAppConfigurationsWithSubscriptions": AppStoreAppConfigurationsWithSubscriptions,
     "AppStoreAppEntitlements": AppStoreAppEntitlements,
-    "AppStoreAppSubscriptionAccount": AppStoreAppSubscriptionAccount,
-    "AppStoreAppSubscriptionSummary": AppStoreAppSubscriptionSummary,
     "AppStoreAppSummary": AppStoreAppSummary,
     "AppStoreAppSupportInfo": AppStoreAppSupportInfo,
     "AppStoreConfigCreatedEvent": AppStoreConfigCreatedEvent,
@@ -56226,7 +56083,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultAppConfigSalesChannel": RestApiResultAppConfigSalesChannel,
     "RestApiResultAppStoreApp": RestApiResultAppStoreApp,
     "RestApiResultAppStoreAppConfiguration": RestApiResultAppStoreAppConfiguration,
-    "RestApiResultAppStoreAppConfigurationsWithSubscriptions": RestApiResultAppStoreAppConfigurationsWithSubscriptions,
     "RestApiResultAppStoreAppEntitlements": RestApiResultAppStoreAppEntitlements,
     "RestApiResultAssignedBankAccount": RestApiResultAssignedBankAccount,
     "RestApiResultBankAccountDetail": RestApiResultBankAccountDetail,
@@ -56424,7 +56280,6 @@ let typeMap: {[index: string]: any} = {
     "SubmitOrderResponseDm": SubmitOrderResponseDm,
     "Subscription": Subscription,
     "SubscriptionProduct": SubscriptionProduct,
-    "SubscriptionProductPriceInfo": SubscriptionProductPriceInfo,
     "SubscriptionStore": SubscriptionStore,
     "SubscriptionSummary": SubscriptionSummary,
     "SupportedCountry": SupportedCountry,
@@ -58938,69 +58793,6 @@ export class AppStoreConfigurationsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultAppStoreAppConfigurationSummary");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param appStoreAppId 
-     * @param {*} [options] Override http request options.
-     */
-    public getConfiguredAppWithSubscriptionsSingleApp (appId: string, appStoreAppId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreAppConfigurationsWithSubscriptions;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/appstore/apps_subscriptions/{appStoreAppId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'appStoreAppId' + '}', encodeURIComponent(String(appStoreAppId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getConfiguredAppWithSubscriptionsSingleApp.');
-        }
-
-        // verify required parameter 'appStoreAppId' is not null or undefined
-        if (appStoreAppId === null || appStoreAppId === undefined) {
-            throw new Error('Required parameter appStoreAppId was null or undefined when calling getConfiguredAppWithSubscriptionsSingleApp.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreAppConfigurationsWithSubscriptions;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreAppConfigurationsWithSubscriptions");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
