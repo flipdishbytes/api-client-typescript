@@ -1309,6 +1309,7 @@ export namespace App {
         ViewCatalogAuditLogs = <any> 'ViewCatalogAuditLogs',
         ViewOrderFulfillmentAuditLogs = <any> 'ViewOrderFulfillmentAuditLogs',
         ViewChannelAuditLogs = <any> 'ViewChannelAuditLogs',
+        ViewAppStoreAuditLogs = <any> 'ViewAppStoreAuditLogs',
         SendPushNotificationToCustomer = <any> 'SendPushNotificationToCustomer',
         InviteDriverToApp = <any> 'InviteDriverToApp',
         GetDriverForApp = <any> 'GetDriverForApp',
