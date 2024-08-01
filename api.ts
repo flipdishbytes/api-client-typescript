@@ -1258,6 +1258,7 @@ export namespace App {
         ViewServiceChargeConfigurations = <any> 'ViewServiceChargeConfigurations',
         EditServiceChargeConfigurations = <any> 'EditServiceChargeConfigurations',
         EditStoreDeliveryZoneFees = <any> 'EditStoreDeliveryZoneFees',
+        EditStoreDeliveryFeesLimited = <any> 'EditStoreDeliveryFeesLimited',
         ViewHydraConfig = <any> 'ViewHydraConfig',
         UpdateHydraConfigManage = <any> 'UpdateHydraConfigManage',
         InitiateBluetoothPairingMode = <any> 'InitiateBluetoothPairingMode',
