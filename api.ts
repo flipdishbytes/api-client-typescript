@@ -31392,6 +31392,8 @@ export class PayoutReport3DetailsAdjustments {
     'BalanceChange'?: number;
     'PreviousPayoutId'?: number;
     'NextPayoutId'?: number;
+    'RefundedFeesOnChargebacks'?: number;
+    'TotalChargebackCost'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -31489,6 +31491,16 @@ export class PayoutReport3DetailsAdjustments {
         {
             "name": "NextPayoutId",
             "baseName": "NextPayoutId",
+            "type": "number"
+        },
+        {
+            "name": "RefundedFeesOnChargebacks",
+            "baseName": "RefundedFeesOnChargebacks",
+            "type": "number"
+        },
+        {
+            "name": "TotalChargebackCost",
+            "baseName": "TotalChargebackCost",
             "type": "number"
         }    ];
 
