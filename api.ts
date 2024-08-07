@@ -19473,6 +19473,10 @@ export class LoyaltyCampaign {
     * The app that this campaign belongs to.
     */
     'AppId'?: string;
+    /**
+    * Controls whether the voucher generated from this campaign will override discount exclusions
+    */
+    'ForceDiscount'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -19551,6 +19555,11 @@ export class LoyaltyCampaign {
             "name": "AppId",
             "baseName": "AppId",
             "type": "string"
+        },
+        {
+            "name": "ForceDiscount",
+            "baseName": "ForceDiscount",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -19606,6 +19615,10 @@ export class LoyaltyCampaignBase {
     * The app that this campaign belongs to.
     */
     'AppId'?: string;
+    /**
+    * Controls whether the voucher generated from this campaign will override discount exclusions
+    */
+    'ForceDiscount'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -19664,6 +19677,11 @@ export class LoyaltyCampaignBase {
             "name": "AppId",
             "baseName": "AppId",
             "type": "string"
+        },
+        {
+            "name": "ForceDiscount",
+            "baseName": "ForceDiscount",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -41019,6 +41037,10 @@ export class RetentionCampaign {
     * The app that this campaign belongs to.
     */
     'AppId'?: string;
+    /**
+    * Controls whether the voucher generated from this campaign will override discount exclusions
+    */
+    'ForceDiscount'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -41092,6 +41114,11 @@ export class RetentionCampaign {
             "name": "AppId",
             "baseName": "AppId",
             "type": "string"
+        },
+        {
+            "name": "ForceDiscount",
+            "baseName": "ForceDiscount",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -41143,6 +41170,10 @@ export class RetentionCampaignBase {
     * The app that this campaign belongs to.
     */
     'AppId'?: string;
+    /**
+    * Controls whether the voucher generated from this campaign will override discount exclusions
+    */
+    'ForceDiscount'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -41196,6 +41227,11 @@ export class RetentionCampaignBase {
             "name": "AppId",
             "baseName": "AppId",
             "type": "string"
+        },
+        {
+            "name": "ForceDiscount",
+            "baseName": "ForceDiscount",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
