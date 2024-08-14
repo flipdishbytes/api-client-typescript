@@ -160,6 +160,38 @@ export class Accept {
 }
 
 /**
+* 
+*/
+export class AcceptInvitationResult {
+    /**
+    * Bool indicating if the user accepting the invitation is a new user
+    */
+    'IsNewUser'?: boolean;
+    /**
+    * The email address that was invited.
+    */
+    'InvitedEmailAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "IsNewUser",
+            "baseName": "IsNewUser",
+            "type": "boolean"
+        },
+        {
+            "name": "InvitedEmailAddress",
+            "baseName": "InvitedEmailAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AcceptInvitationResult.attributeTypeMap;
+    }
+}
+
+/**
 * Account details
 */
 export class AccountDetail {
@@ -34887,10 +34919,6 @@ export class RedeemInvitationResult {
     * Invitation status
     */
     'InvitationStatus'?: RedeemInvitationResult.InvitationStatusEnum;
-    /**
-    * Bool indicating if the user that redeemed the invitation is a new user
-    */
-    'IsNewUser'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -34904,11 +34932,6 @@ export class RedeemInvitationResult {
             "name": "InvitationStatus",
             "baseName": "InvitationStatus",
             "type": "RedeemInvitationResult.InvitationStatusEnum"
-        },
-        {
-            "name": "IsNewUser",
-            "baseName": "IsNewUser",
-            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -38213,6 +38236,29 @@ export class RestApiPaginationResultWebhookSubscription {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultWebhookSubscription.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultAcceptInvitationResult {
+    /**
+    * Generic data object.
+    */
+    'Data': AcceptInvitationResult;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "AcceptInvitationResult"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultAcceptInvitationResult.attributeTypeMap;
     }
 }
 
@@ -55723,6 +55769,7 @@ let enumsMap: {[index: string]: any} = {
 
 let typeMap: {[index: string]: any} = {
     "Accept": Accept,
+    "AcceptInvitationResult": AcceptInvitationResult,
     "AccountDetail": AccountDetail,
     "AccountDetailBase": AccountDetailBase,
     "AccountFieldDefinition": AccountFieldDefinition,
@@ -56245,6 +56292,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultVoucherSummary": RestApiPaginationResultVoucherSummary,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiPaginationResultWebhookSubscription": RestApiPaginationResultWebhookSubscription,
+    "RestApiResultAcceptInvitationResult": RestApiResultAcceptInvitationResult,
     "RestApiResultAccountDetail": RestApiResultAccountDetail,
     "RestApiResultAccountFieldsDefinitions": RestApiResultAccountFieldsDefinitions,
     "RestApiResultAddressFormResponse": RestApiResultAddressFormResponse,
@@ -93645,6 +93693,69 @@ export class TeammatesApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultRedeemInvitationResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param otc 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public teammatesAcceptInvitation (otc: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAcceptInvitationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/accept/{otc}'
+            .replace('{' + 'otc' + '}', encodeURIComponent(String(otc)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'otc' is not null or undefined
+        if (otc === null || otc === undefined) {
+            throw new Error('Required parameter otc was null or undefined when calling teammatesAcceptInvitation.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling teammatesAcceptInvitation.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAcceptInvitationResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAcceptInvitationResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
