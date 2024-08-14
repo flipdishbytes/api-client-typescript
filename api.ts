@@ -31937,214 +31937,6 @@ export class PayoutReport3OverviewHeader {
     }
 }
 
-export class PayoutReport3PayoutOrder {
-    'OrderId'?: number;
-    'OrderDate'?: Date;
-    'StoreId'?: number;
-    'StoreName'?: string;
-    'OrderType'?: PayoutReport3PayoutOrder.OrderTypeEnum;
-    'Sales'?: number;
-    'SalesTax'?: number;
-    'DeliveryCharges'?: number;
-    'Tips'?: number;
-    'Voucher'?: number;
-    'OrderCurrency'?: PayoutReport3PayoutOrder.OrderCurrencyEnum;
-    'RefundChargebackType'?: PayoutReport3PayoutOrder.RefundChargebackTypeEnum;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "OrderId",
-            "baseName": "OrderId",
-            "type": "number"
-        },
-        {
-            "name": "OrderDate",
-            "baseName": "OrderDate",
-            "type": "Date"
-        },
-        {
-            "name": "StoreId",
-            "baseName": "StoreId",
-            "type": "number"
-        },
-        {
-            "name": "StoreName",
-            "baseName": "StoreName",
-            "type": "string"
-        },
-        {
-            "name": "OrderType",
-            "baseName": "OrderType",
-            "type": "PayoutReport3PayoutOrder.OrderTypeEnum"
-        },
-        {
-            "name": "Sales",
-            "baseName": "Sales",
-            "type": "number"
-        },
-        {
-            "name": "SalesTax",
-            "baseName": "SalesTax",
-            "type": "number"
-        },
-        {
-            "name": "DeliveryCharges",
-            "baseName": "DeliveryCharges",
-            "type": "number"
-        },
-        {
-            "name": "Tips",
-            "baseName": "Tips",
-            "type": "number"
-        },
-        {
-            "name": "Voucher",
-            "baseName": "Voucher",
-            "type": "number"
-        },
-        {
-            "name": "OrderCurrency",
-            "baseName": "OrderCurrency",
-            "type": "PayoutReport3PayoutOrder.OrderCurrencyEnum"
-        },
-        {
-            "name": "RefundChargebackType",
-            "baseName": "RefundChargebackType",
-            "type": "PayoutReport3PayoutOrder.RefundChargebackTypeEnum"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return PayoutReport3PayoutOrder.attributeTypeMap;
-    }
-}
-
-export namespace PayoutReport3PayoutOrder {
-    export enum OrderTypeEnum {
-        Cash = <any> 'Cash',
-        Card = <any> 'Card'
-    }
-    export enum OrderCurrencyEnum {
-        EUR = <any> 'EUR',
-        USD = <any> 'USD',
-        GBP = <any> 'GBP',
-        CAD = <any> 'CAD',
-        AUD = <any> 'AUD',
-        DJF = <any> 'DJF',
-        ZAR = <any> 'ZAR',
-        ETB = <any> 'ETB',
-        AED = <any> 'AED',
-        BHD = <any> 'BHD',
-        DZD = <any> 'DZD',
-        EGP = <any> 'EGP',
-        IQD = <any> 'IQD',
-        JOD = <any> 'JOD',
-        KWD = <any> 'KWD',
-        LBP = <any> 'LBP',
-        LYD = <any> 'LYD',
-        MAD = <any> 'MAD',
-        OMR = <any> 'OMR',
-        QAR = <any> 'QAR',
-        SAR = <any> 'SAR',
-        SYP = <any> 'SYP',
-        TND = <any> 'TND',
-        YER = <any> 'YER',
-        CLP = <any> 'CLP',
-        INR = <any> 'INR',
-        AZN = <any> 'AZN',
-        RUB = <any> 'RUB',
-        BYN = <any> 'BYN',
-        BGN = <any> 'BGN',
-        NGN = <any> 'NGN',
-        BDT = <any> 'BDT',
-        CNY = <any> 'CNY',
-        BAM = <any> 'BAM',
-        CZK = <any> 'CZK',
-        DKK = <any> 'DKK',
-        CHF = <any> 'CHF',
-        MVR = <any> 'MVR',
-        BTN = <any> 'BTN',
-        XCD = <any> 'XCD',
-        BZD = <any> 'BZD',
-        HKD = <any> 'HKD',
-        IDR = <any> 'IDR',
-        JMD = <any> 'JMD',
-        MYR = <any> 'MYR',
-        NZD = <any> 'NZD',
-        PHP = <any> 'PHP',
-        SGD = <any> 'SGD',
-        TTD = <any> 'TTD',
-        XDR = <any> 'XDR',
-        ARS = <any> 'ARS',
-        BOB = <any> 'BOB',
-        COP = <any> 'COP',
-        CRC = <any> 'CRC',
-        CUP = <any> 'CUP',
-        DOP = <any> 'DOP',
-        GTQ = <any> 'GTQ',
-        HNL = <any> 'HNL',
-        MXN = <any> 'MXN',
-        NIO = <any> 'NIO',
-        PAB = <any> 'PAB',
-        PEN = <any> 'PEN',
-        PYG = <any> 'PYG',
-        UYU = <any> 'UYU',
-        VEF = <any> 'VEF',
-        IRR = <any> 'IRR',
-        XOF = <any> 'XOF',
-        CDF = <any> 'CDF',
-        XAF = <any> 'XAF',
-        HTG = <any> 'HTG',
-        ILS = <any> 'ILS',
-        HRK = <any> 'HRK',
-        HUF = <any> 'HUF',
-        AMD = <any> 'AMD',
-        ISK = <any> 'ISK',
-        JPY = <any> 'JPY',
-        GEL = <any> 'GEL',
-        KZT = <any> 'KZT',
-        KHR = <any> 'KHR',
-        KRW = <any> 'KRW',
-        KGS = <any> 'KGS',
-        LAK = <any> 'LAK',
-        MKD = <any> 'MKD',
-        MNT = <any> 'MNT',
-        BND = <any> 'BND',
-        MMK = <any> 'MMK',
-        NOK = <any> 'NOK',
-        NPR = <any> 'NPR',
-        PKR = <any> 'PKR',
-        PLN = <any> 'PLN',
-        AFN = <any> 'AFN',
-        BRL = <any> 'BRL',
-        MDL = <any> 'MDL',
-        RON = <any> 'RON',
-        RWF = <any> 'RWF',
-        SEK = <any> 'SEK',
-        LKR = <any> 'LKR',
-        SOS = <any> 'SOS',
-        ALL = <any> 'ALL',
-        RSD = <any> 'RSD',
-        KES = <any> 'KES',
-        TJS = <any> 'TJS',
-        THB = <any> 'THB',
-        ERN = <any> 'ERN',
-        TMT = <any> 'TMT',
-        BWP = <any> 'BWP',
-        TRY = <any> 'TRY',
-        UAH = <any> 'UAH',
-        UZS = <any> 'UZS',
-        VND = <any> 'VND',
-        MOP = <any> 'MOP',
-        TWD = <any> 'TWD',
-        BMD = <any> 'BMD'
-    }
-    export enum RefundChargebackTypeEnum {
-        Refund = <any> 'Refund',
-        Chargeback = <any> 'Chargeback'
-    }
-}
 export class PayoutReport3RefundedOrder {
     'OrderId'?: number;
     'PlacedAtTime'?: Date;
@@ -37536,56 +37328,6 @@ export class RestApiPaginationResultPayoutRefund {
 
     static getAttributeTypeMap() {
         return RestApiPaginationResultPayoutRefund.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api pagination result
-*/
-export class RestApiPaginationResultPayoutReport3PayoutOrder {
-    /**
-    * Current page index
-    */
-    'Page': number;
-    /**
-    * Current page size
-    */
-    'Limit': number;
-    /**
-    * Total record count
-    */
-    'TotalRecordCount': number;
-    /**
-    * Generic data object.
-    */
-    'Data': Array<PayoutReport3PayoutOrder>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Page",
-            "baseName": "Page",
-            "type": "number"
-        },
-        {
-            "name": "Limit",
-            "baseName": "Limit",
-            "type": "number"
-        },
-        {
-            "name": "TotalRecordCount",
-            "baseName": "TotalRecordCount",
-            "type": "number"
-        },
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Array<PayoutReport3PayoutOrder>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiPaginationResultPayoutReport3PayoutOrder.attributeTypeMap;
     }
 }
 
@@ -55680,9 +55422,6 @@ let enumsMap: {[index: string]: any} = {
         "PayoutOtherCharge.ChargeTypeEnum": PayoutOtherCharge.ChargeTypeEnum,
         "PayoutRefund.OrderCurrencyEnum": PayoutRefund.OrderCurrencyEnum,
         "PayoutRefund.OrderTypeEnum": PayoutRefund.OrderTypeEnum,
-        "PayoutReport3PayoutOrder.OrderTypeEnum": PayoutReport3PayoutOrder.OrderTypeEnum,
-        "PayoutReport3PayoutOrder.OrderCurrencyEnum": PayoutReport3PayoutOrder.OrderCurrencyEnum,
-        "PayoutReport3PayoutOrder.RefundChargebackTypeEnum": PayoutReport3PayoutOrder.RefundChargebackTypeEnum,
         "PayoutReport3RefundedOrder.TypeEnum": PayoutReport3RefundedOrder.TypeEnum,
         "PayoutRequestIds.StatesEnum": PayoutRequestIds.StatesEnum,
         "PayoutSummary.PayoutStatusEnum": PayoutSummary.PayoutStatusEnum,
@@ -56151,7 +55890,6 @@ let typeMap: {[index: string]: any} = {
     "PayoutReport3DetailsSummary": PayoutReport3DetailsSummary,
     "PayoutReport3Overview": PayoutReport3Overview,
     "PayoutReport3OverviewHeader": PayoutReport3OverviewHeader,
-    "PayoutReport3PayoutOrder": PayoutReport3PayoutOrder,
     "PayoutReport3RefundedOrder": PayoutReport3RefundedOrder,
     "PayoutReport3Store": PayoutReport3Store,
     "PayoutRequestIds": PayoutRequestIds,
@@ -56278,7 +56016,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultPayoutOrder": RestApiPaginationResultPayoutOrder,
     "RestApiPaginationResultPayoutOtherCharge": RestApiPaginationResultPayoutOtherCharge,
     "RestApiPaginationResultPayoutRefund": RestApiPaginationResultPayoutRefund,
-    "RestApiPaginationResultPayoutReport3PayoutOrder": RestApiPaginationResultPayoutReport3PayoutOrder,
     "RestApiPaginationResultPayoutReport3RefundedOrder": RestApiPaginationResultPayoutReport3RefundedOrder,
     "RestApiPaginationResultPendingMenuChanges": RestApiPaginationResultPendingMenuChanges,
     "RestApiPaginationResultPhoneCall": RestApiPaginationResultPhoneCall,
@@ -85936,91 +85673,6 @@ export class PayoutReportsApi {
      * @param appId 
      * @param bankAccountId 
      * @param payoutId 
-     * @param storeIds 
-     * @param page 
-     * @param limit 
-     * @param {*} [options] Override http request options.
-     */
-    public getPayoutReport3Orders (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutReport3PayoutOrder;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/orders'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
-            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getPayoutReport3Orders.');
-        }
-
-        // verify required parameter 'bankAccountId' is not null or undefined
-        if (bankAccountId === null || bankAccountId === undefined) {
-            throw new Error('Required parameter bankAccountId was null or undefined when calling getPayoutReport3Orders.');
-        }
-
-        // verify required parameter 'payoutId' is not null or undefined
-        if (payoutId === null || payoutId === undefined) {
-            throw new Error('Required parameter payoutId was null or undefined when calling getPayoutReport3Orders.');
-        }
-
-        if (storeIds !== undefined) {
-            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
-        }
-
-        if (page !== undefined) {
-            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
-        }
-
-        if (limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutReport3PayoutOrder;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultPayoutReport3PayoutOrder");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param bankAccountId 
-     * @param payoutId 
      * @param {*} [options] Override http request options.
      */
     public getPayoutReport3Overview (appId: string, bankAccountId: number, payoutId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPayoutReport3Overview;  }> {
@@ -86501,81 +86153,6 @@ export class PayoutReportsApi {
         // verify required parameter 'payoutId' is not null or undefined
         if (payoutId === null || payoutId === undefined) {
             throw new Error('Required parameter payoutId was null or undefined when calling payoutReport3ExportPayoutRefundedOrders.');
-        }
-
-        if (stores !== undefined) {
-            localVarQueryParameters['stores'] = ObjectSerializer.serialize(stores, "Array<number>");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultFileCreationResult");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param bankAccountId 
-     * @param payoutId 
-     * @param stores 
-     * @param {*} [options] Override http request options.
-     */
-    public payoutReport3ExportPayoutRefundedRejected (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/export/refundedrejected'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
-            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling payoutReport3ExportPayoutRefundedRejected.');
-        }
-
-        // verify required parameter 'bankAccountId' is not null or undefined
-        if (bankAccountId === null || bankAccountId === undefined) {
-            throw new Error('Required parameter bankAccountId was null or undefined when calling payoutReport3ExportPayoutRefundedRejected.');
-        }
-
-        // verify required parameter 'payoutId' is not null or undefined
-        if (payoutId === null || payoutId === undefined) {
-            throw new Error('Required parameter payoutId was null or undefined when calling payoutReport3ExportPayoutRefundedRejected.');
         }
 
         if (stores !== undefined) {
