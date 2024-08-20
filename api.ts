@@ -8552,6 +8552,10 @@ export class CreateVoucher {
     */
     'IsValidOnlyOnce'?: boolean;
     /**
+    * Enables the voucher to be offered in the Voucher Discoverability feature
+    */
+    'IsDiscoverable'?: boolean;
+    /**
     * Voucher Starts On (Time in UTC)
     */
     'StartDate'?: Date;
@@ -8681,6 +8685,11 @@ export class CreateVoucher {
         {
             "name": "IsValidOnlyOnce",
             "baseName": "IsValidOnlyOnce",
+            "type": "boolean"
+        },
+        {
+            "name": "IsDiscoverable",
+            "baseName": "IsDiscoverable",
             "type": "boolean"
         },
         {
@@ -52084,6 +52093,10 @@ export class UpdateVoucher {
     */
     'IsValidOnlyOnce'?: boolean;
     /**
+    * Enables the voucher to be offered in the Voucher Discoverability feature
+    */
+    'IsDiscoverable'?: boolean;
+    /**
     * Voucher Starts On (Time in UTC)
     */
     'StartDate'?: Date;
@@ -52203,6 +52216,11 @@ export class UpdateVoucher {
         {
             "name": "IsValidOnlyOnce",
             "baseName": "IsValidOnlyOnce",
+            "type": "boolean"
+        },
+        {
+            "name": "IsDiscoverable",
+            "baseName": "IsDiscoverable",
             "type": "boolean"
         },
         {
@@ -53068,6 +53086,10 @@ export class Voucher {
     */
     'IsValidOnlyOnce'?: boolean;
     /**
+    * Enables the voucher to be offered in the Voucher Discoverability feature
+    */
+    'IsDiscoverable'?: boolean;
+    /**
     * Voucher Starts On (Time in UTC)
     */
     'StartDate'?: Date;
@@ -53217,6 +53239,11 @@ export class Voucher {
         {
             "name": "IsValidOnlyOnce",
             "baseName": "IsValidOnlyOnce",
+            "type": "boolean"
+        },
+        {
+            "name": "IsDiscoverable",
+            "baseName": "IsDiscoverable",
             "type": "boolean"
         },
         {
@@ -53984,6 +54011,10 @@ export class VoucherWithStats {
     */
     'IsValidOnlyOnce'?: boolean;
     /**
+    * Enables the voucher to be offered in the Voucher Discoverability feature
+    */
+    'IsDiscoverable'?: boolean;
+    /**
     * Voucher Starts On (Time in UTC)
     */
     'StartDate'?: Date;
@@ -54158,6 +54189,11 @@ export class VoucherWithStats {
         {
             "name": "IsValidOnlyOnce",
             "baseName": "IsValidOnlyOnce",
+            "type": "boolean"
+        },
+        {
+            "name": "IsDiscoverable",
+            "baseName": "IsDiscoverable",
             "type": "boolean"
         },
         {
