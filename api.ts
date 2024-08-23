@@ -6701,6 +6701,10 @@ export class CreateAppInOrg {
     * Main color for the different sales channels
     */
     'MainColor'?: string;
+    /**
+    * A predefined AppId
+    */
+    'AppId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -6718,6 +6722,11 @@ export class CreateAppInOrg {
         {
             "name": "MainColor",
             "baseName": "MainColor",
+            "type": "string"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
             "type": "string"
         }    ];
 
