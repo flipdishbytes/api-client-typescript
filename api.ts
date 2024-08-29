@@ -8565,6 +8565,10 @@ export class CreateVoucher {
     */
     'IsDiscoverable'?: boolean;
     /**
+    * Force the discount to be applied which bypasses some menu restrictions
+    */
+    'ForceDiscount'?: boolean;
+    /**
     * Voucher Starts On (Time in UTC)
     */
     'StartDate'?: Date;
@@ -8699,6 +8703,11 @@ export class CreateVoucher {
         {
             "name": "IsDiscoverable",
             "baseName": "IsDiscoverable",
+            "type": "boolean"
+        },
+        {
+            "name": "ForceDiscount",
+            "baseName": "ForceDiscount",
             "type": "boolean"
         },
         {
@@ -52106,6 +52115,10 @@ export class UpdateVoucher {
     */
     'IsDiscoverable'?: boolean;
     /**
+    * Force the discount to be applied which bypasses some menu restrictions
+    */
+    'ForceDiscount'?: boolean;
+    /**
     * Voucher Starts On (Time in UTC)
     */
     'StartDate'?: Date;
@@ -52230,6 +52243,11 @@ export class UpdateVoucher {
         {
             "name": "IsDiscoverable",
             "baseName": "IsDiscoverable",
+            "type": "boolean"
+        },
+        {
+            "name": "ForceDiscount",
+            "baseName": "ForceDiscount",
             "type": "boolean"
         },
         {
@@ -53099,6 +53117,10 @@ export class Voucher {
     */
     'IsDiscoverable'?: boolean;
     /**
+    * Force the discount to be applied which bypasses some menu restrictions
+    */
+    'ForceDiscount'?: boolean;
+    /**
     * Voucher Starts On (Time in UTC)
     */
     'StartDate'?: Date;
@@ -53253,6 +53275,11 @@ export class Voucher {
         {
             "name": "IsDiscoverable",
             "baseName": "IsDiscoverable",
+            "type": "boolean"
+        },
+        {
+            "name": "ForceDiscount",
+            "baseName": "ForceDiscount",
             "type": "boolean"
         },
         {
@@ -54024,6 +54051,10 @@ export class VoucherWithStats {
     */
     'IsDiscoverable'?: boolean;
     /**
+    * Force the discount to be applied which bypasses some menu restrictions
+    */
+    'ForceDiscount'?: boolean;
+    /**
     * Voucher Starts On (Time in UTC)
     */
     'StartDate'?: Date;
@@ -54203,6 +54234,11 @@ export class VoucherWithStats {
         {
             "name": "IsDiscoverable",
             "baseName": "IsDiscoverable",
+            "type": "boolean"
+        },
+        {
+            "name": "ForceDiscount",
+            "baseName": "ForceDiscount",
             "type": "boolean"
         },
         {
