@@ -3104,6 +3104,10 @@ export class BankAccount {
     * Account Holders Vat Number
     */
     'VatNumber'?: string;
+    /**
+    * Stripe Id of the connected account
+    */
+    'StripeAccountId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -3167,6 +3171,11 @@ export class BankAccount {
             "name": "VatNumber",
             "baseName": "VatNumber",
             "type": "string"
+        },
+        {
+            "name": "StripeAccountId",
+            "baseName": "StripeAccountId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -3186,6 +3195,10 @@ export namespace BankAccount {
 * 
 */
 export class BankAccountAssignedEvent {
+    /**
+    * Organisation Id
+    */
+    'OrgId'?: string;
     /**
     * The assigned bank account
     */
@@ -3226,6 +3239,11 @@ export class BankAccountAssignedEvent {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
         {
             "name": "BankAccount",
             "baseName": "BankAccount",
@@ -3554,6 +3572,10 @@ export namespace BankAccountCreate {
 */
 export class BankAccountCreatedEvent {
     /**
+    * Organisation Id
+    */
+    'OrgId'?: string;
+    /**
     * The create bank account
     */
     'BankAccount'?: BankAccount;
@@ -3589,6 +3611,11 @@ export class BankAccountCreatedEvent {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
         {
             "name": "BankAccount",
             "baseName": "BankAccount",
@@ -3640,6 +3667,10 @@ export class BankAccountCreatedEvent {
 */
 export class BankAccountDeletedEvent {
     /**
+    * Organisation Id
+    */
+    'OrgId'?: string;
+    /**
     * The create bank account
     */
     'BankAccount'?: BankAccount;
@@ -3675,6 +3706,11 @@ export class BankAccountDeletedEvent {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
         {
             "name": "BankAccount",
             "baseName": "BankAccount",
@@ -4306,6 +4342,10 @@ export namespace BankAccountSummary {
 */
 export class BankAccountUpdatedEvent {
     /**
+    * Organisation Id
+    */
+    'OrgId'?: string;
+    /**
     * The create bank account
     */
     'BankAccount'?: BankAccount;
@@ -4341,6 +4381,11 @@ export class BankAccountUpdatedEvent {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
         {
             "name": "BankAccount",
             "baseName": "BankAccount",
