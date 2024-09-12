@@ -93404,8 +93404,8 @@ export class TeammatesApi {
      * @param teammate 
      * @param {*} [options] Override http request options.
      */
-    public grantAccess (appId: string, teammate: CreateTeammate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/GrantAccess'
+    public grantaccess (appId: string, teammate: CreateTeammate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/grantaccess'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -93413,12 +93413,12 @@ export class TeammatesApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling grantAccess.');
+            throw new Error('Required parameter appId was null or undefined when calling grantaccess.');
         }
 
         // verify required parameter 'teammate' is not null or undefined
         if (teammate === null || teammate === undefined) {
-            throw new Error('Required parameter teammate was null or undefined when calling grantAccess.');
+            throw new Error('Required parameter teammate was null or undefined when calling grantaccess.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
