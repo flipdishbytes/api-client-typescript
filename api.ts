@@ -1570,6 +1570,10 @@ export class AppConfigUpdateModel {
     * Cookie Consent Prompt Enabled
     */
     'CookieConsentPromptEnabled'?: boolean;
+    /**
+    * Logo image URL
+    */
+    'LogoImageUrl'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1613,6 +1617,11 @@ export class AppConfigUpdateModel {
             "name": "CookieConsentPromptEnabled",
             "baseName": "CookieConsentPromptEnabled",
             "type": "boolean"
+        },
+        {
+            "name": "LogoImageUrl",
+            "baseName": "LogoImageUrl",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -6750,6 +6759,10 @@ export class CreateAppInOrg {
     * A predefined AppId
     */
     'AppId'?: string;
+    /**
+    * Logo image URL
+    */
+    'LogoImageUrl'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -6772,6 +6785,11 @@ export class CreateAppInOrg {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "LogoImageUrl",
+            "baseName": "LogoImageUrl",
             "type": "string"
         }    ];
 
