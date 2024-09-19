@@ -73433,6 +73433,62 @@ export class KioskEntitlementsApi {
             });
         });
     }
+    /**
+     * 
+     * @param orgId 
+     * @param {*} [options] Override http request options.
+     */
+    public queryKioskEntitlementsByOrgId (orgId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultKioskEntitlementsResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/orgs/{orgId}/kiosk/entitlements'
+            .replace('{' + 'orgId' + '}', encodeURIComponent(String(orgId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orgId' is not null or undefined
+        if (orgId === null || orgId === undefined) {
+            throw new Error('Required parameter orgId was null or undefined when calling queryKioskEntitlementsByOrgId.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultKioskEntitlementsResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultKioskEntitlementsResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
 }
 export enum KioskIotApiApiKeys {
 }
