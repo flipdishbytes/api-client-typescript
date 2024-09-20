@@ -235,6 +235,10 @@ export class AccountDetail {
     * Show hidden features
     */
     'ShowHiddenFeatures'?: boolean;
+    /**
+    * User created at
+    */
+    'CreatedAt'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -288,6 +292,11 @@ export class AccountDetail {
             "name": "ShowHiddenFeatures",
             "baseName": "ShowHiddenFeatures",
             "type": "boolean"
+        },
+        {
+            "name": "CreatedAt",
+            "baseName": "CreatedAt",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
@@ -319,6 +328,10 @@ export class AccountDetailBase {
     * Show hidden features
     */
     'ShowHiddenFeatures'?: boolean;
+    /**
+    * User created at
+    */
+    'CreatedAt'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -347,6 +360,11 @@ export class AccountDetailBase {
             "name": "ShowHiddenFeatures",
             "baseName": "ShowHiddenFeatures",
             "type": "boolean"
+        },
+        {
+            "name": "CreatedAt",
+            "baseName": "CreatedAt",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
