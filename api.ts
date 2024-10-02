@@ -1592,6 +1592,10 @@ export class AppConfigUpdateModel {
     * Logo image URL
     */
     'LogoImageUrl'?: string;
+    /**
+    * Country identifier in ISO 3166-1 alpha-2 format.
+    */
+    'CountryId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1639,6 +1643,11 @@ export class AppConfigUpdateModel {
         {
             "name": "LogoImageUrl",
             "baseName": "LogoImageUrl",
+            "type": "string"
+        },
+        {
+            "name": "CountryId",
+            "baseName": "CountryId",
             "type": "string"
         }    ];
 
