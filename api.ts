@@ -88460,6 +88460,75 @@ export class StoreGroupsApi {
     }
     /**
      * 
+     * @param appId 
+     * @param storeGroupId 
+     * @param storeIds 
+     * @param {*} [options] Override http request options.
+     */
+    public assignStoresToStoreGroup (appId: string, storeGroupId: number, storeIds: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/storegroups/{storeGroupId}/assignStores'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling assignStoresToStoreGroup.');
+        }
+
+        // verify required parameter 'storeGroupId' is not null or undefined
+        if (storeGroupId === null || storeGroupId === undefined) {
+            throw new Error('Required parameter storeGroupId was null or undefined when calling assignStoresToStoreGroup.');
+        }
+
+        // verify required parameter 'storeIds' is not null or undefined
+        if (storeIds === null || storeIds === undefined) {
+            throw new Error('Required parameter storeIds was null or undefined when calling assignStoresToStoreGroup.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(storeIds, "Array<number>")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @param appNameId 
      * @param storeGroup 
      * @param {*} [options] Override http request options.
