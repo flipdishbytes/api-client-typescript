@@ -9173,6 +9173,10 @@ export class CustomerConsentUpdatedEvent {
     */
     'EventName'?: string;
     /**
+    * Organisation Id
+    */
+    'OrgId'?: string;
+    /**
     * Enabled
     */
     'Enabled'?: boolean;
@@ -9211,6 +9215,11 @@ export class CustomerConsentUpdatedEvent {
         {
             "name": "EventName",
             "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
