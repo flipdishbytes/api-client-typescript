@@ -25918,6 +25918,10 @@ export class OrderAcceptedEvent {
     */
     'EventName'?: string;
     /**
+    * Organisation Id
+    */
+    'OrgId'?: string;
+    /**
     * Description
     */
     'Description'?: string;
@@ -25960,6 +25964,11 @@ export class OrderAcceptedEvent {
         {
             "name": "EventName",
             "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
