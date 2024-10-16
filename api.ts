@@ -9333,6 +9333,10 @@ export class CustomerCreatedEvent {
     */
     'EventName'?: string;
     /**
+    * Organisation Id
+    */
+    'OrgId'?: string;
+    /**
     * Customer User info
     */
     'User'?: UserEventInfo;
@@ -9367,6 +9371,11 @@ export class CustomerCreatedEvent {
         {
             "name": "EventName",
             "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
