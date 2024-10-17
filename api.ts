@@ -9781,6 +9781,38 @@ export class CustomerDeliveryTrackingOrderLine {
 }
 
 /**
+* Delivery and pickup menu messages for a customer
+*/
+export class CustomerMessages {
+    /**
+    * Delivery menu message
+    */
+    'DeliveryMenuMessage'?: string;
+    /**
+    * Pickup menu message
+    */
+    'PickupMenuMessage'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeliveryMenuMessage",
+            "baseName": "DeliveryMenuMessage",
+            "type": "string"
+        },
+        {
+            "name": "PickupMenuMessage",
+            "baseName": "PickupMenuMessage",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CustomerMessages.attributeTypeMap;
+    }
+}
+
+/**
 * Customer summary
 */
 export class CustomerSummary {
@@ -45382,6 +45414,14 @@ export class StoreGroup {
     */
     'GeneralRatingCount'?: number;
     /**
+    * Delivery menu message
+    */
+    'DeliveryMenuMessage'?: string;
+    /**
+    * Pickup menu message
+    */
+    'PickupMenuMessage'?: string;
+    /**
     * Store Group Name
     */
     'Name'?: string;
@@ -45407,6 +45447,16 @@ export class StoreGroup {
             "name": "GeneralRatingCount",
             "baseName": "GeneralRatingCount",
             "type": "number"
+        },
+        {
+            "name": "DeliveryMenuMessage",
+            "baseName": "DeliveryMenuMessage",
+            "type": "string"
+        },
+        {
+            "name": "PickupMenuMessage",
+            "baseName": "PickupMenuMessage",
+            "type": "string"
         },
         {
             "name": "Name",
@@ -45903,14 +45953,6 @@ export class StoreGroupDeletedEvent {
 */
 export class StoreGroupExtended {
     /**
-    * Delivery Menu Message
-    */
-    'DeliveryMenuMessage'?: string;
-    /**
-    * Pickup Menu Message
-    */
-    'PickupMenuMessage'?: string;
-    /**
     * Total Amount of Stores
     */
     'TotalStores'?: number;
@@ -45935,6 +45977,14 @@ export class StoreGroupExtended {
     */
     'GeneralRatingCount'?: number;
     /**
+    * Delivery menu message
+    */
+    'DeliveryMenuMessage'?: string;
+    /**
+    * Pickup menu message
+    */
+    'PickupMenuMessage'?: string;
+    /**
     * Store Group Name
     */
     'Name'?: string;
@@ -45946,16 +45996,6 @@ export class StoreGroupExtended {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "DeliveryMenuMessage",
-            "baseName": "DeliveryMenuMessage",
-            "type": "string"
-        },
-        {
-            "name": "PickupMenuMessage",
-            "baseName": "PickupMenuMessage",
-            "type": "string"
-        },
         {
             "name": "TotalStores",
             "baseName": "TotalStores",
@@ -45985,6 +46025,16 @@ export class StoreGroupExtended {
             "name": "GeneralRatingCount",
             "baseName": "GeneralRatingCount",
             "type": "number"
+        },
+        {
+            "name": "DeliveryMenuMessage",
+            "baseName": "DeliveryMenuMessage",
+            "type": "string"
+        },
+        {
+            "name": "PickupMenuMessage",
+            "baseName": "PickupMenuMessage",
+            "type": "string"
         },
         {
             "name": "Name",
@@ -55670,6 +55720,7 @@ let typeMap: {[index: string]: any} = {
     "CustomerCreatedEvent": CustomerCreatedEvent,
     "CustomerDeliveryTrackingOrder": CustomerDeliveryTrackingOrder,
     "CustomerDeliveryTrackingOrderLine": CustomerDeliveryTrackingOrderLine,
+    "CustomerMessages": CustomerMessages,
     "CustomerSummary": CustomerSummary,
     "CustomerUpdateModel": CustomerUpdateModel,
     "CustomerUpdatedEvent": CustomerUpdatedEvent,
@@ -88905,31 +88956,24 @@ export class StoreGroupsApi {
     /**
      * 
      * @param storeGroupId 
-     * @param deliveryType 
-     * @param menuMessage 
+     * @param customerMessages 
      * @param {*} [options] Override http request options.
      */
-    public setMenuMessagePerDeliveryType (storeGroupId: number, deliveryType: 'Delivery' | 'Pickup', menuMessage: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/storegroups/{storeGroupId}/{deliveryType}/MenuMessagePerDeliveryType'
-            .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)))
-            .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
+    public setCustomerMessages (storeGroupId: number, customerMessages: CustomerMessages, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/storegroups/{storeGroupId}/CustomerMessages'
+            .replace('{' + 'storeGroupId' + '}', encodeURIComponent(String(storeGroupId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storeGroupId' is not null or undefined
         if (storeGroupId === null || storeGroupId === undefined) {
-            throw new Error('Required parameter storeGroupId was null or undefined when calling setMenuMessagePerDeliveryType.');
+            throw new Error('Required parameter storeGroupId was null or undefined when calling setCustomerMessages.');
         }
 
-        // verify required parameter 'deliveryType' is not null or undefined
-        if (deliveryType === null || deliveryType === undefined) {
-            throw new Error('Required parameter deliveryType was null or undefined when calling setMenuMessagePerDeliveryType.');
-        }
-
-        // verify required parameter 'menuMessage' is not null or undefined
-        if (menuMessage === null || menuMessage === undefined) {
-            throw new Error('Required parameter menuMessage was null or undefined when calling setMenuMessagePerDeliveryType.');
+        // verify required parameter 'customerMessages' is not null or undefined
+        if (customerMessages === null || customerMessages === undefined) {
+            throw new Error('Required parameter customerMessages was null or undefined when calling setCustomerMessages.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -88943,7 +88987,7 @@ export class StoreGroupsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(menuMessage, "string")
+            body: ObjectSerializer.serialize(customerMessages, "CustomerMessages")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
