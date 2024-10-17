@@ -2522,6 +2522,10 @@ export class AppStoreConfigCreatedEvent {
     */
     'AppStoreAppConfigurationId'?: string;
     /**
+    * User who has created the configuration
+    */
+    'User'?: UserEventInfo;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -2559,6 +2563,11 @@ export class AppStoreConfigCreatedEvent {
             "name": "AppStoreAppConfigurationId",
             "baseName": "AppStoreAppConfigurationId",
             "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "FlipdishEventId",
@@ -2608,6 +2617,10 @@ export class AppStoreConfigDeletedEvent {
     */
     'AppStoreAppConfigurationId'?: string;
     /**
+    * User who has deleted the configuration
+    */
+    'User'?: UserEventInfo;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -2645,6 +2658,11 @@ export class AppStoreConfigDeletedEvent {
             "name": "AppStoreAppConfigurationId",
             "baseName": "AppStoreAppConfigurationId",
             "type": "string"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "FlipdishEventId",
@@ -2694,6 +2712,10 @@ export class AppStoreConfigUpdatedEvent {
     */
     'AppStoreAppConfiguration'?: UpdateAppStoreAppConfigurationWebhookDTO;
     /**
+    * User who has update the configuration
+    */
+    'User'?: UserEventInfo;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -2731,6 +2753,11 @@ export class AppStoreConfigUpdatedEvent {
             "name": "AppStoreAppConfiguration",
             "baseName": "AppStoreAppConfiguration",
             "type": "UpdateAppStoreAppConfigurationWebhookDTO"
+        },
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
         },
         {
             "name": "FlipdishEventId",
