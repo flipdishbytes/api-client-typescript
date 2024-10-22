@@ -1396,7 +1396,8 @@ export namespace App {
         CreatePayGreenWhiteLabelConfiguration = <any> 'CreatePayGreenWhiteLabelConfiguration',
         UpdatePayGreenWhiteLabelConfiguration = <any> 'UpdatePayGreenWhiteLabelConfiguration',
         UpdatePayGreenStoreConfiguration = <any> 'UpdatePayGreenStoreConfiguration',
-        ViewSubscriptions = <any> 'ViewSubscriptions'
+        ViewSubscriptions = <any> 'ViewSubscriptions',
+        ViewInvoices = <any> 'ViewInvoices'
     }
     export enum ApplicationCategoryEnum {
         Restaurant = <any> 'Restaurant',
@@ -73120,6 +73121,233 @@ export class InvoicesApi {
             });
         });
     }
+    /**
+     * 
+     * @param invoiceNumber 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public invoicePdf (invoiceNumber: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/invoices/InvoicePdf'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'invoiceNumber' is not null or undefined
+        if (invoiceNumber === null || invoiceNumber === undefined) {
+            throw new Error('Required parameter invoiceNumber was null or undefined when calling invoicePdf.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling invoicePdf.');
+        }
+
+        if (invoiceNumber !== undefined) {
+            localVarQueryParameters['invoiceNumber'] = ObjectSerializer.serialize(invoiceNumber, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param storeId 
+     * @param {*} [options] Override http request options.
+     */
+    public listInvoices (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/invoices/ListInvoices'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling listInvoices.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling listInvoices.');
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param subscriptionId 
+     * @param limit 
+     * @param pageId 
+     * @param excludeNotOwnedInvoices 
+     * @param dateFrom 
+     * @param dateTo 
+     * @param invoiceNumber 
+     * @param storeId 
+     * @param {*} [options] Override http request options.
+     */
+    public listSubscriptionInvoices (appId: string, subscriptionId?: string, limit?: number, pageId?: string, excludeNotOwnedInvoices?: boolean, dateFrom?: Date, dateTo?: Date, invoiceNumber?: string, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/invoices/ListSubscriptionInvoices'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling listSubscriptionInvoices.');
+        }
+
+        if (subscriptionId !== undefined) {
+            localVarQueryParameters['subscriptionId'] = ObjectSerializer.serialize(subscriptionId, "string");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (pageId !== undefined) {
+            localVarQueryParameters['pageId'] = ObjectSerializer.serialize(pageId, "string");
+        }
+
+        if (excludeNotOwnedInvoices !== undefined) {
+            localVarQueryParameters['excludeNotOwnedInvoices'] = ObjectSerializer.serialize(excludeNotOwnedInvoices, "boolean");
+        }
+
+        if (dateFrom !== undefined) {
+            localVarQueryParameters['dateFrom'] = ObjectSerializer.serialize(dateFrom, "Date");
+        }
+
+        if (dateTo !== undefined) {
+            localVarQueryParameters['dateTo'] = ObjectSerializer.serialize(dateTo, "Date");
+        }
+
+        if (invoiceNumber !== undefined) {
+            localVarQueryParameters['invoiceNumber'] = ObjectSerializer.serialize(invoiceNumber, "string");
+        }
+
+        if (storeId !== undefined) {
+            localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "Array<number>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiFinanceSearchPaginationResultInvoice");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
 }
 export enum KioskEntitlementsApiApiKeys {
 }
@@ -89705,9 +89933,10 @@ export class StoresApi {
      * @param storeGroupId 
      * @param propertyId 
      * @param store 
+     * @param autoAssignMenu 
      * @param {*} [options] Override http request options.
      */
-    public createStoreInProperty (storeGroupId: number, propertyId: string, store: StoreCreateBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
+    public createStoreInProperty (storeGroupId: number, propertyId: string, store: StoreCreateBase, autoAssignMenu?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/properties/{propertyId}/stores'
             .replace('{' + 'propertyId' + '}', encodeURIComponent(String(propertyId)));
         let localVarQueryParameters: any = {};
@@ -89731,6 +89960,10 @@ export class StoresApi {
 
         if (storeGroupId !== undefined) {
             localVarQueryParameters['storeGroupId'] = ObjectSerializer.serialize(storeGroupId, "number");
+        }
+
+        if (autoAssignMenu !== undefined) {
+            localVarQueryParameters['autoAssignMenu'] = ObjectSerializer.serialize(autoAssignMenu, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
