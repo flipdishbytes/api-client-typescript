@@ -11634,6 +11634,10 @@ export class EventSearchResult {
     */
     'VoucherDeletedEvent'?: Array<VoucherDeletedEvent>;
     /**
+    * Voucher applied event
+    */
+    'VoucherAppliedEvent'?: Array<VoucherAppliedEvent>;
+    /**
     * Teammate invite sent event
     */
     'TeammateInviteSentEvent'?: Array<TeammateInviteSentEvent>;
@@ -12281,6 +12285,11 @@ export class EventSearchResult {
             "name": "VoucherDeletedEvent",
             "baseName": "VoucherDeletedEvent",
             "type": "Array<VoucherDeletedEvent>"
+        },
+        {
+            "name": "VoucherAppliedEvent",
+            "baseName": "VoucherAppliedEvent",
+            "type": "Array<VoucherAppliedEvent>"
         },
         {
             "name": "TeammateInviteSentEvent",
@@ -44215,6 +44224,10 @@ export class StoreCreatedEvent {
     */
     'EventName'?: string;
     /**
+    * Organisation Id
+    */
+    'OrgId'?: string;
+    /**
     * Store Id
     */
     'StoreId'?: number;
@@ -44257,6 +44270,11 @@ export class StoreCreatedEvent {
         {
             "name": "EventName",
             "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -48243,6 +48261,10 @@ export class StoreUpdatedEvent {
     */
     'EventName'?: string;
     /**
+    * Organisation Id
+    */
+    'OrgId'?: string;
+    /**
     * Store Id
     */
     'StoreId'?: number;
@@ -48289,6 +48311,11 @@ export class StoreUpdatedEvent {
         {
             "name": "EventName",
             "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -53482,6 +53509,92 @@ export namespace Voucher {
     }
 }
 /**
+* Voucher Applied Event
+*/
+export class VoucherAppliedEvent {
+    /**
+    * Voucher Id
+    */
+    'VoucherId'?: number;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * Order id
+    */
+    'OrderId'?: number;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "VoucherId",
+            "baseName": "VoucherId",
+            "type": "number"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "OrderId",
+            "baseName": "OrderId",
+            "type": "number"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return VoucherAppliedEvent.attributeTypeMap;
+    }
+}
+
+/**
 * Voucher Created Event
 */
 export class VoucherCreatedEvent {
@@ -56381,6 +56494,7 @@ let typeMap: {[index: string]: any} = {
     "ValidationErrorResult": ValidationErrorResult,
     "ValidityPeriod": ValidityPeriod,
     "Voucher": Voucher,
+    "VoucherAppliedEvent": VoucherAppliedEvent,
     "VoucherCreatedEvent": VoucherCreatedEvent,
     "VoucherDataPoint": VoucherDataPoint,
     "VoucherDeletedEvent": VoucherDeletedEvent,
