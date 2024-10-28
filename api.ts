@@ -47071,6 +47071,10 @@ export class StoreOpeningHoursUpdatedEvent {
     */
     'EventName'?: string;
     /**
+    * Organisation Id
+    */
+    'OrgId'?: string;
+    /**
     * Store Id
     */
     'StoreId'?: number;
@@ -47125,6 +47129,11 @@ export class StoreOpeningHoursUpdatedEvent {
         {
             "name": "EventName",
             "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
