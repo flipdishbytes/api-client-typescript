@@ -15845,111 +15845,39 @@ export class IntercomUserHash {
 }
 
 /**
-* Invoice
+* Represents an ordering invoice for a period of time.
 */
 export class Invoice {
     /**
-    * The invoice identifier
+    * Invoice Number
     */
-    'InvoiceId': string;
+    'InvoiceNumber'?: string;
     /**
-    * Invoice number
+    * The start day of the invoice period.
     */
-    'Number': string;
+    'StartDay'?: Date;
     /**
-    * Total
+    * The end day of the invoice period.
     */
-    'Total'?: number;
-    /**
-    * Currency
-    */
-    'Currency': Invoice.CurrencyEnum;
-    /**
-    * Status
-    */
-    'Status': Invoice.StatusEnum;
-    /**
-    * The subscription identifier
-    */
-    'SubscriptionId'?: string;
-    /**
-    * Paid At
-    */
-    'PaidAt'?: Date;
-    /**
-    * Finalised At
-    */
-    'FinalisedAt'?: Date;
-    /**
-    * Pdf Link
-    */
-    'PdfLink': string;
-    /**
-    * Hosted Url
-    */
-    'HostedUrl': string;
-    /**
-    * Overdue
-    */
-    'Overdue': boolean;
+    'EndDay'?: Date;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "InvoiceId",
-            "baseName": "InvoiceId",
+            "name": "InvoiceNumber",
+            "baseName": "InvoiceNumber",
             "type": "string"
         },
         {
-            "name": "Number",
-            "baseName": "Number",
-            "type": "string"
-        },
-        {
-            "name": "Total",
-            "baseName": "Total",
-            "type": "number"
-        },
-        {
-            "name": "Currency",
-            "baseName": "Currency",
-            "type": "Invoice.CurrencyEnum"
-        },
-        {
-            "name": "Status",
-            "baseName": "Status",
-            "type": "Invoice.StatusEnum"
-        },
-        {
-            "name": "SubscriptionId",
-            "baseName": "SubscriptionId",
-            "type": "string"
-        },
-        {
-            "name": "PaidAt",
-            "baseName": "PaidAt",
+            "name": "StartDay",
+            "baseName": "StartDay",
             "type": "Date"
         },
         {
-            "name": "FinalisedAt",
-            "baseName": "FinalisedAt",
+            "name": "EndDay",
+            "baseName": "EndDay",
             "type": "Date"
-        },
-        {
-            "name": "PdfLink",
-            "baseName": "PdfLink",
-            "type": "string"
-        },
-        {
-            "name": "HostedUrl",
-            "baseName": "HostedUrl",
-            "type": "string"
-        },
-        {
-            "name": "Overdue",
-            "baseName": "Overdue",
-            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -15957,130 +15885,6 @@ export class Invoice {
     }
 }
 
-export namespace Invoice {
-    export enum CurrencyEnum {
-        EUR = <any> 'EUR',
-        USD = <any> 'USD',
-        GBP = <any> 'GBP',
-        CAD = <any> 'CAD',
-        AUD = <any> 'AUD',
-        DJF = <any> 'DJF',
-        ZAR = <any> 'ZAR',
-        ETB = <any> 'ETB',
-        AED = <any> 'AED',
-        BHD = <any> 'BHD',
-        DZD = <any> 'DZD',
-        EGP = <any> 'EGP',
-        IQD = <any> 'IQD',
-        JOD = <any> 'JOD',
-        KWD = <any> 'KWD',
-        LBP = <any> 'LBP',
-        LYD = <any> 'LYD',
-        MAD = <any> 'MAD',
-        OMR = <any> 'OMR',
-        QAR = <any> 'QAR',
-        SAR = <any> 'SAR',
-        SYP = <any> 'SYP',
-        TND = <any> 'TND',
-        YER = <any> 'YER',
-        CLP = <any> 'CLP',
-        INR = <any> 'INR',
-        AZN = <any> 'AZN',
-        RUB = <any> 'RUB',
-        BYN = <any> 'BYN',
-        BGN = <any> 'BGN',
-        NGN = <any> 'NGN',
-        BDT = <any> 'BDT',
-        CNY = <any> 'CNY',
-        BAM = <any> 'BAM',
-        CZK = <any> 'CZK',
-        DKK = <any> 'DKK',
-        CHF = <any> 'CHF',
-        MVR = <any> 'MVR',
-        BTN = <any> 'BTN',
-        XCD = <any> 'XCD',
-        BZD = <any> 'BZD',
-        HKD = <any> 'HKD',
-        IDR = <any> 'IDR',
-        JMD = <any> 'JMD',
-        MYR = <any> 'MYR',
-        NZD = <any> 'NZD',
-        PHP = <any> 'PHP',
-        SGD = <any> 'SGD',
-        TTD = <any> 'TTD',
-        XDR = <any> 'XDR',
-        ARS = <any> 'ARS',
-        BOB = <any> 'BOB',
-        COP = <any> 'COP',
-        CRC = <any> 'CRC',
-        CUP = <any> 'CUP',
-        DOP = <any> 'DOP',
-        GTQ = <any> 'GTQ',
-        HNL = <any> 'HNL',
-        MXN = <any> 'MXN',
-        NIO = <any> 'NIO',
-        PAB = <any> 'PAB',
-        PEN = <any> 'PEN',
-        PYG = <any> 'PYG',
-        UYU = <any> 'UYU',
-        VEF = <any> 'VEF',
-        IRR = <any> 'IRR',
-        XOF = <any> 'XOF',
-        CDF = <any> 'CDF',
-        XAF = <any> 'XAF',
-        HTG = <any> 'HTG',
-        ILS = <any> 'ILS',
-        HRK = <any> 'HRK',
-        HUF = <any> 'HUF',
-        AMD = <any> 'AMD',
-        ISK = <any> 'ISK',
-        JPY = <any> 'JPY',
-        GEL = <any> 'GEL',
-        KZT = <any> 'KZT',
-        KHR = <any> 'KHR',
-        KRW = <any> 'KRW',
-        KGS = <any> 'KGS',
-        LAK = <any> 'LAK',
-        MKD = <any> 'MKD',
-        MNT = <any> 'MNT',
-        BND = <any> 'BND',
-        MMK = <any> 'MMK',
-        NOK = <any> 'NOK',
-        NPR = <any> 'NPR',
-        PKR = <any> 'PKR',
-        PLN = <any> 'PLN',
-        AFN = <any> 'AFN',
-        BRL = <any> 'BRL',
-        MDL = <any> 'MDL',
-        RON = <any> 'RON',
-        RWF = <any> 'RWF',
-        SEK = <any> 'SEK',
-        LKR = <any> 'LKR',
-        SOS = <any> 'SOS',
-        ALL = <any> 'ALL',
-        RSD = <any> 'RSD',
-        KES = <any> 'KES',
-        TJS = <any> 'TJS',
-        THB = <any> 'THB',
-        ERN = <any> 'ERN',
-        TMT = <any> 'TMT',
-        BWP = <any> 'BWP',
-        TRY = <any> 'TRY',
-        UAH = <any> 'UAH',
-        UZS = <any> 'UZS',
-        VND = <any> 'VND',
-        MOP = <any> 'MOP',
-        TWD = <any> 'TWD',
-        BMD = <any> 'BMD'
-    }
-    export enum StatusEnum {
-        Draft = <any> 'Draft',
-        Open = <any> 'Open',
-        Paid = <any> 'Paid',
-        UnCollectible = <any> 'UnCollectible',
-        Void = <any> 'Void'
-    }
-}
 /**
 * Invoice Discount
 */
@@ -36514,6 +36318,56 @@ export class RestApiFinanceSearchPaginationResultInvoice {
 }
 
 /**
+* Rest api finance search pagination result
+*/
+export class RestApiFinanceSearchPaginationResultSubscriptionInvoice {
+    /**
+    * Next page
+    */
+    'NextPage': string;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<SubscriptionInvoice>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "NextPage",
+            "baseName": "NextPage",
+            "type": "string"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<SubscriptionInvoice>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiFinanceSearchPaginationResultSubscriptionInvoice.attributeTypeMap;
+    }
+}
+
+/**
 * Rest Api Forbidden Result
 */
 export class RestApiForbiddenResult {
@@ -49482,6 +49336,243 @@ export namespace Subscription {
     }
 }
 /**
+* Invoice
+*/
+export class SubscriptionInvoice {
+    /**
+    * The invoice identifier
+    */
+    'InvoiceId': string;
+    /**
+    * Invoice number
+    */
+    'Number': string;
+    /**
+    * Total
+    */
+    'Total'?: number;
+    /**
+    * Currency
+    */
+    'Currency': SubscriptionInvoice.CurrencyEnum;
+    /**
+    * Status
+    */
+    'Status': SubscriptionInvoice.StatusEnum;
+    /**
+    * The subscription identifier
+    */
+    'SubscriptionId'?: string;
+    /**
+    * Paid At
+    */
+    'PaidAt'?: Date;
+    /**
+    * Finalised At
+    */
+    'FinalisedAt'?: Date;
+    /**
+    * Pdf Link
+    */
+    'PdfLink': string;
+    /**
+    * Hosted Url
+    */
+    'HostedUrl': string;
+    /**
+    * Overdue
+    */
+    'Overdue': boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "InvoiceId",
+            "baseName": "InvoiceId",
+            "type": "string"
+        },
+        {
+            "name": "Number",
+            "baseName": "Number",
+            "type": "string"
+        },
+        {
+            "name": "Total",
+            "baseName": "Total",
+            "type": "number"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "SubscriptionInvoice.CurrencyEnum"
+        },
+        {
+            "name": "Status",
+            "baseName": "Status",
+            "type": "SubscriptionInvoice.StatusEnum"
+        },
+        {
+            "name": "SubscriptionId",
+            "baseName": "SubscriptionId",
+            "type": "string"
+        },
+        {
+            "name": "PaidAt",
+            "baseName": "PaidAt",
+            "type": "Date"
+        },
+        {
+            "name": "FinalisedAt",
+            "baseName": "FinalisedAt",
+            "type": "Date"
+        },
+        {
+            "name": "PdfLink",
+            "baseName": "PdfLink",
+            "type": "string"
+        },
+        {
+            "name": "HostedUrl",
+            "baseName": "HostedUrl",
+            "type": "string"
+        },
+        {
+            "name": "Overdue",
+            "baseName": "Overdue",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SubscriptionInvoice.attributeTypeMap;
+    }
+}
+
+export namespace SubscriptionInvoice {
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD',
+        BMD = <any> 'BMD'
+    }
+    export enum StatusEnum {
+        Draft = <any> 'Draft',
+        Open = <any> 'Open',
+        Paid = <any> 'Paid',
+        UnCollectible = <any> 'UnCollectible',
+        Void = <any> 'Void'
+    }
+}
+/**
 * Product
 */
 export class SubscriptionProduct {
@@ -55545,8 +55636,6 @@ let enumsMap: {[index: string]: any} = {
         "HydraDeviceDetails.DeviceTypeEnum": HydraDeviceDetails.DeviceTypeEnum,
         "HydraDeviceDetails.StatusEnum": HydraDeviceDetails.StatusEnum,
         "HydraStatus.UserTypeEnum": HydraStatus.UserTypeEnum,
-        "Invoice.CurrencyEnum": Invoice.CurrencyEnum,
-        "Invoice.StatusEnum": Invoice.StatusEnum,
         "KioskBluetoothInstallUpdateInitiateEvent.BluetoothTerminalTypeEnum": KioskBluetoothInstallUpdateInitiateEvent.BluetoothTerminalTypeEnum,
         "KioskBluetoothPairingModeEvent.BluetoothTerminalTypeEnum": KioskBluetoothPairingModeEvent.BluetoothTerminalTypeEnum,
         "KioskBluetoothTerminalCancelUpdateEvent.BluetoothTerminalTypeEnum": KioskBluetoothTerminalCancelUpdateEvent.BluetoothTerminalTypeEnum,
@@ -55677,6 +55766,8 @@ let enumsMap: {[index: string]: any} = {
         "SubmitOrderResponseDm.DeliveryTypeEnum": SubmitOrderResponseDm.DeliveryTypeEnum,
         "Subscription.StatusEnum": Subscription.StatusEnum,
         "Subscription.CurrencyEnum": Subscription.CurrencyEnum,
+        "SubscriptionInvoice.CurrencyEnum": SubscriptionInvoice.CurrencyEnum,
+        "SubscriptionInvoice.StatusEnum": SubscriptionInvoice.StatusEnum,
         "SubscriptionProduct.PaymentFrequencyEnum": SubscriptionProduct.PaymentFrequencyEnum,
         "SubscriptionSummary.StatusEnum": SubscriptionSummary.StatusEnum,
         "SubscriptionSummary.CurrencyEnum": SubscriptionSummary.CurrencyEnum,
@@ -56211,6 +56302,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiErrorResult": RestApiErrorResult,
     "RestApiEventSearchPaginationResult": RestApiEventSearchPaginationResult,
     "RestApiFinanceSearchPaginationResultInvoice": RestApiFinanceSearchPaginationResultInvoice,
+    "RestApiFinanceSearchPaginationResultSubscriptionInvoice": RestApiFinanceSearchPaginationResultSubscriptionInvoice,
     "RestApiForbiddenResult": RestApiForbiddenResult,
     "RestApiIntegerResult": RestApiIntegerResult,
     "RestApiPaginationResultApp": RestApiPaginationResultApp,
@@ -56450,6 +56542,7 @@ let typeMap: {[index: string]: any} = {
     "SubmitOrderRequest": SubmitOrderRequest,
     "SubmitOrderResponseDm": SubmitOrderResponseDm,
     "Subscription": Subscription,
+    "SubscriptionInvoice": SubscriptionInvoice,
     "SubscriptionProduct": SubscriptionProduct,
     "SubscriptionStore": SubscriptionStore,
     "SubscriptionSummary": SubscriptionSummary,
@@ -73161,7 +73254,7 @@ export class InvoicesApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
-    public getInvoices (appId: string, subscriptionId?: string, limit?: number, pageId?: string, excludeNotOwnedInvoices?: boolean, dateFrom?: Date, dateTo?: Date, invoiceNumber?: string, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }> {
+    public getInvoices (appId: string, subscriptionId?: string, limit?: number, pageId?: string, excludeNotOwnedInvoices?: boolean, dateFrom?: Date, dateTo?: Date, invoiceNumber?: string, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultSubscriptionInvoice;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/invoices'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -73229,12 +73322,12 @@ export class InvoicesApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultSubscriptionInvoice;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiFinanceSearchPaginationResultInvoice");
+                    body = ObjectSerializer.deserialize(body, "RestApiFinanceSearchPaginationResultSubscriptionInvoice");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -73311,29 +73404,39 @@ export class InvoicesApi {
     }
     /**
      * 
-     * @param appId 
      * @param storeId 
+     * @param appId 
+     * @param limit 
+     * @param page 
      * @param {*} [options] Override http request options.
      */
-    public listInvoices (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public listInvoices (storeId: number, appId: string, limit?: number, page?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/invoices/ListInvoices'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling listInvoices.');
-        }
-
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
             throw new Error('Required parameter storeId was null or undefined when calling listInvoices.');
         }
 
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling listInvoices.');
+        }
+
         if (storeId !== undefined) {
             localVarQueryParameters['storeId'] = ObjectSerializer.serialize(storeId, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -73388,7 +73491,7 @@ export class InvoicesApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
-    public listSubscriptionInvoices (appId: string, subscriptionId?: string, limit?: number, pageId?: string, excludeNotOwnedInvoices?: boolean, dateFrom?: Date, dateTo?: Date, invoiceNumber?: string, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }> {
+    public listSubscriptionInvoices (appId: string, subscriptionId?: string, limit?: number, pageId?: string, excludeNotOwnedInvoices?: boolean, dateFrom?: Date, dateTo?: Date, invoiceNumber?: string, storeId?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultSubscriptionInvoice;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/invoices/ListSubscriptionInvoices'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -73456,12 +73559,12 @@ export class InvoicesApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultSubscriptionInvoice;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiFinanceSearchPaginationResultInvoice");
+                    body = ObjectSerializer.deserialize(body, "RestApiFinanceSearchPaginationResultSubscriptionInvoice");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
