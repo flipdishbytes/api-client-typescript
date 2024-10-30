@@ -42499,6 +42499,10 @@ export class Store {
     * Staff Language (used for communication with the staff)  Emails, Printouts etc
     */
     'StaffLanguage'?: string;
+    /**
+    * Sales Channel Types
+    */
+    'SalesChannelTypes'?: Array<Store.SalesChannelTypesEnum>;
 
     static discriminator: string | undefined = undefined;
 
@@ -42747,6 +42751,11 @@ export class Store {
             "name": "StaffLanguage",
             "baseName": "StaffLanguage",
             "type": "string"
+        },
+        {
+            "name": "SalesChannelTypes",
+            "baseName": "SalesChannelTypes",
+            "type": "Array<Store.SalesChannelTypesEnum>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -42875,6 +42884,12 @@ export namespace Store {
         MOP = <any> 'MOP',
         TWD = <any> 'TWD',
         BMD = <any> 'BMD'
+    }
+    export enum SalesChannelTypesEnum {
+        Web = <any> 'Web',
+        App = <any> 'App',
+        Kiosk = <any> 'Kiosk',
+        Pos = <any> 'Pos'
     }
 }
 /**
@@ -43445,6 +43460,10 @@ export class StoreBase {
     * Staff Language (used for communication with the staff)  Emails, Printouts etc
     */
     'StaffLanguage'?: string;
+    /**
+    * Sales Channel Types
+    */
+    'SalesChannelTypes'?: Array<StoreBase.SalesChannelTypesEnum>;
 
     static discriminator: string | undefined = undefined;
 
@@ -43593,6 +43612,11 @@ export class StoreBase {
             "name": "StaffLanguage",
             "baseName": "StaffLanguage",
             "type": "string"
+        },
+        {
+            "name": "SalesChannelTypes",
+            "baseName": "SalesChannelTypes",
+            "type": "Array<StoreBase.SalesChannelTypesEnum>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -43600,6 +43624,14 @@ export class StoreBase {
     }
 }
 
+export namespace StoreBase {
+    export enum SalesChannelTypesEnum {
+        Web = <any> 'Web',
+        App = <any> 'App',
+        Kiosk = <any> 'Kiosk',
+        Pos = <any> 'Pos'
+    }
+}
 /**
 * Store Business Hours Override Created
 */
@@ -44044,6 +44076,10 @@ export class StoreCreateBase {
     * Staff Language (used for communication with the staff)  Emails, Printouts etc
     */
     'StaffLanguage'?: string;
+    /**
+    * Sales Channel Type
+    */
+    'SalesChannelType'?: StoreCreateBase.SalesChannelTypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -44062,6 +44098,11 @@ export class StoreCreateBase {
             "name": "StaffLanguage",
             "baseName": "StaffLanguage",
             "type": "string"
+        },
+        {
+            "name": "SalesChannelType",
+            "baseName": "SalesChannelType",
+            "type": "StoreCreateBase.SalesChannelTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -44069,6 +44110,14 @@ export class StoreCreateBase {
     }
 }
 
+export namespace StoreCreateBase {
+    export enum SalesChannelTypeEnum {
+        Web = <any> 'Web',
+        App = <any> 'App',
+        Kiosk = <any> 'Kiosk',
+        Pos = <any> 'Pos'
+    }
+}
 /**
 * Store Created Event
 */
@@ -55742,6 +55791,9 @@ let enumsMap: {[index: string]: any} = {
         "StatisticsCurrencyDataPoint.CurrencyEnum": StatisticsCurrencyDataPoint.CurrencyEnum,
         "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
         "Store.CurrencyEnum": Store.CurrencyEnum,
+        "Store.SalesChannelTypesEnum": Store.SalesChannelTypesEnum,
+        "StoreBase.SalesChannelTypesEnum": StoreBase.SalesChannelTypesEnum,
+        "StoreCreateBase.SalesChannelTypeEnum": StoreCreateBase.SalesChannelTypeEnum,
         "StoreEndOfDayReport.CurrencyEnum": StoreEndOfDayReport.CurrencyEnum,
         "StoreGroup.CurrencyEnum": StoreGroup.CurrencyEnum,
         "StoreGroupBase.CurrencyEnum": StoreGroupBase.CurrencyEnum,
