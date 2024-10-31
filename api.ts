@@ -1693,6 +1693,10 @@ export class AppCreatedEvent {
     */
     'AccountId'?: string;
     /**
+    * Organisation Id
+    */
+    'OrgId'?: string;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -1744,6 +1748,11 @@ export class AppCreatedEvent {
         {
             "name": "AccountId",
             "baseName": "AccountId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -2910,6 +2919,10 @@ export class AppUpdatedEvent {
     */
     'App'?: App;
     /**
+    * Organisation Id
+    */
+    'OrgId'?: string;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -2967,6 +2980,11 @@ export class AppUpdatedEvent {
             "name": "App",
             "baseName": "App",
             "type": "App"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
         },
         {
             "name": "FlipdishEventId",
