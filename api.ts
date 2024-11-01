@@ -46562,6 +46562,10 @@ export class StoreLogoCreatedEvent {
     */
     'EventName'?: string;
     /**
+    * Organisation Id
+    */
+    'OrgId'?: string;
+    /**
     * ID of store that the logo has been added to
     */
     'StoreId'?: number;
@@ -46600,6 +46604,11 @@ export class StoreLogoCreatedEvent {
         {
             "name": "EventName",
             "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -46657,6 +46666,10 @@ export class StoreLogoDeletedEvent {
     */
     'EventName'?: string;
     /**
+    * Organisation Id
+    */
+    'OrgId'?: string;
+    /**
     * ID of store that the logo has been added to
     */
     'StoreId'?: number;
@@ -46695,6 +46708,11 @@ export class StoreLogoDeletedEvent {
         {
             "name": "EventName",
             "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -46752,6 +46770,10 @@ export class StoreLogoUpdatedEvent {
     */
     'EventName'?: string;
     /**
+    * Organisation Id
+    */
+    'OrgId'?: string;
+    /**
     * ID of store that the logo has been added to
     */
     'StoreId'?: number;
@@ -46790,6 +46812,11 @@ export class StoreLogoUpdatedEvent {
         {
             "name": "EventName",
             "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
