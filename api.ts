@@ -46570,6 +46570,10 @@ export class StoreLogoCreatedEvent {
     */
     'StoreId'?: number;
     /**
+    * Url of logo
+    */
+    'LogoUrl'?: string;
+    /**
     * Description
     */
     'Description'?: string;
@@ -46615,6 +46619,11 @@ export class StoreLogoCreatedEvent {
             "name": "StoreId",
             "baseName": "StoreId",
             "type": "number"
+        },
+        {
+            "name": "LogoUrl",
+            "baseName": "LogoUrl",
+            "type": "string"
         },
         {
             "name": "Description",
@@ -46778,6 +46787,10 @@ export class StoreLogoUpdatedEvent {
     */
     'StoreId'?: number;
     /**
+    * Url of logo
+    */
+    'LogoUrl'?: string;
+    /**
     * Description
     */
     'Description'?: string;
@@ -46823,6 +46836,11 @@ export class StoreLogoUpdatedEvent {
             "name": "StoreId",
             "baseName": "StoreId",
             "type": "number"
+        },
+        {
+            "name": "LogoUrl",
+            "baseName": "LogoUrl",
+            "type": "string"
         },
         {
             "name": "Description",
