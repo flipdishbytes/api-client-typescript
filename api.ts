@@ -91929,6 +91929,75 @@ export class StoresApi {
     }
     /**
      * 
+     * @param propertyId 
+     * @param storeId 
+     * @param salesChannelTypes 
+     * @param {*} [options] Override http request options.
+     */
+    public supportedSalesChannelsTypes (propertyId: string, storeId: number, salesChannelTypes: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/properties/{propertyId}/stores/{storeId}/supportedSalesChannels'
+            .replace('{' + 'propertyId' + '}', encodeURIComponent(String(propertyId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'propertyId' is not null or undefined
+        if (propertyId === null || propertyId === undefined) {
+            throw new Error('Required parameter propertyId was null or undefined when calling supportedSalesChannelsTypes.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling supportedSalesChannelsTypes.');
+        }
+
+        // verify required parameter 'salesChannelTypes' is not null or undefined
+        if (salesChannelTypes === null || salesChannelTypes === undefined) {
+            throw new Error('Required parameter salesChannelTypes was null or undefined when calling supportedSalesChannelsTypes.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(salesChannelTypes, "Array<string>")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
