@@ -2342,6 +2342,7 @@ export namespace AppStoreAppConfigurationSummary {
 export class AppStoreAppEntitlements {
     'EntitlementQuantity'?: number;
     'CurrentUsage'?: number;
+    'CurrentUsageInBrand'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -2354,6 +2355,11 @@ export class AppStoreAppEntitlements {
         {
             "name": "CurrentUsage",
             "baseName": "CurrentUsage",
+            "type": "number"
+        },
+        {
+            "name": "CurrentUsageInBrand",
+            "baseName": "CurrentUsageInBrand",
             "type": "number"
         }    ];
 
@@ -73525,7 +73531,7 @@ export class InvoicesApi {
      * @param page 
      * @param {*} [options] Override http request options.
      */
-    public listInvoices (storeId: number, appId: string, limit?: number, page?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public listInvoices (storeId: number, appId: string, limit?: number, page?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/invoices/ListInvoices'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -73578,12 +73584,12 @@ export class InvoicesApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiFinanceSearchPaginationResultInvoice;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
+                    body = ObjectSerializer.deserialize(body, "RestApiFinanceSearchPaginationResultInvoice");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
