@@ -91467,11 +91467,12 @@ export class StoresApi {
      * 
      * @param appId 
      * @param searchQuery 
+     * @param salesChannelType 
      * @param page 
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getStoresByAppId (appId: string, searchQuery?: string, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }> {
+    public getStoresByAppId (appId: string, searchQuery?: string, salesChannelType?: 'Web' | 'App' | 'Kiosk' | 'Pos', page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -91485,6 +91486,10 @@ export class StoresApi {
 
         if (searchQuery !== undefined) {
             localVarQueryParameters['searchQuery'] = ObjectSerializer.serialize(searchQuery, "string");
+        }
+
+        if (salesChannelType !== undefined) {
+            localVarQueryParameters['salesChannelType'] = ObjectSerializer.serialize(salesChannelType, "'Web' | 'App' | 'Kiosk' | 'Pos'");
         }
 
         if (page !== undefined) {
