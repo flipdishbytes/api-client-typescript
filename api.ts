@@ -19294,6 +19294,10 @@ export class LoyaltyCampaign {
     */
     'PercentDiscountAmount'?: number;
     /**
+    * Maximum discount for percentage discounts
+    */
+    'MaxDiscount'?: number;
+    /**
     * Controls how the loyalty voucher's amount is rounded
     */
     'RoundingStrategy'?: number;
@@ -19368,6 +19372,11 @@ export class LoyaltyCampaign {
             "type": "number"
         },
         {
+            "name": "MaxDiscount",
+            "baseName": "MaxDiscount",
+            "type": "number"
+        },
+        {
             "name": "RoundingStrategy",
             "baseName": "RoundingStrategy",
             "type": "number"
@@ -19436,6 +19445,10 @@ export class LoyaltyCampaignBase {
     */
     'PercentDiscountAmount'?: number;
     /**
+    * Maximum discount for percentage discounts
+    */
+    'MaxDiscount'?: number;
+    /**
     * Controls how the loyalty voucher's amount is rounded
     */
     'RoundingStrategy'?: number;
@@ -19487,6 +19500,11 @@ export class LoyaltyCampaignBase {
         {
             "name": "PercentDiscountAmount",
             "baseName": "PercentDiscountAmount",
+            "type": "number"
+        },
+        {
+            "name": "MaxDiscount",
+            "baseName": "MaxDiscount",
             "type": "number"
         },
         {
@@ -40821,6 +40839,10 @@ export class RetentionCampaign {
     */
     'PercentDiscountAmount'?: number;
     /**
+    * Maximum discount for percentage discounts
+    */
+    'MaxDiscount'?: number;
+    /**
     * Discount amount in sum of money
     */
     'LumpDiscountAmount'?: number;
@@ -40891,6 +40913,11 @@ export class RetentionCampaign {
             "type": "number"
         },
         {
+            "name": "MaxDiscount",
+            "baseName": "MaxDiscount",
+            "type": "number"
+        },
+        {
             "name": "LumpDiscountAmount",
             "baseName": "LumpDiscountAmount",
             "type": "number"
@@ -40954,6 +40981,10 @@ export class RetentionCampaignBase {
     */
     'PercentDiscountAmount'?: number;
     /**
+    * Maximum discount for percentage discounts
+    */
+    'MaxDiscount'?: number;
+    /**
     * Discount amount in sum of money
     */
     'LumpDiscountAmount'?: number;
@@ -41001,6 +41032,11 @@ export class RetentionCampaignBase {
         {
             "name": "PercentDiscountAmount",
             "baseName": "PercentDiscountAmount",
+            "type": "number"
+        },
+        {
+            "name": "MaxDiscount",
+            "baseName": "MaxDiscount",
             "type": "number"
         },
         {
