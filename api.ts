@@ -1062,6 +1062,10 @@ export class App {
     */
     'GoogleMapsApiKeyWeb'?: string;
     /**
+    * Org Id
+    */
+    'OrgId'?: string;
+    /**
     * App name.   This is used in various places on the Apple App Store, Google Play Store, mobile apps and websites.
     */
     'Name'?: string;
@@ -1164,6 +1168,11 @@ export class App {
         {
             "name": "GoogleMapsApiKeyWeb",
             "baseName": "GoogleMapsApiKeyWeb",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -42444,6 +42453,10 @@ export class Store {
     */
     'AppIds'?: Array<string>;
     /**
+    * Property Id
+    */
+    'PropertyId'?: string;
+    /**
     * Phone number
     */
     'PhoneNumber'?: string;
@@ -42666,6 +42679,11 @@ export class Store {
             "name": "AppIds",
             "baseName": "AppIds",
             "type": "Array<string>"
+        },
+        {
+            "name": "PropertyId",
+            "baseName": "PropertyId",
+            "type": "string"
         },
         {
             "name": "PhoneNumber",
@@ -60234,6 +60252,69 @@ export class AppsApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param appId 
+     * @param orgId 
+     * @param {*} [options] Override http request options.
+     */
+    public appsSetPropertyId (appId: string, orgId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/orgId/{orgId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'orgId' + '}', encodeURIComponent(String(orgId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling appsSetPropertyId.');
+        }
+
+        // verify required parameter 'orgId' is not null or undefined
+        if (orgId === null || orgId === undefined) {
+            throw new Error('Required parameter orgId was null or undefined when calling appsSetPropertyId.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
     }
     /**
      * 
@@ -91909,6 +91990,69 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultOrderLeadTimes");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param storeId 
+     * @param propertyId 
+     * @param {*} [options] Override http request options.
+     */
+    public storesSetPropertyId (storeId: number, propertyId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/propertyId/{propertyId}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'propertyId' + '}', encodeURIComponent(String(propertyId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling storesSetPropertyId.');
+        }
+
+        // verify required parameter 'propertyId' is not null or undefined
+        if (propertyId === null || propertyId === undefined) {
+            throw new Error('Required parameter propertyId was null or undefined when calling storesSetPropertyId.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
