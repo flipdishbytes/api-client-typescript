@@ -3182,6 +3182,10 @@ export class BankAccount {
     */
     'StoreNames'?: Array<string>;
     /**
+    * Store Ids that are attached to this account
+    */
+    'StoreIds'?: Array<number>;
+    /**
     * Address lf the bank
     */
     'BankAddress'?: string;
@@ -3243,6 +3247,11 @@ export class BankAccount {
             "name": "StoreNames",
             "baseName": "StoreNames",
             "type": "Array<string>"
+        },
+        {
+            "name": "StoreIds",
+            "baseName": "StoreIds",
+            "type": "Array<number>"
         },
         {
             "name": "BankAddress",
