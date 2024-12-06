@@ -25381,6 +25381,10 @@ export class Order {
     */
     'OrderBatchInfo'?: OrderBatchSummary;
     /**
+    * The id of the campaign voucher that was created from this order
+    */
+    'CreatedCampaignVoucherId'?: number;
+    /**
     * Order identifier
     */
     'OrderId'?: number;
@@ -25603,6 +25607,11 @@ export class Order {
             "name": "OrderBatchInfo",
             "baseName": "OrderBatchInfo",
             "type": "OrderBatchSummary"
+        },
+        {
+            "name": "CreatedCampaignVoucherId",
+            "baseName": "CreatedCampaignVoucherId",
+            "type": "number"
         },
         {
             "name": "OrderId",
@@ -73870,62 +73879,6 @@ export class KioskEntitlementsApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
-    }
-    /**
-     * 
-     * @param appId 
-     * @param {*} [options] Override http request options.
-     */
-    public queryKioskEntitlements (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultKioskEntitlementsResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/kiosk/entitlements'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling queryKioskEntitlements.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultKioskEntitlementsResult;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultKioskEntitlementsResult");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
     }
     /**
      * 
