@@ -7307,6 +7307,10 @@ export class CreateFullMenu {
     * Tax type
     */
     'TaxType'?: CreateFullMenu.TaxTypeEnum;
+    /**
+    * Flag to indicate if the menu is integrated (contains metadata)
+    */
+    'IsIntegrated'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -7345,6 +7349,11 @@ export class CreateFullMenu {
             "name": "TaxType",
             "baseName": "TaxType",
             "type": "CreateFullMenu.TaxTypeEnum"
+        },
+        {
+            "name": "IsIntegrated",
+            "baseName": "IsIntegrated",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -20045,6 +20054,10 @@ export class Menu {
     * Tax type
     */
     'TaxType'?: Menu.TaxTypeEnum;
+    /**
+    * Flag to indicate if the menu is integrated (contains metadata)
+    */
+    'IsIntegrated'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -20113,6 +20126,11 @@ export class Menu {
             "name": "TaxType",
             "baseName": "TaxType",
             "type": "Menu.TaxTypeEnum"
+        },
+        {
+            "name": "IsIntegrated",
+            "baseName": "IsIntegrated",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -20250,6 +20268,10 @@ export class MenuBase {
     * Tax type
     */
     'TaxType'?: MenuBase.TaxTypeEnum;
+    /**
+    * Flag to indicate if the menu is integrated (contains metadata)
+    */
+    'IsIntegrated'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -20268,6 +20290,11 @@ export class MenuBase {
             "name": "TaxType",
             "baseName": "TaxType",
             "type": "MenuBase.TaxTypeEnum"
+        },
+        {
+            "name": "IsIntegrated",
+            "baseName": "IsIntegrated",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -23386,6 +23413,10 @@ export class MenuSummary {
     * List of stores names which are associated with this menu
     */
     'StoreNames'?: Array<string>;
+    /**
+    * Flag to indicate if the menu is integrated (contains metadata)
+    */
+    'IsIntegrated'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -23424,6 +23455,11 @@ export class MenuSummary {
             "name": "StoreNames",
             "baseName": "StoreNames",
             "type": "Array<string>"
+        },
+        {
+            "name": "IsIntegrated",
+            "baseName": "IsIntegrated",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
