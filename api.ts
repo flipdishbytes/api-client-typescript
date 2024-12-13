@@ -1066,10 +1066,6 @@ export class App {
     */
     'OrgId'?: string;
     /**
-    * SMS Restaurant Name
-    */
-    'SmsRestaurantName'?: string;
-    /**
     * App name.   This is used in various places on the Apple App Store, Google Play Store, mobile apps and websites.
     */
     'Name'?: string;
@@ -1177,11 +1173,6 @@ export class App {
         {
             "name": "OrgId",
             "baseName": "OrgId",
-            "type": "string"
-        },
-        {
-            "name": "SmsRestaurantName",
-            "baseName": "SmsRestaurantName",
             "type": "string"
         },
         {
