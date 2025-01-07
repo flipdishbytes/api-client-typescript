@@ -91966,7 +91966,7 @@ export class StoresApi {
      * @param enabled 
      * @param {*} [options] Override http request options.
      */
-    public setPreOrderEnabled (storeId: number, deliveryType: 'Delivery' | 'Pickup', enabled: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
+    public setPreOrdeEnabled (storeId: number, deliveryType: 'Delivery' | 'Pickup', enabled: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/preorderconfig/{deliveryType}/enabled'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
@@ -91976,17 +91976,17 @@ export class StoresApi {
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling setPreOrderEnabled.');
+            throw new Error('Required parameter storeId was null or undefined when calling setPreOrdeEnabled.');
         }
 
         // verify required parameter 'deliveryType' is not null or undefined
         if (deliveryType === null || deliveryType === undefined) {
-            throw new Error('Required parameter deliveryType was null or undefined when calling setPreOrderEnabled.');
+            throw new Error('Required parameter deliveryType was null or undefined when calling setPreOrdeEnabled.');
         }
 
         // verify required parameter 'enabled' is not null or undefined
         if (enabled === null || enabled === undefined) {
-            throw new Error('Required parameter enabled was null or undefined when calling setPreOrderEnabled.');
+            throw new Error('Required parameter enabled was null or undefined when calling setPreOrdeEnabled.');
         }
 
         if (enabled !== undefined) {
