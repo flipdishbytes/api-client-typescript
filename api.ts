@@ -35916,6 +35916,29 @@ export class RestApiArrayResultProcessingFeeConfig {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultRedeemInvitationResult {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<RedeemInvitationResult>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<RedeemInvitationResult>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultRedeemInvitationResult.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultRestApiDefaultResponse {
     /**
     * Generic data object.
@@ -44221,6 +44244,10 @@ export class StoreCreateBase {
     * Sales Channel Type
     */
     'SalesChannelType'?: StoreCreateBase.SalesChannelTypeEnum;
+    /**
+    * Phone Number
+    */
+    'PhoneNumber'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -44244,6 +44271,11 @@ export class StoreCreateBase {
             "name": "SalesChannelType",
             "baseName": "SalesChannelType",
             "type": "StoreCreateBase.SalesChannelTypeEnum"
+        },
+        {
+            "name": "PhoneNumber",
+            "baseName": "PhoneNumber",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -56521,6 +56553,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultPendingMenuChangesSummaries": RestApiArrayResultPendingMenuChangesSummaries,
     "RestApiArrayResultPreOrderTime": RestApiArrayResultPreOrderTime,
     "RestApiArrayResultProcessingFeeConfig": RestApiArrayResultProcessingFeeConfig,
+    "RestApiArrayResultRedeemInvitationResult": RestApiArrayResultRedeemInvitationResult,
     "RestApiArrayResultRestApiDefaultResponse": RestApiArrayResultRestApiDefaultResponse,
     "RestApiArrayResultRestaurantVoucherEligibleStore": RestApiArrayResultRestaurantVoucherEligibleStore,
     "RestApiArrayResultRestaurantVoucherPayGreenConfiguration": RestApiArrayResultRestaurantVoucherPayGreenConfiguration,
@@ -91933,7 +91966,7 @@ export class StoresApi {
      * @param enabled 
      * @param {*} [options] Override http request options.
      */
-    public setPreOrdeEnabled (storeId: number, deliveryType: 'Delivery' | 'Pickup', enabled: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
+    public setPreOrderEnabled (storeId: number, deliveryType: 'Delivery' | 'Pickup', enabled: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRestApiDefaultResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/preorderconfig/{deliveryType}/enabled'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'deliveryType' + '}', encodeURIComponent(String(deliveryType)));
@@ -91943,17 +91976,17 @@ export class StoresApi {
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling setPreOrdeEnabled.');
+            throw new Error('Required parameter storeId was null or undefined when calling setPreOrderEnabled.');
         }
 
         // verify required parameter 'deliveryType' is not null or undefined
         if (deliveryType === null || deliveryType === undefined) {
-            throw new Error('Required parameter deliveryType was null or undefined when calling setPreOrdeEnabled.');
+            throw new Error('Required parameter deliveryType was null or undefined when calling setPreOrderEnabled.');
         }
 
         // verify required parameter 'enabled' is not null or undefined
         if (enabled === null || enabled === undefined) {
-            throw new Error('Required parameter enabled was null or undefined when calling setPreOrdeEnabled.');
+            throw new Error('Required parameter enabled was null or undefined when calling setPreOrderEnabled.');
         }
 
         if (enabled !== undefined) {
@@ -94366,7 +94399,7 @@ export class TeammatesApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public teammatesAcceptInvitations (options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public teammatesAcceptInvitations (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRedeemInvitationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/teammates/acceptInvitations';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -94396,11 +94429,12 @@ export class TeammatesApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRedeemInvitationResult;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRedeemInvitationResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
