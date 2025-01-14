@@ -1018,9 +1018,17 @@ export class App {
     */
     'HasIosApp'?: boolean;
     /**
+    * IOS App Store URL
+    */
+    'IosAppStoreUrl'?: string;
+    /**
     * Has Android app in Google Play Store. This is readonly.
     */
     'HasAndroidApp'?: boolean;
+    /**
+    * Android Play Store URL
+    */
+    'AndroidPlayStoreUrl'?: string;
     /**
     * Application Logo.
     */
@@ -1120,9 +1128,19 @@ export class App {
             "type": "boolean"
         },
         {
+            "name": "IosAppStoreUrl",
+            "baseName": "IosAppStoreUrl",
+            "type": "string"
+        },
+        {
             "name": "HasAndroidApp",
             "baseName": "HasAndroidApp",
             "type": "boolean"
+        },
+        {
+            "name": "AndroidPlayStoreUrl",
+            "baseName": "AndroidPlayStoreUrl",
+            "type": "string"
         },
         {
             "name": "LogoImageUrl",
