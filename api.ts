@@ -1030,6 +1030,10 @@ export class App {
     */
     'AndroidPlayStoreUrl'?: string;
     /**
+    * Display delivery restaurant screen
+    */
+    'DisplayDeliveryRestaurantScreen'?: boolean;
+    /**
     * Application Logo.
     */
     'LogoImageUrl'?: string;
@@ -1141,6 +1145,11 @@ export class App {
             "name": "AndroidPlayStoreUrl",
             "baseName": "AndroidPlayStoreUrl",
             "type": "string"
+        },
+        {
+            "name": "DisplayDeliveryRestaurantScreen",
+            "baseName": "DisplayDeliveryRestaurantScreen",
+            "type": "boolean"
         },
         {
             "name": "LogoImageUrl",
