@@ -37630,6 +37630,56 @@ export class RestApiPaginationResultPushNotificationResponse {
 /**
 * Rest api pagination result
 */
+export class RestApiPaginationResultRestaurant {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<Restaurant>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<Restaurant>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultRestaurant.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultStore {
     /**
     * Current page index
@@ -40784,6 +40834,119 @@ export class RestApiUnauthorizedResult {
 
     static getAttributeTypeMap() {
         return RestApiUnauthorizedResult.attributeTypeMap;
+    }
+}
+
+/**
+* Restaurant search result
+*/
+export class Restaurant {
+    /**
+    * Collection of white label configurations
+    */
+    'WhiteLabelConfigs'?: Array<WhiteLabelConfig>;
+    /**
+    * Virtual restaurant identifier
+    */
+    'VirtualRestaurantId'?: number;
+    /**
+    * Virtual restaurant name
+    */
+    'VirtualRestaurantName'?: string;
+    /**
+    * Virtual restaurant URL
+    */
+    'VirtualRestaurantUrl'?: string;
+    /**
+    * Physical restaurant identifier
+    */
+    'PhysicalRestaurantId'?: number;
+    /**
+    * Physical restaurant name
+    */
+    'PhysicalRestaurantName'?: string;
+    /**
+    * Physical restaurant address
+    */
+    'PhysicalRestaurantAddress'?: string;
+    /**
+    * Menu identifier
+    */
+    'MenuId'?: number;
+    /**
+    * Indicates if the restaurant is archived
+    */
+    'IsArchived'?: boolean;
+    /**
+    * Indicates if the restaurant is published
+    */
+    'IsPublished'?: boolean;
+    /**
+    * List of Flipdish Stripe custom connected account identifiers
+    */
+    'FlipdishStripeCustomConnectedAccounts'?: Array<number>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "WhiteLabelConfigs",
+            "baseName": "WhiteLabelConfigs",
+            "type": "Array<WhiteLabelConfig>"
+        },
+        {
+            "name": "VirtualRestaurantId",
+            "baseName": "VirtualRestaurantId",
+            "type": "number"
+        },
+        {
+            "name": "VirtualRestaurantName",
+            "baseName": "VirtualRestaurantName",
+            "type": "string"
+        },
+        {
+            "name": "VirtualRestaurantUrl",
+            "baseName": "VirtualRestaurantUrl",
+            "type": "string"
+        },
+        {
+            "name": "PhysicalRestaurantId",
+            "baseName": "PhysicalRestaurantId",
+            "type": "number"
+        },
+        {
+            "name": "PhysicalRestaurantName",
+            "baseName": "PhysicalRestaurantName",
+            "type": "string"
+        },
+        {
+            "name": "PhysicalRestaurantAddress",
+            "baseName": "PhysicalRestaurantAddress",
+            "type": "string"
+        },
+        {
+            "name": "MenuId",
+            "baseName": "MenuId",
+            "type": "number"
+        },
+        {
+            "name": "IsArchived",
+            "baseName": "IsArchived",
+            "type": "boolean"
+        },
+        {
+            "name": "IsPublished",
+            "baseName": "IsPublished",
+            "type": "boolean"
+        },
+        {
+            "name": "FlipdishStripeCustomConnectedAccounts",
+            "baseName": "FlipdishStripeCustomConnectedAccounts",
+            "type": "Array<number>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Restaurant.attributeTypeMap;
     }
 }
 
@@ -55832,6 +55995,74 @@ export class WebsiteVanityUrlUpdatedEvent {
     }
 }
 
+/**
+* White label configuration details
+*/
+export class WhiteLabelConfig {
+    /**
+    * White label identifier
+    */
+    'WhiteLabelId'?: number;
+    /**
+    * White label name
+    */
+    'WhiteLabelName'?: string;
+    /**
+    * Country identifier
+    */
+    'CountryId'?: string;
+    /**
+    * App id
+    */
+    'AppNameId'?: string;
+    /**
+    * Website URL
+    */
+    'Website'?: string;
+    /**
+    * Panacea vanity URL
+    */
+    'PanaceaVanityUrl'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "WhiteLabelId",
+            "baseName": "WhiteLabelId",
+            "type": "number"
+        },
+        {
+            "name": "WhiteLabelName",
+            "baseName": "WhiteLabelName",
+            "type": "string"
+        },
+        {
+            "name": "CountryId",
+            "baseName": "CountryId",
+            "type": "string"
+        },
+        {
+            "name": "AppNameId",
+            "baseName": "AppNameId",
+            "type": "string"
+        },
+        {
+            "name": "Website",
+            "baseName": "Website",
+            "type": "string"
+        },
+        {
+            "name": "PanaceaVanityUrl",
+            "baseName": "PanaceaVanityUrl",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WhiteLabelConfig.attributeTypeMap;
+    }
+}
+
 
 let enumsMap: {[index: string]: any} = {
         "AccountFieldDefinition.KeyEnum": AccountFieldDefinition.KeyEnum,
@@ -56624,6 +56855,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultPhoneCall": RestApiPaginationResultPhoneCall,
     "RestApiPaginationResultProduct": RestApiPaginationResultProduct,
     "RestApiPaginationResultPushNotificationResponse": RestApiPaginationResultPushNotificationResponse,
+    "RestApiPaginationResultRestaurant": RestApiPaginationResultRestaurant,
     "RestApiPaginationResultStore": RestApiPaginationResultStore,
     "RestApiPaginationResultStoreGroup": RestApiPaginationResultStoreGroup,
     "RestApiPaginationResultStoreGroupExtended": RestApiPaginationResultStoreGroupExtended,
@@ -56752,6 +56984,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiStringArrayResult": RestApiStringArrayResult,
     "RestApiStringResult": RestApiStringResult,
     "RestApiUnauthorizedResult": RestApiUnauthorizedResult,
+    "Restaurant": Restaurant,
     "RestaurantVoucherAssignedStore": RestaurantVoucherAssignedStore,
     "RestaurantVoucherEligibleStore": RestaurantVoucherEligibleStore,
     "RestaurantVoucherPayGreenConfiguration": RestaurantVoucherPayGreenConfiguration,
@@ -56914,6 +57147,7 @@ let typeMap: {[index: string]: any} = {
     "WebsiteTestimonialBase": WebsiteTestimonialBase,
     "WebsiteUpdatedEvent": WebsiteUpdatedEvent,
     "WebsiteVanityUrlUpdatedEvent": WebsiteVanityUrlUpdatedEvent,
+    "WhiteLabelConfig": WhiteLabelConfig,
 }
 
 export interface Authentication {
@@ -89263,6 +89497,150 @@ export class RestaurantVouchersPayGreenApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultRestaurantVoucherPayGreenStoreConfiguration");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum SearchApiApiKeys {
+}
+
+export class SearchApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: SearchApiApiKeys, value: string) {
+        (this.authentications as any)[SearchApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param query 
+     * @param countryId 
+     * @param includeArchivedStores 
+     * @param searchType 
+     * @param publishedStatus 
+     * @param page 
+     * @param limit 
+     * @param {*} [options] Override http request options.
+     */
+    public searchRestaurants (query: string, countryId: string, includeArchivedStores?: 'NonArchivedOnly' | 'ArchivedOnly' | 'Both', searchType?: 'WhiteLabelConfigInfo' | 'WhiteLabelConfigVirtualRestaurantInfo' | 'WhiteLabelConfigPhysicalRestaurantInfo' | 'WhiteLabelConfigPhysicalRestaurantAddressInfo', publishedStatus?: 'AllStores' | 'Published' | 'Unpublished', page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultRestaurant;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/search/restaurants';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'query' is not null or undefined
+        if (query === null || query === undefined) {
+            throw new Error('Required parameter query was null or undefined when calling searchRestaurants.');
+        }
+
+        // verify required parameter 'countryId' is not null or undefined
+        if (countryId === null || countryId === undefined) {
+            throw new Error('Required parameter countryId was null or undefined when calling searchRestaurants.');
+        }
+
+        if (query !== undefined) {
+            localVarQueryParameters['query'] = ObjectSerializer.serialize(query, "string");
+        }
+
+        if (countryId !== undefined) {
+            localVarQueryParameters['countryId'] = ObjectSerializer.serialize(countryId, "string");
+        }
+
+        if (includeArchivedStores !== undefined) {
+            localVarQueryParameters['includeArchivedStores'] = ObjectSerializer.serialize(includeArchivedStores, "'NonArchivedOnly' | 'ArchivedOnly' | 'Both'");
+        }
+
+        if (searchType !== undefined) {
+            localVarQueryParameters['searchType'] = ObjectSerializer.serialize(searchType, "'WhiteLabelConfigInfo' | 'WhiteLabelConfigVirtualRestaurantInfo' | 'WhiteLabelConfigPhysicalRestaurantInfo' | 'WhiteLabelConfigPhysicalRestaurantAddressInfo'");
+        }
+
+        if (publishedStatus !== undefined) {
+            localVarQueryParameters['publishedStatus'] = ObjectSerializer.serialize(publishedStatus, "'AllStores' | 'Published' | 'Unpublished'");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultRestaurant;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultRestaurant");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
