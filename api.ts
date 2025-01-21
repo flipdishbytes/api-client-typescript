@@ -31529,6 +31529,13 @@ export class PayoutReport3DetailsFlipdishFees {
     'Vat'?: number;
     'Total'?: number;
     'ThirdPartyIntegrationFeesAndTips'?: number;
+    'WebAndAppCardOnXOrders'?: number;
+    'WebAndAppCashOnXOrders'?: number;
+    'KioskCardOnXOrders'?: number;
+    'KioskCashOnXOrders'?: number;
+    'QropCardOnXOrders'?: number;
+    'QropCashOnXOrders'?: number;
+    'PosCardOnXOrders'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -31626,6 +31633,41 @@ export class PayoutReport3DetailsFlipdishFees {
         {
             "name": "ThirdPartyIntegrationFeesAndTips",
             "baseName": "ThirdPartyIntegrationFeesAndTips",
+            "type": "number"
+        },
+        {
+            "name": "WebAndAppCardOnXOrders",
+            "baseName": "WebAndAppCardOnXOrders",
+            "type": "number"
+        },
+        {
+            "name": "WebAndAppCashOnXOrders",
+            "baseName": "WebAndAppCashOnXOrders",
+            "type": "number"
+        },
+        {
+            "name": "KioskCardOnXOrders",
+            "baseName": "KioskCardOnXOrders",
+            "type": "number"
+        },
+        {
+            "name": "KioskCashOnXOrders",
+            "baseName": "KioskCashOnXOrders",
+            "type": "number"
+        },
+        {
+            "name": "QropCardOnXOrders",
+            "baseName": "QropCardOnXOrders",
+            "type": "number"
+        },
+        {
+            "name": "QropCashOnXOrders",
+            "baseName": "QropCashOnXOrders",
+            "type": "number"
+        },
+        {
+            "name": "PosCardOnXOrders",
+            "baseName": "PosCardOnXOrders",
             "type": "number"
         }    ];
 
