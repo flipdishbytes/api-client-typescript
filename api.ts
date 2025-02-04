@@ -43519,6 +43519,10 @@ export class StoreAddressUpdatedEvent {
     */
     'EventName'?: string;
     /**
+    * Organisation Id
+    */
+    'OrgId'?: string;
+    /**
     * Store Id
     */
     'StoreId'?: number;
@@ -43565,6 +43569,11 @@ export class StoreAddressUpdatedEvent {
         {
             "name": "EventName",
             "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
