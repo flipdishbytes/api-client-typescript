@@ -734,6 +734,10 @@ export class AnalyticsClientEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -794,6 +798,11 @@ export class AnalyticsClientEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -2603,6 +2612,10 @@ export class AppStoreConfigCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -2648,6 +2661,11 @@ export class AppStoreConfigCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -2698,6 +2716,10 @@ export class AppStoreConfigDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -2743,6 +2765,11 @@ export class AppStoreConfigDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -2793,6 +2820,10 @@ export class AppStoreConfigUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -2841,6 +2872,11 @@ export class AppStoreConfigUpdatedEvent {
             "type": "string"
         },
         {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
+        {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
@@ -2884,6 +2920,10 @@ export class AppStoreSubscriptionChangeJobUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -2924,6 +2964,11 @@ export class AppStoreSubscriptionChangeJobUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -5249,6 +5294,10 @@ export class CatalogGroupArchivedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -5294,6 +5343,11 @@ export class CatalogGroupArchivedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -5344,6 +5398,10 @@ export class CatalogGroupCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -5389,6 +5447,11 @@ export class CatalogGroupCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -5494,6 +5557,10 @@ export class CatalogGroupUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -5539,6 +5606,11 @@ export class CatalogGroupUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -5731,6 +5803,10 @@ export class CatalogItemArchivedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -5776,6 +5852,11 @@ export class CatalogItemArchivedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -5826,6 +5907,10 @@ export class CatalogItemCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -5871,6 +5956,11 @@ export class CatalogItemCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -5921,6 +6011,10 @@ export class CatalogItemUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -5969,6 +6063,11 @@ export class CatalogItemUpdatedEvent {
             "type": "string"
         },
         {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
+        {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
@@ -6008,6 +6107,10 @@ export class CertificateCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -6043,6 +6146,11 @@ export class CertificateCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -6085,6 +6193,10 @@ export class CertificateRenewedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -6120,6 +6232,11 @@ export class CertificateRenewedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -6299,6 +6416,10 @@ export class ChannelStoresUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -6344,6 +6465,11 @@ export class ChannelStoresUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -10033,6 +10159,10 @@ export class CustomerUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -10073,6 +10203,11 @@ export class CustomerUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -10349,6 +10484,10 @@ export class DeliveryZoneCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -10404,6 +10543,11 @@ export class DeliveryZoneCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -10462,6 +10606,10 @@ export class DeliveryZoneDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -10517,6 +10665,11 @@ export class DeliveryZoneDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -10575,6 +10728,10 @@ export class DeliveryZoneUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -10630,6 +10787,11 @@ export class DeliveryZoneUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -10783,6 +10945,10 @@ export class DnsVerifiedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -10818,6 +10984,11 @@ export class DnsVerifiedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -11147,6 +11318,10 @@ export class EmvNotificationEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -11227,6 +11402,11 @@ export class EmvNotificationEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -12950,6 +13130,10 @@ export class ExternalStoreEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -13045,6 +13229,11 @@ export class ExternalStoreEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -13390,6 +13579,10 @@ export class FlipdishEventBase {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -13420,6 +13613,11 @@ export class FlipdishEventBase {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -14668,6 +14866,10 @@ export class HydraAssignedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -14708,6 +14910,11 @@ export class HydraAssignedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -14842,6 +15049,10 @@ export class HydraConnectionStatusChangedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -14887,6 +15098,11 @@ export class HydraConnectionStatusChangedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -15111,6 +15327,10 @@ export class HydraRequestResetEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -15146,6 +15366,11 @@ export class HydraRequestResetEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -15192,6 +15417,10 @@ export class HydraSettingChangedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -15232,6 +15461,11 @@ export class HydraSettingChangedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -15353,6 +15587,10 @@ export class HydraStoreAssignedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -15393,6 +15631,11 @@ export class HydraStoreAssignedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -15471,6 +15714,10 @@ export class HydraStoreUnassignedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -15511,6 +15758,11 @@ export class HydraStoreUnassignedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -15557,6 +15809,10 @@ export class HydraUnAssignedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -15597,6 +15853,11 @@ export class HydraUnAssignedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -16891,6 +17152,10 @@ export class KioskBluetoothInstallUpdateInitiateEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -16936,6 +17201,11 @@ export class KioskBluetoothInstallUpdateInitiateEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -16995,6 +17265,10 @@ export class KioskBluetoothPairingModeEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -17040,6 +17314,11 @@ export class KioskBluetoothPairingModeEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -17099,6 +17378,10 @@ export class KioskBluetoothTerminalCancelUpdateEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -17144,6 +17427,11 @@ export class KioskBluetoothTerminalCancelUpdateEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -17219,6 +17507,10 @@ export class KioskBluetoothTerminalFirmwareVersionStatusEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -17287,6 +17579,11 @@ export class KioskBluetoothTerminalFirmwareVersionStatusEvent {
             "type": "string"
         },
         {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
+        {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
@@ -17338,6 +17635,10 @@ export class KioskBluetoothTerminalInitiateUpdateCheckEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -17378,6 +17679,11 @@ export class KioskBluetoothTerminalInitiateUpdateCheckEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -17435,6 +17741,10 @@ export class KioskBluetoothTerminalInstallationStatusEvent {
     * App id
     */
     'AppId'?: string;
+    /**
+    * Org id
+    */
+    'OrgId'?: string;
     /**
     * Ip Address
     */
@@ -17494,6 +17804,11 @@ export class KioskBluetoothTerminalInstallationStatusEvent {
             "type": "string"
         },
         {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
+        {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
@@ -17550,6 +17865,10 @@ export class KioskBluetoothTerminalUnpairedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -17595,6 +17914,11 @@ export class KioskBluetoothTerminalUnpairedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -17662,6 +17986,10 @@ export class KioskBluetoothTerminalUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -17717,6 +18045,11 @@ export class KioskBluetoothTerminalUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -17776,6 +18109,10 @@ export class KioskBluetoothUnpairingModeEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -17821,6 +18158,11 @@ export class KioskBluetoothUnpairingModeEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -18003,6 +18345,10 @@ export class KioskTerminalActionStateChangedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -18053,6 +18399,11 @@ export class KioskTerminalActionStateChangedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -18767,6 +19118,10 @@ export class LocationAreaCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -18812,6 +19167,11 @@ export class LocationAreaCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -18921,6 +19281,10 @@ export class LocationAreaUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -18966,6 +19330,11 @@ export class LocationAreaUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -19083,6 +19452,10 @@ export class LocationCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -19138,6 +19511,11 @@ export class LocationCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -19196,6 +19574,10 @@ export class LocationDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -19251,6 +19633,11 @@ export class LocationDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -19667,6 +20054,10 @@ export class LoyaltyCampaignCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -19717,6 +20108,11 @@ export class LoyaltyCampaignCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -19771,6 +20167,10 @@ export class LoyaltyCampaignDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -19821,6 +20221,11 @@ export class LoyaltyCampaignDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -19875,6 +20280,10 @@ export class LoyaltyCampaignUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -19925,6 +20334,11 @@ export class LoyaltyCampaignUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -20225,6 +20639,10 @@ export class MenuAsyncCreationCompletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -20275,6 +20693,11 @@ export class MenuAsyncCreationCompletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -20401,6 +20824,10 @@ export class MenuBulkEditEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -20466,6 +20893,11 @@ export class MenuBulkEditEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -20610,6 +21042,10 @@ export class MenuCheckpointCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -20663,6 +21099,11 @@ export class MenuCheckpointCreatedEvent {
             "type": "string"
         },
         {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
+        {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
@@ -20710,6 +21151,10 @@ export class MenuCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -20755,6 +21200,11 @@ export class MenuCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -21240,6 +21690,10 @@ export class MenuItemOptionSetCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -21290,6 +21744,11 @@ export class MenuItemOptionSetCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -21344,6 +21803,10 @@ export class MenuItemOptionSetDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -21394,6 +21857,11 @@ export class MenuItemOptionSetDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -21684,6 +22152,10 @@ export class MenuItemOptionSetItemCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -21734,6 +22206,11 @@ export class MenuItemOptionSetItemCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -21788,6 +22265,10 @@ export class MenuItemOptionSetItemDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -21838,6 +22319,11 @@ export class MenuItemOptionSetItemDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -21892,6 +22378,10 @@ export class MenuItemOptionSetItemUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -21942,6 +22432,11 @@ export class MenuItemOptionSetItemUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -21996,6 +22491,10 @@ export class MenuItemOptionSetUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -22046,6 +22545,11 @@ export class MenuItemOptionSetUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -22422,6 +22926,10 @@ export class MenuSectionCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -22472,6 +22980,11 @@ export class MenuSectionCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -22526,6 +23039,10 @@ export class MenuSectionDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -22576,6 +23093,11 @@ export class MenuSectionDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -23019,6 +23541,10 @@ export class MenuSectionItemCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -23069,6 +23595,11 @@ export class MenuSectionItemCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -23123,6 +23654,10 @@ export class MenuSectionItemDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -23173,6 +23708,11 @@ export class MenuSectionItemDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -23227,6 +23767,10 @@ export class MenuSectionItemUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -23277,6 +23821,11 @@ export class MenuSectionItemUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -23331,6 +23880,10 @@ export class MenuSectionUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -23381,6 +23934,11 @@ export class MenuSectionUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -23650,6 +24208,10 @@ export class MenuUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -23700,6 +24262,11 @@ export class MenuUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -23758,6 +24325,10 @@ export class MenuUploadedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -23813,6 +24384,11 @@ export class MenuUploadedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -24574,6 +25150,10 @@ export class MobileAppsSubmissionStatusUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -24622,6 +25202,11 @@ export class MobileAppsSubmissionStatusUpdatedEvent {
             "type": "string"
         },
         {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
+        {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
@@ -24665,6 +25250,10 @@ export class MobileAppsSubmissionUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -24705,6 +25294,11 @@ export class MobileAppsSubmissionUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -26141,6 +26735,10 @@ export class OrderBatchPublishedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -26186,6 +26784,11 @@ export class OrderBatchPublishedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -26322,6 +26925,10 @@ export class OrderCapacityConfigUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -26375,6 +26982,11 @@ export class OrderCapacityConfigUpdatedEvent {
             "type": "string"
         },
         {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
+        {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
@@ -26421,6 +27033,10 @@ export class OrderCreatedEvent {
     * App id
     */
     'AppId'?: string;
+    /**
+    * Org id
+    */
+    'OrgId'?: string;
     /**
     * Ip Address
     */
@@ -26470,6 +27086,11 @@ export class OrderCreatedEvent {
             "type": "string"
         },
         {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
+        {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
@@ -26513,6 +27134,10 @@ export class OrderCustomerTrackingCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -26553,6 +27178,11 @@ export class OrderCustomerTrackingCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -26796,6 +27426,10 @@ export class OrderDeliveryTrackingStatusUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -26849,6 +27483,11 @@ export class OrderDeliveryTrackingStatusUpdatedEvent {
             "type": "string"
         },
         {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
+        {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
@@ -26896,6 +27535,10 @@ export class OrderDispatchedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -26941,6 +27584,11 @@ export class OrderDispatchedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -27293,6 +27941,10 @@ export class OrderFulfillmentStatusUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -27348,6 +28000,11 @@ export class OrderFulfillmentStatusUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -28212,6 +28869,10 @@ export class OrderRatingUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -28257,6 +28918,11 @@ export class OrderRatingUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -28334,6 +29000,10 @@ export class OrderRefundedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -28384,6 +29054,11 @@ export class OrderRefundedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -28442,6 +29117,10 @@ export class OrderRejectedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -28497,6 +29176,11 @@ export class OrderRejectedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -28995,6 +29679,10 @@ export class OrderTipUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -29040,6 +29728,11 @@ export class OrderTipUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -32660,6 +33353,10 @@ export class PhoneCallEndedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -32705,6 +33402,11 @@ export class PhoneCallEndedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -32755,6 +33457,10 @@ export class PhoneCallStartedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -32800,6 +33506,11 @@ export class PhoneCallStartedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -33489,6 +34200,10 @@ export class PrinterAssignedToStoreEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -33544,6 +34259,11 @@ export class PrinterAssignedToStoreEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -33602,6 +34322,10 @@ export class PrinterTurnedOffEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -33657,6 +34381,11 @@ export class PrinterTurnedOffEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -33715,6 +34444,10 @@ export class PrinterTurnedOnEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -33770,6 +34503,11 @@ export class PrinterTurnedOnEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -33828,6 +34566,10 @@ export class PrinterUnassignedFromStoreEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -33883,6 +34625,11 @@ export class PrinterUnassignedFromStoreEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -34305,6 +35052,10 @@ export class PushNotificationDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -34345,6 +35096,11 @@ export class PushNotificationDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -34495,6 +35251,10 @@ export class PushNotificationScheduledEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -34543,6 +35303,11 @@ export class PushNotificationScheduledEvent {
             "type": "string"
         },
         {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
+        {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
@@ -34586,6 +35351,10 @@ export class PushNotificationSentEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -34626,6 +35395,11 @@ export class PushNotificationSentEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -41458,6 +42232,10 @@ export class RetentionCampaignCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -41508,6 +42286,11 @@ export class RetentionCampaignCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -41562,6 +42345,10 @@ export class RetentionCampaignDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -41612,6 +42399,11 @@ export class RetentionCampaignDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -41666,6 +42458,10 @@ export class RetentionCampaignUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -41716,6 +42512,11 @@ export class RetentionCampaignUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -42466,6 +43267,10 @@ export class SmsReceivedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -42506,6 +43311,11 @@ export class SmsReceivedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -43677,6 +44487,10 @@ export class StoreArchivedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -43732,6 +44546,11 @@ export class StoreArchivedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -44082,6 +44901,10 @@ export class StoreBusinessHoursOverrideCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -44137,6 +44960,11 @@ export class StoreBusinessHoursOverrideCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -44195,6 +45023,10 @@ export class StoreBusinessHoursOverrideDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -44250,6 +45082,11 @@ export class StoreBusinessHoursOverrideDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -44722,6 +45559,10 @@ export class StoreDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -44777,6 +45618,11 @@ export class StoreDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -45660,6 +46506,10 @@ export class StoreFeeConfigUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -45720,6 +46570,11 @@ export class StoreFeeConfigUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -46117,6 +46972,10 @@ export class StoreGroupCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -46167,6 +47026,11 @@ export class StoreGroupCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -46221,6 +47085,10 @@ export class StoreGroupDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -46271,6 +47139,11 @@ export class StoreGroupDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -46546,6 +47419,10 @@ export class StoreGroupUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -46596,6 +47473,11 @@ export class StoreGroupUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -46809,6 +47691,10 @@ export class StoreKioskSettingUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -46859,6 +47745,11 @@ export class StoreKioskSettingUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -47320,6 +48211,10 @@ export class StoreMenuAssignedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -47370,6 +48265,11 @@ export class StoreMenuAssignedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -47773,6 +48673,10 @@ export class StorePreOrderConfigUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -47831,6 +48735,11 @@ export class StorePreOrderConfigUpdatedEvent {
             "type": "string"
         },
         {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
+        {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
@@ -47885,6 +48794,10 @@ export class StorePublishedEvent {
     * App id
     */
     'AppId'?: string;
+    /**
+    * Org id
+    */
+    'OrgId'?: string;
     /**
     * Ip Address
     */
@@ -47944,6 +48857,11 @@ export class StorePublishedEvent {
             "type": "string"
         },
         {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
+        {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
@@ -47995,6 +48913,10 @@ export class StoreServiceChargeUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -48045,6 +48967,11 @@ export class StoreServiceChargeUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -48334,6 +49261,10 @@ export class StoreTipUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -48384,6 +49315,11 @@ export class StoreTipUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -48442,6 +49378,10 @@ export class StoreUnarchivedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -48497,6 +49437,11 @@ export class StoreUnarchivedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -48555,6 +49500,10 @@ export class StoreUnpublishedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -48610,6 +49559,11 @@ export class StoreUnpublishedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -50778,6 +51732,10 @@ export class TeammateDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -50818,6 +51776,11 @@ export class TeammateDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -50864,6 +51827,10 @@ export class TeammateInviteAcceptedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -50904,6 +51871,11 @@ export class TeammateInviteAcceptedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -50950,6 +51922,10 @@ export class TeammateInviteSentEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -50990,6 +51966,11 @@ export class TeammateInviteSentEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -51036,6 +52017,10 @@ export class TeammateUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -51076,6 +52061,11 @@ export class TeammateUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -51320,6 +52310,10 @@ export class TelephonyConfigUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -51365,6 +52359,11 @@ export class TelephonyConfigUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -53029,6 +54028,10 @@ export class UserAnsweredSignupQuestionsEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -53069,6 +54072,11 @@ export class UserAnsweredSignupQuestionsEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -53115,6 +54123,10 @@ export class UserCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -53155,6 +54167,11 @@ export class UserCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -53201,6 +54218,10 @@ export class UserDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -53241,6 +54262,11 @@ export class UserDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -53337,6 +54363,10 @@ export class UserLoginEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -53377,6 +54407,11 @@ export class UserLoginEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -53423,6 +54458,10 @@ export class UserPasswordCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -53463,6 +54502,11 @@ export class UserPasswordCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -53509,6 +54553,10 @@ export class UserUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -53549,6 +54597,11 @@ export class UserUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -54149,6 +55202,10 @@ export class VoucherAppliedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -54189,6 +55246,11 @@ export class VoucherAppliedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -54243,6 +55305,10 @@ export class VoucherCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -54293,6 +55359,11 @@ export class VoucherCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -54388,6 +55459,10 @@ export class VoucherDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -54438,6 +55513,11 @@ export class VoucherDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -54594,6 +55674,10 @@ export class VoucherUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -54644,6 +55728,11 @@ export class VoucherUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -55480,6 +56569,10 @@ export class WebhookSubscriptionCreatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -55515,6 +56608,11 @@ export class WebhookSubscriptionCreatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -55557,6 +56655,10 @@ export class WebhookSubscriptionDeletedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -55592,6 +56694,11 @@ export class WebhookSubscriptionDeletedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -55684,6 +56791,10 @@ export class WebhookSubscriptionUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -55719,6 +56830,11 @@ export class WebhookSubscriptionUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -55893,6 +57009,10 @@ export class WebsiteUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -55938,6 +57058,11 @@ export class WebsiteUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
@@ -55988,6 +57113,10 @@ export class WebsiteVanityUrlUpdatedEvent {
     */
     'AppId'?: string;
     /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
     * Ip Address
     */
     'IpAddress'?: string;
@@ -56033,6 +57162,11 @@ export class WebsiteVanityUrlUpdatedEvent {
         {
             "name": "AppId",
             "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
             "type": "string"
         },
         {
