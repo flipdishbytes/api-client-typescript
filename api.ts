@@ -6825,29 +6825,6 @@ export class Coordinates {
     }
 }
 
-export class CoordinatesDm {
-    'Latitude'?: number;
-    'Longitude'?: number;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Latitude",
-            "baseName": "Latitude",
-            "type": "number"
-        },
-        {
-            "name": "Longitude",
-            "baseName": "Longitude",
-            "type": "number"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return CoordinatesDm.attributeTypeMap;
-    }
-}
-
 /**
 * Country
 */
@@ -8433,41 +8410,6 @@ export namespace CreateMetafieldDefinition {
         SendToMenu = <any> 'SendToMenu'
     }
 }
-export class CreateOrderRequest {
-    'LegacyOrderDm'?: OrderDm;
-    'PhoneNumber'?: string;
-    'CustomerName'?: string;
-    'DeliveryLocation'?: DeliveryLocation;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "LegacyOrderDm",
-            "baseName": "LegacyOrderDm",
-            "type": "OrderDm"
-        },
-        {
-            "name": "PhoneNumber",
-            "baseName": "PhoneNumber",
-            "type": "string"
-        },
-        {
-            "name": "CustomerName",
-            "baseName": "CustomerName",
-            "type": "string"
-        },
-        {
-            "name": "DeliveryLocation",
-            "baseName": "DeliveryLocation",
-            "type": "DeliveryLocation"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return CreateOrderRequest.attributeTypeMap;
-    }
-}
-
 export class CreatePayGreenConfigurationRequest {
     'Name'?: string;
     'PayGreenId'?: string;
@@ -11057,50 +10999,6 @@ export class DriverRequestLoginPinModel {
     }
 }
 
-export class DuringOrderPromotionOptionsDm {
-    'DuringOrderPromotionType'?: DuringOrderPromotionOptionsDm.DuringOrderPromotionTypeEnum;
-    'MinSmsShareCount'?: number;
-    'FreeCokeCount'?: number;
-    'PromotionPeriodSeconds'?: number;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "DuringOrderPromotionType",
-            "baseName": "DuringOrderPromotionType",
-            "type": "DuringOrderPromotionOptionsDm.DuringOrderPromotionTypeEnum"
-        },
-        {
-            "name": "MinSmsShareCount",
-            "baseName": "MinSmsShareCount",
-            "type": "number"
-        },
-        {
-            "name": "FreeCokeCount",
-            "baseName": "FreeCokeCount",
-            "type": "number"
-        },
-        {
-            "name": "PromotionPeriodSeconds",
-            "baseName": "PromotionPeriodSeconds",
-            "type": "number"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return DuringOrderPromotionOptionsDm.attributeTypeMap;
-    }
-}
-
-export namespace DuringOrderPromotionOptionsDm {
-    export enum DuringOrderPromotionTypeEnum {
-        None = <any> 'None',
-        BumpFreeChocolate = <any> 'BumpFreeChocolate',
-        BumpFreeCoke = <any> 'BumpFreeCoke',
-        SmsInviteFreeChocolate = <any> 'SmsInviteFreeChocolate',
-        SmsInviteFreeCoke = <any> 'SmsInviteFreeCoke'
-    }
-}
 export class DynamicFormField {
     'Identifier'?: string;
     'Label'?: string;
@@ -27602,142 +27500,6 @@ export class OrderDispatchedEvent {
     }
 }
 
-export class OrderDm {
-    'UserLocation'?: CoordinatesDm;
-    'RequestedDeliveryOrPickupTimeUtc'?: Date;
-    'TipAmount'?: number;
-    'DeliveryLocationId'?: number;
-    'VoucherCode'?: string;
-    'OrderItemVms'?: Array<OrderItemDm>;
-    'VirtualRestaurantId'?: number;
-    'PhysicalRestaurantId'?: number;
-    'DeliveryType'?: OrderDm.DeliveryTypeEnum;
-    'PickupLocationType'?: OrderDm.PickupLocationTypeEnum;
-    'PickupLocationId'?: number;
-    'TableServiceCatagory'?: OrderDm.TableServiceCatagoryEnum;
-    'PaymentAccountId'?: number;
-    'IsPreOrder'?: boolean;
-    'IsAsapOrder'?: boolean;
-    'MenuId'?: number;
-    'MenuVersion'?: number;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "UserLocation",
-            "baseName": "UserLocation",
-            "type": "CoordinatesDm"
-        },
-        {
-            "name": "RequestedDeliveryOrPickupTimeUtc",
-            "baseName": "RequestedDeliveryOrPickupTimeUtc",
-            "type": "Date"
-        },
-        {
-            "name": "TipAmount",
-            "baseName": "TipAmount",
-            "type": "number"
-        },
-        {
-            "name": "DeliveryLocationId",
-            "baseName": "DeliveryLocationId",
-            "type": "number"
-        },
-        {
-            "name": "VoucherCode",
-            "baseName": "VoucherCode",
-            "type": "string"
-        },
-        {
-            "name": "OrderItemVms",
-            "baseName": "OrderItemVms",
-            "type": "Array<OrderItemDm>"
-        },
-        {
-            "name": "VirtualRestaurantId",
-            "baseName": "VirtualRestaurantId",
-            "type": "number"
-        },
-        {
-            "name": "PhysicalRestaurantId",
-            "baseName": "PhysicalRestaurantId",
-            "type": "number"
-        },
-        {
-            "name": "DeliveryType",
-            "baseName": "DeliveryType",
-            "type": "OrderDm.DeliveryTypeEnum"
-        },
-        {
-            "name": "PickupLocationType",
-            "baseName": "PickupLocationType",
-            "type": "OrderDm.PickupLocationTypeEnum"
-        },
-        {
-            "name": "PickupLocationId",
-            "baseName": "PickupLocationId",
-            "type": "number"
-        },
-        {
-            "name": "TableServiceCatagory",
-            "baseName": "TableServiceCatagory",
-            "type": "OrderDm.TableServiceCatagoryEnum"
-        },
-        {
-            "name": "PaymentAccountId",
-            "baseName": "PaymentAccountId",
-            "type": "number"
-        },
-        {
-            "name": "IsPreOrder",
-            "baseName": "IsPreOrder",
-            "type": "boolean"
-        },
-        {
-            "name": "IsAsapOrder",
-            "baseName": "IsAsapOrder",
-            "type": "boolean"
-        },
-        {
-            "name": "MenuId",
-            "baseName": "MenuId",
-            "type": "number"
-        },
-        {
-            "name": "MenuVersion",
-            "baseName": "MenuVersion",
-            "type": "number"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return OrderDm.attributeTypeMap;
-    }
-}
-
-export namespace OrderDm {
-    export enum DeliveryTypeEnum {
-        Delivery = <any> 'Delivery',
-        Pickup = <any> 'Pickup'
-    }
-    export enum PickupLocationTypeEnum {
-        TakeOut = <any> 'TakeOut',
-        TableService = <any> 'TableService',
-        DineIn = <any> 'DineIn'
-    }
-    export enum TableServiceCatagoryEnum {
-        Generic = <any> 'Generic',
-        Villa = <any> 'Villa',
-        House = <any> 'House',
-        Room = <any> 'Room',
-        Area = <any> 'Area',
-        Table = <any> 'Table',
-        ParkingBay = <any> 'ParkingBay',
-        Gate = <any> 'Gate',
-        DriveThrough = <any> 'DriveThrough',
-        Team = <any> 'Team'
-    }
-}
 export class OrderDropOffLocation {
     'OrderId'?: number;
     'LocationName'?: string;
@@ -28627,35 +28389,6 @@ export class OrderItem {
 
     static getAttributeTypeMap() {
         return OrderItem.attributeTypeMap;
-    }
-}
-
-export class OrderItemDm {
-    'MenuItemId'?: number;
-    'IsAvailable'?: boolean;
-    'MenuItemOptionSetItemIds'?: Array<number>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "MenuItemId",
-            "baseName": "MenuItemId",
-            "type": "number"
-        },
-        {
-            "name": "IsAvailable",
-            "baseName": "IsAvailable",
-            "type": "boolean"
-        },
-        {
-            "name": "MenuItemOptionSetItemIds",
-            "baseName": "MenuItemOptionSetItemIds",
-            "type": "Array<number>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return OrderItemDm.attributeTypeMap;
     }
 }
 
@@ -41380,29 +41113,6 @@ export class RestApiResultStuartSettings {
 /**
 * Rest api result
 */
-export class RestApiResultSubmitOrderResponseDm {
-    /**
-    * Generic data object.
-    */
-    'Data': SubmitOrderResponseDm;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "SubmitOrderResponseDm"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiResultSubmitOrderResponseDm.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api result
-*/
 export class RestApiResultSubscription {
     /**
     * Generic data object.
@@ -50392,148 +50102,6 @@ export class StuartSettingsTransportPrices {
     }
 }
 
-export class SubmitOrderRequest {
-    'PaymentToken'?: string;
-    'PhoneNumber'?: string;
-    'ChefNote'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "PaymentToken",
-            "baseName": "PaymentToken",
-            "type": "string"
-        },
-        {
-            "name": "PhoneNumber",
-            "baseName": "PhoneNumber",
-            "type": "string"
-        },
-        {
-            "name": "ChefNote",
-            "baseName": "ChefNote",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return SubmitOrderRequest.attributeTypeMap;
-    }
-}
-
-export class SubmitOrderResponseDm {
-    'OrderId'?: number;
-    'LocalOrderId'?: string;
-    'DeliveryTimeEstimateMinutes'?: number;
-    'OrderPlacedMessage'?: string;
-    'DisplayTipControl'?: boolean;
-    'DisplayRateAppControl'?: boolean;
-    'CancelOrderPeriodSeconds'?: number;
-    'RestaurantName'?: string;
-    'LinkText'?: string;
-    'LinkUrl'?: string;
-    'DeliveryType'?: SubmitOrderResponseDm.DeliveryTypeEnum;
-    'DuringOrderPromotionOptions'?: DuringOrderPromotionOptionsDm;
-    'RedirectUri'?: string;
-    'PickupCode'?: string;
-    'RestaurantAddress'?: string;
-    'PaymentIntentClientSecret'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "OrderId",
-            "baseName": "OrderId",
-            "type": "number"
-        },
-        {
-            "name": "LocalOrderId",
-            "baseName": "LocalOrderId",
-            "type": "string"
-        },
-        {
-            "name": "DeliveryTimeEstimateMinutes",
-            "baseName": "DeliveryTimeEstimateMinutes",
-            "type": "number"
-        },
-        {
-            "name": "OrderPlacedMessage",
-            "baseName": "OrderPlacedMessage",
-            "type": "string"
-        },
-        {
-            "name": "DisplayTipControl",
-            "baseName": "DisplayTipControl",
-            "type": "boolean"
-        },
-        {
-            "name": "DisplayRateAppControl",
-            "baseName": "DisplayRateAppControl",
-            "type": "boolean"
-        },
-        {
-            "name": "CancelOrderPeriodSeconds",
-            "baseName": "CancelOrderPeriodSeconds",
-            "type": "number"
-        },
-        {
-            "name": "RestaurantName",
-            "baseName": "RestaurantName",
-            "type": "string"
-        },
-        {
-            "name": "LinkText",
-            "baseName": "LinkText",
-            "type": "string"
-        },
-        {
-            "name": "LinkUrl",
-            "baseName": "LinkUrl",
-            "type": "string"
-        },
-        {
-            "name": "DeliveryType",
-            "baseName": "DeliveryType",
-            "type": "SubmitOrderResponseDm.DeliveryTypeEnum"
-        },
-        {
-            "name": "DuringOrderPromotionOptions",
-            "baseName": "DuringOrderPromotionOptions",
-            "type": "DuringOrderPromotionOptionsDm"
-        },
-        {
-            "name": "RedirectUri",
-            "baseName": "RedirectUri",
-            "type": "string"
-        },
-        {
-            "name": "PickupCode",
-            "baseName": "PickupCode",
-            "type": "string"
-        },
-        {
-            "name": "RestaurantAddress",
-            "baseName": "RestaurantAddress",
-            "type": "string"
-        },
-        {
-            "name": "PaymentIntentClientSecret",
-            "baseName": "PaymentIntentClientSecret",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return SubmitOrderResponseDm.attributeTypeMap;
-    }
-}
-
-export namespace SubmitOrderResponseDm {
-    export enum DeliveryTypeEnum {
-        Delivery = <any> 'Delivery',
-        Pickup = <any> 'Pickup'
-    }
-}
 /**
 * Subscription
 */
@@ -57330,7 +56898,6 @@ let enumsMap: {[index: string]: any} = {
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
         "CustomerCreateModel.AppTypeEnum": CustomerCreateModel.AppTypeEnum,
         "CustomerDeliveryTrackingOrder.CurrencyEnum": CustomerDeliveryTrackingOrder.CurrencyEnum,
-        "DuringOrderPromotionOptionsDm.DuringOrderPromotionTypeEnum": DuringOrderPromotionOptionsDm.DuringOrderPromotionTypeEnum,
         "ExecuteConfigurationActionResult.RedirectTargetEnum": ExecuteConfigurationActionResult.RedirectTargetEnum,
         "Field.FieldTypeEnum": Field.FieldTypeEnum,
         "FulfillmentInfo.DispatchTypeEnum": FulfillmentInfo.DispatchTypeEnum,
@@ -57402,9 +56969,6 @@ let enumsMap: {[index: string]: any} = {
         "Order.DeliveryTrackingStatusEnum": Order.DeliveryTrackingStatusEnum,
         "OrderDeliveryInformation.StatusEnum": OrderDeliveryInformation.StatusEnum,
         "OrderDeliveryInformationBase.StatusEnum": OrderDeliveryInformationBase.StatusEnum,
-        "OrderDm.DeliveryTypeEnum": OrderDm.DeliveryTypeEnum,
-        "OrderDm.PickupLocationTypeEnum": OrderDm.PickupLocationTypeEnum,
-        "OrderDm.TableServiceCatagoryEnum": OrderDm.TableServiceCatagoryEnum,
         "OrderIngestSubmitOrderRequest.AppTypeEnum": OrderIngestSubmitOrderRequest.AppTypeEnum,
         "OrderIngestSubmitOrderRequest.CurrencyCodeEnum": OrderIngestSubmitOrderRequest.CurrencyCodeEnum,
         "OrderIngestSubmitOrderResponse.CurrencyCodeEnum": OrderIngestSubmitOrderResponse.CurrencyCodeEnum,
@@ -57476,7 +57040,6 @@ let enumsMap: {[index: string]: any} = {
         "StripeCustomConnectedAccount.AccountStatusEnum": StripeCustomConnectedAccount.AccountStatusEnum,
         "StuartSettings.PackageTypeEnum": StuartSettings.PackageTypeEnum,
         "StuartSettings.TransportTypeEnum": StuartSettings.TransportTypeEnum,
-        "SubmitOrderResponseDm.DeliveryTypeEnum": SubmitOrderResponseDm.DeliveryTypeEnum,
         "Subscription.StatusEnum": Subscription.StatusEnum,
         "Subscription.CurrencyEnum": Subscription.CurrencyEnum,
         "SubscriptionInvoice.CurrencyEnum": SubscriptionInvoice.CurrencyEnum,
@@ -57605,7 +57168,6 @@ let typeMap: {[index: string]: any} = {
     "ConfiguredStore": ConfiguredStore,
     "Contact": Contact,
     "Coordinates": Coordinates,
-    "CoordinatesDm": CoordinatesDm,
     "CountryFormResponse": CountryFormResponse,
     "CountryWithAccountFieldsDefinitions": CountryWithAccountFieldsDefinitions,
     "CreateAccountModel": CreateAccountModel,
@@ -57628,7 +57190,6 @@ let typeMap: {[index: string]: any} = {
     "CreateMenuTaxRate": CreateMenuTaxRate,
     "CreateMetadata": CreateMetadata,
     "CreateMetafieldDefinition": CreateMetafieldDefinition,
-    "CreateOrderRequest": CreateOrderRequest,
     "CreatePayGreenConfigurationRequest": CreatePayGreenConfigurationRequest,
     "CreateProduct": CreateProduct,
     "CreateProductReference": CreateProductReference,
@@ -57664,7 +57225,6 @@ let typeMap: {[index: string]: any} = {
     "DnsVerifiedEvent": DnsVerifiedEvent,
     "DriverLoginModel": DriverLoginModel,
     "DriverRequestLoginPinModel": DriverRequestLoginPinModel,
-    "DuringOrderPromotionOptionsDm": DuringOrderPromotionOptionsDm,
     "DynamicFormField": DynamicFormField,
     "DynamicFormFieldOption": DynamicFormFieldOption,
     "DynamicFormRule": DynamicFormRule,
@@ -57862,7 +57422,6 @@ let typeMap: {[index: string]: any} = {
     "OrderDeliveryInformationBase": OrderDeliveryInformationBase,
     "OrderDeliveryTrackingStatusUpdatedEvent": OrderDeliveryTrackingStatusUpdatedEvent,
     "OrderDispatchedEvent": OrderDispatchedEvent,
-    "OrderDm": OrderDm,
     "OrderDropOffLocation": OrderDropOffLocation,
     "OrderFulfillmentStatus": OrderFulfillmentStatus,
     "OrderFulfillmentStatusBase": OrderFulfillmentStatusBase,
@@ -57872,7 +57431,6 @@ let typeMap: {[index: string]: any} = {
     "OrderIngestSubmitOrderRequest": OrderIngestSubmitOrderRequest,
     "OrderIngestSubmitOrderResponse": OrderIngestSubmitOrderResponse,
     "OrderItem": OrderItem,
-    "OrderItemDm": OrderItemDm,
     "OrderItemOption": OrderItemOption,
     "OrderLeadTimes": OrderLeadTimes,
     "OrderList": OrderList,
@@ -58157,7 +57715,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultStripeTerminalConnectionToken": RestApiResultStripeTerminalConnectionToken,
     "RestApiResultStripeTerminalLocation": RestApiResultStripeTerminalLocation,
     "RestApiResultStuartSettings": RestApiResultStuartSettings,
-    "RestApiResultSubmitOrderResponseDm": RestApiResultSubmitOrderResponseDm,
     "RestApiResultSubscription": RestApiResultSubscription,
     "RestApiResultTeammate": RestApiResultTeammate,
     "RestApiResultTelemetrySeriesResult": RestApiResultTelemetrySeriesResult,
@@ -58255,8 +57812,6 @@ let typeMap: {[index: string]: any} = {
     "StripeTerminalLocation": StripeTerminalLocation,
     "StuartSettings": StuartSettings,
     "StuartSettingsTransportPrices": StuartSettingsTransportPrices,
-    "SubmitOrderRequest": SubmitOrderRequest,
-    "SubmitOrderResponseDm": SubmitOrderResponseDm,
     "Subscription": Subscription,
     "SubscriptionInvoice": SubscriptionInvoice,
     "SubscriptionProduct": SubscriptionProduct,
@@ -72562,189 +72117,6 @@ export class FulfillmentStateConfigurationApi {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-}
-export enum GoogleFoodOrderPrototypeApiApiKeys {
-}
-
-export class GoogleFoodOrderPrototypeApi {
-    protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
-    protected _useQuerystring : boolean = false;
-
-    protected authentications = {
-        'default': <Authentication>new VoidAuth(),
-        'oauth2': new OAuth(),
-    }
-
-    constructor(basePath?: string);
-    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
-        if (password) {
-            if (basePath) {
-                this.basePath = basePath;
-            }
-        } else {
-            if (basePathOrUsername) {
-                this.basePath = basePathOrUsername
-            }
-        }
-    }
-
-    set useQuerystring(value: boolean) {
-        this._useQuerystring = value;
-    }
-
-    set basePath(basePath: string) {
-        this._basePath = basePath;
-    }
-
-    get basePath() {
-        return this._basePath;
-    }
-
-    public setDefaultAuthentication(auth: Authentication) {
-	this.authentications.default = auth;
-    }
-
-    public setApiKey(key: GoogleFoodOrderPrototypeApiApiKeys, value: string) {
-        (this.authentications as any)[GoogleFoodOrderPrototypeApiApiKeys[key]].apiKey = value;
-    }
-
-    set accessToken(token: string) {
-        this.authentications.oauth2.accessToken = token;
-    }
-    /**
-     * 
-     * @param appId 
-     * @param orderRequest 
-     * @param {*} [options] Override http request options.
-     */
-    public createOrder (appId: string, orderRequest: CreateOrderRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSubmitOrderResponseDm;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/googleorder'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling createOrder.');
-        }
-
-        // verify required parameter 'orderRequest' is not null or undefined
-        if (orderRequest === null || orderRequest === undefined) {
-            throw new Error('Required parameter orderRequest was null or undefined when calling createOrder.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(orderRequest, "CreateOrderRequest")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultSubmitOrderResponseDm;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultSubmitOrderResponseDm");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param orderId 
-     * @param request 
-     * @param {*} [options] Override http request options.
-     */
-    public submitOrder (appId: string, orderId: number, request: SubmitOrderRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSubmitOrderResponseDm;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/googleorder/{orderId}/submit'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling submitOrder.');
-        }
-
-        // verify required parameter 'orderId' is not null or undefined
-        if (orderId === null || orderId === undefined) {
-            throw new Error('Required parameter orderId was null or undefined when calling submitOrder.');
-        }
-
-        // verify required parameter 'request' is not null or undefined
-        if (request === null || request === undefined) {
-            throw new Error('Required parameter request was null or undefined when calling submitOrder.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(request, "SubmitOrderRequest")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultSubmitOrderResponseDm;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultSubmitOrderResponseDm");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
