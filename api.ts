@@ -31945,7 +31945,9 @@ export class PayoutReport3DetailsFlipdishFees {
     'KioskCard'?: number;
     'KioskCardRevenue'?: number;
     'QropCash'?: number;
+    'QropCashRevenue'?: number;
     'QropCard'?: number;
+    'QropCardRevenue'?: number;
     'PosCard'?: number;
     'PosCardRevenue'?: number;
     'PosCardOnFlipdishOrders'?: number;
@@ -32012,8 +32014,18 @@ export class PayoutReport3DetailsFlipdishFees {
             "type": "number"
         },
         {
+            "name": "QropCashRevenue",
+            "baseName": "QropCashRevenue",
+            "type": "number"
+        },
+        {
             "name": "QropCard",
             "baseName": "QropCard",
+            "type": "number"
+        },
+        {
+            "name": "QropCardRevenue",
+            "baseName": "QropCardRevenue",
             "type": "number"
         },
         {
