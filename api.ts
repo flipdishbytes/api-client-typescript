@@ -1278,6 +1278,7 @@ export namespace App {
         StoreOwner = <any> 'StoreOwner',
         ManagedOwner = <any> 'ManagedOwner',
         Integrator = <any> 'Integrator',
+        PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
@@ -1303,6 +1304,7 @@ export namespace App {
         CreateTeammateFinanceManager = <any> 'CreateTeammateFinanceManager',
         CreateTeammateIntegrator = <any> 'CreateTeammateIntegrator',
         CreateTeammateOnboarding = <any> 'CreateTeammateOnboarding',
+        CreateTeammatePropertyManager = <any> 'CreateTeammatePropertyManager',
         ViewApmConfigurations = <any> 'ViewApmConfigurations',
         EditApmConfigurations = <any> 'EditApmConfigurations',
         ViewCampaignsConfigurations = <any> 'ViewCampaignsConfigurations',
@@ -8646,6 +8648,10 @@ export class CreateTeammate {
     * Store IDs the user has access to (if HasAccessToAllStores is false)
     */
     'StoreIds'?: Array<number>;
+    /**
+    * Property Ids the user has access to (if HasAccessToAllStores is false)
+    */
+    'PropertyIds'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
@@ -8669,6 +8675,11 @@ export class CreateTeammate {
             "name": "StoreIds",
             "baseName": "StoreIds",
             "type": "Array<number>"
+        },
+        {
+            "name": "PropertyIds",
+            "baseName": "PropertyIds",
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -8683,6 +8694,7 @@ export namespace CreateTeammate {
         StoreOwner = <any> 'StoreOwner',
         ManagedOwner = <any> 'ManagedOwner',
         Integrator = <any> 'Integrator',
+        PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
@@ -51149,6 +51161,10 @@ export class Teammate {
     * Store IDs the user has access to (if HasAccessToAllStores is false)
     */
     'StoreIds'?: Array<number>;
+    /**
+    * Property Ids the user has access to (if HasAccessToAllStores is false)
+    */
+    'PropertyIds'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
@@ -51197,6 +51213,11 @@ export class Teammate {
             "name": "StoreIds",
             "baseName": "StoreIds",
             "type": "Array<number>"
+        },
+        {
+            "name": "PropertyIds",
+            "baseName": "PropertyIds",
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -51216,6 +51237,7 @@ export namespace Teammate {
         StoreOwner = <any> 'StoreOwner',
         ManagedOwner = <any> 'ManagedOwner',
         Integrator = <any> 'Integrator',
+        PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
@@ -51240,6 +51262,10 @@ export class TeammateBase {
     * Store IDs the user has access to (if HasAccessToAllStores is false)
     */
     'StoreIds'?: Array<number>;
+    /**
+    * Property Ids the user has access to (if HasAccessToAllStores is false)
+    */
+    'PropertyIds'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
@@ -51258,6 +51284,11 @@ export class TeammateBase {
             "name": "StoreIds",
             "baseName": "StoreIds",
             "type": "Array<number>"
+        },
+        {
+            "name": "PropertyIds",
+            "baseName": "PropertyIds",
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -51272,6 +51303,7 @@ export namespace TeammateBase {
         StoreOwner = <any> 'StoreOwner',
         ManagedOwner = <any> 'ManagedOwner',
         Integrator = <any> 'Integrator',
+        PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
