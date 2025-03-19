@@ -48088,6 +48088,10 @@ export class StoreOpeningHoursUpdatedEvent {
     */
     'DeliveryType'?: StoreOpeningHoursUpdatedEvent.DeliveryTypeEnum;
     /**
+    * Type of opening hours Delivery / Pickup as a string
+    */
+    'DeliveryTypeString'?: StoreOpeningHoursUpdatedEvent.DeliveryTypeStringEnum;
+    /**
     * The period that was updated
     */
     'BusinessHoursPeriodOld'?: BusinessHoursPeriod;
@@ -48154,6 +48158,11 @@ export class StoreOpeningHoursUpdatedEvent {
             "type": "StoreOpeningHoursUpdatedEvent.DeliveryTypeEnum"
         },
         {
+            "name": "DeliveryTypeString",
+            "baseName": "DeliveryTypeString",
+            "type": "StoreOpeningHoursUpdatedEvent.DeliveryTypeStringEnum"
+        },
+        {
             "name": "BusinessHoursPeriodOld",
             "baseName": "BusinessHoursPeriodOld",
             "type": "BusinessHoursPeriod"
@@ -48201,6 +48210,10 @@ export class StoreOpeningHoursUpdatedEvent {
 
 export namespace StoreOpeningHoursUpdatedEvent {
     export enum DeliveryTypeEnum {
+        Delivery = <any> 'Delivery',
+        Pickup = <any> 'Pickup'
+    }
+    export enum DeliveryTypeStringEnum {
         Delivery = <any> 'Delivery',
         Pickup = <any> 'Pickup'
     }
@@ -57069,6 +57082,7 @@ let enumsMap: {[index: string]: any} = {
         "StoreGroupBase.CurrencyEnum": StoreGroupBase.CurrencyEnum,
         "StoreGroupExtended.CurrencyEnum": StoreGroupExtended.CurrencyEnum,
         "StoreOpeningHoursUpdatedEvent.DeliveryTypeEnum": StoreOpeningHoursUpdatedEvent.DeliveryTypeEnum,
+        "StoreOpeningHoursUpdatedEvent.DeliveryTypeStringEnum": StoreOpeningHoursUpdatedEvent.DeliveryTypeStringEnum,
         "StoreOrderCapacityConfig.DeliveryTypeEnum": StoreOrderCapacityConfig.DeliveryTypeEnum,
         "StoreOrderCapacityPeriod.DayOfTheWeekEnum": StoreOrderCapacityPeriod.DayOfTheWeekEnum,
         "StoreSummary.CurrencyEnum": StoreSummary.CurrencyEnum,
