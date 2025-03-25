@@ -4404,6 +4404,10 @@ export class BankAccountSummary {
     */
     'StoreNames'?: Array<string>;
     /**
+    * Store Ids that are attached to this account
+    */
+    'StoreIds'?: Array<number>;
+    /**
     * Status of Account
     */
     'AccountState'?: BankAccountSummary.AccountStateEnum;
@@ -4456,6 +4460,11 @@ export class BankAccountSummary {
             "name": "StoreNames",
             "baseName": "StoreNames",
             "type": "Array<string>"
+        },
+        {
+            "name": "StoreIds",
+            "baseName": "StoreIds",
+            "type": "Array<number>"
         },
         {
             "name": "AccountState",
