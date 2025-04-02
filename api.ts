@@ -43839,7 +43839,8 @@ export namespace Store {
         Web = <any> 'Web',
         App = <any> 'App',
         Kiosk = <any> 'Kiosk',
-        Pos = <any> 'Pos'
+        Pos = <any> 'Pos',
+        None = <any> 'None'
     }
 }
 /**
@@ -44597,7 +44598,8 @@ export namespace StoreBase {
         Web = <any> 'Web',
         App = <any> 'App',
         Kiosk = <any> 'Kiosk',
-        Pos = <any> 'Pos'
+        Pos = <any> 'Pos',
+        None = <any> 'None'
     }
 }
 /**
@@ -45110,7 +45112,8 @@ export namespace StoreCreateBase {
         Web = <any> 'Web',
         App = <any> 'App',
         Kiosk = <any> 'Kiosk',
-        Pos = <any> 'Pos'
+        Pos = <any> 'Pos',
+        None = <any> 'None'
     }
 }
 /**
@@ -92392,7 +92395,7 @@ export class StoresApi {
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getStoreHeadersByAppId (appId: string, storeNameQuery?: string, salesChannelType?: 'Web' | 'App' | 'Kiosk' | 'Pos', page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreHeader;  }> {
+    public getStoreHeadersByAppId (appId: string, storeNameQuery?: string, salesChannelType?: 'Web' | 'App' | 'Kiosk' | 'Pos' | 'None', page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreHeader;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/header'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -92409,7 +92412,7 @@ export class StoresApi {
         }
 
         if (salesChannelType !== undefined) {
-            localVarQueryParameters['salesChannelType'] = ObjectSerializer.serialize(salesChannelType, "'Web' | 'App' | 'Kiosk' | 'Pos'");
+            localVarQueryParameters['salesChannelType'] = ObjectSerializer.serialize(salesChannelType, "'Web' | 'App' | 'Kiosk' | 'Pos' | 'None'");
         }
 
         if (page !== undefined) {
@@ -92715,7 +92718,7 @@ export class StoresApi {
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getStoresByAppId (appId: string, searchQuery?: string, salesChannelType?: 'Web' | 'App' | 'Kiosk' | 'Pos', page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }> {
+    public getStoresByAppId (appId: string, searchQuery?: string, salesChannelType?: 'Web' | 'App' | 'Kiosk' | 'Pos' | 'None', page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -92732,7 +92735,7 @@ export class StoresApi {
         }
 
         if (salesChannelType !== undefined) {
-            localVarQueryParameters['salesChannelType'] = ObjectSerializer.serialize(salesChannelType, "'Web' | 'App' | 'Kiosk' | 'Pos'");
+            localVarQueryParameters['salesChannelType'] = ObjectSerializer.serialize(salesChannelType, "'Web' | 'App' | 'Kiosk' | 'Pos' | 'None'");
         }
 
         if (page !== undefined) {
