@@ -46360,6 +46360,10 @@ export class StoreGroup {
     */
     'PickupMenuMessage'?: string;
     /**
+    * List of brand ids (AppIds) that are associated with this store group
+    */
+    'BrandIds'?: Array<string>;
+    /**
     * Store Group Name
     */
     'Name'?: string;
@@ -46395,6 +46399,11 @@ export class StoreGroup {
             "name": "PickupMenuMessage",
             "baseName": "PickupMenuMessage",
             "type": "string"
+        },
+        {
+            "name": "BrandIds",
+            "baseName": "BrandIds",
+            "type": "Array<string>"
         },
         {
             "name": "Name",
@@ -46941,6 +46950,10 @@ export class StoreGroupExtended {
     */
     'PickupMenuMessage'?: string;
     /**
+    * List of brand ids (AppIds) that are associated with this store group
+    */
+    'BrandIds'?: Array<string>;
+    /**
     * Store Group Name
     */
     'Name'?: string;
@@ -46991,6 +47004,11 @@ export class StoreGroupExtended {
             "name": "PickupMenuMessage",
             "baseName": "PickupMenuMessage",
             "type": "string"
+        },
+        {
+            "name": "BrandIds",
+            "baseName": "BrandIds",
+            "type": "Array<string>"
         },
         {
             "name": "Name",
