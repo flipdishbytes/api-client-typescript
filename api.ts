@@ -1331,6 +1331,8 @@ export namespace App {
         UpdateStoresName = <any> 'UpdateStoresName',
         EditStoreKioskSettings = <any> 'EditStoreKioskSettings',
         EditStoreOrderCapacity = <any> 'EditStoreOrderCapacity',
+        ArchiveStores = <any> 'ArchiveStores',
+        PublishStores = <any> 'PublishStores',
         UpdatePrinterTerminalsAssign = <any> 'UpdatePrinterTerminalsAssign',
         UpdatePrinterTerminalsToggle = <any> 'UpdatePrinterTerminalsToggle',
         EditStoreNotifications = <any> 'EditStoreNotifications',
