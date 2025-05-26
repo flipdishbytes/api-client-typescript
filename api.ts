@@ -7595,6 +7595,10 @@ export class CreateFullMenuItemOptionSet {
     * Small | Medium | Large  Affects the layout of the menu.
     */
     'CellLayoutType'?: CreateFullMenuItemOptionSet.CellLayoutTypeEnum;
+    /**
+    * Permanent reference to the item.
+    */
+    'PublicId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -7638,6 +7642,11 @@ export class CreateFullMenuItemOptionSet {
             "name": "CellLayoutType",
             "baseName": "CellLayoutType",
             "type": "CreateFullMenuItemOptionSet.CellLayoutTypeEnum"
+        },
+        {
+            "name": "PublicId",
+            "baseName": "PublicId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7701,6 +7710,10 @@ export class CreateFullMenuItemOptionSetItem {
     * Image url
     */
     'ImageUrl'?: string;
+    /**
+    * Permanent reference to the item.
+    */
+    'PublicId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -7759,6 +7772,11 @@ export class CreateFullMenuItemOptionSetItem {
             "name": "ImageUrl",
             "baseName": "ImageUrl",
             "type": "string"
+        },
+        {
+            "name": "PublicId",
+            "baseName": "PublicId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7814,6 +7832,10 @@ export class CreateFullMenuSection {
     * Menu Section Id
     */
     'MenuSectionId'?: number;
+    /**
+    * Permanent reference to the item.
+    */
+    'PublicId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -7862,6 +7884,11 @@ export class CreateFullMenuSection {
             "name": "MenuSectionId",
             "baseName": "MenuSectionId",
             "type": "number"
+        },
+        {
+            "name": "PublicId",
+            "baseName": "PublicId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -7941,6 +7968,10 @@ export class CreateFullMenuSectionItem {
     * If true, the item is excluded from voucher discount calculations
     */
     'ExcludeFromVoucherDiscounting'?: boolean;
+    /**
+    * Permanent reference to the item.
+    */
+    'PublicId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -8029,6 +8060,11 @@ export class CreateFullMenuSectionItem {
             "name": "ExcludeFromVoucherDiscounting",
             "baseName": "ExcludeFromVoucherDiscounting",
             "type": "boolean"
+        },
+        {
+            "name": "PublicId",
+            "baseName": "PublicId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -21559,6 +21595,10 @@ export class MenuItemOptionSetBase {
     * Small | Medium | Large  Affects the layout of the menu.
     */
     'CellLayoutType'?: MenuItemOptionSetBase.CellLayoutTypeEnum;
+    /**
+    * Permanent reference to the item.
+    */
+    'PublicId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -21592,6 +21632,11 @@ export class MenuItemOptionSetBase {
             "name": "CellLayoutType",
             "baseName": "CellLayoutType",
             "type": "MenuItemOptionSetBase.CellLayoutTypeEnum"
+        },
+        {
+            "name": "PublicId",
+            "baseName": "PublicId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -22016,6 +22061,10 @@ export class MenuItemOptionSetItemBase {
     * Image url
     */
     'ImageUrl'?: string;
+    /**
+    * Permanent reference to the item.
+    */
+    'PublicId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -22053,6 +22102,11 @@ export class MenuItemOptionSetItemBase {
         {
             "name": "ImageUrl",
             "baseName": "ImageUrl",
+            "type": "string"
+        },
+        {
+            "name": "PublicId",
+            "baseName": "PublicId",
             "type": "string"
         }    ];
 
@@ -22798,6 +22852,10 @@ export class MenuSectionBase {
     * Menu Section Id
     */
     'MenuSectionId'?: number;
+    /**
+    * Permanent reference to the item.
+    */
+    'PublicId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -22836,6 +22894,11 @@ export class MenuSectionBase {
             "name": "MenuSectionId",
             "baseName": "MenuSectionId",
             "type": "number"
+        },
+        {
+            "name": "PublicId",
+            "baseName": "PublicId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -23364,6 +23427,10 @@ export class MenuSectionItemBase {
     * If true, the item is excluded from voucher discount calculations
     */
     'ExcludeFromVoucherDiscounting'?: boolean;
+    /**
+    * Permanent reference to the item.
+    */
+    'PublicId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -23437,6 +23504,11 @@ export class MenuSectionItemBase {
             "name": "ExcludeFromVoucherDiscounting",
             "baseName": "ExcludeFromVoucherDiscounting",
             "type": "boolean"
+        },
+        {
+            "name": "PublicId",
+            "baseName": "PublicId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
