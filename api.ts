@@ -2070,8 +2070,10 @@ export namespace AppStoreApp {
     export enum TeammateAppAccessLevelEnum {
         Owner = <any> 'Owner',
         StoreOwner = <any> 'StoreOwner',
+        PropertyOwner = <any> 'PropertyOwner',
         ManagedOwner = <any> 'ManagedOwner',
         Integrator = <any> 'Integrator',
+        PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
@@ -2300,8 +2302,10 @@ export namespace AppStoreAppConfiguration {
     export enum TeammateAppAccessLevelEnum {
         Owner = <any> 'Owner',
         StoreOwner = <any> 'StoreOwner',
+        PropertyOwner = <any> 'PropertyOwner',
         ManagedOwner = <any> 'ManagedOwner',
         Integrator = <any> 'Integrator',
+        PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
@@ -7179,8 +7183,10 @@ export namespace CreateAppStoreApp {
     export enum TeammateAppAccessLevelEnum {
         Owner = <any> 'Owner',
         StoreOwner = <any> 'StoreOwner',
+        PropertyOwner = <any> 'PropertyOwner',
         ManagedOwner = <any> 'ManagedOwner',
         Integrator = <any> 'Integrator',
+        PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
@@ -52510,8 +52516,10 @@ export namespace UpdateAppStoreApp {
     export enum TeammateAppAccessLevelEnum {
         Owner = <any> 'Owner',
         StoreOwner = <any> 'StoreOwner',
+        PropertyOwner = <any> 'PropertyOwner',
         ManagedOwner = <any> 'ManagedOwner',
         Integrator = <any> 'Integrator',
+        PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
