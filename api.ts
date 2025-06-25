@@ -32093,6 +32093,7 @@ export class PayoutReport3DetailsFlipdishFees {
     'OtherIntegrationTips'?: number;
     'RefundedFeesOnRefundedSales'?: number;
     'Vat'?: number;
+    'RefundedFeesOnPosSales'?: number;
     'Total'?: number;
     'ThirdPartyIntegrationFeesAndTips'?: number;
     'WebAndAppCardOnXOrders'?: number;
@@ -32199,6 +32200,11 @@ export class PayoutReport3DetailsFlipdishFees {
         {
             "name": "Vat",
             "baseName": "Vat",
+            "type": "number"
+        },
+        {
+            "name": "RefundedFeesOnPosSales",
+            "baseName": "RefundedFeesOnPosSales",
             "type": "number"
         },
         {
