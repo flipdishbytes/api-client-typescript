@@ -41378,6 +41378,29 @@ export class RestApiResultUpdateMobileAppsSubmissionStatus {
 /**
 * Rest api result
 */
+export class RestApiResultVoucher {
+    /**
+    * Generic data object.
+    */
+    'Data': Voucher;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Voucher"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultVoucher.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultVoucherWithStats {
     /**
     * Generic data object.
@@ -57929,6 +57952,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultTelemetrySeriesResult": RestApiResultTelemetrySeriesResult,
     "RestApiResultTipConfiguration": RestApiResultTipConfiguration,
     "RestApiResultUpdateMobileAppsSubmissionStatus": RestApiResultUpdateMobileAppsSubmissionStatus,
+    "RestApiResultVoucher": RestApiResultVoucher,
     "RestApiResultVoucherWithStats": RestApiResultVoucherWithStats,
     "RestApiResultWebsiteImage": RestApiResultWebsiteImage,
     "RestApiResultWebsiteTestimonial": RestApiResultWebsiteTestimonial,
@@ -96148,6 +96172,69 @@ export class VouchersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultVoucherWithStats");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param code 
+     * @param {*} [options] Override http request options.
+     */
+    public getVoucherByCode (appId: string, code: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultVoucher;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/vouchers/code/{code}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'code' + '}', encodeURIComponent(String(code)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getVoucherByCode.');
+        }
+
+        // verify required parameter 'code' is not null or undefined
+        if (code === null || code === undefined) {
+            throw new Error('Required parameter code was null or undefined when calling getVoucherByCode.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultVoucher;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultVoucher");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
