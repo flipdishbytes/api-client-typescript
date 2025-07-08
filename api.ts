@@ -51318,6 +51318,10 @@ export class Teammate {
     */
     'TeammateId'?: string;
     /**
+    * User ID of the teammate
+    */
+    'UserId'?: number;
+    /**
     * Name
     */
     'Name'?: string;
@@ -51361,6 +51365,11 @@ export class Teammate {
             "name": "TeammateId",
             "baseName": "TeammateId",
             "type": "string"
+        },
+        {
+            "name": "UserId",
+            "baseName": "UserId",
+            "type": "number"
         },
         {
             "name": "Name",
