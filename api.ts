@@ -9390,6 +9390,10 @@ export class Customer {
     */
     'CustomerId'?: number;
     /**
+    * Customer name
+    */
+    'Name'?: string;
+    /**
     * Customer registration date
     */
     'RegistrationDate'?: Date;
@@ -9417,6 +9421,11 @@ export class Customer {
             "name": "CustomerId",
             "baseName": "CustomerId",
             "type": "number"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
         },
         {
             "name": "RegistrationDate",
@@ -18476,7 +18485,7 @@ export class LastPaymentError {
     */
     'Code'?: string;
     /**
-    * For card errors resulting from a card issuer decline, a short string indicating the card issuer’s reason for the decline if they provide one.
+    * For card errors resulting from a card issuer decline, a short string indicating the card issuers reason for the decline if they provide one.
     */
     'DeclineCode'?: string;
     /**
