@@ -10103,6 +10103,10 @@ export class CustomerSummary {
     * Customer phone number
     */
     'PhoneNumber'?: string;
+    /**
+    * Preferred language of the consumer
+    */
+    'LanguagePreference'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -10130,6 +10134,11 @@ export class CustomerSummary {
         {
             "name": "PhoneNumber",
             "baseName": "PhoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "LanguagePreference",
+            "baseName": "LanguagePreference",
             "type": "string"
         }    ];
 
@@ -18485,7 +18494,7 @@ export class LastPaymentError {
     */
     'Code'?: string;
     /**
-    * For card errors resulting from a card issuer decline, a short string indicating the card issuers reason for the decline if they provide one.
+    * For card errors resulting from a card issuer decline, a short string indicating the card issuer’s reason for the decline if they provide one.
     */
     'DeclineCode'?: string;
     /**
@@ -26092,6 +26101,10 @@ export class Order {
     */
     'OrderBatchInfo'?: OrderBatchSummary;
     /**
+    * A collection of tax items on the order.
+    */
+    'TaxItems'?: Array<TaxItem>;
+    /**
     * The id of the campaign voucher that was created from this order
     */
     'CreatedCampaignVoucherId'?: number;
@@ -26215,6 +26228,10 @@ export class Order {
     * Code used to view the order's receipt
     */
     'ReceiptCode'?: string;
+    /**
+    * This contains the total deposit return fee amount for the order.
+    */
+    'TotalDepositReturnFeeAmount'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -26318,6 +26335,11 @@ export class Order {
             "name": "OrderBatchInfo",
             "baseName": "OrderBatchInfo",
             "type": "OrderBatchSummary"
+        },
+        {
+            "name": "TaxItems",
+            "baseName": "TaxItems",
+            "type": "Array<TaxItem>"
         },
         {
             "name": "CreatedCampaignVoucherId",
@@ -26473,6 +26495,11 @@ export class Order {
             "name": "ReceiptCode",
             "baseName": "ReceiptCode",
             "type": "string"
+        },
+        {
+            "name": "TotalDepositReturnFeeAmount",
+            "baseName": "TotalDepositReturnFeeAmount",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -28445,6 +28472,10 @@ export class OrderItem {
     */
     'Price'?: number;
     /**
+    * Tax currency amount
+    */
+    'TaxAmount'?: number;
+    /**
     * Price including option set items
     */
     'PriceIncludingOptionSetItems'?: number;
@@ -28509,6 +28540,11 @@ export class OrderItem {
             "type": "number"
         },
         {
+            "name": "TaxAmount",
+            "baseName": "TaxAmount",
+            "type": "number"
+        },
+        {
             "name": "PriceIncludingOptionSetItems",
             "baseName": "PriceIncludingOptionSetItems",
             "type": "number"
@@ -28568,6 +28604,10 @@ export class OrderItemOption {
     */
     'Price'?: number;
     /**
+    * Tax currency amount
+    */
+    'TaxAmount'?: number;
+    /**
     * Menu item option display order
     */
     'MenuItemOptionDisplayOrder'?: number;
@@ -28611,6 +28651,11 @@ export class OrderItemOption {
         {
             "name": "Price",
             "baseName": "Price",
+            "type": "number"
+        },
+        {
+            "name": "TaxAmount",
+            "baseName": "TaxAmount",
             "type": "number"
         },
         {
@@ -29186,6 +29231,9 @@ export class OrderSummary {
     * OrderBatch information
     */
     'OrderBatchInfo'?: OrderBatchSummary;
+    /**
+    * Delivery location details
+    */
     'DeliveryLocation'?: DeliveryLocation;
 
     static discriminator: string | undefined = undefined;
@@ -48985,6 +49033,14 @@ export class StoreSummary {
     * Store group id of store
     */
     'StoreGroupId'?: number;
+    /**
+    * VAT number or generic Tax ID of the store
+    */
+    'TaxId'?: string;
+    /**
+    * Address of the store
+    */
+    'PrettyAddress'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -49028,6 +49084,16 @@ export class StoreSummary {
             "name": "StoreGroupId",
             "baseName": "StoreGroupId",
             "type": "number"
+        },
+        {
+            "name": "TaxId",
+            "baseName": "TaxId",
+            "type": "string"
+        },
+        {
+            "name": "PrettyAddress",
+            "baseName": "PrettyAddress",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -51289,6 +51355,47 @@ export namespace SupportedCountry {
         Benelux = <any> 'Benelux'
     }
 }
+/**
+* A collection of tax items on the order.
+*/
+export class TaxItem {
+    /**
+    * The name of the tax item.
+    */
+    'Name'?: string;
+    /**
+    * The tax rate applied to the item.
+    */
+    'Rate'?: number;
+    /**
+    * The amount of tax applied to the item.
+    */
+    'Amount'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Rate",
+            "baseName": "Rate",
+            "type": "number"
+        },
+        {
+            "name": "Amount",
+            "baseName": "Amount",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return TaxItem.attributeTypeMap;
+    }
+}
+
 export class TaxRate {
     'Name'?: string;
     'Percentage'?: number;
@@ -58075,6 +58182,7 @@ let typeMap: {[index: string]: any} = {
     "SubscriptionStore": SubscriptionStore,
     "SubscriptionSummary": SubscriptionSummary,
     "SupportedCountry": SupportedCountry,
+    "TaxItem": TaxItem,
     "TaxRate": TaxRate,
     "Teammate": Teammate,
     "TeammateBase": TeammateBase,
