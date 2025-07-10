@@ -36843,6 +36843,29 @@ export class RestApiArrayResultRetentionCampaign {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultSmsProviderCredential {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<SmsProviderCredential>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<SmsProviderCredential>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultSmsProviderCredential.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultStoreChannelAssignment {
     /**
     * Generic data object.
@@ -41073,6 +41096,29 @@ export class RestApiResultServiceCharge {
 /**
 * Rest api result
 */
+export class RestApiResultSmsProviderCredential {
+    /**
+    * Generic data object.
+    */
+    'Data': SmsProviderCredential;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "SmsProviderCredential"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultSmsProviderCredential.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultStore {
     /**
     * Generic data object.
@@ -43177,6 +43223,90 @@ export class SmsInfo {
 
     static getAttributeTypeMap() {
         return SmsInfo.attributeTypeMap;
+    }
+}
+
+export class SmsProviderCredential {
+    'OrgId'?: string;
+    'BrandId'?: string;
+    'SmsServiceType'?: SmsProviderCredential.SmsServiceTypeEnum;
+    'SenderId'?: string;
+    'Username'?: string;
+    'AuthToken'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
+        {
+            "name": "BrandId",
+            "baseName": "BrandId",
+            "type": "string"
+        },
+        {
+            "name": "SmsServiceType",
+            "baseName": "SmsServiceType",
+            "type": "SmsProviderCredential.SmsServiceTypeEnum"
+        },
+        {
+            "name": "SenderId",
+            "baseName": "SenderId",
+            "type": "string"
+        },
+        {
+            "name": "Username",
+            "baseName": "Username",
+            "type": "string"
+        },
+        {
+            "name": "AuthToken",
+            "baseName": "AuthToken",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SmsProviderCredential.attributeTypeMap;
+    }
+}
+
+export namespace SmsProviderCredential {
+    export enum SmsServiceTypeEnum {
+        Nexmo = <any> 'Nexmo',
+        Twilio = <any> 'Twilio',
+        Default = <any> 'Default',
+        MessageBird = <any> 'MessageBird'
+    }
+}
+export class SmsProviderCredentialUpdateRequest {
+    'SenderId'?: string;
+    'Username'?: string;
+    'AuthToken'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "SenderId",
+            "baseName": "SenderId",
+            "type": "string"
+        },
+        {
+            "name": "Username",
+            "baseName": "Username",
+            "type": "string"
+        },
+        {
+            "name": "AuthToken",
+            "baseName": "AuthToken",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SmsProviderCredentialUpdateRequest.attributeTypeMap;
     }
 }
 
@@ -57375,6 +57505,7 @@ let enumsMap: {[index: string]: any} = {
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
         "SetVoucherValidityPeriodsSimplifiedRequest.DaysOfWeekEnum": SetVoucherValidityPeriodsSimplifiedRequest.DaysOfWeekEnum,
         "SignupStep.ActionEnum": SignupStep.ActionEnum,
+        "SmsProviderCredential.SmsServiceTypeEnum": SmsProviderCredential.SmsServiceTypeEnum,
         "StatisticsCurrencyDataPoint.CurrencyEnum": StatisticsCurrencyDataPoint.CurrencyEnum,
         "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
         "Store.CurrencyEnum": Store.CurrencyEnum,
@@ -57923,6 +58054,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultRestaurantVoucherPayGreenConfiguration": RestApiArrayResultRestaurantVoucherPayGreenConfiguration,
     "RestApiArrayResultRestaurantVoucherPayGreenConfigurationSummary": RestApiArrayResultRestaurantVoucherPayGreenConfigurationSummary,
     "RestApiArrayResultRetentionCampaign": RestApiArrayResultRetentionCampaign,
+    "RestApiArrayResultSmsProviderCredential": RestApiArrayResultSmsProviderCredential,
     "RestApiArrayResultStoreChannelAssignment": RestApiArrayResultStoreChannelAssignment,
     "RestApiArrayResultStoreChannelStoreMapping": RestApiArrayResultStoreChannelStoreMapping,
     "RestApiArrayResultStoreDeliveryZoneFeeConfig": RestApiArrayResultStoreDeliveryZoneFeeConfig,
@@ -58067,6 +58199,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultRestaurantVoucherPayGreenStoreConfiguration": RestApiResultRestaurantVoucherPayGreenStoreConfiguration,
     "RestApiResultRetentionCampaign": RestApiResultRetentionCampaign,
     "RestApiResultServiceCharge": RestApiResultServiceCharge,
+    "RestApiResultSmsProviderCredential": RestApiResultSmsProviderCredential,
     "RestApiResultStore": RestApiResultStore,
     "RestApiResultStoreAddress": RestApiResultStoreAddress,
     "RestApiResultStoreChannelAssignment": RestApiResultStoreChannelAssignment,
@@ -58112,6 +58245,8 @@ let typeMap: {[index: string]: any} = {
     "Setting": Setting,
     "SignupStep": SignupStep,
     "SmsInfo": SmsInfo,
+    "SmsProviderCredential": SmsProviderCredential,
+    "SmsProviderCredentialUpdateRequest": SmsProviderCredentialUpdateRequest,
     "SmsReceivedEvent": SmsReceivedEvent,
     "StatisticsCurrencyDataPoint": StatisticsCurrencyDataPoint,
     "Store": Store,
@@ -90544,6 +90679,397 @@ export class SearchApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultRestaurant");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum SmsProviderCredentialsApiApiKeys {
+}
+
+export class SmsProviderCredentialsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: SmsProviderCredentialsApiApiKeys, value: string) {
+        (this.authentications as any)[SmsProviderCredentialsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param orgId 
+     * @param brandId 
+     * @param serviceType 
+     * @param withFallback 
+     * @param {*} [options] Override http request options.
+     */
+    public getBrandSmsProviderCredentialByServiceType (orgId: string, brandId: string, serviceType: 'Nexmo' | 'Twilio' | 'Default' | 'MessageBird', withFallback?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSmsProviderCredential;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/sms-providers/orgs/{orgId}/brands/{brandId}/provider-credentials/{serviceType}'
+            .replace('{' + 'orgId' + '}', encodeURIComponent(String(orgId)))
+            .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
+            .replace('{' + 'serviceType' + '}', encodeURIComponent(String(serviceType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orgId' is not null or undefined
+        if (orgId === null || orgId === undefined) {
+            throw new Error('Required parameter orgId was null or undefined when calling getBrandSmsProviderCredentialByServiceType.');
+        }
+
+        // verify required parameter 'brandId' is not null or undefined
+        if (brandId === null || brandId === undefined) {
+            throw new Error('Required parameter brandId was null or undefined when calling getBrandSmsProviderCredentialByServiceType.');
+        }
+
+        // verify required parameter 'serviceType' is not null or undefined
+        if (serviceType === null || serviceType === undefined) {
+            throw new Error('Required parameter serviceType was null or undefined when calling getBrandSmsProviderCredentialByServiceType.');
+        }
+
+        if (withFallback !== undefined) {
+            localVarQueryParameters['withFallback'] = ObjectSerializer.serialize(withFallback, "boolean");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultSmsProviderCredential;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultSmsProviderCredential");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param orgId 
+     * @param brandId 
+     * @param {*} [options] Override http request options.
+     */
+    public getBrandSmsProviderCredentials (orgId: string, brandId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSmsProviderCredential;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/sms-providers/orgs/{orgId}/brands/{brandId}/provider-credentials'
+            .replace('{' + 'orgId' + '}', encodeURIComponent(String(orgId)))
+            .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orgId' is not null or undefined
+        if (orgId === null || orgId === undefined) {
+            throw new Error('Required parameter orgId was null or undefined when calling getBrandSmsProviderCredentials.');
+        }
+
+        // verify required parameter 'brandId' is not null or undefined
+        if (brandId === null || brandId === undefined) {
+            throw new Error('Required parameter brandId was null or undefined when calling getBrandSmsProviderCredentials.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSmsProviderCredential;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultSmsProviderCredential");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param orgId 
+     * @param brandId 
+     * @param serviceType 
+     * @param {*} [options] Override http request options.
+     */
+    public smsProviderCredentialDelete (orgId: string, brandId: string, serviceType: 'Nexmo' | 'Twilio' | 'Default' | 'MessageBird', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSmsProviderCredential;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/sms-providers/orgs/{orgId}/brands/{brandId}/provider-credentials/{serviceType}'
+            .replace('{' + 'orgId' + '}', encodeURIComponent(String(orgId)))
+            .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
+            .replace('{' + 'serviceType' + '}', encodeURIComponent(String(serviceType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orgId' is not null or undefined
+        if (orgId === null || orgId === undefined) {
+            throw new Error('Required parameter orgId was null or undefined when calling smsProviderCredentialDelete.');
+        }
+
+        // verify required parameter 'brandId' is not null or undefined
+        if (brandId === null || brandId === undefined) {
+            throw new Error('Required parameter brandId was null or undefined when calling smsProviderCredentialDelete.');
+        }
+
+        // verify required parameter 'serviceType' is not null or undefined
+        if (serviceType === null || serviceType === undefined) {
+            throw new Error('Required parameter serviceType was null or undefined when calling smsProviderCredentialDelete.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultSmsProviderCredential;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultSmsProviderCredential");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param orgId 
+     * @param brandId 
+     * @param serviceType 
+     * @param credential 
+     * @param {*} [options] Override http request options.
+     */
+    public smsProviderCredentialUpdate (orgId: string, brandId: string, serviceType: 'Nexmo' | 'Twilio' | 'Default' | 'MessageBird', credential: SmsProviderCredentialUpdateRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSmsProviderCredential;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/sms-providers/orgs/{orgId}/brands/{brandId}/provider-credentials/{serviceType}'
+            .replace('{' + 'orgId' + '}', encodeURIComponent(String(orgId)))
+            .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
+            .replace('{' + 'serviceType' + '}', encodeURIComponent(String(serviceType)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'orgId' is not null or undefined
+        if (orgId === null || orgId === undefined) {
+            throw new Error('Required parameter orgId was null or undefined when calling smsProviderCredentialUpdate.');
+        }
+
+        // verify required parameter 'brandId' is not null or undefined
+        if (brandId === null || brandId === undefined) {
+            throw new Error('Required parameter brandId was null or undefined when calling smsProviderCredentialUpdate.');
+        }
+
+        // verify required parameter 'serviceType' is not null or undefined
+        if (serviceType === null || serviceType === undefined) {
+            throw new Error('Required parameter serviceType was null or undefined when calling smsProviderCredentialUpdate.');
+        }
+
+        // verify required parameter 'credential' is not null or undefined
+        if (credential === null || credential === undefined) {
+            throw new Error('Required parameter credential was null or undefined when calling smsProviderCredentialUpdate.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(credential, "SmsProviderCredentialUpdateRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultSmsProviderCredential;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultSmsProviderCredential");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param credentials 
+     * @param {*} [options] Override http request options.
+     */
+    public smsProviderCredentialsBulkUpsert (credentials: Array<SmsProviderCredential>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSmsProviderCredential;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/sms-providers/bulk-upsert';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'credentials' is not null or undefined
+        if (credentials === null || credentials === undefined) {
+            throw new Error('Required parameter credentials was null or undefined when calling smsProviderCredentialsBulkUpsert.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(credentials, "Array<SmsProviderCredential>")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultSmsProviderCredential;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultSmsProviderCredential");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
