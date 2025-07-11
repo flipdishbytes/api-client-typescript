@@ -52249,6 +52249,10 @@ export class TelephonyConfig {
     */
     'ApmEnabled'?: boolean;
     /**
+    * Type of telephony service
+    */
+    'Type'?: TelephonyConfig.TypeEnum;
+    /**
     * Consent enabled flag
     */
     'ConsentEnabled'?: boolean;
@@ -52291,6 +52295,11 @@ export class TelephonyConfig {
             "type": "boolean"
         },
         {
+            "name": "Type",
+            "baseName": "Type",
+            "type": "TelephonyConfig.TypeEnum"
+        },
+        {
             "name": "ConsentEnabled",
             "baseName": "ConsentEnabled",
             "type": "boolean"
@@ -52331,6 +52340,12 @@ export class TelephonyConfig {
     }
 }
 
+export namespace TelephonyConfig {
+    export enum TypeEnum {
+        PreRecorded = <any> 'PreRecorded',
+        VoiceAI = <any> 'VoiceAI'
+    }
+}
 /**
 * Telephony Config Updated Event
 */
@@ -57547,6 +57562,7 @@ let enumsMap: {[index: string]: any} = {
         "Teammate.InvitationStatusEnum": Teammate.InvitationStatusEnum,
         "Teammate.AppAccessLevelEnum": Teammate.AppAccessLevelEnum,
         "TeammateBase.AppAccessLevelEnum": TeammateBase.AppAccessLevelEnum,
+        "TelephonyConfig.TypeEnum": TelephonyConfig.TypeEnum,
         "UpdateAppStoreApp.ConfigurationTypeEnum": UpdateAppStoreApp.ConfigurationTypeEnum,
         "UpdateAppStoreApp.StoreSelectorTypeEnum": UpdateAppStoreApp.StoreSelectorTypeEnum,
         "UpdateAppStoreApp.TeammateAppAccessLevelEnum": UpdateAppStoreApp.TeammateAppAccessLevelEnum,
@@ -72253,6 +72269,62 @@ export class FpmApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param storeId 
+     * @param {*} [options] Override http request options.
+     */
+    public getFpmForStore (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: TelephonyConfig;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{storeId}/fpm'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getFpmForStore.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: TelephonyConfig;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "TelephonyConfig");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
