@@ -1591,7 +1591,7 @@ export class AppConfigSalesChannel {
     */
     'WebToAppRedirect'?: AppConfigSalesChannel.WebToAppRedirectEnum;
     /**
-    * Address entry type
+    * Address entry type - TextEntryManualDisallowed is the only supported configuration
     */
     'AddressEntryType'?: AppConfigSalesChannel.AddressEntryTypeEnum;
     /**
