@@ -80296,7 +80296,7 @@ export class MenuZonesApi {
     }
     /**
      * 
-     * @summary Sets a zone to a menu section.
+     * @summary Assigns a zone to a menu section.
      * @param menuZoneId The menu id.
      * @param menuSectionId The menu section id.
      * @param menuId 
