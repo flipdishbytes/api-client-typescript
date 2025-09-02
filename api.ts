@@ -24463,6 +24463,7 @@ export class MenuZone {
     'Description'?: string;
     'ImageName'?: string;
     'DisplayOrder'?: number;
+    'ImageUrl'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -24496,6 +24497,11 @@ export class MenuZone {
             "name": "DisplayOrder",
             "baseName": "DisplayOrder",
             "type": "number"
+        },
+        {
+            "name": "ImageUrl",
+            "baseName": "ImageUrl",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
