@@ -5270,47 +5270,6 @@ export class CardReaderRegistrationRequest {
 }
 
 /**
-* Defines the cart
-*/
-export class Cart {
-    /**
-    * Line items from the cart
-    */
-    'LineItems'?: Array<LineItem>;
-    /**
-    * Total cart price
-    */
-    'CartAmount'?: Price;
-    /**
-    * Total tip amount
-    */
-    'Tip'?: Price;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "LineItems",
-            "baseName": "LineItems",
-            "type": "Array<LineItem>"
-        },
-        {
-            "name": "CartAmount",
-            "baseName": "CartAmount",
-            "type": "Price"
-        },
-        {
-            "name": "Tip",
-            "baseName": "Tip",
-            "type": "Price"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Cart.attributeTypeMap;
-    }
-}
-
-/**
 * 
 */
 export class CatalogGroupArchivedEvent {
@@ -6407,32 +6366,6 @@ export namespace Channel {
     }
 }
 /**
-* Describes a channel store mapping
-*/
-export class ChannelStoreMapping {
-    'StoreId'?: number;
-    'ChannelStoreId'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "StoreId",
-            "baseName": "StoreId",
-            "type": "number"
-        },
-        {
-            "name": "ChannelStoreId",
-            "baseName": "ChannelStoreId",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return ChannelStoreMapping.attributeTypeMap;
-    }
-}
-
-/**
 * Channel Stores Updated Event
 */
 export class ChannelStoresUpdatedEvent {
@@ -6793,56 +6726,6 @@ export class ConfiguredStore {
 
     static getAttributeTypeMap() {
         return ConfiguredStore.attributeTypeMap;
-    }
-}
-
-/**
-* Contact information for the user
-*/
-export class Contact {
-    /**
-    * Email Address
-    */
-    'Email'?: string;
-    /**
-    * International format Phone Number
-    */
-    'PhoneNumber'?: string;
-    /**
-    * First Name
-    */
-    'FirstName'?: string;
-    /**
-    * Last Name
-    */
-    'LastName'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Email",
-            "baseName": "Email",
-            "type": "string"
-        },
-        {
-            "name": "PhoneNumber",
-            "baseName": "PhoneNumber",
-            "type": "string"
-        },
-        {
-            "name": "FirstName",
-            "baseName": "FirstName",
-            "type": "string"
-        },
-        {
-            "name": "LastName",
-            "baseName": "LastName",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Contact.attributeTypeMap;
     }
 }
 
@@ -13777,62 +13660,6 @@ export class FulfillentStatusActionItem {
 }
 
 /**
-* Fulfillment information (required for all orders)
-*/
-export class FulfillmentInfo {
-    /**
-    * [Required] Dispatch Type (i.e Pickup / Delivery)
-    */
-    'DispatchType'?: FulfillmentInfo.DispatchTypeEnum;
-    /**
-    * [Required] Time the order is requested for
-    */
-    'RequestedForUtc'?: Date;
-    /**
-    * Location the order is to be delivered to  [Required] Delivery  [Not Required] Pickup
-    */
-    'Location'?: Location;
-    /**
-    * Price of the dispatch, normally 0 for collection and a value for delivery  [Required] Delivery  [Not Required] Pickup
-    */
-    'DispatchAmount'?: Price;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "DispatchType",
-            "baseName": "DispatchType",
-            "type": "FulfillmentInfo.DispatchTypeEnum"
-        },
-        {
-            "name": "RequestedForUtc",
-            "baseName": "RequestedForUtc",
-            "type": "Date"
-        },
-        {
-            "name": "Location",
-            "baseName": "Location",
-            "type": "Location"
-        },
-        {
-            "name": "DispatchAmount",
-            "baseName": "DispatchAmount",
-            "type": "Price"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return FulfillmentInfo.attributeTypeMap;
-    }
-}
-
-export namespace FulfillmentInfo {
-    export enum DispatchTypeEnum {
-        Delivery = <any> 'Delivery',
-        Pickup = <any> 'Pickup'
-    }
-}
-/**
 * Fulfillment States Configuration
 */
 export class FulfillmentStatesConfiguration {
@@ -18787,160 +18614,6 @@ export namespace LightspeedSettings {
     }
 }
 /**
-* Defines a single line item
-*/
-export class LineItem {
-    /**
-    * Flipdish Item Id, if unknown leave 'null'
-    */
-    'Id'?: number;
-    /**
-    * Item Name
-    */
-    'Name'?: string;
-    /**
-    * Menu section name
-    */
-    'SectionName'?: string;
-    /**
-    * External Item Id
-    */
-    'ExternalId'?: string;
-    /**
-    * Item Quantity
-    */
-    'Quantity'?: number;
-    /**
-    * Item Price
-    */
-    'Price'?: Price;
-    /**
-    * Item Notes
-    */
-    'Notes'?: string;
-    /**
-    * Item Option
-    */
-    'Options'?: Array<LineItemOption>;
-    /**
-    * Other Item Metadata
-    */
-    'Metadata'?: { [key: string]: string; };
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Id",
-            "baseName": "Id",
-            "type": "number"
-        },
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "SectionName",
-            "baseName": "SectionName",
-            "type": "string"
-        },
-        {
-            "name": "ExternalId",
-            "baseName": "ExternalId",
-            "type": "string"
-        },
-        {
-            "name": "Quantity",
-            "baseName": "Quantity",
-            "type": "number"
-        },
-        {
-            "name": "Price",
-            "baseName": "Price",
-            "type": "Price"
-        },
-        {
-            "name": "Notes",
-            "baseName": "Notes",
-            "type": "string"
-        },
-        {
-            "name": "Options",
-            "baseName": "Options",
-            "type": "Array<LineItemOption>"
-        },
-        {
-            "name": "Metadata",
-            "baseName": "Metadata",
-            "type": "{ [key: string]: string; }"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return LineItem.attributeTypeMap;
-    }
-}
-
-/**
-* Defines a single line item option
-*/
-export class LineItemOption {
-    /**
-    * Flipdish Item Option Id, if unknown leave 'null'
-    */
-    'Id'?: number;
-    /**
-    * External Item Option Id
-    */
-    'ExternalId'?: string;
-    /**
-    * External Item Option Name
-    */
-    'Name'?: string;
-    /**
-    * External Item Option Price
-    */
-    'Price'?: Price;
-    /**
-    * Other Item Metadata
-    */
-    'Metadata'?: { [key: string]: string; };
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Id",
-            "baseName": "Id",
-            "type": "number"
-        },
-        {
-            "name": "ExternalId",
-            "baseName": "ExternalId",
-            "type": "string"
-        },
-        {
-            "name": "Name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "Price",
-            "baseName": "Price",
-            "type": "Price"
-        },
-        {
-            "name": "Metadata",
-            "baseName": "Metadata",
-            "type": "{ [key: string]: string; }"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return LineItemOption.attributeTypeMap;
-    }
-}
-
-/**
 * Represents a localised time zone
 */
 export class LocalisedTimeZone {
@@ -18978,83 +18651,6 @@ export class LocalisedTimeZone {
 
     static getAttributeTypeMap() {
         return LocalisedTimeZone.attributeTypeMap;
-    }
-}
-
-/**
-* Location to deliver to
-*/
-export class Location {
-    /**
-    * Line 1 of the address
-    */
-    'AddressLine1'?: string;
-    /**
-    * Line 2 of the address
-    */
-    'AddressLine2'?: string;
-    /**
-    * Formatted Address
-    */
-    'FormattedAddress'?: string;
-    /**
-    * Postal / Zip Code
-    */
-    'PostalCode'?: string;
-    /**
-    * City to deliver to
-    */
-    'City'?: string;
-    /**
-    * Coordinates to deliver to
-    */
-    'Coordinates'?: Coordinates;
-    /**
-    * Notes for delivery
-    */
-    'Notes'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "AddressLine1",
-            "baseName": "AddressLine1",
-            "type": "string"
-        },
-        {
-            "name": "AddressLine2",
-            "baseName": "AddressLine2",
-            "type": "string"
-        },
-        {
-            "name": "FormattedAddress",
-            "baseName": "FormattedAddress",
-            "type": "string"
-        },
-        {
-            "name": "PostalCode",
-            "baseName": "PostalCode",
-            "type": "string"
-        },
-        {
-            "name": "City",
-            "baseName": "City",
-            "type": "string"
-        },
-        {
-            "name": "Coordinates",
-            "baseName": "Coordinates",
-            "type": "Coordinates"
-        },
-        {
-            "name": "Notes",
-            "baseName": "Notes",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Location.attributeTypeMap;
     }
 }
 
@@ -28029,419 +27625,6 @@ export class OrderFulfillmentStatusWithConfigurationActions {
 }
 
 /**
-* Generic model for ingesting external orders from   3rd parties into the system
-*/
-export class OrderIngestSubmitOrderRequest {
-    /**
-    * [Required] Indicated the name from where the request is coming from
-    */
-    'AppType'?: OrderIngestSubmitOrderRequest.AppTypeEnum;
-    /**
-    * [Required] Store Id
-    */
-    'StoreId'?: number;
-    /**
-    * [Required] Currency Code  These must match three letter codes ISO 4127 http://en.wikipedia.org/wiki/ISO_4217
-    */
-    'CurrencyCode'?: OrderIngestSubmitOrderRequest.CurrencyCodeEnum;
-    /**
-    * [Required] Cart of the user
-    */
-    'Cart'?: Cart;
-    /**
-    * [Required] Relevant fulfillment Information
-    */
-    'FulfillmentInfo'?: FulfillmentInfo;
-    /**
-    * [Required] Order ID in the external System
-    */
-    'ChannelOrderId'?: string;
-    /**
-    * [Optional] Public Order ID in the external System
-    */
-    'ChannelPublicOrderId'?: string;
-    /**
-    * Date the order was placed at in UTC  [Required]
-    */
-    'OrderDateUtc'?: Date;
-    /**
-    * Payment Information  [Required]
-    */
-    'PaymentInfo'?: PaymentInfo;
-    /**
-    * Contact Information  [Required]
-    */
-    'Contact'?: Contact;
-    /**
-    * Tip amount
-    */
-    'TipAmount'?: number;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "AppType",
-            "baseName": "AppType",
-            "type": "OrderIngestSubmitOrderRequest.AppTypeEnum"
-        },
-        {
-            "name": "StoreId",
-            "baseName": "StoreId",
-            "type": "number"
-        },
-        {
-            "name": "CurrencyCode",
-            "baseName": "CurrencyCode",
-            "type": "OrderIngestSubmitOrderRequest.CurrencyCodeEnum"
-        },
-        {
-            "name": "Cart",
-            "baseName": "Cart",
-            "type": "Cart"
-        },
-        {
-            "name": "FulfillmentInfo",
-            "baseName": "FulfillmentInfo",
-            "type": "FulfillmentInfo"
-        },
-        {
-            "name": "ChannelOrderId",
-            "baseName": "ChannelOrderId",
-            "type": "string"
-        },
-        {
-            "name": "ChannelPublicOrderId",
-            "baseName": "ChannelPublicOrderId",
-            "type": "string"
-        },
-        {
-            "name": "OrderDateUtc",
-            "baseName": "OrderDateUtc",
-            "type": "Date"
-        },
-        {
-            "name": "PaymentInfo",
-            "baseName": "PaymentInfo",
-            "type": "PaymentInfo"
-        },
-        {
-            "name": "Contact",
-            "baseName": "Contact",
-            "type": "Contact"
-        },
-        {
-            "name": "TipAmount",
-            "baseName": "TipAmount",
-            "type": "number"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return OrderIngestSubmitOrderRequest.attributeTypeMap;
-    }
-}
-
-export namespace OrderIngestSubmitOrderRequest {
-    export enum AppTypeEnum {
-        Unknown = <any> 'Unknown',
-        Ios = <any> 'Ios',
-        Android = <any> 'Android',
-        Web = <any> 'Web',
-        Kiosk = <any> 'Kiosk',
-        Pos = <any> 'Pos',
-        TelephoneCall = <any> 'TelephoneCall',
-        Sms = <any> 'Sms',
-        PwaAndroid = <any> 'PwaAndroid',
-        PwaIos = <any> 'PwaIos',
-        Google = <any> 'Google'
-    }
-    export enum CurrencyCodeEnum {
-        EUR = <any> 'EUR',
-        USD = <any> 'USD',
-        GBP = <any> 'GBP',
-        CAD = <any> 'CAD',
-        AUD = <any> 'AUD',
-        DJF = <any> 'DJF',
-        ZAR = <any> 'ZAR',
-        ETB = <any> 'ETB',
-        AED = <any> 'AED',
-        BHD = <any> 'BHD',
-        DZD = <any> 'DZD',
-        EGP = <any> 'EGP',
-        IQD = <any> 'IQD',
-        JOD = <any> 'JOD',
-        KWD = <any> 'KWD',
-        LBP = <any> 'LBP',
-        LYD = <any> 'LYD',
-        MAD = <any> 'MAD',
-        OMR = <any> 'OMR',
-        QAR = <any> 'QAR',
-        SAR = <any> 'SAR',
-        SYP = <any> 'SYP',
-        TND = <any> 'TND',
-        YER = <any> 'YER',
-        CLP = <any> 'CLP',
-        INR = <any> 'INR',
-        AZN = <any> 'AZN',
-        RUB = <any> 'RUB',
-        BYN = <any> 'BYN',
-        BGN = <any> 'BGN',
-        NGN = <any> 'NGN',
-        BDT = <any> 'BDT',
-        CNY = <any> 'CNY',
-        BAM = <any> 'BAM',
-        CZK = <any> 'CZK',
-        DKK = <any> 'DKK',
-        CHF = <any> 'CHF',
-        MVR = <any> 'MVR',
-        BTN = <any> 'BTN',
-        XCD = <any> 'XCD',
-        BZD = <any> 'BZD',
-        HKD = <any> 'HKD',
-        IDR = <any> 'IDR',
-        JMD = <any> 'JMD',
-        MYR = <any> 'MYR',
-        NZD = <any> 'NZD',
-        PHP = <any> 'PHP',
-        SGD = <any> 'SGD',
-        TTD = <any> 'TTD',
-        XDR = <any> 'XDR',
-        ARS = <any> 'ARS',
-        BOB = <any> 'BOB',
-        COP = <any> 'COP',
-        CRC = <any> 'CRC',
-        CUP = <any> 'CUP',
-        DOP = <any> 'DOP',
-        GTQ = <any> 'GTQ',
-        HNL = <any> 'HNL',
-        MXN = <any> 'MXN',
-        NIO = <any> 'NIO',
-        PAB = <any> 'PAB',
-        PEN = <any> 'PEN',
-        PYG = <any> 'PYG',
-        UYU = <any> 'UYU',
-        VEF = <any> 'VEF',
-        IRR = <any> 'IRR',
-        XOF = <any> 'XOF',
-        CDF = <any> 'CDF',
-        XAF = <any> 'XAF',
-        HTG = <any> 'HTG',
-        ILS = <any> 'ILS',
-        HRK = <any> 'HRK',
-        HUF = <any> 'HUF',
-        AMD = <any> 'AMD',
-        ISK = <any> 'ISK',
-        JPY = <any> 'JPY',
-        GEL = <any> 'GEL',
-        KZT = <any> 'KZT',
-        KHR = <any> 'KHR',
-        KRW = <any> 'KRW',
-        KGS = <any> 'KGS',
-        LAK = <any> 'LAK',
-        MKD = <any> 'MKD',
-        MNT = <any> 'MNT',
-        BND = <any> 'BND',
-        MMK = <any> 'MMK',
-        NOK = <any> 'NOK',
-        NPR = <any> 'NPR',
-        PKR = <any> 'PKR',
-        PLN = <any> 'PLN',
-        AFN = <any> 'AFN',
-        BRL = <any> 'BRL',
-        MDL = <any> 'MDL',
-        RON = <any> 'RON',
-        RWF = <any> 'RWF',
-        SEK = <any> 'SEK',
-        LKR = <any> 'LKR',
-        SOS = <any> 'SOS',
-        ALL = <any> 'ALL',
-        RSD = <any> 'RSD',
-        KES = <any> 'KES',
-        TJS = <any> 'TJS',
-        THB = <any> 'THB',
-        ERN = <any> 'ERN',
-        TMT = <any> 'TMT',
-        BWP = <any> 'BWP',
-        TRY = <any> 'TRY',
-        UAH = <any> 'UAH',
-        UZS = <any> 'UZS',
-        VND = <any> 'VND',
-        MOP = <any> 'MOP',
-        TWD = <any> 'TWD',
-        BMD = <any> 'BMD'
-    }
-}
-export class OrderIngestSubmitOrderResponse {
-    'OrderId'?: number;
-    'ReceiptUrl'?: string;
-    'CurrencyCode'?: OrderIngestSubmitOrderResponse.CurrencyCodeEnum;
-    'TotalPrice'?: Price;
-    'DeliveryFee'?: Price;
-    'EstimatedDeliveryTime'?: Date;
-    'ChannelOrderId'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "OrderId",
-            "baseName": "OrderId",
-            "type": "number"
-        },
-        {
-            "name": "ReceiptUrl",
-            "baseName": "ReceiptUrl",
-            "type": "string"
-        },
-        {
-            "name": "CurrencyCode",
-            "baseName": "CurrencyCode",
-            "type": "OrderIngestSubmitOrderResponse.CurrencyCodeEnum"
-        },
-        {
-            "name": "TotalPrice",
-            "baseName": "TotalPrice",
-            "type": "Price"
-        },
-        {
-            "name": "DeliveryFee",
-            "baseName": "DeliveryFee",
-            "type": "Price"
-        },
-        {
-            "name": "EstimatedDeliveryTime",
-            "baseName": "EstimatedDeliveryTime",
-            "type": "Date"
-        },
-        {
-            "name": "ChannelOrderId",
-            "baseName": "ChannelOrderId",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return OrderIngestSubmitOrderResponse.attributeTypeMap;
-    }
-}
-
-export namespace OrderIngestSubmitOrderResponse {
-    export enum CurrencyCodeEnum {
-        EUR = <any> 'EUR',
-        USD = <any> 'USD',
-        GBP = <any> 'GBP',
-        CAD = <any> 'CAD',
-        AUD = <any> 'AUD',
-        DJF = <any> 'DJF',
-        ZAR = <any> 'ZAR',
-        ETB = <any> 'ETB',
-        AED = <any> 'AED',
-        BHD = <any> 'BHD',
-        DZD = <any> 'DZD',
-        EGP = <any> 'EGP',
-        IQD = <any> 'IQD',
-        JOD = <any> 'JOD',
-        KWD = <any> 'KWD',
-        LBP = <any> 'LBP',
-        LYD = <any> 'LYD',
-        MAD = <any> 'MAD',
-        OMR = <any> 'OMR',
-        QAR = <any> 'QAR',
-        SAR = <any> 'SAR',
-        SYP = <any> 'SYP',
-        TND = <any> 'TND',
-        YER = <any> 'YER',
-        CLP = <any> 'CLP',
-        INR = <any> 'INR',
-        AZN = <any> 'AZN',
-        RUB = <any> 'RUB',
-        BYN = <any> 'BYN',
-        BGN = <any> 'BGN',
-        NGN = <any> 'NGN',
-        BDT = <any> 'BDT',
-        CNY = <any> 'CNY',
-        BAM = <any> 'BAM',
-        CZK = <any> 'CZK',
-        DKK = <any> 'DKK',
-        CHF = <any> 'CHF',
-        MVR = <any> 'MVR',
-        BTN = <any> 'BTN',
-        XCD = <any> 'XCD',
-        BZD = <any> 'BZD',
-        HKD = <any> 'HKD',
-        IDR = <any> 'IDR',
-        JMD = <any> 'JMD',
-        MYR = <any> 'MYR',
-        NZD = <any> 'NZD',
-        PHP = <any> 'PHP',
-        SGD = <any> 'SGD',
-        TTD = <any> 'TTD',
-        XDR = <any> 'XDR',
-        ARS = <any> 'ARS',
-        BOB = <any> 'BOB',
-        COP = <any> 'COP',
-        CRC = <any> 'CRC',
-        CUP = <any> 'CUP',
-        DOP = <any> 'DOP',
-        GTQ = <any> 'GTQ',
-        HNL = <any> 'HNL',
-        MXN = <any> 'MXN',
-        NIO = <any> 'NIO',
-        PAB = <any> 'PAB',
-        PEN = <any> 'PEN',
-        PYG = <any> 'PYG',
-        UYU = <any> 'UYU',
-        VEF = <any> 'VEF',
-        IRR = <any> 'IRR',
-        XOF = <any> 'XOF',
-        CDF = <any> 'CDF',
-        XAF = <any> 'XAF',
-        HTG = <any> 'HTG',
-        ILS = <any> 'ILS',
-        HRK = <any> 'HRK',
-        HUF = <any> 'HUF',
-        AMD = <any> 'AMD',
-        ISK = <any> 'ISK',
-        JPY = <any> 'JPY',
-        GEL = <any> 'GEL',
-        KZT = <any> 'KZT',
-        KHR = <any> 'KHR',
-        KRW = <any> 'KRW',
-        KGS = <any> 'KGS',
-        LAK = <any> 'LAK',
-        MKD = <any> 'MKD',
-        MNT = <any> 'MNT',
-        BND = <any> 'BND',
-        MMK = <any> 'MMK',
-        NOK = <any> 'NOK',
-        NPR = <any> 'NPR',
-        PKR = <any> 'PKR',
-        PLN = <any> 'PLN',
-        AFN = <any> 'AFN',
-        BRL = <any> 'BRL',
-        MDL = <any> 'MDL',
-        RON = <any> 'RON',
-        RWF = <any> 'RWF',
-        SEK = <any> 'SEK',
-        LKR = <any> 'LKR',
-        SOS = <any> 'SOS',
-        ALL = <any> 'ALL',
-        RSD = <any> 'RSD',
-        KES = <any> 'KES',
-        TJS = <any> 'TJS',
-        THB = <any> 'THB',
-        ERN = <any> 'ERN',
-        TMT = <any> 'TMT',
-        BWP = <any> 'BWP',
-        TRY = <any> 'TRY',
-        UAH = <any> 'UAH',
-        UZS = <any> 'UZS',
-        VND = <any> 'VND',
-        MOP = <any> 'MOP',
-        TWD = <any> 'TWD',
-        BMD = <any> 'BMD'
-    }
-}
-/**
 * Order item
 */
 export class OrderItem {
@@ -29929,38 +29112,6 @@ export class PasswordResetModel {
 
     static getAttributeTypeMap() {
         return PasswordResetModel.attributeTypeMap;
-    }
-}
-
-/**
-* Payment information
-*/
-export class PaymentInfo {
-    /**
-    * Defines if the order was paid
-    */
-    'Paid'?: boolean;
-    /**
-    * Payment Description
-    */
-    'PaymentType'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Paid",
-            "baseName": "Paid",
-            "type": "boolean"
-        },
-        {
-            "name": "PaymentType",
-            "baseName": "PaymentType",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return PaymentInfo.attributeTypeMap;
     }
 }
 
@@ -34044,38 +33195,6 @@ export class PreviousOrderItemOption {
 }
 
 /**
-* Defines a price
-*/
-export class Price {
-    /**
-    * Amount (including tax)
-    */
-    'Amount'?: number;
-    /**
-    * Tax (only required in tax exclusive prices)
-    */
-    'Tax'?: number;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Amount",
-            "baseName": "Amount",
-            "type": "number"
-        },
-        {
-            "name": "Tax",
-            "baseName": "Tax",
-            "type": "number"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Price.attributeTypeMap;
-    }
-}
-
-/**
 * Printer
 */
 export class Printer {
@@ -36889,29 +36008,6 @@ export class RestApiArrayResultStoreChannelAssignment {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultStoreChannelAssignment.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api array result
-*/
-export class RestApiArrayResultStoreChannelStoreMapping {
-    /**
-    * Generic data object.
-    */
-    'Data': Array<StoreChannelStoreMapping>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Array<StoreChannelStoreMapping>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiArrayResultStoreChannelStoreMapping.attributeTypeMap;
     }
 }
 
@@ -40682,29 +39778,6 @@ export class RestApiResultOrderFulfillmentStatusWithConfigurationActions {
 
     static getAttributeTypeMap() {
         return RestApiResultOrderFulfillmentStatusWithConfigurationActions.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api result
-*/
-export class RestApiResultOrderIngestSubmitOrderResponse {
-    /**
-    * Generic data object.
-    */
-    'Data': OrderIngestSubmitOrderResponse;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "OrderIngestSubmitOrderResponse"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiResultOrderIngestSubmitOrderResponse.attributeTypeMap;
     }
 }
 
@@ -45254,47 +44327,6 @@ export class StoreChannelAssignment {
 
     static getAttributeTypeMap() {
         return StoreChannelAssignment.attributeTypeMap;
-    }
-}
-
-/**
-* Describes an ID mapping between Flipdish Store and Channel Store
-*/
-export class StoreChannelStoreMapping {
-    /**
-    * Channel Id
-    */
-    'ChannelId'?: number;
-    /**
-    * Store Id
-    */
-    'StoreId'?: number;
-    /**
-    * Channel Store Id
-    */
-    'ChannelStoreId'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "ChannelId",
-            "baseName": "ChannelId",
-            "type": "number"
-        },
-        {
-            "name": "StoreId",
-            "baseName": "StoreId",
-            "type": "number"
-        },
-        {
-            "name": "ChannelStoreId",
-            "baseName": "ChannelStoreId",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return StoreChannelStoreMapping.attributeTypeMap;
     }
 }
 
@@ -57413,7 +56445,6 @@ let enumsMap: {[index: string]: any} = {
         "CustomerDeliveryTrackingOrder.CurrencyEnum": CustomerDeliveryTrackingOrder.CurrencyEnum,
         "ExecuteConfigurationActionResult.RedirectTargetEnum": ExecuteConfigurationActionResult.RedirectTargetEnum,
         "Field.FieldTypeEnum": Field.FieldTypeEnum,
-        "FulfillmentInfo.DispatchTypeEnum": FulfillmentInfo.DispatchTypeEnum,
         "FulfillmentStatesConfiguration.StoreSelectorTypeEnum": FulfillmentStatesConfiguration.StoreSelectorTypeEnum,
         "FulfillmentStatesConfigurationSummary.StoreSelectorTypeEnum": FulfillmentStatesConfigurationSummary.StoreSelectorTypeEnum,
         "FulfillmentStatusConfigurationItem.ChangeTypeEnum": FulfillmentStatusConfigurationItem.ChangeTypeEnum,
@@ -57482,9 +56513,6 @@ let enumsMap: {[index: string]: any} = {
         "Order.DeliveryTrackingStatusEnum": Order.DeliveryTrackingStatusEnum,
         "OrderDeliveryInformation.StatusEnum": OrderDeliveryInformation.StatusEnum,
         "OrderDeliveryInformationBase.StatusEnum": OrderDeliveryInformationBase.StatusEnum,
-        "OrderIngestSubmitOrderRequest.AppTypeEnum": OrderIngestSubmitOrderRequest.AppTypeEnum,
-        "OrderIngestSubmitOrderRequest.CurrencyCodeEnum": OrderIngestSubmitOrderRequest.CurrencyCodeEnum,
-        "OrderIngestSubmitOrderResponse.CurrencyCodeEnum": OrderIngestSubmitOrderResponse.CurrencyCodeEnum,
         "OrderSummary.DeliveryTypeEnum": OrderSummary.DeliveryTypeEnum,
         "OrderSummary.PickupLocationTypeEnum": OrderSummary.PickupLocationTypeEnum,
         "OrderSummary.TableServiceCatagoryEnum": OrderSummary.TableServiceCatagoryEnum,
@@ -57659,7 +56687,6 @@ let typeMap: {[index: string]: any} = {
     "CancellationToken": CancellationToken,
     "CardReader": CardReader,
     "CardReaderRegistrationRequest": CardReaderRegistrationRequest,
-    "Cart": Cart,
     "CatalogGroupArchivedEvent": CatalogGroupArchivedEvent,
     "CatalogGroupCreatedEvent": CatalogGroupCreatedEvent,
     "CatalogGroupReference": CatalogGroupReference,
@@ -57673,7 +56700,6 @@ let typeMap: {[index: string]: any} = {
     "CertificateRenewedEvent": CertificateRenewedEvent,
     "ChangePasswordModel": ChangePasswordModel,
     "Channel": Channel,
-    "ChannelStoreMapping": ChannelStoreMapping,
     "ChannelStoresUpdatedEvent": ChannelStoresUpdatedEvent,
     "ChargebackDetails": ChargebackDetails,
     "ClientDevice": ClientDevice,
@@ -57682,7 +56708,6 @@ let typeMap: {[index: string]: any} = {
     "ClientDeviceEnrollmentResult": ClientDeviceEnrollmentResult,
     "ClientDeviceSummary": ClientDeviceSummary,
     "ConfiguredStore": ConfiguredStore,
-    "Contact": Contact,
     "Coordinates": Coordinates,
     "CountryFormResponse": CountryFormResponse,
     "CountryWithAccountFieldsDefinitions": CountryWithAccountFieldsDefinitions,
@@ -57763,7 +56788,6 @@ let typeMap: {[index: string]: any} = {
     "FlipdishEventBase": FlipdishEventBase,
     "FlipdishFeesDetails": FlipdishFeesDetails,
     "FulfillentStatusActionItem": FulfillentStatusActionItem,
-    "FulfillmentInfo": FulfillmentInfo,
     "FulfillmentStatesConfiguration": FulfillmentStatesConfiguration,
     "FulfillmentStatesConfigurationSummary": FulfillmentStatesConfigurationSummary,
     "FulfillmentStatesConfiguredStore": FulfillmentStatesConfiguredStore,
@@ -57833,10 +56857,7 @@ let typeMap: {[index: string]: any} = {
     "LastPaymentError": LastPaymentError,
     "LeadTime": LeadTime,
     "LightspeedSettings": LightspeedSettings,
-    "LineItem": LineItem,
-    "LineItemOption": LineItemOption,
     "LocalisedTimeZone": LocalisedTimeZone,
-    "Location": Location,
     "LocationArea": LocationArea,
     "LocationAreaCreatedEvent": LocationAreaCreatedEvent,
     "LocationAreaLocation": LocationAreaLocation,
@@ -57944,8 +56965,6 @@ let typeMap: {[index: string]: any} = {
     "OrderFulfillmentStatusUpdate": OrderFulfillmentStatusUpdate,
     "OrderFulfillmentStatusUpdatedEvent": OrderFulfillmentStatusUpdatedEvent,
     "OrderFulfillmentStatusWithConfigurationActions": OrderFulfillmentStatusWithConfigurationActions,
-    "OrderIngestSubmitOrderRequest": OrderIngestSubmitOrderRequest,
-    "OrderIngestSubmitOrderResponse": OrderIngestSubmitOrderResponse,
     "OrderItem": OrderItem,
     "OrderItemOption": OrderItemOption,
     "OrderLeadTimes": OrderLeadTimes,
@@ -57962,7 +56981,6 @@ let typeMap: {[index: string]: any} = {
     "OwnerEntityConfiguration": OwnerEntityConfiguration,
     "OwnerEntityConfigurations": OwnerEntityConfigurations,
     "PasswordResetModel": PasswordResetModel,
-    "PaymentInfo": PaymentInfo,
     "PaymentIntent": PaymentIntent,
     "PaymentTerminalDetails": PaymentTerminalDetails,
     "PaymentTerminalTransactionDetails": PaymentTerminalTransactionDetails,
@@ -57999,7 +57017,6 @@ let typeMap: {[index: string]: any} = {
     "PreviousOrder": PreviousOrder,
     "PreviousOrderItem": PreviousOrderItem,
     "PreviousOrderItemOption": PreviousOrderItemOption,
-    "Price": Price,
     "Printer": Printer,
     "PrinterAssignedToStoreEvent": PrinterAssignedToStoreEvent,
     "PrinterTurnedOffEvent": PrinterTurnedOffEvent,
@@ -58078,7 +57095,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultRetentionCampaign": RestApiArrayResultRetentionCampaign,
     "RestApiArrayResultSmsProviderCredential": RestApiArrayResultSmsProviderCredential,
     "RestApiArrayResultStoreChannelAssignment": RestApiArrayResultStoreChannelAssignment,
-    "RestApiArrayResultStoreChannelStoreMapping": RestApiArrayResultStoreChannelStoreMapping,
     "RestApiArrayResultStoreDeliveryZoneFeeConfig": RestApiArrayResultStoreDeliveryZoneFeeConfig,
     "RestApiArrayResultStoreListItem": RestApiArrayResultStoreListItem,
     "RestApiArrayResultStoreStatistics": RestApiArrayResultStoreStatistics,
@@ -58203,7 +57219,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultOrderDeliveryInformation": RestApiResultOrderDeliveryInformation,
     "RestApiResultOrderFulfillmentStatus": RestApiResultOrderFulfillmentStatus,
     "RestApiResultOrderFulfillmentStatusWithConfigurationActions": RestApiResultOrderFulfillmentStatusWithConfigurationActions,
-    "RestApiResultOrderIngestSubmitOrderResponse": RestApiResultOrderIngestSubmitOrderResponse,
     "RestApiResultOrderLeadTimes": RestApiResultOrderLeadTimes,
     "RestApiResultOrderPaymentInformation": RestApiResultOrderPaymentInformation,
     "RestApiResultPaymentIntent": RestApiResultPaymentIntent,
@@ -58282,7 +57297,6 @@ let typeMap: {[index: string]: any} = {
     "StoreBusinessHoursOverrideDeletedEvent": StoreBusinessHoursOverrideDeletedEvent,
     "StoreCampaignStartTime": StoreCampaignStartTime,
     "StoreChannelAssignment": StoreChannelAssignment,
-    "StoreChannelStoreMapping": StoreChannelStoreMapping,
     "StoreCloneSettings": StoreCloneSettings,
     "StoreConfig": StoreConfig,
     "StoreCreateBase": StoreCreateBase,
@@ -68146,195 +67160,6 @@ export class ChannelsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "any");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-}
-export enum ChannelsStoreMappingApiApiKeys {
-}
-
-export class ChannelsStoreMappingApi {
-    protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
-    protected _useQuerystring : boolean = false;
-
-    protected authentications = {
-        'default': <Authentication>new VoidAuth(),
-        'oauth2': new OAuth(),
-    }
-
-    constructor(basePath?: string);
-    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
-        if (password) {
-            if (basePath) {
-                this.basePath = basePath;
-            }
-        } else {
-            if (basePathOrUsername) {
-                this.basePath = basePathOrUsername
-            }
-        }
-    }
-
-    set useQuerystring(value: boolean) {
-        this._useQuerystring = value;
-    }
-
-    set basePath(basePath: string) {
-        this._basePath = basePath;
-    }
-
-    get basePath() {
-        return this._basePath;
-    }
-
-    public setDefaultAuthentication(auth: Authentication) {
-	this.authentications.default = auth;
-    }
-
-    public setApiKey(key: ChannelsStoreMappingApiApiKeys, value: string) {
-        (this.authentications as any)[ChannelsStoreMappingApiApiKeys[key]].apiKey = value;
-    }
-
-    set accessToken(token: string) {
-        this.authentications.oauth2.accessToken = token;
-    }
-    /**
-     * 
-     * @param appId 
-     * @param channelId 
-     * @param {*} [options] Override http request options.
-     */
-    public channelsGetStoreChannelStoreMapping (appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreChannelStoreMapping;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/storemappings'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling channelsGetStoreChannelStoreMapping.');
-        }
-
-        // verify required parameter 'channelId' is not null or undefined
-        if (channelId === null || channelId === undefined) {
-            throw new Error('Required parameter channelId was null or undefined when calling channelsGetStoreChannelStoreMapping.');
-        }
-
-        if (channelId !== undefined) {
-            localVarQueryParameters['channelId'] = ObjectSerializer.serialize(channelId, "number");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreChannelStoreMapping;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultStoreChannelStoreMapping");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param channelId 
-     * @param stores 
-     * @param {*} [options] Override http request options.
-     */
-    public channelsSetStoreChannelStoreMapping (appId: string, channelId: number, stores: Array<ChannelStoreMapping>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreChannelStoreMapping;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/storemappings'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling channelsSetStoreChannelStoreMapping.');
-        }
-
-        // verify required parameter 'channelId' is not null or undefined
-        if (channelId === null || channelId === undefined) {
-            throw new Error('Required parameter channelId was null or undefined when calling channelsSetStoreChannelStoreMapping.');
-        }
-
-        // verify required parameter 'stores' is not null or undefined
-        if (stores === null || stores === undefined) {
-            throw new Error('Required parameter stores was null or undefined when calling channelsSetStoreChannelStoreMapping.');
-        }
-
-        if (channelId !== undefined) {
-            localVarQueryParameters['channelId'] = ObjectSerializer.serialize(channelId, "number");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(stores, "Array<ChannelStoreMapping>")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultStoreChannelStoreMapping;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultStoreChannelStoreMapping");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -86555,119 +85380,6 @@ export class OrderBatchingConfigurationApi {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-}
-export enum OrderIngestApiApiKeys {
-}
-
-export class OrderIngestApi {
-    protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
-    protected _useQuerystring : boolean = false;
-
-    protected authentications = {
-        'default': <Authentication>new VoidAuth(),
-        'oauth2': new OAuth(),
-    }
-
-    constructor(basePath?: string);
-    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
-        if (password) {
-            if (basePath) {
-                this.basePath = basePath;
-            }
-        } else {
-            if (basePathOrUsername) {
-                this.basePath = basePathOrUsername
-            }
-        }
-    }
-
-    set useQuerystring(value: boolean) {
-        this._useQuerystring = value;
-    }
-
-    set basePath(basePath: string) {
-        this._basePath = basePath;
-    }
-
-    get basePath() {
-        return this._basePath;
-    }
-
-    public setDefaultAuthentication(auth: Authentication) {
-	this.authentications.default = auth;
-    }
-
-    public setApiKey(key: OrderIngestApiApiKeys, value: string) {
-        (this.authentications as any)[OrderIngestApiApiKeys[key]].apiKey = value;
-    }
-
-    set accessToken(token: string) {
-        this.authentications.oauth2.accessToken = token;
-    }
-    /**
-     * 
-     * @param order 
-     * @param appNameId 
-     * @param {*} [options] Override http request options.
-     */
-    public orderIngestSubmitNewOrder (order: OrderIngestSubmitOrderRequest, appNameId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrderIngestSubmitOrderResponse;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appNameId}/order-ingest/submit'
-            .replace('{' + 'appNameId' + '}', encodeURIComponent(String(appNameId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'order' is not null or undefined
-        if (order === null || order === undefined) {
-            throw new Error('Required parameter order was null or undefined when calling orderIngestSubmitNewOrder.');
-        }
-
-        // verify required parameter 'appNameId' is not null or undefined
-        if (appNameId === null || appNameId === undefined) {
-            throw new Error('Required parameter appNameId was null or undefined when calling orderIngestSubmitNewOrder.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(order, "OrderIngestSubmitOrderRequest")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOrderIngestSubmitOrderResponse;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultOrderIngestSubmitOrderResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
