@@ -2440,7 +2440,6 @@ export namespace AppStoreAppConfigurationSummary {
 export class AppStoreAppEntitlements {
     'EntitlementQuantity'?: number;
     'CurrentUsage'?: number;
-    'CurrentUsageInBrand'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -2453,11 +2452,6 @@ export class AppStoreAppEntitlements {
         {
             "name": "CurrentUsage",
             "baseName": "CurrentUsage",
-            "type": "number"
-        },
-        {
-            "name": "CurrentUsageInBrand",
-            "baseName": "CurrentUsageInBrand",
             "type": "number"
         }    ];
 
