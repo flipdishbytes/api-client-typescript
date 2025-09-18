@@ -45343,6 +45343,14 @@ export class StoreFeeConfig {
     * Additional fixed fee charged on orders submitted through Order With Google
     */
     'FixedFeeOrderWithGoogle'?: number;
+    /**
+    * Should not auto increase fees before this date
+    */
+    'ShouldNotAutoIncreaseBefore'?: Date;
+    /**
+    * Reason for the last fee change (optional)
+    */
+    'Reason'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -45561,6 +45569,16 @@ export class StoreFeeConfig {
             "name": "FixedFeeOrderWithGoogle",
             "baseName": "FixedFeeOrderWithGoogle",
             "type": "number"
+        },
+        {
+            "name": "ShouldNotAutoIncreaseBefore",
+            "baseName": "ShouldNotAutoIncreaseBefore",
+            "type": "Date"
+        },
+        {
+            "name": "Reason",
+            "baseName": "Reason",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
