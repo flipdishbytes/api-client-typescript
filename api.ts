@@ -1091,6 +1091,10 @@ export class App {
     */
     'SmsRestaurantName'?: string;
     /**
+    * Web to App Redirect settings
+    */
+    'WebToAppRedirect'?: App.WebToAppRedirectEnum;
+    /**
     * App name.   This is used in various places on the Apple App Store, Google Play Store, mobile apps and websites.
     */
     'Name'?: string;
@@ -1219,6 +1223,11 @@ export class App {
             "name": "SmsRestaurantName",
             "baseName": "SmsRestaurantName",
             "type": "string"
+        },
+        {
+            "name": "WebToAppRedirect",
+            "baseName": "WebToAppRedirect",
+            "type": "App.WebToAppRedirectEnum"
         },
         {
             "name": "Name",
@@ -1492,6 +1501,13 @@ export namespace App {
         ViewSalesReports = <any> 'ViewSalesReports',
         ViewCostReports = <any> 'ViewCostReports',
         ViewMenuReports = <any> 'ViewMenuReports'
+    }
+    export enum WebToAppRedirectEnum {
+        NoRedirect = <any> 'NoRedirect',
+        RedirectOnce = <any> 'RedirectOnce',
+        RedirectAlways = <any> 'RedirectAlways',
+        SuggestPwa = <any> 'SuggestPwa',
+        ForcePwa = <any> 'ForcePwa'
     }
     export enum ApplicationCategoryEnum {
         Restaurant = <any> 'Restaurant',
@@ -40054,6 +40070,29 @@ export class RestApiResultRedeemInvitationResult {
 /**
 * Rest api result
 */
+export class RestApiResultRestApiDefaultResponse {
+    /**
+    * Generic data object.
+    */
+    'Data': RestApiDefaultResponse;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "RestApiDefaultResponse"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultRestApiDefaultResponse.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultRestApiIntegerResult {
     /**
     * Generic data object.
@@ -44344,6 +44383,74 @@ export class StoreCloneSettings {
 
     static getAttributeTypeMap() {
         return StoreCloneSettings.attributeTypeMap;
+    }
+}
+
+/**
+* Store Collection Settings
+*/
+export class StoreCollectionSettings {
+    /**
+    * True if the store accepts pickup orders
+    */
+    'PickupEnabled': boolean;
+    /**
+    * Minimum pickup order amount
+    */
+    'MinimumPickupOrderAmount': number;
+    /**
+    * True if customer name required for pickup orders
+    */
+    'RequireCustomerNameForPickup': boolean;
+    /**
+    * True if the store accepts cash payment for pickup orders
+    */
+    'CashOrdersPickupEnabled': boolean;
+    /**
+    * Auto accept lead time for collection orders
+    */
+    'LeadTimeMinutes': number;
+    /**
+    * True if order confirmation sms includes estimated time when order will be ready for collection
+    */
+    'EtaInPickupConfirmationSmsEnabled': boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PickupEnabled",
+            "baseName": "PickupEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "MinimumPickupOrderAmount",
+            "baseName": "MinimumPickupOrderAmount",
+            "type": "number"
+        },
+        {
+            "name": "RequireCustomerNameForPickup",
+            "baseName": "RequireCustomerNameForPickup",
+            "type": "boolean"
+        },
+        {
+            "name": "CashOrdersPickupEnabled",
+            "baseName": "CashOrdersPickupEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "LeadTimeMinutes",
+            "baseName": "LeadTimeMinutes",
+            "type": "number"
+        },
+        {
+            "name": "EtaInPickupConfirmationSmsEnabled",
+            "baseName": "EtaInPickupConfirmationSmsEnabled",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StoreCollectionSettings.attributeTypeMap;
     }
 }
 
@@ -56381,6 +56488,7 @@ let enumsMap: {[index: string]: any} = {
         "ApmHourlyDataPoint.DayEnum": ApmHourlyDataPoint.DayEnum,
         "App.AppAccessLevelEnum": App.AppAccessLevelEnum,
         "App.AppResourceSetEnum": App.AppResourceSetEnum,
+        "App.WebToAppRedirectEnum": App.WebToAppRedirectEnum,
         "App.ApplicationCategoryEnum": App.ApplicationCategoryEnum,
         "AppCompliance.ComplianceTypeEnum": AppCompliance.ComplianceTypeEnum,
         "AppConfigSalesChannel.EmailRequestModeEnum": AppConfigSalesChannel.EmailRequestModeEnum,
@@ -57243,6 +57351,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultProduct": RestApiResultProduct,
     "RestApiResultPushNotificationResponse": RestApiResultPushNotificationResponse,
     "RestApiResultRedeemInvitationResult": RestApiResultRedeemInvitationResult,
+    "RestApiResultRestApiDefaultResponse": RestApiResultRestApiDefaultResponse,
     "RestApiResultRestApiIntegerResult": RestApiResultRestApiIntegerResult,
     "RestApiResultRestaurantVoucherPayGreenConfiguration": RestApiResultRestaurantVoucherPayGreenConfiguration,
     "RestApiResultRestaurantVoucherPayGreenStoreConfiguration": RestApiResultRestaurantVoucherPayGreenStoreConfiguration,
@@ -57310,6 +57419,7 @@ let typeMap: {[index: string]: any} = {
     "StoreCampaignStartTime": StoreCampaignStartTime,
     "StoreChannelAssignment": StoreChannelAssignment,
     "StoreCloneSettings": StoreCloneSettings,
+    "StoreCollectionSettings": StoreCollectionSettings,
     "StoreConfig": StoreConfig,
     "StoreCreateBase": StoreCreateBase,
     "StoreCreatedEvent": StoreCreatedEvent,
@@ -92844,6 +92954,69 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultRestApiDefaultResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param storeId 
+     * @param settings 
+     * @param {*} [options] Override http request options.
+     */
+    public setStoreCollectionSettings (storeId: number, settings: StoreCollectionSettings, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRestApiDefaultResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/collectionsettings'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling setStoreCollectionSettings.');
+        }
+
+        // verify required parameter 'settings' is not null or undefined
+        if (settings === null || settings === undefined) {
+            throw new Error('Required parameter settings was null or undefined when calling setStoreCollectionSettings.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(settings, "StoreCollectionSettings")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultRestApiDefaultResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultRestApiDefaultResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
