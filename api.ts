@@ -92967,9 +92967,10 @@ export class StoresApi {
      * 
      * @param storeId 
      * @param settings 
+     * @param inheritFromProperty 
      * @param {*} [options] Override http request options.
      */
-    public setStoreCollectionSettings (storeId: number, settings: StoreCollectionSettings, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRestApiDefaultResponse;  }> {
+    public setStoreCollectionSettings (storeId: number, settings: StoreCollectionSettings, inheritFromProperty?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultRestApiDefaultResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/collectionsettings'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -92984,6 +92985,10 @@ export class StoresApi {
         // verify required parameter 'settings' is not null or undefined
         if (settings === null || settings === undefined) {
             throw new Error('Required parameter settings was null or undefined when calling setStoreCollectionSettings.');
+        }
+
+        if (inheritFromProperty !== undefined) {
+            localVarQueryParameters['inheritFromProperty'] = ObjectSerializer.serialize(inheritFromProperty, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
