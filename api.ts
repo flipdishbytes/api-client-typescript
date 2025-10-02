@@ -42892,6 +42892,10 @@ export class Store {
     * Sales Channel Types
     */
     'SalesChannelTypes'?: Array<Store.SalesChannelTypesEnum>;
+    /**
+    * Inheritance Config Types
+    */
+    'InheritanceConfigTypes'?: Array<Store.InheritanceConfigTypesEnum>;
 
     static discriminator: string | undefined = undefined;
 
@@ -43150,6 +43154,11 @@ export class Store {
             "name": "SalesChannelTypes",
             "baseName": "SalesChannelTypes",
             "type": "Array<Store.SalesChannelTypesEnum>"
+        },
+        {
+            "name": "InheritanceConfigTypes",
+            "baseName": "InheritanceConfigTypes",
+            "type": "Array<Store.InheritanceConfigTypesEnum>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -43285,6 +43294,10 @@ export namespace Store {
         Kiosk = <any> 'Kiosk',
         Pos = <any> 'Pos',
         None = <any> 'None'
+    }
+    export enum InheritanceConfigTypesEnum {
+        CollectionSetting = <any> 'CollectionSetting',
+        DeliverySetting = <any> 'DeliverySetting'
     }
 }
 /**
@@ -43877,6 +43890,10 @@ export class StoreBase {
     * Sales Channel Types
     */
     'SalesChannelTypes'?: Array<StoreBase.SalesChannelTypesEnum>;
+    /**
+    * Inheritance Config Types
+    */
+    'InheritanceConfigTypes'?: Array<StoreBase.InheritanceConfigTypesEnum>;
 
     static discriminator: string | undefined = undefined;
 
@@ -44030,6 +44047,11 @@ export class StoreBase {
             "name": "SalesChannelTypes",
             "baseName": "SalesChannelTypes",
             "type": "Array<StoreBase.SalesChannelTypesEnum>"
+        },
+        {
+            "name": "InheritanceConfigTypes",
+            "baseName": "InheritanceConfigTypes",
+            "type": "Array<StoreBase.InheritanceConfigTypesEnum>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -44044,6 +44066,10 @@ export namespace StoreBase {
         Kiosk = <any> 'Kiosk',
         Pos = <any> 'Pos',
         None = <any> 'None'
+    }
+    export enum InheritanceConfigTypesEnum {
+        CollectionSetting = <any> 'CollectionSetting',
+        DeliverySetting = <any> 'DeliverySetting'
     }
 }
 /**
@@ -56679,7 +56705,9 @@ let enumsMap: {[index: string]: any} = {
         "Store.PrintoutLayoutTypeEnum": Store.PrintoutLayoutTypeEnum,
         "Store.CurrencyEnum": Store.CurrencyEnum,
         "Store.SalesChannelTypesEnum": Store.SalesChannelTypesEnum,
+        "Store.InheritanceConfigTypesEnum": Store.InheritanceConfigTypesEnum,
         "StoreBase.SalesChannelTypesEnum": StoreBase.SalesChannelTypesEnum,
+        "StoreBase.InheritanceConfigTypesEnum": StoreBase.InheritanceConfigTypesEnum,
         "StoreCreateBase.SalesChannelTypeEnum": StoreCreateBase.SalesChannelTypeEnum,
         "StoreEndOfDayReport.CurrencyEnum": StoreEndOfDayReport.CurrencyEnum,
         "StoreGroup.CurrencyEnum": StoreGroup.CurrencyEnum,
