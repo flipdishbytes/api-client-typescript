@@ -43296,8 +43296,7 @@ export namespace Store {
         None = <any> 'None'
     }
     export enum InheritanceConfigTypesEnum {
-        CollectionSetting = <any> 'CollectionSetting',
-        DeliverySetting = <any> 'DeliverySetting'
+        CollectionSettings = <any> 'CollectionSettings'
     }
 }
 /**
@@ -44068,8 +44067,7 @@ export namespace StoreBase {
         None = <any> 'None'
     }
     export enum InheritanceConfigTypesEnum {
-        CollectionSetting = <any> 'CollectionSetting',
-        DeliverySetting = <any> 'DeliverySetting'
+        CollectionSettings = <any> 'CollectionSettings'
     }
 }
 /**
