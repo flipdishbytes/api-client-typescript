@@ -10177,6 +10177,29 @@ export class CustomerUpdatedEvent {
 }
 
 /**
+* Defines a list of customers
+*/
+export class Customers {
+    /**
+    * List of customers
+    */
+    'Items'?: Array<Customer>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Items",
+            "baseName": "Items",
+            "type": "Array<Customer>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Customers.attributeTypeMap;
+    }
+}
+
+/**
 * SSO Embed URL Information
 */
 export class DashboardEmbed {
@@ -37827,6 +37850,56 @@ export class RestApiPaginationResultStoreValidationConfig {
 /**
 * Rest api pagination result
 */
+export class RestApiPaginationResultUser {
+    /**
+    * Current page index
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total record count
+    */
+    'TotalRecordCount': number;
+    /**
+    * Generic data object.
+    */
+    'Data': Array<User>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        },
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<User>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiPaginationResultUser.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api pagination result
+*/
 export class RestApiPaginationResultVoucherSummary {
     /**
     * Current page index
@@ -38615,6 +38688,29 @@ export class RestApiResultCustomer {
 
     static getAttributeTypeMap() {
         return RestApiResultCustomer.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultCustomers {
+    /**
+    * Generic data object.
+    */
+    'Data': Customers;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Customers"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultCustomers.attributeTypeMap;
     }
 }
 
@@ -48341,6 +48437,10 @@ export class StoreSummary {
     */
     'StoreTimezone'?: string;
     /**
+    * IANA Timezone of store
+    */
+    'StoreIanaTimezone'?: string;
+    /**
     * Store group id of store
     */
     'StoreGroupId'?: number;
@@ -48389,6 +48489,11 @@ export class StoreSummary {
         {
             "name": "StoreTimezone",
             "baseName": "StoreTimezone",
+            "type": "string"
+        },
+        {
+            "name": "StoreIanaTimezone",
+            "baseName": "StoreIanaTimezone",
             "type": "string"
         },
         {
@@ -53252,6 +53357,109 @@ export class UpdateVoucherUsage {
 }
 
 /**
+* User
+*/
+export class User {
+    /**
+    * User Id
+    */
+    'Id'?: number;
+    /**
+    * Phone Number
+    */
+    'PhoneNumber'?: string;
+    /**
+    * Email
+    */
+    'Email'?: string;
+    /**
+    * Customer Name
+    */
+    'CustomerName'?: string;
+    /**
+    * Has Logged In
+    */
+    'HasLoggedIn'?: boolean;
+    /**
+    * User Discriminator
+    */
+    'UserDiscriminator'?: User.UserDiscriminatorEnum;
+    /**
+    * Timestamp Created
+    */
+    'TsCreate'?: Date;
+    /**
+    * WhiteLabel Configs
+    */
+    'WhiteLabelConfigs'?: Array<UserWhiteLabelConfig>;
+    /**
+    * User Type
+    */
+    'UserType'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "PhoneNumber",
+            "baseName": "PhoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "Email",
+            "baseName": "Email",
+            "type": "string"
+        },
+        {
+            "name": "CustomerName",
+            "baseName": "CustomerName",
+            "type": "string"
+        },
+        {
+            "name": "HasLoggedIn",
+            "baseName": "HasLoggedIn",
+            "type": "boolean"
+        },
+        {
+            "name": "UserDiscriminator",
+            "baseName": "UserDiscriminator",
+            "type": "User.UserDiscriminatorEnum"
+        },
+        {
+            "name": "TsCreate",
+            "baseName": "TsCreate",
+            "type": "Date"
+        },
+        {
+            "name": "WhiteLabelConfigs",
+            "baseName": "WhiteLabelConfigs",
+            "type": "Array<UserWhiteLabelConfig>"
+        },
+        {
+            "name": "UserType",
+            "baseName": "UserType",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return User.attributeTypeMap;
+    }
+}
+
+export namespace User {
+    export enum UserDiscriminatorEnum {
+        All = <any> 'All',
+        ApplicationUsers = <any> 'ApplicationUsers',
+        RestaurantUsers = <any> 'RestaurantUsers',
+        HydraUsers = <any> 'HydraUsers'
+    }
+}
+/**
 * User answered signup questions event
 */
 export class UserAnsweredSignupQuestionsEvent {
@@ -53871,6 +54079,81 @@ export class UserUpdatedEvent {
     }
 }
 
+/**
+* User WhiteLabelConfig
+*/
+export class UserWhiteLabelConfig {
+    /**
+    * Identifier
+    */
+    'Id'?: number;
+    /**
+    * WlConfigId
+    */
+    'ConfigId'?: number;
+    /**
+    * Brand Id
+    */
+    'AppId'?: string;
+    /**
+    * WhiteLabel Name
+    */
+    'Name'?: string;
+    /**
+    * WhiteLabel Access Level
+    */
+    'Level'?: UserWhiteLabelConfig.LevelEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "ConfigId",
+            "baseName": "ConfigId",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Level",
+            "baseName": "Level",
+            "type": "UserWhiteLabelConfig.LevelEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserWhiteLabelConfig.attributeTypeMap;
+    }
+}
+
+export namespace UserWhiteLabelConfig {
+    export enum LevelEnum {
+        None = <any> 'None',
+        Owner = <any> 'Owner',
+        StoreOwner = <any> 'StoreOwner',
+        PropertyOwner = <any> 'PropertyOwner',
+        ManagedOwner = <any> 'ManagedOwner',
+        Integrator = <any> 'Integrator',
+        PropertyManager = <any> 'PropertyManager',
+        StoreManager = <any> 'StoreManager',
+        StoreStaff = <any> 'StoreStaff',
+        StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
+        FinanceManager = <any> 'FinanceManager',
+        Support = <any> 'Support'
+    }
+}
 export class ValidValue {
     'Code': string;
     'Name': string;
@@ -56759,6 +57042,8 @@ let enumsMap: {[index: string]: any} = {
         "UpdateProductReference.ProductTypeEnum": UpdateProductReference.ProductTypeEnum,
         "UpdateVoucher.ChannelRestrictionsEnum": UpdateVoucher.ChannelRestrictionsEnum,
         "UpdateVoucher.VoucherSubTypeEnum": UpdateVoucher.VoucherSubTypeEnum,
+        "User.UserDiscriminatorEnum": User.UserDiscriminatorEnum,
+        "UserWhiteLabelConfig.LevelEnum": UserWhiteLabelConfig.LevelEnum,
         "ValidityPeriod.DayOfWeekEnum": ValidityPeriod.DayOfWeekEnum,
         "Voucher.StatusEnum": Voucher.StatusEnum,
         "Voucher.VoucherTypeEnum": Voucher.VoucherTypeEnum,
@@ -56899,6 +57184,7 @@ let typeMap: {[index: string]: any} = {
     "CustomerSummary": CustomerSummary,
     "CustomerUpdateModel": CustomerUpdateModel,
     "CustomerUpdatedEvent": CustomerUpdatedEvent,
+    "Customers": Customers,
     "DashboardEmbed": DashboardEmbed,
     "DeliveryLocation": DeliveryLocation,
     "DeliveryZone": DeliveryZone,
@@ -57283,6 +57569,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultStoreGroupExtended": RestApiPaginationResultStoreGroupExtended,
     "RestApiPaginationResultStoreHeader": RestApiPaginationResultStoreHeader,
     "RestApiPaginationResultStoreValidationConfig": RestApiPaginationResultStoreValidationConfig,
+    "RestApiPaginationResultUser": RestApiPaginationResultUser,
     "RestApiPaginationResultVoucherSummary": RestApiPaginationResultVoucherSummary,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiPaginationResultWebhookSubscription": RestApiPaginationResultWebhookSubscription,
@@ -57314,6 +57601,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultCreatedMenuSectionItems": RestApiResultCreatedMenuSectionItems,
     "RestApiResultCrossSellMenuItems": RestApiResultCrossSellMenuItems,
     "RestApiResultCustomer": RestApiResultCustomer,
+    "RestApiResultCustomers": RestApiResultCustomers,
     "RestApiResultDeliveryZone": RestApiResultDeliveryZone,
     "RestApiResultDnsRecordInformation": RestApiResultDnsRecordInformation,
     "RestApiResultExecuteConfigurationActionResult": RestApiResultExecuteConfigurationActionResult,
@@ -57540,6 +57828,7 @@ let typeMap: {[index: string]: any} = {
     "UpdateTipConfiguration": UpdateTipConfiguration,
     "UpdateVoucher": UpdateVoucher,
     "UpdateVoucherUsage": UpdateVoucherUsage,
+    "User": User,
     "UserAnsweredSignupQuestionsEvent": UserAnsweredSignupQuestionsEvent,
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
@@ -57547,6 +57836,7 @@ let typeMap: {[index: string]: any} = {
     "UserLoginEvent": UserLoginEvent,
     "UserPasswordCreatedEvent": UserPasswordCreatedEvent,
     "UserUpdatedEvent": UserUpdatedEvent,
+    "UserWhiteLabelConfig": UserWhiteLabelConfig,
     "ValidValue": ValidValue,
     "ValidationErrorResult": ValidationErrorResult,
     "ValidityPeriod": ValidityPeriod,
@@ -67965,6 +68255,72 @@ export class CustomersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultCustomer");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param phoneNumber 
+     * @param {*} [options] Override http request options.
+     */
+    public getCustomers (appId: string, phoneNumber: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCustomers;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customers'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getCustomers.');
+        }
+
+        // verify required parameter 'phoneNumber' is not null or undefined
+        if (phoneNumber === null || phoneNumber === undefined) {
+            throw new Error('Required parameter phoneNumber was null or undefined when calling getCustomers.');
+        }
+
+        if (phoneNumber !== undefined) {
+            localVarQueryParameters['phoneNumber'] = ObjectSerializer.serialize(phoneNumber, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCustomers;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultCustomers");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -95903,6 +96259,90 @@ export class UsersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiStringArrayResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param searchQuery 
+     * @param hasUserLoggedIn 
+     * @param userDiscriminator 
+     * @param searchIn 
+     * @param pageIndex 
+     * @param pageSize 
+     * @param {*} [options] Override http request options.
+     */
+    public searchUsers (searchQuery: string, hasUserLoggedIn?: boolean, userDiscriminator?: 'All' | 'ApplicationUsers' | 'RestaurantUsers' | 'HydraUsers', searchIn?: 'Generic' | 'Id' | 'Email' | 'Phone' | 'CustomerName' | 'IdOrPhone' | 'IdOrCustomerName', pageIndex?: number, pageSize?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultUser;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/search';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'searchQuery' is not null or undefined
+        if (searchQuery === null || searchQuery === undefined) {
+            throw new Error('Required parameter searchQuery was null or undefined when calling searchUsers.');
+        }
+
+        if (searchQuery !== undefined) {
+            localVarQueryParameters['searchQuery'] = ObjectSerializer.serialize(searchQuery, "string");
+        }
+
+        if (hasUserLoggedIn !== undefined) {
+            localVarQueryParameters['hasUserLoggedIn'] = ObjectSerializer.serialize(hasUserLoggedIn, "boolean");
+        }
+
+        if (userDiscriminator !== undefined) {
+            localVarQueryParameters['userDiscriminator'] = ObjectSerializer.serialize(userDiscriminator, "'All' | 'ApplicationUsers' | 'RestaurantUsers' | 'HydraUsers'");
+        }
+
+        if (searchIn !== undefined) {
+            localVarQueryParameters['searchIn'] = ObjectSerializer.serialize(searchIn, "'Generic' | 'Id' | 'Email' | 'Phone' | 'CustomerName' | 'IdOrPhone' | 'IdOrCustomerName'");
+        }
+
+        if (pageIndex !== undefined) {
+            localVarQueryParameters['pageIndex'] = ObjectSerializer.serialize(pageIndex, "number");
+        }
+
+        if (pageSize !== undefined) {
+            localVarQueryParameters['pageSize'] = ObjectSerializer.serialize(pageSize, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultUser;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultUser");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
