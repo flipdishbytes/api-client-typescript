@@ -1897,6 +1897,110 @@ export class AppCreatedEvent {
 }
 
 /**
+* App Install information
+*/
+export class AppInstall {
+    /**
+    * Name of the installed application.
+    */
+    'Name'?: string;
+    /**
+    * Date and time of the user's first login to the app.
+    */
+    'FirstLogin'?: Date;
+    /**
+    * Human-readable representation of the first login date.
+    */
+    'FirstLoginHuman'?: string;
+    /**
+    * Date and time of the user's last activity in the app.
+    */
+    'LastActivity'?: Date;
+    /**
+    * Human-readable representation of the last activity date.
+    */
+    'LastActivityHuman'?: string;
+    /**
+    * Number of Google push notification tokens associated with the app install.
+    */
+    'GoogleTokens'?: number;
+    /**
+    * Number of Apple push notification tokens associated with the app install.
+    */
+    'AppleTokens'?: number;
+    /**
+    * Number of orders placed by the user through this app install.
+    */
+    'OrderCount'?: number;
+    /**
+    * User agent string at the time of signup.
+    */
+    'UserAgentAtSignup'?: string;
+    /**
+    * Most recent user agent string used by the user.
+    */
+    'UserAgentMostRecent'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "FirstLogin",
+            "baseName": "FirstLogin",
+            "type": "Date"
+        },
+        {
+            "name": "FirstLoginHuman",
+            "baseName": "FirstLoginHuman",
+            "type": "string"
+        },
+        {
+            "name": "LastActivity",
+            "baseName": "LastActivity",
+            "type": "Date"
+        },
+        {
+            "name": "LastActivityHuman",
+            "baseName": "LastActivityHuman",
+            "type": "string"
+        },
+        {
+            "name": "GoogleTokens",
+            "baseName": "GoogleTokens",
+            "type": "number"
+        },
+        {
+            "name": "AppleTokens",
+            "baseName": "AppleTokens",
+            "type": "number"
+        },
+        {
+            "name": "OrderCount",
+            "baseName": "OrderCount",
+            "type": "number"
+        },
+        {
+            "name": "UserAgentAtSignup",
+            "baseName": "UserAgentAtSignup",
+            "type": "string"
+        },
+        {
+            "name": "UserAgentMostRecent",
+            "baseName": "UserAgentMostRecent",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppInstall.attributeTypeMap;
+    }
+}
+
+/**
 * App lookup model
 */
 export class AppLookup {
@@ -18320,6 +18424,10 @@ export class Language {
     * Language Name
     */
     'Name'?: string;
+    /**
+    * Is the language enabled for use.
+    */
+    'Enabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -18338,6 +18446,11 @@ export class Language {
             "name": "Name",
             "baseName": "Name",
             "type": "string"
+        },
+        {
+            "name": "Enabled",
+            "baseName": "Enabled",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -29149,6 +29262,101 @@ export class PasswordResetModel {
 }
 
 /**
+* Payment Account information
+*/
+export class PaymentAccount {
+    /**
+    * The user ID associated with the payment account.
+    */
+    'UserId'?: number;
+    /**
+    * Unique identifier for the payment account.
+    */
+    'PaymentAccountId'?: number;
+    /**
+    * Indicates if the payment account can be removed from the customer view.
+    */
+    'CanRemoveFromCustomerView'?: boolean;
+    /**
+    * Bank Identification Number (BIN) of the payment method.
+    */
+    'Bin'?: string;
+    /**
+    * Indicates if this is the default payment method.
+    */
+    'IsDefaultPaymentMethod'?: boolean;
+    /**
+    * Indicates if the payment account is visible to the customer.
+    */
+    'IsVisibleToCustomer'?: boolean;
+    /**
+    * The type of payment account (e.g., card, PayPal).
+    */
+    'PaymentAccountType'?: string;
+    /**
+    * Description of the payment account.
+    */
+    'Description'?: string;
+    /**
+    * The customer ID associated with the payment account.
+    */
+    'CustomerId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "UserId",
+            "baseName": "UserId",
+            "type": "number"
+        },
+        {
+            "name": "PaymentAccountId",
+            "baseName": "PaymentAccountId",
+            "type": "number"
+        },
+        {
+            "name": "CanRemoveFromCustomerView",
+            "baseName": "CanRemoveFromCustomerView",
+            "type": "boolean"
+        },
+        {
+            "name": "Bin",
+            "baseName": "Bin",
+            "type": "string"
+        },
+        {
+            "name": "IsDefaultPaymentMethod",
+            "baseName": "IsDefaultPaymentMethod",
+            "type": "boolean"
+        },
+        {
+            "name": "IsVisibleToCustomer",
+            "baseName": "IsVisibleToCustomer",
+            "type": "boolean"
+        },
+        {
+            "name": "PaymentAccountType",
+            "baseName": "PaymentAccountType",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "CustomerId",
+            "baseName": "CustomerId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PaymentAccount.attributeTypeMap;
+    }
+}
+
+/**
 * Represents stripe PaymentIntent
 */
 export class PaymentIntent {
@@ -37850,7 +38058,7 @@ export class RestApiPaginationResultStoreValidationConfig {
 /**
 * Rest api pagination result
 */
-export class RestApiPaginationResultUser {
+export class RestApiPaginationResultUserSearch {
     /**
     * Current page index
     */
@@ -37866,7 +38074,7 @@ export class RestApiPaginationResultUser {
     /**
     * Generic data object.
     */
-    'Data': Array<User>;
+    'Data': Array<UserSearch>;
 
     static discriminator: string | undefined = undefined;
 
@@ -37889,11 +38097,11 @@ export class RestApiPaginationResultUser {
         {
             "name": "Data",
             "baseName": "Data",
-            "type": "Array<User>"
+            "type": "Array<UserSearch>"
         }    ];
 
     static getAttributeTypeMap() {
-        return RestApiPaginationResultUser.attributeTypeMap;
+        return RestApiPaginationResultUserSearch.attributeTypeMap;
     }
 }
 
@@ -40689,6 +40897,29 @@ export class RestApiResultUpdateMobileAppsSubmissionStatus {
 
     static getAttributeTypeMap() {
         return RestApiResultUpdateMobileAppsSubmissionStatus.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultUserInfo {
+    /**
+    * Generic data object.
+    */
+    'Data': UserInfo;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "UserInfo"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultUserInfo.attributeTypeMap;
     }
 }
 
@@ -53357,109 +53588,6 @@ export class UpdateVoucherUsage {
 }
 
 /**
-* User
-*/
-export class User {
-    /**
-    * User Id
-    */
-    'Id'?: number;
-    /**
-    * Phone Number
-    */
-    'PhoneNumber'?: string;
-    /**
-    * Email
-    */
-    'Email'?: string;
-    /**
-    * Customer Name
-    */
-    'CustomerName'?: string;
-    /**
-    * Has Logged In
-    */
-    'HasLoggedIn'?: boolean;
-    /**
-    * User Discriminator
-    */
-    'UserDiscriminator'?: User.UserDiscriminatorEnum;
-    /**
-    * Timestamp Created
-    */
-    'TsCreate'?: Date;
-    /**
-    * WhiteLabel Configs
-    */
-    'WhiteLabelConfigs'?: Array<UserWhiteLabelConfig>;
-    /**
-    * User Type
-    */
-    'UserType'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Id",
-            "baseName": "Id",
-            "type": "number"
-        },
-        {
-            "name": "PhoneNumber",
-            "baseName": "PhoneNumber",
-            "type": "string"
-        },
-        {
-            "name": "Email",
-            "baseName": "Email",
-            "type": "string"
-        },
-        {
-            "name": "CustomerName",
-            "baseName": "CustomerName",
-            "type": "string"
-        },
-        {
-            "name": "HasLoggedIn",
-            "baseName": "HasLoggedIn",
-            "type": "boolean"
-        },
-        {
-            "name": "UserDiscriminator",
-            "baseName": "UserDiscriminator",
-            "type": "User.UserDiscriminatorEnum"
-        },
-        {
-            "name": "TsCreate",
-            "baseName": "TsCreate",
-            "type": "Date"
-        },
-        {
-            "name": "WhiteLabelConfigs",
-            "baseName": "WhiteLabelConfigs",
-            "type": "Array<UserWhiteLabelConfig>"
-        },
-        {
-            "name": "UserType",
-            "baseName": "UserType",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return User.attributeTypeMap;
-    }
-}
-
-export namespace User {
-    export enum UserDiscriminatorEnum {
-        All = <any> 'All',
-        ApplicationUsers = <any> 'ApplicationUsers',
-        RestaurantUsers = <any> 'RestaurantUsers',
-        HydraUsers = <any> 'HydraUsers'
-    }
-}
-/**
 * User answered signup questions event
 */
 export class UserAnsweredSignupQuestionsEvent {
@@ -53795,6 +53923,263 @@ export class UserEventInfo {
 }
 
 /**
+* User information
+*/
+export class UserInfo {
+    /**
+    * The user's phone number.
+    */
+    'PhoneNumber'?: string;
+    /**
+    * The user's email address.
+    */
+    'Email'?: string;
+    /**
+    * Indicates if the user's email address has been confirmed.
+    */
+    'EmailConfirmed'?: boolean;
+    /**
+    * Indicates if the user is prevented from using cards.
+    */
+    'PreventFromUsingCards'?: boolean;
+    /**
+    * Indicates if the user's phone number is blocked.
+    */
+    'IsUserPhoneNumberBlocked'?: boolean;
+    /**
+    * List of white label information associated with the user.
+    */
+    'UserWhiteLabels'?: Array<UserWhiteLabelInfo>;
+    /**
+    * The unique identifier for the user.
+    */
+    'UserId'?: number;
+    /**
+    * The user's username.
+    */
+    'UserName'?: string;
+    /**
+    * The customer's name.
+    */
+    'CustomerName'?: string;
+    /**
+    * Indicates if the user has logged in.
+    */
+    'HasLoggedIn'?: boolean;
+    /**
+    * Indicates if the app rating control is disabled for the user.
+    */
+    'DisableAppRatingControl'?: boolean;
+    /**
+    * Indicates if the user has globally opted out.
+    */
+    'GloballyOptedOut'?: boolean;
+    /**
+    * The number of completed orders by the user.
+    */
+    'CompletedOrderCount'?: number;
+    /**
+    * The number of cancelled orders by the user.
+    */
+    'CancelledOrderCount'?: number;
+    /**
+    * The total value of orders placed by the user.
+    */
+    'OrderTotalValue'?: number;
+    /**
+    * The timestamp of the user's most recent order.
+    */
+    'TsMostRecentOrder'?: Date;
+    /**
+    * The timestamp of the user's first order.
+    */
+    'TsFirstOrder'?: Date;
+    /**
+    * Indicates if the user is a restaurant user.
+    */
+    'IsRestaurantUser'?: boolean;
+    /**
+    * List of app installs associated with the user.
+    */
+    'Installs'?: Array<AppInstall>;
+    /**
+    * List of delivery locations associated with the user.
+    */
+    'DeliveryLocations'?: Array<DeliveryLocation>;
+    /**
+    * List of payment accounts associated with the user.
+    */
+    'PaymentAccounts'?: Array<PaymentAccount>;
+    /**
+    * The language identifier for the user.
+    */
+    'LanguageId'?: string;
+    /**
+    * Current language name for the user.
+    */
+    'CurrentLanguageName'?: string;
+    /**
+    * Available languages that the user can choose from.
+    */
+    'Languages'?: Array<Language>;
+    /**
+    * The Salesforce contact ID for the user.
+    */
+    'SalesForceContactId'?: string;
+    /**
+    * The Stripe customer ID for the user.
+    */
+    'StripeCustomerId'?: string;
+    /**
+    * User's monthly commissions.
+    */
+    'UserMonthlyCommissions'?: Array<UserMonthlyCommission>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PhoneNumber",
+            "baseName": "PhoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "Email",
+            "baseName": "Email",
+            "type": "string"
+        },
+        {
+            "name": "EmailConfirmed",
+            "baseName": "EmailConfirmed",
+            "type": "boolean"
+        },
+        {
+            "name": "PreventFromUsingCards",
+            "baseName": "PreventFromUsingCards",
+            "type": "boolean"
+        },
+        {
+            "name": "IsUserPhoneNumberBlocked",
+            "baseName": "IsUserPhoneNumberBlocked",
+            "type": "boolean"
+        },
+        {
+            "name": "UserWhiteLabels",
+            "baseName": "UserWhiteLabels",
+            "type": "Array<UserWhiteLabelInfo>"
+        },
+        {
+            "name": "UserId",
+            "baseName": "UserId",
+            "type": "number"
+        },
+        {
+            "name": "UserName",
+            "baseName": "UserName",
+            "type": "string"
+        },
+        {
+            "name": "CustomerName",
+            "baseName": "CustomerName",
+            "type": "string"
+        },
+        {
+            "name": "HasLoggedIn",
+            "baseName": "HasLoggedIn",
+            "type": "boolean"
+        },
+        {
+            "name": "DisableAppRatingControl",
+            "baseName": "DisableAppRatingControl",
+            "type": "boolean"
+        },
+        {
+            "name": "GloballyOptedOut",
+            "baseName": "GloballyOptedOut",
+            "type": "boolean"
+        },
+        {
+            "name": "CompletedOrderCount",
+            "baseName": "CompletedOrderCount",
+            "type": "number"
+        },
+        {
+            "name": "CancelledOrderCount",
+            "baseName": "CancelledOrderCount",
+            "type": "number"
+        },
+        {
+            "name": "OrderTotalValue",
+            "baseName": "OrderTotalValue",
+            "type": "number"
+        },
+        {
+            "name": "TsMostRecentOrder",
+            "baseName": "TsMostRecentOrder",
+            "type": "Date"
+        },
+        {
+            "name": "TsFirstOrder",
+            "baseName": "TsFirstOrder",
+            "type": "Date"
+        },
+        {
+            "name": "IsRestaurantUser",
+            "baseName": "IsRestaurantUser",
+            "type": "boolean"
+        },
+        {
+            "name": "Installs",
+            "baseName": "Installs",
+            "type": "Array<AppInstall>"
+        },
+        {
+            "name": "DeliveryLocations",
+            "baseName": "DeliveryLocations",
+            "type": "Array<DeliveryLocation>"
+        },
+        {
+            "name": "PaymentAccounts",
+            "baseName": "PaymentAccounts",
+            "type": "Array<PaymentAccount>"
+        },
+        {
+            "name": "LanguageId",
+            "baseName": "LanguageId",
+            "type": "string"
+        },
+        {
+            "name": "CurrentLanguageName",
+            "baseName": "CurrentLanguageName",
+            "type": "string"
+        },
+        {
+            "name": "Languages",
+            "baseName": "Languages",
+            "type": "Array<Language>"
+        },
+        {
+            "name": "SalesForceContactId",
+            "baseName": "SalesForceContactId",
+            "type": "string"
+        },
+        {
+            "name": "StripeCustomerId",
+            "baseName": "StripeCustomerId",
+            "type": "string"
+        },
+        {
+            "name": "UserMonthlyCommissions",
+            "baseName": "UserMonthlyCommissions",
+            "type": "Array<UserMonthlyCommission>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserInfo.attributeTypeMap;
+    }
+}
+
+/**
 * User login event
 */
 export class UserLoginEvent {
@@ -53890,6 +54275,182 @@ export class UserLoginEvent {
 }
 
 /**
+* User Monthly Commission
+*/
+export class UserMonthlyCommission {
+    /**
+    * The unique identifier of the user.
+    */
+    'UserId'?: number;
+    /**
+    * The start date of the month for which the commission is calculated.
+    */
+    'MonthStart'?: Date;
+    /**
+    * The total commission amount for the user in the specified month.
+    */
+    'CommissionAmount'?: number;
+    /**
+    * The currency in which the commission is paid.
+    */
+    'Currency'?: UserMonthlyCommission.CurrencyEnum;
+    /**
+    * The ISO currency code for the commission currency.
+    */
+    'IsoCurrency'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "UserId",
+            "baseName": "UserId",
+            "type": "number"
+        },
+        {
+            "name": "MonthStart",
+            "baseName": "MonthStart",
+            "type": "Date"
+        },
+        {
+            "name": "CommissionAmount",
+            "baseName": "CommissionAmount",
+            "type": "number"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "UserMonthlyCommission.CurrencyEnum"
+        },
+        {
+            "name": "IsoCurrency",
+            "baseName": "IsoCurrency",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserMonthlyCommission.attributeTypeMap;
+    }
+}
+
+export namespace UserMonthlyCommission {
+    export enum CurrencyEnum {
+        EUR = <any> 'EUR',
+        USD = <any> 'USD',
+        GBP = <any> 'GBP',
+        CAD = <any> 'CAD',
+        AUD = <any> 'AUD',
+        DJF = <any> 'DJF',
+        ZAR = <any> 'ZAR',
+        ETB = <any> 'ETB',
+        AED = <any> 'AED',
+        BHD = <any> 'BHD',
+        DZD = <any> 'DZD',
+        EGP = <any> 'EGP',
+        IQD = <any> 'IQD',
+        JOD = <any> 'JOD',
+        KWD = <any> 'KWD',
+        LBP = <any> 'LBP',
+        LYD = <any> 'LYD',
+        MAD = <any> 'MAD',
+        OMR = <any> 'OMR',
+        QAR = <any> 'QAR',
+        SAR = <any> 'SAR',
+        SYP = <any> 'SYP',
+        TND = <any> 'TND',
+        YER = <any> 'YER',
+        CLP = <any> 'CLP',
+        INR = <any> 'INR',
+        AZN = <any> 'AZN',
+        RUB = <any> 'RUB',
+        BYN = <any> 'BYN',
+        BGN = <any> 'BGN',
+        NGN = <any> 'NGN',
+        BDT = <any> 'BDT',
+        CNY = <any> 'CNY',
+        BAM = <any> 'BAM',
+        CZK = <any> 'CZK',
+        DKK = <any> 'DKK',
+        CHF = <any> 'CHF',
+        MVR = <any> 'MVR',
+        BTN = <any> 'BTN',
+        XCD = <any> 'XCD',
+        BZD = <any> 'BZD',
+        HKD = <any> 'HKD',
+        IDR = <any> 'IDR',
+        JMD = <any> 'JMD',
+        MYR = <any> 'MYR',
+        NZD = <any> 'NZD',
+        PHP = <any> 'PHP',
+        SGD = <any> 'SGD',
+        TTD = <any> 'TTD',
+        XDR = <any> 'XDR',
+        ARS = <any> 'ARS',
+        BOB = <any> 'BOB',
+        COP = <any> 'COP',
+        CRC = <any> 'CRC',
+        CUP = <any> 'CUP',
+        DOP = <any> 'DOP',
+        GTQ = <any> 'GTQ',
+        HNL = <any> 'HNL',
+        MXN = <any> 'MXN',
+        NIO = <any> 'NIO',
+        PAB = <any> 'PAB',
+        PEN = <any> 'PEN',
+        PYG = <any> 'PYG',
+        UYU = <any> 'UYU',
+        VEF = <any> 'VEF',
+        IRR = <any> 'IRR',
+        XOF = <any> 'XOF',
+        CDF = <any> 'CDF',
+        XAF = <any> 'XAF',
+        HTG = <any> 'HTG',
+        ILS = <any> 'ILS',
+        HRK = <any> 'HRK',
+        HUF = <any> 'HUF',
+        AMD = <any> 'AMD',
+        ISK = <any> 'ISK',
+        JPY = <any> 'JPY',
+        GEL = <any> 'GEL',
+        KZT = <any> 'KZT',
+        KHR = <any> 'KHR',
+        KRW = <any> 'KRW',
+        KGS = <any> 'KGS',
+        LAK = <any> 'LAK',
+        MKD = <any> 'MKD',
+        MNT = <any> 'MNT',
+        BND = <any> 'BND',
+        MMK = <any> 'MMK',
+        NOK = <any> 'NOK',
+        NPR = <any> 'NPR',
+        PKR = <any> 'PKR',
+        PLN = <any> 'PLN',
+        AFN = <any> 'AFN',
+        BRL = <any> 'BRL',
+        MDL = <any> 'MDL',
+        RON = <any> 'RON',
+        RWF = <any> 'RWF',
+        SEK = <any> 'SEK',
+        LKR = <any> 'LKR',
+        SOS = <any> 'SOS',
+        ALL = <any> 'ALL',
+        RSD = <any> 'RSD',
+        KES = <any> 'KES',
+        TJS = <any> 'TJS',
+        THB = <any> 'THB',
+        ERN = <any> 'ERN',
+        TMT = <any> 'TMT',
+        BWP = <any> 'BWP',
+        TRY = <any> 'TRY',
+        UAH = <any> 'UAH',
+        UZS = <any> 'UZS',
+        VND = <any> 'VND',
+        MOP = <any> 'MOP',
+        TWD = <any> 'TWD',
+        BMD = <any> 'BMD'
+    }
+}
+/**
 * User created password event
 */
 export class UserPasswordCreatedEvent {
@@ -53984,6 +54545,109 @@ export class UserPasswordCreatedEvent {
     }
 }
 
+/**
+* User Search Result
+*/
+export class UserSearch {
+    /**
+    * User Id
+    */
+    'Id'?: number;
+    /**
+    * Phone Number
+    */
+    'PhoneNumber'?: string;
+    /**
+    * Email
+    */
+    'Email'?: string;
+    /**
+    * Customer Name
+    */
+    'CustomerName'?: string;
+    /**
+    * Has Logged In
+    */
+    'HasLoggedIn'?: boolean;
+    /**
+    * User Discriminator
+    */
+    'UserDiscriminator'?: UserSearch.UserDiscriminatorEnum;
+    /**
+    * Timestamp Created
+    */
+    'TsCreate'?: Date;
+    /**
+    * WhiteLabel Configs
+    */
+    'WhiteLabelConfigs'?: Array<UserWhiteLabelConfig>;
+    /**
+    * User Type
+    */
+    'UserType'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "PhoneNumber",
+            "baseName": "PhoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "Email",
+            "baseName": "Email",
+            "type": "string"
+        },
+        {
+            "name": "CustomerName",
+            "baseName": "CustomerName",
+            "type": "string"
+        },
+        {
+            "name": "HasLoggedIn",
+            "baseName": "HasLoggedIn",
+            "type": "boolean"
+        },
+        {
+            "name": "UserDiscriminator",
+            "baseName": "UserDiscriminator",
+            "type": "UserSearch.UserDiscriminatorEnum"
+        },
+        {
+            "name": "TsCreate",
+            "baseName": "TsCreate",
+            "type": "Date"
+        },
+        {
+            "name": "WhiteLabelConfigs",
+            "baseName": "WhiteLabelConfigs",
+            "type": "Array<UserWhiteLabelConfig>"
+        },
+        {
+            "name": "UserType",
+            "baseName": "UserType",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserSearch.attributeTypeMap;
+    }
+}
+
+export namespace UserSearch {
+    export enum UserDiscriminatorEnum {
+        All = <any> 'All',
+        ApplicationUsers = <any> 'ApplicationUsers',
+        RestaurantUsers = <any> 'RestaurantUsers',
+        HydraUsers = <any> 'HydraUsers'
+    }
+}
 /**
 * User updated event
 */
@@ -54154,6 +54818,47 @@ export namespace UserWhiteLabelConfig {
         Support = <any> 'Support'
     }
 }
+/**
+* User WhiteLabel information
+*/
+export class UserWhiteLabelInfo {
+    /**
+    * WhiteLabelConfig Id
+    */
+    'WlConfigId'?: number;
+    /**
+    * Brand Id (AppId)
+    */
+    'AppId'?: string;
+    /**
+    * WhiteLabel Name
+    */
+    'WhiteLabelName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "WlConfigId",
+            "baseName": "WlConfigId",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "WhiteLabelName",
+            "baseName": "WhiteLabelName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserWhiteLabelInfo.attributeTypeMap;
+    }
+}
+
 export class ValidValue {
     'Code': string;
     'Name': string;
@@ -57042,7 +57747,8 @@ let enumsMap: {[index: string]: any} = {
         "UpdateProductReference.ProductTypeEnum": UpdateProductReference.ProductTypeEnum,
         "UpdateVoucher.ChannelRestrictionsEnum": UpdateVoucher.ChannelRestrictionsEnum,
         "UpdateVoucher.VoucherSubTypeEnum": UpdateVoucher.VoucherSubTypeEnum,
-        "User.UserDiscriminatorEnum": User.UserDiscriminatorEnum,
+        "UserMonthlyCommission.CurrencyEnum": UserMonthlyCommission.CurrencyEnum,
+        "UserSearch.UserDiscriminatorEnum": UserSearch.UserDiscriminatorEnum,
         "UserWhiteLabelConfig.LevelEnum": UserWhiteLabelConfig.LevelEnum,
         "ValidityPeriod.DayOfWeekEnum": ValidityPeriod.DayOfWeekEnum,
         "Voucher.StatusEnum": Voucher.StatusEnum,
@@ -57085,6 +57791,7 @@ let typeMap: {[index: string]: any} = {
     "AppConfigSalesChannel": AppConfigSalesChannel,
     "AppConfigUpdateModel": AppConfigUpdateModel,
     "AppCreatedEvent": AppCreatedEvent,
+    "AppInstall": AppInstall,
     "AppLookup": AppLookup,
     "AppStoreApp": AppStoreApp,
     "AppStoreAppConfiguration": AppStoreAppConfiguration,
@@ -57413,6 +58120,7 @@ let typeMap: {[index: string]: any} = {
     "OwnerEntityConfiguration": OwnerEntityConfiguration,
     "OwnerEntityConfigurations": OwnerEntityConfigurations,
     "PasswordResetModel": PasswordResetModel,
+    "PaymentAccount": PaymentAccount,
     "PaymentIntent": PaymentIntent,
     "PaymentTerminalDetails": PaymentTerminalDetails,
     "PaymentTerminalTransactionDetails": PaymentTerminalTransactionDetails,
@@ -57569,7 +58277,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiPaginationResultStoreGroupExtended": RestApiPaginationResultStoreGroupExtended,
     "RestApiPaginationResultStoreHeader": RestApiPaginationResultStoreHeader,
     "RestApiPaginationResultStoreValidationConfig": RestApiPaginationResultStoreValidationConfig,
-    "RestApiPaginationResultUser": RestApiPaginationResultUser,
+    "RestApiPaginationResultUserSearch": RestApiPaginationResultUserSearch,
     "RestApiPaginationResultVoucherSummary": RestApiPaginationResultVoucherSummary,
     "RestApiPaginationResultWebhookLog": RestApiPaginationResultWebhookLog,
     "RestApiPaginationResultWebhookSubscription": RestApiPaginationResultWebhookSubscription,
@@ -57688,6 +58396,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultTelemetrySeriesResult": RestApiResultTelemetrySeriesResult,
     "RestApiResultTipConfiguration": RestApiResultTipConfiguration,
     "RestApiResultUpdateMobileAppsSubmissionStatus": RestApiResultUpdateMobileAppsSubmissionStatus,
+    "RestApiResultUserInfo": RestApiResultUserInfo,
     "RestApiResultVoucher": RestApiResultVoucher,
     "RestApiResultVoucherWithStats": RestApiResultVoucherWithStats,
     "RestApiResultWebsiteImage": RestApiResultWebsiteImage,
@@ -57828,15 +58537,18 @@ let typeMap: {[index: string]: any} = {
     "UpdateTipConfiguration": UpdateTipConfiguration,
     "UpdateVoucher": UpdateVoucher,
     "UpdateVoucherUsage": UpdateVoucherUsage,
-    "User": User,
     "UserAnsweredSignupQuestionsEvent": UserAnsweredSignupQuestionsEvent,
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
     "UserEventInfo": UserEventInfo,
+    "UserInfo": UserInfo,
     "UserLoginEvent": UserLoginEvent,
+    "UserMonthlyCommission": UserMonthlyCommission,
     "UserPasswordCreatedEvent": UserPasswordCreatedEvent,
+    "UserSearch": UserSearch,
     "UserUpdatedEvent": UserUpdatedEvent,
     "UserWhiteLabelConfig": UserWhiteLabelConfig,
+    "UserWhiteLabelInfo": UserWhiteLabelInfo,
     "ValidValue": ValidValue,
     "ValidationErrorResult": ValidationErrorResult,
     "ValidityPeriod": ValidityPeriod,
@@ -96270,6 +96982,62 @@ export class UsersApi {
     }
     /**
      * 
+     * @param userId 
+     * @param {*} [options] Override http request options.
+     */
+    public getUserById (userId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultUserInfo;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getUserById.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultUserInfo;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultUserInfo");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @param searchQuery 
      * @param hasUserLoggedIn 
      * @param userDiscriminator 
@@ -96278,7 +97046,7 @@ export class UsersApi {
      * @param pageSize 
      * @param {*} [options] Override http request options.
      */
-    public searchUsers (searchQuery: string, hasUserLoggedIn?: boolean, userDiscriminator?: 'All' | 'ApplicationUsers' | 'RestaurantUsers' | 'HydraUsers', searchIn?: 'Generic' | 'Id' | 'Email' | 'Phone' | 'CustomerName' | 'IdOrPhone' | 'IdOrCustomerName', pageIndex?: number, pageSize?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultUser;  }> {
+    public searchUsers (searchQuery: string, hasUserLoggedIn?: boolean, userDiscriminator?: 'All' | 'ApplicationUsers' | 'RestaurantUsers' | 'HydraUsers', searchIn?: 'Generic' | 'Id' | 'Email' | 'Phone' | 'CustomerName' | 'IdOrPhone' | 'IdOrCustomerName', pageIndex?: number, pageSize?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultUserSearch;  }> {
         const localVarPath = this.basePath + '/api/v1.0/users/search';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -96337,12 +97105,12 @@ export class UsersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultUser;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultUserSearch;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultUser");
+                    body = ObjectSerializer.deserialize(body, "RestApiPaginationResultUserSearch");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
