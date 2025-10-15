@@ -36416,6 +36416,75 @@ export class RestApiArrayResultTeammate {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultUserFlipdishAccount {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<UserFlipdishAccount>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<UserFlipdishAccount>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultUserFlipdishAccount.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultUserNote {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<UserNote>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<UserNote>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultUserNote.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultUserStoreInfo {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<UserStoreInfo>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<UserStoreInfo>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultUserStoreInfo.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultVoucherDataPoint {
     /**
     * Generic data object.
@@ -40920,6 +40989,29 @@ export class RestApiResultUserInfo {
 
     static getAttributeTypeMap() {
         return RestApiResultUserInfo.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultUserRole {
+    /**
+    * Generic data object.
+    */
+    'Data': UserRole;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "UserRole"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultUserRole.attributeTypeMap;
     }
 }
 
@@ -53923,6 +54015,38 @@ export class UserEventInfo {
 }
 
 /**
+* Flipdish account information associated with a user
+*/
+export class UserFlipdishAccount {
+    /**
+    * Flipdish Account Id
+    */
+    'FlipdishAccountId'?: number;
+    /**
+    * Flipdish Account Name
+    */
+    'Name'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "FlipdishAccountId",
+            "baseName": "FlipdishAccountId",
+            "type": "number"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserFlipdishAccount.attributeTypeMap;
+    }
+}
+
+/**
 * User information
 */
 export class UserInfo {
@@ -54451,6 +54575,83 @@ export namespace UserMonthlyCommission {
     }
 }
 /**
+* User Note
+*/
+export class UserNote {
+    /**
+    * Identifier for the user note.
+    */
+    'UserNoteId'?: number;
+    /**
+    * User identifier associated with the note.
+    */
+    'UserId'?: number;
+    /**
+    * Note content.
+    */
+    'Note'?: string;
+    /**
+    * Creation timestamp of the note.
+    */
+    'TsCreate'?: Date;
+    /**
+    * Identifier of the user who created the note.
+    */
+    'CreatedByUserId'?: number;
+    /**
+    * Name of the user who created the note.
+    */
+    'CreatedByUserName'?: string;
+    /**
+    * Email of the user who created the note.
+    */
+    'CreatedByUserEmail'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "UserNoteId",
+            "baseName": "UserNoteId",
+            "type": "number"
+        },
+        {
+            "name": "UserId",
+            "baseName": "UserId",
+            "type": "number"
+        },
+        {
+            "name": "Note",
+            "baseName": "Note",
+            "type": "string"
+        },
+        {
+            "name": "TsCreate",
+            "baseName": "TsCreate",
+            "type": "Date"
+        },
+        {
+            "name": "CreatedByUserId",
+            "baseName": "CreatedByUserId",
+            "type": "number"
+        },
+        {
+            "name": "CreatedByUserName",
+            "baseName": "CreatedByUserName",
+            "type": "string"
+        },
+        {
+            "name": "CreatedByUserEmail",
+            "baseName": "CreatedByUserEmail",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserNote.attributeTypeMap;
+    }
+}
+
+/**
 * User created password event
 */
 export class UserPasswordCreatedEvent {
@@ -54542,6 +54743,38 @@ export class UserPasswordCreatedEvent {
 
     static getAttributeTypeMap() {
         return UserPasswordCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* User Role
+*/
+export class UserRole {
+    /**
+    * Roles the user is in
+    */
+    'RolesUserIn'?: Array<string>;
+    /**
+    * Roles the user is not in
+    */
+    'RolesUserNotIn'?: Array<string>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "RolesUserIn",
+            "baseName": "RolesUserIn",
+            "type": "Array<string>"
+        },
+        {
+            "name": "RolesUserNotIn",
+            "baseName": "RolesUserNotIn",
+            "type": "Array<string>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserRole.attributeTypeMap;
     }
 }
 
@@ -54648,6 +54881,47 @@ export namespace UserSearch {
         HydraUsers = <any> 'HydraUsers'
     }
 }
+/**
+* Stores that the user is associated with
+*/
+export class UserStoreInfo {
+    /**
+    * Property Id
+    */
+    'PropertyId'?: string;
+    /**
+    * Store Id
+    */
+    'StoreId'?: number;
+    /**
+    * Store Name
+    */
+    'StoreName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PropertyId",
+            "baseName": "PropertyId",
+            "type": "string"
+        },
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreName",
+            "baseName": "StoreName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserStoreInfo.attributeTypeMap;
+    }
+}
+
 /**
 * User updated event
 */
@@ -58242,6 +58516,9 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultSubscriptionSummary": RestApiArrayResultSubscriptionSummary,
     "RestApiArrayResultSupportedCountry": RestApiArrayResultSupportedCountry,
     "RestApiArrayResultTeammate": RestApiArrayResultTeammate,
+    "RestApiArrayResultUserFlipdishAccount": RestApiArrayResultUserFlipdishAccount,
+    "RestApiArrayResultUserNote": RestApiArrayResultUserNote,
+    "RestApiArrayResultUserStoreInfo": RestApiArrayResultUserStoreInfo,
     "RestApiArrayResultVoucherDataPoint": RestApiArrayResultVoucherDataPoint,
     "RestApiDefaultResponse": RestApiDefaultResponse,
     "RestApiErrorResult": RestApiErrorResult,
@@ -58397,6 +58674,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultTipConfiguration": RestApiResultTipConfiguration,
     "RestApiResultUpdateMobileAppsSubmissionStatus": RestApiResultUpdateMobileAppsSubmissionStatus,
     "RestApiResultUserInfo": RestApiResultUserInfo,
+    "RestApiResultUserRole": RestApiResultUserRole,
     "RestApiResultVoucher": RestApiResultVoucher,
     "RestApiResultVoucherWithStats": RestApiResultVoucherWithStats,
     "RestApiResultWebsiteImage": RestApiResultWebsiteImage,
@@ -58541,11 +58819,15 @@ let typeMap: {[index: string]: any} = {
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
     "UserEventInfo": UserEventInfo,
+    "UserFlipdishAccount": UserFlipdishAccount,
     "UserInfo": UserInfo,
     "UserLoginEvent": UserLoginEvent,
     "UserMonthlyCommission": UserMonthlyCommission,
+    "UserNote": UserNote,
     "UserPasswordCreatedEvent": UserPasswordCreatedEvent,
+    "UserRole": UserRole,
     "UserSearch": UserSearch,
+    "UserStoreInfo": UserStoreInfo,
     "UserUpdatedEvent": UserUpdatedEvent,
     "UserWhiteLabelConfig": UserWhiteLabelConfig,
     "UserWhiteLabelInfo": UserWhiteLabelInfo,
@@ -96933,6 +97215,118 @@ export class UsersApi {
     }
     /**
      * 
+     * @param userId 
+     * @param {*} [options] Override http request options.
+     */
+    public getRestaurantUserAccounts (userId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultUserFlipdishAccount;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}/RestaurantUserAccounts'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getRestaurantUserAccounts.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultUserFlipdishAccount;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultUserFlipdishAccount");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param userId 
+     * @param {*} [options] Override http request options.
+     */
+    public getRestaurantUserStores (userId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultUserStoreInfo;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}/RestaurantUserStores'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getRestaurantUserStores.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultUserStoreInfo;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultUserStoreInfo");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @param {*} [options] Override http request options.
      */
     public getRoles (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringArrayResult;  }> {
@@ -96971,6 +97365,62 @@ export class UsersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiStringArrayResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param userId 
+     * @param {*} [options] Override http request options.
+     */
+    public getRolesAndUnassignedRoles (userId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultUserRole;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}/roles'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getRolesAndUnassignedRoles.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultUserRole;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultUserRole");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -97027,6 +97477,62 @@ export class UsersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultUserInfo");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param userId 
+     * @param {*} [options] Override http request options.
+     */
+    public getUserNotes (userId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultUserNote;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}/UserNotes'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getUserNotes.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultUserNote;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultUserNote");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
