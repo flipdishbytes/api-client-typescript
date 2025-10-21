@@ -1897,6 +1897,155 @@ export class AppCreatedEvent {
 }
 
 /**
+* App general configuration model
+*/
+export class AppGeneralConfigModel {
+    /**
+    * White label ID
+    */
+    'WhiteLabelId'?: number;
+    /**
+    * Deep link URL scheme
+    */
+    'DeepLinkUrlScheme'?: string;
+    /**
+    * SMS restaurant name
+    */
+    'SmsRestaurantName'?: string;
+    /**
+    * Nexmo support SMS number
+    */
+    'NexmoSupportSmsNumber'?: string;
+    /**
+    * Twilio support SMS number
+    */
+    'TwilioSupportSmsNumber'?: string;
+    /**
+    * Fallback phone number prefix
+    */
+    'FallbackPhoneNumberPrefix'?: string;
+    /**
+    * Autocomplete phone number length
+    */
+    'AutocompletePhoneNumberLength'?: number;
+    /**
+    * Contact form type  None = 0,  Email = 1,  Intercom = 2,  WebView = 3,  FlipdishMessages = 4
+    */
+    'ContactFormType'?: string;
+    /**
+    * Private support email address
+    */
+    'PrivateSupportEmailAddress'?: string;
+    /**
+    * Contact phone number
+    */
+    'ContactPhoneNumber'?: string;
+    /**
+    * Delivery enabled
+    */
+    'DeliveryEnabled'?: boolean;
+    /**
+    * Pickup enabled
+    */
+    'PickupEnabled'?: boolean;
+    /**
+    * Dine in enabled
+    */
+    'DineInEnabled'?: boolean;
+    /**
+    * Display delivery restaurant list screen
+    */
+    'DisplayDeliveryRestaurantListScreen'?: boolean;
+    /**
+    * Display pickup restaurant list screen
+    */
+    'DisplayPickupRestaurantListScreen'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "WhiteLabelId",
+            "baseName": "WhiteLabelId",
+            "type": "number"
+        },
+        {
+            "name": "DeepLinkUrlScheme",
+            "baseName": "DeepLinkUrlScheme",
+            "type": "string"
+        },
+        {
+            "name": "SmsRestaurantName",
+            "baseName": "SmsRestaurantName",
+            "type": "string"
+        },
+        {
+            "name": "NexmoSupportSmsNumber",
+            "baseName": "NexmoSupportSmsNumber",
+            "type": "string"
+        },
+        {
+            "name": "TwilioSupportSmsNumber",
+            "baseName": "TwilioSupportSmsNumber",
+            "type": "string"
+        },
+        {
+            "name": "FallbackPhoneNumberPrefix",
+            "baseName": "FallbackPhoneNumberPrefix",
+            "type": "string"
+        },
+        {
+            "name": "AutocompletePhoneNumberLength",
+            "baseName": "AutocompletePhoneNumberLength",
+            "type": "number"
+        },
+        {
+            "name": "ContactFormType",
+            "baseName": "ContactFormType",
+            "type": "string"
+        },
+        {
+            "name": "PrivateSupportEmailAddress",
+            "baseName": "PrivateSupportEmailAddress",
+            "type": "string"
+        },
+        {
+            "name": "ContactPhoneNumber",
+            "baseName": "ContactPhoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "DeliveryEnabled",
+            "baseName": "DeliveryEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "PickupEnabled",
+            "baseName": "PickupEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "DineInEnabled",
+            "baseName": "DineInEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "DisplayDeliveryRestaurantListScreen",
+            "baseName": "DisplayDeliveryRestaurantListScreen",
+            "type": "boolean"
+        },
+        {
+            "name": "DisplayPickupRestaurantListScreen",
+            "baseName": "DisplayPickupRestaurantListScreen",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppGeneralConfigModel.attributeTypeMap;
+    }
+}
+
+/**
 * App Install information
 */
 export class AppInstall {
@@ -2942,6 +3091,155 @@ export class AppStoreConfigDeletedEvent {
 }
 
 /**
+* App Store configuration model
+*/
+export class AppStoreConfigModel {
+    /**
+    * White label ID
+    */
+    'WhiteLabelId'?: number;
+    /**
+    * Ready to publish to app store
+    */
+    'ReadyToPublishToAppStore'?: boolean;
+    /**
+    * App store name
+    */
+    'AppStoreName'?: string;
+    /**
+    * App Store Apple ID
+    */
+    'AppStoreAppleId'?: string;
+    /**
+    * App Store URL
+    */
+    'AppStoreUrl'?: string;
+    /**
+    * App Store ID
+    */
+    'AppStoreId'?: string;
+    /**
+    * App Store password
+    */
+    'AppStorePassword'?: string;
+    /**
+    * Team ID
+    */
+    'TeamId'?: string;
+    /**
+    * App Group ID
+    */
+    'AppGroupId'?: string;
+    /**
+    * Bundle ID
+    */
+    'BundleId'?: string;
+    /**
+    * App Store signing identity
+    */
+    'AppStoreSigningIdentity'?: string;
+    /**
+    * App Store token
+    */
+    'AppStoreToken'?: string;
+    /**
+    * App Store merchant ID
+    */
+    'AppStoreMerchantId'?: string;
+    /**
+    * P8 private key
+    */
+    'P8PrivateKey'?: string;
+    /**
+    * P8 private key ID
+    */
+    'P8PrivateKeyId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "WhiteLabelId",
+            "baseName": "WhiteLabelId",
+            "type": "number"
+        },
+        {
+            "name": "ReadyToPublishToAppStore",
+            "baseName": "ReadyToPublishToAppStore",
+            "type": "boolean"
+        },
+        {
+            "name": "AppStoreName",
+            "baseName": "AppStoreName",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreAppleId",
+            "baseName": "AppStoreAppleId",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreUrl",
+            "baseName": "AppStoreUrl",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreId",
+            "baseName": "AppStoreId",
+            "type": "string"
+        },
+        {
+            "name": "AppStorePassword",
+            "baseName": "AppStorePassword",
+            "type": "string"
+        },
+        {
+            "name": "TeamId",
+            "baseName": "TeamId",
+            "type": "string"
+        },
+        {
+            "name": "AppGroupId",
+            "baseName": "AppGroupId",
+            "type": "string"
+        },
+        {
+            "name": "BundleId",
+            "baseName": "BundleId",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreSigningIdentity",
+            "baseName": "AppStoreSigningIdentity",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreToken",
+            "baseName": "AppStoreToken",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreMerchantId",
+            "baseName": "AppStoreMerchantId",
+            "type": "string"
+        },
+        {
+            "name": "P8PrivateKey",
+            "baseName": "P8PrivateKey",
+            "type": "string"
+        },
+        {
+            "name": "P8PrivateKeyId",
+            "baseName": "P8PrivateKeyId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AppStoreConfigModel.attributeTypeMap;
+    }
+}
+
+/**
 * AppStore Config Updated event
 */
 export class AppStoreConfigUpdatedEvent {
@@ -3268,6 +3566,47 @@ export class AppUpdatedEvent {
 
     static getAttributeTypeMap() {
         return AppUpdatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Asset result model
+*/
+export class AssetResultModel {
+    /**
+    * Asset result message
+    */
+    'Message'?: string;
+    /**
+    * Asset URL or path
+    */
+    'AssetUrl'?: string;
+    /**
+    * Asset name
+    */
+    'AssetName'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Message",
+            "baseName": "Message",
+            "type": "string"
+        },
+        {
+            "name": "AssetUrl",
+            "baseName": "AssetUrl",
+            "type": "string"
+        },
+        {
+            "name": "AssetName",
+            "baseName": "AssetName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AssetResultModel.attributeTypeMap;
     }
 }
 
@@ -4879,6 +5218,38 @@ export namespace BluetoothTerminalStatus {
         Offline = <any> 'Offline'
     }
 }
+/**
+* Build result model
+*/
+export class BuildResultModel {
+    /**
+    * Build result message
+    */
+    'Message'?: string;
+    /**
+    * Build ID or reference
+    */
+    'BuildId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Message",
+            "baseName": "Message",
+            "type": "string"
+        },
+        {
+            "name": "BuildId",
+            "baseName": "BuildId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BuildResultModel.attributeTypeMap;
+    }
+}
+
 /**
 * 
 */
@@ -32871,6 +33242,137 @@ export class PhoneCallStartedEvent {
 }
 
 /**
+* Play Store configuration model
+*/
+export class PlayStoreConfigModel {
+    /**
+    * White label ID
+    */
+    'WhiteLabelId'?: number;
+    /**
+    * Bundle ID
+    */
+    'BundleId'?: string;
+    /**
+    * Description
+    */
+    'Description'?: string;
+    /**
+    * Short description
+    */
+    'ShortDescription'?: string;
+    /**
+    * Copyright
+    */
+    'Copyright'?: string;
+    /**
+    * Keywords
+    */
+    'Keywords'?: string;
+    /**
+    * Marketing URL
+    */
+    'MarketingUrl'?: string;
+    /**
+    * Privacy URL
+    */
+    'PrivacyUrl'?: string;
+    /**
+    * Support URL
+    */
+    'SupportUrl'?: string;
+    /**
+    * Play Console account  0: UK, 1: IE
+    */
+    'PlayConsoleAccount'?: number;
+    /**
+    * Release notes
+    */
+    'ReleaseNotes'?: string;
+    /**
+    * Store icon URL
+    */
+    'StoreIcon'?: string;
+    /**
+    * Ready to publish Android
+    */
+    'ReadyToPublishAndroid'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "WhiteLabelId",
+            "baseName": "WhiteLabelId",
+            "type": "number"
+        },
+        {
+            "name": "BundleId",
+            "baseName": "BundleId",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "ShortDescription",
+            "baseName": "ShortDescription",
+            "type": "string"
+        },
+        {
+            "name": "Copyright",
+            "baseName": "Copyright",
+            "type": "string"
+        },
+        {
+            "name": "Keywords",
+            "baseName": "Keywords",
+            "type": "string"
+        },
+        {
+            "name": "MarketingUrl",
+            "baseName": "MarketingUrl",
+            "type": "string"
+        },
+        {
+            "name": "PrivacyUrl",
+            "baseName": "PrivacyUrl",
+            "type": "string"
+        },
+        {
+            "name": "SupportUrl",
+            "baseName": "SupportUrl",
+            "type": "string"
+        },
+        {
+            "name": "PlayConsoleAccount",
+            "baseName": "PlayConsoleAccount",
+            "type": "number"
+        },
+        {
+            "name": "ReleaseNotes",
+            "baseName": "ReleaseNotes",
+            "type": "string"
+        },
+        {
+            "name": "StoreIcon",
+            "baseName": "StoreIcon",
+            "type": "string"
+        },
+        {
+            "name": "ReadyToPublishAndroid",
+            "baseName": "ReadyToPublishAndroid",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PlayStoreConfigModel.attributeTypeMap;
+    }
+}
+
+/**
 * Breakdown of POS charges
 */
 export class PosRevenueDetails {
@@ -38559,6 +39061,29 @@ export class RestApiResultAppConfigSalesChannel {
 /**
 * Rest api result
 */
+export class RestApiResultAppGeneralConfigModel {
+    /**
+    * Generic data object.
+    */
+    'Data': AppGeneralConfigModel;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "AppGeneralConfigModel"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultAppGeneralConfigModel.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultAppStoreApp {
     /**
     * Generic data object.
@@ -38628,6 +39153,52 @@ export class RestApiResultAppStoreAppEntitlements {
 /**
 * Rest api result
 */
+export class RestApiResultAppStoreConfigModel {
+    /**
+    * Generic data object.
+    */
+    'Data': AppStoreConfigModel;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "AppStoreConfigModel"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultAppStoreConfigModel.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultAssetResultModel {
+    /**
+    * Generic data object.
+    */
+    'Data': AssetResultModel;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "AssetResultModel"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultAssetResultModel.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultAssignedBankAccount {
     /**
     * Generic data object.
@@ -38691,6 +39262,29 @@ export class RestApiResultBluetoothTerminalStatus {
 
     static getAttributeTypeMap() {
         return RestApiResultBluetoothTerminalStatus.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultBuildResultModel {
+    /**
+    * Generic data object.
+    */
+    'Data': BuildResultModel;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "BuildResultModel"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultBuildResultModel.attributeTypeMap;
     }
 }
 
@@ -40330,6 +40924,29 @@ export class RestApiResultPayoutReport3Overview {
 /**
 * Rest api result
 */
+export class RestApiResultPlayStoreConfigModel {
+    /**
+    * Generic data object.
+    */
+    'Data': PlayStoreConfigModel;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "PlayStoreConfigModel"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultPlayStoreConfigModel.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultPreOrderConfig {
     /**
     * Generic data object.
@@ -41106,6 +41723,29 @@ export class RestApiResultWebsiteTestimonial {
 
     static getAttributeTypeMap() {
         return RestApiResultWebsiteTestimonial.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultWhiteLabelConfigModel {
+    /**
+    * Generic data object.
+    */
+    'Data': WhiteLabelConfigModel;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "WhiteLabelConfigModel"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultWhiteLabelConfigModel.attributeTypeMap;
     }
 }
 
@@ -57701,6 +58341,205 @@ export class WebsiteVanityUrlUpdatedEvent {
 }
 
 /**
+* White label asset model
+*/
+export class WhiteLabelAssetModel {
+    /**
+    * White label asset ID
+    */
+    'WhiteLabelAssetId'?: number;
+    /**
+    * White label configuration ID
+    */
+    'WhiteLabelConfigId'?: number;
+    /**
+    * File path
+    */
+    'FilePath'?: string;
+    /**
+    * Asset URL
+    */
+    'Url'?: string;
+    /**
+    * Timestamp update
+    */
+    'TsUpdate'?: Date;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "WhiteLabelAssetId",
+            "baseName": "WhiteLabelAssetId",
+            "type": "number"
+        },
+        {
+            "name": "WhiteLabelConfigId",
+            "baseName": "WhiteLabelConfigId",
+            "type": "number"
+        },
+        {
+            "name": "FilePath",
+            "baseName": "FilePath",
+            "type": "string"
+        },
+        {
+            "name": "Url",
+            "baseName": "Url",
+            "type": "string"
+        },
+        {
+            "name": "TsUpdate",
+            "baseName": "TsUpdate",
+            "type": "Date"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WhiteLabelAssetModel.attributeTypeMap;
+    }
+}
+
+/**
+* White label color scheme model
+*/
+export class WhiteLabelColorSchemeModel {
+    /**
+    * White label color scheme ID
+    */
+    'WhiteLabelColorSchemeId'?: number;
+    /**
+    * Font
+    */
+    'Font'?: string;
+    /**
+    * Color
+    */
+    'Color'?: string;
+    /**
+    * Color 2
+    */
+    'Color2'?: string;
+    /**
+    * Color 3
+    */
+    'Color3'?: string;
+    /**
+    * Color 4
+    */
+    'Color4'?: string;
+    /**
+    * Color 5
+    */
+    'Color5'?: string;
+    /**
+    * Color 6
+    */
+    'Color6'?: string;
+    /**
+    * Color 7
+    */
+    'Color7'?: string;
+    /**
+    * Color 8
+    */
+    'Color8'?: string;
+    /**
+    * Color 9
+    */
+    'Color9'?: string;
+    /**
+    * Color 10
+    */
+    'Color10'?: string;
+    /**
+    * Color 11
+    */
+    'Color11'?: string;
+    /**
+    * Color 12 (Kiosk Primary Colour)
+    */
+    'Color12'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "WhiteLabelColorSchemeId",
+            "baseName": "WhiteLabelColorSchemeId",
+            "type": "number"
+        },
+        {
+            "name": "Font",
+            "baseName": "Font",
+            "type": "string"
+        },
+        {
+            "name": "Color",
+            "baseName": "Color",
+            "type": "string"
+        },
+        {
+            "name": "Color2",
+            "baseName": "Color2",
+            "type": "string"
+        },
+        {
+            "name": "Color3",
+            "baseName": "Color3",
+            "type": "string"
+        },
+        {
+            "name": "Color4",
+            "baseName": "Color4",
+            "type": "string"
+        },
+        {
+            "name": "Color5",
+            "baseName": "Color5",
+            "type": "string"
+        },
+        {
+            "name": "Color6",
+            "baseName": "Color6",
+            "type": "string"
+        },
+        {
+            "name": "Color7",
+            "baseName": "Color7",
+            "type": "string"
+        },
+        {
+            "name": "Color8",
+            "baseName": "Color8",
+            "type": "string"
+        },
+        {
+            "name": "Color9",
+            "baseName": "Color9",
+            "type": "string"
+        },
+        {
+            "name": "Color10",
+            "baseName": "Color10",
+            "type": "string"
+        },
+        {
+            "name": "Color11",
+            "baseName": "Color11",
+            "type": "string"
+        },
+        {
+            "name": "Color12",
+            "baseName": "Color12",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WhiteLabelColorSchemeModel.attributeTypeMap;
+    }
+}
+
+/**
 * White label configuration details
 */
 export class WhiteLabelConfig {
@@ -57765,6 +58604,1021 @@ export class WhiteLabelConfig {
 
     static getAttributeTypeMap() {
         return WhiteLabelConfig.attributeTypeMap;
+    }
+}
+
+/**
+* WhiteLabelConfig model
+*/
+export class WhiteLabelConfigModel {
+    /**
+    * White label languages
+    */
+    'WhiteLabelLanguages'?: Array<WhiteLabelLanguageModel>;
+    /**
+    * White label assets
+    */
+    'WhiteLabelAssets'?: Array<WhiteLabelAssetModel>;
+    /**
+    * White label color scheme
+    */
+    'ColorScheme'?: WhiteLabelColorSchemeModel;
+    /**
+    * White label configuration ID
+    */
+    'WhiteLabelConfigId'?: number;
+    /**
+    * White label ID
+    */
+    'WhiteLabelId'?: number;
+    /**
+    * White label name
+    */
+    'WhiteLabelName'?: string;
+    /**
+    * App name ID (Bundle ID Suffix)
+    */
+    'AppNameId'?: string;
+    /**
+    * Organization ID
+    */
+    'OrgId'?: string;
+    /**
+    * SMS restaurant name
+    */
+    'SmsRestaurantName'?: string;
+    /**
+    * Deep link URL scheme
+    */
+    'DeepLinkUrlScheme'?: string;
+    /**
+    * Host name
+    */
+    'HostName'?: string;
+    /**
+    * Nexmo support SMS number
+    */
+    'NexmoSupportSmsNumber'?: string;
+    /**
+    * Twilio support SMS number
+    */
+    'TwilioSupportSmsNumber'?: string;
+    /**
+    * Mixpanel token
+    */
+    'MixpanelToken'?: string;
+    /**
+    * Intercom app ID
+    */
+    'IntercomAppId'?: string;
+    /**
+    * Share message email subject
+    */
+    'ShareMessageEmailSubject'?: string;
+    /**
+    * Share message email message
+    */
+    'ShareMessageEmailMessage'?: string;
+    /**
+    * Share message SMS message
+    */
+    'ShareMessageSmsMessage'?: string;
+    /**
+    * Share message WhatsApp message
+    */
+    'ShareMessageWhatsAppMessage'?: string;
+    /**
+    * Share message Facebook message
+    */
+    'ShareMessageFacebookMessage'?: string;
+    /**
+    * Share message Twitter message
+    */
+    'ShareMessageTwitterMessage'?: string;
+    /**
+    * Share message generic message
+    */
+    'ShareMessageGenericMessage'?: string;
+    /**
+    * Display delivery restaurant list screen
+    */
+    'DisplayDeliveryRestaurantListScreen'?: boolean;
+    /**
+    * Contact form type
+    */
+    'ContactFormType'?: number;
+    /**
+    * Contact phone number
+    */
+    'ContactPhoneNumber'?: string;
+    /**
+    * Display bump side menu item
+    */
+    'DisplayBumpSideMenuItem'?: boolean;
+    /**
+    * Display free coke side menu item
+    */
+    'DisplayFreeCokeSideMenuItem'?: boolean;
+    /**
+    * App store URL
+    */
+    'AppStoreUrl'?: string;
+    /**
+    * Delivery enabled
+    */
+    'DeliveryEnabled'?: boolean;
+    /**
+    * Pickup enabled
+    */
+    'PickupEnabled'?: boolean;
+    /**
+    * Display pickup restaurant list screen
+    */
+    'DisplayPickupRestaurantListScreen'?: boolean;
+    /**
+    * Display cuisine type list and restaurant search bar
+    */
+    'DisplayCuisineTypeListAndRestaurantSearchBar'?: boolean;
+    /**
+    * Display user restaurant ratings
+    */
+    'DisplayUserRestaurantRatings'?: boolean;
+    /**
+    * Ready to publish web
+    */
+    'ReadyToPublishWeb'?: boolean;
+    /**
+    * Ready to publish iOS
+    */
+    'ReadyToPublishIos'?: boolean;
+    /**
+    * Ready to publish Android
+    */
+    'ReadyToPublishAndroid'?: boolean;
+    /**
+    * Display footer links to other sites
+    */
+    'DisplayFooterLinksToOtherSites'?: boolean;
+    /**
+    * Display online ordering menu
+    */
+    'DisplayOnlineOrderingMenu'?: boolean;
+    /**
+    * Hide app config from admin list
+    */
+    'HideAppConfigFromAdminList'?: boolean;
+    /**
+    * Compliance type
+    */
+    'ComplianceType'?: WhiteLabelConfigModel.ComplianceTypeEnum;
+    /**
+    * Is menu migrated to RMS
+    */
+    'IsMenuMigratedToRms'?: boolean;
+    /**
+    * Map boundary max longitude
+    */
+    'MapBoundryMaxLongitude'?: number;
+    /**
+    * Map boundary min longitude
+    */
+    'MapBoundryMinLongitude'?: number;
+    /**
+    * Map boundary max latitude
+    */
+    'MapBoundryMaxLatitude'?: number;
+    /**
+    * Map boundary min latitude
+    */
+    'MapBoundryMinLatitude'?: number;
+    /**
+    * App store Apple ID
+    */
+    'AppStoreAppleId'?: string;
+    /**
+    * App store token
+    */
+    'AppStoreToken'?: string;
+    /**
+    * Website display static menu page
+    */
+    'WebsiteDisplayStaticMenuPage'?: boolean;
+    /**
+    * Is embed
+    */
+    'IsEmbed'?: boolean;
+    /**
+    * Display tip option to users by default
+    */
+    'DisplayTipOptionToUsersByDefault'?: boolean;
+    /**
+    * Email request mode
+    */
+    'EmailRequestMode'?: number;
+    /**
+    * Address entry type
+    */
+    'AddressEntryType'?: number;
+    /**
+    * Address layout
+    */
+    'AddressLayout'?: number;
+    /**
+    * Category
+    */
+    'Category'?: number;
+    /**
+    * Map center latitude
+    */
+    'MapCenterLatitude'?: number;
+    /**
+    * Map center longitude
+    */
+    'MapCenterLongitude'?: number;
+    /**
+    * Intercom token iOS
+    */
+    'IntercomTokenIos'?: string;
+    /**
+    * Intercom token Android
+    */
+    'IntercomTokenAndroid'?: string;
+    /**
+    * Google Analytics tokens CSV
+    */
+    'GoogleAnalyticsTokensCsv'?: string;
+    /**
+    * Facebook tokens CSV
+    */
+    'FacebookTokensCsv'?: string;
+    /**
+    * Share message generic URL
+    */
+    'ShareMessageGenericUrl'?: string;
+    /**
+    * Private support email address
+    */
+    'PrivateSupportEmailAddress'?: string;
+    /**
+    * App store ID
+    */
+    'AppStoreId'?: string;
+    /**
+    * Play console account
+    */
+    'PlayConsoleAccount'?: number;
+    /**
+    * APN certificate valid after
+    */
+    'ApnCertificateValidAfter'?: Date;
+    /**
+    * APN certificate valid before
+    */
+    'ApnCertificateValidBefore'?: Date;
+    /**
+    * Dine in enabled
+    */
+    'DineInEnabled'?: boolean;
+    /**
+    * App font
+    */
+    'AppFont'?: string;
+    /**
+    * White label color scheme ID
+    */
+    'WhiteLabelColorSchemeId'?: number;
+    /**
+    * White label images ID
+    */
+    'WhiteLabelImagesId'?: number;
+    /**
+    * App store copyright
+    */
+    'AppStoreCopyright'?: string;
+    /**
+    * App store description
+    */
+    'AppStoreDescription'?: string;
+    /**
+    * App store short description
+    */
+    'AppStoreShortDescription'?: string;
+    /**
+    * App store keywords
+    */
+    'AppStoreKeywords'?: string;
+    /**
+    * App store marketing URL
+    */
+    'AppStoreMarketingUrl'?: string;
+    /**
+    * App store name
+    */
+    'AppStoreName'?: string;
+    /**
+    * App store privacy URL
+    */
+    'AppStorePrivacyUrl'?: string;
+    /**
+    * App store support URL
+    */
+    'AppStoreSupportUrl'?: string;
+    /**
+    * App store release notes
+    */
+    'AppStoreReleaseNotes'?: string;
+    /**
+    * App store icon URL
+    */
+    'AppStoreIconUrl'?: string;
+    /**
+    * App store icon thumbnail 100 URL
+    */
+    'AppStoreIconThumbnail100Url'?: string;
+    /**
+    * Transparent logo URL
+    */
+    'TransparentLogoUrl'?: string;
+    /**
+    * Logo image name
+    */
+    'LogoImageName'?: string;
+    /**
+    * Kiosk name screen image
+    */
+    'KioskNameScreenImage'?: string;
+    /**
+    * Web to app redirect
+    */
+    'WebToAppRedirect'?: number;
+    /**
+    * Features CSV
+    */
+    'FeaturesCsv'?: string;
+    /**
+    * App store password
+    */
+    'AppStorePassword'?: string;
+    /**
+    * App store team ID
+    */
+    'AppStoreTeamId'?: string;
+    /**
+    * App store app group
+    */
+    'AppStoreAppGroup'?: string;
+    /**
+    * App store signing identity
+    */
+    'AppStoreSigningIdentity'?: string;
+    /**
+    * App store ITC team ID
+    */
+    'AppStoreItcTeamId'?: string;
+    /**
+    * Head HTML
+    */
+    'HeadHtml'?: string;
+    /**
+    * Social Twitter URL
+    */
+    'SocialTwitterUrl'?: string;
+    /**
+    * Social Facebook URL
+    */
+    'SocialFacebookUrl'?: string;
+    /**
+    * Social Instagram URL
+    */
+    'SocialInstagramUrl'?: string;
+    /**
+    * Social Pinterest URL
+    */
+    'SocialPintrestUrl'?: string;
+    /**
+    * Social TripAdvisor URL
+    */
+    'SocialTripAdvisorUrl'?: string;
+    /**
+    * Social Google Plus URL
+    */
+    'SocialGooglePlusUrl'?: string;
+    /**
+    * Social FourSquare URL
+    */
+    'SocialFourSquareUrl'?: string;
+    /**
+    * Social Yelp URL
+    */
+    'SocialYelpUrl'?: string;
+    /**
+    * Website type
+    */
+    'WebsiteType'?: number;
+    /**
+    * External ordering page URL
+    */
+    'ExternalOrderingPageUrl'?: string;
+    /**
+    * Panacea enabled
+    */
+    'PanaceaEnabled'?: boolean;
+    /**
+    * Cookie consent prompt enabled
+    */
+    'CookieConsentPromptEnabled'?: boolean;
+    /**
+    * Panacea vanity URL
+    */
+    'PanaceaVanityUrl'?: string;
+    /**
+    * Country ID
+    */
+    'CountryId'?: string;
+    /**
+    * Referral user ID
+    */
+    'ReferralUserId'?: number;
+    /**
+    * Referral campaign ID
+    */
+    'ReferralCampaignId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "WhiteLabelLanguages",
+            "baseName": "WhiteLabelLanguages",
+            "type": "Array<WhiteLabelLanguageModel>"
+        },
+        {
+            "name": "WhiteLabelAssets",
+            "baseName": "WhiteLabelAssets",
+            "type": "Array<WhiteLabelAssetModel>"
+        },
+        {
+            "name": "ColorScheme",
+            "baseName": "ColorScheme",
+            "type": "WhiteLabelColorSchemeModel"
+        },
+        {
+            "name": "WhiteLabelConfigId",
+            "baseName": "WhiteLabelConfigId",
+            "type": "number"
+        },
+        {
+            "name": "WhiteLabelId",
+            "baseName": "WhiteLabelId",
+            "type": "number"
+        },
+        {
+            "name": "WhiteLabelName",
+            "baseName": "WhiteLabelName",
+            "type": "string"
+        },
+        {
+            "name": "AppNameId",
+            "baseName": "AppNameId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
+        {
+            "name": "SmsRestaurantName",
+            "baseName": "SmsRestaurantName",
+            "type": "string"
+        },
+        {
+            "name": "DeepLinkUrlScheme",
+            "baseName": "DeepLinkUrlScheme",
+            "type": "string"
+        },
+        {
+            "name": "HostName",
+            "baseName": "HostName",
+            "type": "string"
+        },
+        {
+            "name": "NexmoSupportSmsNumber",
+            "baseName": "NexmoSupportSmsNumber",
+            "type": "string"
+        },
+        {
+            "name": "TwilioSupportSmsNumber",
+            "baseName": "TwilioSupportSmsNumber",
+            "type": "string"
+        },
+        {
+            "name": "MixpanelToken",
+            "baseName": "MixpanelToken",
+            "type": "string"
+        },
+        {
+            "name": "IntercomAppId",
+            "baseName": "IntercomAppId",
+            "type": "string"
+        },
+        {
+            "name": "ShareMessageEmailSubject",
+            "baseName": "ShareMessageEmailSubject",
+            "type": "string"
+        },
+        {
+            "name": "ShareMessageEmailMessage",
+            "baseName": "ShareMessageEmailMessage",
+            "type": "string"
+        },
+        {
+            "name": "ShareMessageSmsMessage",
+            "baseName": "ShareMessageSmsMessage",
+            "type": "string"
+        },
+        {
+            "name": "ShareMessageWhatsAppMessage",
+            "baseName": "ShareMessageWhatsAppMessage",
+            "type": "string"
+        },
+        {
+            "name": "ShareMessageFacebookMessage",
+            "baseName": "ShareMessageFacebookMessage",
+            "type": "string"
+        },
+        {
+            "name": "ShareMessageTwitterMessage",
+            "baseName": "ShareMessageTwitterMessage",
+            "type": "string"
+        },
+        {
+            "name": "ShareMessageGenericMessage",
+            "baseName": "ShareMessageGenericMessage",
+            "type": "string"
+        },
+        {
+            "name": "DisplayDeliveryRestaurantListScreen",
+            "baseName": "DisplayDeliveryRestaurantListScreen",
+            "type": "boolean"
+        },
+        {
+            "name": "ContactFormType",
+            "baseName": "ContactFormType",
+            "type": "number"
+        },
+        {
+            "name": "ContactPhoneNumber",
+            "baseName": "ContactPhoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "DisplayBumpSideMenuItem",
+            "baseName": "DisplayBumpSideMenuItem",
+            "type": "boolean"
+        },
+        {
+            "name": "DisplayFreeCokeSideMenuItem",
+            "baseName": "DisplayFreeCokeSideMenuItem",
+            "type": "boolean"
+        },
+        {
+            "name": "AppStoreUrl",
+            "baseName": "AppStoreUrl",
+            "type": "string"
+        },
+        {
+            "name": "DeliveryEnabled",
+            "baseName": "DeliveryEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "PickupEnabled",
+            "baseName": "PickupEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "DisplayPickupRestaurantListScreen",
+            "baseName": "DisplayPickupRestaurantListScreen",
+            "type": "boolean"
+        },
+        {
+            "name": "DisplayCuisineTypeListAndRestaurantSearchBar",
+            "baseName": "DisplayCuisineTypeListAndRestaurantSearchBar",
+            "type": "boolean"
+        },
+        {
+            "name": "DisplayUserRestaurantRatings",
+            "baseName": "DisplayUserRestaurantRatings",
+            "type": "boolean"
+        },
+        {
+            "name": "ReadyToPublishWeb",
+            "baseName": "ReadyToPublishWeb",
+            "type": "boolean"
+        },
+        {
+            "name": "ReadyToPublishIos",
+            "baseName": "ReadyToPublishIos",
+            "type": "boolean"
+        },
+        {
+            "name": "ReadyToPublishAndroid",
+            "baseName": "ReadyToPublishAndroid",
+            "type": "boolean"
+        },
+        {
+            "name": "DisplayFooterLinksToOtherSites",
+            "baseName": "DisplayFooterLinksToOtherSites",
+            "type": "boolean"
+        },
+        {
+            "name": "DisplayOnlineOrderingMenu",
+            "baseName": "DisplayOnlineOrderingMenu",
+            "type": "boolean"
+        },
+        {
+            "name": "HideAppConfigFromAdminList",
+            "baseName": "HideAppConfigFromAdminList",
+            "type": "boolean"
+        },
+        {
+            "name": "ComplianceType",
+            "baseName": "ComplianceType",
+            "type": "WhiteLabelConfigModel.ComplianceTypeEnum"
+        },
+        {
+            "name": "IsMenuMigratedToRms",
+            "baseName": "IsMenuMigratedToRms",
+            "type": "boolean"
+        },
+        {
+            "name": "MapBoundryMaxLongitude",
+            "baseName": "MapBoundryMaxLongitude",
+            "type": "number"
+        },
+        {
+            "name": "MapBoundryMinLongitude",
+            "baseName": "MapBoundryMinLongitude",
+            "type": "number"
+        },
+        {
+            "name": "MapBoundryMaxLatitude",
+            "baseName": "MapBoundryMaxLatitude",
+            "type": "number"
+        },
+        {
+            "name": "MapBoundryMinLatitude",
+            "baseName": "MapBoundryMinLatitude",
+            "type": "number"
+        },
+        {
+            "name": "AppStoreAppleId",
+            "baseName": "AppStoreAppleId",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreToken",
+            "baseName": "AppStoreToken",
+            "type": "string"
+        },
+        {
+            "name": "WebsiteDisplayStaticMenuPage",
+            "baseName": "WebsiteDisplayStaticMenuPage",
+            "type": "boolean"
+        },
+        {
+            "name": "IsEmbed",
+            "baseName": "IsEmbed",
+            "type": "boolean"
+        },
+        {
+            "name": "DisplayTipOptionToUsersByDefault",
+            "baseName": "DisplayTipOptionToUsersByDefault",
+            "type": "boolean"
+        },
+        {
+            "name": "EmailRequestMode",
+            "baseName": "EmailRequestMode",
+            "type": "number"
+        },
+        {
+            "name": "AddressEntryType",
+            "baseName": "AddressEntryType",
+            "type": "number"
+        },
+        {
+            "name": "AddressLayout",
+            "baseName": "AddressLayout",
+            "type": "number"
+        },
+        {
+            "name": "Category",
+            "baseName": "Category",
+            "type": "number"
+        },
+        {
+            "name": "MapCenterLatitude",
+            "baseName": "MapCenterLatitude",
+            "type": "number"
+        },
+        {
+            "name": "MapCenterLongitude",
+            "baseName": "MapCenterLongitude",
+            "type": "number"
+        },
+        {
+            "name": "IntercomTokenIos",
+            "baseName": "IntercomTokenIos",
+            "type": "string"
+        },
+        {
+            "name": "IntercomTokenAndroid",
+            "baseName": "IntercomTokenAndroid",
+            "type": "string"
+        },
+        {
+            "name": "GoogleAnalyticsTokensCsv",
+            "baseName": "GoogleAnalyticsTokensCsv",
+            "type": "string"
+        },
+        {
+            "name": "FacebookTokensCsv",
+            "baseName": "FacebookTokensCsv",
+            "type": "string"
+        },
+        {
+            "name": "ShareMessageGenericUrl",
+            "baseName": "ShareMessageGenericUrl",
+            "type": "string"
+        },
+        {
+            "name": "PrivateSupportEmailAddress",
+            "baseName": "PrivateSupportEmailAddress",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreId",
+            "baseName": "AppStoreId",
+            "type": "string"
+        },
+        {
+            "name": "PlayConsoleAccount",
+            "baseName": "PlayConsoleAccount",
+            "type": "number"
+        },
+        {
+            "name": "ApnCertificateValidAfter",
+            "baseName": "ApnCertificateValidAfter",
+            "type": "Date"
+        },
+        {
+            "name": "ApnCertificateValidBefore",
+            "baseName": "ApnCertificateValidBefore",
+            "type": "Date"
+        },
+        {
+            "name": "DineInEnabled",
+            "baseName": "DineInEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "AppFont",
+            "baseName": "AppFont",
+            "type": "string"
+        },
+        {
+            "name": "WhiteLabelColorSchemeId",
+            "baseName": "WhiteLabelColorSchemeId",
+            "type": "number"
+        },
+        {
+            "name": "WhiteLabelImagesId",
+            "baseName": "WhiteLabelImagesId",
+            "type": "number"
+        },
+        {
+            "name": "AppStoreCopyright",
+            "baseName": "AppStoreCopyright",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreDescription",
+            "baseName": "AppStoreDescription",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreShortDescription",
+            "baseName": "AppStoreShortDescription",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreKeywords",
+            "baseName": "AppStoreKeywords",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreMarketingUrl",
+            "baseName": "AppStoreMarketingUrl",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreName",
+            "baseName": "AppStoreName",
+            "type": "string"
+        },
+        {
+            "name": "AppStorePrivacyUrl",
+            "baseName": "AppStorePrivacyUrl",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreSupportUrl",
+            "baseName": "AppStoreSupportUrl",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreReleaseNotes",
+            "baseName": "AppStoreReleaseNotes",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreIconUrl",
+            "baseName": "AppStoreIconUrl",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreIconThumbnail100Url",
+            "baseName": "AppStoreIconThumbnail100Url",
+            "type": "string"
+        },
+        {
+            "name": "TransparentLogoUrl",
+            "baseName": "TransparentLogoUrl",
+            "type": "string"
+        },
+        {
+            "name": "LogoImageName",
+            "baseName": "LogoImageName",
+            "type": "string"
+        },
+        {
+            "name": "KioskNameScreenImage",
+            "baseName": "KioskNameScreenImage",
+            "type": "string"
+        },
+        {
+            "name": "WebToAppRedirect",
+            "baseName": "WebToAppRedirect",
+            "type": "number"
+        },
+        {
+            "name": "FeaturesCsv",
+            "baseName": "FeaturesCsv",
+            "type": "string"
+        },
+        {
+            "name": "AppStorePassword",
+            "baseName": "AppStorePassword",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreTeamId",
+            "baseName": "AppStoreTeamId",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreAppGroup",
+            "baseName": "AppStoreAppGroup",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreSigningIdentity",
+            "baseName": "AppStoreSigningIdentity",
+            "type": "string"
+        },
+        {
+            "name": "AppStoreItcTeamId",
+            "baseName": "AppStoreItcTeamId",
+            "type": "string"
+        },
+        {
+            "name": "HeadHtml",
+            "baseName": "HeadHtml",
+            "type": "string"
+        },
+        {
+            "name": "SocialTwitterUrl",
+            "baseName": "SocialTwitterUrl",
+            "type": "string"
+        },
+        {
+            "name": "SocialFacebookUrl",
+            "baseName": "SocialFacebookUrl",
+            "type": "string"
+        },
+        {
+            "name": "SocialInstagramUrl",
+            "baseName": "SocialInstagramUrl",
+            "type": "string"
+        },
+        {
+            "name": "SocialPintrestUrl",
+            "baseName": "SocialPintrestUrl",
+            "type": "string"
+        },
+        {
+            "name": "SocialTripAdvisorUrl",
+            "baseName": "SocialTripAdvisorUrl",
+            "type": "string"
+        },
+        {
+            "name": "SocialGooglePlusUrl",
+            "baseName": "SocialGooglePlusUrl",
+            "type": "string"
+        },
+        {
+            "name": "SocialFourSquareUrl",
+            "baseName": "SocialFourSquareUrl",
+            "type": "string"
+        },
+        {
+            "name": "SocialYelpUrl",
+            "baseName": "SocialYelpUrl",
+            "type": "string"
+        },
+        {
+            "name": "WebsiteType",
+            "baseName": "WebsiteType",
+            "type": "number"
+        },
+        {
+            "name": "ExternalOrderingPageUrl",
+            "baseName": "ExternalOrderingPageUrl",
+            "type": "string"
+        },
+        {
+            "name": "PanaceaEnabled",
+            "baseName": "PanaceaEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "CookieConsentPromptEnabled",
+            "baseName": "CookieConsentPromptEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "PanaceaVanityUrl",
+            "baseName": "PanaceaVanityUrl",
+            "type": "string"
+        },
+        {
+            "name": "CountryId",
+            "baseName": "CountryId",
+            "type": "string"
+        },
+        {
+            "name": "ReferralUserId",
+            "baseName": "ReferralUserId",
+            "type": "number"
+        },
+        {
+            "name": "ReferralCampaignId",
+            "baseName": "ReferralCampaignId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WhiteLabelConfigModel.attributeTypeMap;
+    }
+}
+
+export namespace WhiteLabelConfigModel {
+    export enum ComplianceTypeEnum {
+        Default = <any> 'Default',
+        GdprCompliance = <any> 'GdprCompliance'
+    }
+}
+/**
+* White label language model
+*/
+export class WhiteLabelLanguageModel {
+    /**
+    * Language ID
+    */
+    'LanguageId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "LanguageId",
+            "baseName": "LanguageId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WhiteLabelLanguageModel.attributeTypeMap;
     }
 }
 
@@ -58041,6 +59895,7 @@ let enumsMap: {[index: string]: any} = {
         "VoucherWithStats.ChannelRestrictionsEnum": VoucherWithStats.ChannelRestrictionsEnum,
         "VoucherWithStats.VoucherSubTypeEnum": VoucherWithStats.VoucherSubTypeEnum,
         "WebsiteImage.ImageLocationEnum": WebsiteImage.ImageLocationEnum,
+        "WhiteLabelConfigModel.ComplianceTypeEnum": WhiteLabelConfigModel.ComplianceTypeEnum,
 }
 
 let typeMap: {[index: string]: any} = {
@@ -58067,6 +59922,7 @@ let typeMap: {[index: string]: any} = {
     "AppConfigSalesChannel": AppConfigSalesChannel,
     "AppConfigUpdateModel": AppConfigUpdateModel,
     "AppCreatedEvent": AppCreatedEvent,
+    "AppGeneralConfigModel": AppGeneralConfigModel,
     "AppInstall": AppInstall,
     "AppLookup": AppLookup,
     "AppStoreApp": AppStoreApp,
@@ -58077,9 +59933,11 @@ let typeMap: {[index: string]: any} = {
     "AppStoreAppSupportInfo": AppStoreAppSupportInfo,
     "AppStoreConfigCreatedEvent": AppStoreConfigCreatedEvent,
     "AppStoreConfigDeletedEvent": AppStoreConfigDeletedEvent,
+    "AppStoreConfigModel": AppStoreConfigModel,
     "AppStoreConfigUpdatedEvent": AppStoreConfigUpdatedEvent,
     "AppStoreSubscriptionChangeJobUpdatedEvent": AppStoreSubscriptionChangeJobUpdatedEvent,
     "AppUpdatedEvent": AppUpdatedEvent,
+    "AssetResultModel": AssetResultModel,
     "AssignedBankAccount": AssignedBankAccount,
     "AuditLogFieldChangeInformation": AuditLogFieldChangeInformation,
     "BalanceDetails": BalanceDetails,
@@ -58093,6 +59951,7 @@ let typeMap: {[index: string]: any} = {
     "BankAccountSummary": BankAccountSummary,
     "BankAccountUpdatedEvent": BankAccountUpdatedEvent,
     "BluetoothTerminalStatus": BluetoothTerminalStatus,
+    "BuildResultModel": BuildResultModel,
     "BusinessHoursOverride": BusinessHoursOverride,
     "BusinessHoursOverrideBase": BusinessHoursOverrideBase,
     "BusinessHoursPeriod": BusinessHoursPeriod,
@@ -58426,6 +60285,7 @@ let typeMap: {[index: string]: any} = {
     "PhoneCall": PhoneCall,
     "PhoneCallEndedEvent": PhoneCallEndedEvent,
     "PhoneCallStartedEvent": PhoneCallStartedEvent,
+    "PlayStoreConfigModel": PlayStoreConfigModel,
     "PosRevenueDetails": PosRevenueDetails,
     "PreOrderConfig": PreOrderConfig,
     "PreOrderTime": PreOrderTime,
@@ -58570,12 +60430,16 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultAppChannelAssignment": RestApiResultAppChannelAssignment,
     "RestApiResultAppCompliance": RestApiResultAppCompliance,
     "RestApiResultAppConfigSalesChannel": RestApiResultAppConfigSalesChannel,
+    "RestApiResultAppGeneralConfigModel": RestApiResultAppGeneralConfigModel,
     "RestApiResultAppStoreApp": RestApiResultAppStoreApp,
     "RestApiResultAppStoreAppConfiguration": RestApiResultAppStoreAppConfiguration,
     "RestApiResultAppStoreAppEntitlements": RestApiResultAppStoreAppEntitlements,
+    "RestApiResultAppStoreConfigModel": RestApiResultAppStoreConfigModel,
+    "RestApiResultAssetResultModel": RestApiResultAssetResultModel,
     "RestApiResultAssignedBankAccount": RestApiResultAssignedBankAccount,
     "RestApiResultBankAccountDetail": RestApiResultBankAccountDetail,
     "RestApiResultBluetoothTerminalStatus": RestApiResultBluetoothTerminalStatus,
+    "RestApiResultBuildResultModel": RestApiResultBuildResultModel,
     "RestApiResultBusinessHoursOverride": RestApiResultBusinessHoursOverride,
     "RestApiResultBusinessHoursPeriod": RestApiResultBusinessHoursPeriod,
     "RestApiResultCardReader": RestApiResultCardReader,
@@ -58647,6 +60511,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultPaymentTerminalTransactionDetails": RestApiResultPaymentTerminalTransactionDetails,
     "RestApiResultPayoutReport3Details": RestApiResultPayoutReport3Details,
     "RestApiResultPayoutReport3Overview": RestApiResultPayoutReport3Overview,
+    "RestApiResultPlayStoreConfigModel": RestApiResultPlayStoreConfigModel,
     "RestApiResultPreOrderConfig": RestApiResultPreOrderConfig,
     "RestApiResultProcessingFeeConfig": RestApiResultProcessingFeeConfig,
     "RestApiResultProduct": RestApiResultProduct,
@@ -58681,6 +60546,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultVoucherWithStats": RestApiResultVoucherWithStats,
     "RestApiResultWebsiteImage": RestApiResultWebsiteImage,
     "RestApiResultWebsiteTestimonial": RestApiResultWebsiteTestimonial,
+    "RestApiResultWhiteLabelConfigModel": RestApiResultWhiteLabelConfigModel,
     "RestApiStringArrayResult": RestApiStringArrayResult,
     "RestApiStringResult": RestApiStringResult,
     "RestApiUnauthorizedResult": RestApiUnauthorizedResult,
@@ -58857,7 +60723,11 @@ let typeMap: {[index: string]: any} = {
     "WebsiteTestimonialBase": WebsiteTestimonialBase,
     "WebsiteUpdatedEvent": WebsiteUpdatedEvent,
     "WebsiteVanityUrlUpdatedEvent": WebsiteVanityUrlUpdatedEvent,
+    "WhiteLabelAssetModel": WhiteLabelAssetModel,
+    "WhiteLabelColorSchemeModel": WhiteLabelColorSchemeModel,
     "WhiteLabelConfig": WhiteLabelConfig,
+    "WhiteLabelConfigModel": WhiteLabelConfigModel,
+    "WhiteLabelLanguageModel": WhiteLabelLanguageModel,
 }
 
 export interface Authentication {
@@ -100305,6 +102175,1041 @@ export class WebsiteApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum WhiteLabelBuildsApiApiKeys {
+}
+
+export class WhiteLabelBuildsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: WhiteLabelBuildsApiApiKeys, value: string) {
+        (this.authentications as any)[WhiteLabelBuildsApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param {*} [options] Override http request options.
+     */
+    public healthCheck (options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelbuilds/health';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "string");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param whiteLabelIds 
+     * @param branch 
+     * @param buildType 
+     * @param {*} [options] Override http request options.
+     */
+    public submitAndroidApps (whiteLabelIds: string, branch?: string, buildType?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBuildResultModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelbuilds/android/multiple';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'whiteLabelIds' is not null or undefined
+        if (whiteLabelIds === null || whiteLabelIds === undefined) {
+            throw new Error('Required parameter whiteLabelIds was null or undefined when calling submitAndroidApps.');
+        }
+
+        if (whiteLabelIds !== undefined) {
+            localVarQueryParameters['whiteLabelIds'] = ObjectSerializer.serialize(whiteLabelIds, "string");
+        }
+
+        if (branch !== undefined) {
+            localVarQueryParameters['branch'] = ObjectSerializer.serialize(branch, "string");
+        }
+
+        if (buildType !== undefined) {
+            localVarQueryParameters['buildType'] = ObjectSerializer.serialize(buildType, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBuildResultModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultBuildResultModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param branch 
+     * @param lane 
+     * @param buildType 
+     * @param {*} [options] Override http request options.
+     */
+    public submitAndroidBuild (appId: string, branch: string, lane: string, buildType: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBuildResultModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelbuilds/{appId}/android'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling submitAndroidBuild.');
+        }
+
+        // verify required parameter 'branch' is not null or undefined
+        if (branch === null || branch === undefined) {
+            throw new Error('Required parameter branch was null or undefined when calling submitAndroidBuild.');
+        }
+
+        // verify required parameter 'lane' is not null or undefined
+        if (lane === null || lane === undefined) {
+            throw new Error('Required parameter lane was null or undefined when calling submitAndroidBuild.');
+        }
+
+        // verify required parameter 'buildType' is not null or undefined
+        if (buildType === null || buildType === undefined) {
+            throw new Error('Required parameter buildType was null or undefined when calling submitAndroidBuild.');
+        }
+
+        if (branch !== undefined) {
+            localVarQueryParameters['branch'] = ObjectSerializer.serialize(branch, "string");
+        }
+
+        if (lane !== undefined) {
+            localVarQueryParameters['lane'] = ObjectSerializer.serialize(lane, "string");
+        }
+
+        if (buildType !== undefined) {
+            localVarQueryParameters['buildType'] = ObjectSerializer.serialize(buildType, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBuildResultModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultBuildResultModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param whiteLabelIds 
+     * @param branch 
+     * @param buildType 
+     * @param {*} [options] Override http request options.
+     */
+    public submitIosApps (whiteLabelIds: string, branch?: string, buildType?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBuildResultModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelbuilds/ios/multiple';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'whiteLabelIds' is not null or undefined
+        if (whiteLabelIds === null || whiteLabelIds === undefined) {
+            throw new Error('Required parameter whiteLabelIds was null or undefined when calling submitIosApps.');
+        }
+
+        if (whiteLabelIds !== undefined) {
+            localVarQueryParameters['whiteLabelIds'] = ObjectSerializer.serialize(whiteLabelIds, "string");
+        }
+
+        if (branch !== undefined) {
+            localVarQueryParameters['branch'] = ObjectSerializer.serialize(branch, "string");
+        }
+
+        if (buildType !== undefined) {
+            localVarQueryParameters['buildType'] = ObjectSerializer.serialize(buildType, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBuildResultModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultBuildResultModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param buildType 
+     * @param branch 
+     * @param submitForReview 
+     * @param {*} [options] Override http request options.
+     */
+    public submitIosBuild (appId: string, buildType: string, branch: string, submitForReview?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBuildResultModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelbuilds/{appId}/ios'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling submitIosBuild.');
+        }
+
+        // verify required parameter 'buildType' is not null or undefined
+        if (buildType === null || buildType === undefined) {
+            throw new Error('Required parameter buildType was null or undefined when calling submitIosBuild.');
+        }
+
+        // verify required parameter 'branch' is not null or undefined
+        if (branch === null || branch === undefined) {
+            throw new Error('Required parameter branch was null or undefined when calling submitIosBuild.');
+        }
+
+        if (buildType !== undefined) {
+            localVarQueryParameters['buildType'] = ObjectSerializer.serialize(buildType, "string");
+        }
+
+        if (branch !== undefined) {
+            localVarQueryParameters['branch'] = ObjectSerializer.serialize(branch, "string");
+        }
+
+        if (submitForReview !== undefined) {
+            localVarQueryParameters['submitForReview'] = ObjectSerializer.serialize(submitForReview, "boolean");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultBuildResultModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultBuildResultModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum WhiteLabelConfigApiApiKeys {
+}
+
+export class WhiteLabelConfigApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: WhiteLabelConfigApiApiKeys, value: string) {
+        (this.authentications as any)[WhiteLabelConfigApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getAppGeneralConfig (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppGeneralConfigModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/{appId}/general'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAppGeneralConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppGeneralConfigModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppGeneralConfigModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getAppStoreConfig (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreConfigModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/{appId}/appstore'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAppStoreConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreConfigModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreConfigModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getPlayStoreConfig (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPlayStoreConfigModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/{appId}/playstore'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getPlayStoreConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPlayStoreConfigModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultPlayStoreConfigModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param wlid 
+     * @param {*} [options] Override http request options.
+     */
+    public getWhiteLabelConfig (wlid: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWhiteLabelConfigModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/id/{wlid}'
+            .replace('{' + 'wlid' + '}', encodeURIComponent(String(wlid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'wlid' is not null or undefined
+        if (wlid === null || wlid === undefined) {
+            throw new Error('Required parameter wlid was null or undefined when calling getWhiteLabelConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultWhiteLabelConfigModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultWhiteLabelConfigModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getWhiteLabelConfigByAppNameId (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWhiteLabelConfigModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/name/{appId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getWhiteLabelConfigByAppNameId.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultWhiteLabelConfigModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultWhiteLabelConfigModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param {*} [options] Override http request options.
+     */
+    public healthCheck (options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/health';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "string");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param appGeneralConfig 
+     * @param {*} [options] Override http request options.
+     */
+    public updateAppGeneralConfig (appId: string, appGeneralConfig: AppGeneralConfigModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppGeneralConfigModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/{appId}/general'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateAppGeneralConfig.');
+        }
+
+        // verify required parameter 'appGeneralConfig' is not null or undefined
+        if (appGeneralConfig === null || appGeneralConfig === undefined) {
+            throw new Error('Required parameter appGeneralConfig was null or undefined when calling updateAppGeneralConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(appGeneralConfig, "AppGeneralConfigModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppGeneralConfigModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppGeneralConfigModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param appStoreConfig 
+     * @param {*} [options] Override http request options.
+     */
+    public updateAppStoreConfig (appId: string, appStoreConfig: AppStoreConfigModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreConfigModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/{appId}/appstore'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateAppStoreConfig.');
+        }
+
+        // verify required parameter 'appStoreConfig' is not null or undefined
+        if (appStoreConfig === null || appStoreConfig === undefined) {
+            throw new Error('Required parameter appStoreConfig was null or undefined when calling updateAppStoreConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(appStoreConfig, "AppStoreConfigModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreConfigModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreConfigModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param playStoreConfig 
+     * @param {*} [options] Override http request options.
+     */
+    public updatePlayStoreConfig (appId: string, playStoreConfig: PlayStoreConfigModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPlayStoreConfigModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/{appId}/playstore'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updatePlayStoreConfig.');
+        }
+
+        // verify required parameter 'playStoreConfig' is not null or undefined
+        if (playStoreConfig === null || playStoreConfig === undefined) {
+            throw new Error('Required parameter playStoreConfig was null or undefined when calling updatePlayStoreConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(playStoreConfig, "PlayStoreConfigModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPlayStoreConfigModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultPlayStoreConfigModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param file 
+     * @param {*} [options] Override http request options.
+     */
+    public uploadAppStoreIcon (appId: string, file: HttpPostedFileBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAssetResultModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/{appId}/app-store-icon'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling uploadAppStoreIcon.');
+        }
+
+        // verify required parameter 'file' is not null or undefined
+        if (file === null || file === undefined) {
+            throw new Error('Required parameter file was null or undefined when calling uploadAppStoreIcon.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(file, "HttpPostedFileBase")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAssetResultModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAssetResultModel");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
