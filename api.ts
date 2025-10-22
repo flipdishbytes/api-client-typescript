@@ -37010,6 +37010,29 @@ export class RestApiArrayResultVoucherDataPoint {
 }
 
 /**
+* Rest api array result
+*/
+export class RestApiArrayResultVoucherSummary {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<VoucherSummary>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<VoucherSummary>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultVoucherSummary.attributeTypeMap;
+    }
+}
+
+/**
 * Rest api default response
 */
 export class RestApiDefaultResponse {
@@ -60382,6 +60405,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultUserNote": RestApiArrayResultUserNote,
     "RestApiArrayResultUserStoreInfo": RestApiArrayResultUserStoreInfo,
     "RestApiArrayResultVoucherDataPoint": RestApiArrayResultVoucherDataPoint,
+    "RestApiArrayResultVoucherSummary": RestApiArrayResultVoucherSummary,
     "RestApiDefaultResponse": RestApiDefaultResponse,
     "RestApiErrorResult": RestApiErrorResult,
     "RestApiEventSearchPaginationResult": RestApiEventSearchPaginationResult,
@@ -100601,6 +100625,69 @@ export class VouchersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiPaginationResultVoucherSummary");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param customerId 
+     * @param {*} [options] Override http request options.
+     */
+    public getVouchersByCustomerForApp (appId: string, customerId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultVoucherSummary;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/vouchers/{appId}/customer/{customerId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'customerId' + '}', encodeURIComponent(String(customerId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getVouchersByCustomerForApp.');
+        }
+
+        // verify required parameter 'customerId' is not null or undefined
+        if (customerId === null || customerId === undefined) {
+            throw new Error('Required parameter customerId was null or undefined when calling getVouchersByCustomerForApp.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultVoucherSummary;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultVoucherSummary");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
