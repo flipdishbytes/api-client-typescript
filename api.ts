@@ -13964,6 +13964,38 @@ export class FirebaseApp {
 }
 
 /**
+* Flipdish Account Name
+*/
+export class FlipdishAccountName {
+    /**
+    * Flipdish Account Id
+    */
+    'FlipdishAccountId'?: number;
+    /**
+    * Account Name
+    */
+    'Name'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "FlipdishAccountId",
+            "baseName": "FlipdishAccountId",
+            "type": "number"
+        },
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FlipdishAccountName.attributeTypeMap;
+    }
+}
+
+/**
 * Base Event
 */
 export class FlipdishEventBase {
@@ -35902,6 +35934,29 @@ export class RestApiArrayResultEmvTerminalWithAssignments {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultEmvTerminalWithAssignments.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultFlipdishAccountName {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<FlipdishAccountName>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<FlipdishAccountName>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultFlipdishAccountName.attributeTypeMap;
     }
 }
 
@@ -60082,6 +60137,7 @@ let typeMap: {[index: string]: any} = {
     "FileCreationResult": FileCreationResult,
     "FileDownloadResult": FileDownloadResult,
     "FirebaseApp": FirebaseApp,
+    "FlipdishAccountName": FlipdishAccountName,
     "FlipdishEventBase": FlipdishEventBase,
     "FlipdishFeesDetails": FlipdishFeesDetails,
     "FulfillentStatusActionItem": FulfillentStatusActionItem,
@@ -60357,6 +60413,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultCountryWithAccountFieldsDefinitions": RestApiArrayResultCountryWithAccountFieldsDefinitions,
     "RestApiArrayResultDeliveryZone": RestApiArrayResultDeliveryZone,
     "RestApiArrayResultEmvTerminalWithAssignments": RestApiArrayResultEmvTerminalWithAssignments,
+    "RestApiArrayResultFlipdishAccountName": RestApiArrayResultFlipdishAccountName,
     "RestApiArrayResultFulfillmentStatesConfigurationSummary": RestApiArrayResultFulfillmentStatesConfigurationSummary,
     "RestApiArrayResultHomeAction": RestApiArrayResultHomeAction,
     "RestApiArrayResultKioskCashPaymentSettings": RestApiArrayResultKioskCashPaymentSettings,
@@ -99791,6 +99848,69 @@ export class UsersApi {
     /**
      * 
      * @param userId 
+     * @param accountId 
+     * @param {*} [options] Override http request options.
+     */
+    public removeFlipdishAccountIdForUser (userId: number, accountId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiDefaultResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}/RemoveFlipdishAccountId/{accountId}'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
+            .replace('{' + 'accountId' + '}', encodeURIComponent(String(accountId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling removeFlipdishAccountIdForUser.');
+        }
+
+        // verify required parameter 'accountId' is not null or undefined
+        if (accountId === null || accountId === undefined) {
+            throw new Error('Required parameter accountId was null or undefined when calling removeFlipdishAccountIdForUser.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiDefaultResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiDefaultResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param userId 
      * @param roleName 
      * @param {*} [options] Override http request options.
      */
@@ -99898,6 +100018,65 @@ export class UsersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiDefaultResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param searchPattern 
+     * @param {*} [options] Override http request options.
+     */
+    public searchFlipdishAccounts (searchPattern: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultFlipdishAccountName;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/searchFlipdishAccounts';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'searchPattern' is not null or undefined
+        if (searchPattern === null || searchPattern === undefined) {
+            throw new Error('Required parameter searchPattern was null or undefined when calling searchFlipdishAccounts.');
+        }
+
+        if (searchPattern !== undefined) {
+            localVarQueryParameters['searchPattern'] = ObjectSerializer.serialize(searchPattern, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultFlipdishAccountName;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultFlipdishAccountName");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -100026,6 +100205,69 @@ export class UsersApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(customerName, "string")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiDefaultResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiDefaultResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param userId 
+     * @param accountId 
+     * @param {*} [options] Override http request options.
+     */
+    public setFlipdishAccountIdForUser (userId: number, accountId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiDefaultResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}/SetFlipdishAccountId/{accountId}'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
+            .replace('{' + 'accountId' + '}', encodeURIComponent(String(accountId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling setFlipdishAccountIdForUser.');
+        }
+
+        // verify required parameter 'accountId' is not null or undefined
+        if (accountId === null || accountId === undefined) {
+            throw new Error('Required parameter accountId was null or undefined when calling setFlipdishAccountIdForUser.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
