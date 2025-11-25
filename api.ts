@@ -13968,6 +13968,10 @@ export class FirebaseApp {
 */
 export class FlipdishAccountName {
     /**
+    * Payee Bank Account Data Id
+    */
+    'PayeeBankAccountDataId'?: number;
+    /**
     * Flipdish Account Id
     */
     'FlipdishAccountId'?: number;
@@ -13979,6 +13983,11 @@ export class FlipdishAccountName {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PayeeBankAccountDataId",
+            "baseName": "PayeeBankAccountDataId",
+            "type": "number"
+        },
         {
             "name": "FlipdishAccountId",
             "baseName": "FlipdishAccountId",
@@ -54739,6 +54748,10 @@ export class UserEventInfo {
 */
 export class UserFlipdishAccount {
     /**
+    * Payee Bank Account Data Id
+    */
+    'PayeeBankAccountDataId'?: number;
+    /**
     * Flipdish Account Id
     */
     'FlipdishAccountId'?: number;
@@ -54750,6 +54763,11 @@ export class UserFlipdishAccount {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PayeeBankAccountDataId",
+            "baseName": "PayeeBankAccountDataId",
+            "type": "number"
+        },
         {
             "name": "FlipdishAccountId",
             "baseName": "FlipdishAccountId",
