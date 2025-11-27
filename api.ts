@@ -83199,9 +83199,10 @@ export class MenusApi {
      * @summary Create a new menu asynchronously
      * @param appId App id
      * @param menu Menu
+     * @param orgId Org id
      * @param {*} [options] Override http request options.
      */
-    public createNewMenuAsync (appId: string, menu: CreateFullMenu, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public createNewMenuAsync (appId: string, menu: CreateFullMenu, orgId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/menus/async'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -83216,6 +83217,10 @@ export class MenusApi {
         // verify required parameter 'menu' is not null or undefined
         if (menu === null || menu === undefined) {
             throw new Error('Required parameter menu was null or undefined when calling createNewMenuAsync.');
+        }
+
+        if (orgId !== undefined) {
+            localVarQueryParameters['orgId'] = ObjectSerializer.serialize(orgId, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
