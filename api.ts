@@ -14593,6 +14593,8 @@ export class GetReceiptByOrderIdQueryResponse {
     'Address'?: string;
     'VatNumber'?: string;
     'PaymentMethodDescription'?: string;
+    'OrgId'?: string;
+    'CountryCode'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -14635,6 +14637,16 @@ export class GetReceiptByOrderIdQueryResponse {
         {
             "name": "PaymentMethodDescription",
             "baseName": "PaymentMethodDescription",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
+        {
+            "name": "CountryCode",
+            "baseName": "CountryCode",
             "type": "string"
         }    ];
 
