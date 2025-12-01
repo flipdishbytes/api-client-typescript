@@ -49516,6 +49516,10 @@ export class StoreSummary {
     * Address of the store
     */
     'PrettyAddress'?: string;
+    /**
+    * Country code of the store address (ISO 3166-1 alpha-2)
+    */
+    'CountryCode'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -49573,6 +49577,11 @@ export class StoreSummary {
         {
             "name": "PrettyAddress",
             "baseName": "PrettyAddress",
+            "type": "string"
+        },
+        {
+            "name": "CountryCode",
+            "baseName": "CountryCode",
             "type": "string"
         }    ];
 
