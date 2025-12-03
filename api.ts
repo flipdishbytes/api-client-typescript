@@ -4910,6 +4910,10 @@ export class BankAccountSummary {
     */
     'CurrencyCode'?: string;
     /**
+    * Account Holders Vat Number
+    */
+    'VatNumber'?: string;
+    /**
     * Information about the Stripe connected account associated with this bank account (if any)
     */
     'StripeConnectedAccountInfo'?: StripeConnectedAccountInfo;
@@ -4968,6 +4972,11 @@ export class BankAccountSummary {
         {
             "name": "CurrencyCode",
             "baseName": "CurrencyCode",
+            "type": "string"
+        },
+        {
+            "name": "VatNumber",
+            "baseName": "VatNumber",
             "type": "string"
         },
         {
