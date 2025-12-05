@@ -31980,6 +31980,8 @@ export class PayoutReport3DetailsFlipdishFees {
     'PosCardRevenue'?: number;
     'PosCardOnFlipdishOrders'?: number;
     'OtherIntegrationFees'?: number;
+    'OtherIntegrationFeesExcludingVat'?: number;
+    'OtherIntegrationFeesVatAmount'?: number;
     'OtherIntegrationTips'?: number;
     'RefundedFeesOnRefundedSales'?: number;
     'Vat'?: number;
@@ -32075,6 +32077,16 @@ export class PayoutReport3DetailsFlipdishFees {
         {
             "name": "OtherIntegrationFees",
             "baseName": "OtherIntegrationFees",
+            "type": "number"
+        },
+        {
+            "name": "OtherIntegrationFeesExcludingVat",
+            "baseName": "OtherIntegrationFeesExcludingVat",
+            "type": "number"
+        },
+        {
+            "name": "OtherIntegrationFeesVatAmount",
+            "baseName": "OtherIntegrationFeesVatAmount",
             "type": "number"
         },
         {
