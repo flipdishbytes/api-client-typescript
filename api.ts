@@ -49506,6 +49506,10 @@ export class StoreSummary {
     */
     'MenuId'?: number;
     /**
+    * Stores menu publish GUID
+    */
+    'MenuPublishId'?: string;
+    /**
     * Store metadata
     */
     'Metadata'?: { [key: string]: string; };
@@ -49559,6 +49563,11 @@ export class StoreSummary {
             "name": "MenuId",
             "baseName": "MenuId",
             "type": "number"
+        },
+        {
+            "name": "MenuPublishId",
+            "baseName": "MenuPublishId",
+            "type": "string"
         },
         {
             "name": "Metadata",
@@ -71070,19 +71079,24 @@ export class CrossSellApi {
     }
     /**
      * 
+     * @param appId 
      * @param menuId 
      * @param menuItemId 
      * @param limit 
      * @param totalValue 
-     * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getCrossSellMenuItems (menuId: number, menuItemId: Array<number>, limit: number, totalValue: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCrossSellMenuItems;  }> {
+    public getCrossSellMenuItems (appId: string, menuId: number, menuItemId: Array<number>, limit: number, totalValue: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCrossSellMenuItems;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/crossSell/menuItems'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getCrossSellMenuItems.');
+        }
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
@@ -71102,11 +71116,6 @@ export class CrossSellApi {
         // verify required parameter 'totalValue' is not null or undefined
         if (totalValue === null || totalValue === undefined) {
             throw new Error('Required parameter totalValue was null or undefined when calling getCrossSellMenuItems.');
-        }
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getCrossSellMenuItems.');
         }
 
         if (menuId !== undefined) {
