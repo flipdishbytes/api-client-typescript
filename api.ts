@@ -30157,6 +30157,10 @@ export class Payout {
     * Tips on POS sales
     */
     'TipsOnPosSales'?: number;
+    /**
+    * Indicates whether the bank account has changed since the previous payout
+    */
+    'BankAccountHasChanged'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -30380,6 +30384,11 @@ export class Payout {
             "name": "TipsOnPosSales",
             "baseName": "TipsOnPosSales",
             "type": "number"
+        },
+        {
+            "name": "BankAccountHasChanged",
+            "baseName": "BankAccountHasChanged",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -32343,6 +32352,7 @@ export class PayoutReport3OverviewHeader {
     'DestinationAccount'?: string;
     'Amount'?: number;
     'Currency'?: string;
+    'BankAccountHasChanged'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -32406,6 +32416,11 @@ export class PayoutReport3OverviewHeader {
             "name": "Currency",
             "baseName": "Currency",
             "type": "string"
+        },
+        {
+            "name": "BankAccountHasChanged",
+            "baseName": "BankAccountHasChanged",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
