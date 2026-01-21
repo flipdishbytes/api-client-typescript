@@ -33691,6 +33691,7 @@ export class PreviousOrder {
     'DeliveryLocationAddressString'?: string;
     'PaymentAccountType'?: string;
     'OrderId'?: number;
+    'ReceiptCode'?: string;
     'RestaurantName'?: string;
     'LocalOrderId'?: string;
     'TableServiceCategory'?: string;
@@ -33733,6 +33734,11 @@ export class PreviousOrder {
             "name": "OrderId",
             "baseName": "OrderId",
             "type": "number"
+        },
+        {
+            "name": "ReceiptCode",
+            "baseName": "ReceiptCode",
+            "type": "string"
         },
         {
             "name": "RestaurantName",
