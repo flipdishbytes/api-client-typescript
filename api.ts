@@ -46684,6 +46684,38 @@ export class StoreFeeConfig {
     * Reason for the last fee change (optional)
     */
     'Reason'?: string;
+    /**
+    * Gets or sets the percent fee card orders phone agent.
+    */
+    'PercentFeeCardOrdersPhoneAgent'?: number;
+    /**
+    * Gets or sets the percent fee cash orders phone agent.
+    */
+    'PercentFeeCashOrdersPhoneAgent'?: number;
+    /**
+    * Gets or sets the fixed fee card orders phone agent.
+    */
+    'FixedFeeCardOrdersPhoneAgent'?: number;
+    /**
+    * Gets or sets the fixed fee cash orders phone agent.
+    */
+    'FixedFeeCashOrdersPhoneAgent'?: number;
+    /**
+    * Gets or sets the percent fee card orders phone agent charged to customer including vat.
+    */
+    'PercentFeeCardOrdersPhoneAgentChargedToCustomerIncludingVat'?: number;
+    /**
+    * Gets or sets the percent fee cash orders phone agent charged to customer including vat.
+    */
+    'PercentFeeCashOrdersPhoneAgentChargedToCustomerIncludingVat'?: number;
+    /**
+    * Gets or sets the fixed fee card orders phone agent charged to customer including vat.
+    */
+    'FixedFeeCardOrdersPhoneAgentChargedToCustomerIncludingVat'?: number;
+    /**
+    * Gets or sets the fixed fee cash orders phone agent charged to customer including vat.
+    */
+    'FixedFeeCashOrdersPhoneAgentChargedToCustomerIncludingVat'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -46912,6 +46944,46 @@ export class StoreFeeConfig {
             "name": "Reason",
             "baseName": "Reason",
             "type": "string"
+        },
+        {
+            "name": "PercentFeeCardOrdersPhoneAgent",
+            "baseName": "PercentFeeCardOrdersPhoneAgent",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCashOrdersPhoneAgent",
+            "baseName": "PercentFeeCashOrdersPhoneAgent",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCardOrdersPhoneAgent",
+            "baseName": "FixedFeeCardOrdersPhoneAgent",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCashOrdersPhoneAgent",
+            "baseName": "FixedFeeCashOrdersPhoneAgent",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCardOrdersPhoneAgentChargedToCustomerIncludingVat",
+            "baseName": "PercentFeeCardOrdersPhoneAgentChargedToCustomerIncludingVat",
+            "type": "number"
+        },
+        {
+            "name": "PercentFeeCashOrdersPhoneAgentChargedToCustomerIncludingVat",
+            "baseName": "PercentFeeCashOrdersPhoneAgentChargedToCustomerIncludingVat",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCardOrdersPhoneAgentChargedToCustomerIncludingVat",
+            "baseName": "FixedFeeCardOrdersPhoneAgentChargedToCustomerIncludingVat",
+            "type": "number"
+        },
+        {
+            "name": "FixedFeeCashOrdersPhoneAgentChargedToCustomerIncludingVat",
+            "baseName": "FixedFeeCashOrdersPhoneAgentChargedToCustomerIncludingVat",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
