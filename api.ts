@@ -32522,6 +32522,82 @@ export class PayoutReport3Store {
     }
 }
 
+export class PayoutReport3StorePayout {
+    'StoreId'?: number;
+    'StoreName'?: string;
+    'SummaryTotalPayout'?: number;
+    'SummaryRevenue'?: number;
+    'SummaryCashRevenue'?: number;
+    'SummaryTotalFlipdishFees'?: number;
+    'SummaryAdjustments'?: number;
+    'Currency'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "StoreId",
+            "baseName": "StoreId",
+            "type": "number"
+        },
+        {
+            "name": "StoreName",
+            "baseName": "StoreName",
+            "type": "string"
+        },
+        {
+            "name": "SummaryTotalPayout",
+            "baseName": "SummaryTotalPayout",
+            "type": "number"
+        },
+        {
+            "name": "SummaryRevenue",
+            "baseName": "SummaryRevenue",
+            "type": "number"
+        },
+        {
+            "name": "SummaryCashRevenue",
+            "baseName": "SummaryCashRevenue",
+            "type": "number"
+        },
+        {
+            "name": "SummaryTotalFlipdishFees",
+            "baseName": "SummaryTotalFlipdishFees",
+            "type": "number"
+        },
+        {
+            "name": "SummaryAdjustments",
+            "baseName": "SummaryAdjustments",
+            "type": "number"
+        },
+        {
+            "name": "Currency",
+            "baseName": "Currency",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutReport3StorePayout.attributeTypeMap;
+    }
+}
+
+export class PayoutReport3StorePayouts {
+    'Stores'?: Array<PayoutReport3StorePayout>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Stores",
+            "baseName": "Stores",
+            "type": "Array<PayoutReport3StorePayout>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutReport3StorePayouts.attributeTypeMap;
+    }
+}
+
 /**
 * Payout Request ids for filtering on Payouts
 */
@@ -41059,6 +41135,29 @@ export class RestApiResultPayoutReport3Overview {
 
     static getAttributeTypeMap() {
         return RestApiResultPayoutReport3Overview.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultPayoutReport3StorePayouts {
+    /**
+    * Generic data object.
+    */
+    'Data': PayoutReport3StorePayouts;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "PayoutReport3StorePayouts"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultPayoutReport3StorePayouts.attributeTypeMap;
     }
 }
 
@@ -60516,6 +60615,8 @@ let typeMap: {[index: string]: any} = {
     "PayoutReport3OverviewHeader": PayoutReport3OverviewHeader,
     "PayoutReport3RefundedOrder": PayoutReport3RefundedOrder,
     "PayoutReport3Store": PayoutReport3Store,
+    "PayoutReport3StorePayout": PayoutReport3StorePayout,
+    "PayoutReport3StorePayouts": PayoutReport3StorePayouts,
     "PayoutRequestIds": PayoutRequestIds,
     "PayoutStore": PayoutStore,
     "PayoutSummary": PayoutSummary,
@@ -60754,6 +60855,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultPaymentTerminalTransactionDetails": RestApiResultPaymentTerminalTransactionDetails,
     "RestApiResultPayoutReport3Details": RestApiResultPayoutReport3Details,
     "RestApiResultPayoutReport3Overview": RestApiResultPayoutReport3Overview,
+    "RestApiResultPayoutReport3StorePayouts": RestApiResultPayoutReport3StorePayouts,
     "RestApiResultPlayStoreConfigModel": RestApiResultPlayStoreConfigModel,
     "RestApiResultPreOrderConfig": RestApiResultPreOrderConfig,
     "RestApiResultProcessingFeeConfig": RestApiResultProcessingFeeConfig,
@@ -90698,6 +90800,81 @@ export class PayoutReportsApi {
      * @param stores 
      * @param {*} [options] Override http request options.
      */
+    public getPayoutReport3Stores (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPayoutReport3StorePayouts;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/stores'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
+            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getPayoutReport3Stores.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling getPayoutReport3Stores.');
+        }
+
+        // verify required parameter 'payoutId' is not null or undefined
+        if (payoutId === null || payoutId === undefined) {
+            throw new Error('Required parameter payoutId was null or undefined when calling getPayoutReport3Stores.');
+        }
+
+        if (stores !== undefined) {
+            localVarQueryParameters['stores'] = ObjectSerializer.serialize(stores, "Array<number>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPayoutReport3StorePayouts;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultPayoutReport3StorePayouts");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param bankAccountId 
+     * @param payoutId 
+     * @param stores 
+     * @param {*} [options] Override http request options.
+     */
     public payoutReport3ExportPayoutChargebacks (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/export/chargebacks'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
@@ -90945,6 +91122,81 @@ export class PayoutReportsApi {
         // verify required parameter 'payoutId' is not null or undefined
         if (payoutId === null || payoutId === undefined) {
             throw new Error('Required parameter payoutId was null or undefined when calling payoutReport3ExportPayoutRefundedOrders.');
+        }
+
+        if (stores !== undefined) {
+            localVarQueryParameters['stores'] = ObjectSerializer.serialize(stores, "Array<number>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultFileCreationResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param bankAccountId 
+     * @param payoutId 
+     * @param stores 
+     * @param {*} [options] Override http request options.
+     */
+    public payoutReport3ExportPayoutStores (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/export/stores'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
+            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling payoutReport3ExportPayoutStores.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling payoutReport3ExportPayoutStores.');
+        }
+
+        // verify required parameter 'payoutId' is not null or undefined
+        if (payoutId === null || payoutId === undefined) {
+            throw new Error('Required parameter payoutId was null or undefined when calling payoutReport3ExportPayoutStores.');
         }
 
         if (stores !== undefined) {
