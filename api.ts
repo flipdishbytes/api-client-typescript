@@ -4914,6 +4914,14 @@ export class BankAccountSummary {
     */
     'VatNumber'?: string;
     /**
+    * Account Holders Address
+    */
+    'AccountHolderAddress'?: string;
+    /**
+    * Account Holders Country Code
+    */
+    'AccountHolderCountryCode'?: string;
+    /**
     * Information about the Stripe connected account associated with this bank account (if any)
     */
     'StripeConnectedAccountInfo'?: StripeConnectedAccountInfo;
@@ -4977,6 +4985,16 @@ export class BankAccountSummary {
         {
             "name": "VatNumber",
             "baseName": "VatNumber",
+            "type": "string"
+        },
+        {
+            "name": "AccountHolderAddress",
+            "baseName": "AccountHolderAddress",
+            "type": "string"
+        },
+        {
+            "name": "AccountHolderCountryCode",
+            "baseName": "AccountHolderCountryCode",
             "type": "string"
         },
         {
