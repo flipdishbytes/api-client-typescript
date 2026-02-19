@@ -33108,6 +33108,10 @@ export class PhoneCall {
     */
     'PhoneCallId'?: number;
     /**
+    * Twilio Call SID
+    */
+    'CallSid'?: string;
+    /**
     * Time of the call
     */
     'TimeOfCall'?: Date;
@@ -33151,6 +33155,11 @@ export class PhoneCall {
             "name": "PhoneCallId",
             "baseName": "PhoneCallId",
             "type": "number"
+        },
+        {
+            "name": "CallSid",
+            "baseName": "CallSid",
+            "type": "string"
         },
         {
             "name": "TimeOfCall",
