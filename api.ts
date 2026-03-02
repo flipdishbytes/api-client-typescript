@@ -49764,6 +49764,10 @@ export class StoreSummary {
     * Country code of the store address (ISO 3166-1 alpha-2)
     */
     'CountryCode'?: string;
+    /**
+    * Property identifier
+    */
+    'PropertyId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -49831,6 +49835,11 @@ export class StoreSummary {
         {
             "name": "CountryCode",
             "baseName": "CountryCode",
+            "type": "string"
+        },
+        {
+            "name": "PropertyId",
+            "baseName": "PropertyId",
             "type": "string"
         }    ];
 
