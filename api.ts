@@ -52984,6 +52984,10 @@ export class TelephonyConfigUpdatedEvent {
     */
     'TelephonyConfig'?: TelephonyConfig;
     /**
+    * Property Id
+    */
+    'PropertyId'?: string;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -53030,6 +53034,11 @@ export class TelephonyConfigUpdatedEvent {
             "name": "TelephonyConfig",
             "baseName": "TelephonyConfig",
             "type": "TelephonyConfig"
+        },
+        {
+            "name": "PropertyId",
+            "baseName": "PropertyId",
+            "type": "string"
         },
         {
             "name": "FlipdishEventId",
