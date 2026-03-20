@@ -741,6 +741,14 @@ export class AnalyticsClientEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -808,6 +816,16 @@ export class AnalyticsClientEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -1826,6 +1844,14 @@ export class AppCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1888,6 +1914,16 @@ export class AppCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -2926,6 +2962,14 @@ export class AppStoreConfigCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -2978,6 +3022,16 @@ export class AppStoreConfigCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -3030,6 +3084,14 @@ export class AppStoreConfigDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -3082,6 +3144,16 @@ export class AppStoreConfigDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -3283,6 +3355,14 @@ export class AppStoreConfigUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -3336,6 +3416,16 @@ export class AppStoreConfigUpdatedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -3383,6 +3473,14 @@ export class AppStoreSubscriptionChangeJobUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -3430,6 +3528,16 @@ export class AppStoreSubscriptionChangeJobUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -3494,6 +3602,14 @@ export class AppUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -3561,6 +3677,16 @@ export class AppUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -3919,6 +4045,14 @@ export class BankAccountAssignedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -3971,6 +4105,16 @@ export class BankAccountAssignedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -4291,6 +4435,14 @@ export class BankAccountCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -4338,6 +4490,16 @@ export class BankAccountCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -4386,6 +4548,14 @@ export class BankAccountDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -4433,6 +4603,16 @@ export class BankAccountDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -5097,6 +5277,14 @@ export class BankAccountUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -5144,6 +5332,16 @@ export class BankAccountUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -5825,6 +6023,14 @@ export class CatalogGroupArchivedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -5877,6 +6083,16 @@ export class CatalogGroupArchivedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -5929,6 +6145,14 @@ export class CatalogGroupCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -5981,6 +6205,16 @@ export class CatalogGroupCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -6088,6 +6322,14 @@ export class CatalogGroupUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -6140,6 +6382,16 @@ export class CatalogGroupUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -6334,6 +6586,14 @@ export class CatalogItemArchivedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -6386,6 +6646,16 @@ export class CatalogItemArchivedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -6438,6 +6708,14 @@ export class CatalogItemCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -6490,6 +6768,16 @@ export class CatalogItemCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -6542,6 +6830,14 @@ export class CatalogItemUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -6595,6 +6891,16 @@ export class CatalogItemUpdatedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -6638,6 +6944,14 @@ export class CertificateCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -6680,6 +6994,16 @@ export class CertificateCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -6724,6 +7048,14 @@ export class CertificateRenewedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -6766,6 +7098,16 @@ export class CertificateRenewedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -6921,6 +7263,14 @@ export class ChannelStoresUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -6973,6 +7323,16 @@ export class ChannelStoresUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -9897,6 +10257,14 @@ export class CustomerConsentUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -9949,6 +10317,16 @@ export class CustomerConsentUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -10053,6 +10431,14 @@ export class CustomerCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -10100,6 +10486,16 @@ export class CustomerCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -10623,6 +11019,14 @@ export class CustomerUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -10670,6 +11074,16 @@ export class CustomerUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -10971,6 +11385,14 @@ export class DeliveryZoneCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -11033,6 +11455,16 @@ export class DeliveryZoneCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -11093,6 +11525,14 @@ export class DeliveryZoneDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -11155,6 +11595,16 @@ export class DeliveryZoneDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -11215,6 +11665,14 @@ export class DeliveryZoneUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -11277,6 +11735,16 @@ export class DeliveryZoneUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -11432,6 +11900,14 @@ export class DnsVerifiedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -11474,6 +11950,16 @@ export class DnsVerifiedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -11761,6 +12247,14 @@ export class EmvNotificationEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -11848,6 +12342,16 @@ export class EmvNotificationEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -13573,6 +14077,14 @@ export class ExternalStoreEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -13675,6 +14187,16 @@ export class ExternalStoreEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -14063,6 +14585,14 @@ export class FlipdishEventBase {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -14100,6 +14630,16 @@ export class FlipdishEventBase {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -15306,6 +15846,14 @@ export class HydraAssignedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -15353,6 +15901,16 @@ export class HydraAssignedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -15489,6 +16047,14 @@ export class HydraConnectionStatusChangedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -15541,6 +16107,16 @@ export class HydraConnectionStatusChangedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -15767,6 +16343,14 @@ export class HydraRequestResetEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -15809,6 +16393,16 @@ export class HydraRequestResetEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -15857,6 +16451,14 @@ export class HydraSettingChangedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -15904,6 +16506,16 @@ export class HydraSettingChangedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -16027,6 +16639,14 @@ export class HydraStoreAssignedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -16074,6 +16694,16 @@ export class HydraStoreAssignedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -16154,6 +16784,14 @@ export class HydraStoreUnassignedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -16202,6 +16840,16 @@ export class HydraStoreUnassignedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -16249,6 +16897,14 @@ export class HydraUnAssignedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -16296,6 +16952,16 @@ export class HydraUnAssignedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -17592,6 +18258,14 @@ export class KioskBluetoothInstallUpdateInitiateEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -17644,6 +18318,16 @@ export class KioskBluetoothInstallUpdateInitiateEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -17705,6 +18389,14 @@ export class KioskBluetoothPairingModeEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -17757,6 +18449,16 @@ export class KioskBluetoothPairingModeEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -17818,6 +18520,14 @@ export class KioskBluetoothTerminalCancelUpdateEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -17870,6 +18580,16 @@ export class KioskBluetoothTerminalCancelUpdateEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -17947,6 +18667,14 @@ export class KioskBluetoothTerminalFirmwareVersionStatusEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -18020,6 +18748,16 @@ export class KioskBluetoothTerminalFirmwareVersionStatusEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -18075,6 +18813,14 @@ export class KioskBluetoothTerminalInitiateUpdateCheckEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -18122,6 +18868,16 @@ export class KioskBluetoothTerminalInitiateUpdateCheckEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -18182,6 +18938,14 @@ export class KioskBluetoothTerminalInstallationStatusEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -18245,6 +19009,16 @@ export class KioskBluetoothTerminalInstallationStatusEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -18305,6 +19079,14 @@ export class KioskBluetoothTerminalUnpairedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -18357,6 +19139,16 @@ export class KioskBluetoothTerminalUnpairedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -18426,6 +19218,14 @@ export class KioskBluetoothTerminalUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -18489,6 +19289,16 @@ export class KioskBluetoothTerminalUpdatedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -18549,6 +19359,14 @@ export class KioskBluetoothUnpairingModeEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -18601,6 +19419,16 @@ export class KioskBluetoothUnpairingModeEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -18785,6 +19613,14 @@ export class KioskTerminalActionStateChangedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -18842,6 +19678,16 @@ export class KioskTerminalActionStateChangedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -19336,6 +20182,14 @@ export class LocationAreaCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -19388,6 +20242,16 @@ export class LocationAreaCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -19499,6 +20363,14 @@ export class LocationAreaUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -19551,6 +20423,16 @@ export class LocationAreaUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -19670,6 +20552,14 @@ export class LocationCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -19732,6 +20622,16 @@ export class LocationCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -19792,6 +20692,14 @@ export class LocationDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -19854,6 +20762,16 @@ export class LocationDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -20272,6 +21190,14 @@ export class LoyaltyCampaignCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -20329,6 +21255,16 @@ export class LoyaltyCampaignCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -20385,6 +21321,14 @@ export class LoyaltyCampaignDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -20442,6 +21386,16 @@ export class LoyaltyCampaignDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -20498,6 +21452,14 @@ export class LoyaltyCampaignUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -20555,6 +21517,16 @@ export class LoyaltyCampaignUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -20857,6 +21829,14 @@ export class MenuAsyncCreationCompletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -20914,6 +21894,16 @@ export class MenuAsyncCreationCompletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -21042,6 +22032,14 @@ export class MenuBulkEditEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -21114,6 +22112,16 @@ export class MenuBulkEditEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -21260,6 +22268,14 @@ export class MenuCheckpointCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -21318,6 +22334,16 @@ export class MenuCheckpointCreatedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -21369,6 +22395,14 @@ export class MenuCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -21421,6 +22455,16 @@ export class MenuCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -21917,6 +22961,14 @@ export class MenuItemOptionSetCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -21974,6 +23026,16 @@ export class MenuItemOptionSetCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -22030,6 +23092,14 @@ export class MenuItemOptionSetDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -22087,6 +23157,16 @@ export class MenuItemOptionSetDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -22388,6 +23468,14 @@ export class MenuItemOptionSetItemCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -22445,6 +23533,16 @@ export class MenuItemOptionSetItemCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -22501,6 +23599,14 @@ export class MenuItemOptionSetItemDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -22558,6 +23664,16 @@ export class MenuItemOptionSetItemDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -22614,6 +23730,14 @@ export class MenuItemOptionSetItemUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -22672,6 +23796,16 @@ export class MenuItemOptionSetItemUpdatedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -22727,6 +23861,14 @@ export class MenuItemOptionSetUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -22784,6 +23926,16 @@ export class MenuItemOptionSetUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -23171,6 +24323,14 @@ export class MenuSectionCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -23228,6 +24388,16 @@ export class MenuSectionCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -23284,6 +24454,14 @@ export class MenuSectionDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -23341,6 +24519,16 @@ export class MenuSectionDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -23795,6 +24983,14 @@ export class MenuSectionItemCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -23852,6 +25048,16 @@ export class MenuSectionItemCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -23908,6 +25114,14 @@ export class MenuSectionItemDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -23965,6 +25179,16 @@ export class MenuSectionItemDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -24021,6 +25245,14 @@ export class MenuSectionItemUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -24079,6 +25311,16 @@ export class MenuSectionItemUpdatedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -24134,6 +25376,14 @@ export class MenuSectionUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -24191,6 +25441,16 @@ export class MenuSectionUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -24462,6 +25722,14 @@ export class MenuUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -24519,6 +25787,16 @@ export class MenuUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -24579,6 +25857,14 @@ export class MenuUploadedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -24641,6 +25927,16 @@ export class MenuUploadedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -25410,6 +26706,14 @@ export class MobileAppsSubmissionStatusUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -25463,6 +26767,16 @@ export class MobileAppsSubmissionStatusUpdatedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -25510,6 +26824,14 @@ export class MobileAppsSubmissionUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -25557,6 +26879,16 @@ export class MobileAppsSubmissionUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -26846,6 +28178,14 @@ export class OrderAcceptedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -26903,6 +28243,16 @@ export class OrderAcceptedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -27014,6 +28364,14 @@ export class OrderBatchPublishedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -27066,6 +28424,16 @@ export class OrderBatchPublishedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -27204,6 +28572,14 @@ export class OrderCapacityConfigUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -27262,6 +28638,16 @@ export class OrderCapacityConfigUpdatedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -27313,6 +28699,14 @@ export class OrderCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -27366,6 +28760,16 @@ export class OrderCreatedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -27413,6 +28817,14 @@ export class OrderCustomerTrackingCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -27460,6 +28872,16 @@ export class OrderCustomerTrackingCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -27705,6 +29127,14 @@ export class OrderDeliveryTrackingStatusUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -27763,6 +29193,16 @@ export class OrderDeliveryTrackingStatusUpdatedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -27814,6 +29254,14 @@ export class OrderDispatchedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -27866,6 +29314,16 @@ export class OrderDispatchedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -28084,6 +29542,14 @@ export class OrderFulfillmentStatusUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -28146,6 +29612,16 @@ export class OrderFulfillmentStatusUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -28588,6 +30064,14 @@ export class OrderRatingUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -28640,6 +30124,16 @@ export class OrderRatingUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -28719,6 +30213,14 @@ export class OrderRefundedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -28776,6 +30278,16 @@ export class OrderRefundedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -28836,6 +30348,14 @@ export class OrderRejectedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -28898,6 +30418,16 @@ export class OrderRejectedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -29402,6 +30932,14 @@ export class OrderTipUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -29454,6 +30992,16 @@ export class OrderTipUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -33269,6 +34817,14 @@ export class PhoneCallEndedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -33321,6 +34877,16 @@ export class PhoneCallEndedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -33373,6 +34939,14 @@ export class PhoneCallStartedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -33425,6 +34999,16 @@ export class PhoneCallStartedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -34221,6 +35805,14 @@ export class PrinterAssignedToStoreEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -34283,6 +35875,16 @@ export class PrinterAssignedToStoreEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -34343,6 +35945,14 @@ export class PrinterTurnedOffEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -34405,6 +36015,16 @@ export class PrinterTurnedOffEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -34465,6 +36085,14 @@ export class PrinterTurnedOnEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -34527,6 +36155,16 @@ export class PrinterTurnedOnEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -34587,6 +36225,14 @@ export class PrinterUnassignedFromStoreEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -34649,6 +36295,16 @@ export class PrinterUnassignedFromStoreEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -35073,6 +36729,14 @@ export class PushNotificationDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -35120,6 +36784,16 @@ export class PushNotificationDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -35272,6 +36946,14 @@ export class PushNotificationScheduledEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -35325,6 +37007,16 @@ export class PushNotificationScheduledEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -35372,6 +37064,14 @@ export class PushNotificationSentEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -35419,6 +37119,16 @@ export class PushNotificationSentEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -42671,6 +44381,14 @@ export class RetentionCampaignCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -42728,6 +44446,16 @@ export class RetentionCampaignCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -42784,6 +44512,14 @@ export class RetentionCampaignDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -42841,6 +44577,16 @@ export class RetentionCampaignDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -42897,6 +44643,14 @@ export class RetentionCampaignUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -42954,6 +44708,16 @@ export class RetentionCampaignUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -43790,6 +45554,14 @@ export class SmsReceivedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -43837,6 +45609,16 @@ export class SmsReceivedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -44901,6 +46683,14 @@ export class StoreAddressUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -44964,6 +46754,16 @@ export class StoreAddressUpdatedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -45023,6 +46823,14 @@ export class StoreArchivedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -45085,6 +46893,16 @@ export class StoreArchivedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -45450,6 +47268,14 @@ export class StoreBusinessHoursOverrideCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -45512,6 +47338,16 @@ export class StoreBusinessHoursOverrideCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -45572,6 +47408,14 @@ export class StoreBusinessHoursOverrideDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -45634,6 +47478,16 @@ export class StoreBusinessHoursOverrideDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -45987,6 +47841,14 @@ export class StoreCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -46044,6 +47906,16 @@ export class StoreCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -46136,6 +48008,14 @@ export class StoreDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -46198,6 +48078,16 @@ export class StoreDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -47173,6 +49063,14 @@ export class StoreFeeConfigUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -47240,6 +49138,16 @@ export class StoreFeeConfigUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -47648,6 +49556,14 @@ export class StoreGroupCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -47705,6 +49621,16 @@ export class StoreGroupCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -47761,6 +49687,14 @@ export class StoreGroupDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -47818,6 +49752,16 @@ export class StoreGroupDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -48104,6 +50048,14 @@ export class StoreGroupUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -48161,6 +50113,16 @@ export class StoreGroupUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -48376,6 +50338,14 @@ export class StoreKioskSettingUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -48433,6 +50403,16 @@ export class StoreKioskSettingUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -48566,6 +50546,14 @@ export class StoreLogoCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -48624,6 +50612,16 @@ export class StoreLogoCreatedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -48675,6 +50673,14 @@ export class StoreLogoDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -48727,6 +50733,16 @@ export class StoreLogoDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -48783,6 +50799,14 @@ export class StoreLogoUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -48841,6 +50865,16 @@ export class StoreLogoUpdatedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -48896,6 +50930,14 @@ export class StoreMenuAssignedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -48953,6 +50995,16 @@ export class StoreMenuAssignedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -49066,6 +51118,14 @@ export class StoreOpeningHoursUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -49143,6 +51203,16 @@ export class StoreOpeningHoursUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -49371,6 +51441,14 @@ export class StorePreOrderConfigUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -49434,6 +51512,16 @@ export class StorePreOrderConfigUpdatedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -49493,6 +51581,14 @@ export class StorePublishedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -49556,6 +51652,16 @@ export class StorePublishedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -49611,6 +51717,14 @@ export class StoreServiceChargeUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -49668,6 +51782,16 @@ export class StoreServiceChargeUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -50013,6 +52137,14 @@ export class StoreTipUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -50070,6 +52202,16 @@ export class StoreTipUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -50130,6 +52272,14 @@ export class StoreUnarchivedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -50192,6 +52342,16 @@ export class StoreUnarchivedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -50252,6 +52412,14 @@ export class StoreUnpublishedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -50314,6 +52482,16 @@ export class StoreUnpublishedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -50374,6 +52552,14 @@ export class StoreUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -50436,6 +52622,16 @@ export class StoreUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -52414,6 +54610,14 @@ export class TeammateDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -52461,6 +54665,16 @@ export class TeammateDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -52509,6 +54723,14 @@ export class TeammateInviteAcceptedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -52556,6 +54778,16 @@ export class TeammateInviteAcceptedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -52604,6 +54836,14 @@ export class TeammateInviteSentEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -52651,6 +54891,16 @@ export class TeammateInviteSentEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -52699,6 +54949,14 @@ export class TeammateUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -52746,6 +55004,16 @@ export class TeammateUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -53011,6 +55279,14 @@ export class TelephonyConfigUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -53068,6 +55344,16 @@ export class TelephonyConfigUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -54736,6 +57022,14 @@ export class UserAnsweredSignupQuestionsEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -54784,6 +57078,16 @@ export class UserAnsweredSignupQuestionsEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -54831,6 +57135,14 @@ export class UserCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -54878,6 +57190,16 @@ export class UserCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -54926,6 +57248,14 @@ export class UserDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -54973,6 +57303,16 @@ export class UserDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -55369,6 +57709,14 @@ export class UserLoginEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -55416,6 +57764,16 @@ export class UserLoginEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -55717,6 +58075,14 @@ export class UserPasswordCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -55764,6 +58130,16 @@ export class UserPasswordCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -55988,6 +58364,14 @@ export class UserUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -56035,6 +58419,16 @@ export class UserUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -56753,6 +59147,14 @@ export class VoucherAppliedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -56800,6 +59202,16 @@ export class VoucherAppliedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -56856,6 +59268,14 @@ export class VoucherCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -56913,6 +59333,16 @@ export class VoucherCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -57010,6 +59440,14 @@ export class VoucherDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -57067,6 +59505,16 @@ export class VoucherDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -57225,6 +59673,14 @@ export class VoucherUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -57282,6 +59738,16 @@ export class VoucherUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -58120,6 +60586,14 @@ export class WebhookSubscriptionCreatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -58162,6 +60636,16 @@ export class WebhookSubscriptionCreatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -58206,6 +60690,14 @@ export class WebhookSubscriptionDeletedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -58248,6 +60740,16 @@ export class WebhookSubscriptionDeletedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -58342,6 +60844,14 @@ export class WebhookSubscriptionUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -58384,6 +60894,16 @@ export class WebhookSubscriptionUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
@@ -58560,6 +61080,14 @@ export class WebsiteUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -58613,6 +61141,16 @@ export class WebsiteUpdatedEvent {
             "name": "IpAddress",
             "baseName": "IpAddress",
             "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -58664,6 +61202,14 @@ export class WebsiteVanityUrlUpdatedEvent {
     * Ip Address
     */
     'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -58716,6 +61262,16 @@ export class WebsiteVanityUrlUpdatedEvent {
         {
             "name": "IpAddress",
             "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
             "type": "string"
         }    ];
 
