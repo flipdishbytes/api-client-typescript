@@ -33885,7 +33885,6 @@ export class PayoutReport3DetailsSummary {
 export class PayoutReport3Overview {
     'PayoutReport3OverviewHeader'?: PayoutReport3OverviewHeader;
     'PayoutStores'?: Array<PayoutReport3Store>;
-    'PayoutProperties'?: Array<PayoutReport3Property>;
 
     static discriminator: string | undefined = undefined;
 
@@ -33899,11 +33898,6 @@ export class PayoutReport3Overview {
             "name": "PayoutStores",
             "baseName": "PayoutStores",
             "type": "Array<PayoutReport3Store>"
-        },
-        {
-            "name": "PayoutProperties",
-            "baseName": "PayoutProperties",
-            "type": "Array<PayoutReport3Property>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -33997,29 +33991,6 @@ export class PayoutReport3OverviewHeader {
 
     static getAttributeTypeMap() {
         return PayoutReport3OverviewHeader.attributeTypeMap;
-    }
-}
-
-export class PayoutReport3Property {
-    'PropertyId'?: string;
-    'PropertyName'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "PropertyId",
-            "baseName": "PropertyId",
-            "type": "string"
-        },
-        {
-            "name": "PropertyName",
-            "baseName": "PropertyName",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return PayoutReport3Property.attributeTypeMap;
     }
 }
 
@@ -63243,7 +63214,6 @@ let typeMap: {[index: string]: any} = {
     "PayoutReport3DetailsSummary": PayoutReport3DetailsSummary,
     "PayoutReport3Overview": PayoutReport3Overview,
     "PayoutReport3OverviewHeader": PayoutReport3OverviewHeader,
-    "PayoutReport3Property": PayoutReport3Property,
     "PayoutReport3RefundedOrder": PayoutReport3RefundedOrder,
     "PayoutReport3Store": PayoutReport3Store,
     "PayoutReport3StorePayout": PayoutReport3StorePayout,
@@ -93084,10 +93054,9 @@ export class PayoutReportsApi {
      * @param bankAccountId 
      * @param payoutId 
      * @param storeIds 
-     * @param propertyIds 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutReport3Details (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, propertyIds?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPayoutReport3Details;  }> {
+    public getPayoutReport3Details (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPayoutReport3Details;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/details'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -93113,10 +93082,6 @@ export class PayoutReportsApi {
 
         if (storeIds !== undefined) {
             localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
-        }
-
-        if (propertyIds !== undefined) {
-            localVarQueryParameters['propertyIds'] = ObjectSerializer.serialize(propertyIds, "Array<string>");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -93234,12 +93199,11 @@ export class PayoutReportsApi {
      * @param bankAccountId 
      * @param payoutId 
      * @param storeIds 
-     * @param propertyIds 
      * @param page 
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutReport3RefundedOrders (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, propertyIds?: Array<string>, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutReport3RefundedOrder;  }> {
+    public getPayoutReport3RefundedOrders (appId: string, bankAccountId: number, payoutId: number, storeIds?: Array<number>, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultPayoutReport3RefundedOrder;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/refundedOrders'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -93265,10 +93229,6 @@ export class PayoutReportsApi {
 
         if (storeIds !== undefined) {
             localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
-        }
-
-        if (propertyIds !== undefined) {
-            localVarQueryParameters['propertyIds'] = ObjectSerializer.serialize(propertyIds, "Array<string>");
         }
 
         if (page !== undefined) {
@@ -93324,10 +93284,9 @@ export class PayoutReportsApi {
      * @param bankAccountId 
      * @param payoutId 
      * @param stores 
-     * @param propertyIds 
      * @param {*} [options] Override http request options.
      */
-    public getPayoutReport3Stores (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, propertyIds?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPayoutReport3StorePayouts;  }> {
+    public getPayoutReport3Stores (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPayoutReport3StorePayouts;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/stores'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -93353,10 +93312,6 @@ export class PayoutReportsApi {
 
         if (stores !== undefined) {
             localVarQueryParameters['stores'] = ObjectSerializer.serialize(stores, "Array<number>");
-        }
-
-        if (propertyIds !== undefined) {
-            localVarQueryParameters['propertyIds'] = ObjectSerializer.serialize(propertyIds, "Array<string>");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -93404,10 +93359,9 @@ export class PayoutReportsApi {
      * @param bankAccountId 
      * @param payoutId 
      * @param stores 
-     * @param propertyIds 
      * @param {*} [options] Override http request options.
      */
-    public payoutReport3ExportPayoutChargebacks (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, propertyIds?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }> {
+    public payoutReport3ExportPayoutChargebacks (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/export/chargebacks'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -93435,10 +93389,6 @@ export class PayoutReportsApi {
             localVarQueryParameters['stores'] = ObjectSerializer.serialize(stores, "Array<number>");
         }
 
-        if (propertyIds !== undefined) {
-            localVarQueryParameters['propertyIds'] = ObjectSerializer.serialize(propertyIds, "Array<string>");
-        }
-
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -93484,10 +93434,9 @@ export class PayoutReportsApi {
      * @param bankAccountId 
      * @param payoutId 
      * @param stores 
-     * @param propertyIds 
      * @param {*} [options] Override http request options.
      */
-    public payoutReport3ExportPayoutOrders (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, propertyIds?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }> {
+    public payoutReport3ExportPayoutOrders (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/export/orders'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -93515,10 +93464,6 @@ export class PayoutReportsApi {
             localVarQueryParameters['stores'] = ObjectSerializer.serialize(stores, "Array<number>");
         }
 
-        if (propertyIds !== undefined) {
-            localVarQueryParameters['propertyIds'] = ObjectSerializer.serialize(propertyIds, "Array<string>");
-        }
-
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -93564,10 +93509,9 @@ export class PayoutReportsApi {
      * @param bankAccountId 
      * @param payoutId 
      * @param stores 
-     * @param propertyIds 
      * @param {*} [options] Override http request options.
      */
-    public payoutReport3ExportPayoutPosSales (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, propertyIds?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }> {
+    public payoutReport3ExportPayoutPosSales (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/export/possales'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -93595,10 +93539,6 @@ export class PayoutReportsApi {
             localVarQueryParameters['stores'] = ObjectSerializer.serialize(stores, "Array<number>");
         }
 
-        if (propertyIds !== undefined) {
-            localVarQueryParameters['propertyIds'] = ObjectSerializer.serialize(propertyIds, "Array<string>");
-        }
-
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -93644,10 +93584,9 @@ export class PayoutReportsApi {
      * @param bankAccountId 
      * @param payoutId 
      * @param stores 
-     * @param propertyIds 
      * @param {*} [options] Override http request options.
      */
-    public payoutReport3ExportPayoutRefundedOrders (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, propertyIds?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }> {
+    public payoutReport3ExportPayoutRefundedOrders (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/export/refundedOrders'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -93675,10 +93614,6 @@ export class PayoutReportsApi {
             localVarQueryParameters['stores'] = ObjectSerializer.serialize(stores, "Array<number>");
         }
 
-        if (propertyIds !== undefined) {
-            localVarQueryParameters['propertyIds'] = ObjectSerializer.serialize(propertyIds, "Array<string>");
-        }
-
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -93724,10 +93659,9 @@ export class PayoutReportsApi {
      * @param bankAccountId 
      * @param payoutId 
      * @param stores 
-     * @param propertyIds 
      * @param {*} [options] Override http request options.
      */
-    public payoutReport3ExportPayoutStores (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, propertyIds?: Array<string>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }> {
+    public payoutReport3ExportPayoutStores (appId: string, bankAccountId: number, payoutId: number, stores?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileCreationResult;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/export/stores'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -93753,10 +93687,6 @@ export class PayoutReportsApi {
 
         if (stores !== undefined) {
             localVarQueryParameters['stores'] = ObjectSerializer.serialize(stores, "Array<number>");
-        }
-
-        if (propertyIds !== undefined) {
-            localVarQueryParameters['propertyIds'] = ObjectSerializer.serialize(propertyIds, "Array<string>");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
