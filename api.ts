@@ -33994,6 +33994,70 @@ export class PayoutReport3OverviewHeader {
     }
 }
 
+export class PayoutReport3PropertyDetails {
+    'AvailableProperties'?: Array<PayoutReport3PropertyFilterOption>;
+    'SelectedPropertyIds'?: Array<string>;
+    'MatchedStoreIds'?: Array<number>;
+    'Details'?: PayoutReport3Details;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AvailableProperties",
+            "baseName": "AvailableProperties",
+            "type": "Array<PayoutReport3PropertyFilterOption>"
+        },
+        {
+            "name": "SelectedPropertyIds",
+            "baseName": "SelectedPropertyIds",
+            "type": "Array<string>"
+        },
+        {
+            "name": "MatchedStoreIds",
+            "baseName": "MatchedStoreIds",
+            "type": "Array<number>"
+        },
+        {
+            "name": "Details",
+            "baseName": "Details",
+            "type": "PayoutReport3Details"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutReport3PropertyDetails.attributeTypeMap;
+    }
+}
+
+export class PayoutReport3PropertyFilterOption {
+    'PropertyId'?: string;
+    'PropertyName'?: string;
+    'StoreIds'?: Array<number>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "PropertyId",
+            "baseName": "PropertyId",
+            "type": "string"
+        },
+        {
+            "name": "PropertyName",
+            "baseName": "PropertyName",
+            "type": "string"
+        },
+        {
+            "name": "StoreIds",
+            "baseName": "StoreIds",
+            "type": "Array<number>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PayoutReport3PropertyFilterOption.attributeTypeMap;
+    }
+}
+
 export class PayoutReport3RefundedOrder {
     'OrderId'?: number;
     'PlacedAtTime'?: Date;
@@ -42872,6 +42936,29 @@ export class RestApiResultPayoutReport3Overview {
 
     static getAttributeTypeMap() {
         return RestApiResultPayoutReport3Overview.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultPayoutReport3PropertyDetails {
+    /**
+    * Generic data object.
+    */
+    'Data': PayoutReport3PropertyDetails;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "PayoutReport3PropertyDetails"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultPayoutReport3PropertyDetails.attributeTypeMap;
     }
 }
 
@@ -63214,6 +63301,8 @@ let typeMap: {[index: string]: any} = {
     "PayoutReport3DetailsSummary": PayoutReport3DetailsSummary,
     "PayoutReport3Overview": PayoutReport3Overview,
     "PayoutReport3OverviewHeader": PayoutReport3OverviewHeader,
+    "PayoutReport3PropertyDetails": PayoutReport3PropertyDetails,
+    "PayoutReport3PropertyFilterOption": PayoutReport3PropertyFilterOption,
     "PayoutReport3RefundedOrder": PayoutReport3RefundedOrder,
     "PayoutReport3Store": PayoutReport3Store,
     "PayoutReport3StorePayout": PayoutReport3StorePayout,
@@ -63456,6 +63545,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultPaymentTerminalTransactionDetails": RestApiResultPaymentTerminalTransactionDetails,
     "RestApiResultPayoutReport3Details": RestApiResultPayoutReport3Details,
     "RestApiResultPayoutReport3Overview": RestApiResultPayoutReport3Overview,
+    "RestApiResultPayoutReport3PropertyDetails": RestApiResultPayoutReport3PropertyDetails,
     "RestApiResultPayoutReport3StorePayouts": RestApiResultPayoutReport3StorePayouts,
     "RestApiResultPlayStoreConfigModel": RestApiResultPlayStoreConfigModel,
     "RestApiResultPreOrderConfig": RestApiResultPreOrderConfig,
@@ -93184,6 +93274,86 @@ export class PayoutReportsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultPayoutReport3Overview");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param bankAccountId 
+     * @param payoutId 
+     * @param propertyIds 
+     * @param storeIds 
+     * @param {*} [options] Override http request options.
+     */
+    public getPayoutReport3PropertyDetails (appId: string, bankAccountId: number, payoutId: number, propertyIds?: Array<string>, storeIds?: Array<number>, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPayoutReport3PropertyDetails;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/reporting/reports/payouts3/{bankAccountId}/{payoutId}/properties'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
+            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getPayoutReport3PropertyDetails.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling getPayoutReport3PropertyDetails.');
+        }
+
+        // verify required parameter 'payoutId' is not null or undefined
+        if (payoutId === null || payoutId === undefined) {
+            throw new Error('Required parameter payoutId was null or undefined when calling getPayoutReport3PropertyDetails.');
+        }
+
+        if (propertyIds !== undefined) {
+            localVarQueryParameters['propertyIds'] = ObjectSerializer.serialize(propertyIds, "Array<string>");
+        }
+
+        if (storeIds !== undefined) {
+            localVarQueryParameters['storeIds'] = ObjectSerializer.serialize(storeIds, "Array<number>");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPayoutReport3PropertyDetails;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultPayoutReport3PropertyDetails");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
