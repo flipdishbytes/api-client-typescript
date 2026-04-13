@@ -9548,6 +9548,71 @@ export namespace CreateTeammate {
     }
 }
 /**
+* Create a delivery location for a user (admin).
+*/
+export class CreateUserDeliveryLocationRequest {
+    'Building'?: string;
+    'Street'?: string;
+    'Town'?: string;
+    'PostCode'?: string;
+    'FullAddressJson'?: string;
+    'DeliveryInstructions'?: string;
+    'Coordinates'?: Coordinates;
+    /**
+    * Passed through to the same parameter position as legacy admin MVC (maps to IsCustomAddress in map service).
+    */
+    'IsDisplayed'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Building",
+            "baseName": "Building",
+            "type": "string"
+        },
+        {
+            "name": "Street",
+            "baseName": "Street",
+            "type": "string"
+        },
+        {
+            "name": "Town",
+            "baseName": "Town",
+            "type": "string"
+        },
+        {
+            "name": "PostCode",
+            "baseName": "PostCode",
+            "type": "string"
+        },
+        {
+            "name": "FullAddressJson",
+            "baseName": "FullAddressJson",
+            "type": "string"
+        },
+        {
+            "name": "DeliveryInstructions",
+            "baseName": "DeliveryInstructions",
+            "type": "string"
+        },
+        {
+            "name": "Coordinates",
+            "baseName": "Coordinates",
+            "type": "Coordinates"
+        },
+        {
+            "name": "IsDisplayed",
+            "baseName": "IsDisplayed",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateUserDeliveryLocationRequest.attributeTypeMap;
+    }
+}
+
+/**
 * Create Voucher
 */
 export class CreateVoucher {
@@ -38915,6 +38980,29 @@ export class RestApiArrayResultTeammate {
 /**
 * Rest api array result
 */
+export class RestApiArrayResultUserDeliveryLocationAdmin {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<UserDeliveryLocationAdmin>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<UserDeliveryLocationAdmin>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultUserDeliveryLocationAdmin.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
 export class RestApiArrayResultUserFlipdishAccount {
     /**
     * Generic data object.
@@ -38955,6 +39043,52 @@ export class RestApiArrayResultUserNote {
 
     static getAttributeTypeMap() {
         return RestApiArrayResultUserNote.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultUserOrderSummary {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<UserOrderSummary>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<UserOrderSummary>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultUserOrderSummary.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api array result
+*/
+export class RestApiArrayResultUserSmsChatItem {
+    /**
+    * Generic data object.
+    */
+    'Data': Array<UserSmsChatItem>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "Array<UserSmsChatItem>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiArrayResultUserSmsChatItem.attributeTypeMap;
     }
 }
 
@@ -43678,6 +43812,29 @@ export class RestApiResultUserInfo {
 /**
 * Rest api result
 */
+export class RestApiResultUserPushNotificationSentResult {
+    /**
+    * Generic data object.
+    */
+    'Data': UserPushNotificationSentResult;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "UserPushNotificationSentResult"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultUserPushNotificationSentResult.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultUserRole {
     /**
     * Generic data object.
@@ -45212,6 +45369,64 @@ export class SearchCriteria {
 }
 
 /**
+* Send a push notification to a user.
+*/
+export class SendUserPushNotificationRequest {
+    'WhiteLabelId'?: number;
+    'Message'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "WhiteLabelId",
+            "baseName": "WhiteLabelId",
+            "type": "number"
+        },
+        {
+            "name": "Message",
+            "baseName": "Message",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SendUserPushNotificationRequest.attributeTypeMap;
+    }
+}
+
+/**
+* Send an SMS to a user from admin.
+*/
+export class SendUserSmsRequest {
+    'Message'?: string;
+    'WhiteLabelId'?: number;
+    'FromNumber'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Message",
+            "baseName": "Message",
+            "type": "string"
+        },
+        {
+            "name": "WhiteLabelId",
+            "baseName": "WhiteLabelId",
+            "type": "number"
+        },
+        {
+            "name": "FromNumber",
+            "baseName": "FromNumber",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SendUserSmsRequest.attributeTypeMap;
+    }
+}
+
+/**
 * Store Service Charge
 */
 export class ServiceCharge {
@@ -45352,6 +45567,70 @@ export class SetPasswordWithPinModel {
     }
 }
 
+/**
+* Set delivery location coordinates.
+*/
+export class SetUserDeliveryLocationCoordinatesRequest {
+    'Latitude'?: number;
+    'Longitude'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Latitude",
+            "baseName": "Latitude",
+            "type": "number"
+        },
+        {
+            "name": "Longitude",
+            "baseName": "Longitude",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SetUserDeliveryLocationCoordinatesRequest.attributeTypeMap;
+    }
+}
+
+/**
+* Update a single delivery location field (matches legacy SetDeliveryLocationInfo names).
+*/
+export class SetUserDeliveryLocationFieldRequest {
+    /**
+    * Which field to update. Omit or set to null for a validation error.
+    */
+    'Field'?: SetUserDeliveryLocationFieldRequest.FieldEnum;
+    'Value'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Field",
+            "baseName": "Field",
+            "type": "SetUserDeliveryLocationFieldRequest.FieldEnum"
+        },
+        {
+            "name": "Value",
+            "baseName": "Value",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SetUserDeliveryLocationFieldRequest.attributeTypeMap;
+    }
+}
+
+export namespace SetUserDeliveryLocationFieldRequest {
+    export enum FieldEnum {
+        DeliveryInstructions = <any> 'DeliveryInstructions',
+        IsDisplayed = <any> 'IsDisplayed',
+        BuildingString = <any> 'BuildingString',
+        StreetString = <any> 'StreetString',
+        TownString = <any> 'TownString'
+    }
+}
 /**
 * Set the validity periods of a voucher.
 */
@@ -57409,6 +57688,80 @@ export class UserDeletedEvent {
 }
 
 /**
+* Delivery location with identifiers for admin user management.
+*/
+export class UserDeliveryLocationAdmin {
+    'DeliveryLocationId'?: number;
+    'Building'?: string;
+    'Street'?: string;
+    'Town'?: string;
+    'PostCode'?: string;
+    'DeliveryInstructions'?: string;
+    'AutoSelectThisLocation'?: boolean;
+    'IsDisplayed'?: boolean;
+    'IsConfirmed'?: boolean;
+    'Coordinates'?: Coordinates;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeliveryLocationId",
+            "baseName": "DeliveryLocationId",
+            "type": "number"
+        },
+        {
+            "name": "Building",
+            "baseName": "Building",
+            "type": "string"
+        },
+        {
+            "name": "Street",
+            "baseName": "Street",
+            "type": "string"
+        },
+        {
+            "name": "Town",
+            "baseName": "Town",
+            "type": "string"
+        },
+        {
+            "name": "PostCode",
+            "baseName": "PostCode",
+            "type": "string"
+        },
+        {
+            "name": "DeliveryInstructions",
+            "baseName": "DeliveryInstructions",
+            "type": "string"
+        },
+        {
+            "name": "AutoSelectThisLocation",
+            "baseName": "AutoSelectThisLocation",
+            "type": "boolean"
+        },
+        {
+            "name": "IsDisplayed",
+            "baseName": "IsDisplayed",
+            "type": "boolean"
+        },
+        {
+            "name": "IsConfirmed",
+            "baseName": "IsConfirmed",
+            "type": "boolean"
+        },
+        {
+            "name": "Coordinates",
+            "baseName": "Coordinates",
+            "type": "Coordinates"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserDeliveryLocationAdmin.attributeTypeMap;
+    }
+}
+
+/**
 * User Event Info
 */
 export class UserEventInfo {
@@ -58123,6 +58476,86 @@ export class UserNote {
 }
 
 /**
+* A previous order row for admin user management (structured; no HTML).
+*/
+export class UserOrderSummary {
+    'OrderId'?: number;
+    'TsOrderPlacedUtc'?: Date;
+    'TsUpdateUtc'?: Date;
+    'RestaurantName'?: string;
+    'FoodAmount'?: number;
+    'TipAmount'?: number;
+    'TotalRestaurantAmount'?: number;
+    'IsoCurrency'?: string;
+    'DeliveryType'?: string;
+    'OrderState'?: string;
+    'PaymentAccountDescription'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrderId",
+            "baseName": "OrderId",
+            "type": "number"
+        },
+        {
+            "name": "TsOrderPlacedUtc",
+            "baseName": "TsOrderPlacedUtc",
+            "type": "Date"
+        },
+        {
+            "name": "TsUpdateUtc",
+            "baseName": "TsUpdateUtc",
+            "type": "Date"
+        },
+        {
+            "name": "RestaurantName",
+            "baseName": "RestaurantName",
+            "type": "string"
+        },
+        {
+            "name": "FoodAmount",
+            "baseName": "FoodAmount",
+            "type": "number"
+        },
+        {
+            "name": "TipAmount",
+            "baseName": "TipAmount",
+            "type": "number"
+        },
+        {
+            "name": "TotalRestaurantAmount",
+            "baseName": "TotalRestaurantAmount",
+            "type": "number"
+        },
+        {
+            "name": "IsoCurrency",
+            "baseName": "IsoCurrency",
+            "type": "string"
+        },
+        {
+            "name": "DeliveryType",
+            "baseName": "DeliveryType",
+            "type": "string"
+        },
+        {
+            "name": "OrderState",
+            "baseName": "OrderState",
+            "type": "string"
+        },
+        {
+            "name": "PaymentAccountDescription",
+            "baseName": "PaymentAccountDescription",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserOrderSummary.attributeTypeMap;
+    }
+}
+
+/**
 * User created password event
 */
 export class UserPasswordCreatedEvent {
@@ -58232,6 +58665,26 @@ export class UserPasswordCreatedEvent {
 
     static getAttributeTypeMap() {
         return UserPasswordCreatedEvent.attributeTypeMap;
+    }
+}
+
+/**
+* Result of sending push notification.
+*/
+export class UserPushNotificationSentResult {
+    'TokenCount'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "TokenCount",
+            "baseName": "TokenCount",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserPushNotificationSentResult.attributeTypeMap;
     }
 }
 
@@ -58370,6 +58823,50 @@ export namespace UserSearch {
         HydraUsers = <any> 'HydraUsers'
     }
 }
+/**
+* An SMS conversation item for admin user chat.
+*/
+export class UserSmsChatItem {
+    'SmsConversationItemId'?: number;
+    'Direction'?: string;
+    'From'?: string;
+    'Text'?: string;
+    'TsSentReceivedUtc'?: Date;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "SmsConversationItemId",
+            "baseName": "SmsConversationItemId",
+            "type": "number"
+        },
+        {
+            "name": "Direction",
+            "baseName": "Direction",
+            "type": "string"
+        },
+        {
+            "name": "From",
+            "baseName": "From",
+            "type": "string"
+        },
+        {
+            "name": "Text",
+            "baseName": "Text",
+            "type": "string"
+        },
+        {
+            "name": "TsSentReceivedUtc",
+            "baseName": "TsSentReceivedUtc",
+            "type": "Date"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserSmsChatItem.attributeTypeMap;
+    }
+}
+
 /**
 * Stores that the user is associated with
 */
@@ -62841,6 +63338,7 @@ let enumsMap: {[index: string]: any} = {
         "Range.DayOfWeekEnum": Range.DayOfWeekEnum,
         "RedeemInvitationResult.InvitationStatusEnum": RedeemInvitationResult.InvitationStatusEnum,
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
+        "SetUserDeliveryLocationFieldRequest.FieldEnum": SetUserDeliveryLocationFieldRequest.FieldEnum,
         "SetVoucherValidityPeriodsSimplifiedRequest.DaysOfWeekEnum": SetVoucherValidityPeriodsSimplifiedRequest.DaysOfWeekEnum,
         "SignupStep.ActionEnum": SignupStep.ActionEnum,
         "SmsProviderCredential.SmsServiceTypeEnum": SmsProviderCredential.SmsServiceTypeEnum,
@@ -63036,6 +63534,7 @@ let typeMap: {[index: string]: any} = {
     "CreateProductReference": CreateProductReference,
     "CreatePromotion": CreatePromotion,
     "CreateTeammate": CreateTeammate,
+    "CreateUserDeliveryLocationRequest": CreateUserDeliveryLocationRequest,
     "CreateVoucher": CreateVoucher,
     "CreatedMenuSectionItems": CreatedMenuSectionItems,
     "CreditNoteDetails": CreditNoteDetails,
@@ -63411,8 +63910,11 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultSubscriptionSummary": RestApiArrayResultSubscriptionSummary,
     "RestApiArrayResultSupportedCountry": RestApiArrayResultSupportedCountry,
     "RestApiArrayResultTeammate": RestApiArrayResultTeammate,
+    "RestApiArrayResultUserDeliveryLocationAdmin": RestApiArrayResultUserDeliveryLocationAdmin,
     "RestApiArrayResultUserFlipdishAccount": RestApiArrayResultUserFlipdishAccount,
     "RestApiArrayResultUserNote": RestApiArrayResultUserNote,
+    "RestApiArrayResultUserOrderSummary": RestApiArrayResultUserOrderSummary,
+    "RestApiArrayResultUserSmsChatItem": RestApiArrayResultUserSmsChatItem,
     "RestApiArrayResultUserStoreInfo": RestApiArrayResultUserStoreInfo,
     "RestApiArrayResultVoucherDataPoint": RestApiArrayResultVoucherDataPoint,
     "RestApiArrayResultVoucherSummary": RestApiArrayResultVoucherSummary,
@@ -63577,6 +64079,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultTipConfiguration": RestApiResultTipConfiguration,
     "RestApiResultUpdateMobileAppsSubmissionStatus": RestApiResultUpdateMobileAppsSubmissionStatus,
     "RestApiResultUserInfo": RestApiResultUserInfo,
+    "RestApiResultUserPushNotificationSentResult": RestApiResultUserPushNotificationSentResult,
     "RestApiResultUserRole": RestApiResultUserRole,
     "RestApiResultVoucher": RestApiResultVoucher,
     "RestApiResultVoucherWithStats": RestApiResultVoucherWithStats,
@@ -63601,9 +64104,13 @@ let typeMap: {[index: string]: any} = {
     "RevenueDetail": RevenueDetail,
     "SafeWaitHandle": SafeWaitHandle,
     "SearchCriteria": SearchCriteria,
+    "SendUserPushNotificationRequest": SendUserPushNotificationRequest,
+    "SendUserSmsRequest": SendUserSmsRequest,
     "ServiceCharge": ServiceCharge,
     "SetOrderBatchingConfiguration": SetOrderBatchingConfiguration,
     "SetPasswordWithPinModel": SetPasswordWithPinModel,
+    "SetUserDeliveryLocationCoordinatesRequest": SetUserDeliveryLocationCoordinatesRequest,
+    "SetUserDeliveryLocationFieldRequest": SetUserDeliveryLocationFieldRequest,
     "SetVoucherValidityPeriodsSimplifiedRequest": SetVoucherValidityPeriodsSimplifiedRequest,
     "Setting": Setting,
     "SignupStep": SignupStep,
@@ -63722,15 +64229,19 @@ let typeMap: {[index: string]: any} = {
     "UserAnsweredSignupQuestionsEvent": UserAnsweredSignupQuestionsEvent,
     "UserCreatedEvent": UserCreatedEvent,
     "UserDeletedEvent": UserDeletedEvent,
+    "UserDeliveryLocationAdmin": UserDeliveryLocationAdmin,
     "UserEventInfo": UserEventInfo,
     "UserFlipdishAccount": UserFlipdishAccount,
     "UserInfo": UserInfo,
     "UserLoginEvent": UserLoginEvent,
     "UserMonthlyCommission": UserMonthlyCommission,
     "UserNote": UserNote,
+    "UserOrderSummary": UserOrderSummary,
     "UserPasswordCreatedEvent": UserPasswordCreatedEvent,
+    "UserPushNotificationSentResult": UserPushNotificationSentResult,
     "UserRole": UserRole,
     "UserSearch": UserSearch,
+    "UserSmsChatItem": UserSmsChatItem,
     "UserStoreInfo": UserStoreInfo,
     "UserUpdatedEvent": UserUpdatedEvent,
     "UserWhiteLabelConfig": UserWhiteLabelConfig,
@@ -102543,6 +103054,69 @@ export class UsersApi {
     /**
      * 
      * @param userId 
+     * @param request 
+     * @param {*} [options] Override http request options.
+     */
+    public createUserDeliveryLocation (userId: number, request: CreateUserDeliveryLocationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiDefaultResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}/deliveryLocations'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling createUserDeliveryLocation.');
+        }
+
+        // verify required parameter 'request' is not null or undefined
+        if (request === null || request === undefined) {
+            throw new Error('Required parameter request was null or undefined when calling createUserDeliveryLocation.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(request, "CreateUserDeliveryLocationRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiDefaultResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiDefaultResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param userId 
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
@@ -102879,6 +103453,67 @@ export class UsersApi {
     /**
      * 
      * @param userId 
+     * @param whiteLabelId 
+     * @param {*} [options] Override http request options.
+     */
+    public getUserDeliveryLocationsForAdmin (userId: number, whiteLabelId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultUserDeliveryLocationAdmin;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}/deliveryLocations'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getUserDeliveryLocationsForAdmin.');
+        }
+
+        if (whiteLabelId !== undefined) {
+            localVarQueryParameters['whiteLabelId'] = ObjectSerializer.serialize(whiteLabelId, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultUserDeliveryLocationAdmin;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultUserDeliveryLocationAdmin");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param userId 
      * @param {*} [options] Override http request options.
      */
     public getUserNotes (userId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultUserNote;  }> {
@@ -102923,6 +103558,264 @@ export class UsersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultUserNote");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param userId 
+     * @param orderId 
+     * @param {*} [options] Override http request options.
+     */
+    public getUserOrderByIdForAdmin (userId: number, orderId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOrder;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}/orders/{orderId}'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
+            .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getUserOrderByIdForAdmin.');
+        }
+
+        // verify required parameter 'orderId' is not null or undefined
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling getUserOrderByIdForAdmin.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOrder;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultOrder");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param userId 
+     * @param skip 
+     * @param take 
+     * @param whiteLabelId 
+     * @param {*} [options] Override http request options.
+     */
+    public getUserOrdersForAdmin (userId: number, skip?: number, take?: number, whiteLabelId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultUserOrderSummary;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}/orders'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getUserOrdersForAdmin.');
+        }
+
+        if (skip !== undefined) {
+            localVarQueryParameters['skip'] = ObjectSerializer.serialize(skip, "number");
+        }
+
+        if (take !== undefined) {
+            localVarQueryParameters['take'] = ObjectSerializer.serialize(take, "number");
+        }
+
+        if (whiteLabelId !== undefined) {
+            localVarQueryParameters['whiteLabelId'] = ObjectSerializer.serialize(whiteLabelId, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultUserOrderSummary;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultUserOrderSummary");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param userId 
+     * @param mostRecentCount 
+     * @param {*} [options] Override http request options.
+     */
+    public getUserSmsConversationItems (userId: number, mostRecentCount?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultUserSmsChatItem;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}/smsConversationItems'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getUserSmsConversationItems.');
+        }
+
+        if (mostRecentCount !== undefined) {
+            localVarQueryParameters['mostRecentCount'] = ObjectSerializer.serialize(mostRecentCount, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultUserSmsChatItem;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultUserSmsChatItem");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param userId 
+     * @param deliveryLocationId 
+     * @param {*} [options] Override http request options.
+     */
+    public hideUserDeliveryLocation (userId: number, deliveryLocationId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiDefaultResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}/deliveryLocations/{deliveryLocationId}/hide'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
+            .replace('{' + 'deliveryLocationId' + '}', encodeURIComponent(String(deliveryLocationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling hideUserDeliveryLocation.');
+        }
+
+        // verify required parameter 'deliveryLocationId' is not null or undefined
+        if (deliveryLocationId === null || deliveryLocationId === undefined) {
+            throw new Error('Required parameter deliveryLocationId was null or undefined when calling hideUserDeliveryLocation.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiDefaultResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiDefaultResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -103372,6 +104265,132 @@ export class UsersApi {
     /**
      * 
      * @param userId 
+     * @param request 
+     * @param {*} [options] Override http request options.
+     */
+    public sendUserPushNotification (userId: number, request: SendUserPushNotificationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultUserPushNotificationSentResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}/pushNotifications'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling sendUserPushNotification.');
+        }
+
+        // verify required parameter 'request' is not null or undefined
+        if (request === null || request === undefined) {
+            throw new Error('Required parameter request was null or undefined when calling sendUserPushNotification.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(request, "SendUserPushNotificationRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultUserPushNotificationSentResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultUserPushNotificationSentResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param userId 
+     * @param request 
+     * @param {*} [options] Override http request options.
+     */
+    public sendUserSms (userId: number, request: SendUserSmsRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiDefaultResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}/sms'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling sendUserSms.');
+        }
+
+        // verify required parameter 'request' is not null or undefined
+        if (request === null || request === undefined) {
+            throw new Error('Required parameter request was null or undefined when calling sendUserSms.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(request, "SendUserSmsRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiDefaultResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiDefaultResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param userId 
      * @param customerName 
      * @param {*} [options] Override http request options.
      */
@@ -103467,6 +104486,146 @@ export class UsersApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiDefaultResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiDefaultResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param userId 
+     * @param deliveryLocationId 
+     * @param request 
+     * @param {*} [options] Override http request options.
+     */
+    public setUserDeliveryLocationCoordinates (userId: number, deliveryLocationId: number, request: SetUserDeliveryLocationCoordinatesRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiDefaultResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}/deliveryLocations/{deliveryLocationId}/coordinates'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
+            .replace('{' + 'deliveryLocationId' + '}', encodeURIComponent(String(deliveryLocationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling setUserDeliveryLocationCoordinates.');
+        }
+
+        // verify required parameter 'deliveryLocationId' is not null or undefined
+        if (deliveryLocationId === null || deliveryLocationId === undefined) {
+            throw new Error('Required parameter deliveryLocationId was null or undefined when calling setUserDeliveryLocationCoordinates.');
+        }
+
+        // verify required parameter 'request' is not null or undefined
+        if (request === null || request === undefined) {
+            throw new Error('Required parameter request was null or undefined when calling setUserDeliveryLocationCoordinates.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(request, "SetUserDeliveryLocationCoordinatesRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiDefaultResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiDefaultResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param userId 
+     * @param deliveryLocationId 
+     * @param request 
+     * @param {*} [options] Override http request options.
+     */
+    public setUserDeliveryLocationField (userId: number, deliveryLocationId: number, request: SetUserDeliveryLocationFieldRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiDefaultResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/users/{userId}/deliveryLocations/{deliveryLocationId}/fields'
+            .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
+            .replace('{' + 'deliveryLocationId' + '}', encodeURIComponent(String(deliveryLocationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userId' is not null or undefined
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling setUserDeliveryLocationField.');
+        }
+
+        // verify required parameter 'deliveryLocationId' is not null or undefined
+        if (deliveryLocationId === null || deliveryLocationId === undefined) {
+            throw new Error('Required parameter deliveryLocationId was null or undefined when calling setUserDeliveryLocationField.');
+        }
+
+        // verify required parameter 'request' is not null or undefined
+        if (request === null || request === undefined) {
+            throw new Error('Required parameter request was null or undefined when calling setUserDeliveryLocationField.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(request, "SetUserDeliveryLocationFieldRequest")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
