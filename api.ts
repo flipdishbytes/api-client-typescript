@@ -60139,6 +60139,10 @@ export class VoucherSummary {
     * Is voucher enabled
     */
     'IsEnabled'?: boolean;
+    /**
+    * Store names associated with this voucher
+    */
+    'StoreNames'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
@@ -60177,6 +60181,11 @@ export class VoucherSummary {
             "name": "IsEnabled",
             "baseName": "IsEnabled",
             "type": "boolean"
+        },
+        {
+            "name": "StoreNames",
+            "baseName": "StoreNames",
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
