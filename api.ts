@@ -85926,26 +85926,26 @@ export class MenuZonesApi {
     /**
      * 
      * @summary Deletes a menu zone.
-     * @param menuZoneId The menu zone id.
      * @param menuId 
+     * @param menuZoneId The menu zone id.
      * @param {*} [options] Override http request options.
      */
-    public deleteMenuZone (menuZoneId: number, menuId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenuZone (menuId: number, menuZoneId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones/{menuZoneId}'
-            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)))
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'menuZoneId' is not null or undefined
-        if (menuZoneId === null || menuZoneId === undefined) {
-            throw new Error('Required parameter menuZoneId was null or undefined when calling deleteMenuZone.');
-        }
-
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
             throw new Error('Required parameter menuId was null or undefined when calling deleteMenuZone.');
+        }
+
+        // verify required parameter 'menuZoneId' is not null or undefined
+        if (menuZoneId === null || menuZoneId === undefined) {
+            throw new Error('Required parameter menuZoneId was null or undefined when calling deleteMenuZone.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -85989,26 +85989,26 @@ export class MenuZonesApi {
     /**
      * 
      * @summary Deletes a menu zone image.
-     * @param menuZoneId The zone Id/
      * @param menuId 
+     * @param menuZoneId The zone Id/
      * @param {*} [options] Override http request options.
      */
-    public deleteMenuZoneImage (menuZoneId: number, menuId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deleteMenuZoneImage (menuId: number, menuZoneId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones/{menuZoneId}/image'
-            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)))
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'menuZoneId' is not null or undefined
-        if (menuZoneId === null || menuZoneId === undefined) {
-            throw new Error('Required parameter menuZoneId was null or undefined when calling deleteMenuZoneImage.');
-        }
-
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
             throw new Error('Required parameter menuId was null or undefined when calling deleteMenuZoneImage.');
+        }
+
+        // verify required parameter 'menuZoneId' is not null or undefined
+        if (menuZoneId === null || menuZoneId === undefined) {
+            throw new Error('Required parameter menuZoneId was null or undefined when calling deleteMenuZoneImage.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -86052,19 +86052,24 @@ export class MenuZonesApi {
     /**
      * 
      * @summary Flips the order of two menu zones.
+     * @param menuId 
      * @param menuZoneId Source.
      * @param menuZoneI2 Destination.
-     * @param menuId 
      * @param {*} [options] Override http request options.
      */
-    public flipMenuZones (menuZoneId: number, menuZoneI2: number, menuId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public flipMenuZones (menuId: number, menuZoneId: number, menuZoneI2: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones/{menuZoneId}/flip/{menuZoneI2}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)))
-            .replace('{' + 'menuZoneI2' + '}', encodeURIComponent(String(menuZoneI2)))
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+            .replace('{' + 'menuZoneI2' + '}', encodeURIComponent(String(menuZoneI2)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling flipMenuZones.');
+        }
 
         // verify required parameter 'menuZoneId' is not null or undefined
         if (menuZoneId === null || menuZoneId === undefined) {
@@ -86074,11 +86079,6 @@ export class MenuZonesApi {
         // verify required parameter 'menuZoneI2' is not null or undefined
         if (menuZoneI2 === null || menuZoneI2 === undefined) {
             throw new Error('Required parameter menuZoneI2 was null or undefined when calling flipMenuZones.');
-        }
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling flipMenuZones.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -86243,19 +86243,24 @@ export class MenuZonesApi {
     /**
      * 
      * @summary Assigns a zone to a menu section.
+     * @param menuId 
      * @param menuZoneId The menu id.
      * @param menuSectionId The menu section id.
-     * @param menuId 
      * @param {*} [options] Override http request options.
      */
-    public setMenuSectionMenuZone (menuZoneId: number, menuSectionId: number, menuId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public setMenuSectionMenuZone (menuId: number, menuZoneId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones/{menuZoneId}/section/{menuSectionId}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)))
-            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)))
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+            .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling setMenuSectionMenuZone.');
+        }
 
         // verify required parameter 'menuZoneId' is not null or undefined
         if (menuZoneId === null || menuZoneId === undefined) {
@@ -86265,11 +86270,6 @@ export class MenuZonesApi {
         // verify required parameter 'menuSectionId' is not null or undefined
         if (menuSectionId === null || menuSectionId === undefined) {
             throw new Error('Required parameter menuSectionId was null or undefined when calling setMenuSectionMenuZone.');
-        }
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling setMenuSectionMenuZone.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -86313,18 +86313,23 @@ export class MenuZonesApi {
     /**
      * 
      * @summary Sets the description of a menu zone.
+     * @param menuId 
      * @param menuZoneId The zone id.
      * @param description The new description. Add as a raw string in the request, without any JSON wrapper.
-     * @param menuId 
      * @param {*} [options] Override http request options.
      */
-    public setMenuZoneDescription (menuZoneId: number, description: string, menuId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public setMenuZoneDescription (menuId: number, menuZoneId: number, description: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones/{menuZoneId}/description'
-            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)))
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling setMenuZoneDescription.');
+        }
 
         // verify required parameter 'menuZoneId' is not null or undefined
         if (menuZoneId === null || menuZoneId === undefined) {
@@ -86334,11 +86339,6 @@ export class MenuZonesApi {
         // verify required parameter 'description' is not null or undefined
         if (description === null || description === undefined) {
             throw new Error('Required parameter description was null or undefined when calling setMenuZoneDescription.');
-        }
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling setMenuZoneDescription.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -86383,19 +86383,24 @@ export class MenuZonesApi {
     /**
      * 
      * @summary Sets the name of a menu zone.
+     * @param menuId 
      * @param menuZoneId The menu zone id.
      * @param menuZoneName The new name.
-     * @param menuId 
      * @param {*} [options] Override http request options.
      */
-    public setMenuZoneName (menuZoneId: number, menuZoneName: string, menuId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public setMenuZoneName (menuId: number, menuZoneId: number, menuZoneName: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones/{menuZoneId}/name/{menuZoneName}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)))
-            .replace('{' + 'menuZoneName' + '}', encodeURIComponent(String(menuZoneName)))
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+            .replace('{' + 'menuZoneName' + '}', encodeURIComponent(String(menuZoneName)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling setMenuZoneName.');
+        }
 
         // verify required parameter 'menuZoneId' is not null or undefined
         if (menuZoneId === null || menuZoneId === undefined) {
@@ -86405,11 +86410,6 @@ export class MenuZonesApi {
         // verify required parameter 'menuZoneName' is not null or undefined
         if (menuZoneName === null || menuZoneName === undefined) {
             throw new Error('Required parameter menuZoneName was null or undefined when calling setMenuZoneName.');
-        }
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling setMenuZoneName.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -86523,18 +86523,23 @@ export class MenuZonesApi {
     /**
      * 
      * @summary Uploads an image for a menu zone.
+     * @param menuId 
      * @param menuZoneId The zone id.
      * @param file The file to upload.
-     * @param menuId 
      * @param {*} [options] Override http request options.
      */
-    public uploadMenuZoneImage (menuZoneId: number, file: Array<HttpPostedFileBase>, menuId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public uploadMenuZoneImage (menuId: number, menuZoneId: number, file: Array<HttpPostedFileBase>, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/zones/{menuZoneId}/image'
-            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)))
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'menuZoneId' + '}', encodeURIComponent(String(menuZoneId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling uploadMenuZoneImage.');
+        }
 
         // verify required parameter 'menuZoneId' is not null or undefined
         if (menuZoneId === null || menuZoneId === undefined) {
@@ -86544,11 +86549,6 @@ export class MenuZonesApi {
         // verify required parameter 'file' is not null or undefined
         if (file === null || file === undefined) {
             throw new Error('Required parameter file was null or undefined when calling uploadMenuZoneImage.');
-        }
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling uploadMenuZoneImage.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
