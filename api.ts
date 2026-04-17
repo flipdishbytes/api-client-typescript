@@ -60143,6 +60143,10 @@ export class VoucherSummary {
     * Store names associated with this voucher
     */
     'StoreNames'?: Array<string>;
+    /**
+    * True if the voucher is available on all active stores in the app
+    */
+    'IsAvailableOnAllStores'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -60186,6 +60190,11 @@ export class VoucherSummary {
             "name": "StoreNames",
             "baseName": "StoreNames",
             "type": "Array<string>"
+        },
+        {
+            "name": "IsAvailableOnAllStores",
+            "baseName": "IsAvailableOnAllStores",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
