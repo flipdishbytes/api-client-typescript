@@ -85935,7 +85935,7 @@ export class MenuZonesApi {
     /**
      * 
      * @summary Deletes a menu zone.
-     * @param menuId 
+     * @param menuId Menu id.
      * @param menuZoneId The menu zone id.
      * @param {*} [options] Override http request options.
      */
@@ -85998,7 +85998,7 @@ export class MenuZonesApi {
     /**
      * 
      * @summary Deletes a menu zone image.
-     * @param menuId 
+     * @param menuId Menu id.
      * @param menuZoneId The zone Id/
      * @param {*} [options] Override http request options.
      */
@@ -86252,7 +86252,7 @@ export class MenuZonesApi {
     /**
      * 
      * @summary Assigns a zone to a menu section.
-     * @param menuId 
+     * @param menuId Menu id.
      * @param menuZoneId The menu id.
      * @param menuSectionId The menu section id.
      * @param {*} [options] Override http request options.
@@ -86322,7 +86322,7 @@ export class MenuZonesApi {
     /**
      * 
      * @summary Sets the description of a menu zone.
-     * @param menuId 
+     * @param menuId Menu id.
      * @param menuZoneId The zone id.
      * @param description The new description. Add as a raw string in the request, without any JSON wrapper.
      * @param {*} [options] Override http request options.
@@ -86392,7 +86392,7 @@ export class MenuZonesApi {
     /**
      * 
      * @summary Sets the name of a menu zone.
-     * @param menuId 
+     * @param menuId Menu id.
      * @param menuZoneId The menu zone id.
      * @param menuZoneName The new name.
      * @param {*} [options] Override http request options.
@@ -86532,7 +86532,7 @@ export class MenuZonesApi {
     /**
      * 
      * @summary Uploads an image for a menu zone.
-     * @param menuId 
+     * @param menuId Menu id.
      * @param menuZoneId The zone id.
      * @param file The file to upload.
      * @param {*} [options] Override http request options.
