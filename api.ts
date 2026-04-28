@@ -647,6 +647,9 @@ export class AllMetadataResult {
     }
 }
 
+/**
+* Allergen.
+*/
 export class Allergen {
     /**
     * A unique identifier for the allergen
@@ -3831,7 +3834,13 @@ export class AuditLogFieldChangeInformation {
 * Period opening and closing balance
 */
 export class BalanceDetails {
+    /**
+    * OpeningBalance.
+    */
     'OpeningBalance'?: number;
+    /**
+    * ClosingBalance.
+    */
     'ClosingBalance'?: number;
 
     static discriminator: string | undefined = undefined;
@@ -7148,6 +7157,9 @@ export class ChangePasswordModel {
     }
 }
 
+/**
+* Channel.
+*/
 export class Channel {
     /**
     * Channel Id
@@ -9256,10 +9268,25 @@ export namespace CreateMetafieldDefinition {
         SendToMenu = <any> 'SendToMenu'
     }
 }
+/**
+* CreatePayGreenConfigurationRequest.
+*/
 export class CreatePayGreenConfigurationRequest {
+    /**
+    * Name.
+    */
     'Name'?: string;
+    /**
+    * PayGreenId.
+    */
     'PayGreenId'?: string;
+    /**
+    * PayGreenPrivateKey.
+    */
     'PayGreenPrivateKey'?: string;
+    /**
+    * AssignedStores.
+    */
     'AssignedStores'?: Array<number>;
 
     static discriminator: string | undefined = undefined;
@@ -9551,12 +9578,33 @@ export namespace CreateTeammate {
 * Create a delivery location for a user (admin).
 */
 export class CreateUserDeliveryLocationRequest {
+    /**
+    * Building.
+    */
     'Building'?: string;
+    /**
+    * Street.
+    */
     'Street'?: string;
+    /**
+    * Town.
+    */
     'Town'?: string;
+    /**
+    * PostCode.
+    */
     'PostCode'?: string;
+    /**
+    * FullAddressJson.
+    */
     'FullAddressJson'?: string;
+    /**
+    * DeliveryInstructions.
+    */
     'DeliveryInstructions'?: string;
+    /**
+    * Coordinates.
+    */
     'Coordinates'?: Coordinates;
     /**
     * Passed through to the same parameter position as legacy admin MVC (maps to IsCustomAddress in map service).
@@ -14496,8 +14544,17 @@ export class FieldGroup {
     }
 }
 
+/**
+* FileCreationResult.
+*/
 export class FileCreationResult {
+    /**
+    * FileId.
+    */
     'FileId'?: string;
+    /**
+    * Location.
+    */
     'Location'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -14542,10 +14599,25 @@ export class FileDownloadResult {
     }
 }
 
+/**
+* FirebaseApp.
+*/
 export class FirebaseApp {
+    /**
+    * WhitelabelId.
+    */
     'WhitelabelId'?: number;
+    /**
+    * PackageId.
+    */
     'PackageId'?: string;
+    /**
+    * FirebaseAppId.
+    */
     'FirebaseAppId'?: string;
+    /**
+    * FirebaseProjectId.
+    */
     'FirebaseProjectId'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -17529,7 +17601,13 @@ export class InvoicePeriod {
     }
 }
 
+/**
+* ItemNutritionInfoAddUpdateModel.
+*/
 export class ItemNutritionInfoAddUpdateModel {
+    /**
+    * Labels.
+    */
     'Labels'?: Array<NutritionInfoItemAddUpdateLabelModel>;
 
     static discriminator: string | undefined = undefined;
@@ -17546,7 +17624,13 @@ export class ItemNutritionInfoAddUpdateModel {
     }
 }
 
+/**
+* ItemNutritionInfoV2AddUpdateModel.
+*/
 export class ItemNutritionInfoV2AddUpdateModel {
+    /**
+    * AllergenIds.
+    */
     'AllergenIds'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
@@ -23268,7 +23352,13 @@ export class MenuItemOptionSetItem {
     * Tax rate name
     */
     'TaxRateName'?: string;
+    /**
+    * TaxRateId.
+    */
     'TaxRateId'?: number;
+    /**
+    * TaxValue.
+    */
     'TaxValue'?: number;
     /**
     * Name
@@ -24009,6 +24099,9 @@ export class MenuItemOptionSetUpdatedEvent {
     }
 }
 
+/**
+* MenuNutritionInfoHeader.
+*/
 export class MenuNutritionInfoHeader {
     /**
     * Menu Id
@@ -26010,13 +26103,37 @@ export class MenuUploadedEvent {
     }
 }
 
+/**
+* MenuZone.
+*/
 export class MenuZone {
+    /**
+    * MenuZoneId.
+    */
     'MenuZoneId'?: number;
+    /**
+    * MenuId.
+    */
     'MenuId'?: number;
+    /**
+    * Name.
+    */
     'Name'?: string;
+    /**
+    * Description.
+    */
     'Description'?: string;
+    /**
+    * ImageName.
+    */
     'ImageName'?: string;
+    /**
+    * DisplayOrder.
+    */
     'DisplayOrder'?: number;
+    /**
+    * ImageUrl.
+    */
     'ImageUrl'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -27058,9 +27175,21 @@ export class NutritionInfo {
     }
 }
 
+/**
+* NutritionInfoItemAddUpdateLabelModel.
+*/
 export class NutritionInfoItemAddUpdateLabelModel {
+    /**
+    * Name.
+    */
     'Name'?: string;
+    /**
+    * Values.
+    */
     'Values'?: Array<string>;
+    /**
+    * IconUrl.
+    */
     'IconUrl'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -27087,6 +27216,9 @@ export class NutritionInfoItemAddUpdateLabelModel {
     }
 }
 
+/**
+* NutritionInfoLabel.
+*/
 export class NutritionInfoLabel {
     /**
     * Name of the allergen / ingredient
@@ -27125,6 +27257,9 @@ export class NutritionInfoLabel {
     }
 }
 
+/**
+* NutritionInfoMenuItem.
+*/
 export class NutritionInfoMenuItem {
     /**
     * Menu item public id
@@ -27154,6 +27289,9 @@ export class NutritionInfoMenuItem {
     }
 }
 
+/**
+* NutritionInfoMenuOptionSetItem.
+*/
 export class NutritionInfoMenuOptionSetItem {
     /**
     * Menu item option set item public id
@@ -27224,6 +27362,9 @@ export class NutritionInfoV2 {
     }
 }
 
+/**
+* NutritionInfoV2Allergen.
+*/
 export class NutritionInfoV2Allergen {
     /**
     * AllergenId (unique string identifier)
@@ -27262,6 +27403,9 @@ export class NutritionInfoV2Allergen {
     }
 }
 
+/**
+* NutritionInfoV2Item.
+*/
 export class NutritionInfoV2Item {
     /**
     * Menu item or menu item option set item public id
@@ -29397,12 +29541,33 @@ export class OrderDispatchedEvent {
     }
 }
 
+/**
+* OrderDropOffLocation.
+*/
 export class OrderDropOffLocation {
+    /**
+    * OrderId.
+    */
     'OrderId'?: number;
+    /**
+    * LocationName.
+    */
     'LocationName'?: string;
+    /**
+    * LocationAreaName.
+    */
     'LocationAreaName'?: string;
+    /**
+    * LocationId.
+    */
     'LocationId'?: number;
+    /**
+    * LocationAreaId.
+    */
     'LocationAreaId'?: number;
+    /**
+    * ExternalLocationId.
+    */
     'ExternalLocationId'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -29535,6 +29700,9 @@ export class OrderFulfillmentStatusBase {
     }
 }
 
+/**
+* OrderFulfillmentStatusUpdate.
+*/
 export class OrderFulfillmentStatusUpdate {
     /**
     * Fulfillment Status Id
@@ -44152,9 +44320,21 @@ export class Restaurant {
     }
 }
 
+/**
+* RestaurantVoucherAssignedStore.
+*/
 export class RestaurantVoucherAssignedStore {
+    /**
+    * StoreId.
+    */
     'StoreId'?: number;
+    /**
+    * Name.
+    */
     'Name'?: string;
+    /**
+    * Active.
+    */
     'Active'?: boolean;
 
     static discriminator: string | undefined = undefined;
@@ -44181,8 +44361,17 @@ export class RestaurantVoucherAssignedStore {
     }
 }
 
+/**
+* RestaurantVoucherEligibleStore.
+*/
 export class RestaurantVoucherEligibleStore {
+    /**
+    * StoreId.
+    */
     'StoreId'?: number;
+    /**
+    * Name.
+    */
     'Name'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -44204,10 +44393,25 @@ export class RestaurantVoucherEligibleStore {
     }
 }
 
+/**
+* RestaurantVoucherPayGreenConfiguration.
+*/
 export class RestaurantVoucherPayGreenConfiguration {
+    /**
+    * Name.
+    */
     'Name'?: string;
+    /**
+    * PayGreenId.
+    */
     'PayGreenId'?: string;
+    /**
+    * PayGreenConfigurationId.
+    */
     'PayGreenConfigurationId'?: number;
+    /**
+    * AssignedStores.
+    */
     'AssignedStores'?: Array<RestaurantVoucherAssignedStore>;
 
     static discriminator: string | undefined = undefined;
@@ -44239,8 +44443,17 @@ export class RestaurantVoucherPayGreenConfiguration {
     }
 }
 
+/**
+* RestaurantVoucherPayGreenConfigurationSummary.
+*/
 export class RestaurantVoucherPayGreenConfigurationSummary {
+    /**
+    * Name.
+    */
     'Name'?: string;
+    /**
+    * PayGreenConfigurationId.
+    */
     'PayGreenConfigurationId'?: number;
 
     static discriminator: string | undefined = undefined;
@@ -44262,10 +44475,25 @@ export class RestaurantVoucherPayGreenConfigurationSummary {
     }
 }
 
+/**
+* RestaurantVoucherPayGreenStoreConfiguration.
+*/
 export class RestaurantVoucherPayGreenStoreConfiguration {
+    /**
+    * Name.
+    */
     'Name'?: string;
+    /**
+    * Active.
+    */
     'Active'?: boolean;
+    /**
+    * PayGreenId.
+    */
     'PayGreenId'?: string;
+    /**
+    * PayGreenConfigurationId.
+    */
     'PayGreenConfigurationId'?: number;
 
     static discriminator: string | undefined = undefined;
@@ -45372,7 +45600,13 @@ export class SearchCriteria {
 * Send a push notification to a user.
 */
 export class SendUserPushNotificationRequest {
+    /**
+    * WhiteLabelId.
+    */
     'WhiteLabelId'?: number;
+    /**
+    * Message.
+    */
     'Message'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -45398,8 +45632,17 @@ export class SendUserPushNotificationRequest {
 * Send an SMS to a user from admin.
 */
 export class SendUserSmsRequest {
+    /**
+    * Message.
+    */
     'Message'?: string;
+    /**
+    * WhiteLabelId.
+    */
     'WhiteLabelId'?: number;
+    /**
+    * FromNumber.
+    */
     'FromNumber'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -45571,7 +45814,13 @@ export class SetPasswordWithPinModel {
 * Set delivery location coordinates.
 */
 export class SetUserDeliveryLocationCoordinatesRequest {
+    /**
+    * Latitude.
+    */
     'Latitude'?: number;
+    /**
+    * Longitude.
+    */
     'Longitude'?: number;
 
     static discriminator: string | undefined = undefined;
@@ -45601,6 +45850,9 @@ export class SetUserDeliveryLocationFieldRequest {
     * Which field to update. Omit or set to null for a validation error.
     */
     'Field'?: SetUserDeliveryLocationFieldRequest.FieldEnum;
+    /**
+    * Value.
+    */
     'Value'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -45796,12 +46048,33 @@ export class SmsInfo {
     }
 }
 
+/**
+* SmsProviderCredential.
+*/
 export class SmsProviderCredential {
+    /**
+    * OrgId.
+    */
     'OrgId'?: string;
+    /**
+    * BrandId.
+    */
     'BrandId'?: string;
+    /**
+    * SmsServiceType.
+    */
     'SmsServiceType'?: SmsProviderCredential.SmsServiceTypeEnum;
+    /**
+    * SenderId.
+    */
     'SenderId'?: string;
+    /**
+    * Username.
+    */
     'Username'?: string;
+    /**
+    * AuthToken.
+    */
     'AuthToken'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -45851,9 +46124,21 @@ export namespace SmsProviderCredential {
         MessageBird = <any> 'MessageBird'
     }
 }
+/**
+* SmsProviderCredentialUpdateRequest.
+*/
 export class SmsProviderCredentialUpdateRequest {
+    /**
+    * SenderId.
+    */
     'SenderId'?: string;
+    /**
+    * Username.
+    */
     'Username'?: string;
+    /**
+    * AuthToken.
+    */
     'AuthToken'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -48026,6 +48311,9 @@ export class StoreCollectionSettings {
     }
 }
 
+/**
+* StoreConfig.
+*/
 export class StoreConfig {
     /**
     * True if the store accepts pickup orders
@@ -55388,11 +55676,29 @@ export class TeammateUpdatedEvent {
     }
 }
 
+/**
+* TelemetrySeriesProperty.
+*/
 export class TelemetrySeriesProperty {
+    /**
+    * Name.
+    */
     'Name'?: string;
+    /**
+    * Type.
+    */
     'Type'?: string;
+    /**
+    * IntValues.
+    */
     'IntValues'?: Array<number>;
+    /**
+    * StringValues.
+    */
     'StringValues'?: Array<string>;
+    /**
+    * DoubleValues.
+    */
     'DoubleValues'?: Array<number>;
 
     static discriminator: string | undefined = undefined;
@@ -55429,10 +55735,25 @@ export class TelemetrySeriesProperty {
     }
 }
 
+/**
+* TelemetrySeriesQueryParameters.
+*/
 export class TelemetrySeriesQueryParameters {
+    /**
+    * KioskId.
+    */
     'KioskId'?: string;
+    /**
+    * Variables.
+    */
     'Variables'?: Array<string>;
+    /**
+    * StartDate.
+    */
     'StartDate'?: Date;
+    /**
+    * EndDate.
+    */
     'EndDate'?: Date;
 
     static discriminator: string | undefined = undefined;
@@ -55464,8 +55785,17 @@ export class TelemetrySeriesQueryParameters {
     }
 }
 
+/**
+* TelemetrySeriesResult.
+*/
 export class TelemetrySeriesResult {
+    /**
+    * Timestamps.
+    */
     'Timestamps'?: Array<Date>;
+    /**
+    * Properties.
+    */
     'Properties'?: Array<TelemetrySeriesProperty>;
 
     static discriminator: string | undefined = undefined;
@@ -55878,6 +56208,9 @@ export class UnRegisterCardReaderRequest {
     }
 }
 
+/**
+* UpcomingInvoice.
+*/
 export class UpcomingInvoice {
     /**
     * Amount
@@ -56784,8 +57117,17 @@ export namespace UpdateMobileAppsSubmissionStatus {
         Published = <any> 'Published'
     }
 }
+/**
+* UpdatePayGreenConfigurationRequest.
+*/
 export class UpdatePayGreenConfigurationRequest {
+    /**
+    * Name.
+    */
     'Name'?: string;
+    /**
+    * AssignedStores.
+    */
     'AssignedStores'?: Array<number>;
 
     static discriminator: string | undefined = undefined;
@@ -56940,8 +57282,17 @@ export namespace UpdateProductReference {
         Modifier = <any> 'Modifier'
     }
 }
+/**
+* UpdateStorePayGreenConfigurationRequest.
+*/
 export class UpdateStorePayGreenConfigurationRequest {
+    /**
+    * Active.
+    */
     'Active'?: boolean;
+    /**
+    * PayGreenConfigurationId.
+    */
     'PayGreenConfigurationId'?: number;
 
     static discriminator: string | undefined = undefined;
@@ -57691,15 +58042,45 @@ export class UserDeletedEvent {
 * Delivery location with identifiers for admin user management.
 */
 export class UserDeliveryLocationAdmin {
+    /**
+    * DeliveryLocationId.
+    */
     'DeliveryLocationId'?: number;
+    /**
+    * Building.
+    */
     'Building'?: string;
+    /**
+    * Street.
+    */
     'Street'?: string;
+    /**
+    * Town.
+    */
     'Town'?: string;
+    /**
+    * PostCode.
+    */
     'PostCode'?: string;
+    /**
+    * DeliveryInstructions.
+    */
     'DeliveryInstructions'?: string;
+    /**
+    * AutoSelectThisLocation.
+    */
     'AutoSelectThisLocation'?: boolean;
+    /**
+    * IsDisplayed.
+    */
     'IsDisplayed'?: boolean;
+    /**
+    * IsConfirmed.
+    */
     'IsConfirmed'?: boolean;
+    /**
+    * Coordinates.
+    */
     'Coordinates'?: Coordinates;
 
     static discriminator: string | undefined = undefined;
@@ -58479,16 +58860,49 @@ export class UserNote {
 * A previous order row for admin user management (structured; no HTML).
 */
 export class UserOrderSummary {
+    /**
+    * OrderId.
+    */
     'OrderId'?: number;
+    /**
+    * TsOrderPlacedUtc.
+    */
     'TsOrderPlacedUtc'?: Date;
+    /**
+    * TsUpdateUtc.
+    */
     'TsUpdateUtc'?: Date;
+    /**
+    * RestaurantName.
+    */
     'RestaurantName'?: string;
+    /**
+    * FoodAmount.
+    */
     'FoodAmount'?: number;
+    /**
+    * TipAmount.
+    */
     'TipAmount'?: number;
+    /**
+    * TotalRestaurantAmount.
+    */
     'TotalRestaurantAmount'?: number;
+    /**
+    * IsoCurrency.
+    */
     'IsoCurrency'?: string;
+    /**
+    * DeliveryType.
+    */
     'DeliveryType'?: string;
+    /**
+    * OrderState.
+    */
     'OrderState'?: string;
+    /**
+    * PaymentAccountDescription.
+    */
     'PaymentAccountDescription'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -58672,6 +59086,9 @@ export class UserPasswordCreatedEvent {
 * Result of sending push notification.
 */
 export class UserPushNotificationSentResult {
+    /**
+    * TokenCount.
+    */
     'TokenCount'?: number;
 
     static discriminator: string | undefined = undefined;
@@ -58827,10 +59244,25 @@ export namespace UserSearch {
 * An SMS conversation item for admin user chat.
 */
 export class UserSmsChatItem {
+    /**
+    * SmsConversationItemId.
+    */
     'SmsConversationItemId'?: number;
+    /**
+    * Direction.
+    */
     'Direction'?: string;
+    /**
+    * From.
+    */
     'From'?: string;
+    /**
+    * Text.
+    */
     'Text'?: string;
+    /**
+    * TsSentReceivedUtc.
+    */
     'TsSentReceivedUtc'?: Date;
 
     static discriminator: string | undefined = undefined;
@@ -59192,9 +59624,21 @@ export class ValidationErrorResult {
     }
 }
 
+/**
+* ValidityPeriod.
+*/
 export class ValidityPeriod {
+    /**
+    * DayOfWeek.
+    */
     'DayOfWeek'?: ValidityPeriod.DayOfWeekEnum;
+    /**
+    * StartTime.
+    */
     'StartTime'?: string;
+    /**
+    * EndTime.
+    */
     'EndTime'?: string;
 
     static discriminator: string | undefined = undefined;
