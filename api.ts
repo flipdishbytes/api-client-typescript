@@ -54019,6 +54019,9 @@ export class Subscription {
     * The subscription identifier
     */
     'SubscriptionId': string;
+    /**
+    * Name
+    */
     'Name': string;
     /**
     * Status
@@ -54620,6 +54623,9 @@ export class SubscriptionSummary {
     * The subscription identifier
     */
     'SubscriptionId': string;
+    /**
+    * Name
+    */
     'Name': string;
     /**
     * Status
