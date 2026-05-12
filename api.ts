@@ -34065,6 +34065,7 @@ export class PayoutReport3DetailsSalesLine {
 export class PayoutReport3DetailsSummary {
     'Revenue'?: number;
     'RevenueOfWhichCash'?: number;
+    'UnpaidRevenue'?: number;
     'RevenueForFeeCalculations'?: number;
     'FlipdishFees'?: number;
     'Adjustments'?: number;
@@ -34082,6 +34083,11 @@ export class PayoutReport3DetailsSummary {
         {
             "name": "RevenueOfWhichCash",
             "baseName": "RevenueOfWhichCash",
+            "type": "number"
+        },
+        {
+            "name": "UnpaidRevenue",
+            "baseName": "UnpaidRevenue",
             "type": "number"
         },
         {
