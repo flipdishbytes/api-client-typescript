@@ -104109,10 +104109,10 @@ export class UsersApi {
      * @param userId 
      * @param skip 
      * @param take 
-     * @param whiteLabelId 
+     * @param brandId 
      * @param {*} [options] Override http request options.
      */
-    public getUserOrdersForAdmin (userId: number, skip?: number, take?: number, whiteLabelId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultUserOrderSummary;  }> {
+    public getUserOrdersForAdmin (userId: number, skip?: number, take?: number, brandId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultUserOrderSummary;  }> {
         const localVarPath = this.basePath + '/api/v1.0/users/{userId}/orders'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -104132,8 +104132,8 @@ export class UsersApi {
             localVarQueryParameters['take'] = ObjectSerializer.serialize(take, "number");
         }
 
-        if (whiteLabelId !== undefined) {
-            localVarQueryParameters['whiteLabelId'] = ObjectSerializer.serialize(whiteLabelId, "number");
+        if (brandId !== undefined) {
+            localVarQueryParameters['brandId'] = ObjectSerializer.serialize(brandId, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
