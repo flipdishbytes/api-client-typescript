@@ -27680,71 +27680,6 @@ export class OktaPortalFeatureFlag {
 }
 
 /**
-* Model for the onboarding config
-*/
-export class OnboardingConfig {
-    /**
-    * ID of the onboarding config
-    */
-    'OnboardingConfigId'?: number;
-    /**
-    * Gets or sets whether onboarding is enabled
-    */
-    'IsEnabled'?: boolean;
-    /**
-    * Gets or sets whether welcome screen is enabled
-    */
-    'IsWelcomeScreenEnabled'?: boolean;
-    /**
-    * Web activation wizard milestone id
-    */
-    'WebActivationWizardMilestoneId'?: number;
-    /**
-    * Onboarding config type
-    */
-    'ConfigType'?: OnboardingConfig.ConfigTypeEnum;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "OnboardingConfigId",
-            "baseName": "OnboardingConfigId",
-            "type": "number"
-        },
-        {
-            "name": "IsEnabled",
-            "baseName": "IsEnabled",
-            "type": "boolean"
-        },
-        {
-            "name": "IsWelcomeScreenEnabled",
-            "baseName": "IsWelcomeScreenEnabled",
-            "type": "boolean"
-        },
-        {
-            "name": "WebActivationWizardMilestoneId",
-            "baseName": "WebActivationWizardMilestoneId",
-            "type": "number"
-        },
-        {
-            "name": "ConfigType",
-            "baseName": "ConfigType",
-            "type": "OnboardingConfig.ConfigTypeEnum"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return OnboardingConfig.attributeTypeMap;
-    }
-}
-
-export namespace OnboardingConfig {
-    export enum ConfigTypeEnum {
-        Tutorial = <any> 'Tutorial',
-        OnboardingWizard = <any> 'OnboardingWizard'
-    }
-}
-/**
 * Model for updating the onboarding config
 */
 export class OnboardingConfigUpdate {
@@ -27792,87 +27727,6 @@ export namespace OnboardingConfigUpdate {
     }
 }
 /**
-* An item that represents an action to be completed by the user.
-*/
-export class OnboardingItem {
-    /**
-    * Item internal id.
-    */
-    'OnboardingItemId'?: number;
-    /**
-    * Item title in the items panel.
-    */
-    'Title'?: string;
-    /**
-    * Item detailed information.
-    */
-    'Description'?: string;
-    /**
-    * Whether the item is pending, completed or was dismissed.
-    */
-    'Status'?: OnboardingItem.StatusEnum;
-    /**
-    * Defines if the item is a global milestone, a category or a simple item.
-    */
-    'Type'?: OnboardingItem.TypeEnum;
-    /**
-    * Nested items (subitems).
-    */
-    'Items'?: Array<OnboardingItem>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "OnboardingItemId",
-            "baseName": "OnboardingItemId",
-            "type": "number"
-        },
-        {
-            "name": "Title",
-            "baseName": "Title",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "Status",
-            "baseName": "Status",
-            "type": "OnboardingItem.StatusEnum"
-        },
-        {
-            "name": "Type",
-            "baseName": "Type",
-            "type": "OnboardingItem.TypeEnum"
-        },
-        {
-            "name": "Items",
-            "baseName": "Items",
-            "type": "Array<OnboardingItem>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return OnboardingItem.attributeTypeMap;
-    }
-}
-
-export namespace OnboardingItem {
-    export enum StatusEnum {
-        Pending = <any> 'Pending',
-        InProgress = <any> 'InProgress',
-        Completed = <any> 'Completed',
-        Dismissed = <any> 'Dismissed'
-    }
-    export enum TypeEnum {
-        Milestone = <any> 'Milestone',
-        Section = <any> 'Section',
-        Item = <any> 'Item'
-    }
-}
-/**
 * 
 */
 export class OnboardingItemUpdate {
@@ -27900,128 +27754,6 @@ export namespace OnboardingItemUpdate {
         Pending = <any> 'Pending',
         InProgress = <any> 'InProgress',
         Completed = <any> 'Completed'
-    }
-}
-/**
-* List of onboarding root items (milestones).
-*/
-export class OnboardingProcess {
-    /**
-    * Top level items.
-    */
-    'RootItems'?: Array<OnboardingRootItem>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "RootItems",
-            "baseName": "RootItems",
-            "type": "Array<OnboardingRootItem>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return OnboardingProcess.attributeTypeMap;
-    }
-}
-
-/**
-* Root item, it contains metadata that affects the entire process.
-*/
-export class OnboardingRootItem {
-    /**
-    * Id of the menu associated to the current store.
-    */
-    'MenuId'?: number;
-    /**
-    * Id of the bank account, associated to the current store.
-    */
-    'BankAccountId'?: number;
-    /**
-    * Item internal id.
-    */
-    'OnboardingItemId'?: number;
-    /**
-    * Item title in the items panel.
-    */
-    'Title'?: string;
-    /**
-    * Item detailed information.
-    */
-    'Description'?: string;
-    /**
-    * Whether the item is pending, completed or was dismissed.
-    */
-    'Status'?: OnboardingRootItem.StatusEnum;
-    /**
-    * Defines if the item is a global milestone, a category or a simple item.
-    */
-    'Type'?: OnboardingRootItem.TypeEnum;
-    /**
-    * Nested items (subitems).
-    */
-    'Items'?: Array<OnboardingItem>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "MenuId",
-            "baseName": "MenuId",
-            "type": "number"
-        },
-        {
-            "name": "BankAccountId",
-            "baseName": "BankAccountId",
-            "type": "number"
-        },
-        {
-            "name": "OnboardingItemId",
-            "baseName": "OnboardingItemId",
-            "type": "number"
-        },
-        {
-            "name": "Title",
-            "baseName": "Title",
-            "type": "string"
-        },
-        {
-            "name": "Description",
-            "baseName": "Description",
-            "type": "string"
-        },
-        {
-            "name": "Status",
-            "baseName": "Status",
-            "type": "OnboardingRootItem.StatusEnum"
-        },
-        {
-            "name": "Type",
-            "baseName": "Type",
-            "type": "OnboardingRootItem.TypeEnum"
-        },
-        {
-            "name": "Items",
-            "baseName": "Items",
-            "type": "Array<OnboardingItem>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return OnboardingRootItem.attributeTypeMap;
-    }
-}
-
-export namespace OnboardingRootItem {
-    export enum StatusEnum {
-        Pending = <any> 'Pending',
-        InProgress = <any> 'InProgress',
-        Completed = <any> 'Completed',
-        Dismissed = <any> 'Dismissed'
-    }
-    export enum TypeEnum {
-        Milestone = <any> 'Milestone',
-        Section = <any> 'Section',
-        Item = <any> 'Item'
     }
 }
 /**
@@ -38916,29 +38648,6 @@ export class RestApiArrayResultOauthClientRedirectUri {
 /**
 * Rest api array result
 */
-export class RestApiArrayResultOnboardingConfig {
-    /**
-    * Generic data object.
-    */
-    'Data': Array<OnboardingConfig>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "Array<OnboardingConfig>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiArrayResultOnboardingConfig.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api array result
-*/
 export class RestApiArrayResultOrderBatch {
     /**
     * Generic data object.
@@ -43236,52 +42945,6 @@ export class RestApiResultOktaPortalFeatureFlag {
 
     static getAttributeTypeMap() {
         return RestApiResultOktaPortalFeatureFlag.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api result
-*/
-export class RestApiResultOnboardingConfig {
-    /**
-    * Generic data object.
-    */
-    'Data': OnboardingConfig;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "OnboardingConfig"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiResultOnboardingConfig.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api result
-*/
-export class RestApiResultOnboardingProcess {
-    /**
-    * Generic data object.
-    */
-    'Data': OnboardingProcess;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "OnboardingProcess"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiResultOnboardingProcess.attributeTypeMap;
     }
 }
 
@@ -64097,13 +63760,8 @@ let enumsMap: {[index: string]: any} = {
         "NextStatusWithOrderType.OrderTypeEnum": NextStatusWithOrderType.OrderTypeEnum,
         "OAuthApp.FlowEnum": OAuthApp.FlowEnum,
         "OAuthApp.RefreshTokenUsageEnum": OAuthApp.RefreshTokenUsageEnum,
-        "OnboardingConfig.ConfigTypeEnum": OnboardingConfig.ConfigTypeEnum,
         "OnboardingConfigUpdate.ConfigTypeEnum": OnboardingConfigUpdate.ConfigTypeEnum,
-        "OnboardingItem.StatusEnum": OnboardingItem.StatusEnum,
-        "OnboardingItem.TypeEnum": OnboardingItem.TypeEnum,
         "OnboardingItemUpdate.StatusEnum": OnboardingItemUpdate.StatusEnum,
-        "OnboardingRootItem.StatusEnum": OnboardingRootItem.StatusEnum,
-        "OnboardingRootItem.TypeEnum": OnboardingRootItem.TypeEnum,
         "Order.DeliveryTypeEnum": Order.DeliveryTypeEnum,
         "Order.PickupLocationTypeEnum": Order.PickupLocationTypeEnum,
         "Order.TableServiceCatagoryEnum": Order.TableServiceCatagoryEnum,
@@ -64561,12 +64219,8 @@ let typeMap: {[index: string]: any} = {
     "OauthClientRedirectUri": OauthClientRedirectUri,
     "ObjectDisplayOrder": ObjectDisplayOrder,
     "OktaPortalFeatureFlag": OktaPortalFeatureFlag,
-    "OnboardingConfig": OnboardingConfig,
     "OnboardingConfigUpdate": OnboardingConfigUpdate,
-    "OnboardingItem": OnboardingItem,
     "OnboardingItemUpdate": OnboardingItemUpdate,
-    "OnboardingProcess": OnboardingProcess,
-    "OnboardingRootItem": OnboardingRootItem,
     "Order": Order,
     "OrderAcceptedEvent": OrderAcceptedEvent,
     "OrderBatch": OrderBatch,
@@ -64708,7 +64362,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiArrayResultMobileAppsStatistics": RestApiArrayResultMobileAppsStatistics,
     "RestApiArrayResultOAuthApp": RestApiArrayResultOAuthApp,
     "RestApiArrayResultOauthClientRedirectUri": RestApiArrayResultOauthClientRedirectUri,
-    "RestApiArrayResultOnboardingConfig": RestApiArrayResultOnboardingConfig,
     "RestApiArrayResultOrderBatch": RestApiArrayResultOrderBatch,
     "RestApiArrayResultOrderFulfillmentStatus": RestApiArrayResultOrderFulfillmentStatus,
     "RestApiArrayResultPayoutSummary": RestApiArrayResultPayoutSummary,
@@ -64855,8 +64508,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultOAuthApp": RestApiResultOAuthApp,
     "RestApiResultOauthClientRedirectUri": RestApiResultOauthClientRedirectUri,
     "RestApiResultOktaPortalFeatureFlag": RestApiResultOktaPortalFeatureFlag,
-    "RestApiResultOnboardingConfig": RestApiResultOnboardingConfig,
-    "RestApiResultOnboardingProcess": RestApiResultOnboardingProcess,
     "RestApiResultOrder": RestApiResultOrder,
     "RestApiResultOrderBatch": RestApiResultOrderBatch,
     "RestApiResultOrderBatchingConfiguration": RestApiResultOrderBatchingConfiguration,
@@ -68562,6 +68213,69 @@ export class AppsApi {
     }
     /**
      * 
+     * @param appId 
+     * @param orgId 
+     * @param {*} [options] Override http request options.
+     */
+    public appsSetPropertyId (appId: string, orgId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/orgId/{orgId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'orgId' + '}', encodeURIComponent(String(orgId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling appsSetPropertyId.');
+        }
+
+        // verify required parameter 'orgId' is not null or undefined
+        if (orgId === null || orgId === undefined) {
+            throw new Error('Required parameter orgId was null or undefined when calling appsSetPropertyId.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @param parameters 
      * @param {*} [options] Override http request options.
      */
@@ -69582,68 +69296,6 @@ export class AppsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiStringResult");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param orgId 
-     * @param {*} [options] Override http request options.
-     */
-    public setPropertyId (appId: string, orgId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/orgId/{orgId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'orgId' + '}', encodeURIComponent(String(orgId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling setPropertyId.');
-        }
-
-        // verify required parameter 'orgId' is not null or undefined
-        if (orgId === null || orgId === undefined) {
-            throw new Error('Required parameter orgId was null or undefined when calling setPropertyId.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -71710,6 +71362,69 @@ export class CardReadersApi {
     }
     /**
      * 
+     * @param readerId 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public cardReadersGetReader (readerId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCardReader;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/payments/terminals/stripe/{readerId}'
+            .replace('{' + 'readerId' + '}', encodeURIComponent(String(readerId)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'readerId' is not null or undefined
+        if (readerId === null || readerId === undefined) {
+            throw new Error('Required parameter readerId was null or undefined when calling cardReadersGetReader.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling cardReadersGetReader.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCardReader;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultCardReader");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @param geoPointRequest 
      * @param appId 
      * @param {*} [options] Override http request options.
@@ -71825,69 +71540,6 @@ export class CardReadersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultBluetoothTerminalStatus");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param readerId 
-     * @param appId 
-     * @param {*} [options] Override http request options.
-     */
-    public getReader (readerId: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultCardReader;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/payments/terminals/stripe/{readerId}'
-            .replace('{' + 'readerId' + '}', encodeURIComponent(String(readerId)))
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'readerId' is not null or undefined
-        if (readerId === null || readerId === undefined) {
-            throw new Error('Required parameter readerId was null or undefined when calling getReader.');
-        }
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getReader.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultCardReader;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultCardReader");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -72469,7 +72121,8 @@ export class CatalogChangesApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get menu pending changes from Catalog groups and items
      * @param appId 
      * @param menuId 
      * @param catalogItemId 
@@ -72546,6 +72199,7 @@ export class CatalogChangesApi {
     }
     /**
      * 
+     * @summary Get menu pending changes summaries by appId
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -72601,7 +72255,8 @@ export class CatalogChangesApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Update menus with the pending changes from Catalog groups and items
      * @param appId 
      * @param publishMenuChanges 
      * @param {*} [options] Override http request options.
@@ -72713,7 +72368,8 @@ export class CatalogGroupsApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Archive Catalog Group
      * @param appId 
      * @param catalogItemId 
      * @param {*} [options] Override http request options.
@@ -72775,7 +72431,8 @@ export class CatalogGroupsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Create a Catalog Group
      * @param appId 
      * @param createGroup 
      * @param {*} [options] Override http request options.
@@ -72838,7 +72495,8 @@ export class CatalogGroupsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Duplicate Catalog Group
      * @param appId 
      * @param catalogItemId 
      * @param {*} [options] Override http request options.
@@ -72900,7 +72558,8 @@ export class CatalogGroupsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get group by Id
      * @param appId 
      * @param catalogItemId 
      * @param {*} [options] Override http request options.
@@ -72963,7 +72622,8 @@ export class CatalogGroupsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get paginated groups by app name id filtered by types
      * @param appId 
      * @param groupTypes 
      * @param searchTerm 
@@ -73044,7 +72704,8 @@ export class CatalogGroupsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Update Catalog Group
      * @param appId 
      * @param catalogItemId 
      * @param updateGroup 
@@ -73163,7 +72824,8 @@ export class CatalogImagesApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Upload a Catalog Image
      * @param appId 
      * @param Image Catalog image
      * @param {*} [options] Override http request options.
@@ -73280,7 +72942,8 @@ export class CatalogItemsApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Archive Catalog Item
      * @param appId 
      * @param catalogItemId 
      * @param {*} [options] Override http request options.
@@ -73342,7 +73005,8 @@ export class CatalogItemsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Create a Catalog Item
      * @param appId 
      * @param createCatalogItem 
      * @param {*} [options] Override http request options.
@@ -73405,7 +73069,8 @@ export class CatalogItemsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Duplicate Catalog Item
      * @param appId 
      * @param catalogItemId 
      * @param {*} [options] Override http request options.
@@ -73467,7 +73132,8 @@ export class CatalogItemsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get item by Id
      * @param appId 
      * @param catalogItemId 
      * @param {*} [options] Override http request options.
@@ -73530,7 +73196,8 @@ export class CatalogItemsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get paginated items by app name id filtered by types
      * @param appId 
      * @param itemTypes 
      * @param searchTerm 
@@ -73611,7 +73278,8 @@ export class CatalogItemsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Update Catalog Item
      * @param appId 
      * @param catalogItemId 
      * @param updateCatalogItem 
@@ -73730,7 +73398,8 @@ export class CatalogProductsApi {
         this.authentications.oauth2.accessToken = token;
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Archive Product
      * @param appId 
      * @param catalogItemId 
      * @param {*} [options] Override http request options.
@@ -73792,7 +73461,8 @@ export class CatalogProductsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Create a Product
      * @param appId 
      * @param createProduct 
      * @param {*} [options] Override http request options.
@@ -73855,7 +73525,8 @@ export class CatalogProductsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Duplicate Product
      * @param appId 
      * @param catalogItemId 
      * @param {*} [options] Override http request options.
@@ -73917,7 +73588,8 @@ export class CatalogProductsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get Product by Id
      * @param appId 
      * @param catalogItemId 
      * @param {*} [options] Override http request options.
@@ -73980,7 +73652,8 @@ export class CatalogProductsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Get paginated products by app name id filtered by types
      * @param appId 
      * @param productTypes 
      * @param searchTerm 
@@ -74061,7 +73734,8 @@ export class CatalogProductsApi {
         });
     }
     /**
-     * 
+     * [BETA - this endpoint is under development, do not use it in your production system]
+     * @summary Update Product
      * @param appId 
      * @param catalogItemId 
      * @param updateProduct 
@@ -74325,7 +73999,7 @@ export class ChannelsApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
-    public attachStoreToSalesChannel (appId: string, channelId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public attachStoreToSalesChannel (appId: string, channelId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/{channelId}/stores/{storeId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'channelId' + '}', encodeURIComponent(String(channelId)))
@@ -74373,11 +74047,12 @@ export class ChannelsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -74393,7 +74068,7 @@ export class ChannelsApi {
      * @param channelId 
      * @param {*} [options] Override http request options.
      */
-    public detachAllStoresFromSalesChannel (appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public detachAllStoresFromSalesChannel (appId: string, channelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/{channelId}/stores'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'channelId' + '}', encodeURIComponent(String(channelId)));
@@ -74435,11 +74110,12 @@ export class ChannelsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -74456,7 +74132,7 @@ export class ChannelsApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
-    public detachStoreFromSalesChannel (appId: string, channelId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public detachStoreFromSalesChannel (appId: string, channelId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/channels/{channelId}/stores/{storeId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'channelId' + '}', encodeURIComponent(String(channelId)))
@@ -74504,11 +74180,12 @@ export class ChannelsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -75235,7 +74912,7 @@ export class ContentSecurityPolicyApi {
      * @param request 
      * @param {*} [options] Override http request options.
      */
-    public report (request: CspReportRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public contentSecurityPolicyReport (request: CspReportRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/csp/report';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -75243,7 +74920,7 @@ export class ContentSecurityPolicyApi {
 
         // verify required parameter 'request' is not null or undefined
         if (request === null || request === undefined) {
-            throw new Error('Required parameter request was null or undefined when calling report.');
+            throw new Error('Required parameter request was null or undefined when calling contentSecurityPolicyReport.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -75271,11 +74948,12 @@ export class ContentSecurityPolicyApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -76411,7 +76089,7 @@ export class DriversApi {
      * @param updateDriverToken 
      * @param {*} [options] Override http request options.
      */
-    public addDriverNotificationToken (updateDriverToken: UpdateDriverNotificationToken, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public driversAddDriverNotificationToken (updateDriverToken: UpdateDriverNotificationToken, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/token';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -76419,7 +76097,7 @@ export class DriversApi {
 
         // verify required parameter 'updateDriverToken' is not null or undefined
         if (updateDriverToken === null || updateDriverToken === undefined) {
-            throw new Error('Required parameter updateDriverToken was null or undefined when calling addDriverNotificationToken.');
+            throw new Error('Required parameter updateDriverToken was null or undefined when calling driversAddDriverNotificationToken.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -76466,7 +76144,7 @@ export class DriversApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public deleteDriverProfileImage (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public driversDeleteDriverProfileImage (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/profile/image';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -76516,7 +76194,7 @@ export class DriversApi {
      * @param driverLoginModel 
      * @param {*} [options] Override http request options.
      */
-    public driverLogin (driverLoginModel: DriverLoginModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public driversDriverLogin (driverLoginModel: DriverLoginModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/login';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -76524,7 +76202,7 @@ export class DriversApi {
 
         // verify required parameter 'driverLoginModel' is not null or undefined
         if (driverLoginModel === null || driverLoginModel === undefined) {
-            throw new Error('Required parameter driverLoginModel was null or undefined when calling driverLogin.');
+            throw new Error('Required parameter driverLoginModel was null or undefined when calling driversDriverLogin.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -76572,7 +76250,7 @@ export class DriversApi {
      * @param driverRequestLoginPinModel 
      * @param {*} [options] Override http request options.
      */
-    public driverRequestLoginCodeSms (driverRequestLoginPinModel: DriverRequestLoginPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public driversDriverRequestLoginCodeSms (driverRequestLoginPinModel: DriverRequestLoginPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/pin';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -76580,7 +76258,7 @@ export class DriversApi {
 
         // verify required parameter 'driverRequestLoginPinModel' is not null or undefined
         if (driverRequestLoginPinModel === null || driverRequestLoginPinModel === undefined) {
-            throw new Error('Required parameter driverRequestLoginPinModel was null or undefined when calling driverRequestLoginCodeSms.');
+            throw new Error('Required parameter driverRequestLoginPinModel was null or undefined when calling driversDriverRequestLoginCodeSms.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -76627,7 +76305,7 @@ export class DriversApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public getDriverProfile (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public driversGetDriverProfile (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/profile';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -76676,7 +76354,7 @@ export class DriversApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public getStoresForDriver (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public driversGetStoresForDriver (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/assignedstores';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -76726,7 +76404,7 @@ export class DriversApi {
      * @param removeDriverToken 
      * @param {*} [options] Override http request options.
      */
-    public removeDriverNotificationToken (removeDriverToken: UpdateDriverNotificationToken, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public driversRemoveDriverNotificationToken (removeDriverToken: UpdateDriverNotificationToken, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/token';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -76734,7 +76412,7 @@ export class DriversApi {
 
         // verify required parameter 'removeDriverToken' is not null or undefined
         if (removeDriverToken === null || removeDriverToken === undefined) {
-            throw new Error('Required parameter removeDriverToken was null or undefined when calling removeDriverNotificationToken.');
+            throw new Error('Required parameter removeDriverToken was null or undefined when calling driversRemoveDriverNotificationToken.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -76783,7 +76461,7 @@ export class DriversApi {
      * @param presence 
      * @param {*} [options] Override http request options.
      */
-    public setDriverPresenceForStore (storeId: number, presence: 'Offline' | 'Online', options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public driversSetDriverPresenceForStore (storeId: number, presence: 'Offline' | 'Online', options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/stores/{storeId}/presence/{presence}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
             .replace('{' + 'presence' + '}', encodeURIComponent(String(presence)));
@@ -76793,12 +76471,12 @@ export class DriversApi {
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling setDriverPresenceForStore.');
+            throw new Error('Required parameter storeId was null or undefined when calling driversSetDriverPresenceForStore.');
         }
 
         // verify required parameter 'presence' is not null or undefined
         if (presence === null || presence === undefined) {
-            throw new Error('Required parameter presence was null or undefined when calling setDriverPresenceForStore.');
+            throw new Error('Required parameter presence was null or undefined when calling driversSetDriverPresenceForStore.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -76844,7 +76522,7 @@ export class DriversApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public setDriverProfileImage (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public driversSetDriverProfileImage (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/profile/image';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -76895,7 +76573,7 @@ export class DriversApi {
      * @param deliveryTrackingStatus 
      * @param {*} [options] Override http request options.
      */
-    public updateDeliveryTrackingStatus (orderId: number, deliveryTrackingStatus: 'Unassigned' | 'Unaccepted' | 'Accepted' | 'Carrying' | 'OnTheWay' | 'ArrivedAtLocation' | 'Delivered' | 'CannotDeliver', options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public driversUpdateDeliveryTrackingStatus (orderId: number, deliveryTrackingStatus: 'Unassigned' | 'Unaccepted' | 'Accepted' | 'Carrying' | 'OnTheWay' | 'ArrivedAtLocation' | 'Delivered' | 'CannotDeliver', options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/orders/{orderId}/tracking/{deliveryTrackingStatus}'
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)))
             .replace('{' + 'deliveryTrackingStatus' + '}', encodeURIComponent(String(deliveryTrackingStatus)));
@@ -76905,12 +76583,12 @@ export class DriversApi {
 
         // verify required parameter 'orderId' is not null or undefined
         if (orderId === null || orderId === undefined) {
-            throw new Error('Required parameter orderId was null or undefined when calling updateDeliveryTrackingStatus.');
+            throw new Error('Required parameter orderId was null or undefined when calling driversUpdateDeliveryTrackingStatus.');
         }
 
         // verify required parameter 'deliveryTrackingStatus' is not null or undefined
         if (deliveryTrackingStatus === null || deliveryTrackingStatus === undefined) {
-            throw new Error('Required parameter deliveryTrackingStatus was null or undefined when calling updateDeliveryTrackingStatus.');
+            throw new Error('Required parameter deliveryTrackingStatus was null or undefined when calling driversUpdateDeliveryTrackingStatus.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -76957,7 +76635,7 @@ export class DriversApi {
      * @param updateDriverProfile 
      * @param {*} [options] Override http request options.
      */
-    public updateDriverProfile (updateDriverProfile: UpdateDriverProfileModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public driversUpdateDriverProfile (updateDriverProfile: UpdateDriverProfileModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/drivers/profile';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -76965,7 +76643,7 @@ export class DriversApi {
 
         // verify required parameter 'updateDriverProfile' is not null or undefined
         if (updateDriverProfile === null || updateDriverProfile === undefined) {
-            throw new Error('Required parameter updateDriverProfile was null or undefined when calling updateDriverProfile.');
+            throw new Error('Required parameter updateDriverProfile was null or undefined when calling driversUpdateDriverProfile.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -78615,7 +78293,7 @@ export class FirebaseAppsApi {
      * @param firebaseApp 
      * @param {*} [options] Override http request options.
      */
-    public addFirebaseApp (firebaseApp: FirebaseApp, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public firebaseAppsAddFirebaseApp (firebaseApp: FirebaseApp, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/FirebaseApp';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -78623,7 +78301,7 @@ export class FirebaseAppsApi {
 
         // verify required parameter 'firebaseApp' is not null or undefined
         if (firebaseApp === null || firebaseApp === undefined) {
-            throw new Error('Required parameter firebaseApp was null or undefined when calling addFirebaseApp.');
+            throw new Error('Required parameter firebaseApp was null or undefined when calling firebaseAppsAddFirebaseApp.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -78671,7 +78349,7 @@ export class FirebaseAppsApi {
      * @param whiteLabelId 
      * @param {*} [options] Override http request options.
      */
-    public deleteFirebaseApp (whiteLabelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public firebaseAppsDeleteFirebaseApp (whiteLabelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/FirebaseApp/{whiteLabelId}'
             .replace('{' + 'whiteLabelId' + '}', encodeURIComponent(String(whiteLabelId)));
         let localVarQueryParameters: any = {};
@@ -78680,7 +78358,7 @@ export class FirebaseAppsApi {
 
         // verify required parameter 'whiteLabelId' is not null or undefined
         if (whiteLabelId === null || whiteLabelId === undefined) {
-            throw new Error('Required parameter whiteLabelId was null or undefined when calling deleteFirebaseApp.');
+            throw new Error('Required parameter whiteLabelId was null or undefined when calling firebaseAppsDeleteFirebaseApp.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -78727,7 +78405,7 @@ export class FirebaseAppsApi {
      * @param whitelabelId 
      * @param {*} [options] Override http request options.
      */
-    public getFirebaseApp (whitelabelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public firebaseAppsGetFirebaseApp (whitelabelId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/FirebaseApp/{whitelabelId}'
             .replace('{' + 'whitelabelId' + '}', encodeURIComponent(String(whitelabelId)));
         let localVarQueryParameters: any = {};
@@ -78736,7 +78414,7 @@ export class FirebaseAppsApi {
 
         // verify required parameter 'whitelabelId' is not null or undefined
         if (whitelabelId === null || whitelabelId === undefined) {
-            throw new Error('Required parameter whitelabelId was null or undefined when calling getFirebaseApp.');
+            throw new Error('Required parameter whitelabelId was null or undefined when calling firebaseAppsGetFirebaseApp.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -78763,11 +78441,12 @@ export class FirebaseAppsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -79540,7 +79219,7 @@ export class HeartbeatApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public headHostname (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public headHostname (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/heartbeat/Hostname';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -79570,12 +79249,12 @@ export class HeartbeatApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -79638,7 +79317,7 @@ export class HeartbeatApi {
      * 
      * @param {*} [options] Override http request options.
      */
-    public hostname (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }> {
+    public hostname (options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/heartbeat/Hostname';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -79668,12 +79347,12 @@ export class HeartbeatApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiStringResult;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -80340,201 +80019,6 @@ export class HydraApi {
     /**
      * 
      * @param appId 
-     * @param emv 
-     * @param {*} [options] Override http request options.
-     */
-    public createEmv (appId: string, emv: EmvTerminal, options: any = {}) : Promise<{ response: http.IncomingMessage; body: number;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/emvterminals'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling createEmv.');
-        }
-
-        // verify required parameter 'emv' is not null or undefined
-        if (emv === null || emv === undefined) {
-            throw new Error('Required parameter emv was null or undefined when calling createEmv.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(emv, "EmvTerminal")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: number;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "number");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param id 
-     * @param {*} [options] Override http request options.
-     */
-    public deleteEmv (appId: string, id: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/emvterminals/{id}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling deleteEmv.');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteEmv.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param storeId 
-     * @param deviceId 
-     * @param {*} [options] Override http request options.
-     */
-    public detachStoreFromKiosk (appId: string, storeId: number, deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/DetachStoreFromKiosk/{deviceId}/store/{storeId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
-            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling detachStoreFromKiosk.');
-        }
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling detachStoreFromKiosk.');
-        }
-
-        // verify required parameter 'deviceId' is not null or undefined
-        if (deviceId === null || deviceId === undefined) {
-            throw new Error('Required parameter deviceId was null or undefined when calling detachStoreFromKiosk.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultHydraStatus");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
      * @param deviceId 
      * @param storeId 
      * @param {*} [options] Override http request options.
@@ -80930,62 +80414,6 @@ export class HydraApi {
     /**
      * 
      * @param appId 
-     * @param {*} [options] Override http request options.
-     */
-    public getEmvsForAppId (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultEmvTerminalWithAssignments;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/emvterminals'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getEmvsForAppId.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultEmvTerminalWithAssignments;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultEmvTerminalWithAssignments");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
      * @param deviceId 
      * @param {*} [options] Override http request options.
      */
@@ -81198,6 +80626,258 @@ export class HydraApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultHydraConfig");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param emv 
+     * @param {*} [options] Override http request options.
+     */
+    public hydraCreateEmv (appId: string, emv: EmvTerminal, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/emvterminals'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling hydraCreateEmv.');
+        }
+
+        // verify required parameter 'emv' is not null or undefined
+        if (emv === null || emv === undefined) {
+            throw new Error('Required parameter emv was null or undefined when calling hydraCreateEmv.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(emv, "EmvTerminal")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param id 
+     * @param {*} [options] Override http request options.
+     */
+    public hydraDeleteEmv (appId: string, id: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/emvterminals/{id}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling hydraDeleteEmv.');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling hydraDeleteEmv.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param storeId 
+     * @param deviceId 
+     * @param {*} [options] Override http request options.
+     */
+    public hydraDetachStoreFromKiosk (appId: string, storeId: number, deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/DetachStoreFromKiosk/{deviceId}/store/{storeId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling hydraDetachStoreFromKiosk.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling hydraDetachStoreFromKiosk.');
+        }
+
+        // verify required parameter 'deviceId' is not null or undefined
+        if (deviceId === null || deviceId === undefined) {
+            throw new Error('Required parameter deviceId was null or undefined when calling hydraDetachStoreFromKiosk.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultHydraStatus");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public hydraGetEmvsForAppId (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultEmvTerminalWithAssignments;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/emvterminals'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling hydraGetEmvsForAppId.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultEmvTerminalWithAssignments;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultEmvTerminalWithAssignments");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -82408,7 +82088,7 @@ export class LightspeedApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
-    public generateMenu (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public lightspeedGenerateMenu (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/lightspeed/{storeId}/menu/generate'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -82417,7 +82097,7 @@ export class LightspeedApi {
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling generateMenu.');
+            throw new Error('Required parameter storeId was null or undefined when calling lightspeedGenerateMenu.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -82444,11 +82124,12 @@ export class LightspeedApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -82463,7 +82144,7 @@ export class LightspeedApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
-    public getStoreSettings (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLightspeedSettings;  }> {
+    public lightspeedGetStoreSettings (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLightspeedSettings;  }> {
         const localVarPath = this.basePath + '/api/v1.0/lightspeed/{storeId}/settings'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -82472,7 +82153,7 @@ export class LightspeedApi {
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getStoreSettings.');
+            throw new Error('Required parameter storeId was null or undefined when calling lightspeedGetStoreSettings.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -82520,7 +82201,7 @@ export class LightspeedApi {
      * @param lightspeedSettings 
      * @param {*} [options] Override http request options.
      */
-    public saveStoreSettings (storeId: number, lightspeedSettings: LightspeedSettings, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLightspeedSettings;  }> {
+    public lightspeedSaveStoreSettings (storeId: number, lightspeedSettings: LightspeedSettings, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultLightspeedSettings;  }> {
         const localVarPath = this.basePath + '/api/v1.0/lightspeed/{storeId}/settings'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -82529,12 +82210,12 @@ export class LightspeedApi {
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling saveStoreSettings.');
+            throw new Error('Required parameter storeId was null or undefined when calling lightspeedSaveStoreSettings.');
         }
 
         // verify required parameter 'lightspeedSettings' is not null or undefined
         if (lightspeedSettings === null || lightspeedSettings === undefined) {
-            throw new Error('Required parameter lightspeedSettings was null or undefined when calling saveStoreSettings.');
+            throw new Error('Required parameter lightspeedSettings was null or undefined when calling lightspeedSaveStoreSettings.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -83642,11 +83323,12 @@ export class MenuOptionSetItemsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItemId 
-     * @param optionSetId 
-     * @param menuItemOptionSetItem 
+     * @summary Create menu item option set item
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
+     * @param optionSetId Option set identifier
+     * @param menuItemOptionSetItem Option set item
      * @param {*} [options] Override http request options.
      */
     public addMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -83726,11 +83408,12 @@ export class MenuOptionSetItemsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItemId 
-     * @param optionSetId 
-     * @param menuItemOptionSetItemId 
+     * @summary Delete menu item option set item image
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
+     * @param optionSetId Option set identifier
+     * @param menuItemOptionSetItemId Option set item identifier
      * @param {*} [options] Override http request options.
      */
     public deleteOptionSetItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -83972,11 +83655,12 @@ export class MenuOptionSetItemsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItemId 
-     * @param optionSetId 
-     * @param menuItemOptionSetItemId 
+     * @summary Delete menu item option set item
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
+     * @param optionSetId Option set identifier
+     * @param menuItemOptionSetItemId Option set item identifier
      * @param {*} [options] Override http request options.
      */
     public removeMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -84055,12 +83739,13 @@ export class MenuOptionSetItemsApi {
     }
     /**
      * 
-     * @param menuId 
+     * @summary Set Tax Rate on OptionSetItem
+     * @param menuId Menu identifier
      * @param menuSectionId 
      * @param menuSectionItemId 
      * @param optionSetId 
-     * @param menuItemOptionSetItemId 
-     * @param taxRateId 
+     * @param menuItemOptionSetItemId Option set item identifier
+     * @param taxRateId Tax Rate to use
      * @param {*} [options] Override http request options.
      */
     public setOptionSetItemTax (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, taxRateId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -84145,13 +83830,14 @@ export class MenuOptionSetItemsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItemId 
-     * @param optionSetId 
-     * @param menuItemOptionSetItemId 
-     * @param menuItemOptionSetItem 
-     * @param undoAfter 
+     * @summary Update menu item option set item
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
+     * @param optionSetId Option set identifier
+     * @param menuItemOptionSetItemId Option set item identifier
+     * @param menuItemOptionSetItem Option set item (delta)
+     * @param undoAfter An optional time period, in hours, after which the hide-section operation will be undone.
      * @param {*} [options] Override http request options.
      */
     public updateMenuItemOptionSetItem (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSetItemId: number, menuItemOptionSetItem: MenuItemOptionSetItemBase, undoAfter?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -84240,11 +83926,12 @@ export class MenuOptionSetItemsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItemId 
-     * @param optionSetId 
-     * @param menuItemOptionSetItemId 
+     * @summary Upload menu item option set item image
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
+     * @param optionSetId Option set identifier
+     * @param menuItemOptionSetItemId Option set item identifier
      * @param Image Option set item image
      * @param {*} [options] Override http request options.
      */
@@ -84385,10 +84072,11 @@ export class MenuOptionSetsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItemId 
-     * @param menuItemOptionSet 
+     * @summary Create menu item option set
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
+     * @param menuItemOptionSet Menu item option set
      * @param {*} [options] Override http request options.
      */
     public createMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, menuItemOptionSet: MenuItemOptionSetBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -84462,10 +84150,11 @@ export class MenuOptionSetsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionItemId 
-     * @param menuSectionId 
-     * @param optionSetId 
+     * @summary Delete menu item option set
+     * @param menuId Menu identifier
+     * @param menuSectionItemId Menu section item identifier
+     * @param menuSectionId Menu section identifier
+     * @param optionSetId Option set identifier
      * @param {*} [options] Override http request options.
      */
     public deleteMenuItemOptionSet (menuId: number, menuSectionItemId: number, menuSectionId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -84538,10 +84227,11 @@ export class MenuOptionSetsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItemId 
-     * @param optionSetId 
+     * @summary Delete option set image
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
+     * @param optionSetId Option set identifier
      * @param {*} [options] Override http request options.
      */
     public deleteOptionSetImage (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -84763,11 +84453,12 @@ export class MenuOptionSetsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItemId 
-     * @param optionSetId 
-     * @param menuItemOptionSet 
+     * @summary Update menu item option set
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
+     * @param optionSetId Option set identifier
+     * @param menuItemOptionSet Menu item option set (delta)
      * @param {*} [options] Override http request options.
      */
     public updateMenuItemOptionSet (menuId: number, menuSectionId: number, menuSectionItemId: number, optionSetId: number, menuItemOptionSet: MenuItemOptionSetBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -84846,10 +84537,11 @@ export class MenuOptionSetsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItemId 
-     * @param optionSetId 
+     * @summary Upload menu item option set image
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
+     * @param optionSetId Option set identifier
      * @param Image Option set image
      * @param {*} [options] Override http request options.
      */
@@ -84984,9 +84676,10 @@ export class MenuSectionItemsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItemId 
+     * @summary Clone menu section item
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
      * @param {*} [options] Override http request options.
      */
     public cloneMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuSectionItem;  }> {
@@ -85054,9 +84747,10 @@ export class MenuSectionItemsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItem 
+     * @summary Create menu section item
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItem Menu section item
      * @param {*} [options] Override http request options.
      */
     public createMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItem: MenuSectionItemBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -85123,10 +84817,11 @@ export class MenuSectionItemsApi {
         });
     }
     /**
-     * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param createFromCatalogItems 
+     * BETA - this endpoint is under development, do not use it in your production system
+     * @summary Create menu section items from a list of Catalog Items
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param createFromCatalogItems Information to create the new MenuSectionItems
      * @param {*} [options] Override http request options.
      */
     public createMenuSectionItemFromCatalogItems (menuId: number, menuSectionId: number, createFromCatalogItems: CreateMenuSectionItemFromCatalogItems, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -85194,9 +84889,10 @@ export class MenuSectionItemsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItemId 
+     * @summary Delete menu section item
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
      * @param {*} [options] Override http request options.
      */
     public deleteMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -85263,9 +84959,10 @@ export class MenuSectionItemsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItemId 
+     * @summary Delete menu section item image
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
      * @param {*} [options] Override http request options.
      */
     public deleteMenuSectionItemImage (menuId: number, menuSectionId: number, menuSectionItemId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -85467,10 +85164,11 @@ export class MenuSectionItemsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItemId 
-     * @param destinationDisplayOrder 
+     * @summary Move an Item within a menu
+     * @param menuId Menu identifier
+     * @param menuSectionId Section to put item in (will usually be original section)
+     * @param menuSectionItemId ID of Item to be moved
+     * @param destinationDisplayOrder New Display Order of item
      * @param {*} [options] Override http request options.
      */
     public moveMenuItem (menuId: number, menuSectionId: number, menuSectionItemId: number, destinationDisplayOrder: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -85543,10 +85241,11 @@ export class MenuSectionItemsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItemId 
-     * @param taxRateId 
+     * @summary Set tax rate for menu item
+     * @param menuId Menu identifier
+     * @param menuSectionId Section to put item in (will usually be original section)
+     * @param menuSectionItemId ID of Item to be moved
+     * @param taxRateId tax rate to be set against item
      * @param {*} [options] Override http request options.
      */
     public setSectionItemTax (menuId: number, menuSectionId: number, menuSectionItemId: number, taxRateId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -85619,11 +85318,12 @@ export class MenuSectionItemsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItemId 
-     * @param menuSectionItem 
-     * @param undoAfter 
+     * @summary Update menu section item
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
+     * @param menuSectionItem Menu section item (delta)
+     * @param undoAfter An optional time period, in hours, after which the hide-section operation will be undone
      * @param {*} [options] Override http request options.
      */
     public updateMenuSectionItem (menuId: number, menuSectionId: number, menuSectionItemId: number, menuSectionItem: MenuSectionItemBase, undoAfter?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -85700,9 +85400,10 @@ export class MenuSectionItemsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param menuSectionItemId 
+     * @summary Upload menu section item image
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param menuSectionItemId Menu section item identifier
      * @param Image Menu section item image
      * @param {*} [options] Override http request options.
      */
@@ -86108,8 +85809,9 @@ export class MenuSectionsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
+     * @summary Delete menu section
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
      * @param {*} [options] Override http request options.
      */
     public deleteMenuSection (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -86170,8 +85872,9 @@ export class MenuSectionsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
+     * @summary Delete menu section image
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
      * @param {*} [options] Override http request options.
      */
     public deleteMenuSectionImage (menuId: number, menuSectionId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -86353,12 +86056,13 @@ export class MenuSectionsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
-     * @param displayOrders 
+     * @summary Re-arrange Items within a Section
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
+     * @param displayOrders Item Ids and their new display order
      * @param {*} [options] Override http request options.
      */
-    public setItemDisplayOrders (menuId: number, menuSectionId: number, displayOrders: MenuObjectDisplayOrders, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public menuSectionsSetItemDisplayOrders (menuId: number, menuSectionId: number, displayOrders: MenuObjectDisplayOrders, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sections/{menuSectionId}/sectionitemdisplayorders'
             .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
             .replace('{' + 'menuSectionId' + '}', encodeURIComponent(String(menuSectionId)));
@@ -86368,17 +86072,17 @@ export class MenuSectionsApi {
 
         // verify required parameter 'menuId' is not null or undefined
         if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling setItemDisplayOrders.');
+            throw new Error('Required parameter menuId was null or undefined when calling menuSectionsSetItemDisplayOrders.');
         }
 
         // verify required parameter 'menuSectionId' is not null or undefined
         if (menuSectionId === null || menuSectionId === undefined) {
-            throw new Error('Required parameter menuSectionId was null or undefined when calling setItemDisplayOrders.');
+            throw new Error('Required parameter menuSectionId was null or undefined when calling menuSectionsSetItemDisplayOrders.');
         }
 
         // verify required parameter 'displayOrders' is not null or undefined
         if (displayOrders === null || displayOrders === undefined) {
-            throw new Error('Required parameter displayOrders was null or undefined when calling setItemDisplayOrders.');
+            throw new Error('Required parameter displayOrders was null or undefined when calling menuSectionsSetItemDisplayOrders.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -86497,8 +86201,9 @@ export class MenuSectionsApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuSectionId 
+     * @summary Upload menu section image
+     * @param menuId Menu identifier
+     * @param menuSectionId Menu section identifier
      * @param Image Menu section image
      * @param {*} [options] Override http request options.
      */
@@ -87402,8 +87107,9 @@ export class MenusApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param newName 
+     * @summary Clone a menu, (without attaching stores)
+     * @param menuId Menu identifier
+     * @param newName Name of the new Menu
      * @param {*} [options] Override http request options.
      */
     public createDraftMenuFromExistingMenu (menuId: number, newName: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenu;  }> {
@@ -87464,10 +87170,11 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @param appId 
-     * @param menu 
-     * @param orgId 
+     * You must listen to the webhook menu.async_creation.completed to know when the menu is ready
+     * @summary Create a new menu asynchronously
+     * @param appId App id
+     * @param menu Menu
+     * @param orgId Org id
      * @param {*} [options] Override http request options.
      */
     public createNewMenuAsync (appId: string, menu: CreateFullMenu, orgId?: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -87532,9 +87239,10 @@ export class MenusApi {
         });
     }
     /**
-     * 
-     * @param appId 
-     * @param menu 
+     * [DEPRECATED] - Please use the async version as this endpoint may timeout for large menus
+     * @summary Create a new menu
+     * @param appId App identifier
+     * @param menu Menu. If empty the system will create a menu with default items
      * @param {*} [options] Override http request options.
      */
     public createNewMenuForApp (appId: string, menu: CreateFullMenu, options: any = {}) : Promise<{ response: http.IncomingMessage; body: number;  }> {
@@ -87596,7 +87304,8 @@ export class MenusApi {
     }
     /**
      * 
-     * @param menuId 
+     * @summary Mark a Menu as Deleted
+     * @param menuId Menu Identifier
      * @param {*} [options] Override http request options.
      */
     public deleteMenu (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -87651,7 +87360,8 @@ export class MenusApi {
     }
     /**
      * 
-     * @param menuId 
+     * @summary Delete menu image
+     * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
     public deleteMenuImage (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -87706,10 +87416,11 @@ export class MenusApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param storeId 
-     * @param menuItemId 
-     * @param key 
+     * @summary Delete menu item metadata
+     * @param menuId Menu identifier
+     * @param storeId Store identifier
+     * @param menuItemId Menu item identifier
+     * @param key Metadata key
      * @param {*} [options] Override http request options.
      */
     public deleteMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, key: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -87740,68 +87451,6 @@ export class MenusApi {
         // verify required parameter 'key' is not null or undefined
         if (key === null || key === undefined) {
             throw new Error('Required parameter key was null or undefined when calling deleteMenuItemMetadata.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param menuId 
-     * @param taxId 
-     * @param {*} [options] Override http request options.
-     */
-    public deleteTaxRate (menuId: number, taxId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/tax/{taxId}'
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
-            .replace('{' + 'taxId' + '}', encodeURIComponent(String(taxId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling deleteTaxRate.');
-        }
-
-        // verify required parameter 'taxId' is not null or undefined
-        if (taxId === null || taxId === undefined) {
-            throw new Error('Required parameter taxId was null or undefined when calling deleteTaxRate.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -87897,72 +87546,6 @@ export class MenusApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiArrayResultAllMetadataResult");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param menuId 
-     * @param isAvailable 
-     * @param {*} [options] Override http request options.
-     */
-    public getMenuBulkShowHide (menuId: number, isAvailable: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementListResponse;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/bulkshowhide/list'
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling getMenuBulkShowHide.');
-        }
-
-        // verify required parameter 'isAvailable' is not null or undefined
-        if (isAvailable === null || isAvailable === undefined) {
-            throw new Error('Required parameter isAvailable was null or undefined when calling getMenuBulkShowHide.');
-        }
-
-        if (isAvailable !== undefined) {
-            localVarQueryParameters['isAvailable'] = ObjectSerializer.serialize(isAvailable, "boolean");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementListResponse;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuElementListResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -88536,8 +88119,466 @@ export class MenusApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param checkpointId 
+     * @summary Remove a Menus Tax Rate, can only remove a tax rate that does not have items/optionSetItems attached
+     * @param menuId Menu identifier
+     * @param taxId Id of Menu Tax to be removed
+     * @param {*} [options] Override http request options.
+     */
+    public menusDeleteTaxRate (menuId: number, taxId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/tax/{taxId}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'taxId' + '}', encodeURIComponent(String(taxId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menusDeleteTaxRate.');
+        }
+
+        // verify required parameter 'taxId' is not null or undefined
+        if (taxId === null || taxId === undefined) {
+            throw new Error('Required parameter taxId was null or undefined when calling menusDeleteTaxRate.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get bulk show/hide menu items and option set items
+     * @param menuId Menu id
+     * @param isAvailable Is available flag
+     * @param {*} [options] Override http request options.
+     */
+    public menusGetMenuBulkShowHide (menuId: number, isAvailable: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementListResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/bulkshowhide/list'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menusGetMenuBulkShowHide.');
+        }
+
+        // verify required parameter 'isAvailable' is not null or undefined
+        if (isAvailable === null || isAvailable === undefined) {
+            throw new Error('Required parameter isAvailable was null or undefined when calling menusGetMenuBulkShowHide.');
+        }
+
+        if (isAvailable !== undefined) {
+            localVarQueryParameters['isAvailable'] = ObjectSerializer.serialize(isAvailable, "boolean");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementListResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuElementListResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Set if tax shows for a Menu
+     * @param menuId Menu identifier
+     * @param show Boolean show or dont show tax (Exclusive tax type can only ever be TRUE)
+     * @param {*} [options] Override http request options.
+     */
+    public menusSetDisplayOnMenuTax (menuId: number, show: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/tax/show/{show}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'show' + '}', encodeURIComponent(String(show)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menusSetDisplayOnMenuTax.');
+        }
+
+        // verify required parameter 'show' is not null or undefined
+        if (show === null || show === undefined) {
+            throw new Error('Required parameter show was null or undefined when calling menusSetDisplayOnMenuTax.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Re-arrange Sections within a Menu
+     * @param menuId Menu identifier
+     * @param displayOrders Section Ids and their new display order
+     * @param {*} [options] Override http request options.
+     */
+    public menusSetItemDisplayOrders (menuId: number, displayOrders: MenuObjectDisplayOrders, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sectiondisplayorders'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menusSetItemDisplayOrders.');
+        }
+
+        // verify required parameter 'displayOrders' is not null or undefined
+        if (displayOrders === null || displayOrders === undefined) {
+            throw new Error('Required parameter displayOrders was null or undefined when calling menusSetItemDisplayOrders.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(displayOrders, "MenuObjectDisplayOrders")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Bulk show/hide menu items or option set items
+     * @param menuId Menu id
+     * @param menuElements Elements to be show/hide
+     * @param isAvailable Is available flag
+     * @param {*} [options] Override http request options.
+     */
+    public menusShowHideBulkItems (menuId: number, menuElements: Array<MenuElementHide>, isAvailable: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementEditResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/bulkshowhide'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menusShowHideBulkItems.');
+        }
+
+        // verify required parameter 'menuElements' is not null or undefined
+        if (menuElements === null || menuElements === undefined) {
+            throw new Error('Required parameter menuElements was null or undefined when calling menusShowHideBulkItems.');
+        }
+
+        // verify required parameter 'isAvailable' is not null or undefined
+        if (isAvailable === null || isAvailable === undefined) {
+            throw new Error('Required parameter isAvailable was null or undefined when calling menusShowHideBulkItems.');
+        }
+
+        if (isAvailable !== undefined) {
+            localVarQueryParameters['isAvailable'] = ObjectSerializer.serialize(isAvailable, "boolean");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(menuElements, "Array<MenuElementHide>")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementEditResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuElementEditResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Set the type of Tax on a Menu
+     * @param menuId Menu identifier
+     * @param type Type of Tax
+     * @param {*} [options] Override http request options.
+     */
+    public menusUpdateTaxType (menuId: number, type: 'IncludedInBasePrice' | 'ExcludedFromBasePrice', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/tax/type/{type}'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
+            .replace('{' + 'type' + '}', encodeURIComponent(String(type)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menusUpdateTaxType.');
+        }
+
+        // verify required parameter 'type' is not null or undefined
+        if (type === null || type === undefined) {
+            throw new Error('Required parameter type was null or undefined when calling menusUpdateTaxType.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Add/Update a Tax Rate
+     * @param menuId Menu identifier
+     * @param taxRate Tax rate to add/update
+     * @param {*} [options] Override http request options.
+     */
+    public menusUpsertTaxRate (menuId: number, taxRate: MenuTaxRate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: MenuTaxRate;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/taxrate'
+            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'menuId' is not null or undefined
+        if (menuId === null || menuId === undefined) {
+            throw new Error('Required parameter menuId was null or undefined when calling menusUpsertTaxRate.');
+        }
+
+        // verify required parameter 'taxRate' is not null or undefined
+        if (taxRate === null || taxRate === undefined) {
+            throw new Error('Required parameter taxRate was null or undefined when calling menusUpsertTaxRate.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(taxRate, "MenuTaxRate")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: MenuTaxRate;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "MenuTaxRate");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Restore a Menu to a checkpoint
+     * @param menuId Menu identifier
+     * @param checkpointId Checkpoint to restore menu to
      * @param {*} [options] Override http request options.
      */
     public restoreAMenuCheckpoint (menuId: number, checkpointId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -88598,134 +88639,11 @@ export class MenusApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param show 
-     * @param {*} [options] Override http request options.
-     */
-    public setDisplayOnMenuTax (menuId: number, show: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/tax/show/{show}'
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
-            .replace('{' + 'show' + '}', encodeURIComponent(String(show)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling setDisplayOnMenuTax.');
-        }
-
-        // verify required parameter 'show' is not null or undefined
-        if (show === null || show === undefined) {
-            throw new Error('Required parameter show was null or undefined when calling setDisplayOnMenuTax.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param menuId 
-     * @param displayOrders 
-     * @param {*} [options] Override http request options.
-     */
-    public setItemDisplayOrders (menuId: number, displayOrders: MenuObjectDisplayOrders, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/sectiondisplayorders'
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling setItemDisplayOrders.');
-        }
-
-        // verify required parameter 'displayOrders' is not null or undefined
-        if (displayOrders === null || displayOrders === undefined) {
-            throw new Error('Required parameter displayOrders was null or undefined when calling setItemDisplayOrders.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(displayOrders, "MenuObjectDisplayOrders")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param menuId 
-     * @param storeId 
-     * @param menuItemId 
-     * @param metadata 
+     * @summary Update menu item metadata
+     * @param menuId Menu identifier
+     * @param storeId Store identifier
+     * @param menuItemId Menu item identifier
+     * @param metadata Metadata object
      * @param {*} [options] Override http request options.
      */
     public setMenuItemMetadata (menuId: number, storeId: number, menuItemId: number, metadata: Metadata, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -88798,10 +88716,11 @@ export class MenusApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param storeId 
-     * @param optionSetItemId 
-     * @param metadata 
+     * @summary Update menu item option set item metadata
+     * @param menuId Menu identifier
+     * @param storeId Store identifier
+     * @param optionSetItemId Menu item option set item identifier
+     * @param metadata Metadata object
      * @param {*} [options] Override http request options.
      */
     public setMenuItemOptionSetItemMetadata (menuId: number, storeId: number, optionSetItemId: number, metadata: Metadata, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -88874,8 +88793,9 @@ export class MenusApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param locked 
+     * @summary Lock/Unlock a Menu for Editing
+     * @param menuId Menu identifier
+     * @param locked True: Locks menu for editing, False: Unlocks for editing
      * @param {*} [options] Override http request options.
      */
     public setMenuLock (menuId: number, locked: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -88936,8 +88856,9 @@ export class MenusApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param name 
+     * @summary Set Menus Name
+     * @param menuId Menu identifier
+     * @param name Name to set for this Menu
      * @param {*} [options] Override http request options.
      */
     public setMenuName (menuId: number, name: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -88998,81 +88919,9 @@ export class MenusApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param menuElements 
-     * @param isAvailable 
-     * @param {*} [options] Override http request options.
-     */
-    public showHideBulkItems (menuId: number, menuElements: Array<MenuElementHide>, isAvailable: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementEditResponse;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/bulkshowhide'
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling showHideBulkItems.');
-        }
-
-        // verify required parameter 'menuElements' is not null or undefined
-        if (menuElements === null || menuElements === undefined) {
-            throw new Error('Required parameter menuElements was null or undefined when calling showHideBulkItems.');
-        }
-
-        // verify required parameter 'isAvailable' is not null or undefined
-        if (isAvailable === null || isAvailable === undefined) {
-            throw new Error('Required parameter isAvailable was null or undefined when calling showHideBulkItems.');
-        }
-
-        if (isAvailable !== undefined) {
-            localVarQueryParameters['isAvailable'] = ObjectSerializer.serialize(isAvailable, "boolean");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(menuElements, "Array<MenuElementHide>")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultMenuElementEditResponse;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultMenuElementEditResponse");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param menuId 
-     * @param menu 
+     * @summary Update menu
+     * @param menuId Menu identifier
+     * @param menu Full menu data
      * @param {*} [options] Override http request options.
      */
     public updateMenu (menuId: number, menu: MenuBase, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -89133,69 +88982,8 @@ export class MenusApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param type 
-     * @param {*} [options] Override http request options.
-     */
-    public updateTaxType (menuId: number, type: 'IncludedInBasePrice' | 'ExcludedFromBasePrice', options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/tax/type/{type}'
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)))
-            .replace('{' + 'type' + '}', encodeURIComponent(String(type)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling updateTaxType.');
-        }
-
-        // verify required parameter 'type' is not null or undefined
-        if (type === null || type === undefined) {
-            throw new Error('Required parameter type was null or undefined when calling updateTaxType.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param menuId 
+     * @summary Upload menu image
+     * @param menuId Menu identifier
      * @param Image Menu image
      * @param {*} [options] Override http request options.
      */
@@ -89262,7 +89050,8 @@ export class MenusApi {
     }
     /**
      * 
-     * @param appId 
+     * @summary Create a new menu from xlsx file.
+     * @param appId App identifier
      * @param Menu Uploaded xlsx menu
      * @param {*} [options] Override http request options.
      */
@@ -89327,69 +89116,6 @@ export class MenusApi {
             });
         });
     }
-    /**
-     * 
-     * @param menuId 
-     * @param taxRate 
-     * @param {*} [options] Override http request options.
-     */
-    public upsertTaxRate (menuId: number, taxRate: MenuTaxRate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: MenuTaxRate;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/menus/{menuId}/taxrate'
-            .replace('{' + 'menuId' + '}', encodeURIComponent(String(menuId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'menuId' is not null or undefined
-        if (menuId === null || menuId === undefined) {
-            throw new Error('Required parameter menuId was null or undefined when calling upsertTaxRate.');
-        }
-
-        // verify required parameter 'taxRate' is not null or undefined
-        if (taxRate === null || taxRate === undefined) {
-            throw new Error('Required parameter taxRate was null or undefined when calling upsertTaxRate.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(taxRate, "MenuTaxRate")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: MenuTaxRate;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "MenuTaxRate");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
 }
 export enum MenusNutritionInfoApiApiKeys {
 }
@@ -89442,8 +89168,9 @@ export class MenusNutritionInfoApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param publicId 
+     * @summary Add or update menuitem nutrition info by menu item's publicId
+     * @param menuId Menu identifier
+     * @param publicId Menu item&#39;s publicId
      * @param addOrUpdateModel 
      * @param {*} [options] Override http request options.
      */
@@ -89512,8 +89239,9 @@ export class MenusNutritionInfoApi {
     }
     /**
      * 
-     * @param menuId 
-     * @param publicId 
+     * @summary Add or update menuitem optionsetitem nutrition info its publicId
+     * @param menuId Menu identifier
+     * @param publicId Menu item&#39;s publicId
      * @param addOrUpdateModel 
      * @param {*} [options] Override http request options.
      */
@@ -89582,7 +89310,8 @@ export class MenusNutritionInfoApi {
     }
     /**
      * 
-     * @param menuId 
+     * @summary Add or update menu nutrition by identifier
+     * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
     public addOrUpdateMenuNutritionInfoByMenuId (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMenuNutritionInfoHeader;  }> {
@@ -89638,7 +89367,8 @@ export class MenusNutritionInfoApi {
     }
     /**
      * 
-     * @param menuId 
+     * @summary Delete menu nutrition information by menuId
+     * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
     public deleteMenuNutritionInfoByMenuId (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
@@ -89694,6 +89424,7 @@ export class MenusNutritionInfoApi {
     }
     /**
      * 
+     * @summary Get allergens
      * @param appId 
      * @param languageId 
      * @param {*} [options] Override http request options.
@@ -89755,7 +89486,8 @@ export class MenusNutritionInfoApi {
     }
     /**
      * 
-     * @param menuId 
+     * @summary Get menu nutrition by menuId
+     * @param menuId Menu identifier
      * @param {*} [options] Override http request options.
      */
     public getMenuNutritionInfoByMenuId (menuId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultNutritionInfo;  }> {
@@ -89861,9 +89593,10 @@ export class MenusNutritionInfoV2Api {
     }
     /**
      * 
-     * @param menuId 
-     * @param publicId 
-     * @param addOrUpdateModel 
+     * @summary Add or update menuitem nutrition info by menu item's publicId
+     * @param menuId Menu identifier
+     * @param publicId Menu item&#39;s publicId
+     * @param addOrUpdateModel Allergen ids
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -89938,9 +89671,10 @@ export class MenusNutritionInfoV2Api {
     }
     /**
      * 
-     * @param menuId 
-     * @param publicId 
-     * @param addOrUpdateModel 
+     * @summary Add or update menuitem option set item's nutrition info by its publicId
+     * @param menuId Menu identifier
+     * @param publicId Menu item option set item&#39;s publicId
+     * @param addOrUpdateModel Allergen ids
      * @param appId 
      * @param {*} [options] Override http request options.
      */
@@ -90015,6 +89749,7 @@ export class MenusNutritionInfoV2Api {
     }
     /**
      * 
+     * @summary Get allergens
      * @param appId 
      * @param languageId 
      * @param {*} [options] Override http request options.
@@ -90076,8 +89811,9 @@ export class MenusNutritionInfoV2Api {
     }
     /**
      * 
+     * @summary Get menu nutrition by menuId
      * @param appId 
-     * @param menuId 
+     * @param menuId Menu identifier
      * @param languageId 
      * @param {*} [options] Override http request options.
      */
@@ -91621,61 +91357,6 @@ export class OAuthClientsApi {
     /**
      * 
      * @param appId 
-     * @param {*} [options] Override http request options.
-     */
-    public getApplications (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/appnames'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getApplications.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
      * @param oauthAppName 
      * @param {*} [options] Override http request options.
      */
@@ -91988,6 +91669,62 @@ export class OAuthClientsApi {
     }
     /**
      * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public oAuthClientsGetApplications (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/oauthclients/appnames'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling oAuthClientsGetApplications.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @param oauthAppId 
      * @param uriId 
      * @param appId 
@@ -92179,7 +91916,7 @@ export class OnboardingApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getOnboardingConfig (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOnboardingConfig;  }> {
+    public onboardingGetOnboardingConfig (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/clients/{appId}/onboarding/config'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -92188,7 +91925,7 @@ export class OnboardingApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getOnboardingConfig.');
+            throw new Error('Required parameter appId was null or undefined when calling onboardingGetOnboardingConfig.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -92215,12 +91952,12 @@ export class OnboardingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOnboardingConfig;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultOnboardingConfig");
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -92235,7 +91972,7 @@ export class OnboardingApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
-    public getOnboardingConfigs (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOnboardingConfig;  }> {
+    public onboardingGetOnboardingConfigs (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/clients/{appId}/onboarding/configs'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -92244,7 +91981,7 @@ export class OnboardingApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getOnboardingConfigs.');
+            throw new Error('Required parameter appId was null or undefined when calling onboardingGetOnboardingConfigs.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -92271,12 +92008,12 @@ export class OnboardingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultOnboardingConfig;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultOnboardingConfig");
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -92293,7 +92030,7 @@ export class OnboardingApi {
      * @param milestoneId 
      * @param {*} [options] Override http request options.
      */
-    public getOnboardingItems (appId: string, storeId: number, milestoneId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOnboardingProcess;  }> {
+    public onboardingGetOnboardingItems (appId: string, storeId: number, milestoneId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/clients/{appId}/onboarding/stores/{storeId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
@@ -92303,12 +92040,12 @@ export class OnboardingApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getOnboardingItems.');
+            throw new Error('Required parameter appId was null or undefined when calling onboardingGetOnboardingItems.');
         }
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getOnboardingItems.');
+            throw new Error('Required parameter storeId was null or undefined when calling onboardingGetOnboardingItems.');
         }
 
         if (milestoneId !== undefined) {
@@ -92339,12 +92076,12 @@ export class OnboardingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOnboardingProcess;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultOnboardingProcess");
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -92361,7 +92098,7 @@ export class OnboardingApi {
      * @param milestoneId 
      * @param {*} [options] Override http request options.
      */
-    public getOnboardingItemsV2 (appId: string, storeId?: number, milestoneId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultOnboardingProcess;  }> {
+    public onboardingGetOnboardingItemsV2 (appId: string, storeId?: number, milestoneId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/clients/{appId}/onboarding/stores'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -92370,7 +92107,7 @@ export class OnboardingApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getOnboardingItemsV2.');
+            throw new Error('Required parameter appId was null or undefined when calling onboardingGetOnboardingItemsV2.');
         }
 
         if (storeId !== undefined) {
@@ -92405,12 +92142,12 @@ export class OnboardingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultOnboardingProcess;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultOnboardingProcess");
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -92426,7 +92163,7 @@ export class OnboardingApi {
      * @param configUpdate 
      * @param {*} [options] Override http request options.
      */
-    public updateOnboardingConfig (appId: string, configUpdate: OnboardingConfigUpdate, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public onboardingUpdateOnboardingConfig (appId: string, configUpdate: OnboardingConfigUpdate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/clients/{appId}/onboarding/config'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -92435,12 +92172,12 @@ export class OnboardingApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling updateOnboardingConfig.');
+            throw new Error('Required parameter appId was null or undefined when calling onboardingUpdateOnboardingConfig.');
         }
 
         // verify required parameter 'configUpdate' is not null or undefined
         if (configUpdate === null || configUpdate === undefined) {
-            throw new Error('Required parameter configUpdate was null or undefined when calling updateOnboardingConfig.');
+            throw new Error('Required parameter configUpdate was null or undefined when calling onboardingUpdateOnboardingConfig.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -92468,11 +92205,12 @@ export class OnboardingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -92489,7 +92227,7 @@ export class OnboardingApi {
      * @param configUpdate 
      * @param {*} [options] Override http request options.
      */
-    public updateOnboardingConfigById (appId: string, configId: number, configUpdate: OnboardingConfigUpdate, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public onboardingUpdateOnboardingConfigById (appId: string, configId: number, configUpdate: OnboardingConfigUpdate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/clients/{appId}/onboarding/config/{configId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'configId' + '}', encodeURIComponent(String(configId)));
@@ -92499,17 +92237,17 @@ export class OnboardingApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling updateOnboardingConfigById.');
+            throw new Error('Required parameter appId was null or undefined when calling onboardingUpdateOnboardingConfigById.');
         }
 
         // verify required parameter 'configId' is not null or undefined
         if (configId === null || configId === undefined) {
-            throw new Error('Required parameter configId was null or undefined when calling updateOnboardingConfigById.');
+            throw new Error('Required parameter configId was null or undefined when calling onboardingUpdateOnboardingConfigById.');
         }
 
         // verify required parameter 'configUpdate' is not null or undefined
         if (configUpdate === null || configUpdate === undefined) {
-            throw new Error('Required parameter configUpdate was null or undefined when calling updateOnboardingConfigById.');
+            throw new Error('Required parameter configUpdate was null or undefined when calling onboardingUpdateOnboardingConfigById.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -92537,11 +92275,12 @@ export class OnboardingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -92559,7 +92298,7 @@ export class OnboardingApi {
      * @param itemUpdate 
      * @param {*} [options] Override http request options.
      */
-    public updateOnboardingItem (appId: string, storeId: number, onboardingItemId: number, itemUpdate: OnboardingItemUpdate, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public onboardingUpdateOnboardingItem (appId: string, storeId: number, onboardingItemId: number, itemUpdate: OnboardingItemUpdate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/clients/{appId}/onboarding/stores/{storeId}/items/{onboardingItemId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
@@ -92570,22 +92309,22 @@ export class OnboardingApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling updateOnboardingItem.');
+            throw new Error('Required parameter appId was null or undefined when calling onboardingUpdateOnboardingItem.');
         }
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling updateOnboardingItem.');
+            throw new Error('Required parameter storeId was null or undefined when calling onboardingUpdateOnboardingItem.');
         }
 
         // verify required parameter 'onboardingItemId' is not null or undefined
         if (onboardingItemId === null || onboardingItemId === undefined) {
-            throw new Error('Required parameter onboardingItemId was null or undefined when calling updateOnboardingItem.');
+            throw new Error('Required parameter onboardingItemId was null or undefined when calling onboardingUpdateOnboardingItem.');
         }
 
         // verify required parameter 'itemUpdate' is not null or undefined
         if (itemUpdate === null || itemUpdate === undefined) {
-            throw new Error('Required parameter itemUpdate was null or undefined when calling updateOnboardingItem.');
+            throw new Error('Required parameter itemUpdate was null or undefined when calling onboardingUpdateOnboardingItem.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -92613,11 +92352,12 @@ export class OnboardingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -92635,7 +92375,7 @@ export class OnboardingApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
-    public updateOnboardingItemV2 (appId: string, onboardingItemId: number, itemUpdate: OnboardingItemUpdate, storeId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public onboardingUpdateOnboardingItemV2 (appId: string, onboardingItemId: number, itemUpdate: OnboardingItemUpdate, storeId?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/clients/{appId}/onboarding/stores/items/{onboardingItemId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'onboardingItemId' + '}', encodeURIComponent(String(onboardingItemId)));
@@ -92645,17 +92385,17 @@ export class OnboardingApi {
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling updateOnboardingItemV2.');
+            throw new Error('Required parameter appId was null or undefined when calling onboardingUpdateOnboardingItemV2.');
         }
 
         // verify required parameter 'onboardingItemId' is not null or undefined
         if (onboardingItemId === null || onboardingItemId === undefined) {
-            throw new Error('Required parameter onboardingItemId was null or undefined when calling updateOnboardingItemV2.');
+            throw new Error('Required parameter onboardingItemId was null or undefined when calling onboardingUpdateOnboardingItemV2.');
         }
 
         // verify required parameter 'itemUpdate' is not null or undefined
         if (itemUpdate === null || itemUpdate === undefined) {
-            throw new Error('Required parameter itemUpdate was null or undefined when calling updateOnboardingItemV2.');
+            throw new Error('Required parameter itemUpdate was null or undefined when calling onboardingUpdateOnboardingItemV2.');
         }
 
         if (storeId !== undefined) {
@@ -92687,11 +92427,12 @@ export class OnboardingApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -96910,7 +96651,7 @@ export class RestaurantVouchersPayGreenApi {
      * @param paygreenConfigurationId 
      * @param {*} [options] Override http request options.
      */
-    public deletePayGreenConfiguration (appId: string, paygreenConfigurationId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public deletePayGreenConfiguration (appId: string, paygreenConfigurationId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/restaurant-vouchers/paygreen/{paygreenConfigurationId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'paygreenConfigurationId' + '}', encodeURIComponent(String(paygreenConfigurationId)));
@@ -96952,11 +96693,12 @@ export class RestaurantVouchersPayGreenApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -100737,68 +100479,6 @@ export class StoresApi {
     /**
      * 
      * @param storeId 
-     * @param propertyId 
-     * @param {*} [options] Override http request options.
-     */
-    public setPropertyId (storeId: number, propertyId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/propertyId/{propertyId}'
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
-            .replace('{' + 'propertyId' + '}', encodeURIComponent(String(propertyId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling setPropertyId.');
-        }
-
-        // verify required parameter 'propertyId' is not null or undefined
-        if (propertyId === null || propertyId === undefined) {
-            throw new Error('Required parameter propertyId was null or undefined when calling setPropertyId.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param storeId 
      * @param settings 
      * @param inheritFromProperty 
      * @param {*} [options] Override http request options.
@@ -100918,6 +100598,69 @@ export class StoresApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultOrderLeadTimes");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param storeId 
+     * @param propertyId 
+     * @param {*} [options] Override http request options.
+     */
+    public storesSetPropertyId (storeId: number, propertyId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/propertyId/{propertyId}'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
+            .replace('{' + 'propertyId' + '}', encodeURIComponent(String(propertyId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling storesSetPropertyId.');
+        }
+
+        // verify required parameter 'propertyId' is not null or undefined
+        if (propertyId === null || propertyId === undefined) {
+            throw new Error('Required parameter propertyId was null or undefined when calling storesSetPropertyId.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -101321,7 +101064,7 @@ export class StoresApi {
      * @param address 
      * @param {*} [options] Override http request options.
      */
-    public updateStoreAddressForm (storeId: number, address: StoreAddressForm, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public updateStoreAddressForm (storeId: number, address: StoreAddressForm, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stores/{storeId}/addressform'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -101363,11 +101106,12 @@ export class StoresApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -101754,72 +101498,6 @@ export class StripeCustomConnectApi {
     }
     /**
      * 
-     * @param linkRequestId 
-     * @param appId 
-     * @param {*} [options] Override http request options.
-     */
-    public refresh (linkRequestId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/refresh-link'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'linkRequestId' is not null or undefined
-        if (linkRequestId === null || linkRequestId === undefined) {
-            throw new Error('Required parameter linkRequestId was null or undefined when calling refresh.');
-        }
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling refresh.');
-        }
-
-        if (linkRequestId !== undefined) {
-            localVarQueryParameters['linkRequestId'] = ObjectSerializer.serialize(linkRequestId, "number");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "any");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @param appId 
      * @param bankAccountId 
      * @param businessType 
@@ -101879,6 +101557,72 @@ export class StripeCustomConnectApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultBankAccountDetail");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param linkRequestId 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public stripeCustomConnectRefresh (linkRequestId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/customconnect/refresh-link'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'linkRequestId' is not null or undefined
+        if (linkRequestId === null || linkRequestId === undefined) {
+            throw new Error('Required parameter linkRequestId was null or undefined when calling stripeCustomConnectRefresh.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling stripeCustomConnectRefresh.');
+        }
+
+        if (linkRequestId !== undefined) {
+            localVarQueryParameters['linkRequestId'] = ObjectSerializer.serialize(linkRequestId, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -102084,7 +101828,7 @@ export class StuartApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
-    public cancelJob (jobId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public stuartCancelJob (jobId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stuart/jobs/{jobId}'
             .replace('{' + 'jobId' + '}', encodeURIComponent(String(jobId)));
         let localVarQueryParameters: any = {};
@@ -102093,12 +101837,12 @@ export class StuartApi {
 
         // verify required parameter 'jobId' is not null or undefined
         if (jobId === null || jobId === undefined) {
-            throw new Error('Required parameter jobId was null or undefined when calling cancelJob.');
+            throw new Error('Required parameter jobId was null or undefined when calling stuartCancelJob.');
         }
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling cancelJob.');
+            throw new Error('Required parameter storeId was null or undefined when calling stuartCancelJob.');
         }
 
         if (storeId !== undefined) {
@@ -102129,11 +101873,12 @@ export class StuartApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -102149,7 +101894,7 @@ export class StuartApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
-    public getJob (jobId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultJobResponse;  }> {
+    public stuartGetJob (jobId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultJobResponse;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stuart/jobs/{jobId}'
             .replace('{' + 'jobId' + '}', encodeURIComponent(String(jobId)));
         let localVarQueryParameters: any = {};
@@ -102158,12 +101903,12 @@ export class StuartApi {
 
         // verify required parameter 'jobId' is not null or undefined
         if (jobId === null || jobId === undefined) {
-            throw new Error('Required parameter jobId was null or undefined when calling getJob.');
+            throw new Error('Required parameter jobId was null or undefined when calling stuartGetJob.');
         }
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getJob.');
+            throw new Error('Required parameter storeId was null or undefined when calling stuartGetJob.');
         }
 
         if (storeId !== undefined) {
@@ -102214,7 +101959,7 @@ export class StuartApi {
      * @param storeId 
      * @param {*} [options] Override http request options.
      */
-    public getStuartSettings (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStuartSettings;  }> {
+    public stuartGetStuartSettings (storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultStuartSettings;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stuart/settings/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -102223,7 +101968,7 @@ export class StuartApi {
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling getStuartSettings.');
+            throw new Error('Required parameter storeId was null or undefined when calling stuartGetStuartSettings.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -102271,7 +102016,7 @@ export class StuartApi {
      * @param stuartSettings 
      * @param {*} [options] Override http request options.
      */
-    public postStuartSettings (storeId: number, stuartSettings: StuartSettings, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+    public stuartPostStuartSettings (storeId: number, stuartSettings: StuartSettings, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/stuart/settings/{storeId}'
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         let localVarQueryParameters: any = {};
@@ -102280,12 +102025,12 @@ export class StuartApi {
 
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling postStuartSettings.');
+            throw new Error('Required parameter storeId was null or undefined when calling stuartPostStuartSettings.');
         }
 
         // verify required parameter 'stuartSettings' is not null or undefined
         if (stuartSettings === null || stuartSettings === undefined) {
-            throw new Error('Required parameter stuartSettings was null or undefined when calling postStuartSettings.');
+            throw new Error('Required parameter stuartSettings was null or undefined when calling stuartPostStuartSettings.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -102625,118 +102370,6 @@ export class TeammatesApi {
     }
     /**
      * 
-     * @param otc 
-     * @param appId 
-     * @param {*} [options] Override http request options.
-     */
-    public acceptInvitation (otc: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAcceptInvitationResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/accept/{otc}'
-            .replace('{' + 'otc' + '}', encodeURIComponent(String(otc)))
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'otc' is not null or undefined
-        if (otc === null || otc === undefined) {
-            throw new Error('Required parameter otc was null or undefined when calling acceptInvitation.');
-        }
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling acceptInvitation.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAcceptInvitationResult;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultAcceptInvitationResult");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param {*} [options] Override http request options.
-     */
-    public acceptInvitations (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRedeemInvitationResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/teammates/acceptInvitations';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRedeemInvitationResult;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRedeemInvitationResult");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @param appId 
      * @param teammate 
      * @param {*} [options] Override http request options.
@@ -102985,7 +102618,7 @@ export class TeammatesApi {
      * @param teammate 
      * @param {*} [options] Override http request options.
      */
-    public grantaccess (appId: string, teammate: CreateTeammate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }> {
+    public grantaccess (appId: string, teammate: CreateTeammate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/grantaccess'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -103027,61 +102660,12 @@ export class TeammatesApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultTeammate;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultTeammate");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param {*} [options] Override http request options.
-     */
-    public pendingInvitations (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPendingInvitation;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/teammates/pending-invitations';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPendingInvitation;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultPendingInvitation");
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -103145,6 +102729,167 @@ export class TeammatesApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultRedeemInvitationResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param otc 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public teammatesAcceptInvitation (otc: string, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAcceptInvitationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/teammates/accept/{otc}'
+            .replace('{' + 'otc' + '}', encodeURIComponent(String(otc)))
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'otc' is not null or undefined
+        if (otc === null || otc === undefined) {
+            throw new Error('Required parameter otc was null or undefined when calling teammatesAcceptInvitation.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling teammatesAcceptInvitation.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAcceptInvitationResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAcceptInvitationResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param {*} [options] Override http request options.
+     */
+    public teammatesAcceptInvitations (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRedeemInvitationResult;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/teammates/acceptInvitations';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultRedeemInvitationResult;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultRedeemInvitationResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param {*} [options] Override http request options.
+     */
+    public teammatesPendingInvitations (options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPendingInvitation;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/teammates/pending-invitations';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiArrayResultPendingInvitation;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiArrayResultPendingInvitation");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -107161,61 +106906,6 @@ export class WebsiteApi {
     /**
      * 
      * @param appId 
-     * @param {*} [options] Override http request options.
-     */
-    public checkNow (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/website/dnscheck'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling checkNow.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
      * @param testimonialId 
      * @param {*} [options] Override http request options.
      */
@@ -107600,6 +107290,61 @@ export class WebsiteApi {
             });
         });
     }
+    /**
+     * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public websiteCheckNow (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/website/dnscheck'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling websiteCheckNow.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
 }
 export enum WhiteLabelBuildsApiApiKeys {
 }
@@ -107649,6 +107394,55 @@ export class WhiteLabelBuildsApi {
 
     set accessToken(token: string) {
         this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param {*} [options] Override http request options.
+     */
+    public healthCheck (options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelbuilds/health';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "string");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
     }
     /**
      * 
@@ -107955,55 +107749,6 @@ export class WhiteLabelBuildsApi {
             });
         });
     }
-    /**
-     * 
-     * @param {*} [options] Override http request options.
-     */
-    public whiteLabelBuildsHealthCheck (options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/whitelabelbuilds/health';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "string");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
 }
 export enum WhiteLabelConfigApiApiKeys {
 }
@@ -108115,6 +107860,62 @@ export class WhiteLabelConfigApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
+    public getAppStoreConfig (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreConfigModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/{appId}/appstore'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAppStoreConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreConfigModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreConfigModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
     public getPlayStoreConfig (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPlayStoreConfigModel;  }> {
         const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/{appId}/playstore'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -108157,62 +107958,6 @@ export class WhiteLabelConfigApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultPlayStoreConfigModel");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param {*} [options] Override http request options.
-     */
-    public getWhiteLabelAppStoreConfig (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreConfigModel;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/{appId}/appstore'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling getWhiteLabelAppStoreConfig.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreConfigModel;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreConfigModel");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -108336,6 +108081,55 @@ export class WhiteLabelConfigApi {
     }
     /**
      * 
+     * @param {*} [options] Override http request options.
+     */
+    public healthCheck (options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/health';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "string");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @param appId 
      * @param appGeneralConfig 
      * @param {*} [options] Override http request options.
@@ -108388,6 +108182,69 @@ export class WhiteLabelConfigApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultAppGeneralConfigModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param appStoreConfig 
+     * @param {*} [options] Override http request options.
+     */
+    public updateAppStoreConfig (appId: string, appStoreConfig: AppStoreConfigModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreConfigModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/{appId}/appstore'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateAppStoreConfig.');
+        }
+
+        // verify required parameter 'appStoreConfig' is not null or undefined
+        if (appStoreConfig === null || appStoreConfig === undefined) {
+            throw new Error('Required parameter appStoreConfig was null or undefined when calling updateAppStoreConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(appStoreConfig, "AppStoreConfigModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreConfigModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreConfigModel");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -108463,69 +108320,6 @@ export class WhiteLabelConfigApi {
     /**
      * 
      * @param appId 
-     * @param appStoreConfig 
-     * @param {*} [options] Override http request options.
-     */
-    public updateWhiteLabelAppStoreConfig (appId: string, appStoreConfig: AppStoreConfigModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreConfigModel;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/{appId}/appstore'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling updateWhiteLabelAppStoreConfig.');
-        }
-
-        // verify required parameter 'appStoreConfig' is not null or undefined
-        if (appStoreConfig === null || appStoreConfig === undefined) {
-            throw new Error('Required parameter appStoreConfig was null or undefined when calling updateWhiteLabelAppStoreConfig.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(appStoreConfig, "AppStoreConfigModel")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultAppStoreConfigModel;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultAppStoreConfigModel");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
      * @param file 
      * @param {*} [options] Override http request options.
      */
@@ -108577,55 +108371,6 @@ export class WhiteLabelConfigApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultAssetResultModel");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param {*} [options] Override http request options.
-     */
-    public whiteLabelConfigHealthCheck (options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/health';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "string");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
