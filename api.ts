@@ -47060,7 +47060,8 @@ export namespace Store {
         App = <any> 'App',
         Kiosk = <any> 'Kiosk',
         Pos = <any> 'Pos',
-        None = <any> 'None'
+        None = <any> 'None',
+        PhoneAgent = <any> 'PhoneAgent'
     }
     export enum InheritanceConfigTypesEnum {
         CollectionSettings = <any> 'CollectionSettings'
@@ -47867,7 +47868,8 @@ export namespace StoreBase {
         App = <any> 'App',
         Kiosk = <any> 'Kiosk',
         Pos = <any> 'Pos',
-        None = <any> 'None'
+        None = <any> 'None',
+        PhoneAgent = <any> 'PhoneAgent'
     }
     export enum InheritanceConfigTypesEnum {
         CollectionSettings = <any> 'CollectionSettings'
@@ -48450,7 +48452,8 @@ export namespace StoreCreateBase {
         App = <any> 'App',
         Kiosk = <any> 'Kiosk',
         Pos = <any> 'Pos',
-        None = <any> 'None'
+        None = <any> 'None',
+        PhoneAgent = <any> 'PhoneAgent'
     }
 }
 /**
@@ -99745,7 +99748,7 @@ export class StoresApi {
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getStoreHeadersByAppId (appId: string, storeNameQuery?: string, salesChannelType?: 'Web' | 'App' | 'Kiosk' | 'Pos' | 'None', page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreHeader;  }> {
+    public getStoreHeadersByAppId (appId: string, storeNameQuery?: string, salesChannelType?: 'Web' | 'App' | 'Kiosk' | 'Pos' | 'None' | 'PhoneAgent', page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStoreHeader;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/header'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -99762,7 +99765,7 @@ export class StoresApi {
         }
 
         if (salesChannelType !== undefined) {
-            localVarQueryParameters['salesChannelType'] = ObjectSerializer.serialize(salesChannelType, "'Web' | 'App' | 'Kiosk' | 'Pos' | 'None'");
+            localVarQueryParameters['salesChannelType'] = ObjectSerializer.serialize(salesChannelType, "'Web' | 'App' | 'Kiosk' | 'Pos' | 'None' | 'PhoneAgent'");
         }
 
         if (page !== undefined) {
@@ -100069,7 +100072,7 @@ export class StoresApi {
      * @param limit 
      * @param {*} [options] Override http request options.
      */
-    public getStoresByAppId (appId: string, searchQuery?: string, salesChannelType?: 'Web' | 'App' | 'Kiosk' | 'Pos' | 'None', excludeUnpublished?: boolean, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }> {
+    public getStoresByAppId (appId: string, searchQuery?: string, salesChannelType?: 'Web' | 'App' | 'Kiosk' | 'Pos' | 'None' | 'PhoneAgent', excludeUnpublished?: boolean, page?: number, limit?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiPaginationResultStore;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/stores'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -100086,7 +100089,7 @@ export class StoresApi {
         }
 
         if (salesChannelType !== undefined) {
-            localVarQueryParameters['salesChannelType'] = ObjectSerializer.serialize(salesChannelType, "'Web' | 'App' | 'Kiosk' | 'Pos' | 'None'");
+            localVarQueryParameters['salesChannelType'] = ObjectSerializer.serialize(salesChannelType, "'Web' | 'App' | 'Kiosk' | 'Pos' | 'None' | 'PhoneAgent'");
         }
 
         if (excludeUnpublished !== undefined) {
