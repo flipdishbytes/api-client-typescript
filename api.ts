@@ -69939,9 +69939,10 @@ export class BankAccountApi {
      * @param appId 
      * @param bankAccountId 
      * @param storeId 
+     * @param skipBankAccountUpdateWarningEmail 
      * @param {*} [options] Override http request options.
      */
-    public attachBankAccountToStore (appId: string, bankAccountId: number, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public attachBankAccountToStore (appId: string, bankAccountId: number, storeId: number, skipBankAccountUpdateWarningEmail?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}/store/{storeId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
@@ -69963,6 +69964,10 @@ export class BankAccountApi {
         // verify required parameter 'storeId' is not null or undefined
         if (storeId === null || storeId === undefined) {
             throw new Error('Required parameter storeId was null or undefined when calling attachBankAccountToStore.');
+        }
+
+        if (skipBankAccountUpdateWarningEmail !== undefined) {
+            localVarQueryParameters['skipBankAccountUpdateWarningEmail'] = ObjectSerializer.serialize(skipBankAccountUpdateWarningEmail, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
