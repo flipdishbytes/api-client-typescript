@@ -35361,7 +35361,7 @@ export class PlayStoreConfigModel {
     */
     'SupportUrl'?: string;
     /**
-    * Play Console account: 0 = IE, 1 = UK, 2 = IE2
+    * Play Console account: 0 = IE, 1 = UK, 2 = IE2, 3 = IE3
     */
     'PlayConsoleAccount'?: number;
     /**
