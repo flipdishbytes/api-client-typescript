@@ -35327,6 +35327,56 @@ export class PhoneCallStartedEvent {
 }
 
 /**
+* Catalogue of PixelPoint products uploaded for a store
+*/
+export class PixelPointProductCatalogue {
+    /**
+    * PixelPoint product number mapped to its display string.  Always includes the special NOT_INCLUDED sentinel entry.
+    */
+    'Products': { [key: string]: string; };
+    /**
+    * Current page index (1-based)
+    */
+    'Page': number;
+    /**
+    * Current page size
+    */
+    'Limit': number;
+    /**
+    * Total number of products matching the filter (excluding the sentinel entry)
+    */
+    'TotalRecordCount': number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Products",
+            "baseName": "Products",
+            "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "Page",
+            "baseName": "Page",
+            "type": "number"
+        },
+        {
+            "name": "Limit",
+            "baseName": "Limit",
+            "type": "number"
+        },
+        {
+            "name": "TotalRecordCount",
+            "baseName": "TotalRecordCount",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PixelPointProductCatalogue.attributeTypeMap;
+    }
+}
+
+/**
 * Play Store configuration model
 */
 export class PlayStoreConfigModel {
@@ -43296,6 +43346,29 @@ export class RestApiResultPayoutReport3StorePayouts {
 
     static getAttributeTypeMap() {
         return RestApiResultPayoutReport3StorePayouts.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultPixelPointProductCatalogue {
+    /**
+    * Generic data object.
+    */
+    'Data': PixelPointProductCatalogue;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "PixelPointProductCatalogue"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultPixelPointProductCatalogue.attributeTypeMap;
     }
 }
 
@@ -64303,6 +64376,7 @@ let typeMap: {[index: string]: any} = {
     "PhoneCall": PhoneCall,
     "PhoneCallEndedEvent": PhoneCallEndedEvent,
     "PhoneCallStartedEvent": PhoneCallStartedEvent,
+    "PixelPointProductCatalogue": PixelPointProductCatalogue,
     "PlayStoreConfigModel": PlayStoreConfigModel,
     "PosRevenueDetails": PosRevenueDetails,
     "PreOrderConfig": PreOrderConfig,
@@ -64536,6 +64610,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultPayoutReport3Overview": RestApiResultPayoutReport3Overview,
     "RestApiResultPayoutReport3PropertyDetails": RestApiResultPayoutReport3PropertyDetails,
     "RestApiResultPayoutReport3StorePayouts": RestApiResultPayoutReport3StorePayouts,
+    "RestApiResultPixelPointProductCatalogue": RestApiResultPixelPointProductCatalogue,
     "RestApiResultPlayStoreConfigModel": RestApiResultPlayStoreConfigModel,
     "RestApiResultPreOrderConfig": RestApiResultPreOrderConfig,
     "RestApiResultProcessingFeeConfig": RestApiResultProcessingFeeConfig,
@@ -81292,6 +81367,127 @@ export class HydraApi {
                 if (error) {
                     reject(error);
                 } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum IntegrationMetadataCatalogueApiApiKeys {
+}
+
+export class IntegrationMetadataCatalogueApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: IntegrationMetadataCatalogueApiApiKeys, value: string) {
+        (this.authentications as any)[IntegrationMetadataCatalogueApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param storeId 
+     * @param nameContains 
+     * @param page 
+     * @param pageSize 
+     * @param {*} [options] Override http request options.
+     */
+    public integrationMetadataCatalogueGetPixelPointProducts (storeId: number, nameContains?: string, page?: number, pageSize?: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultPixelPointProductCatalogue;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/integrationmetadatacatalogue/pixelpoint/stores/{storeId}/products'
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling integrationMetadataCatalogueGetPixelPointProducts.');
+        }
+
+        if (nameContains !== undefined) {
+            localVarQueryParameters['nameContains'] = ObjectSerializer.serialize(nameContains, "string");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (pageSize !== undefined) {
+            localVarQueryParameters['pageSize'] = ObjectSerializer.serialize(pageSize, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultPixelPointProductCatalogue;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultPixelPointProductCatalogue");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
