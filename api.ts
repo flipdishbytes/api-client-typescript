@@ -1312,6 +1312,7 @@ export namespace App {
         PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
+        StaffMember = <any> 'StaffMember',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger',
         Onboarding = <any> 'Onboarding',
@@ -1337,6 +1338,7 @@ export namespace App {
         CreateTeammateOnboarding = <any> 'CreateTeammateOnboarding',
         CreateTeammatePropertyManager = <any> 'CreateTeammatePropertyManager',
         CreateTeammatePropertyOwner = <any> 'CreateTeammatePropertyOwner',
+        CreateTeammateStaffMember = <any> 'CreateTeammateStaffMember',
         ViewApmConfigurations = <any> 'ViewApmConfigurations',
         EditApmConfigurations = <any> 'EditApmConfigurations',
         ViewCampaignsConfigurations = <any> 'ViewCampaignsConfigurations',
@@ -2384,6 +2386,7 @@ export namespace AppStoreApp {
         PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
+        StaffMember = <any> 'StaffMember',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger'
     }
@@ -2616,6 +2619,7 @@ export namespace AppStoreAppConfiguration {
         PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
+        StaffMember = <any> 'StaffMember',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger'
     }
@@ -7956,6 +7960,7 @@ export namespace CreateAppStoreApp {
         PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
+        StaffMember = <any> 'StaffMember',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger'
     }
@@ -9568,6 +9573,7 @@ export namespace CreateTeammate {
         PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
+        StaffMember = <any> 'StaffMember',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger',
         Onboarding = <any> 'Onboarding',
@@ -55166,6 +55172,7 @@ export namespace Teammate {
         PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
+        StaffMember = <any> 'StaffMember',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger',
         Onboarding = <any> 'Onboarding',
@@ -55233,6 +55240,7 @@ export namespace TeammateBase {
         PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
+        StaffMember = <any> 'StaffMember',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger',
         Onboarding = <any> 'Onboarding',
@@ -56447,6 +56455,7 @@ export namespace UpdateAppStoreApp {
         PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
+        StaffMember = <any> 'StaffMember',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManger = <any> 'FinanceManger'
     }
@@ -59538,6 +59547,7 @@ export namespace UserWhiteLabelConfig {
         PropertyManager = <any> 'PropertyManager',
         StoreManager = <any> 'StoreManager',
         StoreStaff = <any> 'StoreStaff',
+        StaffMember = <any> 'StaffMember',
         StoreReadOnlyAccess = <any> 'StoreReadOnlyAccess',
         FinanceManager = <any> 'FinanceManager',
         Support = <any> 'Support'
