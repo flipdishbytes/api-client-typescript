@@ -13000,6 +13000,10 @@ export class EventSearchResult {
     */
     'HydraAssignedEvent'?: Array<HydraAssignedEvent>;
     /**
+    * Hydra created event
+    */
+    'HydraCreatedEvent'?: Array<HydraCreatedEvent>;
+    /**
     * Hydra reset requested event
     */
     'HydraRequestResetEvent'?: Array<HydraRequestResetEvent>;
@@ -13661,6 +13665,11 @@ export class EventSearchResult {
             "name": "HydraAssignedEvent",
             "baseName": "HydraAssignedEvent",
             "type": "Array<HydraAssignedEvent>"
+        },
+        {
+            "name": "HydraCreatedEvent",
+            "baseName": "HydraCreatedEvent",
+            "type": "Array<HydraCreatedEvent>"
         },
         {
             "name": "HydraRequestResetEvent",
@@ -16276,6 +16285,144 @@ export namespace HydraConnectionStatusChangedEvent {
     }
 }
 /**
+* Hydra device created event (pin-stage / pre-register).
+*/
+export class HydraCreatedEvent {
+    /**
+    * Optional user who triggered creation (may be null for device self-create).
+    */
+    'User'?: UserEventInfo;
+    /**
+    * Device id
+    */
+    'DeviceId'?: string;
+    /**
+    * Zeus Hydra user id
+    */
+    'HydraUserId'?: number;
+    /**
+    * Hydra user type (Kiosk / Terminal)
+    */
+    'UserType'?: HydraCreatedEvent.UserTypeEnum;
+    /**
+    * The event name
+    */
+    'EventName'?: string;
+    /**
+    * The identitfier of the event
+    */
+    'FlipdishEventId'?: string;
+    /**
+    * The time of creation of the event
+    */
+    'CreateTime'?: Date;
+    /**
+    * Position
+    */
+    'Position'?: number;
+    /**
+    * App id
+    */
+    'AppId'?: string;
+    /**
+    * Org id
+    */
+    'OrgId'?: string;
+    /**
+    * Ip Address
+    */
+    'IpAddress'?: string;
+    /**
+    * Activity Id
+    */
+    'ActivityId'?: string;
+    /**
+    * Activity Type
+    */
+    'ActivityType'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "User",
+            "baseName": "User",
+            "type": "UserEventInfo"
+        },
+        {
+            "name": "DeviceId",
+            "baseName": "DeviceId",
+            "type": "string"
+        },
+        {
+            "name": "HydraUserId",
+            "baseName": "HydraUserId",
+            "type": "number"
+        },
+        {
+            "name": "UserType",
+            "baseName": "UserType",
+            "type": "HydraCreatedEvent.UserTypeEnum"
+        },
+        {
+            "name": "EventName",
+            "baseName": "EventName",
+            "type": "string"
+        },
+        {
+            "name": "FlipdishEventId",
+            "baseName": "FlipdishEventId",
+            "type": "string"
+        },
+        {
+            "name": "CreateTime",
+            "baseName": "CreateTime",
+            "type": "Date"
+        },
+        {
+            "name": "Position",
+            "baseName": "Position",
+            "type": "number"
+        },
+        {
+            "name": "AppId",
+            "baseName": "AppId",
+            "type": "string"
+        },
+        {
+            "name": "OrgId",
+            "baseName": "OrgId",
+            "type": "string"
+        },
+        {
+            "name": "IpAddress",
+            "baseName": "IpAddress",
+            "type": "string"
+        },
+        {
+            "name": "ActivityId",
+            "baseName": "ActivityId",
+            "type": "string"
+        },
+        {
+            "name": "ActivityType",
+            "baseName": "ActivityType",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HydraCreatedEvent.attributeTypeMap;
+    }
+}
+
+export namespace HydraCreatedEvent {
+    export enum UserTypeEnum {
+        Kiosk = <any> 'Kiosk',
+        Terminal = <any> 'Terminal',
+        LegacyPrinter = <any> 'LegacyPrinter'
+    }
+}
+/**
 * Hydra device details
 */
 export class HydraDeviceDetails {
@@ -16680,6 +16827,10 @@ export class HydraStatus {
     */
     'StoreIds'?: Array<number>;
     /**
+    * AuthZ Property ids for assigned stores
+    */
+    'PropertyIds'?: Array<string>;
+    /**
     * The device has been already registered
     */
     'IsRegistered': boolean;
@@ -16695,6 +16846,10 @@ export class HydraStatus {
     * Hydra User Type
     */
     'UserType'?: HydraStatus.UserTypeEnum;
+    /**
+    * Zeus Hydra user id
+    */
+    'HydraUserId'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -16708,6 +16863,11 @@ export class HydraStatus {
             "name": "StoreIds",
             "baseName": "StoreIds",
             "type": "Array<number>"
+        },
+        {
+            "name": "PropertyIds",
+            "baseName": "PropertyIds",
+            "type": "Array<string>"
         },
         {
             "name": "IsRegistered",
@@ -16728,6 +16888,11 @@ export class HydraStatus {
             "name": "UserType",
             "baseName": "UserType",
             "type": "HydraStatus.UserTypeEnum"
+        },
+        {
+            "name": "HydraUserId",
+            "baseName": "HydraUserId",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -63800,6 +63965,7 @@ let enumsMap: {[index: string]: any} = {
         "HomeAction.HomeActionTypeEnum": HomeAction.HomeActionTypeEnum,
         "HydraConfig.PaymentOptionsEnum": HydraConfig.PaymentOptionsEnum,
         "HydraConnectionStatusChangedEvent.HydraDeviceStatusEnum": HydraConnectionStatusChangedEvent.HydraDeviceStatusEnum,
+        "HydraCreatedEvent.UserTypeEnum": HydraCreatedEvent.UserTypeEnum,
         "HydraDeviceDetails.DeviceTypeEnum": HydraDeviceDetails.DeviceTypeEnum,
         "HydraDeviceDetails.StatusEnum": HydraDeviceDetails.StatusEnum,
         "HydraStatus.UserTypeEnum": HydraStatus.UserTypeEnum,
@@ -64172,6 +64338,7 @@ let typeMap: {[index: string]: any} = {
     "HydraAssignedEvent": HydraAssignedEvent,
     "HydraConfig": HydraConfig,
     "HydraConnectionStatusChangedEvent": HydraConnectionStatusChangedEvent,
+    "HydraCreatedEvent": HydraCreatedEvent,
     "HydraDeviceDetails": HydraDeviceDetails,
     "HydraRegistrationRequest": HydraRegistrationRequest,
     "HydraRequestResetEvent": HydraRequestResetEvent,
