@@ -16301,9 +16301,13 @@ export class HydraCreatedEvent {
     */
     'HydraUserId'?: number;
     /**
-    * Hydra user type (Kiosk / Terminal)
+    * Hydra user type (Kiosk / Terminal) as integer. Prefer {Flipdish.PublicModels.V1.Events.Hydra.HydraCreatedEvent.DeviceType}.
     */
     'UserType'?: HydraCreatedEvent.UserTypeEnum;
+    /**
+    * Hydra device type (Kiosk / Terminal), serialized as string.
+    */
+    'DeviceType'?: HydraCreatedEvent.DeviceTypeEnum;
     /**
     * The event name
     */
@@ -16365,6 +16369,11 @@ export class HydraCreatedEvent {
             "type": "HydraCreatedEvent.UserTypeEnum"
         },
         {
+            "name": "DeviceType",
+            "baseName": "DeviceType",
+            "type": "HydraCreatedEvent.DeviceTypeEnum"
+        },
+        {
             "name": "EventName",
             "baseName": "EventName",
             "type": "string"
@@ -16417,6 +16426,11 @@ export class HydraCreatedEvent {
 
 export namespace HydraCreatedEvent {
     export enum UserTypeEnum {
+        Kiosk = <any> 'Kiosk',
+        Terminal = <any> 'Terminal',
+        LegacyPrinter = <any> 'LegacyPrinter'
+    }
+    export enum DeviceTypeEnum {
         Kiosk = <any> 'Kiosk',
         Terminal = <any> 'Terminal',
         LegacyPrinter = <any> 'LegacyPrinter'
@@ -16843,9 +16857,13 @@ export class HydraStatus {
     */
     'Images'?: Array<string>;
     /**
-    * Hydra User Type
+    * Hydra User Type as integer. Prefer {Flipdish.PublicModels.V1.Hydra.HydraStatus.DeviceType}.
     */
     'UserType'?: HydraStatus.UserTypeEnum;
+    /**
+    * Hydra device type (Kiosk / Terminal), serialized as string.
+    */
+    'DeviceType'?: HydraStatus.DeviceTypeEnum;
     /**
     * Zeus Hydra user id
     */
@@ -16890,6 +16908,11 @@ export class HydraStatus {
             "type": "HydraStatus.UserTypeEnum"
         },
         {
+            "name": "DeviceType",
+            "baseName": "DeviceType",
+            "type": "HydraStatus.DeviceTypeEnum"
+        },
+        {
             "name": "HydraUserId",
             "baseName": "HydraUserId",
             "type": "number"
@@ -16902,6 +16925,11 @@ export class HydraStatus {
 
 export namespace HydraStatus {
     export enum UserTypeEnum {
+        Kiosk = <any> 'Kiosk',
+        Terminal = <any> 'Terminal',
+        LegacyPrinter = <any> 'LegacyPrinter'
+    }
+    export enum DeviceTypeEnum {
         Kiosk = <any> 'Kiosk',
         Terminal = <any> 'Terminal',
         LegacyPrinter = <any> 'LegacyPrinter'
@@ -63966,9 +63994,11 @@ let enumsMap: {[index: string]: any} = {
         "HydraConfig.PaymentOptionsEnum": HydraConfig.PaymentOptionsEnum,
         "HydraConnectionStatusChangedEvent.HydraDeviceStatusEnum": HydraConnectionStatusChangedEvent.HydraDeviceStatusEnum,
         "HydraCreatedEvent.UserTypeEnum": HydraCreatedEvent.UserTypeEnum,
+        "HydraCreatedEvent.DeviceTypeEnum": HydraCreatedEvent.DeviceTypeEnum,
         "HydraDeviceDetails.DeviceTypeEnum": HydraDeviceDetails.DeviceTypeEnum,
         "HydraDeviceDetails.StatusEnum": HydraDeviceDetails.StatusEnum,
         "HydraStatus.UserTypeEnum": HydraStatus.UserTypeEnum,
+        "HydraStatus.DeviceTypeEnum": HydraStatus.DeviceTypeEnum,
         "KioskBluetoothInstallUpdateInitiateEvent.BluetoothTerminalTypeEnum": KioskBluetoothInstallUpdateInitiateEvent.BluetoothTerminalTypeEnum,
         "KioskBluetoothPairingModeEvent.BluetoothTerminalTypeEnum": KioskBluetoothPairingModeEvent.BluetoothTerminalTypeEnum,
         "KioskBluetoothTerminalCancelUpdateEvent.BluetoothTerminalTypeEnum": KioskBluetoothTerminalCancelUpdateEvent.BluetoothTerminalTypeEnum,
