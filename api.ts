@@ -8176,6 +8176,94 @@ export namespace CreateCatalogItem {
     }
 }
 /**
+* Input model for setting an end user fee config
+*/
+export class CreateEndUserFeeConfig {
+    /**
+    * The order channel this fee config applies to
+    */
+    'Channel': CreateEndUserFeeConfig.ChannelEnum;
+    /**
+    * The payment method this fee config applies to
+    */
+    'PaymentMethod': CreateEndUserFeeConfig.PaymentMethodEnum;
+    /**
+    * Order amount below which MinFixedFee is charged instead of the percent/fixed calculation
+    */
+    'MinOrderAmount'?: number;
+    /**
+    * Fixed fee charged for orders at or below MinOrderAmount
+    */
+    'MinFixedFee'?: number;
+    /**
+    * Percentage fee applied to the order amount
+    */
+    'PercentFee'?: number;
+    /**
+    * Fixed fee compared against the percentage fee - the greater of the two is charged
+    */
+    'FixedFee'?: number;
+    /**
+    * Maximum fee that can be charged
+    */
+    'Cap'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Channel",
+            "baseName": "Channel",
+            "type": "CreateEndUserFeeConfig.ChannelEnum"
+        },
+        {
+            "name": "PaymentMethod",
+            "baseName": "PaymentMethod",
+            "type": "CreateEndUserFeeConfig.PaymentMethodEnum"
+        },
+        {
+            "name": "MinOrderAmount",
+            "baseName": "MinOrderAmount",
+            "type": "number"
+        },
+        {
+            "name": "MinFixedFee",
+            "baseName": "MinFixedFee",
+            "type": "number"
+        },
+        {
+            "name": "PercentFee",
+            "baseName": "PercentFee",
+            "type": "number"
+        },
+        {
+            "name": "FixedFee",
+            "baseName": "FixedFee",
+            "type": "number"
+        },
+        {
+            "name": "Cap",
+            "baseName": "Cap",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateEndUserFeeConfig.attributeTypeMap;
+    }
+}
+
+export namespace CreateEndUserFeeConfig {
+    export enum ChannelEnum {
+        WebApp = <any> 'WebApp',
+        InStore = <any> 'InStore',
+        Kiosk = <any> 'Kiosk'
+    }
+    export enum PaymentMethodEnum {
+        Cash = <any> 'Cash',
+        Card = <any> 'Card'
+    }
+}
+/**
 * Create fulfillment states configuration
 */
 export class CreateFulfillmentStatesConfiguration {
@@ -12616,6 +12704,94 @@ export class EmvTerminalWithAssignments {
 }
 
 /**
+* Tiered end user fee config for a given order channel and payment method
+*/
+export class EndUserFeeConfig {
+    /**
+    * The order channel this fee config applies to
+    */
+    'Channel'?: EndUserFeeConfig.ChannelEnum;
+    /**
+    * The payment method this fee config applies to
+    */
+    'PaymentMethod'?: EndUserFeeConfig.PaymentMethodEnum;
+    /**
+    * Order amount below which MinFixedFee is charged instead of the percent/fixed calculation
+    */
+    'MinOrderAmount'?: number;
+    /**
+    * Fixed fee charged for orders at or below MinOrderAmount
+    */
+    'MinFixedFee'?: number;
+    /**
+    * Percentage fee applied to the order amount
+    */
+    'PercentFee'?: number;
+    /**
+    * Fixed fee compared against the percentage fee - the greater of the two is charged
+    */
+    'FixedFee'?: number;
+    /**
+    * Maximum fee that can be charged
+    */
+    'Cap'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Channel",
+            "baseName": "Channel",
+            "type": "EndUserFeeConfig.ChannelEnum"
+        },
+        {
+            "name": "PaymentMethod",
+            "baseName": "PaymentMethod",
+            "type": "EndUserFeeConfig.PaymentMethodEnum"
+        },
+        {
+            "name": "MinOrderAmount",
+            "baseName": "MinOrderAmount",
+            "type": "number"
+        },
+        {
+            "name": "MinFixedFee",
+            "baseName": "MinFixedFee",
+            "type": "number"
+        },
+        {
+            "name": "PercentFee",
+            "baseName": "PercentFee",
+            "type": "number"
+        },
+        {
+            "name": "FixedFee",
+            "baseName": "FixedFee",
+            "type": "number"
+        },
+        {
+            "name": "Cap",
+            "baseName": "Cap",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return EndUserFeeConfig.attributeTypeMap;
+    }
+}
+
+export namespace EndUserFeeConfig {
+    export enum ChannelEnum {
+        WebApp = <any> 'WebApp',
+        InStore = <any> 'InStore',
+        Kiosk = <any> 'Kiosk'
+    }
+    export enum PaymentMethodEnum {
+        Cash = <any> 'Cash',
+        Card = <any> 'Card'
+    }
+}
+/**
 * 
 */
 export class EventSearchResult {
@@ -15300,6 +15476,38 @@ export class GeoPointRequest {
 
     static getAttributeTypeMap() {
         return GeoPointRequest.attributeTypeMap;
+    }
+}
+
+/**
+* The current end user fee configs for a Store, one per channel and payment method
+*/
+export class GetEndUserFeeConfigsResponse {
+    /**
+    * The current end user fee configs for the Store, one per channel and payment method combination present
+    */
+    'EndUserFees'?: Array<EndUserFeeConfig>;
+    /**
+    * Whether the V2 (tiered) fee calculation is enabled for this Store, per the backend_finance_UseV2FeeCalculation Split.io flag
+    */
+    'IsV2FeeCalculationEnabled'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EndUserFees",
+            "baseName": "EndUserFees",
+            "type": "Array<EndUserFeeConfig>"
+        },
+        {
+            "name": "IsV2FeeCalculationEnabled",
+            "baseName": "IsV2FeeCalculationEnabled",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GetEndUserFeeConfigsResponse.attributeTypeMap;
     }
 }
 
@@ -42211,6 +42419,29 @@ export class RestApiResultDnsRecordInformation {
 /**
 * Rest api result
 */
+export class RestApiResultEndUserFeeConfig {
+    /**
+    * Generic data object.
+    */
+    'Data': EndUserFeeConfig;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "EndUserFeeConfig"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultEndUserFeeConfig.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultExecuteConfigurationActionResult {
     /**
     * Generic data object.
@@ -42297,6 +42528,29 @@ export class RestApiResultFulfillmentStatesConfiguration {
 
     static getAttributeTypeMap() {
         return RestApiResultFulfillmentStatesConfiguration.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultGetEndUserFeeConfigsResponse {
+    /**
+    * Generic data object.
+    */
+    'Data': GetEndUserFeeConfigsResponse;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "GetEndUserFeeConfigsResponse"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultGetEndUserFeeConfigsResponse.attributeTypeMap;
     }
 }
 
@@ -63970,6 +64224,8 @@ let enumsMap: {[index: string]: any} = {
         "CreateAppStoreApp.CountriesEnum": CreateAppStoreApp.CountriesEnum,
         "CreateCatalogGroupReference.GroupTypeEnum": CreateCatalogGroupReference.GroupTypeEnum,
         "CreateCatalogItem.ItemTypeEnum": CreateCatalogItem.ItemTypeEnum,
+        "CreateEndUserFeeConfig.ChannelEnum": CreateEndUserFeeConfig.ChannelEnum,
+        "CreateEndUserFeeConfig.PaymentMethodEnum": CreateEndUserFeeConfig.PaymentMethodEnum,
         "CreateFulfillmentStatesConfiguration.StoreSelectorTypeEnum": CreateFulfillmentStatesConfiguration.StoreSelectorTypeEnum,
         "CreateFullMenu.MenuSectionBehaviourEnum": CreateFullMenu.MenuSectionBehaviourEnum,
         "CreateFullMenu.TaxTypeEnum": CreateFullMenu.TaxTypeEnum,
@@ -63991,6 +64247,8 @@ let enumsMap: {[index: string]: any} = {
         "CurrencyData.CurrencyEnum": CurrencyData.CurrencyEnum,
         "CustomerCreateModel.AppTypeEnum": CustomerCreateModel.AppTypeEnum,
         "CustomerDeliveryTrackingOrder.CurrencyEnum": CustomerDeliveryTrackingOrder.CurrencyEnum,
+        "EndUserFeeConfig.ChannelEnum": EndUserFeeConfig.ChannelEnum,
+        "EndUserFeeConfig.PaymentMethodEnum": EndUserFeeConfig.PaymentMethodEnum,
         "ExecuteConfigurationActionResult.RedirectTargetEnum": ExecuteConfigurationActionResult.RedirectTargetEnum,
         "Field.FieldTypeEnum": Field.FieldTypeEnum,
         "FulfillmentStatesConfiguration.StoreSelectorTypeEnum": FulfillmentStatesConfiguration.StoreSelectorTypeEnum,
@@ -64280,6 +64538,7 @@ let typeMap: {[index: string]: any} = {
     "CreateBasicAccountModel": CreateBasicAccountModel,
     "CreateCatalogGroupReference": CreateCatalogGroupReference,
     "CreateCatalogItem": CreateCatalogItem,
+    "CreateEndUserFeeConfig": CreateEndUserFeeConfig,
     "CreateFulfillmentStatesConfiguration": CreateFulfillmentStatesConfiguration,
     "CreateFullMenu": CreateFullMenu,
     "CreateFullMenuItemOptionSet": CreateFullMenuItemOptionSet,
@@ -64338,6 +64597,7 @@ let typeMap: {[index: string]: any} = {
     "EmvNotificationEvent": EmvNotificationEvent,
     "EmvTerminal": EmvTerminal,
     "EmvTerminalWithAssignments": EmvTerminalWithAssignments,
+    "EndUserFeeConfig": EndUserFeeConfig,
     "EventSearchResult": EventSearchResult,
     "ExecuteConfigurationActionRequest": ExecuteConfigurationActionRequest,
     "ExecuteConfigurationActionResult": ExecuteConfigurationActionResult,
@@ -64359,6 +64619,7 @@ let typeMap: {[index: string]: any} = {
     "FulfillmentStatesConfiguredStore": FulfillmentStatesConfiguredStore,
     "FulfillmentStatusConfigurationItem": FulfillmentStatusConfigurationItem,
     "GeoPointRequest": GeoPointRequest,
+    "GetEndUserFeeConfigsResponse": GetEndUserFeeConfigsResponse,
     "GetReceiptByOrderIdQueryResponse": GetReceiptByOrderIdQueryResponse,
     "GoogleAddress": GoogleAddress,
     "GoogleAddressComponent": GoogleAddressComponent,
@@ -64758,10 +65019,12 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultCustomers": RestApiResultCustomers,
     "RestApiResultDeliveryZone": RestApiResultDeliveryZone,
     "RestApiResultDnsRecordInformation": RestApiResultDnsRecordInformation,
+    "RestApiResultEndUserFeeConfig": RestApiResultEndUserFeeConfig,
     "RestApiResultExecuteConfigurationActionResult": RestApiResultExecuteConfigurationActionResult,
     "RestApiResultFileCreationResult": RestApiResultFileCreationResult,
     "RestApiResultFileDownloadResult": RestApiResultFileDownloadResult,
     "RestApiResultFulfillmentStatesConfiguration": RestApiResultFulfillmentStatesConfiguration,
+    "RestApiResultGetEndUserFeeConfigsResponse": RestApiResultGetEndUserFeeConfigsResponse,
     "RestApiResultGroup": RestApiResultGroup,
     "RestApiResultHasPaymentMethodResponse": RestApiResultHasPaymentMethodResponse,
     "RestApiResultHomeStatistics": RestApiResultHomeStatistics,
@@ -76976,6 +77239,189 @@ export class DriversApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum EndUserFeesApiApiKeys {
+}
+
+export class EndUserFeesApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: EndUserFeesApiApiKeys, value: string) {
+        (this.authentications as any)[EndUserFeesApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param input 
+     * @param appId 
+     * @param storeId 
+     * @param {*} [options] Override http request options.
+     */
+    public createEndUserFeeConfig (input: CreateEndUserFeeConfig, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/end-user-fees'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'input' is not null or undefined
+        if (input === null || input === undefined) {
+            throw new Error('Required parameter input was null or undefined when calling createEndUserFeeConfig.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling createEndUserFeeConfig.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling createEndUserFeeConfig.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(input, "CreateEndUserFeeConfig")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param storeId 
+     * @param {*} [options] Override http request options.
+     */
+    public getEndUserFeesForStore (appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultGetEndUserFeeConfigsResponse;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/end-user-fees'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getEndUserFeesForStore.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getEndUserFeesForStore.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultGetEndUserFeeConfigsResponse;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultGetEndUserFeeConfigsResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
