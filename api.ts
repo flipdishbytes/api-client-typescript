@@ -15488,7 +15488,7 @@ export class GetEndUserFeeConfigsResponse {
     */
     'EndUserFees'?: Array<EndUserFeeConfig>;
     /**
-    * Whether the V2 (tiered) fee calculation is enabled for this Store, per the backend_finance_UseV2FeeCalculation Split.io flag
+    * Whether the V2 (tiered) fee calculation is enabled for this Store
     */
     'IsV2FeeCalculationEnabled'?: boolean;
 
@@ -44098,6 +44098,29 @@ export class RestApiResultServiceCharge {
 /**
 * Rest api result
 */
+export class RestApiResultSetV2FeeCalculationRequest {
+    /**
+    * Generic data object.
+    */
+    'Data': SetV2FeeCalculationRequest;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "SetV2FeeCalculationRequest"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultSetV2FeeCalculationRequest.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultSmsProviderCredential {
     /**
     * Generic data object.
@@ -46415,6 +46438,29 @@ export namespace SetUserDeliveryLocationFieldRequest {
         TownString = <any> 'TownString'
     }
 }
+/**
+* Input model for setting whether the V2 (tiered) fee calculation is enabled for a Store
+*/
+export class SetV2FeeCalculationRequest {
+    /**
+    * Whether the V2 (tiered) fee calculation should be enabled for this Store. Required.
+    */
+    'IsEnabled'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "IsEnabled",
+            "baseName": "IsEnabled",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SetV2FeeCalculationRequest.attributeTypeMap;
+    }
+}
+
 /**
 * Set the validity periods of a voucher.
 */
@@ -65092,6 +65138,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultRestaurantVoucherPayGreenStoreConfiguration": RestApiResultRestaurantVoucherPayGreenStoreConfiguration,
     "RestApiResultRetentionCampaign": RestApiResultRetentionCampaign,
     "RestApiResultServiceCharge": RestApiResultServiceCharge,
+    "RestApiResultSetV2FeeCalculationRequest": RestApiResultSetV2FeeCalculationRequest,
     "RestApiResultSmsProviderCredential": RestApiResultSmsProviderCredential,
     "RestApiResultStore": RestApiResultStore,
     "RestApiResultStoreAddress": RestApiResultStoreAddress,
@@ -65142,6 +65189,7 @@ let typeMap: {[index: string]: any} = {
     "SetPasswordWithPinModel": SetPasswordWithPinModel,
     "SetUserDeliveryLocationCoordinatesRequest": SetUserDeliveryLocationCoordinatesRequest,
     "SetUserDeliveryLocationFieldRequest": SetUserDeliveryLocationFieldRequest,
+    "SetV2FeeCalculationRequest": SetV2FeeCalculationRequest,
     "SetVoucherValidityPeriodsSimplifiedRequest": SetVoucherValidityPeriodsSimplifiedRequest,
     "Setting": Setting,
     "SignupStep": SignupStep,
@@ -77422,6 +77470,76 @@ export class EndUserFeesApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultGetEndUserFeeConfigsResponse");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param input 
+     * @param appId 
+     * @param storeId 
+     * @param {*} [options] Override http request options.
+     */
+    public setV2FeeCalculation (input: SetV2FeeCalculationRequest, appId: string, storeId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSetV2FeeCalculationRequest;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/stores/{storeId}/end-user-fees/v2-fee-calculation'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'input' is not null or undefined
+        if (input === null || input === undefined) {
+            throw new Error('Required parameter input was null or undefined when calling setV2FeeCalculation.');
+        }
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling setV2FeeCalculation.');
+        }
+
+        // verify required parameter 'storeId' is not null or undefined
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling setV2FeeCalculation.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(input, "SetV2FeeCalculationRequest")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultSetV2FeeCalculationRequest;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultSetV2FeeCalculationRequest");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
