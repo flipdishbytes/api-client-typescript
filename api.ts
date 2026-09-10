@@ -9843,6 +9843,10 @@ export class CreateVoucher {
     */
     'IsDiscoverable'?: boolean;
     /**
+    * Marks the voucher as promoted
+    */
+    'IsPromoted'?: boolean;
+    /**
     * Force the discount to be applied which bypasses some menu restrictions
     */
     'ForceDiscount'?: boolean;
@@ -9981,6 +9985,11 @@ export class CreateVoucher {
         {
             "name": "IsDiscoverable",
             "baseName": "IsDiscoverable",
+            "type": "boolean"
+        },
+        {
+            "name": "IsPromoted",
+            "baseName": "IsPromoted",
             "type": "boolean"
         },
         {
@@ -58062,6 +58071,10 @@ export class UpdateVoucher {
     */
     'IsDiscoverable'?: boolean;
     /**
+    * Marks the voucher as promoted
+    */
+    'IsPromoted'?: boolean;
+    /**
     * Force the discount to be applied which bypasses some menu restrictions
     */
     'ForceDiscount'?: boolean;
@@ -58190,6 +58203,11 @@ export class UpdateVoucher {
         {
             "name": "IsDiscoverable",
             "baseName": "IsDiscoverable",
+            "type": "boolean"
+        },
+        {
+            "name": "IsPromoted",
+            "baseName": "IsPromoted",
             "type": "boolean"
         },
         {
@@ -60381,6 +60399,10 @@ export class Voucher {
     */
     'IsDiscoverable'?: boolean;
     /**
+    * Marks the voucher as promoted
+    */
+    'IsPromoted'?: boolean;
+    /**
     * Force the discount to be applied which bypasses some menu restrictions
     */
     'ForceDiscount'?: boolean;
@@ -60539,6 +60561,11 @@ export class Voucher {
         {
             "name": "IsDiscoverable",
             "baseName": "IsDiscoverable",
+            "type": "boolean"
+        },
+        {
+            "name": "IsPromoted",
+            "baseName": "IsPromoted",
             "type": "boolean"
         },
         {
@@ -61527,6 +61554,10 @@ export class VoucherWithStats {
     */
     'IsDiscoverable'?: boolean;
     /**
+    * Marks the voucher as promoted
+    */
+    'IsPromoted'?: boolean;
+    /**
     * Force the discount to be applied which bypasses some menu restrictions
     */
     'ForceDiscount'?: boolean;
@@ -61710,6 +61741,11 @@ export class VoucherWithStats {
         {
             "name": "IsDiscoverable",
             "baseName": "IsDiscoverable",
+            "type": "boolean"
+        },
+        {
+            "name": "IsPromoted",
+            "baseName": "IsPromoted",
             "type": "boolean"
         },
         {
