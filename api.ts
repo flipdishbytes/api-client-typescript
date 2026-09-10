@@ -61211,6 +61211,10 @@ export class VoucherSummary {
     */
     'IsEnabled'?: boolean;
     /**
+    * Marks the voucher as promoted
+    */
+    'IsPromoted'?: boolean;
+    /**
     * Store names associated with this voucher
     */
     'StoreNames'?: Array<string>;
@@ -61218,6 +61222,10 @@ export class VoucherSummary {
     * True if the voucher is available on all active stores in the app
     */
     'IsAvailableOnAllStores'?: boolean;
+    /**
+    * Channels the voucher is restricted to
+    */
+    'ChannelRestrictions'?: Array<VoucherSummary.ChannelRestrictionsEnum>;
 
     static discriminator: string | undefined = undefined;
 
@@ -61258,6 +61266,11 @@ export class VoucherSummary {
             "type": "boolean"
         },
         {
+            "name": "IsPromoted",
+            "baseName": "IsPromoted",
+            "type": "boolean"
+        },
+        {
             "name": "StoreNames",
             "baseName": "StoreNames",
             "type": "Array<string>"
@@ -61266,6 +61279,11 @@ export class VoucherSummary {
             "name": "IsAvailableOnAllStores",
             "baseName": "IsAvailableOnAllStores",
             "type": "boolean"
+        },
+        {
+            "name": "ChannelRestrictions",
+            "baseName": "ChannelRestrictions",
+            "type": "Array<VoucherSummary.ChannelRestrictionsEnum>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -61296,6 +61314,14 @@ export namespace VoucherSummary {
         Retention = <any> 'Retention',
         SecondaryRetention = <any> 'SecondaryRetention',
         Custom = <any> 'Custom'
+    }
+    export enum ChannelRestrictionsEnum {
+        Ios = <any> 'Ios',
+        Android = <any> 'Android',
+        Web = <any> 'Web',
+        Kiosk = <any> 'Kiosk',
+        Pos = <any> 'Pos',
+        Google = <any> 'Google'
     }
 }
 /**
@@ -64519,6 +64545,7 @@ let enumsMap: {[index: string]: any} = {
         "VoucherSummary.StatusEnum": VoucherSummary.StatusEnum,
         "VoucherSummary.VoucherTypeEnum": VoucherSummary.VoucherTypeEnum,
         "VoucherSummary.VoucherSubTypeEnum": VoucherSummary.VoucherSubTypeEnum,
+        "VoucherSummary.ChannelRestrictionsEnum": VoucherSummary.ChannelRestrictionsEnum,
         "VoucherWithStats.StatusEnum": VoucherWithStats.StatusEnum,
         "VoucherWithStats.VoucherTypeEnum": VoucherWithStats.VoucherTypeEnum,
         "VoucherWithStats.CurrencyEnum": VoucherWithStats.CurrencyEnum,
