@@ -46708,7 +46708,8 @@ export namespace SmsProviderCredential {
         Nexmo = <any> 'Nexmo',
         Twilio = <any> 'Twilio',
         Default = <any> 'Default',
-        MessageBird = <any> 'MessageBird'
+        MessageBird = <any> 'MessageBird',
+        CommunicationService = <any> 'CommunicationService'
     }
 }
 /**
@@ -98398,7 +98399,7 @@ export class SmsProviderCredentialsApi {
      * @param withFallback 
      * @param {*} [options] Override http request options.
      */
-    public getBrandSmsProviderCredentialByServiceType (orgId: string, brandId: string, serviceType: 'Nexmo' | 'Twilio' | 'Default' | 'MessageBird', withFallback?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSmsProviderCredential;  }> {
+    public getBrandSmsProviderCredentialByServiceType (orgId: string, brandId: string, serviceType: 'Nexmo' | 'Twilio' | 'Default' | 'MessageBird' | 'CommunicationService', withFallback?: boolean, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSmsProviderCredential;  }> {
         const localVarPath = this.basePath + '/api/v1.0/sms-providers/orgs/{orgId}/brands/{brandId}/provider-credentials/{serviceType}'
             .replace('{' + 'orgId' + '}', encodeURIComponent(String(orgId)))
             .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
@@ -98535,7 +98536,7 @@ export class SmsProviderCredentialsApi {
      * @param serviceType 
      * @param {*} [options] Override http request options.
      */
-    public smsProviderCredentialDelete (orgId: string, brandId: string, serviceType: 'Nexmo' | 'Twilio' | 'Default' | 'MessageBird', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSmsProviderCredential;  }> {
+    public smsProviderCredentialDelete (orgId: string, brandId: string, serviceType: 'Nexmo' | 'Twilio' | 'Default' | 'MessageBird' | 'CommunicationService', options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSmsProviderCredential;  }> {
         const localVarPath = this.basePath + '/api/v1.0/sms-providers/orgs/{orgId}/brands/{brandId}/provider-credentials/{serviceType}'
             .replace('{' + 'orgId' + '}', encodeURIComponent(String(orgId)))
             .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
@@ -98606,7 +98607,7 @@ export class SmsProviderCredentialsApi {
      * @param credential 
      * @param {*} [options] Override http request options.
      */
-    public smsProviderCredentialUpdate (orgId: string, brandId: string, serviceType: 'Nexmo' | 'Twilio' | 'Default' | 'MessageBird', credential: SmsProviderCredentialUpdateRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSmsProviderCredential;  }> {
+    public smsProviderCredentialUpdate (orgId: string, brandId: string, serviceType: 'Nexmo' | 'Twilio' | 'Default' | 'MessageBird' | 'CommunicationService', credential: SmsProviderCredentialUpdateRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultSmsProviderCredential;  }> {
         const localVarPath = this.basePath + '/api/v1.0/sms-providers/orgs/{orgId}/brands/{brandId}/provider-credentials/{serviceType}'
             .replace('{' + 'orgId' + '}', encodeURIComponent(String(orgId)))
             .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
