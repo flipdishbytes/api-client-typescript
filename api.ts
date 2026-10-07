@@ -10567,6 +10567,7 @@ export class CustomerCreateModel {
     * Customer Name
     */
     'Name'?: string;
+    'MarketingEnabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -10585,6 +10586,11 @@ export class CustomerCreateModel {
             "name": "Name",
             "baseName": "Name",
             "type": "string"
+        },
+        {
+            "name": "MarketingEnabled",
+            "baseName": "MarketingEnabled",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
