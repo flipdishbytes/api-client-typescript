@@ -14783,29 +14783,6 @@ export class FileCreationResult {
 }
 
 /**
-* File Download Result
-*/
-export class FileDownloadResult {
-    /**
-    * URL of the file
-    */
-    'FileUrl'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "FileUrl",
-            "baseName": "FileUrl",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return FileDownloadResult.attributeTypeMap;
-    }
-}
-
-/**
 * FirebaseApp.
 */
 export class FirebaseApp {
@@ -42503,29 +42480,6 @@ export class RestApiResultFileCreationResult {
 /**
 * Rest api result
 */
-export class RestApiResultFileDownloadResult {
-    /**
-    * Generic data object.
-    */
-    'Data': FileDownloadResult;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Data",
-            "baseName": "Data",
-            "type": "FileDownloadResult"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RestApiResultFileDownloadResult.attributeTypeMap;
-    }
-}
-
-/**
-* Rest api result
-*/
 export class RestApiResultFulfillmentStatesConfiguration {
     /**
     * Generic data object.
@@ -64724,7 +64678,6 @@ let typeMap: {[index: string]: any} = {
     "FieldChangeInformation": FieldChangeInformation,
     "FieldGroup": FieldGroup,
     "FileCreationResult": FileCreationResult,
-    "FileDownloadResult": FileDownloadResult,
     "FirebaseApp": FirebaseApp,
     "FlipdishAccountName": FlipdishAccountName,
     "FlipdishEventBase": FlipdishEventBase,
@@ -65138,7 +65091,6 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultEndUserFeeConfig": RestApiResultEndUserFeeConfig,
     "RestApiResultExecuteConfigurationActionResult": RestApiResultExecuteConfigurationActionResult,
     "RestApiResultFileCreationResult": RestApiResultFileCreationResult,
-    "RestApiResultFileDownloadResult": RestApiResultFileDownloadResult,
     "RestApiResultFulfillmentStatesConfiguration": RestApiResultFulfillmentStatesConfiguration,
     "RestApiResultGetEndUserFeeConfigsResponse": RestApiResultGetEndUserFeeConfigsResponse,
     "RestApiResultGroup": RestApiResultGroup,
@@ -79049,119 +79001,6 @@ export class FeaturesApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiStringArrayResult");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-}
-export enum FilesApiApiKeys {
-}
-
-export class FilesApi {
-    protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
-    protected _useQuerystring : boolean = false;
-
-    protected authentications = {
-        'default': <Authentication>new VoidAuth(),
-        'oauth2': new OAuth(),
-    }
-
-    constructor(basePath?: string);
-    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
-        if (password) {
-            if (basePath) {
-                this.basePath = basePath;
-            }
-        } else {
-            if (basePathOrUsername) {
-                this.basePath = basePathOrUsername
-            }
-        }
-    }
-
-    set useQuerystring(value: boolean) {
-        this._useQuerystring = value;
-    }
-
-    set basePath(basePath: string) {
-        this._basePath = basePath;
-    }
-
-    get basePath() {
-        return this._basePath;
-    }
-
-    public setDefaultAuthentication(auth: Authentication) {
-	this.authentications.default = auth;
-    }
-
-    public setApiKey(key: FilesApiApiKeys, value: string) {
-        (this.authentications as any)[FilesApiApiKeys[key]].apiKey = value;
-    }
-
-    set accessToken(token: string) {
-        this.authentications.oauth2.accessToken = token;
-    }
-    /**
-     * 
-     * @param appId 
-     * @param fileId 
-     * @param {*} [options] Override http request options.
-     */
-    public downloadFile (appId: string, fileId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultFileDownloadResult;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/files/download/{fileId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'fileId' + '}', encodeURIComponent(String(fileId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling downloadFile.');
-        }
-
-        // verify required parameter 'fileId' is not null or undefined
-        if (fileId === null || fileId === undefined) {
-            throw new Error('Required parameter fileId was null or undefined when calling downloadFile.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultFileDownloadResult;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultFileDownloadResult");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
