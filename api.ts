@@ -20082,6 +20082,38 @@ export class KioskSettings {
 }
 
 /**
+* Stripe Terminal location used by a kiosk's card readers
+*/
+export class KioskStripeLocation {
+    /**
+    * Kiosk device ID
+    */
+    'DeviceId'?: string;
+    /**
+    * Stripe Terminal location ID. Null when card payments have not been set up on the kiosk.
+    */
+    'StripeLocationId'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DeviceId",
+            "baseName": "DeviceId",
+            "type": "string"
+        },
+        {
+            "name": "StripeLocationId",
+            "baseName": "StripeLocationId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return KioskStripeLocation.attributeTypeMap;
+    }
+}
+
+/**
 * Kiosk Terminal action state changed
 */
 export class KioskTerminalActionStateChangedEvent {
@@ -42770,6 +42802,29 @@ export class RestApiResultKioskSettings {
 /**
 * Rest api result
 */
+export class RestApiResultKioskStripeLocation {
+    /**
+    * Generic data object.
+    */
+    'Data': KioskStripeLocation;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "KioskStripeLocation"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultKioskStripeLocation.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultLightspeedSettings {
     /**
     * Generic data object.
@@ -64693,6 +64748,7 @@ let typeMap: {[index: string]: any} = {
     "KioskEntitlementsResult": KioskEntitlementsResult,
     "KioskIotConnectionParameters": KioskIotConnectionParameters,
     "KioskSettings": KioskSettings,
+    "KioskStripeLocation": KioskStripeLocation,
     "KioskTerminalActionStateChangedEvent": KioskTerminalActionStateChangedEvent,
     "Language": Language,
     "LastPaymentError": LastPaymentError,
@@ -65049,6 +65105,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultKioskEntitlementsResult": RestApiResultKioskEntitlementsResult,
     "RestApiResultKioskIotConnectionParameters": RestApiResultKioskIotConnectionParameters,
     "RestApiResultKioskSettings": RestApiResultKioskSettings,
+    "RestApiResultKioskStripeLocation": RestApiResultKioskStripeLocation,
     "RestApiResultLightspeedSettings": RestApiResultLightspeedSettings,
     "RestApiResultLocationArea": RestApiResultLocationArea,
     "RestApiResultLocationAreaLocation": RestApiResultLocationAreaLocation,
@@ -72115,6 +72172,69 @@ export class CardReadersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultBluetoothTerminalStatus");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param deviceId 
+     * @param {*} [options] Override http request options.
+     */
+    public getKioskStripeLocation (appId: string, deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultKioskStripeLocation;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/{appId}/cardreaders/kiosk/{deviceId}/stripe-location'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getKioskStripeLocation.');
+        }
+
+        // verify required parameter 'deviceId' is not null or undefined
+        if (deviceId === null || deviceId === undefined) {
+            throw new Error('Required parameter deviceId was null or undefined when calling getKioskStripeLocation.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultKioskStripeLocation;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultKioskStripeLocation");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
