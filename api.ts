@@ -21361,38 +21361,6 @@ export class LoginModel {
 }
 
 /**
-* Login with PIN model
-*/
-export class LoginWithPinModel {
-    /**
-    * Email addres
-    */
-    'Email': string;
-    /**
-    * PIN code (received via email)
-    */
-    'Pin': number;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Email",
-            "baseName": "Email",
-            "type": "string"
-        },
-        {
-            "name": "Pin",
-            "baseName": "Pin",
-            "type": "number"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return LoginWithPinModel.attributeTypeMap;
-    }
-}
-
-/**
 * Loyalty campaign
 */
 export class LoyaltyCampaign {
@@ -38116,61 +38084,6 @@ export namespace Reject {
         StoreUncontactable = <any> 'StoreUncontactable'
     }
 }
-/**
-* Request login PIN response
-*/
-export class RequestLoginPinModel {
-    /**
-    * Email address
-    */
-    'Email': string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Email",
-            "baseName": "Email",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RequestLoginPinModel.attributeTypeMap;
-    }
-}
-
-/**
-* Request login PIN response
-*/
-export class RequestLoginPinResponse {
-    /**
-    * Login PIN sent via email to user
-    */
-    'LoginPinSentViaEmail'?: boolean;
-    /**
-    * All flipdishers must login via Okta
-    */
-    'ForceOktaLogin'?: boolean;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "LoginPinSentViaEmail",
-            "baseName": "LoginPinSentViaEmail",
-            "type": "boolean"
-        },
-        {
-            "name": "ForceOktaLogin",
-            "baseName": "ForceOktaLogin",
-            "type": "boolean"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RequestLoginPinResponse.attributeTypeMap;
-    }
-}
-
 /**
 * 
 */
@@ -64763,7 +64676,6 @@ let typeMap: {[index: string]: any} = {
     "LocationCreatedEvent": LocationCreatedEvent,
     "LocationDeletedEvent": LocationDeletedEvent,
     "LoginModel": LoginModel,
-    "LoginWithPinModel": LoginWithPinModel,
     "LoyaltyCampaign": LoyaltyCampaign,
     "LoyaltyCampaignBase": LoyaltyCampaignBase,
     "LoyaltyCampaignCreatedEvent": LoyaltyCampaignCreatedEvent,
@@ -64943,8 +64855,6 @@ let typeMap: {[index: string]: any} = {
     "RedeemInvitationResult": RedeemInvitationResult,
     "Refund": Refund,
     "Reject": Reject,
-    "RequestLoginPinModel": RequestLoginPinModel,
-    "RequestLoginPinResponse": RequestLoginPinResponse,
     "RequestPasswordResetModel": RequestPasswordResetModel,
     "RequestPasswordResetPinResponse": RequestPasswordResetPinResponse,
     "Response": Response,
@@ -65965,61 +65875,6 @@ export class AccountsApi {
     }
     /**
      * 
-     * @param loginModel 
-     * @param {*} [options] Override http request options.
-     */
-    public loginWithPin (loginModel: LoginWithPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/accounts/login/pin';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'loginModel' is not null or undefined
-        if (loginModel === null || loginModel === undefined) {
-            throw new Error('Required parameter loginModel was null or undefined when calling loginWithPin.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(loginModel, "LoginWithPinModel")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
      * @param {*} [options] Override http request options.
      */
     public logout (options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
@@ -66170,62 +66025,6 @@ export class AccountsApi {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param requestLoginPinRequest 
-     * @param {*} [options] Override http request options.
-     */
-    public requestLoginPin (requestLoginPinRequest: RequestLoginPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RequestLoginPinResponse;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/accounts/pin';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'requestLoginPinRequest' is not null or undefined
-        if (requestLoginPinRequest === null || requestLoginPinRequest === undefined) {
-            throw new Error('Required parameter requestLoginPinRequest was null or undefined when calling requestLoginPin.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(requestLoginPinRequest, "RequestLoginPinModel")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RequestLoginPinResponse;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RequestLoginPinResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
