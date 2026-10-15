@@ -38116,29 +38116,6 @@ export class RequestPasswordResetModel {
     }
 }
 
-/**
-* Request Password Reset PIN response
-*/
-export class RequestPasswordResetPinResponse {
-    /**
-    * Password Reset PIN sent via email to user
-    */
-    'PasswordResetPinSentViaEmail'?: boolean;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "PasswordResetPinSentViaEmail",
-            "baseName": "PasswordResetPinSentViaEmail",
-            "type": "boolean"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return RequestPasswordResetPinResponse.attributeTypeMap;
-    }
-}
-
 export class Response {
     'Stores'?: Array<StoreItemHeader>;
 
@@ -46203,47 +46180,6 @@ export class SetOrderBatchingConfiguration {
 
     static getAttributeTypeMap() {
         return SetOrderBatchingConfiguration.attributeTypeMap;
-    }
-}
-
-/**
-* Set password with PIN model
-*/
-export class SetPasswordWithPinModel {
-    /**
-    * PIN code (received via email)
-    */
-    'Pin': number;
-    /**
-    * New Password
-    */
-    'NewPassword': string;
-    /**
-    * Google Recaptcha Token
-    */
-    'RecaptchaToken'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "Pin",
-            "baseName": "Pin",
-            "type": "number"
-        },
-        {
-            "name": "NewPassword",
-            "baseName": "NewPassword",
-            "type": "string"
-        },
-        {
-            "name": "RecaptchaToken",
-            "baseName": "RecaptchaToken",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return SetPasswordWithPinModel.attributeTypeMap;
     }
 }
 
@@ -64856,7 +64792,6 @@ let typeMap: {[index: string]: any} = {
     "Refund": Refund,
     "Reject": Reject,
     "RequestPasswordResetModel": RequestPasswordResetModel,
-    "RequestPasswordResetPinResponse": RequestPasswordResetPinResponse,
     "Response": Response,
     "RestApiArrayResultAllMetadataResult": RestApiArrayResultAllMetadataResult,
     "RestApiArrayResultAllergen": RestApiArrayResultAllergen,
@@ -65118,7 +65053,6 @@ let typeMap: {[index: string]: any} = {
     "SendUserSmsRequest": SendUserSmsRequest,
     "ServiceCharge": ServiceCharge,
     "SetOrderBatchingConfiguration": SetOrderBatchingConfiguration,
-    "SetPasswordWithPinModel": SetPasswordWithPinModel,
     "SetUserDeliveryLocationCoordinatesRequest": SetUserDeliveryLocationCoordinatesRequest,
     "SetUserDeliveryLocationFieldRequest": SetUserDeliveryLocationFieldRequest,
     "SetV2FeeCalculationRequest": SetV2FeeCalculationRequest,
@@ -65479,61 +65413,6 @@ export class AccountsApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(changePasswordModel, "ChangePasswordModel")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param changePasswordModel 
-     * @param {*} [options] Override http request options.
-     */
-    public changePasswordWithPin (changePasswordModel: SetPasswordWithPinModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/accounts/password/pin';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'changePasswordModel' is not null or undefined
-        if (changePasswordModel === null || changePasswordModel === undefined) {
-            throw new Error('Required parameter changePasswordModel was null or undefined when calling changePasswordWithPin.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PUT',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(changePasswordModel, "SetPasswordWithPinModel")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
@@ -66080,62 +65959,6 @@ export class AccountsApi {
                 if (error) {
                     reject(error);
                 } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param requestPasswordResetRequest 
-     * @param {*} [options] Override http request options.
-     */
-    public sendPinForPasswordReset (requestPasswordResetRequest: RequestPasswordResetModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RequestPasswordResetPinResponse;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/accounts/password/resetpin';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'requestPasswordResetRequest' is not null or undefined
-        if (requestPasswordResetRequest === null || requestPasswordResetRequest === undefined) {
-            throw new Error('Required parameter requestPasswordResetRequest was null or undefined when calling sendPinForPasswordReset.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(requestPasswordResetRequest, "RequestPasswordResetModel")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RequestPasswordResetPinResponse;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RequestPasswordResetPinResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
