@@ -7618,6 +7618,29 @@ export class ConfiguredStore {
 }
 
 /**
+* App contact form type configuration model
+*/
+export class ContactFormTypeConfigModel {
+    /**
+    * Contact form type.  Named values: None = 0, Email = 1, Intercom = 2, WebView = 3, FlipdishMessages = 4.  Values without a name (such as 5 for Phone and 6 for Email and phone) are accepted as their numeric string  and are returned the same way, for example \"5\".
+    */
+    'ContactFormType'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ContactFormType",
+            "baseName": "ContactFormType",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ContactFormTypeConfigModel.attributeTypeMap;
+    }
+}
+
+/**
 * Coordinates
 */
 export class Coordinates {
@@ -42117,6 +42140,29 @@ export class RestApiResultClientDeviceEnrollmentResult {
 /**
 * Rest api result
 */
+export class RestApiResultContactFormTypeConfigModel {
+    /**
+    * Generic data object.
+    */
+    'Data': ContactFormTypeConfigModel;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "ContactFormTypeConfigModel"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultContactFormTypeConfigModel.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultCoordinates {
     /**
     * Generic data object.
@@ -64448,6 +64494,7 @@ let typeMap: {[index: string]: any} = {
     "ClientDeviceEnrollmentResult": ClientDeviceEnrollmentResult,
     "ClientDeviceSummary": ClientDeviceSummary,
     "ConfiguredStore": ConfiguredStore,
+    "ContactFormTypeConfigModel": ContactFormTypeConfigModel,
     "Coordinates": Coordinates,
     "CountryFormResponse": CountryFormResponse,
     "CountryWithAccountFieldsDefinitions": CountryWithAccountFieldsDefinitions,
@@ -64925,6 +64972,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultChannel": RestApiResultChannel,
     "RestApiResultClientDevice": RestApiResultClientDevice,
     "RestApiResultClientDeviceEnrollmentResult": RestApiResultClientDeviceEnrollmentResult,
+    "RestApiResultContactFormTypeConfigModel": RestApiResultContactFormTypeConfigModel,
     "RestApiResultCoordinates": RestApiResultCoordinates,
     "RestApiResultCountryFormResponse": RestApiResultCountryFormResponse,
     "RestApiResultCreatedMenuSectionItems": RestApiResultCreatedMenuSectionItems,
@@ -108066,6 +108114,175 @@ export class WhiteLabelConfigApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultAssetResultModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum WhiteLabelContactFormTypeApiApiKeys {
+}
+
+export class WhiteLabelContactFormTypeApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: WhiteLabelContactFormTypeApiApiKeys, value: string) {
+        (this.authentications as any)[WhiteLabelContactFormTypeApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getAppContactFormType (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultContactFormTypeConfigModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/{appId}/contact-form-type'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAppContactFormType.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultContactFormTypeConfigModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultContactFormTypeConfigModel");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param contactFormTypeConfig 
+     * @param {*} [options] Override http request options.
+     */
+    public updateAppContactFormType (appId: string, contactFormTypeConfig: ContactFormTypeConfigModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultContactFormTypeConfigModel;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/whitelabelconfig/{appId}/contact-form-type'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling updateAppContactFormType.');
+        }
+
+        // verify required parameter 'contactFormTypeConfig' is not null or undefined
+        if (contactFormTypeConfig === null || contactFormTypeConfig === undefined) {
+            throw new Error('Required parameter contactFormTypeConfig was null or undefined when calling updateAppContactFormType.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(contactFormTypeConfig, "ContactFormTypeConfigModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultContactFormTypeConfigModel;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultContactFormTypeConfigModel");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
