@@ -44532,6 +44532,29 @@ export class RestApiResultVoucherWithStats {
 /**
 * Rest api result
 */
+export class RestApiResultWebOrderPage {
+    /**
+    * Generic data object.
+    */
+    'Data': WebOrderPage;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "WebOrderPage"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultWebOrderPage.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
 export class RestApiResultWebsiteImage {
     /**
     * Generic data object.
@@ -46375,6 +46398,44 @@ export namespace SetVoucherValidityPeriodsSimplifiedRequest {
         Thursday = <any> 'Thursday',
         Friday = <any> 'Friday',
         Saturday = <any> 'Saturday'
+    }
+}
+/**
+* Sets the page on the app's website that hosts web ordering
+*/
+export class SetWebOrderPage {
+    /**
+    * Path of the page on the app's hostname. Must be empty, or start with / and have no query string or fragment.  Required with Mode Manual (the default). An empty string clears the path: there is no ordering page to link to, and live orders will not fill it.  With Mode Automatic, omit it or leave it empty: the path is blanked and filled from the next live web order.
+    */
+    'OrderPagePath'?: string;
+    /**
+    * Manual (the default) stores OrderPagePath and stops live orders changing it.  Automatic blanks the path so the next live web order on the app's hostname fills it.
+    */
+    'Mode'?: SetWebOrderPage.ModeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrderPagePath",
+            "baseName": "OrderPagePath",
+            "type": "string"
+        },
+        {
+            "name": "Mode",
+            "baseName": "Mode",
+            "type": "SetWebOrderPage.ModeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SetWebOrderPage.attributeTypeMap;
+    }
+}
+
+export namespace SetWebOrderPage {
+    export enum ModeEnum {
+        Automatic = <any> 'Automatic',
+        Manual = <any> 'Manual'
     }
 }
 export class Setting {
@@ -61848,6 +61909,44 @@ export class WaitHandle {
 }
 
 /**
+* The page on the app's website that hosts web ordering
+*/
+export class WebOrderPage {
+    /**
+    * Path of the page on the app's hostname, e.g. /order. Empty when unknown, or when there is no ordering page to link to.
+    */
+    'OrderPagePath'?: string;
+    /**
+    * How the path is maintained
+    */
+    'Mode'?: WebOrderPage.ModeEnum;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "OrderPagePath",
+            "baseName": "OrderPagePath",
+            "type": "string"
+        },
+        {
+            "name": "Mode",
+            "baseName": "Mode",
+            "type": "WebOrderPage.ModeEnum"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WebOrderPage.attributeTypeMap;
+    }
+}
+
+export namespace WebOrderPage {
+    export enum ModeEnum {
+        Automatic = <any> 'Automatic',
+        Manual = <any> 'Manual'
+    }
+}
+/**
 * Sample payload of a webhook event
 */
 export class WebhookEventSample {
@@ -64327,6 +64426,7 @@ let enumsMap: {[index: string]: any} = {
         "Reject.RejectReasonEnum": Reject.RejectReasonEnum,
         "SetUserDeliveryLocationFieldRequest.FieldEnum": SetUserDeliveryLocationFieldRequest.FieldEnum,
         "SetVoucherValidityPeriodsSimplifiedRequest.DaysOfWeekEnum": SetVoucherValidityPeriodsSimplifiedRequest.DaysOfWeekEnum,
+        "SetWebOrderPage.ModeEnum": SetWebOrderPage.ModeEnum,
         "SignupStep.ActionEnum": SignupStep.ActionEnum,
         "SmsProviderCredential.SmsServiceTypeEnum": SmsProviderCredential.SmsServiceTypeEnum,
         "StatisticsCurrencyDataPoint.CurrencyEnum": StatisticsCurrencyDataPoint.CurrencyEnum,
@@ -64407,6 +64507,7 @@ let enumsMap: {[index: string]: any} = {
         "VoucherWithStats.CurrencyEnum": VoucherWithStats.CurrencyEnum,
         "VoucherWithStats.ChannelRestrictionsEnum": VoucherWithStats.ChannelRestrictionsEnum,
         "VoucherWithStats.VoucherSubTypeEnum": VoucherWithStats.VoucherSubTypeEnum,
+        "WebOrderPage.ModeEnum": WebOrderPage.ModeEnum,
         "WebsiteImage.ImageLocationEnum": WebsiteImage.ImageLocationEnum,
         "WhiteLabelConfigModel.ComplianceTypeEnum": WhiteLabelConfigModel.ComplianceTypeEnum,
 }
@@ -65076,6 +65177,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultUserRole": RestApiResultUserRole,
     "RestApiResultVoucher": RestApiResultVoucher,
     "RestApiResultVoucherWithStats": RestApiResultVoucherWithStats,
+    "RestApiResultWebOrderPage": RestApiResultWebOrderPage,
     "RestApiResultWebsiteImage": RestApiResultWebsiteImage,
     "RestApiResultWebsiteTestimonial": RestApiResultWebsiteTestimonial,
     "RestApiResultWhiteLabelConfigModel": RestApiResultWhiteLabelConfigModel,
@@ -65105,6 +65207,7 @@ let typeMap: {[index: string]: any} = {
     "SetUserDeliveryLocationFieldRequest": SetUserDeliveryLocationFieldRequest,
     "SetV2FeeCalculationRequest": SetV2FeeCalculationRequest,
     "SetVoucherValidityPeriodsSimplifiedRequest": SetVoucherValidityPeriodsSimplifiedRequest,
+    "SetWebOrderPage": SetWebOrderPage,
     "Setting": Setting,
     "SignupStep": SignupStep,
     "SmsInfo": SmsInfo,
@@ -65251,6 +65354,7 @@ let typeMap: {[index: string]: any} = {
     "VoucherUpdatedEvent": VoucherUpdatedEvent,
     "VoucherWithStats": VoucherWithStats,
     "WaitHandle": WaitHandle,
+    "WebOrderPage": WebOrderPage,
     "WebhookEventSample": WebhookEventSample,
     "WebhookLog": WebhookLog,
     "WebhookSubscription": WebhookSubscription,
@@ -105708,6 +105812,174 @@ export class VouchersApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(voucherUsage, "UpdateVoucherUsage")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum WebOrderPageApiApiKeys {
+}
+
+export class WebOrderPageApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'oauth2': new OAuth(),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: WebOrderPageApiApiKeys, value: string) {
+        (this.authentications as any)[WebOrderPageApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.oauth2.accessToken = token;
+    }
+    /**
+     * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getWebOrderPage (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultWebOrderPage;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/weborderpage'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getWebOrderPage.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultWebOrderPage;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultWebOrderPage");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param setWebOrderPage 
+     * @param {*} [options] Override http request options.
+     */
+    public setWebOrderPage (appId: string, setWebOrderPage: SetWebOrderPage, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/weborderpage'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling setWebOrderPage.');
+        }
+
+        // verify required parameter 'setWebOrderPage' is not null or undefined
+        if (setWebOrderPage === null || setWebOrderPage === undefined) {
+            throw new Error('Required parameter setWebOrderPage was null or undefined when calling setWebOrderPage.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(setWebOrderPage, "SetWebOrderPage")
         };
 
         this.authentications.oauth2.applyToRequest(localVarRequestOptions);
