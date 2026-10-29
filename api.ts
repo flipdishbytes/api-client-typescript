@@ -15431,6 +15431,61 @@ export namespace FulfillmentStatusConfigurationItem {
     }
 }
 /**
+* Slim customer on fulfillment status updated (no email/phone).
+*/
+export class FulfillmentStatusEventCustomer {
+    /**
+    * Customer identifier
+    */
+    'Id'?: number;
+    /**
+    * Preferred language of the consumer
+    */
+    'LanguagePreference'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Id",
+            "baseName": "Id",
+            "type": "number"
+        },
+        {
+            "name": "LanguagePreference",
+            "baseName": "LanguagePreference",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FulfillmentStatusEventCustomer.attributeTypeMap;
+    }
+}
+
+/**
+* Slim store on fulfillment status updated (name only).
+*/
+export class FulfillmentStatusEventStore {
+    /**
+    * Store display name
+    */
+    'Name'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Name",
+            "baseName": "Name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FulfillmentStatusEventStore.attributeTypeMap;
+    }
+}
+
+/**
 * Terminal location request
 */
 export class GeoPointRequest {
@@ -30142,6 +30197,18 @@ export class OrderFulfillmentStatusUpdatedEvent {
     */
     'StatusId'?: string;
     /**
+    * Optional slim customer (Id + language) for push / notification consumers
+    */
+    'Customer'?: FulfillmentStatusEventCustomer;
+    /**
+    * Optional slim store (Name); StoreId remains top-level
+    */
+    'Store'?: FulfillmentStatusEventStore;
+    /**
+    * Order app type (e.g. Ios, Android) when known
+    */
+    'AppType'?: string;
+    /**
     * The identitfier of the event
     */
     'FlipdishEventId'?: string;
@@ -30205,6 +30272,21 @@ export class OrderFulfillmentStatusUpdatedEvent {
         {
             "name": "StatusId",
             "baseName": "StatusId",
+            "type": "string"
+        },
+        {
+            "name": "Customer",
+            "baseName": "Customer",
+            "type": "FulfillmentStatusEventCustomer"
+        },
+        {
+            "name": "Store",
+            "baseName": "Store",
+            "type": "FulfillmentStatusEventStore"
+        },
+        {
+            "name": "AppType",
+            "baseName": "AppType",
             "type": "string"
         },
         {
@@ -64683,6 +64765,8 @@ let typeMap: {[index: string]: any} = {
     "FulfillmentStatesConfigurationSummary": FulfillmentStatesConfigurationSummary,
     "FulfillmentStatesConfiguredStore": FulfillmentStatesConfiguredStore,
     "FulfillmentStatusConfigurationItem": FulfillmentStatusConfigurationItem,
+    "FulfillmentStatusEventCustomer": FulfillmentStatusEventCustomer,
+    "FulfillmentStatusEventStore": FulfillmentStatusEventStore,
     "GeoPointRequest": GeoPointRequest,
     "GetEndUserFeeConfigsResponse": GetEndUserFeeConfigsResponse,
     "GetReceiptByOrderIdQueryResponse": GetReceiptByOrderIdQueryResponse,
