@@ -70617,26 +70617,26 @@ export class BankAccountApi {
     }
     /**
      * 
-     * @param bankAccountId 
      * @param appId 
+     * @param bankAccountId 
      * @param {*} [options] Override http request options.
      */
-    public getBankAccountById (bankAccountId: number, appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
+    public getBankAccountById (appId: string, bankAccountId: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultBankAccountDetail;  }> {
         const localVarPath = this.basePath + '/api/v1.0/{appId}/bankaccounts/{bankAccountId}'
-            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)))
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'bankAccountId' + '}', encodeURIComponent(String(bankAccountId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        // verify required parameter 'bankAccountId' is not null or undefined
-        if (bankAccountId === null || bankAccountId === undefined) {
-            throw new Error('Required parameter bankAccountId was null or undefined when calling getBankAccountById.');
-        }
-
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new Error('Required parameter appId was null or undefined when calling getBankAccountById.');
+        }
+
+        // verify required parameter 'bankAccountId' is not null or undefined
+        if (bankAccountId === null || bankAccountId === undefined) {
+            throw new Error('Required parameter bankAccountId was null or undefined when calling getBankAccountById.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
