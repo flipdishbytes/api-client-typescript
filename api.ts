@@ -52653,6 +52653,10 @@ export class StorePreOrderConfigUpdatedEvent {
     */
     'Description'?: string;
     /**
+    * Type of pre order configuration Delivery / Pickup
+    */
+    'DeliveryType'?: StorePreOrderConfigUpdatedEvent.DeliveryTypeEnum;
+    /**
     * Pre Order Configuration
     */
     'PreOrderConfig'?: PreOrderConfig;
@@ -52717,6 +52721,11 @@ export class StorePreOrderConfigUpdatedEvent {
             "type": "string"
         },
         {
+            "name": "DeliveryType",
+            "baseName": "DeliveryType",
+            "type": "StorePreOrderConfigUpdatedEvent.DeliveryTypeEnum"
+        },
+        {
             "name": "PreOrderConfig",
             "baseName": "PreOrderConfig",
             "type": "PreOrderConfig"
@@ -52772,6 +52781,12 @@ export class StorePreOrderConfigUpdatedEvent {
     }
 }
 
+export namespace StorePreOrderConfigUpdatedEvent {
+    export enum DeliveryTypeEnum {
+        Delivery = <any> 'Delivery',
+        Pickup = <any> 'Pickup'
+    }
+}
 /**
 * Store Published Event
 */
@@ -64527,6 +64542,7 @@ let enumsMap: {[index: string]: any} = {
         "StoreOpeningHoursUpdatedEvent.DeliveryTypeStringEnum": StoreOpeningHoursUpdatedEvent.DeliveryTypeStringEnum,
         "StoreOrderCapacityConfig.DeliveryTypeEnum": StoreOrderCapacityConfig.DeliveryTypeEnum,
         "StoreOrderCapacityPeriod.DayOfTheWeekEnum": StoreOrderCapacityPeriod.DayOfTheWeekEnum,
+        "StorePreOrderConfigUpdatedEvent.DeliveryTypeEnum": StorePreOrderConfigUpdatedEvent.DeliveryTypeEnum,
         "StoreSummary.CurrencyEnum": StoreSummary.CurrencyEnum,
         "StripeAccountLinkRequest.CollectEnum": StripeAccountLinkRequest.CollectEnum,
         "StripeAccountLinkRequest.TypeEnum": StripeAccountLinkRequest.TypeEnum,
