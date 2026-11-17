@@ -49495,6 +49495,18 @@ export class StoreEndOfDayReport {
     */
     'CashOrderValueExcludingDeliveryFees'?: number;
     /**
+    * Total user end fee (processing fee charged to the customer, including VAT)
+    */
+    'UserEndFee'?: number;
+    /**
+    * User end fee charged on cash orders
+    */
+    'CashUserEndFee'?: number;
+    /**
+    * User end fee charged on paid online (card) orders
+    */
+    'PaidOnlineUserEndFee'?: number;
+    /**
     * Start Time
     */
     'StartTime'?: Date;
@@ -49624,6 +49636,21 @@ export class StoreEndOfDayReport {
         {
             "name": "CashOrderValueExcludingDeliveryFees",
             "baseName": "CashOrderValueExcludingDeliveryFees",
+            "type": "number"
+        },
+        {
+            "name": "UserEndFee",
+            "baseName": "UserEndFee",
+            "type": "number"
+        },
+        {
+            "name": "CashUserEndFee",
+            "baseName": "CashUserEndFee",
+            "type": "number"
+        },
+        {
+            "name": "PaidOnlineUserEndFee",
+            "baseName": "PaidOnlineUserEndFee",
             "type": "number"
         },
         {
