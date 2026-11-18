@@ -16817,47 +16817,6 @@ export namespace HydraDeviceDetails {
     }
 }
 /**
-* Hydra registration result
-*/
-export class HydraRegistrationRequest {
-    /**
-    * Stores to assign the hydra
-    */
-    'StoreIds': Array<number>;
-    /**
-    * Hydra device name
-    */
-    'DeviceName': string;
-    /**
-    * 6 digit PIN code (not starting with zero).
-    */
-    'PinCode'?: number;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "StoreIds",
-            "baseName": "StoreIds",
-            "type": "Array<number>"
-        },
-        {
-            "name": "DeviceName",
-            "baseName": "DeviceName",
-            "type": "string"
-        },
-        {
-            "name": "PinCode",
-            "baseName": "PinCode",
-            "type": "number"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return HydraRegistrationRequest.attributeTypeMap;
-    }
-}
-
-/**
 * Hydra request reset event
 */
 export class HydraRequestResetEvent {
@@ -64832,7 +64791,6 @@ let typeMap: {[index: string]: any} = {
     "HydraConnectionStatusChangedEvent": HydraConnectionStatusChangedEvent,
     "HydraCreatedEvent": HydraCreatedEvent,
     "HydraDeviceDetails": HydraDeviceDetails,
-    "HydraRegistrationRequest": HydraRegistrationRequest,
     "HydraRequestResetEvent": HydraRequestResetEvent,
     "HydraSettingChangedEvent": HydraSettingChangedEvent,
     "HydraStatus": HydraStatus,
@@ -80553,76 +80511,6 @@ export class HydraApi {
     /**
      * 
      * @param appId 
-     * @param storeId 
-     * @param deviceId 
-     * @param {*} [options] Override http request options.
-     */
-    public attachStoreToKiosk (appId: string, storeId: number, deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/AttachStoreToKiosk/{deviceId}/store/{storeId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
-            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling attachStoreToKiosk.');
-        }
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling attachStoreToKiosk.');
-        }
-
-        // verify required parameter 'deviceId' is not null or undefined
-        if (deviceId === null || deviceId === undefined) {
-            throw new Error('Required parameter deviceId was null or undefined when calling attachStoreToKiosk.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultHydraStatus");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
      * @param deviceId 
      * @param storeId 
      * @param {*} [options] Override http request options.
@@ -81500,76 +81388,6 @@ export class HydraApi {
     /**
      * 
      * @param appId 
-     * @param storeId 
-     * @param deviceId 
-     * @param {*} [options] Override http request options.
-     */
-    public hydraDetachStoreFromKiosk (appId: string, storeId: number, deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/DetachStoreFromKiosk/{deviceId}/store/{storeId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)))
-            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling hydraDetachStoreFromKiosk.');
-        }
-
-        // verify required parameter 'storeId' is not null or undefined
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling hydraDetachStoreFromKiosk.');
-        }
-
-        // verify required parameter 'deviceId' is not null or undefined
-        if (deviceId === null || deviceId === undefined) {
-            throw new Error('Required parameter deviceId was null or undefined when calling hydraDetachStoreFromKiosk.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultHydraStatus");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
      * @param {*} [options] Override http request options.
      */
     public hydraGetEmvsForAppId (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiArrayResultEmvTerminalWithAssignments;  }> {
@@ -81656,131 +81474,6 @@ export class HydraApi {
 
         let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param hydraRegistration 
-     * @param {*} [options] Override http request options.
-     */
-    public register (appId: string, hydraRegistration: HydraRegistrationRequest, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/registration'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling register.');
-        }
-
-        // verify required parameter 'hydraRegistration' is not null or undefined
-        if (hydraRegistration === null || hydraRegistration === undefined) {
-            throw new Error('Required parameter hydraRegistration was null or undefined when calling register.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(hydraRegistration, "HydraRegistrationRequest")
-        };
-
-        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.IncomingMessage; body: RestApiResultHydraStatus;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "RestApiResultHydraStatus");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * @param appId 
-     * @param deviceId 
-     * @param {*} [options] Override http request options.
-     */
-    public unAssign (appId: string, deviceId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/api/v1.0/{appId}/hydra/{deviceId}/registration'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'deviceId' + '}', encodeURIComponent(String(deviceId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new Error('Required parameter appId was null or undefined when calling unAssign.');
-        }
-
-        // verify required parameter 'deviceId' is not null or undefined
-        if (deviceId === null || deviceId === undefined) {
-            throw new Error('Required parameter deviceId was null or undefined when calling unAssign.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
