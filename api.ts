@@ -16146,6 +16146,35 @@ export namespace HomeAction {
         External = <any> 'External'
     }
 }
+export class HomeScreenBackground {
+    'Type'?: HomeScreenBackground.TypeEnum;
+    'Url'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Type",
+            "baseName": "Type",
+            "type": "HomeScreenBackground.TypeEnum"
+        },
+        {
+            "name": "Url",
+            "baseName": "Url",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HomeScreenBackground.attributeTypeMap;
+    }
+}
+
+export namespace HomeScreenBackground {
+    export enum TypeEnum {
+        Image = <any> 'Image',
+        Video = <any> 'Video'
+    }
+}
 /**
 * Home statitstics
 */
@@ -27020,6 +27049,79 @@ export namespace MetafieldDefinitionRecommendation {
         SendToMenu = <any> 'SendToMenu'
     }
 }
+/**
+* Settings of the mobile apps of an App
+*/
+export class MobileAppSettings {
+    /**
+    * Show the App logo on the home screen
+    */
+    'ShowHomeScreenLogo'?: boolean;
+    /**
+    * Show the welcome message on the home screen
+    */
+    'ShowHomeScreenWelcomeMessage'?: boolean;
+    /**
+    * Home screen background, if one has been uploaded
+    */
+    'HomeScreenBackground'?: HomeScreenBackground;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ShowHomeScreenLogo",
+            "baseName": "ShowHomeScreenLogo",
+            "type": "boolean"
+        },
+        {
+            "name": "ShowHomeScreenWelcomeMessage",
+            "baseName": "ShowHomeScreenWelcomeMessage",
+            "type": "boolean"
+        },
+        {
+            "name": "HomeScreenBackground",
+            "baseName": "HomeScreenBackground",
+            "type": "HomeScreenBackground"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MobileAppSettings.attributeTypeMap;
+    }
+}
+
+/**
+* Update of the settings of the mobile apps of an App
+*/
+export class MobileAppSettingsUpdateModel {
+    /**
+    * Show the App logo on the home screen. Left unchanged when not supplied.
+    */
+    'ShowHomeScreenLogo'?: boolean;
+    /**
+    * Show the welcome message on the home screen. Left unchanged when not supplied.
+    */
+    'ShowHomeScreenWelcomeMessage'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ShowHomeScreenLogo",
+            "baseName": "ShowHomeScreenLogo",
+            "type": "boolean"
+        },
+        {
+            "name": "ShowHomeScreenWelcomeMessage",
+            "baseName": "ShowHomeScreenWelcomeMessage",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MobileAppSettingsUpdateModel.attributeTypeMap;
+    }
+}
+
 /**
 * Mobile Apps Image
 */
@@ -43353,6 +43455,29 @@ export class RestApiResultMetafieldDefinition {
 
     static getAttributeTypeMap() {
         return RestApiResultMetafieldDefinition.attributeTypeMap;
+    }
+}
+
+/**
+* Rest api result
+*/
+export class RestApiResultMobileAppSettings {
+    /**
+    * Generic data object.
+    */
+    'Data': MobileAppSettings;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "Data",
+            "baseName": "Data",
+            "type": "MobileAppSettings"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RestApiResultMobileAppSettings.attributeTypeMap;
     }
 }
 
@@ -64593,6 +64718,7 @@ let enumsMap: {[index: string]: any} = {
         "Group.GroupTypeEnum": Group.GroupTypeEnum,
         "GroupReference.GroupTypeEnum": GroupReference.GroupTypeEnum,
         "HomeAction.HomeActionTypeEnum": HomeAction.HomeActionTypeEnum,
+        "HomeScreenBackground.TypeEnum": HomeScreenBackground.TypeEnum,
         "HydraConfig.PaymentOptionsEnum": HydraConfig.PaymentOptionsEnum,
         "HydraConnectionStatusChangedEvent.HydraDeviceStatusEnum": HydraConnectionStatusChangedEvent.HydraDeviceStatusEnum,
         "HydraCreatedEvent.UserTypeEnum": HydraCreatedEvent.UserTypeEnum,
@@ -64975,6 +65101,7 @@ let typeMap: {[index: string]: any} = {
     "GroupedCoordinates": GroupedCoordinates,
     "HasPaymentMethodResponse": HasPaymentMethodResponse,
     "HomeAction": HomeAction,
+    "HomeScreenBackground": HomeScreenBackground,
     "HomeStatistics": HomeStatistics,
     "HttpPostedFileBase": HttpPostedFileBase,
     "HydraAssignedEvent": HydraAssignedEvent,
@@ -65093,6 +65220,8 @@ let typeMap: {[index: string]: any} = {
     "Metafield": Metafield,
     "MetafieldDefinition": MetafieldDefinition,
     "MetafieldDefinitionRecommendation": MetafieldDefinitionRecommendation,
+    "MobileAppSettings": MobileAppSettings,
+    "MobileAppSettingsUpdateModel": MobileAppSettingsUpdateModel,
     "MobileAppsImage": MobileAppsImage,
     "MobileAppsStatistics": MobileAppsStatistics,
     "MobileAppsSubmission": MobileAppsSubmission,
@@ -65395,6 +65524,7 @@ let typeMap: {[index: string]: any} = {
     "RestApiResultMenuZone": RestApiResultMenuZone,
     "RestApiResultMetadata": RestApiResultMetadata,
     "RestApiResultMetafieldDefinition": RestApiResultMetafieldDefinition,
+    "RestApiResultMobileAppSettings": RestApiResultMobileAppSettings,
     "RestApiResultMobileAppsImage": RestApiResultMobileAppsImage,
     "RestApiResultMobileAppsSubmission": RestApiResultMobileAppsSubmission,
     "RestApiResultMobileAppsSubmissionDetails": RestApiResultMobileAppsSubmissionDetails,
@@ -69015,6 +69145,61 @@ export class AppsApi {
      * @param appId 
      * @param {*} [options] Override http request options.
      */
+    public deleteAppHomeScreenBackground (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/home-screen-background'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling deleteAppHomeScreenBackground.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
     public getApp (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultApp;  }> {
         const localVarPath = this.basePath + '/api/v1.0/apps/{appId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
@@ -69113,6 +69298,62 @@ export class AppsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiResultDnsRecordInformation");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param {*} [options] Override http request options.
+     */
+    public getAppMobileSettings (appId: string, options: any = {}) : Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppSettings;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/mobile-app-settings'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling getAppMobileSettings.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RestApiResultMobileAppSettings;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RestApiResultMobileAppSettings");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -69794,6 +70035,68 @@ export class AppsApi {
     /**
      * 
      * @param appId 
+     * @param update 
+     * @param {*} [options] Override http request options.
+     */
+    public setAppMobileSettings (appId: string, update: MobileAppSettingsUpdateModel, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/mobile-app-settings'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling setAppMobileSettings.');
+        }
+
+        // verify required parameter 'update' is not null or undefined
+        if (update === null || update === undefined) {
+            throw new Error('Required parameter update was null or undefined when calling setAppMobileSettings.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(update, "MobileAppSettingsUpdateModel")
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
      * @param appStoreName 
      * @param {*} [options] Override http request options.
      */
@@ -70127,6 +70430,72 @@ export class AppsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "RestApiStringResult");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @param appId 
+     * @param Image Home screen background
+     * @param {*} [options] Override http request options.
+     */
+    public uploadAppHomeScreenBackground (appId: string, Image: Buffer, options: any = {}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/api/v1.0/apps/{appId}/home-screen-background'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new Error('Required parameter appId was null or undefined when calling uploadAppHomeScreenBackground.');
+        }
+
+        // verify required parameter 'Image' is not null or undefined
+        if (Image === null || Image === undefined) {
+            throw new Error('Required parameter Image was null or undefined when calling uploadAppHomeScreenBackground.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (Image !== undefined) {
+            localVarFormParams['Image'] = Image;
+        }
+        localVarUseFormData = true;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.oauth2.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
