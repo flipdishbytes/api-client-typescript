@@ -9594,6 +9594,10 @@ export class CreatePromotion {
     * Promotion Menu Item Awards
     */
     'MenuItemPublicIds'?: Array<string>;
+    /**
+    * RMS menu the award items were picked from (display only)
+    */
+    'RmsMenuId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -9607,6 +9611,11 @@ export class CreatePromotion {
             "name": "MenuItemPublicIds",
             "baseName": "MenuItemPublicIds",
             "type": "Array<string>"
+        },
+        {
+            "name": "RmsMenuId",
+            "baseName": "RmsMenuId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -37681,6 +37690,10 @@ export class PromotionDetails {
     */
     'Name'?: string;
     /**
+    * RMS menu the award items were picked from (display only)
+    */
+    'RmsMenuId'?: string;
+    /**
     * The items that this promotion will award
     */
     'PromotionAwards'?: Array<PromotionAward>;
@@ -37696,6 +37709,11 @@ export class PromotionDetails {
         {
             "name": "Name",
             "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "RmsMenuId",
+            "baseName": "RmsMenuId",
             "type": "string"
         },
         {
