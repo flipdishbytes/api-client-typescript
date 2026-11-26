@@ -47411,7 +47411,7 @@ export class Store {
     */
     'PropertyId'?: string;
     /**
-    * Phone number
+    * Read-only. The store's phone number is managed on its property; a value sent on update is ignored.
     */
     'PhoneNumber'?: string;
     /**
@@ -48445,7 +48445,7 @@ export class StoreArchivedEvent {
 */
 export class StoreBase {
     /**
-    * Phone number
+    * Read-only. The store's phone number is managed on its property; a value sent on update is ignored.
     */
     'PhoneNumber'?: string;
     /**
@@ -49279,7 +49279,7 @@ export class StoreCreateBase {
     */
     'SalesChannelType'?: StoreCreateBase.SalesChannelTypeEnum;
     /**
-    * Phone Number
+    * Read-only. The store's phone number is managed on its property; a value sent here is ignored.
     */
     'PhoneNumber'?: string;
 
